@@ -17,12 +17,11 @@ const spinnerVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 interface SpinnerProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof spinnerVariants> {}
+  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof spinnerVariants> {}
 
 function Spinner({ className, size, ...props }: SpinnerProps) {
   return (

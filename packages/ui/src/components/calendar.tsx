@@ -7,12 +7,7 @@ import { cn } from "../lib/utils";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
-function Calendar({
-  className,
-  classNames,
-  showOutsideDays = true,
-  ...props
-}: CalendarProps) {
+function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -25,33 +20,29 @@ function Calendar({
         nav: "flex items-center justify-between absolute inset-x-0 top-1",
         button_previous: cn(
           "absolute left-0 h-7 w-7 flex items-center justify-center rounded-md",
-          "text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors"
+          "text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors",
         ),
         button_next: cn(
           "absolute right-0 h-7 w-7 flex items-center justify-center rounded-md",
-          "text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors"
+          "text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors",
         ),
         month_grid: "w-full border-collapse mt-1",
         weekdays: "flex",
-        weekday:
-          "w-9 h-9 flex items-center justify-center label text-taupe-400 font-normal",
+        weekday: "w-9 h-9 flex items-center justify-center label text-taupe-400 font-normal",
         week: "flex w-full mt-1",
         day: "relative p-0 text-center",
         day_button: cn(
           "h-9 w-9 flex items-center justify-center rounded-full body font-normal",
           "text-taupe-900 hover:bg-taupe-100 transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
         ),
         selected:
           "[&>button]:bg-brand-primary [&>button]:text-white [&>button]:hover:bg-brand-primary/90",
-        today:
-          "[&>button]:font-semibold [&>button]:text-brand-primary",
+        today: "[&>button]:font-semibold [&>button]:text-brand-primary",
         outside: "opacity-40 [&>button]:text-taupe-400",
         disabled: "opacity-30 [&>button]:cursor-not-allowed",
-        range_start:
-          "[&>button]:bg-brand-primary [&>button]:text-white [&>button]:rounded-full",
-        range_end:
-          "[&>button]:bg-brand-primary [&>button]:text-white [&>button]:rounded-full",
+        range_start: "[&>button]:bg-brand-primary [&>button]:text-white [&>button]:rounded-full",
+        range_end: "[&>button]:bg-brand-primary [&>button]:text-white [&>button]:rounded-full",
         range_middle:
           "[&>button]:bg-brand-primary/15 [&>button]:text-taupe-900 [&>button]:rounded-none",
         hidden: "invisible",
@@ -59,11 +50,7 @@ function Calendar({
       }}
       components={{
         Chevron: ({ orientation }) =>
-          orientation === "left" ? (
-            <ChevronLeft size={14} />
-          ) : (
-            <ChevronRight size={14} />
-          ),
+          orientation === "left" ? <ChevronLeft size={14} /> : <ChevronRight size={14} />,
       }}
       {...props}
     />

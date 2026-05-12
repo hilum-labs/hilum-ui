@@ -37,7 +37,7 @@ function MediaObject({
         mediaPosition === "right" && "flex-row-reverse",
         alignMap[align],
         gapMap[gap],
-        className
+        className,
       )}
     >
       <div className="shrink-0">{media}</div>

@@ -13,7 +13,16 @@ interface FieldProps {
   children: React.ReactNode;
 }
 
-function Field({ label, htmlFor, hint, error, required, cornerHint, className, children }: FieldProps) {
+function Field({
+  label,
+  htmlFor,
+  hint,
+  error,
+  required,
+  cornerHint,
+  className,
+  children,
+}: FieldProps) {
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
       <div className="flex items-center justify-between gap-2">
@@ -21,9 +30,7 @@ function Field({ label, htmlFor, hint, error, required, cornerHint, className, c
           {label}
           {required && <span className="ml-0.5 text-red-600">*</span>}
         </Label>
-        {cornerHint && (
-          <span className="caption text-taupe-400">{cornerHint}</span>
-        )}
+        {cornerHint && <span className="caption text-taupe-400">{cornerHint}</span>}
       </div>
       {children}
       {error ? (

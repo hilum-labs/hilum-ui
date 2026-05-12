@@ -1,14 +1,14 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
 
 interface DesignerPanelProps {
-  side: 'left' | 'right'
+  side: "left" | "right";
   /** Width in pixels. Default: 240. */
-  width?: number
+  width?: number;
   /** Add a separator border on the inner edge. Default: true. */
-  bordered?: boolean
-  className?: string
-  children?: ReactNode
+  bordered?: boolean;
+  className?: string;
+  children?: ReactNode;
 }
 
 /**
@@ -26,17 +26,17 @@ function DesignerPanel({
   return (
     <aside
       className={cn(
-        'flex flex-col bg-white shrink-0 overflow-hidden',
-        bordered && (side === 'left' ? 'border-r' : 'border-l'),
-        bordered && 'border-taupe-100',
+        "flex flex-col bg-white shrink-0 overflow-hidden",
+        bordered && (side === "left" ? "border-r" : "border-l"),
+        bordered && "border-taupe-100",
         className,
       )}
       style={{ width }}
     >
       <div className="flex flex-col flex-1 overflow-y-auto">{children}</div>
     </aside>
-  )
+  );
 }
 
-export { DesignerPanel }
-export type { DesignerPanelProps }
+export { DesignerPanel };
+export type { DesignerPanelProps };

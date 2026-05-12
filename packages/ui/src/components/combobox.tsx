@@ -41,9 +41,10 @@ function Combobox({
   const filtered =
     query === ""
       ? options
-      : options.filter((o) =>
-          o.label.toLowerCase().includes(query.toLowerCase()) ||
-          o.description?.toLowerCase().includes(query.toLowerCase())
+      : options.filter(
+          (o) =>
+            o.label.toLowerCase().includes(query.toLowerCase()) ||
+            o.description?.toLowerCase().includes(query.toLowerCase()),
         );
 
   // Close on outside click
@@ -62,14 +63,14 @@ function Combobox({
   React.useEffect(() => {
     if (!open) return;
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") { setOpen(false); setQuery(""); }
+      if (e.key === "Escape") {
+        setOpen(false);
+        setQuery("");
+      }
     }
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [open]);
-
-  const hasAvatars = options.some((o) => o.avatar);
-  const hasStatus = options.some((o) => o.statusColor);
 
   return (
     <div ref={containerRef} className={cn("relative", className)}>
@@ -96,7 +97,11 @@ function Combobox({
             "placeholder:text-taupe-400",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/30 focus-visible:border-taupe-400",
             "disabled:cursor-not-allowed disabled:opacity-50",
-            selectedOption?.avatar && !open ? "pl-8" : selectedOption?.statusColor && !open ? "pl-7" : "pl-3"
+            selectedOption?.avatar && !open
+              ? "pl-8"
+              : selectedOption?.statusColor && !open
+                ? "pl-7"
+                : "pl-3",
           )}
           placeholder={open ? searchPlaceholder : (selectedOption?.label ?? placeholder)}
           value={open ? query : (selectedOption?.label ?? "")}
@@ -145,7 +150,7 @@ function Combobox({
                       "flex cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
                       isSelected
                         ? "bg-brand-primary text-white"
-                        : "text-taupe-900 hover:bg-taupe-50"
+                        : "text-taupe-900 hover:bg-taupe-50",
                     )}
                     onMouseDown={(e) => e.preventDefault()}
                     onClick={() => {
@@ -159,7 +164,7 @@ function Combobox({
                       <div
                         className={cn(
                           "flex size-6 shrink-0 items-center justify-center rounded-full caption-xs font-semibold",
-                          isSelected ? "bg-white/20 text-white" : "bg-taupe-200 text-taupe-700"
+                          isSelected ? "bg-white/20 text-white" : "bg-taupe-200 text-taupe-700",
                         )}
                       >
                         {option.avatar}
@@ -180,7 +185,7 @@ function Combobox({
                         <p
                           className={cn(
                             "caption truncate",
-                            isSelected ? "text-white/70" : "text-taupe-400"
+                            isSelected ? "text-white/70" : "text-taupe-400",
                           )}
                         >
                           {option.description}

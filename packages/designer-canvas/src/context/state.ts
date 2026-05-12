@@ -2,41 +2,48 @@
 // All Pappery domain (productType, dpi, binding*, bleed, etc.) is excluded
 // per PHASE_0_AUDIT.md §P0.4.
 
-import type { FrameSize, GridContainer, Layer, LayerTypeDescriptor, PanState, SurfaceTheme } from '../types'
+import type {
+  FrameSize,
+  GridContainer,
+  Layer,
+  LayerTypeDescriptor,
+  PanState,
+  SurfaceTheme,
+} from "../types";
 
 export interface CanvasState<TData = Record<string, unknown>> {
   /** All layers in z-order. Index 0 = bottom. */
-  layers: Layer<TData>[]
+  layers: Layer<TData>[];
 
   /** View state. */
-  zoom: number
-  pan: PanState
+  zoom: number;
+  pan: PanState;
 
   /** Artboard / frame. */
-  frameSize: FrameSize
-  artboardName: string
-  artboardColor: string
-  artboardOpacity: number
+  frameSize: FrameSize;
+  artboardName: string;
+  artboardColor: string;
+  artboardOpacity: number;
   /** Whether content is clipped to the frame bounds. */
-  artboardClipContent: boolean
+  artboardClipContent: boolean;
 
   /** Optional grid layout mode. When set, layers can use `gridItem`. */
-  gridContainer?: GridContainer
+  gridContainer?: GridContainer;
 
   /** Clipboard: layers that have been copied / cut. */
-  copiedLayers: Layer<TData>[] | null
+  copiedLayers: Layer<TData>[] | null;
 
   /** Theme — chrome reads from here, components reference Hilum semantic vars. */
-  uiColor: SurfaceTheme
-  canvasColor: SurfaceTheme
+  uiColor: SurfaceTheme;
+  canvasColor: SurfaceTheme;
   /** Editor accent (selection handles, snap guides). Defaults to Hilum brand-primary via CSS var. */
-  accentColor: string
+  accentColor: string;
 
   /** Renderer registry: descriptors for the layer kinds the app supports. */
-  layerTypes: LayerTypeDescriptor[]
+  layerTypes: LayerTypeDescriptor[];
 
   /** When true, mutating actions no-op. */
-  readOnly: boolean
+  readOnly: boolean;
 }
 
 export function createInitialState<TData>(
@@ -47,17 +54,17 @@ export function createInitialState<TData>(
     zoom: 1,
     pan: { x: 0, y: 0 },
     frameSize: { width: 800, height: 600 },
-    artboardName: 'Artboard',
-    artboardColor: '#ffffff',
+    artboardName: "Artboard",
+    artboardColor: "#ffffff",
     artboardOpacity: 1,
     artboardClipContent: true,
     gridContainer: undefined,
     copiedLayers: null,
-    uiColor: 'light',
-    canvasColor: 'light',
-    accentColor: 'var(--brand-primary)',
+    uiColor: "light",
+    canvasColor: "light",
+    accentColor: "var(--brand-primary)",
     layerTypes: [],
     readOnly: false,
     ...partial,
-  }
+  };
 }

@@ -22,7 +22,7 @@ const SelectTrigger = React.forwardRef<
       "disabled:opacity-50 disabled:cursor-not-allowed",
       "data-[placeholder]:text-taupe-400",
       "[&>span]:line-clamp-1",
-      className
+      className,
     )}
     {...props}
   >
@@ -48,9 +48,8 @@ const SelectContent = React.forwardRef<
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
-        position === "popper" &&
-          "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
-        className
+        position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
+        className,
       )}
       position={position}
       {...props}
@@ -61,7 +60,7 @@ const SelectContent = React.forwardRef<
       <Select.Viewport
         className={cn(
           position === "popper" &&
-            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
         )}
       >
         {children}
@@ -85,7 +84,7 @@ const SelectItem = React.forwardRef<
       "body text-taupe-700 outline-none",
       "focus:bg-taupe-50 focus:text-taupe-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     {...props}
   >
@@ -105,10 +104,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Select.Label
     ref={ref}
-    className={cn(
-      "px-2.5 py-1 label text-taupe-400",
-      className
-    )}
+    className={cn("px-2.5 py-1 label text-taupe-400", className)}
     {...props}
   />
 ));
@@ -118,11 +114,7 @@ const SelectSeparator = React.forwardRef<
   React.ComponentRef<typeof Select.Separator>,
   React.ComponentPropsWithoutRef<typeof Select.Separator>
 >(({ className, ...props }, ref) => (
-  <Select.Separator
-    ref={ref}
-    className={cn("mx-1 my-1 h-px bg-taupe-100", className)}
-    {...props}
-  />
+  <Select.Separator ref={ref} className={cn("mx-1 my-1 h-px bg-taupe-100", className)} {...props} />
 ));
 SelectSeparator.displayName = "SelectSeparator";
 

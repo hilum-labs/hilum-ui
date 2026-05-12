@@ -56,7 +56,13 @@ function GridListCard({
   className,
 }: GridListCardProps) {
   const inner = (
-    <div className={cn("flex h-full flex-col gap-1 rounded-xl border border-taupe-100 bg-white p-4 shadow-natural transition-shadow", href && "hover:shadow-elevated", className)}>
+    <div
+      className={cn(
+        "flex h-full flex-col gap-1 rounded-xl border border-taupe-100 bg-white p-4 shadow-natural transition-shadow",
+        href && "hover:shadow-elevated",
+        className,
+      )}
+    >
       {accent && <div className="mb-2">{accent}</div>}
       <p className="body font-semibold text-taupe-900">{title}</p>
       {description && <p className="caption text-taupe-400">{description}</p>}
@@ -72,7 +78,10 @@ function GridListCard({
   return (
     <li>
       {href ? (
-        <a href={href} className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/40 rounded-xl">
+        <a
+          href={href}
+          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/40 rounded-xl"
+        >
           {inner}
         </a>
       ) : (
@@ -106,8 +115,19 @@ function GridListAccentCard({
   className,
 }: GridListAccentCardProps) {
   const inner = (
-    <div className={cn("flex overflow-hidden rounded-xl border border-taupe-100 bg-white shadow-natural transition-shadow", href && "hover:shadow-elevated", className)}>
-      <div className={cn("flex w-14 shrink-0 items-center justify-center body font-semibold text-white", accentClass)}>
+    <div
+      className={cn(
+        "flex overflow-hidden rounded-xl border border-taupe-100 bg-white shadow-natural transition-shadow",
+        href && "hover:shadow-elevated",
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "flex w-14 shrink-0 items-center justify-center body font-semibold text-white",
+          accentClass,
+        )}
+      >
         {initials}
       </div>
       <div className="flex flex-1 items-center justify-between truncate border-l border-taupe-100 px-4 py-3">
@@ -123,7 +143,10 @@ function GridListAccentCard({
   return (
     <li>
       {href ? (
-        <a href={href} className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/40 rounded-xl">
+        <a
+          href={href}
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/40 rounded-xl"
+        >
           {inner}
         </a>
       ) : (

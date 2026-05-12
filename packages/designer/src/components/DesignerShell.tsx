@@ -1,9 +1,9 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
 
 interface DesignerShellProps {
-  className?: string
-  children: ReactNode
+  className?: string;
+  children: ReactNode;
 }
 
 /**
@@ -15,14 +15,14 @@ function DesignerShell({ className, children }: DesignerShellProps) {
   return (
     <div
       className={cn(
-        'flex flex-col h-screen w-screen overflow-hidden bg-taupe-50 text-taupe-900',
+        "flex flex-col h-screen w-screen overflow-hidden bg-taupe-50 text-taupe-900",
         className,
       )}
     >
       {children}
     </div>
-  )
+  );
 }
 
-export { DesignerShell }
-export type { DesignerShellProps }
+export { DesignerShell };
+export type { DesignerShellProps };

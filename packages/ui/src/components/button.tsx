@@ -15,18 +15,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "bg-brand-primary text-white hover:bg-brand-primary/90 active:bg-brand-primary/80",
-        destructive:
-          "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
-        outline:
-          "bg-white text-taupe-700 shadow-natural hover:bg-taupe-50 rounded-xl",
-        secondary:
-          "bg-taupe-100 text-taupe-700 hover:bg-taupe-200",
+        default: "bg-brand-primary text-white hover:bg-brand-primary/90 active:bg-brand-primary/80",
+        destructive: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
+        outline: "bg-white text-taupe-700 shadow-natural hover:bg-taupe-50 rounded-xl",
+        secondary: "bg-taupe-100 text-taupe-700 hover:bg-taupe-200",
         brand:
           "bg-brand-secondary text-taupe-900 hover:bg-brand-secondary/90 active:bg-brand-secondary/80",
-        ghost:
-          "text-taupe-600 hover:bg-taupe-100 hover:text-taupe-900",
+        ghost: "text-taupe-600 hover:bg-taupe-100 hover:text-taupe-900",
         link: "text-taupe-900 underline-offset-4 hover:underline",
       },
       size: {
@@ -44,22 +39,14 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
-interface ButtonProps
-  extends React.ComponentProps<"button">,
-    VariantProps<typeof buttonVariants> {
+interface ButtonProps extends React.ComponentProps<"button">, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: ButtonProps) {
+function Button({ className, variant, size, asChild = false, ...props }: ButtonProps) {
   const Comp = asChild ? Slot.Root : "button";
   return (
     <Comp

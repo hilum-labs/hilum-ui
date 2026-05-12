@@ -1,18 +1,18 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
 
 interface PageHeaderProps {
   /** Page title — typically rendered as h1. */
-  title: ReactNode
+  title: ReactNode;
   /** Short prose under the title. */
-  description?: ReactNode
+  description?: ReactNode;
   /** Buttons or controls on the right. */
-  actions?: ReactNode
+  actions?: ReactNode;
   /** Optional eyebrow above the title (e.g. category, breadcrumb summary). */
-  eyebrow?: ReactNode
+  eyebrow?: ReactNode;
   /** Heading level (default: 1). */
-  level?: 1 | 2 | 3
-  className?: string
+  level?: 1 | 2 | 3;
+  className?: string;
 }
 
 function PageHeader({
@@ -23,21 +23,38 @@ function PageHeader({
   level = 1,
   className,
 }: PageHeaderProps) {
-  const Tag = `h${level}` as const
+  const Tag = `h${level}` as const;
 
   return (
-    <div className={cn('flex items-start justify-between gap-6 pb-6 border-b border-taupe-100', className)}>
+    <div
+      className={cn(
+        "flex items-start justify-between gap-6 pb-6 border-b border-taupe-100",
+        className,
+      )}
+    >
       <div className="min-w-0">
-        {eyebrow && <div className="caption-xs uppercase tracking-wider font-semibold text-taupe-400 mb-1.5">{eyebrow}</div>}
-        <Tag className={cn(level === 1 ? 'heading-xl text-taupe-900' : level === 2 ? 'heading text-taupe-900' : 'subheading text-taupe-900')}>
+        {eyebrow && (
+          <div className="caption-xs uppercase tracking-wider font-semibold text-taupe-400 mb-1.5">
+            {eyebrow}
+          </div>
+        )}
+        <Tag
+          className={cn(
+            level === 1
+              ? "heading-xl text-taupe-900"
+              : level === 2
+                ? "heading text-taupe-900"
+                : "subheading text-taupe-900",
+          )}
+        >
           {title}
         </Tag>
         {description && <p className="body text-taupe-500 mt-2 max-w-2xl">{description}</p>}
       </div>
       {actions && <div className="flex items-center gap-2 shrink-0">{actions}</div>}
     </div>
-  )
+  );
 }
 
-export { PageHeader }
-export type { PageHeaderProps }
+export { PageHeader };
+export type { PageHeaderProps };

@@ -21,13 +21,7 @@ interface RadioCardsProps {
   className?: string;
 }
 
-function RadioCards({
-  options,
-  value,
-  onValueChange,
-  columns = 3,
-  className,
-}: RadioCardsProps) {
+function RadioCards({ options, value, onValueChange, columns = 3, className }: RadioCardsProps) {
   const colMap = {
     1: "grid-cols-1",
     2: "grid-cols-1 sm:grid-cols-2",
@@ -53,7 +47,7 @@ function RadioCards({
               "disabled:cursor-not-allowed disabled:opacity-50",
               isSelected
                 ? "border-brand-primary bg-white shadow-natural"
-                : "border-taupe-200 bg-white hover:border-taupe-400"
+                : "border-taupe-200 bg-white hover:border-taupe-400",
             )}
           >
             {/* Selected ring overlay */}
@@ -66,10 +60,13 @@ function RadioCards({
 
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
-                {option.icon && (
-                  <div className="mb-2 text-taupe-500">{option.icon}</div>
-                )}
-                <p className={cn("body font-semibold", isSelected ? "text-taupe-900" : "text-taupe-800")}>
+                {option.icon && <div className="mb-2 text-taupe-500">{option.icon}</div>}
+                <p
+                  className={cn(
+                    "body font-semibold",
+                    isSelected ? "text-taupe-900" : "text-taupe-800",
+                  )}
+                >
                   {option.label}
                 </p>
                 {option.description && (
@@ -81,7 +78,7 @@ function RadioCards({
                   "flex size-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
                   isSelected
                     ? "border-brand-primary bg-brand-primary"
-                    : "border-taupe-300 bg-white"
+                    : "border-taupe-300 bg-white",
                 )}
               >
                 {isSelected && <Check size={10} className="text-white" strokeWidth={3} />}
@@ -89,7 +86,12 @@ function RadioCards({
             </div>
 
             {option.meta && (
-              <p className={cn("caption font-semibold mt-2", isSelected ? "text-taupe-900" : "text-taupe-400")}>
+              <p
+                className={cn(
+                  "caption font-semibold mt-2",
+                  isSelected ? "text-taupe-900" : "text-taupe-400",
+                )}
+              >
                 {option.meta}
               </p>
             )}

@@ -8,23 +8,17 @@ export default function HeroSimpleCentered() {
           Revenue operations for modern teams
         </p>
         <h1 className="display mt-6 text-taupe-900">
-          Run every launch with more{" "}
-          <span className="text-brand-primary">clarity</span>.
+          Run every launch with more <span className="text-brand-primary">clarity</span>.
         </h1>
         <p className="body mx-auto mt-5 max-w-2xl text-taupe-500">
-          Newlane gives product, marketing, and sales one operating layer for
-          planning campaigns, aligning teams, and measuring impact without the
-          spreadsheet churn.
+          Newlane gives product, marketing, and sales one operating layer for planning campaigns,
+          aligning teams, and measuring impact without the spreadsheet churn.
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button size="lg" className="w-full sm:w-auto">
             Book a demo
           </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="w-full border-taupe-200 sm:w-auto"
-          >
+          <Button variant="outline" size="lg" className="w-full border-taupe-200 sm:w-auto">
             See pricing
           </Button>
         </div>

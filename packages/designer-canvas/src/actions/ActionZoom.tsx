@@ -1,9 +1,9 @@
-import { Plus, Minus, Maximize2 } from 'lucide-react'
-import { DesignerToolbarButton, DesignerToolbarGroup } from '@hilum/designer'
-import { useZoom } from '../hooks/useZoom'
+import { Plus, Minus, Maximize2 } from "lucide-react";
+import { DesignerToolbarButton, DesignerToolbarGroup } from "@hilum/designer";
+import { useZoom } from "../hooks/useZoom";
 
 function ActionZoom() {
-  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom()
+  const { zoom, zoomIn, zoomOut, resetZoom } = useZoom();
 
   return (
     <DesignerToolbarGroup>
@@ -13,7 +13,7 @@ function ActionZoom() {
       </DesignerToolbarButton>
       <DesignerToolbarButton label="Zoom in" icon={Plus} shortcut="⌘=" onClick={zoomIn} />
     </DesignerToolbarGroup>
-  )
+  );
 }
 
-export { ActionZoom }
+export { ActionZoom };

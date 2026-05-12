@@ -19,9 +19,7 @@ const cardVariants = cva("rounded-xl", {
   },
 });
 
-interface CardProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof cardVariants> {}
+interface CardProps extends React.ComponentProps<"div">, VariantProps<typeof cardVariants> {}
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, ...props }, ref) => (
@@ -31,7 +29,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
       className={cn(cardVariants({ variant }), className)}
       {...props}
     />
-  )
+  ),
 );
 Card.displayName = "Card";
 
@@ -47,60 +45,51 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>
       className={cn("flex flex-col gap-1.5 p-5", className)}
       {...props}
     />
-  )
+  ),
 );
 CardHeader.displayName = "CardHeader";
 
-const CardTitle = React.forwardRef<
-  HTMLHeadingElement,
-  React.ComponentProps<"h3">
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    data-slot="card-title"
-    className={cn("subheading text-taupe-900", className)}
-    {...props}
-  />
-));
+const CardTitle = React.forwardRef<HTMLHeadingElement, React.ComponentProps<"h3">>(
+  ({ className, ...props }, ref) => (
+    <h3
+      ref={ref}
+      data-slot="card-title"
+      className={cn("subheading text-taupe-900", className)}
+      {...props}
+    />
+  ),
+);
 CardTitle.displayName = "CardTitle";
 
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.ComponentProps<"p">
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    data-slot="card-description"
-    className={cn("caption text-taupe-500", className)}
-    {...props}
-  />
-));
+const CardDescription = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
+  ({ className, ...props }, ref) => (
+    <p
+      ref={ref}
+      data-slot="card-description"
+      className={cn("caption text-taupe-500", className)}
+      {...props}
+    />
+  ),
+);
 CardDescription.displayName = "CardDescription";
 
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    data-slot="card-content"
-    className={cn("p-5 pt-0", className)}
-    {...props}
-  />
-));
+const CardContent = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} data-slot="card-content" className={cn("p-5 pt-0", className)} {...props} />
+  ),
+);
 CardContent.displayName = "CardContent";
 
-const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div">
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    data-slot="card-footer"
-    className={cn("flex items-center p-5 pt-0", className)}
-    {...props}
-  />
-));
+const CardFooter = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      data-slot="card-footer"
+      className={cn("flex items-center p-5 pt-0", className)}
+      {...props}
+    />
+  ),
+);
 CardFooter.displayName = "CardFooter";
 
 /* ------------------------------------------------------------------ */
@@ -115,7 +104,7 @@ const CardMedia = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
       className={cn("relative overflow-hidden", className)}
       {...props}
     />
-  )
+  ),
 );
 CardMedia.displayName = "CardMedia";
 

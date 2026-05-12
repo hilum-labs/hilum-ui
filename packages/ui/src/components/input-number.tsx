@@ -3,7 +3,10 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 
-interface InputNumberProps extends Omit<React.ComponentProps<"input">, "type" | "value" | "onChange"> {
+interface InputNumberProps extends Omit<
+  React.ComponentProps<"input">,
+  "type" | "value" | "onChange"
+> {
   value: number;
   onChange: (next: number) => void;
   min?: number;
@@ -36,7 +39,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
       disabled,
       ...rest
     },
-    ref
+    ref,
   ) => {
     const [text, setText] = React.useState<string>(value.toFixed(precision));
 
@@ -81,7 +84,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           "inline-flex h-8 items-stretch rounded-md border border-taupe-200 bg-white overflow-hidden",
           "focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
           disabled && "opacity-50 pointer-events-none",
-          className
+          className,
         )}
       >
         <input
@@ -131,7 +134,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
         )}
       </div>
     );
-  }
+  },
 );
 InputNumber.displayName = "InputNumber";
 

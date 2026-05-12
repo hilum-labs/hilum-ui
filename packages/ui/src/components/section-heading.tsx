@@ -29,14 +29,12 @@ function SectionHeading({
       className={cn(
         "flex flex-col gap-1 pb-4 sm:flex-row sm:items-start sm:justify-between",
         border && "border-b border-taupe-100",
-        className
+        className,
       )}
     >
       <div className="min-w-0 flex-1">
         <h2 className="heading text-taupe-900 truncate">{title}</h2>
-        {description && (
-          <p className="mt-1 body text-taupe-400">{description}</p>
-        )}
+        {description && <p className="mt-1 body text-taupe-400">{description}</p>}
       </div>
 
       {actions && actions.length > 0 && (
@@ -55,7 +53,7 @@ function SectionHeading({
               >
                 {action.label}
               </Button>
-            )
+            ),
           )}
         </div>
       )}

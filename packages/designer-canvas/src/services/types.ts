@@ -6,30 +6,30 @@
 // implementations via <CanvasProvider services={...}>.
 
 export interface TextMetrics {
-  ascent: number
-  descent: number
-  width: number
-  height: number
-  bounds: { x: number; y: number; width: number; height: number }
+  ascent: number;
+  descent: number;
+  width: number;
+  height: number;
+  bounds: { x: number; y: number; width: number; height: number };
 }
 
 export interface ShadowResult {
-  path: string
-  shadow: string
-  blur: number
+  path: string;
+  shadow: string;
+  blur: number;
 }
 
 export interface OutlineResult {
-  path: string
-  outline: string
-  width: number
+  path: string;
+  outline: string;
+  width: number;
 }
 
 export interface PathEffectResult {
-  path: string
-  shadow: string
-  needsBlur: boolean
-  blur: number
+  path: string;
+  shadow: string;
+  needsBlur: boolean;
+  blur: number;
 }
 
 /**
@@ -38,7 +38,7 @@ export interface PathEffectResult {
  */
 export interface PathService {
   /** Boolean union of two SVG path strings. */
-  union(pathA: string, pathB: string): string
+  union(pathA: string, pathB: string): string;
 
   /** SVG path for text rendered in a registered font. */
   getTextPath(
@@ -46,11 +46,11 @@ export interface PathService {
     fontName: string,
     fontSize: number,
     options?: {
-      letterSpacing?: number
-      underline?: boolean
-      strikethrough?: boolean
+      letterSpacing?: number;
+      underline?: boolean;
+      strikethrough?: boolean;
     },
-  ): string
+  ): string;
 
   /** Detailed metrics for laid-out text. */
   getTextMetrics(
@@ -58,19 +58,19 @@ export interface PathService {
     fontName: string,
     fontSize: number,
     options?: { letterSpacing?: number },
-  ): TextMetrics
+  ): TextMetrics;
 
   /** Warp a path — arch, wave, flag, custom kinds. */
-  warpPath(pathData: string, warpType: string, amount: number): string
+  warpPath(pathData: string, warpType: string, amount: number): string;
 
   /** Simple shape constructors. */
-  createRectangle(width: number, height: number): string
-  createTriangle(width: number, height: number): string
-  createCircle(radius: number): string
+  createRectangle(width: number, height: number): string;
+  createTriangle(width: number, height: number): string;
+  createCircle(radius: number): string;
 
   /** Path effects. */
-  getShadow(pathData: string, offset: number, angle: number, blur: number): ShadowResult
-  getOutline(pathData: string, outlineWidth: number): OutlineResult
+  getShadow(pathData: string, offset: number, angle: number, blur: number): ShadowResult;
+  getOutline(pathData: string, outlineWidth: number): OutlineResult;
   getPathEffect(
     pathData: string,
     shadowType: string,
@@ -78,7 +78,7 @@ export interface PathService {
     angle: number,
     blur: number,
     outlineWidth: number,
-  ): PathEffectResult
+  ): PathEffectResult;
 
   /** Pattern fills. */
   getDecorationPattern(
@@ -87,7 +87,7 @@ export interface PathService {
     lineWeight: number,
     lineDistance: number,
     baseSize: number,
-  ): string
+  ): string;
 
   /** Layer thumbnails (Worker-friendly). */
   renderThumbnail(
@@ -96,24 +96,24 @@ export interface PathService {
     frameHeight: number,
     outputWidth: number,
     outputHeight: number,
-  ): Uint8Array | null
+  ): Uint8Array | null;
 }
 
 export interface FontDescriptor {
-  family: string
+  family: string;
   /** App-defined source enum (Pappery: 'google'|'local'|'upload'). */
-  source: string
-  loaded: boolean
-  weights?: number[]
+  source: string;
+  loaded: boolean;
+  weights?: number[];
 }
 
 /** Font orchestration service. */
 export interface FontService {
-  fonts: FontDescriptor[]
-  loadFont(family: string, weight?: string | number): Promise<string>
-  getAvailableWeights(family: string): number[]
-  isFontLoaded(family: string, weight?: string | number): boolean
-  getFontKey(family: string, weight?: string | number): string
+  fonts: FontDescriptor[];
+  loadFont(family: string, weight?: string | number): Promise<string>;
+  getAvailableWeights(family: string): number[];
+  isFontLoaded(family: string, weight?: string | number): boolean;
+  getFontKey(family: string, weight?: string | number): string;
 }
 
 /* ============================================================== *
@@ -123,27 +123,27 @@ export interface FontService {
 /** Convert between display unit (e.g. mm) and the canvas's internal pixels. */
 export interface UnitConverter {
   /** Display value → internal pixels. */
-  toPx(value: number): number
+  toPx(value: number): number;
   /** Internal pixels → display value. */
-  fromPx(pixels: number): number
+  fromPx(pixels: number): number;
   /** Symbol (e.g. "px", "mm", "in"). Used as suffix in InputNumber. */
-  unit: string
+  unit: string;
   /** Decimal precision for display. Default: 0. */
-  precision?: number
+  precision?: number;
 }
 
 /** Pluggable image upload. Default: in-memory blob URL. */
-export type UploadImage = (file: File) => Promise<{ url: string; assetId?: string }>
+export type UploadImage = (file: File) => Promise<{ url: string; assetId?: string }>;
 
 /* ============================================================== *
  *  Service container                                               *
  * ============================================================== */
 
 export interface CanvasServices {
-  paths?: PathService | null
-  fonts?: FontService | null
+  paths?: PathService | null;
+  fonts?: FontService | null;
   /** Unit display / conversion. Default: identity / "px". */
-  units?: UnitConverter | null
+  units?: UnitConverter | null;
   /** Image upload. Default: blob URL. */
-  uploadImage?: UploadImage | null
+  uploadImage?: UploadImage | null;
 }

@@ -19,7 +19,7 @@ const DialogOverlay = React.forwardRef<
       "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -40,7 +40,7 @@ const DialogContent = React.forwardRef<
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        className
+        className,
       )}
       {...props}
     >
@@ -55,16 +55,12 @@ const DialogContent = React.forwardRef<
 DialogContent.displayName = "DialogContent";
 
 function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("flex flex-col gap-1.5 mb-4", className)} {...props} />
-  );
+  return <div className={cn("flex flex-col gap-1.5 mb-4", className)} {...props} />;
 }
 DialogHeader.displayName = "DialogHeader";
 
 function DialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />
-  );
+  return <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />;
 }
 DialogFooter.displayName = "DialogFooter";
 
@@ -84,11 +80,7 @@ const DialogDescription = React.forwardRef<
   React.ComponentRef<typeof Dialog.Description>,
   React.ComponentPropsWithoutRef<typeof Dialog.Description>
 >(({ className, ...props }, ref) => (
-  <Dialog.Description
-    ref={ref}
-    className={cn("body text-taupe-500", className)}
-    {...props}
-  />
+  <Dialog.Description ref={ref} className={cn("body text-taupe-500", className)} {...props} />
 ));
 DialogDescription.displayName = "DialogDescription";
 

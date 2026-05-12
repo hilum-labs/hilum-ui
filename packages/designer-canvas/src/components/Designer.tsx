@@ -1,22 +1,22 @@
-import type { ReactNode } from 'react'
-import { CanvasProvider } from '../context/CanvasProvider'
-import { RendererProvider } from '../renderer/RendererProvider'
-import type { CanvasState } from '../context/state'
-import type { CanvasServices } from '../services/types'
-import type { RendererRegistry } from '../renderer/types'
+import type { ReactNode } from "react";
+import { CanvasProvider } from "../context/CanvasProvider";
+import { RendererProvider } from "../renderer/RendererProvider";
+import type { CanvasState } from "../context/state";
+import type { CanvasServices } from "../services/types";
+import type { RendererRegistry } from "../renderer/types";
 
 interface DesignerProps<TData = Record<string, unknown>> {
   /** Initial canvas state. Layers, frame size, theme. */
-  initial?: Partial<CanvasState<TData>>
+  initial?: Partial<CanvasState<TData>>;
   /** Renderers per layer type. */
-  renderers?: RendererRegistry
+  renderers?: RendererRegistry;
   /** Optional injected services (paths, fonts, units, image upload). */
-  services?: CanvasServices
+  services?: CanvasServices;
   /** Read-only mode (e.g. for previews). */
-  readOnly?: boolean
+  readOnly?: boolean;
   /** Receive every state transition. */
-  onChange?: (state: CanvasState<TData>) => void
-  children: ReactNode
+  onChange?: (state: CanvasState<TData>) => void;
+  children: ReactNode;
 }
 
 /**
@@ -44,8 +44,8 @@ function Designer<TData = Record<string, unknown>>({
     >
       <RendererProvider renderers={renderers}>{children}</RendererProvider>
     </CanvasProvider>
-  )
+  );
 }
 
-export { Designer }
-export type { DesignerProps }
+export { Designer };
+export type { DesignerProps };

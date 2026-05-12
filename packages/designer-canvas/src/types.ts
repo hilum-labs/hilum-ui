@@ -16,65 +16,65 @@
  *     | Layer<ImageData> & { type: 'image' }
  */
 export interface Layer<TData = Record<string, unknown>> {
-  id: string
-  type: string
-  name?: string
+  id: string;
+  type: string;
+  name?: string;
 
   /** Position in the artboard's coordinate system (typically pixels). */
-  x: number
-  y: number
-  width: number
-  height: number
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 
   /** Degrees, clockwise. Optional — defaults to 0. */
-  rotation?: number
+  rotation?: number;
   /** 0–1. Optional — defaults to 1. */
-  opacity?: number
+  opacity?: number;
 
   /** Render-time flags. */
-  isLocked?: boolean
-  isVisible?: boolean
+  isLocked?: boolean;
+  isVisible?: boolean;
 
   /** Used by group / ungroup actions. */
-  groupId?: string
+  groupId?: string;
 
   /** Optional grid placement (set when canvas is in grid mode). */
-  gridItem?: GridItem
+  gridItem?: GridItem;
 
   /** Kind-specific fields. Apps narrow this. */
-  data: TData
+  data: TData;
 }
 
 export interface GridItem {
   /** Column start (1-based, like CSS grid-column). */
-  x: number
+  x: number;
   /** Row start. */
-  y: number
+  y: number;
   /** Column span. */
-  w: number
+  w: number;
   /** Row span. */
-  h: number
+  h: number;
 }
 
 export interface FrameSize {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 export interface GridContainer {
   /** Number of columns. */
-  cols: number
+  cols: number;
   /** Number of rows. */
-  rows: number
+  rows: number;
   /** Gap between cells (px). */
-  gap: number
+  gap: number;
   /** Padding around the grid (px). */
-  padding: number
+  padding: number;
 }
 
 export interface PanState {
-  x: number
-  y: number
+  x: number;
+  y: number;
 }
 
 /* ============================================================== *
@@ -83,21 +83,21 @@ export interface PanState {
 
 export interface LayerTypeDescriptor<TData = unknown> {
   /** Layer kind identifier (matches `Layer.type`). */
-  type: string
+  type: string;
   /** Display label for menus, picker UIs. */
-  label: string
+  label: string;
   /** Default `data` payload when adding a new layer of this kind. */
-  defaultData: TData
+  defaultData: TData;
   /** Default size when adding a new layer of this kind. */
-  defaultSize?: { width: number; height: number }
+  defaultSize?: { width: number; height: number };
   /** Optional icon component. */
-  icon?: React.ComponentType<{ size?: number; className?: string }>
+  icon?: React.ComponentType<{ size?: number; className?: string }>;
 }
 
 /* ============================================================== *
  *  Theme — see PLATFORM_PLAN.md §6 (uses Hilum brand)              *
  * ============================================================== */
 
-export type SurfaceTheme = 'light' | 'mid' | 'dark'
+export type SurfaceTheme = "light" | "mid" | "dark";
 
-import type * as React from 'react'
+import type * as React from "react";

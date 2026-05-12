@@ -1,5 +1,5 @@
-import type { ComponentType } from 'react'
-import type { Layer } from '../types'
+import type { ComponentType } from "react";
+import type { Layer } from "../types";
 
 /**
  * Renderer for a single layer kind. Receives the layer + a few context
@@ -11,19 +11,19 @@ import type { Layer } from '../types'
  * fields.
  */
 export interface LayerRendererContext {
-  selected: boolean
+  selected: boolean;
   /** Current zoom — useful for scaling stroke width or rendering text crisply. */
-  zoom: number
+  zoom: number;
   /** Read-only mode (no interactivity). */
-  readOnly: boolean
+  readOnly: boolean;
 }
 
 export type LayerRendererProps<TData = unknown> = {
-  layer: Layer<TData>
-  ctx: LayerRendererContext
-}
+  layer: Layer<TData>;
+  ctx: LayerRendererContext;
+};
 
-export type LayerRenderer<TData = unknown> = ComponentType<LayerRendererProps<TData>>
+export type LayerRenderer<TData = unknown> = ComponentType<LayerRendererProps<TData>>;
 
 /** Map of `layer.type` → renderer. */
-export type RendererRegistry = Record<string, LayerRenderer<unknown>>
+export type RendererRegistry = Record<string, LayerRenderer<unknown>>;

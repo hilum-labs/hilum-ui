@@ -20,7 +20,7 @@ const SheetOverlay = React.forwardRef<
       "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -47,45 +47,41 @@ const sheetContentVariants = cva(
     defaultVariants: {
       side: "right",
     },
-  }
+  },
 );
 
 interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof Dialog.Content>,
+  extends
+    React.ComponentPropsWithoutRef<typeof Dialog.Content>,
     VariantProps<typeof sheetContentVariants> {}
 
-const SheetContent = React.forwardRef<
-  React.ComponentRef<typeof Dialog.Content>,
-  SheetContentProps
->(({ className, children, side = "right", ...props }, ref) => (
-  <Dialog.Portal>
-    <SheetOverlay />
-    <Dialog.Content
-      ref={ref}
-      className={cn(sheetContentVariants({ side }), className)}
-      {...props}
-    >
-      {children}
-      <Dialog.Close className="absolute right-4 top-4 rounded-md p-1 text-taupe-400 opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-taupe-900/20">
-        <X size={16} />
-        <span className="sr-only">Close</span>
-      </Dialog.Close>
-    </Dialog.Content>
-  </Dialog.Portal>
-));
+const SheetContent = React.forwardRef<React.ComponentRef<typeof Dialog.Content>, SheetContentProps>(
+  ({ className, children, side = "right", ...props }, ref) => (
+    <Dialog.Portal>
+      <SheetOverlay />
+      <Dialog.Content
+        ref={ref}
+        className={cn(sheetContentVariants({ side }), className)}
+        {...props}
+      >
+        {children}
+        <Dialog.Close className="absolute right-4 top-4 rounded-md p-1 text-taupe-400 opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-taupe-900/20">
+          <X size={16} />
+          <span className="sr-only">Close</span>
+        </Dialog.Close>
+      </Dialog.Content>
+    </Dialog.Portal>
+  ),
+);
 SheetContent.displayName = "SheetContent";
 
 function SheetHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("flex flex-col gap-1.5 mb-4", className)} {...props} />
-  );
+  return <div className={cn("flex flex-col gap-1.5 mb-4", className)} {...props} />;
 }
 SheetHeader.displayName = "SheetHeader";
 
 function SheetFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />
-  );
+  return <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />;
 }
 SheetFooter.displayName = "SheetFooter";
 
@@ -105,11 +101,7 @@ const SheetDescription = React.forwardRef<
   React.ComponentRef<typeof Dialog.Description>,
   React.ComponentPropsWithoutRef<typeof Dialog.Description>
 >(({ className, ...props }, ref) => (
-  <Dialog.Description
-    ref={ref}
-    className={cn("body text-taupe-500", className)}
-    {...props}
-  />
+  <Dialog.Description ref={ref} className={cn("body text-taupe-500", className)} {...props} />
 ));
 SheetDescription.displayName = "SheetDescription";
 

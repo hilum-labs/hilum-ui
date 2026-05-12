@@ -37,7 +37,7 @@ function DatePicker({
           className={cn(
             "w-[240px] justify-start gap-2 text-left font-normal",
             !value && "text-taupe-400",
-            className
+            className,
           )}
           disabled={disabled}
         >
@@ -46,12 +46,7 @@ function DatePicker({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0 shadow-elevated" align="start">
-        <Calendar
-          mode="single"
-          selected={value}
-          onSelect={onChange}
-          autoFocus
-        />
+        <Calendar mode="single" selected={value} onSelect={onChange} autoFocus />
       </PopoverContent>
     </Popover>
   );

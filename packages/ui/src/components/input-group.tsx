@@ -27,7 +27,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
       wrapperClassName,
       ...props
     },
-    ref
+    ref,
   ) => {
     const radius = pill ? "rounded-full" : "rounded-lg";
     const hasLeading = leadingAddon || leadingIcon;
@@ -38,17 +38,11 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:disabled:cursor-not-allowed disabled:opacity-50",
       error
         ? "border-red-400 focus-visible:ring-red-200 focus-visible:border-red-500"
-        : "border-taupe-200 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary"
+        : "border-taupe-200 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
     );
 
     if (!hasLeading && !hasTrailing) {
-      return (
-        <input
-          ref={ref}
-          className={cn(baseInput, radius, "px-3", className)}
-          {...props}
-        />
-      );
+      return <input ref={ref} className={cn(baseInput, radius, "px-3", className)} {...props} />;
     }
 
     return (
@@ -59,7 +53,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
             className={cn(
               "inline-flex items-center border border-r-0 bg-taupe-50 px-3 body text-taupe-500 select-none",
               error ? "border-red-400" : "border-taupe-200",
-              pill ? "rounded-l-full" : "rounded-l-lg"
+              pill ? "rounded-l-full" : "rounded-l-lg",
             )}
           >
             {leadingAddon}
@@ -100,17 +94,18 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
                     : trailingIcon || error || trailingButton
                       ? cn(radius, "pl-3 pr-9")
                       : cn(radius, "px-3"),
-              className
+              className,
             )}
             {...props}
           />
 
           {(trailingIcon || error) && (
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-              {error
-                ? <AlertCircle size={15} className="text-red-500" />
-                : <span className="text-taupe-400">{trailingIcon}</span>
-              }
+              {error ? (
+                <AlertCircle size={15} className="text-red-500" />
+              ) : (
+                <span className="text-taupe-400">{trailingIcon}</span>
+              )}
             </div>
           )}
         </div>
@@ -121,7 +116,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
             className={cn(
               "inline-flex items-center border border-l-0 bg-taupe-50 px-3 body text-taupe-500 select-none",
               error ? "border-red-400" : "border-taupe-200",
-              pill ? "rounded-r-full" : "rounded-r-lg"
+              pill ? "rounded-r-full" : "rounded-r-lg",
             )}
           >
             {trailingAddon}
@@ -129,14 +124,10 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
         )}
 
         {/* Trailing button */}
-        {trailingButton && (
-          <div className="flex">
-            {trailingButton}
-          </div>
-        )}
+        {trailingButton && <div className="flex">{trailingButton}</div>}
       </div>
     );
-  }
+  },
 );
 InputGroup.displayName = "InputGroup";
 

@@ -20,9 +20,15 @@ interface NotificationProps {
 
 const variantConfig = {
   default: { icon: null, iconClass: "text-taupe-400" },
-  success: { icon: CheckCircle, iconClass: "bg-brand-secondary/25 text-taupe-700 rounded-full p-1" },
+  success: {
+    icon: CheckCircle,
+    iconClass: "bg-brand-secondary/25 text-taupe-700 rounded-full p-1",
+  },
   error: { icon: AlertCircle, iconClass: "text-red-500" },
-  warning: { icon: AlertTriangle, iconClass: "bg-brand-secondary/80 text-taupe-700 rounded-full p-1" },
+  warning: {
+    icon: AlertTriangle,
+    iconClass: "bg-brand-secondary/80 text-taupe-700 rounded-full p-1",
+  },
   info: { icon: Info, iconClass: "text-taupe-400" },
 };
 
@@ -44,24 +50,20 @@ function Notification({
     <div
       className={cn(
         "pointer-events-auto w-full max-w-sm overflow-hidden rounded-xl border border-taupe-100 bg-white shadow-elevated",
-        className
+        className,
       )}
     >
       <div className="p-4">
         <div className="flex items-start gap-3">
           {/* Icon */}
           {resolvedIcon && (
-            <div className={cn("shrink-0 mt-0.5", config.iconClass)}>
-              {resolvedIcon}
-            </div>
+            <div className={cn("shrink-0 mt-0.5", config.iconClass)}>{resolvedIcon}</div>
           )}
 
           {/* Body */}
           <div className="min-w-0 flex-1">
             <p className="body font-semibold text-taupe-900">{title}</p>
-            {description && (
-              <p className="mt-0.5 body text-taupe-500">{description}</p>
-            )}
+            {description && <p className="mt-0.5 body text-taupe-500">{description}</p>}
 
             {/* Actions */}
             {actions && actions.length > 0 && (
@@ -75,7 +77,7 @@ function Notification({
                       "body font-semibold transition-colors",
                       action.variant === "ghost"
                         ? "text-taupe-400 hover:text-taupe-700"
-                        : "text-taupe-900 hover:text-taupe-600"
+                        : "text-taupe-900 hover:text-taupe-600",
                     )}
                   >
                     {action.label}

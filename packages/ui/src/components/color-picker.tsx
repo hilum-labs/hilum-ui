@@ -49,7 +49,7 @@ function ColorPicker({
             "transition-colors hover:border-taupe-300",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
             "disabled:cursor-not-allowed disabled:opacity-50",
-            className
+            className,
           )}
         >
           <span

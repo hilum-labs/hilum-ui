@@ -11,23 +11,15 @@ import {
   type ColumnDef,
   type SortingState,
   type ColumnFiltersState,
-  type VisibilityState,
-  type RowSelectionState,
 } from "@tanstack/react-table";
 import { ChevronUp, ChevronDown, ChevronsUpDown } from "lucide-react";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "./table";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "./table";
 import { Button } from "./button";
 import { Input } from "./input";
 import { cn } from "../lib/utils";
 
 interface DataTableProps<TData> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   columns: ColumnDef<TData, any>[];
   data: TData[];
   searchKey?: string;
@@ -76,27 +68,25 @@ function DataTable<TData>({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <TableHead key={header.id}>
-                  {header.isPlaceholder ? null : (
-                    header.column.getCanSort() ? (
-                      <button
-                        className={cn(
-                          "flex items-center gap-1 transition-colors hover:text-taupe-700",
-                          header.column.getIsSorted() && "text-taupe-900"
-                        )}
-                        onClick={header.column.getToggleSortingHandler()}
-                      >
-                        {flexRender(header.column.columnDef.header, header.getContext())}
-                        {header.column.getIsSorted() === "asc" ? (
-                          <ChevronUp size={12} className="text-brand-primary" />
-                        ) : header.column.getIsSorted() === "desc" ? (
-                          <ChevronDown size={12} className="text-brand-primary" />
-                        ) : (
-                          <ChevronsUpDown size={12} className="text-taupe-300" />
-                        )}
-                      </button>
-                    ) : (
-                      flexRender(header.column.columnDef.header, header.getContext())
-                    )
+                  {header.isPlaceholder ? null : header.column.getCanSort() ? (
+                    <button
+                      className={cn(
+                        "flex items-center gap-1 transition-colors hover:text-taupe-700",
+                        header.column.getIsSorted() && "text-taupe-900",
+                      )}
+                      onClick={header.column.getToggleSortingHandler()}
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                      {header.column.getIsSorted() === "asc" ? (
+                        <ChevronUp size={12} className="text-brand-primary" />
+                      ) : header.column.getIsSorted() === "desc" ? (
+                        <ChevronDown size={12} className="text-brand-primary" />
+                      ) : (
+                        <ChevronsUpDown size={12} className="text-taupe-300" />
+                      )}
+                    </button>
+                  ) : (
+                    flexRender(header.column.columnDef.header, header.getContext())
                   )}
                 </TableHead>
               ))}
@@ -116,10 +106,7 @@ function DataTable<TData>({
             ))
           ) : (
             <TableRow>
-              <TableCell
-                colSpan={columns.length}
-                className="h-24 text-center text-taupe-400"
-              >
+              <TableCell colSpan={columns.length} className="h-24 text-center text-taupe-400">
                 No results.
               </TableCell>
             </TableRow>
@@ -134,8 +121,7 @@ function DataTable<TData>({
           </p>
           <div className="flex items-center gap-2">
             <span className="caption text-taupe-400">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
+              Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
             </span>
             <Button
               variant="outline"

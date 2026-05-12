@@ -11,7 +11,7 @@ function Textarea({ className, ...props }: React.ComponentProps<"textarea">) {
         "resize-none transition-colors duration-150",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-900/15 focus-visible:border-taupe-400",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-taupe-50",
-        className
+        className,
       )}
       {...props}
     />

@@ -1,20 +1,20 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
 
 interface SignInScreenProps {
   /** Logo / brand block above the form. */
-  logo?: ReactNode
+  logo?: ReactNode;
   /** Title — e.g. "Sign in to your account". */
-  title: ReactNode
+  title: ReactNode;
   /** Optional description under the title. */
-  description?: ReactNode
+  description?: ReactNode;
   /** The form itself — fields + submit button. */
-  children: ReactNode
+  children: ReactNode;
   /** Footer content under the form (e.g. "Don't have an account? Sign up"). */
-  footer?: ReactNode
+  footer?: ReactNode;
   /** Right-side decorative panel. Hidden on mobile. */
-  decoration?: ReactNode
-  className?: string
+  decoration?: ReactNode;
+  className?: string;
 }
 
 /**
@@ -31,8 +31,13 @@ function SignInScreen({
   className,
 }: SignInScreenProps) {
   return (
-    <div className={cn('flex min-h-screen bg-taupe-50', className)}>
-      <div className={cn('flex flex-1 items-center justify-center p-6', decoration && 'lg:flex-none lg:w-1/2')}>
+    <div className={cn("flex min-h-screen bg-taupe-50", className)}>
+      <div
+        className={cn(
+          "flex flex-1 items-center justify-center p-6",
+          decoration && "lg:flex-none lg:w-1/2",
+        )}
+      >
         <div className="w-full max-w-sm">
           {logo && <div className="mb-8">{logo}</div>}
           <div className="mb-6">
@@ -50,8 +55,8 @@ function SignInScreen({
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export { SignInScreen }
-export type { SignInScreenProps }
+export { SignInScreen };
+export type { SignInScreenProps };

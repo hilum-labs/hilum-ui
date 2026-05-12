@@ -1,19 +1,19 @@
-import { useCanvasContext } from '../context/CanvasContext'
+import { useCanvasContext } from "../context/CanvasContext";
 
 /**
  * Visual grid overlay — renders a SVG pattern based on `state.gridContainer`.
  * Non-interactive; sits behind the layers but inside the artboard.
  */
 function GridOverlay() {
-  const { state } = useCanvasContext()
-  const { frameSize, gridContainer } = state
-  if (!gridContainer) return null
+  const { state } = useCanvasContext();
+  const { frameSize, gridContainer } = state;
+  if (!gridContainer) return null;
 
-  const { cols, rows, gap, padding } = gridContainer
-  const cellW = (frameSize.width - padding * 2 - gap * (cols - 1)) / cols
-  const cellH = (frameSize.height - padding * 2 - gap * (rows - 1)) / rows
+  const { cols, rows, gap, padding } = gridContainer;
+  const cellW = (frameSize.width - padding * 2 - gap * (cols - 1)) / cols;
+  const cellH = (frameSize.height - padding * 2 - gap * (rows - 1)) / rows;
 
-  const lines: { x: number; y: number; w: number; h: number }[] = []
+  const lines: { x: number; y: number; w: number; h: number }[] = [];
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       lines.push({
@@ -21,7 +21,7 @@ function GridOverlay() {
         y: padding + r * (cellH + gap),
         w: cellW,
         h: cellH,
-      })
+      });
     }
   }
 
@@ -47,7 +47,7 @@ function GridOverlay() {
         />
       ))}
     </svg>
-  )
+  );
 }
 
-export { GridOverlay }
+export { GridOverlay };

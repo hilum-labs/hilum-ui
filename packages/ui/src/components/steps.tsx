@@ -33,7 +33,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                   <div
                     className={cn(
                       "h-full",
-                      step.status === "complete" ? "bg-brand-primary" : "bg-taupe-200"
+                      step.status === "complete" ? "bg-brand-primary" : "bg-taupe-200",
                     )}
                   />
                 </div>
@@ -50,10 +50,9 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                     "relative z-10 flex size-8 items-center justify-center rounded-full transition-colors",
                     step.status === "complete" &&
                       "bg-brand-primary group-hover:bg-brand-primary/80",
-                    step.status === "current" &&
-                      "border-2 border-brand-primary bg-white",
+                    step.status === "current" && "border-2 border-brand-primary bg-white",
                     step.status === "upcoming" &&
-                      "border-2 border-taupe-300 bg-white group-hover:border-taupe-400"
+                      "border-2 border-taupe-300 bg-white group-hover:border-taupe-400",
                   )}
                 >
                   {step.status === "complete" ? (
@@ -70,7 +69,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                   <span
                     className={cn(
                       "caption font-semibold",
-                      step.status === "upcoming" ? "text-taupe-400" : "text-taupe-900"
+                      step.status === "upcoming" ? "text-taupe-400" : "text-taupe-900",
                     )}
                   >
                     {step.name}
@@ -111,7 +110,10 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
                   title={step.name}
                 />
               ) : step.status === "current" ? (
-                <span className="relative flex size-4 items-center justify-center" aria-current="step">
+                <span
+                  className="relative flex size-4 items-center justify-center"
+                  aria-current="step"
+                >
                   <span className="absolute size-4 rounded-full bg-brand-primary/20" />
                   <span className="relative size-2.5 rounded-full bg-brand-primary" />
                   <span className="sr-only">{step.name}</span>
@@ -155,7 +157,7 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
               className={cn(
                 "caption font-medium",
                 i === 0 ? "text-left" : isLast ? "text-right" : "text-center",
-                step.status === "upcoming" ? "text-taupe-400" : "text-taupe-900"
+                step.status === "upcoming" ? "text-taupe-400" : "text-taupe-900",
               )}
             >
               {step.name}

@@ -18,7 +18,7 @@ const AlertDialogOverlay = React.forwardRef<
       "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -39,7 +39,7 @@ const AlertDialogContent = React.forwardRef<
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        className
+        className,
       )}
       {...props}
     >
@@ -50,16 +50,12 @@ const AlertDialogContent = React.forwardRef<
 AlertDialogContent.displayName = "AlertDialogContent";
 
 function AlertDialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("flex flex-col gap-1.5 mb-5", className)} {...props} />
-  );
+  return <div className={cn("flex flex-col gap-1.5 mb-5", className)} {...props} />;
 }
 AlertDialogHeader.displayName = "AlertDialogHeader";
 
 function AlertDialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />
-  );
+  return <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />;
 }
 AlertDialogFooter.displayName = "AlertDialogFooter";
 
@@ -79,11 +75,7 @@ const AlertDialogDescription = React.forwardRef<
   React.ComponentRef<typeof AlertDialog.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialog.Description>
 >(({ className, ...props }, ref) => (
-  <AlertDialog.Description
-    ref={ref}
-    className={cn("body text-taupe-500", className)}
-    {...props}
-  />
+  <AlertDialog.Description ref={ref} className={cn("body text-taupe-500", className)} {...props} />
 ));
 AlertDialogDescription.displayName = "AlertDialogDescription";
 
@@ -99,7 +91,7 @@ const AlertDialogAction = React.forwardRef<
       "bg-brand-primary text-white hover:bg-brand-primary/90 active:bg-brand-primary/80",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
-      className
+      className,
     )}
     {...props}
   />
@@ -118,7 +110,7 @@ const AlertDialogCancel = React.forwardRef<
       "bg-white text-taupe-700 shadow-natural hover:bg-taupe-50 rounded-xl",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
-      className
+      className,
     )}
     {...props}
   />

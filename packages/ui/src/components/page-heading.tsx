@@ -50,7 +50,10 @@ function PageHeading({
             <React.Fragment key={i}>
               {i > 0 && <ChevronRight size={12} className="text-taupe-300 shrink-0" />}
               {crumb.href ? (
-                <a href={crumb.href} className="caption text-taupe-400 hover:text-taupe-700 transition-colors">
+                <a
+                  href={crumb.href}
+                  className="caption text-taupe-400 hover:text-taupe-700 transition-colors"
+                >
                   {crumb.label}
                 </a>
               ) : (
@@ -66,15 +69,14 @@ function PageHeading({
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
             <h1 className="display text-taupe-900 truncate">{title}</h1>
-            {badge && (
-              typeof badge === "string"
-                ? <Badge variant="secondary">{badge}</Badge>
-                : <Badge variant={badge.variant ?? "secondary"}>{badge.label}</Badge>
-            )}
+            {badge &&
+              (typeof badge === "string" ? (
+                <Badge variant="secondary">{badge}</Badge>
+              ) : (
+                <Badge variant={badge.variant ?? "secondary"}>{badge.label}</Badge>
+              ))}
           </div>
-          {description && (
-            <p className="mt-1.5 body text-taupe-400 max-w-2xl">{description}</p>
-          )}
+          {description && <p className="mt-1.5 body text-taupe-400 max-w-2xl">{description}</p>}
 
           {/* Meta */}
           {meta && meta.length > 0 && (
@@ -111,7 +113,7 @@ function PageHeading({
                 >
                   {action.label}
                 </Button>
-              )
+              ),
             )}
           </div>
         )}

@@ -1,17 +1,17 @@
-import { useShellContext } from '@hilum/designer'
-import { useCanvasContext } from '../context/CanvasContext'
+import { useShellContext } from "@hilum/designer";
+import { useCanvasContext } from "../context/CanvasContext";
 
 /**
  * Renders blue selection rectangles around currently-selected layers.
  * Non-interactive — drag/resize handles can be added in a future iteration.
  */
 function LayerSelectionOverlay() {
-  const { state } = useCanvasContext()
-  const { selectedIds } = useShellContext()
-  if (selectedIds.length === 0) return null
+  const { state } = useCanvasContext();
+  const { selectedIds } = useShellContext();
+  if (selectedIds.length === 0) return null;
 
-  const ids = new Set(selectedIds)
-  const selected = state.layers.filter((l) => ids.has(l.id))
+  const ids = new Set(selectedIds);
+  const selected = state.layers.filter((l) => ids.has(l.id));
 
   return (
     <>
@@ -32,7 +32,7 @@ function LayerSelectionOverlay() {
         />
       ))}
     </>
-  )
+  );
 }
 
-export { LayerSelectionOverlay }
+export { LayerSelectionOverlay };

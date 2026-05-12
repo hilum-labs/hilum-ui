@@ -49,7 +49,7 @@ function Carousel({
       ...opts,
       axis: orientation === "vertical" ? "y" : "x",
     },
-    plugins
+    plugins,
   );
 
   const [canScrollPrev, setCanScrollPrev] = React.useState(false);
@@ -79,7 +79,7 @@ function Carousel({
         scrollNext();
       }
     },
-    [scrollPrev, scrollNext]
+    [scrollPrev, scrollNext],
   );
 
   React.useEffect(() => {
@@ -130,11 +130,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div ref={carouselRef} className="overflow-hidden">
       <div
-        className={cn(
-          "flex",
-          orientation === "vertical" ? "-mt-4 flex-col" : "-ml-4",
-          className
-        )}
+        className={cn("flex", orientation === "vertical" ? "-mt-4 flex-col" : "-ml-4", className)}
         {...props}
       />
     </div>
@@ -151,7 +147,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "vertical" ? "pt-4" : "pl-4",
-        className
+        className,
       )}
       {...props}
     />
@@ -175,7 +171,7 @@ function CarouselPrevious({
         orientation === "vertical"
           ? "-top-12 left-1/2 -translate-x-1/2 rotate-90"
           : "-left-12 top-1/2 -translate-y-1/2",
-        className
+        className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -204,7 +200,7 @@ function CarouselNext({
         orientation === "vertical"
           ? "-bottom-12 left-1/2 -translate-x-1/2 rotate-90"
           : "-right-12 top-1/2 -translate-y-1/2",
-        className
+        className,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}

@@ -45,7 +45,7 @@ function Command({ className, children, onSelect, ...props }: CommandProps) {
         <div
           className={cn(
             "flex flex-col overflow-hidden rounded-xl border border-taupe-200 bg-white",
-            className
+            className,
           )}
           {...props}
         >
@@ -73,7 +73,7 @@ const CommandInput = React.forwardRef<
         className={cn(
           "flex h-10 w-full bg-transparent body text-taupe-900",
           "placeholder:text-taupe-400 focus:outline-none",
-          className
+          className,
         )}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
@@ -84,67 +84,65 @@ const CommandInput = React.forwardRef<
 });
 CommandInput.displayName = "CommandInput";
 
-const CommandList = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
-  const listRef = React.useRef<HTMLDivElement | null>(null);
+const CommandList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => {
+    const listRef = React.useRef<HTMLDivElement | null>(null);
 
-  const combinedRef = React.useCallback(
-    (el: HTMLDivElement | null) => {
-      listRef.current = el;
-      if (typeof ref === "function") ref(el);
-      else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
-    },
-    [ref]
-  );
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (!["ArrowDown", "ArrowUp"].includes(e.key)) return;
-    e.preventDefault();
-    const el = listRef.current;
-    if (!el) return;
-    const items = Array.from(
-      el.querySelectorAll<HTMLElement>("[data-cmd-item]:not([aria-disabled='true'])")
+    const combinedRef = React.useCallback(
+      (el: HTMLDivElement | null) => {
+        listRef.current = el;
+        if (typeof ref === "function") ref(el);
+        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = el;
+      },
+      [ref],
     );
-    if (!items.length) return;
-    const focused = el.querySelector<HTMLElement>("[data-cmd-item]:focus");
-    const idx = focused ? items.indexOf(focused) : -1;
-    const next =
-      e.key === "ArrowDown"
-        ? items[Math.min(idx + 1, items.length - 1)]
-        : items[Math.max(idx - 1, 0)];
-    next?.focus();
-  };
 
-  return (
-    <div
-      ref={combinedRef}
-      role="listbox"
-      onKeyDown={handleKeyDown}
-      className={cn("max-h-[300px] overflow-y-auto py-1", className)}
-      {...props}
-    />
-  );
-});
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      if (!["ArrowDown", "ArrowUp"].includes(e.key)) return;
+      e.preventDefault();
+      const el = listRef.current;
+      if (!el) return;
+      const items = Array.from(
+        el.querySelectorAll<HTMLElement>("[data-cmd-item]:not([aria-disabled='true'])"),
+      );
+      if (!items.length) return;
+      const focused = el.querySelector<HTMLElement>("[data-cmd-item]:focus");
+      const idx = focused ? items.indexOf(focused) : -1;
+      const next =
+        e.key === "ArrowDown"
+          ? items[Math.min(idx + 1, items.length - 1)]
+          : items[Math.max(idx - 1, 0)];
+      next?.focus();
+    };
+
+    return (
+      <div
+        ref={combinedRef}
+        role="listbox"
+        onKeyDown={handleKeyDown}
+        className={cn("max-h-[300px] overflow-y-auto py-1", className)}
+        {...props}
+      />
+    );
+  },
+);
 CommandList.displayName = "CommandList";
 
-const CommandEmpty = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, children = "No results found.", ...props }, ref) => {
-  const visibleCount = React.useContext(CommandVisibleCtx);
-  if (visibleCount > 0) return null;
-  return (
-    <div
-      ref={ref}
-      className={cn("py-6 text-center caption text-taupe-400", className)}
-      {...props}
-    >
-      {children}
-    </div>
-  );
-});
+const CommandEmpty = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, children = "No results found.", ...props }, ref) => {
+    const visibleCount = React.useContext(CommandVisibleCtx);
+    if (visibleCount > 0) return null;
+    return (
+      <div
+        ref={ref}
+        className={cn("py-6 text-center caption text-taupe-400", className)}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
 CommandEmpty.displayName = "CommandEmpty";
 
 interface CommandGroupProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -154,12 +152,10 @@ interface CommandGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
   ({ className, heading, children, ...props }, ref) => (
     <div ref={ref} role="group" className={cn("py-1", className)} {...props}>
-      {heading && (
-        <p className="px-3 pb-1 pt-0.5 label text-taupe-400">{heading}</p>
-      )}
+      {heading && <p className="px-3 pb-1 pt-0.5 label text-taupe-400">{heading}</p>}
       {children}
     </div>
-  )
+  ),
 );
 CommandGroup.displayName = "CommandGroup";
 
@@ -205,27 +201,29 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
           "hover:bg-taupe-50 hover:text-taupe-900",
           "focus:bg-taupe-50 focus:text-taupe-900",
           disabled && "pointer-events-none opacity-40",
-          className
+          className,
         )}
         onClick={handleSelect}
         onKeyDown={(e) => {
-          if (e.key === "Enter") { e.preventDefault(); handleSelect(); }
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleSelect();
+          }
         }}
         {...props}
       >
         {children}
       </div>
     );
-  }
+  },
 );
 CommandItem.displayName = "CommandItem";
 
-const CommandSeparator = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("my-1 h-px bg-taupe-100", className)} {...props} />
-));
+const CommandSeparator = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("my-1 h-px bg-taupe-100", className)} {...props} />
+  ),
+);
 CommandSeparator.displayName = "CommandSeparator";
 
 function CommandShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
@@ -239,6 +237,12 @@ function CommandShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanE
 CommandShortcut.displayName = "CommandShortcut";
 
 export {
-  Command, CommandInput, CommandList, CommandEmpty,
-  CommandGroup, CommandItem, CommandSeparator, CommandShortcut,
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandSeparator,
+  CommandShortcut,
 };

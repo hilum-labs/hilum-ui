@@ -17,7 +17,7 @@ const CheckboxRoot = React.forwardRef<
       "disabled:cursor-not-allowed disabled:opacity-50",
       "data-[state=checked]:bg-brand-primary data-[state=checked]:border-brand-primary",
       "data-[state=indeterminate]:bg-brand-primary data-[state=indeterminate]:border-brand-primary",
-      className
+      className,
     )}
     {...props}
   >

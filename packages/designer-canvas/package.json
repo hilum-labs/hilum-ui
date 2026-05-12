@@ -24,6 +24,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
+    "lint": "eslint src",
     "clean": "rm -rf dist .turbo"
   },
   "//": "Tests for this package live in src/**/*.test.ts and run from the root via `pnpm test`.",

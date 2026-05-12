@@ -4,7 +4,10 @@ import * as React from "react";
 import { Tooltip } from "radix-ui";
 import { cn } from "../lib/utils";
 
-function TooltipProvider({ children, ...props }: React.ComponentPropsWithoutRef<typeof Tooltip.Provider>) {
+function TooltipProvider({
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Tooltip.Provider>) {
   return (
     <Tooltip.Provider delayDuration={300} {...props}>
       {children}
@@ -29,7 +32,7 @@ const TooltipContent = React.forwardRef<
         "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
         "data-[side=bottom]:slide-in-from-top-1 data-[side=top]:slide-in-from-bottom-1",
         "data-[side=left]:slide-in-from-right-1 data-[side=right]:slide-in-from-left-1",
-        className
+        className,
       )}
       {...props}
     />

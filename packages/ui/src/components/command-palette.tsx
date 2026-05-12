@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Search, ArrowRight } from "lucide-react";
-import { cn } from "../lib/utils";
 import { Dialog, DialogContent } from "./dialog";
 
 export interface CommandPaletteItem {
@@ -48,7 +47,7 @@ function CommandPalette({
           (item) =>
             item.label.toLowerCase().includes(query.toLowerCase()) ||
             item.description?.toLowerCase().includes(query.toLowerCase()) ||
-            item.category?.toLowerCase().includes(query.toLowerCase())
+            item.category?.toLowerCase().includes(query.toLowerCase()),
         );
 
   // Group by category
@@ -89,7 +88,9 @@ function CommandPalette({
             }}
           />
           <kbd className="hidden items-center gap-0.5 sm:flex">
-            <span className="caption-xs font-medium text-taupe-400 rounded border border-taupe-200 px-1.5 py-0.5">esc</span>
+            <span className="caption-xs font-medium text-taupe-400 rounded border border-taupe-200 px-1.5 py-0.5">
+              esc
+            </span>
           </kbd>
         </div>
 
@@ -101,9 +102,7 @@ function CommandPalette({
             <ul role="list" className="py-2">
               {categories.map((cat) => (
                 <li key={cat}>
-                  {cat && (
-                    <p className="label px-4 py-2 text-taupe-400">{cat}</p>
-                  )}
+                  {cat && <p className="label px-4 py-2 text-taupe-400">{cat}</p>}
                   {grouped[cat].map((item, i) => (
                     <button
                       key={item.id ?? i}

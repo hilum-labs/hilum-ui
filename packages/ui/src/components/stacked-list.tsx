@@ -8,12 +8,7 @@ interface StackedListProps {
   className?: string;
 }
 
-function StackedList({
-  children,
-  divided = true,
-  bordered = true,
-  className,
-}: StackedListProps) {
+function StackedList({ children, divided = true, bordered = true, className }: StackedListProps) {
   return (
     <ul
       role="list"
@@ -21,7 +16,7 @@ function StackedList({
         "overflow-hidden rounded-xl bg-white",
         bordered && "border border-taupe-100 shadow-natural",
         divided && "divide-y divide-taupe-100",
-        className
+        className,
       )}
     >
       {children}
@@ -37,9 +32,7 @@ interface StackedListItemProps {
 }
 
 function StackedListItem({ children, href, onClick, className }: StackedListItemProps) {
-  const inner = (
-    <div className={cn("px-4 py-3.5", className)}>{children}</div>
-  );
+  const inner = <div className={cn("px-4 py-3.5", className)}>{children}</div>;
 
   if (href) {
     return (

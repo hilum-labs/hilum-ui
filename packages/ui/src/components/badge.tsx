@@ -19,20 +19,14 @@ const badgeVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
-interface BadgeProps
-  extends React.ComponentProps<"span">,
-    VariantProps<typeof badgeVariants> {}
+interface BadgeProps extends React.ComponentProps<"span">, VariantProps<typeof badgeVariants> {}
 
 function Badge({ className, variant, ...props }: BadgeProps) {
   return (
-    <span
-      data-slot="badge"
-      className={cn(badgeVariants({ variant, className }))}
-      {...props}
-    />
+    <span data-slot="badge" className={cn(badgeVariants({ variant, className }))} {...props} />
   );
 }
 

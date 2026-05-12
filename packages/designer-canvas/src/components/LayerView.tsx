@@ -1,14 +1,14 @@
-import { useShellContext } from '@hilum/designer'
-import { cn } from '@hilum/ui'
-import { useCanvasContext } from '../context/CanvasContext'
-import { useDragInteraction } from '../hooks/useDragInteraction'
-import { useLayerRenderer } from '../renderer/RendererProvider'
-import type { Layer } from '../types'
+import { useShellContext } from "@hilum/designer";
+import { cn } from "@hilum/ui";
+import { useCanvasContext } from "../context/CanvasContext";
+import { useDragInteraction } from "../hooks/useDragInteraction";
+import { useLayerRenderer } from "../renderer/RendererProvider";
+import type { Layer } from "../types";
 
 interface LayerViewProps {
-  layer: Layer<unknown>
+  layer: Layer<unknown>;
   /** Disable interactions (used by DesignerStaticFrame). */
-  staticMode?: boolean
+  staticMode?: boolean;
 }
 
 /**
@@ -17,21 +17,21 @@ interface LayerViewProps {
  * wires drag + click-to-select.
  */
 function LayerView({ layer, staticMode = false }: LayerViewProps) {
-  const { state } = useCanvasContext()
-  const { selectedIds, setSelectedIds, readOnly } = useShellContext()
-  const Renderer = useLayerRenderer(layer.type)
+  const { state } = useCanvasContext();
+  const { selectedIds, setSelectedIds, readOnly } = useShellContext();
+  const Renderer = useLayerRenderer(layer.type);
   const { onPointerDown } = useDragInteraction({
     layerId: layer.id,
     scale: 1 / state.zoom,
-  })
+  });
 
-  const selected = selectedIds.includes(layer.id)
-  const isVisible = layer.isVisible !== false
+  const selected = selectedIds.includes(layer.id);
+  const isVisible = layer.isVisible !== false;
 
-  if (!isVisible) return null
+  if (!isVisible) return null;
 
-  const transform = `rotate(${layer.rotation ?? 0}deg)`
-  const cursor = layer.isLocked ? 'default' : 'move'
+  const transform = `rotate(${layer.rotation ?? 0}deg)`;
+  const cursor = layer.isLocked ? "default" : "move";
 
   return (
     <div
@@ -40,19 +40,15 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
         staticMode
           ? undefined
           : (e) => {
-              if (readOnly) return
-              if (e.button !== 0) return
+              if (readOnly) return;
+              if (e.button !== 0) return;
               if (!selected) {
-                setSelectedIds(e.shiftKey ? [...selectedIds, layer.id] : [layer.id])
+                setSelectedIds(e.shiftKey ? [...selectedIds, layer.id] : [layer.id]);
               }
-              onPointerDown(e)
+              onPointerDown(e);
             }
       }
-      className={cn(
-        'absolute',
-        !staticMode && 'cursor-move',
-        layer.isLocked && 'cursor-default',
-      )}
+      className={cn("absolute", !staticMode && "cursor-move", layer.isLocked && "cursor-default")}
       style={{
         left: layer.x,
         top: layer.y,
@@ -60,7 +56,7 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
         height: layer.height,
         opacity: layer.opacity ?? 1,
         transform,
-        cursor: staticMode ? 'default' : cursor,
+        cursor: staticMode ? "default" : cursor,
       }}
     >
       {Renderer ? (
@@ -72,7 +68,7 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
         <FallbackRenderer layer={layer} />
       )}
     </div>
-  )
+  );
 }
 
 function FallbackRenderer({ layer }: { layer: Layer<unknown> }) {
@@ -83,8 +79,8 @@ function FallbackRenderer({ layer }: { layer: Layer<unknown> }) {
     >
       {layer.type}
     </div>
-  )
+  );
 }
 
-export { LayerView }
-export type { LayerViewProps }
+export { LayerView };
+export type { LayerViewProps };

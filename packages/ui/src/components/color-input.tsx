@@ -45,7 +45,7 @@ function ColorInput({
         "inline-flex h-8 items-stretch gap-0 rounded-md border border-taupe-200 bg-white overflow-hidden",
         "focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
         disabled && "opacity-50 pointer-events-none",
-        className
+        className,
       )}
     >
       <ColorPicker
@@ -61,7 +61,8 @@ function ColorInput({
         onChange={(e) => setHex("#" + e.target.value.replace(/^#/, ""))}
         onBlur={(e) => commitHex("#" + e.target.value.replace(/^#/, ""))}
         onKeyDown={(e) => {
-          if (e.key === "Enter") commitHex("#" + (e.target as HTMLInputElement).value.replace(/^#/, ""));
+          if (e.key === "Enter")
+            commitHex("#" + (e.target as HTMLInputElement).value.replace(/^#/, ""));
         }}
         spellCheck={false}
         className="w-[5.5rem] caption text-taupe-900 px-2 bg-transparent border-l border-taupe-100 focus:outline-none uppercase"
@@ -76,7 +77,9 @@ function ColorInput({
             onChange={(e) => onOpacityChange(Number(e.target.value))}
             className="w-12 caption text-taupe-900 px-2 bg-transparent focus:outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
-          <span aria-hidden className="caption-xs text-taupe-400 pr-2">%</span>
+          <span aria-hidden className="caption-xs text-taupe-400 pr-2">
+            %
+          </span>
         </div>
       )}
     </div>

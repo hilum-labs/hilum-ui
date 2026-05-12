@@ -1,27 +1,27 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
-import { useLink } from './link-context'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
+import { useLink } from "./link-context";
 
 interface SettingsSection {
   /** Section anchor / id. Used for active-state matching. */
-  id: string
-  label: string
-  description?: string
-  href?: string
+  id: string;
+  label: string;
+  description?: string;
+  href?: string;
 }
 
 interface SettingsScreenProps {
   /** Sections shown in the left rail. */
-  sections: SettingsSection[]
+  sections: SettingsSection[];
   /** Active section id — caller supplies based on route. */
-  activeId?: string
+  activeId?: string;
   /** Section content keyed by id. Render whatever you want for each. */
-  children: ReactNode
+  children: ReactNode;
   /** Title at the top of the screen. */
-  title?: ReactNode
+  title?: ReactNode;
   /** Description under the title. */
-  description?: ReactNode
-  className?: string
+  description?: ReactNode;
+  className?: string;
 }
 
 /**
@@ -36,43 +36,45 @@ function SettingsScreen({
   description,
   className,
 }: SettingsScreenProps) {
-  const Link = useLink()
+  const Link = useLink();
 
   return (
-    <div className={cn('flex flex-col gap-6 p-6 md:flex-row', className)}>
+    <div className={cn("flex flex-col gap-6 p-6 md:flex-row", className)}>
       <aside className="md:w-56 shrink-0">
         {title && <h1 className="heading text-taupe-900">{title}</h1>}
         {description && <p className="caption text-taupe-500 mt-1.5">{description}</p>}
-        <nav className={cn('flex flex-col gap-0.5', (title || description) && 'mt-4')}>
+        <nav className={cn("flex flex-col gap-0.5", (title || description) && "mt-4")}>
           {sections.map((section) => {
-            const active = section.id === activeId
+            const active = section.id === activeId;
             const props = {
               href: section.href ?? `#${section.id}`,
               className: cn(
-                'flex flex-col rounded-lg px-3 py-2 transition-colors',
+                "flex flex-col rounded-lg px-3 py-2 transition-colors",
                 active
-                  ? 'bg-taupe-900 text-white'
-                  : 'text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900',
+                  ? "bg-taupe-900 text-white"
+                  : "text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900",
               ),
-            }
+            };
             return (
               <Link key={section.id} {...props}>
                 <span className="caption font-medium">{section.label}</span>
                 {section.description && (
-                  <span className={cn('caption-xs mt-0.5', active ? 'text-white/70' : 'text-taupe-400')}>
+                  <span
+                    className={cn("caption-xs mt-0.5", active ? "text-white/70" : "text-taupe-400")}
+                  >
                     {section.description}
                   </span>
                 )}
               </Link>
-            )
+            );
           })}
         </nav>
       </aside>
 
       <div className="flex-1 min-w-0">{children}</div>
     </div>
-  )
+  );
 }
 
-export { SettingsScreen }
-export type { SettingsScreenProps, SettingsSection }
+export { SettingsScreen };
+export type { SettingsScreenProps, SettingsSection };

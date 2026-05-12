@@ -32,7 +32,11 @@ function PropertyRow({
 }: PropertyRowProps) {
   return (
     <div
-      className={cn("flex w-full gap-3 py-1", labelAlign === "center" ? "items-center" : "items-start", className)}
+      className={cn(
+        "flex w-full gap-3 py-1",
+        labelAlign === "center" ? "items-center" : "items-start",
+        className,
+      )}
       {...rest}
     >
       {label !== undefined && (

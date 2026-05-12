@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
-import { useHistory } from '@hilum/designer'
-import { useCanvasContext } from '../context/CanvasContext'
-import type { Layer } from '../types'
+import { useEffect, useRef } from "react";
+import { useHistory } from "@hilum/designer";
+import { useCanvasContext } from "../context/CanvasContext";
+import type { Layer } from "../types";
 
 /**
  * Wires `@hilum/designer`'s generic `useHistory<T>` to the canvas reducer.
@@ -16,34 +16,34 @@ import type { Layer } from '../types'
  * undo / redo results.
  */
 export function useHistoryActions<TData = Record<string, unknown>>() {
-  const { state, dispatch } = useCanvasContext<TData>()
-  const initialRef = useRef(state.layers)
-  const hist = useHistory<Layer<TData>[]>(initialRef.current)
+  const { state, dispatch } = useCanvasContext<TData>();
+  const initialRef = useRef(state.layers);
+  const hist = useHistory<Layer<TData>[]>(initialRef.current);
 
   // When state.layers changes (user dispatched a mutation), push to history.
   // Skip the initial mount and any echo from undo/redo.
-  const lastSeenRef = useRef(state.layers)
+  const lastSeenRef = useRef(state.layers);
   useEffect(() => {
-    if (state.layers === lastSeenRef.current) return
+    if (state.layers === lastSeenRef.current) return;
     if (state.layers === hist.state) {
       // We just reflected an undo/redo result; don't re-push.
-      lastSeenRef.current = state.layers
-      return
+      lastSeenRef.current = state.layers;
+      return;
     }
-    hist.setState(state.layers)
-    lastSeenRef.current = state.layers
-  }, [state.layers, hist])
+    hist.setState(state.layers);
+    lastSeenRef.current = state.layers;
+  }, [state.layers, hist]);
 
   const undo = () => {
-    hist.undo()
+    hist.undo();
     // Apply the new history.state to the reducer on the next tick.
-    queueMicrotask(() => dispatch({ type: 'SET_LAYERS', payload: hist.state }))
-  }
+    queueMicrotask(() => dispatch({ type: "SET_LAYERS", payload: hist.state }));
+  };
 
   const redo = () => {
-    hist.redo()
-    queueMicrotask(() => dispatch({ type: 'SET_LAYERS', payload: hist.state }))
-  }
+    hist.redo();
+    queueMicrotask(() => dispatch({ type: "SET_LAYERS", payload: hist.state }));
+  };
 
-  return { undo, redo, canUndo: hist.canUndo, canRedo: hist.canRedo }
+  return { undo, redo, canUndo: hist.canUndo, canRedo: hist.canRedo };
 }

@@ -44,9 +44,10 @@ function ActionPanel({
     if (allActions.length === 0 && !link) return null;
     return (
       <div className="flex items-center gap-2">
-        {link && (
-          link.href ? (
-            <a               href={link.href}
+        {link &&
+          (link.href ? (
+            <a
+              href={link.href}
               className="body font-medium text-taupe-600 hover:text-taupe-900 transition-colors inline-flex items-center gap-1"
             >
               {link.label} <span aria-hidden>→</span>
@@ -59,8 +60,7 @@ function ActionPanel({
             >
               {link.label} <span aria-hidden>→</span>
             </button>
-          )
-        )}
+          ))}
         {allActions.map((a, i) =>
           a.href ? (
             <Button key={i} size="sm" variant={a.variant ?? "default"} asChild>
@@ -70,7 +70,7 @@ function ActionPanel({
             <Button key={i} size="sm" variant={a.variant ?? "default"} onClick={a.onClick}>
               {a.label}
             </Button>
-          )
+          ),
         )}
       </div>
     );
@@ -84,7 +84,7 @@ function ActionPanel({
           ? "border-taupe-100 bg-taupe-50"
           : "border-taupe-100 bg-white shadow-natural",
         layout === "inline" && "flex items-center justify-between gap-6",
-        className
+        className,
       )}
     >
       <div className={cn("min-w-0", layout === "inline" ? "flex-1" : "")}>
@@ -94,15 +94,11 @@ function ActionPanel({
             {description}
           </p>
         )}
-        {children && layout === "stacked" && (
-          <div className="mt-4">{children}</div>
-        )}
+        {children && layout === "stacked" && <div className="mt-4">{children}</div>}
       </div>
 
       {layout === "stacked" ? (
-        (allActions.length > 0 || link) && (
-          <div className="mt-4">{renderActions()}</div>
-        )
+        (allActions.length > 0 || link) && <div className="mt-4">{renderActions()}</div>
       ) : (
         <div className="shrink-0 flex items-center gap-3">
           {children}

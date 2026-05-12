@@ -24,19 +24,18 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
       )}
       <div className="flex flex-col gap-1.5">
         <p className="body font-semibold text-taupe-900">{title}</p>
-        {description && (
-          <p className="body max-w-xs text-taupe-400">{description}</p>
-        )}
+        {description && <p className="body max-w-xs text-taupe-400">{description}</p>}
       </div>
-      {action && (
-        action.href ? (
+      {action &&
+        (action.href ? (
           <Button size="sm" asChild>
             <a href={action.href}>{action.label}</a>
           </Button>
         ) : (
-          <Button size="sm" onClick={action.onClick}>{action.label}</Button>
-        )
-      )}
+          <Button size="sm" onClick={action.onClick}>
+            {action.label}
+          </Button>
+        ))}
     </div>
   );
 }

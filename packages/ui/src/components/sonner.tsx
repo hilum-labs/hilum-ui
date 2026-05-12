@@ -18,8 +18,7 @@ function Toaster({ ...props }: ToasterProps) {
             "group-[.toast]:bg-brand-primary group-[.toast]:text-white group-[.toast]:rounded-md group-[.toast]:text-xs group-[.toast]:font-medium",
           cancelButton:
             "group-[.toast]:bg-taupe-100 group-[.toast]:text-taupe-600 group-[.toast]:rounded-md group-[.toast]:text-xs group-[.toast]:font-medium",
-          success:
-            "group-[.toaster]:border-brand-secondary/40 group-[.toaster]:text-taupe-900",
+          success: "group-[.toaster]:border-brand-secondary/40 group-[.toaster]:text-taupe-900",
           error:
             "group-[.toaster]:bg-red-50 group-[.toaster]:text-red-700 group-[.toaster]:border-red-200",
           warning:

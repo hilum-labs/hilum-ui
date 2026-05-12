@@ -26,7 +26,7 @@ const ContextMenuContent = React.forwardRef<
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
         "data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",
-        className
+        className,
       )}
       {...props}
     />
@@ -51,7 +51,7 @@ const ContextMenuItem = React.forwardRef<
         : "text-taupe-700 focus:bg-taupe-50 focus:text-taupe-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   />
@@ -69,7 +69,7 @@ const ContextMenuCheckboxItem = React.forwardRef<
       "body text-taupe-700 outline-none transition-colors",
       "focus:bg-taupe-50 focus:text-taupe-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     checked={checked}
     {...props}
@@ -95,7 +95,7 @@ const ContextMenuRadioItem = React.forwardRef<
       "body text-taupe-700 outline-none transition-colors",
       "focus:bg-taupe-50 focus:text-taupe-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
+      className,
     )}
     {...props}
   >
@@ -117,11 +117,7 @@ const ContextMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <ContextMenu.Label
     ref={ref}
-    className={cn(
-      "px-2.5 py-1 label text-taupe-400",
-      inset && "pl-8",
-      className
-    )}
+    className={cn("px-2.5 py-1 label text-taupe-400", inset && "pl-8", className)}
     {...props}
   />
 ));
@@ -152,7 +148,7 @@ const ContextMenuSubTrigger = React.forwardRef<
       "body text-taupe-700 outline-none transition-colors",
       "focus:bg-taupe-50 focus:text-taupe-900 data-[state=open]:bg-taupe-50",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   >
@@ -174,7 +170,7 @@ const ContextMenuSubContent = React.forwardRef<
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
       "data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -182,12 +178,7 @@ const ContextMenuSubContent = React.forwardRef<
 ContextMenuSubContent.displayName = "ContextMenuSubContent";
 
 function ContextMenuShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
-  return (
-    <span
-      className={cn("ml-auto caption text-taupe-400", className)}
-      {...props}
-    />
-  );
+  return <span className={cn("ml-auto caption text-taupe-400", className)} {...props} />;
 }
 ContextMenuShortcut.displayName = "ContextMenuShortcut";
 

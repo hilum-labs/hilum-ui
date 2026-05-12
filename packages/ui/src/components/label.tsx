@@ -13,7 +13,7 @@ const Label = React.forwardRef<
     className={cn(
       "body font-medium leading-none text-taupe-700",
       "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-      className
+      className,
     )}
     {...props}
   />

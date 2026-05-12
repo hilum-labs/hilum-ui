@@ -1,13 +1,13 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
-import { LinkProvider } from './link-context'
-import type { LinkComponent } from './types'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
+import { LinkProvider } from "./link-context";
+import type { LinkComponent } from "./types";
 
 interface AppShellProps {
   /** Router-aware link component. See D13 in PLATFORM_PLAN.md. */
-  linkComponent?: LinkComponent
-  className?: string
-  children: ReactNode
+  linkComponent?: LinkComponent;
+  className?: string;
+  children: ReactNode;
 }
 
 /**
@@ -23,20 +23,20 @@ interface AppShellProps {
  * </AppShell>
  */
 function AppShell({ linkComponent, className, children }: AppShellProps) {
-  const Wrapper = linkComponent ? LinkProvider : Fragment
-  const wrapperProps = linkComponent ? { value: linkComponent } : {}
+  const Wrapper = linkComponent ? LinkProvider : Fragment;
+  const wrapperProps = linkComponent ? { value: linkComponent } : {};
 
   return (
     <Wrapper {...(wrapperProps as { value: LinkComponent })}>
-      <div className={cn('flex h-screen overflow-hidden bg-taupe-50 text-taupe-900', className)}>
+      <div className={cn("flex h-screen overflow-hidden bg-taupe-50 text-taupe-900", className)}>
         {children}
       </div>
     </Wrapper>
-  )
+  );
 }
 
 // Local Fragment alias keeps the conditional provider terse.
-import { Fragment } from 'react'
+import { Fragment } from "react";
 
-export { AppShell }
-export type { AppShellProps }
+export { AppShell };
+export type { AppShellProps };

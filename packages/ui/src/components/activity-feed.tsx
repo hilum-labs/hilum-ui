@@ -36,7 +36,7 @@ function ActivityFeed({ events, className }: ActivityFeedProps) {
                     <span
                       className={cn(
                         "flex size-8 items-center justify-center rounded-full ring-8 ring-white",
-                        event.iconBgClass ?? "bg-taupe-100 text-taupe-500"
+                        event.iconBgClass ?? "bg-taupe-100 text-taupe-500",
                       )}
                     >
                       {event.icon}

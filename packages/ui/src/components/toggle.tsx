@@ -46,23 +46,21 @@ const toggleVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 interface ToggleProps
-  extends React.ComponentPropsWithoutRef<typeof Toggle.Root>,
-    VariantProps<typeof toggleVariants> {}
+  extends React.ComponentPropsWithoutRef<typeof Toggle.Root>, VariantProps<typeof toggleVariants> {}
 
-const ToggleRoot = React.forwardRef<
-  React.ComponentRef<typeof Toggle.Root>,
-  ToggleProps
->(({ className, variant, size, ...props }, ref) => (
-  <Toggle.Root
-    ref={ref}
-    className={cn(toggleVariants({ variant, size }), className)}
-    {...props}
-  />
-));
+const ToggleRoot = React.forwardRef<React.ComponentRef<typeof Toggle.Root>, ToggleProps>(
+  ({ className, variant, size, ...props }, ref) => (
+    <Toggle.Root
+      ref={ref}
+      className={cn(toggleVariants({ variant, size }), className)}
+      {...props}
+    />
+  ),
+);
 ToggleRoot.displayName = "Toggle";
 
 export { ToggleRoot as Toggle, toggleVariants };

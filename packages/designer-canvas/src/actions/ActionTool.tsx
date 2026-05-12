@@ -1,30 +1,26 @@
-import type { ComponentType } from 'react'
-import { MousePointer2, Hand } from 'lucide-react'
-import {
-  DesignerToolbarButton,
-  DesignerToolbarGroup,
-  useShellContext,
-} from '@hilum/designer'
+import type { ComponentType } from "react";
+import { MousePointer2, Hand } from "lucide-react";
+import { DesignerToolbarButton, DesignerToolbarGroup, useShellContext } from "@hilum/designer";
 
 interface ToolDescriptor {
-  id: string
-  label: string
-  icon: ComponentType<{ size?: number; className?: string }>
-  shortcut?: string
+  id: string;
+  label: string;
+  icon: ComponentType<{ size?: number; className?: string }>;
+  shortcut?: string;
 }
 
 const DEFAULT_TOOLS: ToolDescriptor[] = [
-  { id: 'select', label: 'Select', icon: MousePointer2, shortcut: 'V' },
-  { id: 'hand', label: 'Pan', icon: Hand, shortcut: 'H' },
-]
+  { id: "select", label: "Select", icon: MousePointer2, shortcut: "V" },
+  { id: "hand", label: "Pan", icon: Hand, shortcut: "H" },
+];
 
 interface ActionToolProps {
   /** Override default tools. */
-  tools?: ToolDescriptor[]
+  tools?: ToolDescriptor[];
 }
 
 function ActionTool({ tools = DEFAULT_TOOLS }: ActionToolProps) {
-  const { activeTool, setActiveTool } = useShellContext()
+  const { activeTool, setActiveTool } = useShellContext();
 
   return (
     <DesignerToolbarGroup>
@@ -39,8 +35,8 @@ function ActionTool({ tools = DEFAULT_TOOLS }: ActionToolProps) {
         />
       ))}
     </DesignerToolbarGroup>
-  )
+  );
 }
 
-export { ActionTool }
-export type { ActionToolProps, ToolDescriptor }
+export { ActionTool };
+export type { ActionToolProps, ToolDescriptor };

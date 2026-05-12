@@ -14,25 +14,23 @@ const sizeMap = {
 
 type AvatarSize = keyof typeof sizeMap;
 
-interface AvatarProps
-  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
   size?: AvatarSize;
 }
 
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  AvatarProps
->(({ className, size = "md", ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative flex shrink-0 overflow-hidden rounded-full",
-      sizeMap[size],
-      className
-    )}
-    {...props}
-  />
-));
+const Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, AvatarProps>(
+  ({ className, size = "md", ...props }, ref) => (
+    <AvatarPrimitive.Root
+      ref={ref}
+      className={cn(
+        "relative flex shrink-0 overflow-hidden rounded-full",
+        sizeMap[size],
+        className,
+      )}
+      {...props}
+    />
+  ),
+);
 Avatar.displayName = "Avatar";
 
 const AvatarImage = React.forwardRef<
@@ -55,7 +53,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={cn(
       "flex h-full w-full items-center justify-center rounded-full bg-taupe-100 body font-semibold text-taupe-600",
-      className
+      className,
     )}
     {...props}
   />
@@ -94,7 +92,7 @@ const AvatarWithStatus = React.forwardRef<
         className={cn(
           "absolute bottom-0 right-0 rounded-full ring-white",
           statusColorMap[status],
-          statusSizeMap[size]
+          statusSizeMap[size],
         )}
       />
     )}

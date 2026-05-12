@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git"
   },
+  "type": "module",
   "engines": {
     "node": ">=20",
     "pnpm": ">=9"
@@ -22,6 +23,9 @@
     "typecheck": "turbo typecheck",
     "test": "vitest run",
     "lint": "turbo lint",
+    "lint:fix": "eslint packages apps --fix",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
     "clean": "turbo clean && rm -rf node_modules",
     "catalog": "pnpm --filter @hilum/catalog dev"
   },
@@ -29,11 +33,18 @@
     "@changesets/cli": "^2.31.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@vitest/ui": "^3.2.4",
+    "eslint": "^9",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
     "happy-dom": "^20.9.0",
+    "prettier": "^3.8.3",
     "tsup": "^8.3.0",
     "turbo": "^2.3.0",
     "typescript": "^5.7.0",
+    "typescript-eslint": "^8.59.3",
     "vitest": "^3.2.4"
   }
 }

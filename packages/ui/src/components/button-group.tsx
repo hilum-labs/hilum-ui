@@ -11,7 +11,7 @@ function ButtonGroup({ children, className }: ButtonGroupProps) {
     <div
       className={cn(
         "inline-flex divide-x divide-taupe-200 overflow-hidden rounded-lg border border-taupe-200 bg-white shadow-natural",
-        className
+        className,
       )}
     >
       {children}
@@ -33,7 +33,7 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
         active
           ? "bg-taupe-900 text-white"
           : "text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900",
-        className
+        className,
       )}
       {...props}
     >

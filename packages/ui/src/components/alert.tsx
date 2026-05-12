@@ -15,44 +15,29 @@ const alertVariants = cva(
       },
     },
     defaultVariants: { variant: "default" },
-  }
+  },
 );
 
-interface AlertProps
-  extends React.ComponentProps<"div">,
-    VariantProps<typeof alertVariants> {}
+interface AlertProps extends React.ComponentProps<"div">, VariantProps<typeof alertVariants> {}
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
   ({ className, variant, ...props }, ref) => (
-    <div
-      ref={ref}
-      role="alert"
-      className={cn(alertVariants({ variant }), className)}
-      {...props}
-    />
-  )
+    <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props} />
+  ),
 );
 Alert.displayName = "Alert";
 
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
   ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn("mb-0.5 body font-semibold leading-tight", className)}
-      {...props}
-    />
-  )
+    <p ref={ref} className={cn("mb-0.5 body font-semibold leading-tight", className)} {...props} />
+  ),
 );
 AlertTitle.displayName = "AlertTitle";
 
 const AlertDescription = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
   ({ className, ...props }, ref) => (
-    <p
-      ref={ref}
-      className={cn("body opacity-90", className)}
-      {...props}
-    />
-  )
+    <p ref={ref} className={cn("body opacity-90", className)} {...props} />
+  ),
 );
 AlertDescription.displayName = "AlertDescription";
 

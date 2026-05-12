@@ -1,15 +1,11 @@
-import { Plus } from 'lucide-react'
-import {
-  DesignerToolbarButton,
-  DesignerToolbarGroup,
-  useShellContext,
-} from '@hilum/designer'
-import { useCanvasContext } from '../context/CanvasContext'
-import type { Layer } from '../types'
+import { Plus } from "lucide-react";
+import { DesignerToolbarButton, DesignerToolbarGroup, useShellContext } from "@hilum/designer";
+import { useCanvasContext } from "../context/CanvasContext";
+import type { Layer } from "../types";
 
 function generateId(): string {
-  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID()
-  return `layer-${Math.random().toString(36).slice(2, 11)}`
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) return crypto.randomUUID();
+  return `layer-${Math.random().toString(36).slice(2, 11)}`;
 }
 
 /**
@@ -18,31 +14,25 @@ function generateId(): string {
  * dispatch call.
  */
 function ActionAddLayer() {
-  const { state, dispatch } = useCanvasContext()
-  const { setSelectedIds } = useShellContext()
+  const { state, dispatch } = useCanvasContext();
+  const { setSelectedIds } = useShellContext();
 
   if (state.layerTypes.length === 0) {
-    return (
-      <DesignerToolbarButton
-        label="Add layer"
-        icon={Plus}
-        disabled
-      />
-    )
+    return <DesignerToolbarButton label="Add layer" icon={Plus} disabled />;
   }
 
   return (
     <DesignerToolbarGroup>
       {state.layerTypes.map((descriptor) => {
-        const Icon = descriptor.icon ?? Plus
+        const Icon = descriptor.icon ?? Plus;
         return (
           <DesignerToolbarButton
             key={descriptor.type}
             label={`Add ${descriptor.label}`}
             icon={Icon}
             onClick={() => {
-              const id = generateId()
-              const size = descriptor.defaultSize ?? { width: 200, height: 100 }
+              const id = generateId();
+              const size = descriptor.defaultSize ?? { width: 200, height: 100 };
               const layer: Layer<Record<string, unknown>> = {
                 id,
                 type: descriptor.type,
@@ -56,15 +46,15 @@ function ActionAddLayer() {
                 isLocked: false,
                 isVisible: true,
                 data: descriptor.defaultData as Record<string, unknown>,
-              }
-              dispatch({ type: 'ADD_LAYER', payload: layer })
-              setSelectedIds([id])
+              };
+              dispatch({ type: "ADD_LAYER", payload: layer });
+              setSelectedIds([id]);
             }}
           />
-        )
+        );
       })}
     </DesignerToolbarGroup>
-  )
+  );
 }
 
-export { ActionAddLayer }
+export { ActionAddLayer };

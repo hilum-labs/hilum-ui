@@ -11,10 +11,7 @@ const NavigationMenuRoot = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <NavigationMenu.Root
     ref={ref}
-    className={cn(
-      "relative z-10 flex max-w-max flex-1 items-center justify-center",
-      className
-    )}
+    className={cn("relative z-10 flex max-w-max flex-1 items-center justify-center", className)}
     {...props}
   >
     {children}
@@ -28,10 +25,7 @@ const NavigationMenuList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <NavigationMenu.List
     ref={ref}
-    className={cn(
-      "group flex flex-1 list-none items-center justify-center gap-1",
-      className
-    )}
+    className={cn("group flex flex-1 list-none items-center justify-center gap-1", className)}
     {...props}
   />
 ));
@@ -51,7 +45,7 @@ const NavigationMenuTrigger = React.forwardRef<
       "hover:bg-taupe-100 hover:text-taupe-900",
       "data-[active]:bg-taupe-100 data-[state=open]:bg-taupe-100",
       "outline-none transition-colors",
-      className
+      className,
     )}
     {...props}
   >
@@ -78,7 +72,7 @@ const NavigationMenuContent = React.forwardRef<
       "data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52",
       "data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52",
       "md:absolute md:w-auto",
-      className
+      className,
     )}
     {...props}
   />
@@ -95,7 +89,7 @@ const NavigationMenuLink = React.forwardRef<
       "block select-none rounded-md px-3 py-2 body text-taupe-700",
       "hover:bg-taupe-50 hover:text-taupe-900",
       "outline-none transition-colors",
-      className
+      className,
     )}
     {...props}
   />
@@ -114,7 +108,7 @@ const NavigationMenuViewport = React.forwardRef<
         "md:w-[var(--radix-navigation-menu-viewport-width)]",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
-        className
+        className,
       )}
       {...props}
     />
@@ -132,7 +126,7 @@ const NavigationMenuIndicator = React.forwardRef<
       "top-full z-[1] flex h-1.5 items-end justify-center overflow-hidden",
       "data-[state=visible]:animate-in data-[state=hidden]:animate-out",
       "data-[state=hidden]:fade-out data-[state=visible]:fade-in",
-      className
+      className,
     )}
     {...props}
   >
@@ -147,7 +141,7 @@ function navigationMenuTriggerStyle() {
     "body font-medium text-taupe-700",
     "hover:bg-taupe-100 hover:text-taupe-900",
     "data-[active]:bg-taupe-100 data-[state=open]:bg-taupe-100",
-    "outline-none transition-colors"
+    "outline-none transition-colors",
   );
 }
 

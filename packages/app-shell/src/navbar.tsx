@@ -1,16 +1,16 @@
-import type { ReactNode } from 'react'
-import { cn } from '@hilum/ui'
-import { useLink } from './link-context'
-import type { NavItem } from './types'
+import type { ReactNode } from "react";
+import { cn } from "@hilum/ui";
+import { useLink } from "./link-context";
+import type { NavItem } from "./types";
 
 interface NavbarProps {
   /** Logo block on the far left. */
-  logo?: ReactNode
+  logo?: ReactNode;
   /** Top-level navigation items. */
-  items?: NavItem[]
+  items?: NavItem[];
   /** Right-aligned actions / user menu. */
-  actions?: ReactNode
-  className?: string
+  actions?: ReactNode;
+  className?: string;
 }
 
 /**
@@ -18,10 +18,15 @@ interface NavbarProps {
  * landing pages, etc.). For app top bars use <AppHeader> inside <AppShell>.
  */
 function Navbar({ logo, items = [], actions, className }: NavbarProps) {
-  const Link = useLink()
+  const Link = useLink();
 
   return (
-    <nav className={cn('flex h-16 items-center gap-6 border-b border-taupe-100 bg-white px-6', className)}>
+    <nav
+      className={cn(
+        "flex h-16 items-center gap-6 border-b border-taupe-100 bg-white px-6",
+        className,
+      )}
+    >
       {logo && <div className="shrink-0">{logo}</div>}
 
       <ul className="hidden md:flex items-center gap-1">
@@ -31,10 +36,10 @@ function Navbar({ logo, items = [], actions, className }: NavbarProps) {
               href={item.href}
               onClick={item.onClick}
               className={cn(
-                'flex items-center gap-2 rounded-md px-3 py-1.5 caption transition-colors',
+                "flex items-center gap-2 rounded-md px-3 py-1.5 caption transition-colors",
                 item.active
-                  ? 'text-taupe-900 bg-taupe-50 font-medium'
-                  : 'text-taupe-500 hover:text-taupe-900 hover:bg-taupe-50',
+                  ? "text-taupe-900 bg-taupe-50 font-medium"
+                  : "text-taupe-500 hover:text-taupe-900 hover:bg-taupe-50",
               )}
             >
               {item.icon && <item.icon size={14} />}
@@ -48,8 +53,8 @@ function Navbar({ logo, items = [], actions, className }: NavbarProps) {
 
       {actions && <div className="flex items-center gap-2">{actions}</div>}
     </nav>
-  )
+  );
 }
 
-export { Navbar }
-export type { NavbarProps }
+export { Navbar };
+export type { NavbarProps };

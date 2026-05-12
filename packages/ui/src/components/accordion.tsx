@@ -9,11 +9,7 @@ const AccordionRoot = React.forwardRef<
   React.ComponentRef<typeof Accordion.Root>,
   React.ComponentPropsWithoutRef<typeof Accordion.Root>
 >(({ className, ...props }, ref) => (
-  <Accordion.Root
-    ref={ref}
-    className={cn("divide-y divide-taupe-100", className)}
-    {...props}
-  />
+  <Accordion.Root ref={ref} className={cn("divide-y divide-taupe-100", className)} {...props} />
 ));
 AccordionRoot.displayName = "Accordion";
 
@@ -37,7 +33,7 @@ const AccordionTrigger = React.forwardRef<
         "body font-medium text-taupe-900 transition-colors hover:text-taupe-700",
         "[&[data-state=open]>svg]:rotate-180",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-900/15",
-        className
+        className,
       )}
       {...props}
     >
@@ -60,7 +56,7 @@ const AccordionContent = React.forwardRef<
     className={cn(
       "overflow-hidden body text-taupe-500",
       "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
-      className
+      className,
     )}
     {...props}
   >

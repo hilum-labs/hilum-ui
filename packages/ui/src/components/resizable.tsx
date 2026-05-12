@@ -28,7 +28,7 @@ function ResizablePanelGroup({
       className={cn(
         "flex h-full w-full",
         resolvedOrientation === "vertical" && "flex-col",
-        className
+        className,
       )}
       {...props}
     />
@@ -57,7 +57,7 @@ function ResizableHandle({ className, withHandle = true, ...props }: ResizableHa
         "[aria-orientation=vertical]:after:left-0 [aria-orientation=vertical]:after:h-1 [aria-orientation=vertical]:after:w-full [aria-orientation=vertical]:after:translate-x-0 [aria-orientation=vertical]:after:-translate-y-1/2",
         // Active drag state
         "active:bg-brand-primary/30",
-        className
+        className,
       )}
       {...props}
     >

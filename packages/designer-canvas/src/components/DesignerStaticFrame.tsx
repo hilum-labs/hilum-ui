@@ -1,12 +1,12 @@
-import { cn } from '@hilum/ui'
-import { useCanvasContext } from '../context/CanvasContext'
-import { LayerView } from './LayerView'
+import { cn } from "@hilum/ui";
+import { useCanvasContext } from "../context/CanvasContext";
+import { LayerView } from "./LayerView";
 
 interface DesignerStaticFrameProps {
-  className?: string
+  className?: string;
   /** Override frame size — used by thumbnails to render at a custom resolution. */
-  width?: number
-  height?: number
+  width?: number;
+  height?: number;
 }
 
 /**
@@ -15,19 +15,19 @@ interface DesignerStaticFrameProps {
  * <RendererProvider> are used; their `ctx.readOnly` will be true.
  */
 function DesignerStaticFrame({ className, width, height }: DesignerStaticFrameProps) {
-  const { state } = useCanvasContext()
-  const w = width ?? state.frameSize.width
-  const h = height ?? state.frameSize.height
+  const { state } = useCanvasContext();
+  const w = width ?? state.frameSize.width;
+  const h = height ?? state.frameSize.height;
 
   return (
     <div
-      className={cn('relative', className)}
+      className={cn("relative", className)}
       style={{
         width: w,
         height: h,
         background: state.artboardColor,
         opacity: state.artboardOpacity,
-        overflow: state.artboardClipContent ? 'hidden' : 'visible',
+        overflow: state.artboardClipContent ? "hidden" : "visible",
       }}
       data-static-frame
     >
@@ -35,8 +35,8 @@ function DesignerStaticFrame({ className, width, height }: DesignerStaticFramePr
         <LayerView key={l.id} layer={l} staticMode />
       ))}
     </div>
-  )
+  );
 }
 
-export { DesignerStaticFrame }
-export type { DesignerStaticFrameProps }
+export { DesignerStaticFrame };
+export type { DesignerStaticFrameProps };

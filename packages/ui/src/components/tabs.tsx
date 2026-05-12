@@ -18,10 +18,7 @@ const TabsList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Tabs.List
     ref={ref}
-    className={cn(
-      "inline-flex items-center gap-1 border-b border-taupe-100 w-full",
-      className
-    )}
+    className={cn("inline-flex items-center gap-1 border-b border-taupe-100 w-full", className)}
     {...props}
   />
 ));
@@ -40,7 +37,7 @@ const TabsTrigger = React.forwardRef<
       "data-[state=active]:text-brand-primary data-[state=active]:border-brand-primary",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20",
       "disabled:pointer-events-none disabled:opacity-50",
-      className
+      className,
     )}
     {...props}
   />
@@ -51,11 +48,7 @@ const TabsContent = React.forwardRef<
   React.ComponentRef<typeof Tabs.Content>,
   React.ComponentPropsWithoutRef<typeof Tabs.Content>
 >(({ className, ...props }, ref) => (
-  <Tabs.Content
-    ref={ref}
-    className={cn("mt-4", className)}
-    {...props}
-  />
+  <Tabs.Content ref={ref} className={cn("mt-4", className)} {...props} />
 ));
 TabsContent.displayName = "TabsContent";
 
