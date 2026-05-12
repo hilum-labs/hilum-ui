@@ -1,0 +1,48 @@
+{
+  "name": "@hilum/designer-canvas",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Generic free-positioned canvas engine — Layer model, pan/zoom, drag/resize, snap guides, marquee, 49 generic actions, pluggable renderers and services",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
+    "directory": "packages/designer-canvas"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "//": "Tests for this package live in src/**/*.test.ts and run from the root via `pnpm test`.",
+  "peerDependencies": {
+    "@hilum/designer": "workspace:*",
+    "@hilum/ui": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.511.0"
+  },
+  "devDependencies": {
+    "@hilum/designer": "workspace:*",
+    "@hilum/ui": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0"
+  }
+}

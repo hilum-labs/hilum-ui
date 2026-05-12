@@ -1,0 +1,51 @@
+// @hilum/ui/icons — curated re-exports from lucide-react.
+//
+// Apps import as `import { ChevronDown, Plus } from "@hilum/ui/icons"` — they
+// never depend on lucide-react directly. This stops drift between Hilum apps
+// using slightly different icon sets (D10).
+//
+// To add an icon: add the named re-export below. Tree-shaking ensures
+// consumers only ship what they import.
+
+export {
+  // System / nav
+  Menu, X, ChevronDown, ChevronUp, ChevronLeft, ChevronRight,
+  ChevronsUpDown, ChevronsLeft, ChevronsRight,
+  ArrowLeft, ArrowRight, ArrowUp, ArrowDown, ArrowUpRight, ArrowDownRight,
+  MoreHorizontal, MoreVertical,
+  // Status
+  Check, AlertCircle, AlertTriangle, Info, CircleHelp,
+  CheckCircle2, XCircle, CircleAlert, CircleCheck, CircleX,
+  Loader, Loader2,
+  // Action
+  Plus, Minus, Trash, Trash2, Edit, Edit2, Edit3, Pencil, Save, Copy,
+  Search, Filter, Settings, Settings2, RotateCcw, RotateCw,
+  Download, Upload, Share, Share2, ExternalLink,
+  // Visibility
+  Eye, EyeOff, Lock, Unlock, Pin, PinOff,
+  // Toggles
+  Sun, Moon, MonitorSmartphone,
+  // Common nouns
+  Home, User, Users, Bell, Mail, Phone, Calendar, Clock,
+  File, FileText, Folder, FolderOpen, Image, Video, Music,
+  Heart, Star, Bookmark, Tag,
+  // Layout / design
+  Layers, Layout, LayoutDashboard, LayoutGrid, LayoutList,
+  AlignLeft, AlignCenter, AlignRight, AlignJustify,
+  Bold, Italic, Underline, Strikethrough,
+  Type, Image as ImageIcon, Square, Circle, Triangle,
+  // Auth
+  LogIn, LogOut, KeyRound, ShieldCheck,
+  // Money / commerce
+  CreditCard, ShoppingCart, ShoppingBag, Wallet, DollarSign,
+  // Brand context
+  Atom, Blocks, Megaphone, Palette, ShoppingBag as ShopBag,
+  // Misc
+  Sparkles, Zap, Rocket, Flame, Lightbulb, Wand2,
+  Hand, MousePointer, MousePointer2, Move, Maximize2, Minimize2,
+  RefreshCw, RefreshCcw, Send, Paperclip, Link, Link2,
+  Globe, Compass, Map, MapPin, Navigation,
+  Check as CheckIcon,
+} from 'lucide-react'
+
+export type { LucideIcon, LucideProps } from 'lucide-react'

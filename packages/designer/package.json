@@ -1,0 +1,46 @@
+{
+  "name": "@hilum/designer",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Engine-agnostic canvas-editor chrome — DesignerShell, Toolbar, Panel, Pane + generic useHistory and useKeybindings hooks",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
+    "directory": "packages/designer"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "//": "Tests for this package live in src/**/*.test.ts and run from the root via `pnpm test`.",
+  "peerDependencies": {
+    "@hilum/ui": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.511.0"
+  },
+  "devDependencies": {
+    "@hilum/ui": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0"
+  }
+}

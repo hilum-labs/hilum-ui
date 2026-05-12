@@ -1,0 +1,28 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      types:
+        patterns:
+          - '@types/*'
+      tooling:
+        patterns:
+          - tsup
+          - turbo
+          - typescript
+          - vitest
+          - '@vitest/*'
+          - '@testing-library/*'
+          - '@changesets/*'
+      radix:
+        patterns:
+          - radix-ui
+          - '@radix-ui/*'
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@hilum/ui/tokens.css";
+
+/* Source files we want Tailwind v4 to scan for utility class names. */
+@source "../../../../packages/ui/src";
+@source "../../../../packages/app-shell/src";
+@source "../../../../packages/designer/src";
+@source "../../../../packages/designer-canvas/src";

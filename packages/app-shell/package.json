@@ -1,0 +1,45 @@
+{
+  "name": "@hilum/app-shell",
+  "version": "0.1.0",
+  "private": false,
+  "description": "Composed product-app layouts — AppShell, AppSidebar, AppHeader, PageHeader, DetailScreen, SettingsScreen, SignInScreen",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
+    "directory": "packages/app-shell"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo"
+  },
+  "peerDependencies": {
+    "@hilum/ui": "workspace:*",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.511.0"
+  },
+  "devDependencies": {
+    "@hilum/ui": "workspace:*",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.2.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.7.0"
+  }
+}

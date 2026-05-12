@@ -1,0 +1,75 @@
+
+import { Avatar, AvatarFallback } from "@hilum/ui";
+
+const reviews = [
+  {
+    author: "Emily Selman",
+    avatar: "ES",
+    title: "Can't say enough good things",
+    rating: 5,
+    body: "I was really pleased with the overall shopping experience. My order even included a little personal thank you note, which delighted me!",
+  },
+  {
+    author: "Hector Gibbons",
+    avatar: "HG",
+    title: "Complements my existing wardrobe",
+    rating: 5,
+    body: "Adds the perfect finishing touch to any outfit. I was nervous ordering online, but the quality blew me away.",
+  },
+  {
+    author: "Mark Edwards",
+    avatar: "ME",
+    title: "My wife was resistant but now loves it",
+    rating: 4,
+    body: "I purchased this for my wife and she was a bit unsure at first. Now she won't leave the house without it.",
+  },
+  {
+    author: "Bonnie Weston",
+    avatar: "BW",
+    title: "Great for the office",
+    rating: 5,
+    body: "This goes with my entire wardrobe. I typically wear casual clothes to the office, and this fits right in.",
+  },
+] as const;
+
+function Stars({ rating }: { rating: number }) {
+  return (
+    <div className="flex items-center gap-0.5 text-sm">
+      {Array.from({ length: 5 }).map((_, index) => (
+        <span key={index} className={index < rating ? "text-brand-secondary" : "text-taupe-200"}>
+          {index < rating ? "★" : "☆"}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export default function AvatarReviewCards() {
+  return (
+    <section className="w-full rounded-xl border border-taupe-100 bg-white p-6">
+      <div className="grid gap-5 md:grid-cols-2">
+        {reviews.map((review) => (
+          <article key={review.author} className="rounded-[24px] border border-taupe-100 bg-taupe-50 p-6">
+            <div className="flex items-start gap-4">
+              <Avatar size="lg">
+                <AvatarFallback className="bg-brand-primary/10 text-brand-primary">
+                  {review.avatar}
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="body font-semibold text-taupe-900">{review.author}</p>
+                    <p className="caption mt-0.5 text-taupe-400">{review.title}</p>
+                  </div>
+                  <Stars rating={review.rating} />
+                </div>
+                <p className="body mt-4 leading-relaxed text-taupe-500">{review.body}</p>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
