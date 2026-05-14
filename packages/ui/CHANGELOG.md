@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 0.1.2
+
+### Patch Changes
+
+- cfe6bec: Exclude internal test files from the published package tarball.
+
 ## 0.1.1
 
 ### Patch Changes
