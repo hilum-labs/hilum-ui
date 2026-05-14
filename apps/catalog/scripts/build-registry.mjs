@@ -9,7 +9,7 @@
  *   5. Writes the full registry to apps/catalog/public/registry.json
  */
 
-import { readFileSync, writeFileSync, readdirSync } from 'fs'
+import { mkdirSync, readFileSync, writeFileSync, readdirSync } from 'fs'
 import { join, dirname, basename } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -118,6 +118,7 @@ function buildRegistry() {
     blocks,
   }
 
+  mkdirSync(dirname(OUT_FILE), { recursive: true })
   writeFileSync(OUT_FILE, JSON.stringify(registry, null, 2))
   console.log(`registry: wrote ${blocks.length} blocks → ${OUT_FILE}`)
 }
