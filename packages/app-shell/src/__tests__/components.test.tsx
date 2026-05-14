@@ -34,7 +34,7 @@ describe("AppShell", () => {
   });
 
   it("uses injected linkComponent", () => {
-    const CustomLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+    const CustomLink = ({ href, children }: { href: string; children?: React.ReactNode }) => (
       <a data-testid="custom-link" href={href}>
         {children}
       </a>
