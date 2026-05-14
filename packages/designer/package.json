@@ -1,6 +1,6 @@
 {
   "name": "@hilum/designer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Engine-agnostic canvas-editor chrome — DesignerShell, Toolbar, Panel, Pane + generic useHistory and useKeybindings hooks",
   "license": "MIT",
@@ -19,7 +19,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

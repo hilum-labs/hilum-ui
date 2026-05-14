@@ -1,6 +1,6 @@
 {
   "name": "@hilum/designer-canvas",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Generic free-positioned canvas engine — Layer model, pan/zoom, drag/resize, snap guides, marquee, 49 generic actions, pluggable renderers and services",
   "license": "MIT",
@@ -19,7 +19,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
