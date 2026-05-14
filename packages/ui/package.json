@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "description": "Hilum UI — design system primitives (Button, Input, Dialog, Combobox, …) + tokens + fonts + icons",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
@@ -29,7 +29,17 @@
     },
     "./tokens.css": "./dist/tokens.css"
   },
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src/components",
+    "!src/components/__tests__",
+    "src/icons.ts",
+    "src/index.ts",
+    "src/lib",
+    "src/tokens",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup && node ./scripts/build-tokens.mjs",
     "dev": "tsup --watch",

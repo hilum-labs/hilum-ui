@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Hilum UI — design system and component platform monorepo",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git"
@@ -18,7 +19,8 @@
     "build": "turbo build",
     "build:packages": "turbo build --filter=./packages/*",
     "release:version": "changeset version",
-    "release:publish": "turbo build --filter=./packages/* && changeset publish",
+    "release:preflight": "pnpm typecheck && pnpm test && pnpm build:packages",
+    "release:publish": "pnpm release:preflight && changeset publish",
     "changeset": "changeset",
     "typecheck": "turbo typecheck",
     "test": "vitest run",

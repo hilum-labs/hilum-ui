@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": false,
   "description": "Hilum UI CLI — add marketing blocks to your project",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
@@ -14,9 +14,13 @@
   },
   "type": "module",
   "bin": {
-    "hilum": "./dist/index.js"
+    "hilum": "dist/index.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
