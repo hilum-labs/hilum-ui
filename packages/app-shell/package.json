@@ -1,6 +1,6 @@
 {
   "name": "@hilum/app-shell",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "description": "Composed product-app layouts — AppShell, AppSidebar, AppHeader, PageHeader, DetailScreen, SettingsScreen, SignInScreen",
   "license": "MIT",
@@ -19,7 +19,11 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
