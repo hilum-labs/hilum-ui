@@ -37,10 +37,10 @@ function Designer<TData = Record<string, unknown>>({
 }: DesignerProps<TData>) {
   return (
     <CanvasProvider<TData>
-      initial={initial}
+      {...(initial !== undefined && { initial })}
       services={services}
-      readOnly={readOnly}
-      onChange={onChange}
+      {...(readOnly !== undefined && { readOnly })}
+      {...(onChange !== undefined && { onChange })}
     >
       <RendererProvider renderers={renderers}>{children}</RendererProvider>
     </CanvasProvider>

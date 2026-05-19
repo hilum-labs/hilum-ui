@@ -28,7 +28,7 @@ export interface CanvasState<TData = Record<string, unknown>> {
   artboardClipContent: boolean;
 
   /** Optional grid layout mode. When set, layers can use `gridItem`. */
-  gridContainer?: GridContainer;
+  gridContainer?: GridContainer | undefined;
 
   /** Clipboard: layers that have been copied / cut. */
   copiedLayers: Layer<TData>[] | null;
@@ -58,7 +58,6 @@ export function createInitialState<TData>(
     artboardColor: "#ffffff",
     artboardOpacity: 1,
     artboardClipContent: true,
-    gridContainer: undefined,
     copiedLayers: null,
     uiColor: "light",
     canvasColor: "light",

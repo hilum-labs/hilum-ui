@@ -29,7 +29,7 @@ function ActionTool({ tools = DEFAULT_TOOLS }: ActionToolProps) {
           key={tool.id}
           label={tool.label}
           icon={tool.icon}
-          shortcut={tool.shortcut}
+          {...(tool.shortcut !== undefined && { shortcut: tool.shortcut })}
           active={activeTool === tool.id}
           onClick={() => setActiveTool(tool.id)}
         />
