@@ -38,7 +38,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build catalog
-        run: pnpm --filter @hilum/catalog build
+        run: pnpm turbo build --filter=...@hilum/catalog
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
