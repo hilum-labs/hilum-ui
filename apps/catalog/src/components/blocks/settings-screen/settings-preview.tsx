@@ -81,7 +81,7 @@ export default function SettingsPreview() {
                 </div>
                 <Switch
                   id={n.id}
-                  checked={state?.checked}
+                  {...(state?.checked !== undefined && { checked: state.checked })}
                   onCheckedChange={() => toggle(n.id)}
                 />
               </div>

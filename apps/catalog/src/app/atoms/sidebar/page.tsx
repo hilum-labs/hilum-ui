@@ -258,7 +258,7 @@ function DefaultSidebarContent() {
               {navMain.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
-                    isActive={item.isActive}
+                    {...(item.isActive !== undefined && { isActive: item.isActive })}
                     tooltip={item.title}
                   >
                     <item.icon size={15} />

@@ -15,7 +15,7 @@ const formatDate = (date: Date) =>
   });
 
 interface DatePickerProps {
-  value?: Date;
+  value?: Date | undefined;
   onChange?: (date: Date | undefined) => void;
   placeholder?: string;
   disabled?: boolean;

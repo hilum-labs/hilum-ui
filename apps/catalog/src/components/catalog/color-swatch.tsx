@@ -6,8 +6,8 @@ import { cn } from "@hilum/ui";
 interface ColorSwatchProps {
   name: string;
   hex: string;
-  usage?: string;
-  lightText?: boolean;
+  usage?: string | undefined;
+  lightText?: boolean | undefined;
   size?: "sm" | "md";
 }
 
@@ -68,7 +68,7 @@ interface TokenRowProps {
   value: string;
   hex: string;
   usage: string;
-  lightText?: boolean;
+  lightText?: boolean | undefined;
 }
 
 export function TokenRow({ token, value, hex, usage, lightText = true }: TokenRowProps) {
