@@ -4,7 +4,8 @@
 // A build step (scripts/build-tokens.mjs) reads the compiled output of this
 // file and emits dist/tokens.css for consumers to `@import`.
 //
-// Brand model: D8 — fully fixed. No per-app overrides.
+// Brand model: D8 — base palette is fixed here. Per-product overrides are
+//               applied at runtime via createTheme() in @hilum/ui/create-theme.
 // Color modes:  D7 — light + dark, both auto (`prefers-color-scheme`) and
 //                    explicit via `[data-theme]`.
 //
@@ -167,9 +168,22 @@ export const tokens = {
     base: "0.5rem",
     sm: "calc(0.5rem - 4px)",
     md: "calc(0.5rem - 2px)",
-    lg: "0.5rem",
+    lg: "calc(0.5rem + 2px)",
     xl: "calc(0.5rem + 4px)",
     full: "9999px",
+  },
+
+  /* ============================================================== *
+   *  Z-INDEX — semantic layering scale                              *
+   * ============================================================== */
+
+  zIndex: {
+    dropdown: 40,
+    sticky: 50,
+    fixed: 60,
+    modal: 100,
+    popover: 110,
+    tooltip: 120,
   },
 
   shadow: {

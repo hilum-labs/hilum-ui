@@ -1,0 +1,1514 @@
+# @hilum/ui — Design System
+
+> Production-ready React design system with 74 components, OKLCH-based per-product theming, and CSS-variable-backed design tokens. Built for browser + Electron apps (no SSR / no Next.js). Tailwind v4 + Radix UI primitives.
+
+## Installation
+
+```bash
+pnpm add @hilum/ui
+# or: npm install @hilum/ui  |  yarn add @hilum/ui
+```
+
+Peer dependencies: `react@^19`, `react-dom@^19`, `tailwindcss@^4`
+
+## Setup
+
+```css
+/* globals.css */
+@import "tailwindcss";
+@import "@hilum/ui/tokens.css";
+```
+
+That single import registers all design tokens as CSS custom properties and Tailwind v4 utilities (`bg-brand-primary`, `text-taupe-900`, `shadow-natural`, etc.).
+
+---
+
+## Theming
+
+Every product gets its own primary and secondary brand colors. Pass two hex values — `createTheme` generates a full 11-shade OKLCH palette and returns a CSS override string.
+
+```tsx
+import { ThemeProvider } from "@hilum/ui/create-theme"
+
+// Wrap your app root — re-applies automatically when props change
+export function App() {
+  return (
+    <ThemeProvider primary="#0066FF" secondary="#FF9900">
+      <Router />
+    </ThemeProvider>
+  )
+}
+```
+
+### Theming API
+
+| Export | Description |
+|---|---|
+| `createTheme({ primary, secondary })` | Pure function. Returns `{ css, palette }`. Works in Node (build scripts) and browser. |
+| `applyTheme({ primary, secondary })` | Injects `<style>` into `document.head`. Returns cleanup fn. Browser/Electron only. |
+| `<ThemeProvider primary secondary>` | React component. Calls `applyTheme` in `useEffect`. |
+
+### ThemeConfig
+
+| Prop | Type | Description |
+|---|---|---|
+| `primary` | `string` | Hex color. Anchored at palette-500; 11 shades generated. |
+| `secondary` | `string` | Hex color. Same structure. |
+
+### ThemeResult
+
+| Field | Type | Description |
+|---|---|---|
+| `css` | `string` | Complete CSS override. Inject via `<style>` or write to a file. |
+| `palette.primary` | `Record<string,string>` | `{ "50": "#f2f7ff", …, "950": "#000723" }` |
+| `palette.secondary` | `Record<string,string>` | Same for secondary. |
+
+### CSS variables overridden
+
+- `--color-brand-primary` / `--color-brand-secondary` — affects all `bg-brand-*` utilities
+- `--primary`, `--primary-foreground`
+- `--accent`, `--accent-foreground`
+- `--ring`
+- `--warning`, `--warning-foreground`
+- `--color-primary-{50…950}` / `--color-secondary-{50…950}` — palette vars for product CSS
+
+---
+
+## Design Tokens
+
+### Colors
+
+**Brand:**
+- `bg-brand-primary` → `#C100F1` (vivid purple) — primary buttons, CTAs, focus rings
+- `bg-brand-secondary` → `#FFF5BF` (pale lemon) — warning surfaces, secondary CTAs
+
+**Purple scale** (`bg-purple-{50..950}`): built from `#C100F1` anchor at 500
+**Butter scale** (`bg-butter-{50..950}`): built from `#FFF5BF` anchor at 200
+**Taupe scale** (`bg-taupe-{50..950}`): neutral spine for text, borders, structure
+
+**Semantic CSS vars** (use in custom CSS, never raw hex):
+- `--background`, `--foreground` — page bg/text
+- `--primary`, `--primary-foreground` — primary interactive color + its text
+- `--secondary`, `--secondary-foreground` — secondary surfaces
+- `--muted`, `--muted-foreground` — subdued surfaces and text
+- `--accent`, `--accent-foreground` — hover tints
+- `--border`, `--input` — borders and input backgrounds
+- `--ring` — focus ring
+- `--destructive`, `--destructive-foreground` — errors
+- `--warning`, `--warning-foreground` — warnings
+
+### Typography
+
+Use as Tailwind utilities (e.g. `className="display"`):
+
+| Class | Font | Size | Weight | Usage |
+|---|---|---|---|---|
+| `display-xl` | Instrument Serif | 3rem | 400 | Hero H1 |
+| `display` | Instrument Serif | 2.25rem | 400 | Page H1 |
+| `heading-xl` | Instrument Serif | 1.875rem | 400 | Section headings |
+| `heading` | Instrument Serif | 1.5rem | 400 | Card titles |
+| `subheading` | Inter | 1.25rem | 400 | Subheadings |
+| `body-lg` | Inter | 1rem | 400 | Large body text |
+| `body` | Inter | 0.875rem | 400 | Default body |
+| `caption` | Inter | 0.75rem | 400 | Metadata, helper text |
+| `label` | Inter | 0.75rem | 600 | Section labels (uppercase) |
+| `caption-xs` | Inter | 0.625rem | 400 | Tiny metadata |
+
+### Shadows
+
+- `shadow-natural` — cards, default elevation
+- `shadow-elevated` — modals, floating panels
+
+---
+
+## Components
+
+All components are imported from `@hilum/ui`.
+
+---
+
+### Button
+
+Triggers actions. Supports variants, sizes, icons, and disabled/loading states.
+
+```tsx
+import { Button } from "@hilum/ui"
+
+// Variants
+<Button>Default</Button>
+<Button variant="brand">Brand</Button>
+<Button variant="outline">Outline</Button>
+<Button variant="ghost">Ghost</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="destructive">Destructive</Button>
+<Button variant="link">Link</Button>
+
+// Sizes
+<Button size="xs">Extra Small</Button>
+<Button size="sm">Small</Button>
+<Button size="lg">Large</Button>
+<Button size="icon"><Plus /></Button>
+
+// Pill shape
+<Button className="rounded-full">Get started</Button>
+
+// Loading
+<Button><Loader2 className="animate-spin" size={15} /> Saving...</Button>
+
+// As child (polymorphic)
+<Button asChild><a href="/path">Link button</a></Button>
+```
+
+Props: `variant`, `size`, `asChild`, `disabled`, plus all `<button>` props.
+
+---
+
+### Badge
+
+Compact labels for status, categories, and metadata.
+
+```tsx
+import { Badge } from "@hilum/ui"
+
+<Badge>Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="outline">Outline</Badge>
+<Badge variant="brand">Brand</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="warning">Warning</Badge>
+<Badge variant="destructive">Error</Badge>
+```
+
+Props: `variant`.
+
+---
+
+### Input
+
+Text input field. Styled with taupe palette and brand focus ring.
+
+```tsx
+import { Input } from "@hilum/ui"
+
+<Input placeholder="Email address" />
+<Input type="password" />
+<Input disabled value="Read-only" />
+```
+
+Accepts all `<input>` props.
+
+---
+
+### Textarea
+
+Multi-line text input.
+
+```tsx
+import { Textarea } from "@hilum/ui"
+
+<Textarea placeholder="Describe your issue..." rows={4} />
+```
+
+Accepts all `<textarea>` props.
+
+---
+
+### Label
+
+Accessible label for form fields. Pairs with any input via `htmlFor`.
+
+```tsx
+import { Label } from "@hilum/ui"
+
+<Label htmlFor="email">Email address</Label>
+<Input id="email" type="email" />
+```
+
+---
+
+### Field
+
+Composed form field: label + input + helper/error text.
+
+```tsx
+import { Field } from "@hilum/ui"
+
+<Field label="Email" hint="We'll never share your email.">
+  <Input placeholder="you@example.com" />
+</Field>
+
+<Field label="Username" error="Username is already taken">
+  <Input value="john" />
+</Field>
+```
+
+Props: `label`, `hint`, `error`, `required`, `children`.
+
+---
+
+### Select
+
+Dropdown selection backed by Radix UI.
+
+```tsx
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@hilum/ui"
+
+<Select>
+  <SelectTrigger>
+    <SelectValue placeholder="Pick a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="apple">Apple</SelectItem>
+    <SelectItem value="banana">Banana</SelectItem>
+    <SelectItem value="mango">Mango</SelectItem>
+  </SelectContent>
+</Select>
+```
+
+---
+
+### Combobox
+
+Searchable select with filterable options.
+
+```tsx
+import { Combobox } from "@hilum/ui"
+
+<Combobox
+  options={[
+    { value: "react", label: "React" },
+    { value: "vue", label: "Vue" },
+    { value: "svelte", label: "Svelte" },
+  ]}
+  placeholder="Select framework..."
+  value={value}
+  onValueChange={setValue}
+/>
+```
+
+Props: `options`, `value`, `onValueChange`, `placeholder`, `disabled`.
+
+---
+
+### Dialog
+
+Modal overlay with header, content, and footer.
+
+```tsx
+import {
+  Dialog, DialogTrigger, DialogContent,
+  DialogHeader, DialogTitle, DialogDescription, DialogFooter,
+} from "@hilum/ui"
+
+<Dialog>
+  <DialogTrigger asChild>
+    <Button>Open dialog</Button>
+  </DialogTrigger>
+  <DialogContent>
+    <DialogHeader>
+      <DialogTitle>Confirm deletion</DialogTitle>
+      <DialogDescription>This action cannot be undone.</DialogDescription>
+    </DialogHeader>
+    <DialogFooter>
+      <Button variant="outline">Cancel</Button>
+      <Button variant="destructive">Delete</Button>
+    </DialogFooter>
+  </DialogContent>
+</Dialog>
+```
+
+---
+
+### Sheet
+
+Slide-in panel from any edge of the screen.
+
+```tsx
+import {
+  Sheet, SheetTrigger, SheetContent,
+  SheetHeader, SheetTitle, SheetDescription,
+} from "@hilum/ui"
+
+<Sheet>
+  <SheetTrigger asChild><Button>Open sheet</Button></SheetTrigger>
+  <SheetContent side="right">   {/* side: "top" | "right" | "bottom" | "left" */}
+    <SheetHeader>
+      <SheetTitle>Edit profile</SheetTitle>
+      <SheetDescription>Make changes to your profile here.</SheetDescription>
+    </SheetHeader>
+    {/* content */}
+  </SheetContent>
+</Sheet>
+```
+
+---
+
+### Drawer
+
+Bottom drawer for mobile-friendly overlays.
+
+```tsx
+import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle } from "@hilum/ui"
+
+<Drawer>
+  <DrawerTrigger asChild><Button>Open drawer</Button></DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Filters</DrawerTitle>
+    </DrawerHeader>
+    {/* content */}
+  </DrawerContent>
+</Drawer>
+```
+
+---
+
+### Popover
+
+Floating content anchored to a trigger element.
+
+```tsx
+import { Popover, PopoverTrigger, PopoverContent } from "@hilum/ui"
+
+<Popover>
+  <PopoverTrigger asChild><Button variant="outline">Open</Button></PopoverTrigger>
+  <PopoverContent>
+    <p className="body">Popover content here.</p>
+  </PopoverContent>
+</Popover>
+```
+
+---
+
+### Tooltip
+
+Short contextual hint on hover/focus.
+
+```tsx
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from "@hilum/ui"
+
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger asChild><Button size="icon"><Settings /></Button></TooltipTrigger>
+    <TooltipContent>Settings</TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+Wrap app root with `<TooltipProvider>` once.
+
+---
+
+### Dropdown Menu
+
+Context menu for actions attached to a trigger button.
+
+```tsx
+import {
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
+  DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel,
+} from "@hilum/ui"
+
+<DropdownMenu>
+  <DropdownMenuTrigger asChild><Button variant="outline">Actions</Button></DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuLabel>My account</DropdownMenuLabel>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuSeparator />
+    <DropdownMenuItem className="text-destructive">Sign out</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+---
+
+### Context Menu
+
+Right-click / long-press menu.
+
+```tsx
+import {
+  ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem,
+} from "@hilum/ui"
+
+<ContextMenu>
+  <ContextMenuTrigger>Right-click me</ContextMenuTrigger>
+  <ContextMenuContent>
+    <ContextMenuItem>Copy</ContextMenuItem>
+    <ContextMenuItem>Paste</ContextMenuItem>
+    <ContextMenuItem className="text-destructive">Delete</ContextMenuItem>
+  </ContextMenuContent>
+</ContextMenu>
+```
+
+---
+
+### Card
+
+Versatile surface container.
+
+```tsx
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@hilum/ui"
+
+<Card>
+  <CardHeader>
+    <CardTitle className="subheading">Card title</CardTitle>
+    <CardDescription className="body">Supporting text.</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="body text-taupe-500">Content goes here.</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+Variants: `default` (white with natural shadow), `muted` (taupe-50).
+
+---
+
+### Tabs
+
+Horizontal tab navigation with content panels.
+
+```tsx
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hilum/ui"
+
+<Tabs defaultValue="overview">
+  <TabsList>
+    <TabsTrigger value="overview">Overview</TabsTrigger>
+    <TabsTrigger value="settings">Settings</TabsTrigger>
+    <TabsTrigger value="billing">Billing</TabsTrigger>
+  </TabsList>
+  <TabsContent value="overview">Overview content</TabsContent>
+  <TabsContent value="settings">Settings content</TabsContent>
+  <TabsContent value="billing">Billing content</TabsContent>
+</Tabs>
+```
+
+---
+
+### Accordion
+
+Collapsible content sections.
+
+```tsx
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@hilum/ui"
+
+<Accordion type="single" collapsible>
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Is it accessible?</AccordionTrigger>
+    <AccordionContent>Yes. It adheres to WAI-ARIA.</AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Is it styled?</AccordionTrigger>
+    <AccordionContent>Yes. Comes with default styles.</AccordionContent>
+  </AccordionItem>
+</Accordion>
+```
+
+`type`: `"single"` | `"multiple"`. `collapsible`: allow closing when single.
+
+---
+
+### Avatar
+
+User profile image with fallback initials.
+
+```tsx
+import { Avatar, AvatarImage, AvatarFallback } from "@hilum/ui"
+
+<Avatar>
+  <AvatarImage src="https://example.com/photo.jpg" alt="Jane Doe" />
+  <AvatarFallback>JD</AvatarFallback>
+</Avatar>
+
+// Sizes: xs, sm, default, lg, xl
+<Avatar size="sm"><AvatarFallback>AB</AvatarFallback></Avatar>
+```
+
+---
+
+### Avatar Stack
+
+Overlapping row of avatars with overflow count.
+
+```tsx
+import { AvatarStack, Avatar, AvatarFallback } from "@hilum/ui"
+
+<AvatarStack>
+  <Avatar><AvatarFallback>AB</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>CD</AvatarFallback></Avatar>
+  <Avatar><AvatarFallback>EF</AvatarFallback></Avatar>
+</AvatarStack>
+```
+
+---
+
+### Checkbox
+
+Binary selection with accessible label.
+
+```tsx
+import { Checkbox } from "@hilum/ui"
+
+<div className="flex items-center gap-2">
+  <Checkbox id="terms" checked={checked} onCheckedChange={setChecked} />
+  <Label htmlFor="terms">Accept terms and conditions</Label>
+</div>
+```
+
+---
+
+### Switch
+
+Toggle between two states.
+
+```tsx
+import { Switch } from "@hilum/ui"
+
+<Switch checked={enabled} onCheckedChange={setEnabled} />
+```
+
+---
+
+### Slider
+
+Range input for selecting a numeric value.
+
+```tsx
+import { Slider } from "@hilum/ui"
+
+<Slider
+  min={0}
+  max={100}
+  step={1}
+  value={[volume]}
+  onValueChange={([v]) => setVolume(v)}
+/>
+```
+
+---
+
+### Radio Group
+
+Single-selection from a group of options.
+
+```tsx
+import { RadioGroup, RadioGroupItem } from "@hilum/ui"
+
+<RadioGroup value={plan} onValueChange={setPlan}>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="starter" id="starter" />
+    <Label htmlFor="starter">Starter</Label>
+  </div>
+  <div className="flex items-center gap-2">
+    <RadioGroupItem value="pro" id="pro" />
+    <Label htmlFor="pro">Pro</Label>
+  </div>
+</RadioGroup>
+```
+
+---
+
+### Progress
+
+Linear progress indicator.
+
+```tsx
+import { Progress } from "@hilum/ui"
+
+<Progress value={72} />   // 0–100
+```
+
+---
+
+### Skeleton
+
+Loading placeholder that matches content layout.
+
+```tsx
+import { Skeleton } from "@hilum/ui"
+
+<Skeleton className="h-4 w-48 rounded" />
+<Skeleton className="h-32 w-full rounded-xl" />
+```
+
+---
+
+### Spinner
+
+Animated loading indicator.
+
+```tsx
+import { Spinner } from "@hilum/ui"
+
+<Spinner />
+<Spinner size="sm" />
+<Spinner size="lg" />
+```
+
+---
+
+### Separator
+
+Horizontal or vertical divider line.
+
+```tsx
+import { Separator } from "@hilum/ui"
+
+<Separator />
+<Separator orientation="vertical" className="h-8" />
+```
+
+---
+
+### Breadcrumb
+
+Navigation hierarchy indicator.
+
+```tsx
+import {
+  Breadcrumb, BreadcrumbList, BreadcrumbItem,
+  BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,
+} from "@hilum/ui"
+
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbLink href="/docs">Docs</BreadcrumbLink></BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem><BreadcrumbPage>Button</BreadcrumbPage></BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+---
+
+### Pagination
+
+Page navigation for data lists.
+
+```tsx
+import {
+  Pagination, PaginationContent, PaginationItem,
+  PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis,
+} from "@hilum/ui"
+
+<Pagination>
+  <PaginationContent>
+    <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
+    <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationEllipsis /></PaginationItem>
+    <PaginationItem><PaginationLink href="#" isActive>5</PaginationLink></PaginationItem>
+    <PaginationItem><PaginationNext href="#" /></PaginationItem>
+  </PaginationContent>
+</Pagination>
+```
+
+---
+
+### Table
+
+Data table with header, body, and footer.
+
+```tsx
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableCaption } from "@hilum/ui"
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead className="text-right">Amount</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    <TableRow>
+      <TableCell className="font-medium">Alice</TableCell>
+      <TableCell><Badge variant="success">Active</Badge></TableCell>
+      <TableCell className="text-right">$250</TableCell>
+    </TableRow>
+  </TableBody>
+</Table>
+```
+
+---
+
+### Data Table
+
+Full-featured table with sorting, filtering, pagination via `@tanstack/react-table`.
+
+```tsx
+import { DataTable } from "@hilum/ui"
+import { ColumnDef } from "@tanstack/react-table"
+
+const columns: ColumnDef<User>[] = [
+  { accessorKey: "name", header: "Name" },
+  { accessorKey: "email", header: "Email" },
+  { accessorKey: "role", header: "Role" },
+]
+
+<DataTable columns={columns} data={users} />
+```
+
+---
+
+### Calendar
+
+Date picker calendar grid.
+
+```tsx
+import { Calendar } from "@hilum/ui"
+
+<Calendar
+  mode="single"
+  selected={date}
+  onSelect={setDate}
+/>
+```
+
+Modes: `"single"` | `"multiple"` | `"range"`. Powered by `react-day-picker`.
+
+---
+
+### Date Picker
+
+Calendar in a popover triggered by a button.
+
+```tsx
+import { DatePicker } from "@hilum/ui"
+
+<DatePicker value={date} onChange={setDate} placeholder="Pick a date" />
+```
+
+---
+
+### Command
+
+Command palette / search interface.
+
+```tsx
+import {
+  Command, CommandInput, CommandList,
+  CommandEmpty, CommandGroup, CommandItem, CommandSeparator,
+} from "@hilum/ui"
+
+<Command>
+  <CommandInput placeholder="Search..." />
+  <CommandList>
+    <CommandEmpty>No results found.</CommandEmpty>
+    <CommandGroup heading="Actions">
+      <CommandItem>New file</CommandItem>
+      <CommandItem>New folder</CommandItem>
+    </CommandGroup>
+    <CommandSeparator />
+    <CommandGroup heading="Navigation">
+      <CommandItem>Dashboard</CommandItem>
+    </CommandGroup>
+  </CommandList>
+</Command>
+```
+
+---
+
+### Navigation Menu
+
+Horizontal nav with mega-menu dropdowns.
+
+```tsx
+import {
+  NavigationMenu, NavigationMenuList, NavigationMenuItem,
+  NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink,
+} from "@hilum/ui"
+
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>Products</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        {/* Grid of links */}
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="/pricing">Pricing</NavigationMenuLink>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+---
+
+### Menubar
+
+Application-style horizontal menu bar.
+
+```tsx
+import {
+  Menubar, MenubarMenu, MenubarTrigger, MenubarContent,
+  MenubarItem, MenubarSeparator, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem,
+} from "@hilum/ui"
+
+<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New File <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+      <MenubarSeparator />
+      <MenubarItem>Save <MenubarShortcut>⌘S</MenubarShortcut></MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>
+```
+
+---
+
+### Sidebar
+
+Full application sidebar with navigation groups, collapsible sections, and sticky header/footer.
+
+```tsx
+import {
+  SidebarProvider, Sidebar, SidebarHeader, SidebarContent,
+  SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem,
+  SidebarMenuButton, SidebarFooter,
+} from "@hilum/ui"
+
+<SidebarProvider>
+  <Sidebar>
+    <SidebarHeader>Logo / brand</SidebarHeader>
+    <SidebarContent>
+      <SidebarGroup>
+        <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <a href="/dashboard">Dashboard</a>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarGroup>
+    </SidebarContent>
+    <SidebarFooter>Footer content</SidebarFooter>
+  </Sidebar>
+  <main>{/* page content */}</main>
+</SidebarProvider>
+```
+
+---
+
+### Chart
+
+Recharts-based data visualizations (line, bar, area, pie, radar, radial).
+
+```tsx
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@hilum/ui"
+import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts"
+
+const config = {
+  revenue: { label: "Revenue", color: "var(--color-brand-primary)" },
+}
+
+<ChartContainer config={config} className="h-64">
+  <LineChart data={data}>
+    <CartesianGrid strokeDasharray="3 3" stroke="var(--color-taupe-100)" />
+    <XAxis dataKey="month" />
+    <YAxis />
+    <ChartTooltip content={<ChartTooltipContent />} />
+    <Line type="monotone" dataKey="revenue" stroke="var(--chart-1)" />
+  </LineChart>
+</ChartContainer>
+```
+
+---
+
+### Carousel
+
+Horizontal scrolling carousel.
+
+```tsx
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@hilum/ui"
+
+<Carousel>
+  <CarouselContent>
+    <CarouselItem><Card>Slide 1</Card></CarouselItem>
+    <CarouselItem><Card>Slide 2</Card></CarouselItem>
+    <CarouselItem><Card>Slide 3</Card></CarouselItem>
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+```
+
+---
+
+### Hover Card
+
+Rich preview card that appears on hover.
+
+```tsx
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@hilum/ui"
+
+<HoverCard>
+  <HoverCardTrigger asChild>
+    <a href="#">@hilum_labs</a>
+  </HoverCardTrigger>
+  <HoverCardContent>
+    <p className="body font-medium">Hilum Labs</p>
+    <p className="caption text-taupe-400">Building the future of education.</p>
+  </HoverCardContent>
+</HoverCard>
+```
+
+---
+
+### Collapsible
+
+Show/hide any content section.
+
+```tsx
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@hilum/ui"
+
+<Collapsible open={open} onOpenChange={setOpen}>
+  <CollapsibleTrigger asChild>
+    <Button variant="ghost">Advanced options <ChevronDown size={14} /></Button>
+  </CollapsibleTrigger>
+  <CollapsibleContent>
+    {/* hidden content */}
+  </CollapsibleContent>
+</Collapsible>
+```
+
+---
+
+### Resizable
+
+Draggable panels for split layouts.
+
+```tsx
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@hilum/ui"
+
+<ResizablePanelGroup direction="horizontal" className="h-64 rounded-xl border">
+  <ResizablePanel defaultSize={30}>Left</ResizablePanel>
+  <ResizableHandle />
+  <ResizablePanel>Right</ResizablePanel>
+</ResizablePanelGroup>
+```
+
+---
+
+### Scroll Area
+
+Custom scrollbar for overflow containers.
+
+```tsx
+import { ScrollArea } from "@hilum/ui"
+
+<ScrollArea className="h-48 w-full">
+  {/* long content */}
+</ScrollArea>
+```
+
+---
+
+### Kbd
+
+Keyboard shortcut display.
+
+```tsx
+import { Kbd } from "@hilum/ui"
+
+<p className="body">Press <Kbd>⌘</Kbd> + <Kbd>K</Kbd> to open the command palette.</p>
+```
+
+---
+
+### Alert
+
+Contextual feedback for user actions or system states.
+
+```tsx
+import { Alert, AlertTitle, AlertDescription } from "@hilum/ui"
+import { Terminal } from "lucide-react"
+
+<Alert>
+  <Terminal size={16} />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>You can add components and dependencies to your app.</AlertDescription>
+</Alert>
+
+<Alert variant="destructive">
+  <AlertTitle>Error</AlertTitle>
+  <AlertDescription>Something went wrong. Please try again.</AlertDescription>
+</Alert>
+```
+
+---
+
+### Alert Dialog
+
+Modal that requires user confirmation before a destructive action.
+
+```tsx
+import {
+  AlertDialog, AlertDialogTrigger, AlertDialogContent,
+  AlertDialogHeader, AlertDialogTitle, AlertDialogDescription,
+  AlertDialogFooter, AlertDialogCancel, AlertDialogAction,
+} from "@hilum/ui"
+
+<AlertDialog>
+  <AlertDialogTrigger asChild><Button variant="destructive">Delete</Button></AlertDialogTrigger>
+  <AlertDialogContent>
+    <AlertDialogHeader>
+      <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+      <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+    </AlertDialogHeader>
+    <AlertDialogFooter>
+      <AlertDialogCancel>Cancel</AlertDialogCancel>
+      <AlertDialogAction>Continue</AlertDialogAction>
+    </AlertDialogFooter>
+  </AlertDialogContent>
+</AlertDialog>
+```
+
+---
+
+### Sonner (Toast)
+
+Non-blocking notification toasts. Requires `<Toaster />` in app root.
+
+```tsx
+// App.tsx
+import { Toaster } from "@hilum/ui"
+<Toaster />
+
+// Anywhere in the app
+import { toast } from "sonner"
+
+toast("Event has been created")
+toast.success("Profile saved successfully")
+toast.error("Something went wrong")
+toast.loading("Uploading...")
+toast.promise(uploadFn(), {
+  loading: "Uploading...",
+  success: "Done!",
+  error: "Upload failed",
+})
+```
+
+---
+
+### Input OTP
+
+One-time password / PIN code input.
+
+```tsx
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@hilum/ui"
+
+<InputOTP maxLength={6} value={otp} onChange={setOtp}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+---
+
+### Steps
+
+Step indicator for multi-step flows.
+
+```tsx
+import { Steps, Step } from "@hilum/ui"
+
+<Steps current={1}>
+  <Step label="Account" />
+  <Step label="Profile" />
+  <Step label="Review" />
+</Steps>
+```
+
+Props: `current` (0-indexed), `orientation` (`"horizontal"` | `"vertical"`).
+
+---
+
+### Toggle / Toggle Group
+
+Single or grouped toggle buttons.
+
+```tsx
+import { Toggle } from "@hilum/ui"
+import { Bold, Italic, Underline } from "lucide-react"
+
+<Toggle pressed={bold} onPressedChange={setBold}><Bold size={14} /></Toggle>
+
+// Group
+import { ToggleGroup, ToggleGroupItem } from "@hilum/ui"
+
+<ToggleGroup type="multiple" value={formatting} onValueChange={setFormatting}>
+  <ToggleGroupItem value="bold"><Bold size={14} /></ToggleGroupItem>
+  <ToggleGroupItem value="italic"><Italic size={14} /></ToggleGroupItem>
+  <ToggleGroupItem value="underline"><Underline size={14} /></ToggleGroupItem>
+</ToggleGroup>
+```
+
+---
+
+### Aspect Ratio
+
+Maintains a fixed aspect ratio for any child.
+
+```tsx
+import { AspectRatio } from "@hilum/ui"
+
+<AspectRatio ratio={16 / 9} className="bg-taupe-100 rounded-xl overflow-hidden">
+  <img src="..." className="w-full h-full object-cover" />
+</AspectRatio>
+```
+
+---
+
+### Button Group
+
+Groups buttons into a connected row with shared borders.
+
+```tsx
+import { ButtonGroup } from "@hilum/ui"
+
+<ButtonGroup>
+  <Button variant="outline">Bold</Button>
+  <Button variant="outline">Italic</Button>
+  <Button variant="outline">Underline</Button>
+</ButtonGroup>
+```
+
+---
+
+### Native Select
+
+Native `<select>` styled to match the design system.
+
+```tsx
+import { NativeSelect } from "@hilum/ui"
+
+<NativeSelect value={country} onChange={e => setCountry(e.target.value)}>
+  <option value="">Select country</option>
+  <option value="us">United States</option>
+  <option value="uk">United Kingdom</option>
+</NativeSelect>
+```
+
+---
+
+## Molecules
+
+Composed patterns built from atoms.
+
+---
+
+### Field
+
+Labeled form field with hint and error support. (See Atoms → Field above.)
+
+---
+
+### Input Group
+
+Input with leading/trailing addons (icons, buttons, text).
+
+```tsx
+import { InputGroup, InputGroupAddon } from "@hilum/ui"
+
+<InputGroup>
+  <InputGroupAddon><Mail size={14} className="text-taupe-400" /></InputGroupAddon>
+  <Input placeholder="Email address" />
+</InputGroup>
+
+<InputGroup>
+  <Input placeholder="0.00" />
+  <InputGroupAddon>USD</InputGroupAddon>
+</InputGroup>
+```
+
+---
+
+### Stat Card
+
+Metric display with label, value, trend, and optional icon.
+
+```tsx
+import { StatCard } from "@hilum/ui"
+import { TrendingUp } from "lucide-react"
+
+<StatCard
+  label="Total revenue"
+  value="$45,231"
+  change="+20.1%"
+  trend="up"
+  icon={TrendingUp}
+/>
+```
+
+Props: `label`, `value`, `change`, `trend` (`"up"` | `"down"` | `"neutral"`), `icon`.
+
+---
+
+### Empty State
+
+Zero-state UI for empty lists or no-results states.
+
+```tsx
+import { EmptyState } from "@hilum/ui"
+import { FileX } from "lucide-react"
+
+<EmptyState
+  icon={FileX}
+  title="No documents found"
+  description="Try adjusting your filters or create a new document."
+  action={<Button>New document</Button>}
+/>
+```
+
+---
+
+### Section Heading
+
+Labeled section divider with optional action.
+
+```tsx
+import { SectionHeading } from "@hilum/ui"
+
+<SectionHeading title="Recent activity" />
+<SectionHeading title="Team members" action={<Button size="sm">Invite</Button>} />
+```
+
+---
+
+### Page Heading
+
+Full-width page header with title, description, breadcrumb, and actions.
+
+```tsx
+import { PageHeading } from "@hilum/ui"
+
+<PageHeading
+  title="Projects"
+  description="Manage your team's active projects."
+  action={<Button>New project</Button>}
+/>
+```
+
+---
+
+### Card Heading
+
+Section header inside a card — title, description, and optional right-side action.
+
+```tsx
+import { CardHeading } from "@hilum/ui"
+
+<CardHeading
+  title="Team members"
+  description="Invite and manage access."
+  action={<Button size="sm" variant="outline">Invite</Button>}
+/>
+```
+
+---
+
+### Activity Feed
+
+Vertical timeline of events.
+
+```tsx
+import { ActivityFeed, ActivityFeedItem } from "@hilum/ui"
+import { GitCommit } from "lucide-react"
+
+<ActivityFeed>
+  <ActivityFeedItem
+    icon={GitCommit}
+    title="Merged pull request #42"
+    description="main ← feat/theming"
+    timestamp="2 hours ago"
+  />
+</ActivityFeed>
+```
+
+---
+
+### Stacked List
+
+Vertical list of items with dividers.
+
+```tsx
+import { StackedList, StackedListItem } from "@hilum/ui"
+
+<StackedList>
+  <StackedListItem
+    primary="Alice Johnson"
+    secondary="alice@example.com"
+    meta="Admin"
+    avatar={<Avatar size="sm"><AvatarFallback>AJ</AvatarFallback></Avatar>}
+  />
+</StackedList>
+```
+
+---
+
+### Grid List
+
+Responsive card grid.
+
+```tsx
+import { GridList, GridListItem } from "@hilum/ui"
+
+<GridList>
+  {items.map(item => (
+    <GridListItem key={item.id} title={item.name} description={item.desc} />
+  ))}
+</GridList>
+```
+
+---
+
+### Description List
+
+Key–value pairs, typically for detail/profile views.
+
+```tsx
+import { DescriptionList, DescriptionListItem } from "@hilum/ui"
+
+<DescriptionList>
+  <DescriptionListItem label="Full name" value="Alice Johnson" />
+  <DescriptionListItem label="Email" value="alice@example.com" />
+  <DescriptionListItem label="Role" value="Administrator" />
+</DescriptionList>
+```
+
+---
+
+### Notification
+
+Single notification item with icon, title, message, and timestamp.
+
+```tsx
+import { Notification } from "@hilum/ui"
+
+<Notification
+  title="New message"
+  description="Alice sent you a message in #general"
+  timestamp="5 minutes ago"
+  unread
+/>
+```
+
+---
+
+### Media Object
+
+Horizontal layout: media (image/icon/avatar) + content body.
+
+```tsx
+import { MediaObject } from "@hilum/ui"
+
+<MediaObject
+  media={<Avatar><AvatarFallback>AB</AvatarFallback></Avatar>}
+  title="Alice Brown"
+  description="Sent you a project update for Q3 2025."
+  meta="2h ago"
+/>
+```
+
+---
+
+### Radio Card
+
+Selectable card with radio button — used for plan/option selection.
+
+```tsx
+import { RadioCard, RadioCardGroup } from "@hilum/ui"
+
+<RadioCardGroup value={plan} onValueChange={setPlan}>
+  <RadioCard value="starter" title="Starter" description="Up to 5 users" price="$9/mo" />
+  <RadioCard value="pro" title="Pro" description="Up to 50 users" price="$49/mo" />
+</RadioCardGroup>
+```
+
+---
+
+### Action Panel
+
+Bordered panel with a title, description, and a call-to-action.
+
+```tsx
+import { ActionPanel } from "@hilum/ui"
+
+<ActionPanel
+  title="Danger zone"
+  description="Deleting your account is permanent and cannot be undone."
+  action={<Button variant="destructive">Delete account</Button>}
+/>
+```
+
+---
+
+### Command Palette
+
+Full-screen search overlay, usually opened by ⌘K.
+
+```tsx
+import { CommandPalette } from "@hilum/ui"
+
+// Open state controlled externally
+<CommandPalette
+  open={open}
+  onOpenChange={setOpen}
+  items={[
+    { id: "dashboard", label: "Go to Dashboard", href: "/dashboard" },
+    { id: "settings", label: "Open Settings", href: "/settings" },
+  ]}
+/>
+```
+
+---
+
+## Utilities
+
+```tsx
+import { cn } from "@hilum/ui"
+
+// Tailwind class merge utility (clsx + tailwind-merge)
+<div className={cn("p-4 rounded-xl", isActive && "bg-brand-primary text-white")} />
+```
+
+---
+
+## Icons
+
+Curated subset from lucide-react, re-exported for convenience:
+
+```tsx
+import { PlusIcon, SearchIcon, SettingsIcon } from "@hilum/ui/icons"
+```
+
+---
+
+## Design decisions
+
+- **No SSR / no Next.js** — all apps are plain React (Vite + Electron)
+- **Tailwind v4** — CSS-variable-backed utilities, runtime-overridable via `createTheme`
+- **Radix UI primitives** — all interactive components are WAI-ARIA compliant
+- **Lockstep versioning** — all packages release together
+- **OKLCH color space** — all generated palettes use perceptually uniform interpolation

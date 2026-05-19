@@ -158,30 +158,72 @@ export default function HomePage() {
         <p className="mb-4 label text-taupe-400">
           Getting started
         </p>
-        <Card>
-          <CardHeader>
-            <CardTitle className="subheading">Copy &amp; paste components</CardTitle>
-            <CardDescription className="body">
-              No package to install. Browse the catalog, copy the component
-              source, and drop it into your project.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="px-0 pb-0">
-            <div className="rounded-b-xl bg-taupe-950 px-5 py-4">
-              <pre className="caption leading-relaxed">
-                <code>
-                  <span className="text-taupe-500"># Run the catalog locally</span>
-                  {"\n"}
-                  <span className="text-brand-secondary">pnpm</span>
-                  <span className="text-taupe-300"> install</span>
-                  {"\n"}
-                  <span className="text-brand-secondary">pnpm</span>
-                  <span className="text-taupe-300"> dev</span>
-                </code>
-              </pre>
-            </div>
-          </CardContent>
-        </Card>
+        <div className="grid grid-cols-2 gap-3">
+          <Card>
+            <CardHeader>
+              <CardTitle className="subheading">Install the package</CardTitle>
+              <CardDescription className="body">
+                Add <code className="font-mono text-taupe-600">@hilum/ui</code> to your project, import the tokens CSS, and start using components.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="px-0 pb-0">
+              <div className="rounded-b-xl bg-taupe-950 px-5 py-4">
+                <pre className="caption leading-relaxed">
+                  <code>
+                    <span className="text-brand-secondary">pnpm</span>
+                    <span className="text-taupe-300"> add @hilum/ui</span>
+                    {"\n\n"}
+                    <span className="text-taupe-500">{`/* globals.css */`}</span>
+                    {"\n"}
+                    <span className="text-brand-secondary">@import</span>
+                    <span className="text-taupe-300"> "@hilum/ui/tokens.css";</span>
+                  </code>
+                </pre>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="subheading">Per-product theming</CardTitle>
+              <CardDescription className="body">
+                Each product gets its own brand colors. Pass primary and secondary hex values — palettes are generated automatically.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="px-0 pb-0">
+              <div className="rounded-b-xl bg-taupe-950 px-5 py-4">
+                <pre className="caption leading-relaxed">
+                  <code>
+                    <span className="text-taupe-500">{`// App.tsx`}</span>
+                    {"\n"}
+                    <span className="text-brand-secondary">import</span>
+                    <span className="text-taupe-300"> {"{"} ThemeProvider {"}"}</span>
+                    {"\n"}
+                    <span className="text-taupe-300">  from </span>
+                    <span className="text-taupe-400">"@hilum/ui/create-theme"</span>
+                    {"\n\n"}
+                    <span className="text-taupe-300">{"<ThemeProvider"}</span>
+                    {"\n"}
+                    <span className="text-taupe-400">  primary</span>
+                    <span className="text-taupe-300">="#0066FF"</span>
+                    {"\n"}
+                    <span className="text-taupe-400">  secondary</span>
+                    <span className="text-taupe-300">="#FF9900"</span>
+                    {"\n"}
+                    <span className="text-taupe-300">{">"}</span>
+                  </code>
+                </pre>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Button variant="ghost" size="sm" className="w-full" asChild>
+                <Link to="/theming">
+                  View theming docs <ArrowRight size={13} />
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </div>
       </div>
     </div>
   );

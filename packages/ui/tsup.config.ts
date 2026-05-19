@@ -5,6 +5,7 @@ export default defineConfig({
     index: 'src/index.ts',
     icons: 'src/icons.ts',
     tokens: 'src/tokens/tokens.ts',
+    'create-theme': 'src/tokens/create-theme.tsx',
   },
   format: ['esm'],
   // Inline external types from vaul + radix into the .d.ts so consumers in

@@ -1,5 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { ChartContainer, ChartTooltip, CHART_COLORS } from "../chart";
+import { tokens } from "../../tokens/tokens";
 import {
   Card,
   CardHeader,
@@ -258,5 +260,63 @@ describe("MediaObject", () => {
       expect(screen.getByText("Body")).toBeInTheDocument();
       unmount();
     }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Chart                                                                */
+/* ------------------------------------------------------------------ */
+
+describe("CHART_COLORS", () => {
+  it("primary matches current brand token (vivid purple)", () => {
+    expect(CHART_COLORS.primary).toBe(tokens.brand.primary);
+  });
+
+  it("secondary matches success token (lime)", () => {
+    expect(CHART_COLORS.secondary).toBe(tokens.semantic.light.success);
+  });
+
+  it("tertiary matches brand secondary token (pale lemon)", () => {
+    expect(CHART_COLORS.tertiary).toBe(tokens.brand.secondary);
+  });
+
+  it("does not contain legacy orange brand color", () => {
+    expect(Object.values(CHART_COLORS)).not.toContain("#FF4D01");
+  });
+});
+
+describe("ChartContainer", () => {
+  it("renders the outer wrapper div", () => {
+    const { container } = render(
+      <ChartContainer>
+        <div />
+      </ChartContainer>,
+    );
+    expect(container.firstChild).toBeInTheDocument();
+  });
+
+  it("forwards className to wrapper div", () => {
+    const { container } = render(
+      <ChartContainer className="my-chart">
+        <div />
+      </ChartContainer>,
+    );
+    expect(container.firstChild).toHaveClass("my-chart");
+  });
+});
+
+describe("ChartTooltip", () => {
+  it("returns null when not active", () => {
+    const { container } = render(<ChartTooltip active={false} payload={[]} />);
+    expect(container.firstChild).toBeNull();
+  });
+
+  it("renders payload entries when active", () => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const payload = [{ name: "Revenue", value: 1200, color: "#c100f1" }] as any;
+    render(<ChartTooltip active payload={payload} label="Jan" />);
+    expect(screen.getByText("Revenue:")).toBeInTheDocument();
+    expect(screen.getByText("1200")).toBeInTheDocument();
+    expect(screen.getByText("Jan")).toBeInTheDocument();
   });
 });

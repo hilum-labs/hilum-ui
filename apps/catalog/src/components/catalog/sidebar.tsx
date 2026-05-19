@@ -16,6 +16,7 @@ import {
   Megaphone,
   Palette,
   ShoppingBag,
+  SwatchBook,
 } from "lucide-react";
 import { cn } from "@hilum/ui";
 
@@ -30,6 +31,12 @@ const navItems = [
     label: "Foundations",
     href: "/foundations",
     icon: Palette,
+    comingSoon: false,
+  },
+  {
+    label: "Theming",
+    href: "/theming",
+    icon: SwatchBook,
     comingSoon: false,
   },
   {

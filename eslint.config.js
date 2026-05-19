@@ -1,6 +1,8 @@
 import tseslint from 'typescript-eslint'
 import reactPlugin from 'eslint-plugin-react'
 import reactHooksPlugin from 'eslint-plugin-react-hooks'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
+import importX from 'eslint-plugin-import-x'
 import prettierConfig from 'eslint-config-prettier'
 
 export default tseslint.config(
@@ -17,10 +19,15 @@ export default tseslint.config(
 
   // TypeScript + React for all source files
   ...tseslint.configs.recommended,
+
+  // Accessibility — critical for a component library
+  jsxA11y.flatConfigs.recommended,
+
   {
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooksPlugin,
+      'import-x': importX,
     },
     rules: {
       // React
@@ -42,6 +49,9 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'warn',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
+
+      // Imports — catch circular deps that break tree-shaking
+      'import-x/no-cycle': 'error',
     },
     settings: {
       react: { version: 'detect' },
@@ -53,6 +63,7 @@ export default tseslint.config(
     files: ['**/*.test.ts', '**/*.test.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
+      'jsx-a11y/no-autofocus': 'off', // autofocus in test scenarios is intentional
     },
   },
 

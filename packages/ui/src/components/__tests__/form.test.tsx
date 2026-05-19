@@ -227,6 +227,35 @@ describe("Field", () => {
     );
     expect(screen.getByText("Optional")).toBeInTheDocument();
   });
+
+  it("error paragraph gets predictable id for aria-describedby wiring", () => {
+    render(
+      <Field label="Email" htmlFor="email" error="Invalid email">
+        <input id="email" />
+      </Field>,
+    );
+    const errorEl = screen.getByText("Invalid email");
+    expect(errorEl).toHaveAttribute("id", "email-description");
+  });
+
+  it("hint paragraph gets the same predictable id", () => {
+    render(
+      <Field label="Bio" htmlFor="bio" hint="Max 160 chars">
+        <input id="bio" />
+      </Field>,
+    );
+    const hintEl = screen.getByText("Max 160 chars");
+    expect(hintEl).toHaveAttribute("id", "bio-description");
+  });
+
+  it("error has role=alert for screen readers", () => {
+    render(
+      <Field label="Name" error="Required">
+        <input />
+      </Field>,
+    );
+    expect(screen.getByRole("alert")).toBeInTheDocument();
+  });
 });
 
 /* ------------------------------------------------------------------ */

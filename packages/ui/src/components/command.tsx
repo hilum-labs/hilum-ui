@@ -40,7 +40,7 @@ function Command({ className, children, onSelect, ...props }: CommandProps) {
   }, []);
 
   return (
-    <CommandCtx.Provider value={{ query, setQuery, onSelect, reportVisible }}>
+    <CommandCtx.Provider value={{ query, setQuery, ...(onSelect !== undefined && { onSelect }), reportVisible }}>
       <CommandVisibleCtx.Provider value={visibleCount}>
         <div
           className={cn(

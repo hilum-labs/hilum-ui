@@ -3,15 +3,15 @@
 import * as React from "react";
 import { ResponsiveContainer, type TooltipContentProps } from "recharts";
 import { cn } from "../lib/utils";
+import { tokens } from "../tokens/tokens";
 
-// Color palette for charts
 export const CHART_COLORS = {
-  primary: "#FF4D01", // brand-primary
-  secondary: "#CDEA19", // brand-secondary
-  tertiary: "#FDE086", // brand-secondary
-  muted: "#a8978a", // taupe-400
-  subtle: "#e3dcd4", // taupe-200
-  dark: "#26181a", // taupe-900
+  primary: tokens.brand.primary,           // "#C100F1" — vivid purple
+  secondary: tokens.semantic.light.success, // "#CDEA19" — lime
+  tertiary: tokens.brand.secondary,         // "#FFF5BF" — pale lemon
+  muted: tokens.taupe[400],                 // "#a8978a"
+  subtle: tokens.taupe[200],                // "#e3dcd4"
+  dark: tokens.taupe[900],                  // "#26181a"
 };
 
 interface ChartContainerProps {

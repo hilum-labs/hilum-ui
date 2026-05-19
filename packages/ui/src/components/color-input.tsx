@@ -51,8 +51,8 @@ function ColorInput({
       <ColorPicker
         value={value}
         onChange={onChange}
-        presets={presets}
-        disabled={disabled}
+        {...(presets !== undefined && { presets })}
+        {...(disabled !== undefined && { disabled })}
         className="h-full w-8 border-0 rounded-none focus-visible:ring-0"
       />
       <input

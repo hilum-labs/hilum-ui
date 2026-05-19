@@ -1,7 +1,12 @@
 @import "tailwindcss";
 @import "@hilum/ui/tokens.css";
 
-/* Source files we want Tailwind v4 to scan for utility class names. */
+/*
+ * Source paths for Tailwind v4 class scanning.
+ * @hilum/ui/tokens.css already includes @source for ui components (see dist/tokens.css).
+ * These additional @source directives scan the other monorepo packages that the catalog
+ * consumes directly from source (no npm publish step in development).
+ */
 @source "../../../../packages/ui/src";
 @source "../../../../packages/app-shell/src";
 @source "../../../../packages/designer/src";

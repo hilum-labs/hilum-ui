@@ -10,11 +10,11 @@
       "persistent": true
     },
     "typecheck": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
       "outputs": []
     },
     "test": {
-      "dependsOn": ["^build"],
+      "dependsOn": [],
       "outputs": ["coverage/**"]
     },
     "lint": {

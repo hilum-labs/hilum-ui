@@ -11,6 +11,7 @@ interface FieldProps {
   cornerHint?: string;
   className?: string;
   children: React.ReactNode;
+  ref?: React.Ref<HTMLDivElement>;
 }
 
 function Field({
@@ -22,24 +23,30 @@ function Field({
   cornerHint,
   className,
   children,
+  ref,
 }: FieldProps) {
+  // Predictable ID for the description/error paragraph so consumers can wire
+  // aria-describedby on the child input: aria-describedby={`${id}-description`}
+  const descriptionId = htmlFor ? `${htmlFor}-description` : undefined;
+
   return (
-    <div className={cn("flex flex-col gap-1.5", className)}>
+    <div ref={ref} className={cn("flex flex-col gap-1.5", className)}>
       <div className="flex items-center justify-between gap-2">
-        <Label htmlFor={htmlFor}>
+        <Label htmlFor={htmlFor} aria-required={required}>
           {label}
-          {required && <span className="ml-0.5 text-red-600">*</span>}
+          {required && <span className="ml-0.5 text-red-600" aria-hidden="true">*</span>}
         </Label>
         {cornerHint && <span className="caption text-taupe-400">{cornerHint}</span>}
       </div>
       {children}
       {error ? (
-        <p className="caption text-red-600">{error}</p>
+        <p id={descriptionId} role="alert" className="caption text-red-600">{error}</p>
       ) : hint ? (
-        <p className="caption text-taupe-400">{hint}</p>
+        <p id={descriptionId} className="caption text-taupe-400">{hint}</p>
       ) : null}
     </div>
   );
 }
+Field.displayName = "Field";
 
 export { Field };

@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "../tooltip";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "../dialog";
 import { Progress } from "../progress";
 import { Switch } from "../switch";
 import { Slider } from "../slider";
@@ -12,6 +13,59 @@ import { Slider } from "../slider";
  * 2. Content appears on interaction
  * 3. No render crashes
  */
+
+/* ------------------------------------------------------------------ */
+/* Dialog                                                               */
+/* ------------------------------------------------------------------ */
+
+describe("Dialog", () => {
+  it("renders the trigger element", () => {
+    render(
+      <Dialog>
+        <DialogTrigger asChild>
+          <button>Open dialog</button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Confirm action</DialogTitle>
+        </DialogContent>
+      </Dialog>,
+    );
+    expect(screen.getByRole("button", { name: "Open dialog" })).toBeInTheDocument();
+  });
+
+  it("shows dialog content after trigger click", async () => {
+    const user = userEvent.setup();
+    render(
+      <Dialog>
+        <DialogTrigger asChild>
+          <button>Open</button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Dialog heading</DialogTitle>
+        </DialogContent>
+      </Dialog>,
+    );
+    await user.click(screen.getByRole("button", { name: "Open" }));
+    expect(await screen.findByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByText("Dialog heading")).toBeInTheDocument();
+  });
+
+  it("dialog content has a close button", async () => {
+    const user = userEvent.setup();
+    render(
+      <Dialog>
+        <DialogTrigger asChild>
+          <button>Open</button>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogTitle>Delete item</DialogTitle>
+        </DialogContent>
+      </Dialog>,
+    );
+    await user.click(screen.getByRole("button", { name: "Open" }));
+    expect(await screen.findByRole("button", { name: /close/i })).toBeInTheDocument();
+  });
+});
 
 /* ------------------------------------------------------------------ */
 /* Tooltip                                                              */

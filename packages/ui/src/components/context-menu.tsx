@@ -61,7 +61,7 @@ ContextMenuItem.displayName = "ContextMenuItem";
 const ContextMenuCheckboxItem = React.forwardRef<
   React.ComponentRef<typeof ContextMenu.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof ContextMenu.CheckboxItem>
->(({ className, children, checked, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <ContextMenu.CheckboxItem
     ref={ref}
     className={cn(
@@ -71,7 +71,6 @@ const ContextMenuCheckboxItem = React.forwardRef<
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
-    checked={checked}
     {...props}
   >
     <span className="absolute left-2 flex size-3.5 items-center justify-center">

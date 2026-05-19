@@ -35,12 +35,16 @@
   "peerDependencies": {
     "@hilum/designer": "workspace:*",
     "@hilum/ui": "workspace:*",
+    "lucide-react": "^0.511.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "dependencies": {
-    "lucide-react": "^0.511.0"
+  "peerDependenciesMeta": {
+    "lucide-react": {
+      "optional": true
+    }
   },
+  "dependencies": {},
   "devDependencies": {
     "@hilum/designer": "workspace:*",
     "@hilum/ui": "workspace:*",

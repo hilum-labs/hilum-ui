@@ -15,11 +15,9 @@ In your app's `globals.css`:
 ```css
 @import "tailwindcss";
 @import "@hilum/ui/tokens.css";
-
-@source "../../node_modules/@hilum/ui/src";
 ```
 
-That's the whole setup — palette, typography, fonts, and light/dark theming are all imported in those three lines.
+That's the whole setup — palette, typography, fonts, light/dark theming, and Tailwind class scanning are all handled by those two lines.
 
 ## Usage
 
@@ -35,7 +33,28 @@ See the live catalog at [ui.hilum.dev](https://ui.hilum.dev) for component docs,
 
 ## Brand
 
-Hilum UI ships a fully-fixed brand: `--brand-orange` primary, `--brand-lime` success, `--brand-yellow` warning, taupe scale neutrals. No per-app overrides — apps pass through this identity unchanged. See `PLATFORM_PLAN.md` §2.1 D8.
+Hilum UI ships a fully-fixed brand: vivid purple `#C100F1` primary, pale lemon `#FFF5BF` secondary, lime `#CDEA19` success, taupe scale neutrals. No per-app overrides — apps pass through this identity unchanged. See `PLATFORM_PLAN.md` §2.1 D8.
+
+## Design Tokens
+
+Import JS tokens for runtime access:
+
+```ts
+import { tokens } from "@hilum/ui/tokens"
+
+tokens.brand.primary     // "#C100F1"
+tokens.brand.secondary   // "#FFF5BF"
+tokens.taupe[500]        // "#7d6960"
+```
+
+## Theming
+
+Light/dark mode works automatically via `prefers-color-scheme`. Override explicitly:
+
+```html
+<html data-theme="dark">   <!-- force dark -->
+<html data-theme="light">  <!-- force light -->
+```
 
 ## Light / dark
 

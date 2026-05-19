@@ -28,6 +28,12 @@ export default defineConfig({
         'packages/*/src/**/index.ts',
         'packages/*/dist/**',
       ],
+      thresholds: {
+        lines: 70,
+        functions: 70,
+        branches: 70,
+        statements: 70,
+      },
     },
   },
 })

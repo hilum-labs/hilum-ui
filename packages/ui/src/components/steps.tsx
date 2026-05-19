@@ -171,9 +171,10 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
 
 /* ---------- Main component ---------- */
 function Steps({ steps, variant = "circles", className }: StepsProps) {
-  if (variant === "bullets") return <BulletsSteps steps={steps} className={className} />;
-  if (variant === "progress") return <ProgressSteps steps={steps} className={className} />;
-  return <CirclesSteps steps={steps} className={className} />;
+  const classNameProp = className !== undefined ? { className } : {};
+  if (variant === "bullets") return <BulletsSteps steps={steps} {...classNameProp} />;
+  if (variant === "progress") return <ProgressSteps steps={steps} {...classNameProp} />;
+  return <CirclesSteps steps={steps} {...classNameProp} />;
 }
 
 export { Steps };

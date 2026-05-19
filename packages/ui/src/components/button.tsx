@@ -56,5 +56,6 @@ function Button({ className, variant, size, asChild = false, ...props }: ButtonP
     />
   );
 }
+Button.displayName = "Button";
 
 export { Button, buttonVariants };
