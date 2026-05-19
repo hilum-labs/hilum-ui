@@ -40,7 +40,6 @@ const DEFAULT: ShellContextValue = {
   activeTool: "select",
   setActiveTool: noop as Dispatch<SetStateAction<string>>,
   readOnly: false,
-  resolveKind: undefined,
 };
 
 const ShellContext = createContext<ShellContextValue>(DEFAULT);
@@ -74,6 +73,8 @@ export function ShellProvider({
   const [selectedIds, setSelectedIds] = useState<string[]>(initialSelectedIds);
   const [activeTool, setActiveTool] = useState<string>(initialTool);
 
+  const resolvedKind = controlled?.resolveKind ?? resolveKind;
+
   const value = useMemo<ShellContextValue>(
     () => ({
       selectedIds: controlled?.selectedIds ?? selectedIds,
@@ -81,9 +82,9 @@ export function ShellProvider({
       activeTool: controlled?.activeTool ?? activeTool,
       setActiveTool: controlled?.setActiveTool ?? setActiveTool,
       readOnly: controlled?.readOnly ?? readOnly,
-      resolveKind: controlled?.resolveKind ?? resolveKind,
+      ...(resolvedKind !== undefined && { resolveKind: resolvedKind }),
     }),
-    [selectedIds, activeTool, readOnly, resolveKind, controlled],
+    [selectedIds, activeTool, readOnly, resolvedKind, controlled],
   );
 
   return <ShellContext.Provider value={value}>{children}</ShellContext.Provider>;
