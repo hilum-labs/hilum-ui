@@ -71,19 +71,22 @@ function AppSidebar({
 
       <nav className="flex-1 overflow-y-auto px-2 py-3">
         {sections.map((section, sIdx) => (
-          <AppSidebarSection key={sIdx} label={section.label} collapsed={collapsed}>
+          <AppSidebarSection
+            key={sIdx}
+            {...(section.label !== undefined && { label: section.label })}
+            collapsed={collapsed}
+          >
             {section.items.map((item, iIdx) => {
               const Icon = item.icon;
+              const linkOnClick = item.disabled
+                ? (e: unknown) => (e as { preventDefault?: () => void }).preventDefault?.()
+                : item.onClick;
               return (
                 <Link
                   key={iIdx}
                   href={item.disabled ? "#" : item.href}
-                  onClick={
-                    item.disabled
-                      ? (e) => (e as { preventDefault?: () => void }).preventDefault?.()
-                      : item.onClick
-                  }
-                  title={collapsed ? item.label : undefined}
+                  {...(linkOnClick !== undefined && { onClick: linkOnClick })}
+                  {...(collapsed && { title: item.label })}
                   className={cn(
                     "flex items-center rounded-lg transition-colors caption",
                     collapsed ? "size-9 justify-center" : "gap-2.5 px-2.5 py-2",
@@ -149,7 +152,7 @@ function AppSidebar({
                 <Fragment key={idx}>
                   {idx === userMenu.length - 1 && m.destructive && <DropdownMenuSeparator />}
                   <DropdownMenuItem
-                    onSelect={m.onSelect}
+                    {...(m.onSelect !== undefined && { onSelect: m.onSelect })}
                     className={cn(m.destructive && "text-red-600")}
                   >
                     {m.icon && <span className="mr-2">{m.icon}</span>}
