@@ -68,7 +68,7 @@ function DesignerPane({
 
   return (
     <PaneContext.Provider value={{ open, toggle: () => setOpen((v) => !v), collapsible }}>
-      <section className={cn("flex flex-col border-b border-taupe-100 last:border-b-0", className)}>
+      <section className={cn("flex flex-col border-b border-ground-100 last:border-b-0", className)}>
         {children}
       </section>
     </PaneContext.Provider>
@@ -85,8 +85,8 @@ function DesignerPaneTitle({ className, children, action }: DesignerPaneTitlePro
       onClick={collapsible ? toggle : undefined}
       className={cn(
         "flex w-full items-center justify-between gap-2 px-3 py-2 text-left",
-        "caption-xs uppercase tracking-wider font-semibold text-taupe-500",
-        collapsible && "hover:text-taupe-900 transition-colors",
+        "caption-xs uppercase tracking-wider font-semibold text-ground-500",
+        collapsible && "hover:text-ground-900 transition-colors",
         className,
       )}
     >

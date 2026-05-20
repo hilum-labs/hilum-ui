@@ -42,22 +42,22 @@ function PageHeading({
   className,
 }: PageHeadingProps) {
   return (
-    <div className={cn("border-b border-taupe-100 pb-6", className)}>
+    <div className={cn("border-b border-ground-100 pb-6", className)}>
       {/* Breadcrumbs */}
       {breadcrumbs && breadcrumbs.length > 0 && (
         <nav className="mb-3 flex items-center gap-1.5" aria-label="Breadcrumb">
           {breadcrumbs.map((crumb, i) => (
             <React.Fragment key={i}>
-              {i > 0 && <ChevronRight size={12} className="text-taupe-300 shrink-0" />}
+              {i > 0 && <ChevronRight size={12} className="text-ground-300 shrink-0" />}
               {crumb.href ? (
                 <a
                   href={crumb.href}
-                  className="caption text-taupe-400 hover:text-taupe-700 transition-colors"
+                  className="caption text-ground-400 hover:text-ground-700 transition-colors"
                 >
                   {crumb.label}
                 </a>
               ) : (
-                <span className="caption font-semibold text-taupe-700">{crumb.label}</span>
+                <span className="caption font-semibold text-ground-700">{crumb.label}</span>
               )}
             </React.Fragment>
           ))}
@@ -68,7 +68,7 @@ function PageHeading({
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
-            <h1 className="display text-taupe-900 truncate">{title}</h1>
+            <h1 className="display text-ground-900 truncate">{title}</h1>
             {badge &&
               (typeof badge === "string" ? (
                 <Badge variant="secondary">{badge}</Badge>
@@ -76,14 +76,14 @@ function PageHeading({
                 <Badge variant={badge.variant ?? "secondary"}>{badge.label}</Badge>
               ))}
           </div>
-          {description && <p className="mt-1.5 body text-taupe-400 max-w-2xl">{description}</p>}
+          {description && <p className="mt-1.5 body text-ground-400 max-w-2xl">{description}</p>}
 
           {/* Meta */}
           {meta && meta.length > 0 && (
             <div className="mt-3 flex flex-wrap items-center gap-4">
               {meta.map((m, i) => (
-                <div key={i} className="flex items-center gap-1.5 caption text-taupe-400">
-                  {m.icon && <span className="text-taupe-400">{m.icon}</span>}
+                <div key={i} className="flex items-center gap-1.5 caption text-ground-400">
+                  {m.icon && <span className="text-ground-400">{m.icon}</span>}
                   <span>{m.text}</span>
                 </div>
               ))}

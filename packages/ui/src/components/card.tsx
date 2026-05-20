@@ -10,7 +10,7 @@ const cardVariants = cva("rounded-xl", {
   variants: {
     variant: {
       default: "bg-white shadow-natural",
-      muted: "bg-taupe-50",
+      muted: "bg-ground-50",
       ghost: "bg-transparent",
     },
   },
@@ -54,7 +54,7 @@ const CardTitle = React.forwardRef<HTMLHeadingElement, React.ComponentProps<"h3"
     <h3
       ref={ref}
       data-slot="card-title"
-      className={cn("subheading text-taupe-900", className)}
+      className={cn("subheading text-ground-900", className)}
       {...props}
     />
   ),
@@ -66,7 +66,7 @@ const CardDescription = React.forwardRef<HTMLParagraphElement, React.ComponentPr
     <p
       ref={ref}
       data-slot="card-description"
-      className={cn("caption text-taupe-500", className)}
+      className={cn("caption text-ground-500", className)}
       {...props}
     />
   ),

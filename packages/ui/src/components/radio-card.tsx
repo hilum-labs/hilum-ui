@@ -47,7 +47,7 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
               "disabled:cursor-not-allowed disabled:opacity-50",
               isSelected
                 ? "border-brand-primary bg-white shadow-natural"
-                : "border-taupe-200 bg-white hover:border-taupe-400",
+                : "border-ground-200 bg-white hover:border-ground-400",
             )}
           >
             {/* Selected ring overlay */}
@@ -60,17 +60,17 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
 
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
-                {option.icon && <div className="mb-2 text-taupe-500">{option.icon}</div>}
+                {option.icon && <div className="mb-2 text-ground-500">{option.icon}</div>}
                 <p
                   className={cn(
                     "body font-semibold",
-                    isSelected ? "text-taupe-900" : "text-taupe-800",
+                    isSelected ? "text-ground-900" : "text-ground-800",
                   )}
                 >
                   {option.label}
                 </p>
                 {option.description && (
-                  <p className="mt-0.5 caption text-taupe-400">{option.description}</p>
+                  <p className="mt-0.5 caption text-ground-400">{option.description}</p>
                 )}
               </div>
               <div
@@ -78,7 +78,7 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
                   "flex size-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
                   isSelected
                     ? "border-brand-primary bg-brand-primary"
-                    : "border-taupe-300 bg-white",
+                    : "border-ground-300 bg-white",
                 )}
               >
                 {isSelected && <Check size={10} className="text-white" strokeWidth={3} />}
@@ -89,7 +89,7 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
               <p
                 className={cn(
                   "caption font-semibold mt-2",
-                  isSelected ? "text-taupe-900" : "text-taupe-400",
+                  isSelected ? "text-ground-900" : "text-ground-400",
                 )}
               >
                 {option.meta}

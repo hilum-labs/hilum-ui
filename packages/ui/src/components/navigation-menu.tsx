@@ -41,9 +41,9 @@ const NavigationMenuTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       "group inline-flex h-9 w-max items-center justify-center gap-1 rounded-md px-3 py-2",
-      "body font-medium text-taupe-700",
-      "hover:bg-taupe-100 hover:text-taupe-900",
-      "data-[active]:bg-taupe-100 data-[state=open]:bg-taupe-100",
+      "body font-medium text-ground-700",
+      "hover:bg-ground-100 hover:text-ground-900",
+      "data-[active]:bg-ground-100 data-[state=open]:bg-ground-100",
       "outline-none transition-colors",
       className,
     )}
@@ -86,8 +86,8 @@ const NavigationMenuLink = React.forwardRef<
   <NavigationMenu.Link
     ref={ref}
     className={cn(
-      "block select-none rounded-md px-3 py-2 body text-taupe-700",
-      "hover:bg-taupe-50 hover:text-taupe-900",
+      "block select-none rounded-md px-3 py-2 body text-ground-700",
+      "hover:bg-ground-50 hover:text-ground-900",
       "outline-none transition-colors",
       className,
     )}
@@ -104,7 +104,7 @@ const NavigationMenuViewport = React.forwardRef<
     <NavigationMenu.Viewport
       ref={ref}
       className={cn(
-        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border border-taupe-100 bg-white shadow-elevated",
+        "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border border-ground-100 bg-white shadow-elevated",
         "md:w-[var(--radix-navigation-menu-viewport-width)]",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90",
@@ -130,7 +130,7 @@ const NavigationMenuIndicator = React.forwardRef<
     )}
     {...props}
   >
-    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-taupe-100 shadow-elevated" />
+    <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-ground-100 shadow-elevated" />
   </NavigationMenu.Indicator>
 ));
 NavigationMenuIndicator.displayName = "NavigationMenuIndicator";
@@ -138,9 +138,9 @@ NavigationMenuIndicator.displayName = "NavigationMenuIndicator";
 function navigationMenuTriggerStyle() {
   return cn(
     "group inline-flex h-9 w-max items-center justify-center gap-1 rounded-md px-3 py-2",
-    "body font-medium text-taupe-700",
-    "hover:bg-taupe-100 hover:text-taupe-900",
-    "data-[active]:bg-taupe-100 data-[state=open]:bg-taupe-100",
+    "body font-medium text-ground-700",
+    "hover:bg-ground-100 hover:text-ground-900",
+    "data-[active]:bg-ground-100 data-[state=open]:bg-ground-100",
     "outline-none transition-colors",
   );
 }

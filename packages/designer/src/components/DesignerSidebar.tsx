@@ -39,7 +39,7 @@ function DesignerSidebar({
       className={cn(
         "flex flex-col w-12 bg-white shrink-0",
         side === "left" ? "border-r" : "border-l",
-        "border-taupe-100",
+        "border-ground-100",
         className,
       )}
     >
@@ -78,8 +78,8 @@ function SidebarButton({ item }: { item: SidebarItem }) {
           className={cn(
             "relative flex size-9 items-center justify-center rounded-md transition-colors",
             item.active
-              ? "bg-taupe-900 text-white"
-              : "text-taupe-500 hover:bg-taupe-100 hover:text-taupe-900",
+              ? "bg-ground-900 text-white"
+              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900",
             item.disabled && "opacity-50 cursor-not-allowed",
           )}
         >

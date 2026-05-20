@@ -20,7 +20,7 @@ function DesignerHeader({ left, center, right, className, children }: DesignerHe
   return (
     <header
       className={cn(
-        "flex h-12 items-center justify-between gap-3 border-b border-taupe-100 bg-white px-3 shrink-0",
+        "flex h-12 items-center justify-between gap-3 border-b border-ground-100 bg-white px-3 shrink-0",
         className,
       )}
     >

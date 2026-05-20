@@ -10,9 +10,9 @@ const NativeSelect = React.forwardRef<
     <select
       ref={ref}
       className={cn(
-        "peer h-9 w-full appearance-none rounded-lg border border-taupe-200 bg-white pl-3 pr-8",
-        "body text-taupe-900",
-        "focus:outline-none focus:ring-2 focus:ring-taupe-400/30 focus:border-taupe-400",
+        "peer h-9 w-full appearance-none rounded-lg border border-ground-200 bg-white pl-3 pr-8",
+        "body text-ground-900",
+        "focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400",
         "disabled:cursor-not-allowed disabled:opacity-50",
         "aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:ring-red-500/20",
         className,
@@ -23,7 +23,7 @@ const NativeSelect = React.forwardRef<
     </select>
     <ChevronDown
       size={14}
-      className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-taupe-400 peer-disabled:opacity-50"
+      className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-ground-400 peer-disabled:opacity-50"
     />
   </div>
 ));

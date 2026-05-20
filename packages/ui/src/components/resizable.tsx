@@ -46,7 +46,7 @@ function ResizableHandle({ className, withHandle = true, ...props }: ResizableHa
   return (
     <Separator
       className={cn(
-        "relative flex shrink-0 items-center justify-center bg-taupe-100",
+        "relative flex shrink-0 items-center justify-center bg-ground-100",
         "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary/50",
         // Horizontal (default): vertical bar
         "[&:not([aria-orientation=vertical])]:h-full [&:not([aria-orientation=vertical])]:w-px",
@@ -62,8 +62,8 @@ function ResizableHandle({ className, withHandle = true, ...props }: ResizableHa
       {...props}
     >
       {withHandle && (
-        <div className="z-10 flex h-5 w-3 items-center justify-center rounded-sm border border-taupe-100 bg-white shadow-natural">
-          <GripVertical size={10} className="text-taupe-400" />
+        <div className="z-10 flex h-5 w-3 items-center justify-center rounded-sm border border-ground-100 bg-white shadow-natural">
+          <GripVertical size={10} className="text-ground-400" />
         </div>
       )}
     </Separator>

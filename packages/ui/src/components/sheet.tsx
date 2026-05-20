@@ -65,7 +65,7 @@ const SheetContent = React.forwardRef<React.ComponentRef<typeof Dialog.Content>,
         {...props}
       >
         {children}
-        <Dialog.Close className="absolute right-4 top-4 rounded-md p-1 text-taupe-400 opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-taupe-900/20">
+        <Dialog.Close className="absolute right-4 top-4 rounded-md p-1 text-ground-400 opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ground-900/20">
           <X size={16} />
           <span className="sr-only">Close</span>
         </Dialog.Close>
@@ -91,7 +91,7 @@ const SheetTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Dialog.Title
     ref={ref}
-    className={cn("body-lg font-semibold text-taupe-900", className)}
+    className={cn("body-lg font-semibold text-ground-900", className)}
     {...props}
   />
 ));
@@ -101,7 +101,7 @@ const SheetDescription = React.forwardRef<
   React.ComponentRef<typeof Dialog.Description>,
   React.ComponentPropsWithoutRef<typeof Dialog.Description>
 >(({ className, ...props }, ref) => (
-  <Dialog.Description ref={ref} className={cn("body text-taupe-500", className)} {...props} />
+  <Dialog.Description ref={ref} className={cn("body text-ground-500", className)} {...props} />
 ));
 SheetDescription.displayName = "SheetDescription";
 

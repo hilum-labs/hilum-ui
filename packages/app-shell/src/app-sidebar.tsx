@@ -55,16 +55,16 @@ function AppSidebar({
   return (
     <aside
       className={cn(
-        "flex flex-col bg-white border-r border-taupe-100 shrink-0",
+        "flex flex-col bg-white border-r border-ground-100 shrink-0",
         collapsed ? "w-14" : "w-60",
         className,
       )}
     >
       {(logo || brand) && (
-        <div className="flex h-14 items-center gap-2 border-b border-taupe-100 px-3">
+        <div className="flex h-14 items-center gap-2 border-b border-ground-100 px-3">
           {logo}
           {!collapsed && brand && (
-            <span className="label font-semibold text-taupe-900">{brand}</span>
+            <span className="label font-semibold text-ground-900">{brand}</span>
           )}
         </div>
       )}
@@ -93,8 +93,8 @@ function AppSidebar({
                     item.active
                       ? "bg-brand-primary/10 text-brand-primary font-medium"
                       : item.disabled
-                        ? "cursor-default text-taupe-300"
-                        : "text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900",
+                        ? "cursor-default text-ground-300"
+                        : "text-ground-600 hover:bg-ground-50 hover:text-ground-900",
                   )}
                 >
                   {Icon && <Icon size={14} className="shrink-0" />}
@@ -119,12 +119,12 @@ function AppSidebar({
       </nav>
 
       {user && (
-        <div className="border-t border-taupe-100 p-2">
+        <div className="border-t border-ground-100 p-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button
                 className={cn(
-                  "flex w-full items-center rounded-lg transition-colors caption text-taupe-700 hover:bg-taupe-50",
+                  "flex w-full items-center rounded-lg transition-colors caption text-ground-700 hover:bg-ground-50",
                   collapsed ? "size-9 justify-center" : "gap-2.5 px-2.5 py-2",
                 )}
               >
@@ -137,12 +137,12 @@ function AppSidebar({
                 {!collapsed && (
                   <>
                     <div className="flex-1 min-w-0 text-left">
-                      <p className="caption font-semibold text-taupe-900 truncate">{user.name}</p>
+                      <p className="caption font-semibold text-ground-900 truncate">{user.name}</p>
                       {user.email && (
-                        <p className="caption-xs text-taupe-400 truncate">{user.email}</p>
+                        <p className="caption-xs text-ground-400 truncate">{user.email}</p>
                       )}
                     </div>
-                    <ChevronDown size={12} className="text-taupe-400" />
+                    <ChevronDown size={12} className="text-ground-400" />
                   </>
                 )}
               </button>
@@ -179,7 +179,7 @@ function AppSidebarSection({ label, collapsed, children, className }: AppSidebar
   return (
     <div className={cn("mb-3 last:mb-0", className)}>
       {label && !collapsed && (
-        <p className="caption-xs uppercase tracking-wider font-semibold text-taupe-400 px-2.5 py-1.5">
+        <p className="caption-xs uppercase tracking-wider font-semibold text-ground-400 px-2.5 py-1.5">
           {label}
         </p>
       )}

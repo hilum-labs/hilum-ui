@@ -45,8 +45,8 @@ function ColorPicker({
           disabled={disabled}
           aria-label={ariaLabel}
           className={cn(
-            "inline-flex h-8 w-8 items-center justify-center rounded-md border border-taupe-200 bg-white",
-            "transition-colors hover:border-taupe-300",
+            "inline-flex h-8 w-8 items-center justify-center rounded-md border border-ground-200 bg-white",
+            "transition-colors hover:border-ground-300",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
             "disabled:cursor-not-allowed disabled:opacity-50",
             className,
@@ -72,10 +72,10 @@ function ColorPicker({
               setHex(e.target.value);
               onChange(e.target.value);
             }}
-            className="h-10 w-full cursor-pointer rounded-md border border-taupe-200 bg-white p-0.5"
+            className="h-10 w-full cursor-pointer rounded-md border border-ground-200 bg-white p-0.5"
           />
           <div className="mt-2 flex items-center gap-2">
-            <span className="caption text-taupe-500">Hex</span>
+            <span className="caption text-ground-500">Hex</span>
             <input
               type="text"
               value={hex}
@@ -84,7 +84,7 @@ function ColorPicker({
               onKeyDown={(e) => {
                 if (e.key === "Enter") commit((e.target as HTMLInputElement).value);
               }}
-              className="flex-1 h-7 rounded-md border border-taupe-200 bg-white px-2 caption text-taupe-900 focus:outline-none focus:border-brand-primary"
+              className="flex-1 h-7 rounded-md border border-ground-200 bg-white px-2 caption text-ground-900 focus:outline-none focus:border-brand-primary"
             />
           </div>
           {presets && presets.length > 0 && (

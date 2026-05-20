@@ -48,7 +48,7 @@ function ActionPanel({
           (link.href ? (
             <a
               href={link.href}
-              className="body font-medium text-taupe-600 hover:text-taupe-900 transition-colors inline-flex items-center gap-1"
+              className="body font-medium text-ground-600 hover:text-ground-900 transition-colors inline-flex items-center gap-1"
             >
               {link.label} <span aria-hidden>→</span>
             </a>
@@ -56,7 +56,7 @@ function ActionPanel({
             <button
               type="button"
               onClick={link.onClick}
-              className="body font-medium text-taupe-600 hover:text-taupe-900 transition-colors inline-flex items-center gap-1"
+              className="body font-medium text-ground-600 hover:text-ground-900 transition-colors inline-flex items-center gap-1"
             >
               {link.label} <span aria-hidden>→</span>
             </button>
@@ -81,16 +81,16 @@ function ActionPanel({
       className={cn(
         "rounded-xl border px-5 py-5",
         variant === "muted"
-          ? "border-taupe-100 bg-taupe-50"
-          : "border-taupe-100 bg-white shadow-natural",
+          ? "border-ground-100 bg-ground-50"
+          : "border-ground-100 bg-white shadow-natural",
         layout === "inline" && "flex items-center justify-between gap-6",
         className,
       )}
     >
       <div className={cn("min-w-0", layout === "inline" ? "flex-1" : "")}>
-        <p className="body font-semibold text-taupe-900">{title}</p>
+        <p className="body font-semibold text-ground-900">{title}</p>
         {description && (
-          <p className={cn("body text-taupe-400", layout === "stacked" ? "mt-1" : "")}>
+          <p className={cn("body text-ground-400", layout === "stacked" ? "mt-1" : "")}>
             {description}
           </p>
         )}

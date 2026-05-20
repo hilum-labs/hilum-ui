@@ -17,12 +17,12 @@ const buttonVariants = cva(
       variant: {
         default: "bg-brand-primary text-white hover:bg-brand-primary/90 active:bg-brand-primary/80",
         destructive: "bg-red-600 text-white hover:bg-red-700 active:bg-red-800",
-        outline: "bg-white text-taupe-700 shadow-natural hover:bg-taupe-50 rounded-xl",
-        secondary: "bg-taupe-100 text-taupe-700 hover:bg-taupe-200",
+        outline: "bg-white text-ground-700 shadow-natural hover:bg-ground-50 rounded-xl",
+        secondary: "bg-ground-100 text-ground-700 hover:bg-ground-200",
         brand:
-          "bg-brand-secondary text-taupe-900 hover:bg-brand-secondary/90 active:bg-brand-secondary/80",
-        ghost: "text-taupe-600 hover:bg-taupe-100 hover:text-taupe-900",
-        link: "text-taupe-900 underline-offset-4 hover:underline",
+          "bg-brand-secondary text-ground-900 hover:bg-brand-secondary/90 active:bg-brand-secondary/80",
+        ghost: "text-ground-600 hover:bg-ground-100 hover:text-ground-900",
+        link: "text-ground-900 underline-offset-4 hover:underline",
       },
       size: {
         default: "h-9 px-4 py-2 rounded-md",

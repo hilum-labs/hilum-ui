@@ -28,7 +28,7 @@ function DesignerPanel({
       className={cn(
         "flex flex-col bg-white shrink-0 overflow-hidden",
         bordered && (side === "left" ? "border-r" : "border-l"),
-        bordered && "border-taupe-100",
+        bordered && "border-ground-100",
         className,
       )}
       style={{ width }}

@@ -71,8 +71,8 @@ function DataTable<TData>({
                   {header.isPlaceholder ? null : header.column.getCanSort() ? (
                     <button
                       className={cn(
-                        "flex items-center gap-1 transition-colors hover:text-taupe-700",
-                        header.column.getIsSorted() && "text-taupe-900",
+                        "flex items-center gap-1 transition-colors hover:text-ground-700",
+                        header.column.getIsSorted() && "text-ground-900",
                       )}
                       onClick={header.column.getToggleSortingHandler()}
                     >
@@ -82,7 +82,7 @@ function DataTable<TData>({
                       ) : header.column.getIsSorted() === "desc" ? (
                         <ChevronDown size={12} className="text-brand-primary" />
                       ) : (
-                        <ChevronsUpDown size={12} className="text-taupe-300" />
+                        <ChevronsUpDown size={12} className="text-ground-300" />
                       )}
                     </button>
                   ) : (
@@ -106,7 +106,7 @@ function DataTable<TData>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center text-taupe-400">
+              <TableCell colSpan={columns.length} className="h-24 text-center text-ground-400">
                 No results.
               </TableCell>
             </TableRow>
@@ -115,12 +115,12 @@ function DataTable<TData>({
       </Table>
       {showPagination && (
         <div className="flex items-center justify-between">
-          <p className="caption text-taupe-400">
+          <p className="caption text-ground-400">
             {table.getFilteredRowModel().rows.length} result
             {table.getFilteredRowModel().rows.length !== 1 ? "s" : ""}
           </p>
           <div className="flex items-center gap-2">
-            <span className="caption text-taupe-400">
+            <span className="caption text-ground-400">
               Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
             </span>
             <Button

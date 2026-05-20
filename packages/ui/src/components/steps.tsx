@@ -33,7 +33,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                   <div
                     className={cn(
                       "h-full",
-                      step.status === "complete" ? "bg-brand-primary" : "bg-taupe-200",
+                      step.status === "complete" ? "bg-brand-primary" : "bg-ground-200",
                     )}
                   />
                 </div>
@@ -52,7 +52,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                       "bg-brand-primary group-hover:bg-brand-primary/80",
                     step.status === "current" && "border-2 border-brand-primary bg-white",
                     step.status === "upcoming" &&
-                      "border-2 border-taupe-300 bg-white group-hover:border-taupe-400",
+                      "border-2 border-ground-300 bg-white group-hover:border-ground-400",
                   )}
                 >
                   {step.status === "complete" ? (
@@ -60,7 +60,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                   ) : step.status === "current" ? (
                     <span className="size-2.5 rounded-full bg-brand-primary" />
                   ) : (
-                    <span className="size-2.5 rounded-full bg-transparent group-hover:bg-taupe-300" />
+                    <span className="size-2.5 rounded-full bg-transparent group-hover:bg-ground-300" />
                   )}
                 </span>
 
@@ -69,13 +69,13 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                   <span
                     className={cn(
                       "caption font-semibold",
-                      step.status === "upcoming" ? "text-taupe-400" : "text-taupe-900",
+                      step.status === "upcoming" ? "text-ground-400" : "text-ground-900",
                     )}
                   >
                     {step.name}
                   </span>
                   {step.description && (
-                    <span className="caption text-taupe-400">{step.description}</span>
+                    <span className="caption text-ground-400">{step.description}</span>
                   )}
                 </span>
               </a>
@@ -93,7 +93,7 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
 
   return (
     <nav className={cn("flex items-center gap-4", className)} aria-label="Progress">
-      <p className="body font-medium text-taupe-700">
+      <p className="body font-medium text-ground-700">
         Step {currentIdx + 1} of {steps.length}
       </p>
       <ol role="list" className="flex items-center gap-2">
@@ -120,7 +120,7 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
                 </span>
               ) : (
                 <span
-                  className="block size-2.5 rounded-full bg-taupe-200 hover:bg-taupe-300 transition-colors"
+                  className="block size-2.5 rounded-full bg-ground-200 hover:bg-ground-300 transition-colors"
                   title={step.name}
                 />
               )}
@@ -141,7 +141,7 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
   return (
     <div className={cn("w-full", className)}>
       {/* Bar */}
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-taupe-100">
+      <div className="h-1.5 w-full overflow-hidden rounded-full bg-ground-100">
         <div
           className="h-full rounded-full bg-brand-primary transition-all duration-500"
           style={{ width: `${progress}%` }}
@@ -157,7 +157,7 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
               className={cn(
                 "caption font-medium",
                 i === 0 ? "text-left" : isLast ? "text-right" : "text-center",
-                step.status === "upcoming" ? "text-taupe-400" : "text-taupe-900",
+                step.status === "upcoming" ? "text-ground-400" : "text-ground-900",
               )}
             >
               {step.name}

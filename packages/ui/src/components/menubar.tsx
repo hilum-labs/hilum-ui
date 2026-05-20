@@ -12,7 +12,7 @@ const MenubarRoot = React.forwardRef<
   <Menubar.Root
     ref={ref}
     className={cn(
-      "flex h-9 items-center gap-0.5 rounded-lg border border-taupe-100 bg-white px-1",
+      "flex h-9 items-center gap-0.5 rounded-lg border border-ground-100 bg-white px-1",
       className,
     )}
     {...props}
@@ -35,10 +35,10 @@ const MenubarTrigger = React.forwardRef<
   <Menubar.Trigger
     ref={ref}
     className={cn(
-      "flex cursor-default items-center rounded-md px-3 py-1 body font-medium text-taupe-700 select-none outline-none",
-      "hover:bg-taupe-50",
-      "data-[state=open]:bg-taupe-100 data-[state=open]:text-taupe-900",
-      "focus:bg-taupe-50",
+      "flex cursor-default items-center rounded-md px-3 py-1 body font-medium text-ground-700 select-none outline-none",
+      "hover:bg-ground-50",
+      "data-[state=open]:bg-ground-100 data-[state=open]:text-ground-900",
+      "focus:bg-ground-50",
       className,
     )}
     {...props}
@@ -81,8 +81,8 @@ const MenubarItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
-      "body text-taupe-700 outline-none transition-colors",
-      "focus:bg-taupe-50 focus:text-taupe-900",
+      "body text-ground-700 outline-none transition-colors",
+      "focus:bg-ground-50 focus:text-ground-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
       className,
@@ -100,8 +100,8 @@ const MenubarCheckboxItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-md pl-8 pr-2.5 py-1.5",
-      "body text-taupe-700 outline-none transition-colors",
-      "focus:bg-taupe-50 focus:text-taupe-900",
+      "body text-ground-700 outline-none transition-colors",
+      "focus:bg-ground-50 focus:text-ground-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -109,7 +109,7 @@ const MenubarCheckboxItem = React.forwardRef<
   >
     <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <Menubar.ItemIndicator>
-        <Check size={13} className="text-taupe-900" />
+        <Check size={13} className="text-ground-900" />
       </Menubar.ItemIndicator>
     </span>
     {children}
@@ -125,8 +125,8 @@ const MenubarRadioItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-md pl-8 pr-2.5 py-1.5",
-      "body text-taupe-700 outline-none transition-colors",
-      "focus:bg-taupe-50 focus:text-taupe-900",
+      "body text-ground-700 outline-none transition-colors",
+      "focus:bg-ground-50 focus:text-ground-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -134,7 +134,7 @@ const MenubarRadioItem = React.forwardRef<
   >
     <span className="absolute left-2 flex size-3.5 items-center justify-center">
       <Menubar.ItemIndicator>
-        <Circle size={8} className="fill-taupe-900 text-taupe-900" />
+        <Circle size={8} className="fill-ground-900 text-ground-900" />
       </Menubar.ItemIndicator>
     </span>
     {children}
@@ -150,7 +150,7 @@ const MenubarLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <Menubar.Label
     ref={ref}
-    className={cn("px-2.5 py-1 label text-taupe-400", inset && "pl-8", className)}
+    className={cn("px-2.5 py-1 label text-ground-400", inset && "pl-8", className)}
     {...props}
   />
 ));
@@ -162,7 +162,7 @@ const MenubarSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Menubar.Separator
     ref={ref}
-    className={cn("mx-1 my-1 h-px bg-taupe-100", className)}
+    className={cn("mx-1 my-1 h-px bg-ground-100", className)}
     {...props}
   />
 ));
@@ -178,15 +178,15 @@ const MenubarSubTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
-      "body text-taupe-700 outline-none transition-colors",
-      "focus:bg-taupe-50 focus:text-taupe-900 data-[state=open]:bg-taupe-50",
+      "body text-ground-700 outline-none transition-colors",
+      "focus:bg-ground-50 focus:text-ground-900 data-[state=open]:bg-ground-50",
       inset && "pl-8",
       className,
     )}
     {...props}
   >
     {children}
-    <ChevronRight size={14} className="ml-auto text-taupe-400" />
+    <ChevronRight size={14} className="ml-auto text-ground-400" />
   </Menubar.SubTrigger>
 ));
 MenubarSubTrigger.displayName = "MenubarSubTrigger";
@@ -198,7 +198,7 @@ const MenubarSubContent = React.forwardRef<
   <Menubar.SubContent
     ref={ref}
     className={cn(
-      "z-50 min-w-[8rem] bg-white rounded-xl border border-taupe-100 shadow-natural p-1",
+      "z-50 min-w-[8rem] bg-white rounded-xl border border-ground-100 shadow-natural p-1",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -211,7 +211,7 @@ const MenubarSubContent = React.forwardRef<
 MenubarSubContent.displayName = "MenubarSubContent";
 
 function MenubarShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) {
-  return <span className={cn("ml-auto caption text-taupe-400", className)} {...props} />;
+  return <span className={cn("ml-auto caption text-ground-400", className)} {...props} />;
 }
 MenubarShortcut.displayName = "MenubarShortcut";
 

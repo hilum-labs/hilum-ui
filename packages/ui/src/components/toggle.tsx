@@ -18,18 +18,18 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: [
-          "bg-transparent text-taupe-600",
-          "hover:bg-taupe-100 hover:text-taupe-900",
-          "data-[state=on]:bg-taupe-100 data-[state=on]:text-taupe-900",
+          "bg-transparent text-ground-600",
+          "hover:bg-ground-100 hover:text-ground-900",
+          "data-[state=on]:bg-ground-100 data-[state=on]:text-ground-900",
         ],
         outline: [
-          "border border-taupe-200 bg-white text-taupe-600 shadow-natural",
-          "hover:bg-taupe-50 hover:text-taupe-900",
-          "data-[state=on]:bg-taupe-100 data-[state=on]:text-taupe-900 data-[state=on]:border-taupe-300",
+          "border border-ground-200 bg-white text-ground-600 shadow-natural",
+          "hover:bg-ground-50 hover:text-ground-900",
+          "data-[state=on]:bg-ground-100 data-[state=on]:text-ground-900 data-[state=on]:border-ground-300",
         ],
         brand: [
-          "bg-transparent text-taupe-600",
-          "hover:bg-taupe-100 hover:text-taupe-900",
+          "bg-transparent text-ground-600",
+          "hover:bg-ground-100 hover:text-ground-900",
           "data-[state=on]:bg-brand-primary data-[state=on]:text-white",
         ],
       },

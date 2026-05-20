@@ -44,7 +44,7 @@ function DesignerCanvas({ className, children }: DesignerCanvasProps) {
   return (
     <div
       ref={ref}
-      className={cn("relative flex-1 overflow-hidden bg-taupe-100 select-none", className)}
+      className={cn("relative flex-1 overflow-hidden bg-ground-100 select-none", className)}
       data-canvas-root
     >
       <div

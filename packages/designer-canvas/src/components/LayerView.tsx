@@ -74,7 +74,7 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
 function FallbackRenderer({ layer }: { layer: Layer<unknown> }) {
   return (
     <div
-      className="size-full flex items-center justify-center bg-white border border-dashed border-taupe-300 caption text-taupe-400"
+      className="size-full flex items-center justify-center bg-white border border-dashed border-ground-300 caption text-ground-400"
       title={`No renderer registered for type "${layer.type}"`}
     >
       {layer.type}

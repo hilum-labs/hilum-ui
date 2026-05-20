@@ -18,7 +18,7 @@ function DesignerToolbar({ className, variant = "floating", children }: Designer
       <div
         role="toolbar"
         className={cn(
-          "flex items-center gap-0.5 rounded-lg bg-white shadow-natural border border-taupe-100 p-1",
+          "flex items-center gap-0.5 rounded-lg bg-white shadow-natural border border-ground-100 p-1",
           variant === "floating" && "fixed bottom-4 left-1/2 -translate-x-1/2 z-30",
           className,
         )}
@@ -51,7 +51,7 @@ interface DesignerToolbarSeparatorProps {
 }
 
 function DesignerToolbarSeparator({ className }: DesignerToolbarSeparatorProps) {
-  return <div className={cn("mx-1 h-5 w-px bg-taupe-100", className)} role="separator" />;
+  return <div className={cn("mx-1 h-5 w-px bg-ground-100", className)} role="separator" />;
 }
 
 /* ============================================================== *
@@ -92,8 +92,8 @@ function DesignerToolbarButton({
           className={cn(
             "flex h-8 min-w-8 items-center justify-center gap-1 rounded-md px-1.5 transition-colors caption",
             active
-              ? "bg-taupe-900 text-white"
-              : "text-taupe-600 hover:bg-taupe-100 hover:text-taupe-900",
+              ? "bg-ground-900 text-white"
+              : "text-ground-600 hover:bg-ground-100 hover:text-ground-900",
             disabled && "opacity-50 cursor-not-allowed",
             className,
           )}
@@ -104,7 +104,7 @@ function DesignerToolbarButton({
       </TooltipTrigger>
       <TooltipContent side="top">
         <span>{label}</span>
-        {shortcut && <span className="ml-2 caption-xs text-taupe-300">{shortcut}</span>}
+        {shortcut && <span className="ml-2 caption-xs text-ground-300">{shortcut}</span>}
       </TooltipContent>
     </Tooltip>
   );

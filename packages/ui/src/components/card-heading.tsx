@@ -21,15 +21,15 @@ function CardHeading({ title, description, actions, children, className }: CardH
   return (
     <div
       className={cn(
-        "flex items-start justify-between gap-4 border-b border-taupe-100 px-5 py-4",
+        "flex items-start justify-between gap-4 border-b border-ground-100 px-5 py-4",
         className,
       )}
     >
       <div className="flex min-w-0 items-center gap-3">
         {children}
         <div className="min-w-0">
-          <p className="body font-semibold text-taupe-900 truncate">{title}</p>
-          {description && <p className="caption text-taupe-400 mt-0.5">{description}</p>}
+          <p className="body font-semibold text-ground-900 truncate">{title}</p>
+          {description && <p className="caption text-ground-400 mt-0.5">{description}</p>}
         </div>
       </div>
 

@@ -9,9 +9,9 @@ export const CHART_COLORS = {
   primary: tokens.brand.primary,           // "#C100F1" — vivid purple
   secondary: tokens.semantic.light.success, // "#CDEA19" — lime
   tertiary: tokens.brand.secondary,         // "#FFF5BF" — pale lemon
-  muted: tokens.taupe[400],                 // "#a8978a"
-  subtle: tokens.taupe[200],                // "#e3dcd4"
-  dark: tokens.taupe[900],                  // "#26181a"
+  muted: tokens.ground[400],                 // "#a8978a"
+  subtle: tokens.ground[200],                // "#e3dcd4"
+  dark: tokens.ground[900],                  // "#26181a"
 };
 
 interface ChartContainerProps {
@@ -39,16 +39,16 @@ interface ChartTooltipProps extends Partial<TooltipContentProps<number, string>>
 function ChartTooltip({ active, payload, label, labelClassName }: ChartTooltipProps) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-xl border border-taupe-100 bg-white px-3 py-2 shadow-elevated">
-      {label && <p className={cn("mb-1 label text-taupe-400", labelClassName)}>{label}</p>}
+    <div className="rounded-xl border border-ground-100 bg-white px-3 py-2 shadow-elevated">
+      {label && <p className={cn("mb-1 label text-ground-400", labelClassName)}>{label}</p>}
       {payload.map((entry, i) => (
         <div key={i} className="flex items-center gap-2">
           <span
             className="inline-block h-2 w-2 rounded-full"
             style={{ backgroundColor: entry.color }}
           />
-          <span className="caption text-taupe-500">{entry.name}:</span>
-          <span className="caption font-medium text-taupe-900">{entry.value}</span>
+          <span className="caption text-ground-500">{entry.name}:</span>
+          <span className="caption font-medium text-ground-900">{entry.value}</span>
         </div>
       ))}
     </div>

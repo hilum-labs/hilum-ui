@@ -15,7 +15,7 @@ const SwitchRoot = React.forwardRef<
       "border-2 border-transparent transition-colors",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
       "disabled:cursor-not-allowed disabled:opacity-50",
-      "data-[state=unchecked]:bg-taupe-200 data-[state=checked]:bg-brand-primary",
+      "data-[state=unchecked]:bg-ground-200 data-[state=checked]:bg-brand-primary",
       className,
     )}
     {...props}

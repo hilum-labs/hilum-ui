@@ -65,7 +65,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialog.Title
     ref={ref}
-    className={cn("body-lg font-semibold text-taupe-900", className)}
+    className={cn("body-lg font-semibold text-ground-900", className)}
     {...props}
   />
 ));
@@ -75,7 +75,7 @@ const AlertDialogDescription = React.forwardRef<
   React.ComponentRef<typeof AlertDialog.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialog.Description>
 >(({ className, ...props }, ref) => (
-  <AlertDialog.Description ref={ref} className={cn("body text-taupe-500", className)} {...props} />
+  <AlertDialog.Description ref={ref} className={cn("body text-ground-500", className)} {...props} />
 ));
 AlertDialogDescription.displayName = "AlertDialogDescription";
 
@@ -107,7 +107,7 @@ const AlertDialogCancel = React.forwardRef<
     className={cn(
       "inline-flex h-9 items-center justify-center rounded-md px-4",
       "body font-medium whitespace-nowrap transition-all duration-150",
-      "bg-white text-taupe-700 shadow-natural hover:bg-taupe-50 rounded-xl",
+      "bg-white text-ground-700 shadow-natural hover:bg-ground-50 rounded-xl",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       className,

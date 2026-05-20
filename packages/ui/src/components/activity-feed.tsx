@@ -26,7 +26,7 @@ function ActivityFeed({ events, className }: ActivityFeedProps) {
               <div className="relative pb-8">
                 {!isLast && (
                   <span
-                    className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-taupe-100"
+                    className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-ground-100"
                     aria-hidden="true"
                   />
                 )}
@@ -36,7 +36,7 @@ function ActivityFeed({ events, className }: ActivityFeedProps) {
                     <span
                       className={cn(
                         "flex size-8 items-center justify-center rounded-full ring-8 ring-white",
-                        event.iconBgClass ?? "bg-taupe-100 text-taupe-500",
+                        event.iconBgClass ?? "bg-ground-100 text-ground-500",
                       )}
                     >
                       {event.icon}
@@ -45,11 +45,11 @@ function ActivityFeed({ events, className }: ActivityFeedProps) {
 
                   {/* Content */}
                   <div className="flex min-w-0 flex-1 items-baseline justify-between gap-4 pt-1">
-                    <div className="body text-taupe-600">{event.content}</div>
+                    <div className="body text-ground-600">{event.content}</div>
                     {event.date && (
                       <time
                         dateTime={event.datetime ?? event.date}
-                        className="caption whitespace-nowrap text-taupe-400"
+                        className="caption whitespace-nowrap text-ground-400"
                       >
                         {event.date}
                       </time>

@@ -132,7 +132,7 @@ function Sidebar({
         data-variant={variant}
         data-collapsible="none"
         className={cn(
-          "flex flex-col h-svh bg-white border-r border-taupe-100 w-[--sidebar-width]",
+          "flex flex-col h-svh bg-white border-r border-ground-100 w-[--sidebar-width]",
           side === "right" && "border-r-0 border-l",
           className,
         )}
@@ -151,7 +151,7 @@ function Sidebar({
         data-variant={variant}
         data-collapsible="offcanvas"
         className={cn(
-          "group peer flex flex-col h-svh bg-white border-r border-taupe-100",
+          "group peer flex flex-col h-svh bg-white border-r border-ground-100",
           "transition-[width,transform] duration-200 ease-linear",
           "data-[state=expanded]:w-[--sidebar-width] data-[state=collapsed]:w-0 data-[state=collapsed]:-translate-x-full",
           side === "right" && "border-r-0 border-l data-[state=collapsed]:translate-x-full",
@@ -172,7 +172,7 @@ function Sidebar({
       data-variant={variant}
       data-collapsible="icon"
       className={cn(
-        "group peer hidden md:flex flex-col h-svh bg-white border-r border-taupe-100",
+        "group peer hidden md:flex flex-col h-svh bg-white border-r border-ground-100",
         "transition-[width] duration-200 ease-linear overflow-hidden",
         "data-[state=expanded]:w-[--sidebar-width] data-[state=collapsed]:w-[--sidebar-width-icon]",
         side === "right" && "border-r-0 border-l",
@@ -261,7 +261,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-sidebar="header"
-      className={cn("flex flex-col gap-2 p-3 border-b border-taupe-100", className)}
+      className={cn("flex flex-col gap-2 p-3 border-b border-ground-100", className)}
       {...props}
     />
   );
@@ -281,7 +281,7 @@ function SidebarFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-sidebar="footer"
-      className={cn("flex flex-col gap-2 p-3 border-t border-taupe-100", className)}
+      className={cn("flex flex-col gap-2 p-3 border-t border-ground-100", className)}
       {...props}
     />
   );
@@ -291,7 +291,7 @@ function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof S
   return (
     <Separator
       data-sidebar="separator"
-      className={cn("mx-2 my-1 bg-taupe-100", className)}
+      className={cn("mx-2 my-1 bg-ground-100", className)}
       {...props}
     />
   );
@@ -322,8 +322,8 @@ function SidebarGroupLabel({
     <Comp
       data-sidebar="group-label"
       className={cn(
-        "flex h-8 shrink-0 items-center rounded-md px-2 label text-taupe-400",
-        "outline-none ring-taupe-900 transition-[margin,opacity] duration-200 ease-linear",
+        "flex h-8 shrink-0 items-center rounded-md px-2 label text-ground-400",
+        "outline-none ring-ground-900 transition-[margin,opacity] duration-200 ease-linear",
         "group-data-[state=collapsed]/sidebar-wrapper:opacity-0",
         "group-data-[state=collapsed]/sidebar-wrapper:h-0",
         "group-data-[state=collapsed]/sidebar-wrapper:m-0",
@@ -354,7 +354,7 @@ function SidebarGroupAction({
       data-sidebar="group-action"
       className={cn(
         "absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center",
-        "rounded-md text-taupe-400 hover:bg-taupe-100 hover:text-taupe-900",
+        "rounded-md text-ground-400 hover:bg-ground-100 hover:text-ground-900",
         "outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
         className,
       )}
@@ -413,11 +413,11 @@ function SidebarMenuButton({
       className={cn(
         // Base
         "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 body text-left",
-        "outline-none ring-taupe-900",
+        "outline-none ring-ground-900",
         "transition-[width,height,padding] duration-150",
-        "hover:bg-taupe-100 hover:text-taupe-900",
+        "hover:bg-ground-100 hover:text-ground-900",
         "focus-visible:ring-2 focus-visible:ring-brand-primary/30",
-        "active:bg-taupe-100",
+        "active:bg-ground-100",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&>svg]:size-4 [&>svg]:shrink-0",
         // Size variants
@@ -482,7 +482,7 @@ function SidebarMenuAction({
       data-sidebar="menu-action"
       className={cn(
         "absolute right-1 top-1/2 -translate-y-1/2 flex aspect-square w-5 items-center justify-center",
-        "rounded-md text-taupe-400 hover:bg-taupe-100 hover:text-taupe-900",
+        "rounded-md text-ground-400 hover:bg-ground-100 hover:text-ground-900",
         "outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
         showOnHover && [
           "opacity-0 transition-opacity",
@@ -507,7 +507,7 @@ function SidebarMenuBadge({ className, ...props }: React.ComponentProps<"div">) 
       data-sidebar="menu-badge"
       className={cn(
         "absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-full",
-        "caption font-medium bg-taupe-100 text-taupe-700 px-1",
+        "caption font-medium bg-ground-100 text-ground-700 px-1",
         "group-data-[state=collapsed]/sidebar-wrapper:hidden",
         className,
       )}
@@ -535,9 +535,9 @@ function SidebarMenuSkeleton({
       className={cn("flex h-8 items-center gap-2 rounded-md px-2", className)}
       {...props}
     >
-      {showIcon && <div className="size-4 shrink-0 rounded-md bg-taupe-200 animate-pulse" />}
+      {showIcon && <div className="size-4 shrink-0 rounded-md bg-ground-200 animate-pulse" />}
       <div
-        className="h-4 max-w-[--skeleton-width] flex-1 rounded-md bg-taupe-200 animate-pulse"
+        className="h-4 max-w-[--skeleton-width] flex-1 rounded-md bg-ground-200 animate-pulse"
         style={{ "--skeleton-width": width } as React.CSSProperties}
       />
     </div>
@@ -553,7 +553,7 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
     <ul
       data-sidebar="menu-sub"
       className={cn(
-        "mx-3.5 flex min-w-0 flex-col gap-1 border-l border-taupe-100 pl-3",
+        "mx-3.5 flex min-w-0 flex-col gap-1 border-l border-ground-100 pl-3",
         "group-data-[state=collapsed]/sidebar-wrapper:hidden",
         className,
       )}
@@ -591,9 +591,9 @@ function SidebarMenuSubButton({
       data-active={isActive}
       className={cn(
         "flex h-7 min-w-0 items-center gap-2 overflow-hidden rounded-md px-2",
-        "body text-taupe-500 outline-none",
+        "body text-ground-500 outline-none",
         "transition-colors duration-150",
-        "hover:text-taupe-900 hover:bg-taupe-100",
+        "hover:text-ground-900 hover:bg-ground-100",
         "focus-visible:ring-2 focus-visible:ring-brand-primary/30",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&>svg]:size-3.5 [&>svg]:shrink-0",

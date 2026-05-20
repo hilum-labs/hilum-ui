@@ -28,7 +28,7 @@ function AppShell({ linkComponent, className, children }: AppShellProps) {
 
   return (
     <Wrapper {...(wrapperProps as { value: LinkComponent })}>
-      <div className={cn("flex h-screen overflow-hidden bg-taupe-50 text-taupe-900", className)}>
+      <div className={cn("flex h-screen overflow-hidden bg-ground-50 text-ground-900", className)}>
         {children}
       </div>
     </Wrapper>

@@ -31,7 +31,7 @@ function SignInScreen({
   className,
 }: SignInScreenProps) {
   return (
-    <div className={cn("flex min-h-screen bg-taupe-50", className)}>
+    <div className={cn("flex min-h-screen bg-ground-50", className)}>
       <div
         className={cn(
           "flex flex-1 items-center justify-center p-6",
@@ -41,16 +41,16 @@ function SignInScreen({
         <div className="w-full max-w-sm">
           {logo && <div className="mb-8">{logo}</div>}
           <div className="mb-6">
-            <h1 className="heading-xl text-taupe-900">{title}</h1>
-            {description && <p className="body text-taupe-500 mt-2">{description}</p>}
+            <h1 className="heading-xl text-ground-900">{title}</h1>
+            {description && <p className="body text-ground-500 mt-2">{description}</p>}
           </div>
           {children}
-          {footer && <div className="mt-6 caption text-taupe-500">{footer}</div>}
+          {footer && <div className="mt-6 caption text-ground-500">{footer}</div>}
         </div>
       </div>
 
       {decoration && (
-        <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-white border-l border-taupe-100">
+        <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-white border-l border-ground-100">
           {decoration}
         </div>
       )}

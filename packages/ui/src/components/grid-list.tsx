@@ -58,18 +58,18 @@ function GridListCard({
   const inner = (
     <div
       className={cn(
-        "flex h-full flex-col gap-1 rounded-xl border border-taupe-100 bg-white p-4 shadow-natural transition-shadow",
+        "flex h-full flex-col gap-1 rounded-xl border border-ground-100 bg-white p-4 shadow-natural transition-shadow",
         href && "hover:shadow-elevated",
         className,
       )}
     >
       {accent && <div className="mb-2">{accent}</div>}
-      <p className="body font-semibold text-taupe-900">{title}</p>
-      {description && <p className="caption text-taupe-400">{description}</p>}
+      <p className="body font-semibold text-ground-900">{title}</p>
+      {description && <p className="caption text-ground-400">{description}</p>}
       {(meta || trailing) && (
         <div className="mt-auto flex items-center justify-between pt-3">
-          {meta && <span className="caption text-taupe-400">{meta}</span>}
-          {trailing && <span className="caption text-taupe-400">{trailing}</span>}
+          {meta && <span className="caption text-ground-400">{meta}</span>}
+          {trailing && <span className="caption text-ground-400">{trailing}</span>}
         </div>
       )}
     </div>
@@ -80,7 +80,7 @@ function GridListCard({
       {href ? (
         <a
           href={href}
-          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/40 rounded-xl"
+          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ground-400/40 rounded-xl"
         >
           {inner}
         </a>
@@ -109,7 +109,7 @@ function GridListAccentCard({
   title,
   meta,
   href,
-  accentClass = "bg-taupe-900",
+  accentClass = "bg-ground-900",
   initials,
   trailing,
   className,
@@ -117,7 +117,7 @@ function GridListAccentCard({
   const inner = (
     <div
       className={cn(
-        "flex overflow-hidden rounded-xl border border-taupe-100 bg-white shadow-natural transition-shadow",
+        "flex overflow-hidden rounded-xl border border-ground-100 bg-white shadow-natural transition-shadow",
         href && "hover:shadow-elevated",
         className,
       )}
@@ -130,10 +130,10 @@ function GridListAccentCard({
       >
         {initials}
       </div>
-      <div className="flex flex-1 items-center justify-between truncate border-l border-taupe-100 px-4 py-3">
+      <div className="flex flex-1 items-center justify-between truncate border-l border-ground-100 px-4 py-3">
         <div className="min-w-0">
-          <p className="body font-semibold text-taupe-900 truncate">{title}</p>
-          {meta && <p className="caption text-taupe-400">{meta}</p>}
+          <p className="body font-semibold text-ground-900 truncate">{title}</p>
+          {meta && <p className="caption text-ground-400">{meta}</p>}
         </div>
         {trailing && <div className="shrink-0 pl-2">{trailing}</div>}
       </div>
@@ -145,7 +145,7 @@ function GridListAccentCard({
       {href ? (
         <a
           href={href}
-          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-taupe-400/40 rounded-xl"
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ground-400/40 rounded-xl"
         >
           {inner}
         </a>
