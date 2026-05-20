@@ -13,8 +13,8 @@ const TEAM = [
 
 function SlideOverFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-[400px] overflow-hidden rounded-xl border border-taupe-100">
-      <div className="flex flex-1 items-center justify-center bg-taupe-50 p-8 body text-taupe-400">
+    <div className="flex min-h-[400px] overflow-hidden rounded-xl border border-ground-100">
+      <div className="flex flex-1 items-center justify-center bg-ground-50 p-8 body text-ground-400">
         Main page content preview
       </div>
       {children}
@@ -60,27 +60,27 @@ export default function SlideOverCreateProjectForm() {
 
   return (
     <SlideOverFrame>
-      <div className="flex w-96 flex-col bg-white border-l border-taupe-100">
-        <div className="flex items-center justify-between border-b border-taupe-100 px-6 py-4">
-          <h2 className="subheading text-taupe-900">Create project</h2>
+      <div className="flex w-96 flex-col bg-white border-l border-ground-100">
+        <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
+          <h2 className="subheading text-ground-900">Create project</h2>
           <button type="button">
             <X size={18} />
           </button>
         </div>
         <div className="flex-1 space-y-5 px-6 py-6">
           <div>
-            <label className="label text-taupe-400" htmlFor="project-name">
+            <label className="label text-ground-400" htmlFor="project-name">
               Name
             </label>
             <input
               id="project-name"
               value={projectName}
               onChange={(event) => setProjectName(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-taupe-200 bg-white px-3 py-2 body text-taupe-900 outline-none focus:border-brand-primary"
+              className="mt-2 w-full rounded-xl border border-ground-200 bg-white px-3 py-2 body text-ground-900 outline-none focus:border-brand-primary"
             />
           </div>
           <div>
-            <label className="label text-taupe-400" htmlFor="project-description">
+            <label className="label text-ground-400" htmlFor="project-description">
               Description
             </label>
             <textarea
@@ -88,37 +88,37 @@ export default function SlideOverCreateProjectForm() {
               value={projectDescription}
               onChange={(event) => setProjectDescription(event.target.value)}
               rows={4}
-              className="mt-2 w-full rounded-xl border border-taupe-200 bg-white px-3 py-2 body text-taupe-900 outline-none focus:border-brand-primary"
+              className="mt-2 w-full rounded-xl border border-ground-200 bg-white px-3 py-2 body text-ground-900 outline-none focus:border-brand-primary"
             />
           </div>
           <div>
             <div className="flex items-center justify-between">
-              <p className="label text-taupe-400">Team members</p>
+              <p className="label text-ground-400">Team members</p>
               <Badge variant="secondary">{selectedMembers.length} selected</Badge>
             </div>
             <div className="mt-3 space-y-3">
               {TEAM.map((member) => (
                 <label
                   key={member.email}
-                  className="flex items-center gap-3 rounded-xl border border-taupe-100 px-3 py-3"
+                  className="flex items-center gap-3 rounded-xl border border-ground-100 px-3 py-3"
                 >
                   <input
                     type="checkbox"
                     checked={selectedMembers.includes(member.name)}
                     onChange={() => toggleMember(member.name)}
-                    className="h-4 w-4 rounded border-taupe-300"
+                    className="h-4 w-4 rounded border-ground-300"
                   />
                   <PersonAvatar initials={member.initials} size="sm" />
                   <div className="min-w-0 flex-1">
-                    <p className="body font-medium text-taupe-900">{member.name}</p>
-                    <p className="caption text-taupe-400">{member.role}</p>
+                    <p className="body font-medium text-ground-900">{member.name}</p>
+                    <p className="caption text-ground-400">{member.role}</p>
                   </div>
                 </label>
               ))}
             </div>
           </div>
         </div>
-        <div className="border-t border-taupe-100 px-6 py-4">
+        <div className="border-t border-ground-100 px-6 py-4">
           <Button className="w-full">Create</Button>
         </div>
       </div>

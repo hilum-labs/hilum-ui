@@ -43,20 +43,20 @@ function SummaryRows() {
   const total = subtotal + shipping + tax;
 
   return (
-    <div className="space-y-3 border-t border-taupe-100 pt-4">
-      <div className="flex items-center justify-between body text-taupe-500">
+    <div className="space-y-3 border-t border-ground-100 pt-4">
+      <div className="flex items-center justify-between body text-ground-500">
         <span>Subtotal</span>
-        <span className="text-taupe-900">{formatCurrency(subtotal)}</span>
+        <span className="text-ground-900">{formatCurrency(subtotal)}</span>
       </div>
-      <div className="flex items-center justify-between body text-taupe-500">
+      <div className="flex items-center justify-between body text-ground-500">
         <span>Shipping</span>
-        <span className="text-taupe-900">{formatCurrency(shipping)}</span>
+        <span className="text-ground-900">{formatCurrency(shipping)}</span>
       </div>
-      <div className="flex items-center justify-between body text-taupe-500">
+      <div className="flex items-center justify-between body text-ground-500">
         <span>Tax</span>
-        <span className="text-taupe-900">{formatCurrency(tax)}</span>
+        <span className="text-ground-900">{formatCurrency(tax)}</span>
       </div>
-      <div className="flex items-center justify-between subheading text-taupe-900">
+      <div className="flex items-center justify-between subheading text-ground-900">
         <span>Total</span>
         <span>{formatCurrency(total)}</span>
       </div>
@@ -74,11 +74,11 @@ function OrderSummary({
   className?: string;
 }) {
   return (
-    <div className={`rounded-[28px] border border-taupe-200 bg-white p-6 shadow-natural ${className}`}>
+    <div className={`rounded-[28px] border border-ground-200 bg-white p-6 shadow-natural ${className}`}>
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="label text-taupe-400">Order summary</p>
-          <h3 className="heading mt-2 text-taupe-900">Your items</h3>
+          <p className="label text-ground-400">Order summary</p>
+          <h3 className="heading mt-2 text-ground-900">Your items</h3>
         </div>
         <Badge variant="secondary">{ORDER_PRODUCTS.length} items</Badge>
       </div>
@@ -91,11 +91,11 @@ function OrderSummary({
               className={compact ? "size-14 rounded-xl object-cover" : "size-16 rounded-2xl object-cover"}
             />
             <div className="min-w-0 flex-1">
-              <p className="body font-medium text-taupe-900">{product.name}</p>
-              <p className="caption text-taupe-500">Quantity {product.qty}</p>
-              {detailed ? <p className="caption mt-1 text-taupe-400">Waxed canvas, carry-all interior, zipper pouch.</p> : null}
+              <p className="body font-medium text-ground-900">{product.name}</p>
+              <p className="caption text-ground-500">Quantity {product.qty}</p>
+              {detailed ? <p className="caption mt-1 text-ground-400">Waxed canvas, carry-all interior, zipper pouch.</p> : null}
             </div>
-            <p className="body font-medium text-taupe-900">{formatCurrency(product.price)}</p>
+            <p className="body font-medium text-ground-900">{formatCurrency(product.price)}</p>
           </div>
         ))}
       </div>
@@ -202,10 +202,10 @@ function FormSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-[24px] border border-taupe-100 p-5">
+    <section className="rounded-[24px] border border-ground-100 p-5">
       <div className="mb-5">
-        <h3 className="subheading text-taupe-900">{title}</h3>
-        <p className="caption mt-1 text-taupe-500">{description}</p>
+        <h3 className="subheading text-ground-900">{title}</h3>
+        <p className="caption mt-1 text-ground-500">{description}</p>
       </div>
       {children}
     </section>
@@ -214,11 +214,11 @@ function FormSection({
 
 export default function SingleStepCheckout() {
   return (
-    <div className="w-full bg-taupe-50 p-6">
-      <div className="rounded-[32px] border border-taupe-200 bg-white p-8 shadow-natural">
+    <div className="w-full bg-ground-50 p-6">
+      <div className="rounded-[32px] border border-ground-200 bg-white p-8 shadow-natural">
         <div className="mb-8">
-          <p className="label text-taupe-400">Single step</p>
-          <h3 className="heading mt-2 text-taupe-900">Everything in one pass</h3>
+          <p className="label text-ground-400">Single step</p>
+          <h3 className="heading mt-2 text-ground-900">Everything in one pass</h3>
         </div>
         <div className="grid gap-6 xl:grid-cols-2">
           <FormSection title="Contact information" description="Where should we send the receipt?">
@@ -234,10 +234,10 @@ export default function SingleStepCheckout() {
           </FormSection>
         </div>
         <div className="mt-6">
-          <OrderSummary compact className="bg-taupe-50" />
+          <OrderSummary compact className="bg-ground-50" />
         </div>
         <div className="mt-6 flex items-center justify-between gap-4">
-          <p className="caption text-taupe-500">By placing the order you agree to the store terms and return policy.</p>
+          <p className="caption text-ground-500">By placing the order you agree to the store terms and return policy.</p>
           <Button>Submit order</Button>
         </div>
       </div>

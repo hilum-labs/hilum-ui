@@ -27,12 +27,12 @@ const FAQS = [
 
 export default function OffsetWithSupportingText() {
   return (
-    <section className="w-full bg-taupe-50 px-8 py-16">
+    <section className="w-full bg-ground-50 px-8 py-16">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.75fr_1.25fr]">
         <div className="space-y-4">
-          <p className="label text-taupe-400">Support</p>
-          <h2 className="heading text-taupe-900">Need a quick answer?</h2>
-          <p className="body text-taupe-500">
+          <p className="label text-ground-400">Support</p>
+          <h2 className="heading text-ground-900">Need a quick answer?</h2>
+          <p className="body text-ground-500">
             Use this treatment when the FAQ sits next to contact guidance
             or additional service context.
           </p>
@@ -50,8 +50,8 @@ export default function OffsetWithSupportingText() {
               key={item.q}
               className="rounded-2xl border border-white bg-white px-6 py-5 shadow-natural"
             >
-              <p className="body font-semibold text-taupe-900">{item.q}</p>
-              <p className="body mt-2 text-taupe-500">{item.a}</p>
+              <p className="body font-semibold text-ground-900">{item.q}</p>
+              <p className="body mt-2 text-ground-500">{item.a}</p>
             </div>
           ))}
         </div>

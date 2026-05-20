@@ -2,9 +2,9 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@hilum/ui";
 
 const INPUT_CLASS =
-  "h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
+  "h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
 const TEXTAREA_CLASS =
-  "w-full rounded-lg border border-taupe-200 bg-white px-3 py-2 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary resize-none";
+  "w-full rounded-lg border border-ground-200 bg-white px-3 py-2 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary resize-none";
 
 function Field({
   placeholder,
@@ -41,8 +41,8 @@ function InfoRow({
         <Icon className="size-4" />
       </div>
       <div>
-        <p className={`label ${dark ? "text-taupe-500" : "text-taupe-400"}`}>{label}</p>
-        <p className={`body mt-1 ${dark ? "text-white" : "text-taupe-900"}`}>{value}</p>
+        <p className={`label ${dark ? "text-ground-500" : "text-ground-400"}`}>{label}</p>
+        <p className={`body mt-1 ${dark ? "text-white" : "text-ground-900"}`}>{value}</p>
       </div>
     </div>
   );
@@ -54,8 +54,8 @@ export default function ContactSimpleTwoColumn() {
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
         <div className="max-w-lg">
           <p className="label text-brand-primary">Talk with us</p>
-          <h2 className="heading mt-4 text-taupe-900">Tell us what you are building</h2>
-          <p className="body mt-4 text-taupe-500">
+          <h2 className="heading mt-4 text-ground-900">Tell us what you are building</h2>
+          <p className="body mt-4 text-ground-500">
             Whether you need a design system audit, implementation support, or a fast consultation, the team can help you map the right next step.
           </p>
           <div className="mt-8 space-y-5">
@@ -64,7 +64,7 @@ export default function ContactSimpleTwoColumn() {
             <InfoRow icon={MapPin} label="Location" value="20 W 22nd Street, New York, NY 10010" />
           </div>
         </div>
-        <form className="rounded-2xl border border-taupe-100 bg-taupe-50 p-8">
+        <form className="rounded-2xl border border-ground-100 bg-ground-50 p-8">
           <div className="grid gap-4 sm:grid-cols-2">
             <Field placeholder="Name" />
             <Field type="email" placeholder="Email" />

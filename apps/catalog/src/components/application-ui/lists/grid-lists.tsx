@@ -87,14 +87,14 @@ export default function GridLists() {
         {CARD_PEOPLE.map(({ person, badge }) => (
           <li
             key={person.email}
-            className="rounded-2xl border border-taupe-100 bg-white p-5 shadow-natural"
+            className="rounded-2xl border border-ground-100 bg-white p-5 shadow-natural"
           >
-            <p className="subheading text-taupe-900">{person.name}</p>
-            <p className="caption mt-1 text-taupe-400">{person.title}</p>
+            <p className="subheading text-ground-900">{person.name}</p>
+            <p className="caption mt-1 text-ground-400">{person.title}</p>
             <Badge variant="secondary" className="mt-4">
               {badge}
             </Badge>
-            <p className="caption mt-5 text-taupe-500">{person.email}</p>
+            <p className="caption mt-5 text-ground-500">{person.email}</p>
           </li>
         ))}
       </ul>
@@ -103,16 +103,16 @@ export default function GridLists() {
         {CARD_PEOPLE.map(({ person }) => (
           <li
             key={person.email}
-            className="overflow-hidden rounded-2xl border border-taupe-100 bg-white shadow-natural"
+            className="overflow-hidden rounded-2xl border border-ground-100 bg-white shadow-natural"
           >
             <div className="h-20 bg-brand-primary/10" />
             <div className="px-5 pb-5">
               <div className="relative -mt-6 -mb-6">
                 <PersonAvatar person={person} size="lg" className="ring-4 ring-white" />
               </div>
-              <p className="subheading pt-10 text-taupe-900">{person.name}</p>
-              <p className="caption mt-1 text-taupe-400">{person.title}</p>
-              <p className="caption mt-4 text-taupe-500">{person.email}</p>
+              <p className="subheading pt-10 text-ground-900">{person.name}</p>
+              <p className="caption mt-1 text-ground-400">{person.title}</p>
+              <p className="caption mt-4 text-ground-500">{person.email}</p>
             </div>
           </li>
         ))}
@@ -123,16 +123,16 @@ export default function GridLists() {
           <a
             key={card.name}
             href="#"
-            className="flex items-center gap-4 rounded-xl border border-taupe-100 p-4 hover:shadow-natural"
+            className="flex items-center gap-4 rounded-xl border border-ground-100 p-4 hover:shadow-natural"
           >
             <div className="flex size-11 items-center justify-center rounded-full bg-brand-primary/10 subheading text-brand-primary">
               {card.marker}
             </div>
             <div className="flex-1">
-              <p className="body font-medium text-taupe-900">{card.name}</p>
-              <p className="caption text-taupe-400">{card.description}</p>
+              <p className="body font-medium text-ground-900">{card.name}</p>
+              <p className="caption text-ground-400">{card.description}</p>
             </div>
-            <ChevronRight size={18} className="text-taupe-300" />
+            <ChevronRight size={18} className="text-ground-300" />
           </a>
         ))}
       </div>

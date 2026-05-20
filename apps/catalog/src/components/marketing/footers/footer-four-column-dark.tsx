@@ -16,17 +16,17 @@ const SOCIALS = [
 
 function LogoMark({ dark = false }: { dark?: boolean }) {
   return (
-    <div className={`flex items-center gap-3 ${dark ? "text-white" : "text-taupe-900"}`}>
+    <div className={`flex items-center gap-3 ${dark ? "text-white" : "text-ground-900"}`}>
       <div
         className={`flex size-10 items-center justify-center rounded-xl body font-semibold ${
-          dark ? "bg-brand-primary text-white" : "bg-taupe-900 text-white"
+          dark ? "bg-brand-primary text-white" : "bg-ground-900 text-white"
         }`}
       >
         NS
       </div>
       <div>
         <p className="body font-medium">Northstar</p>
-        <p className={`caption ${dark ? "text-taupe-400" : "text-taupe-500"}`}>Design systems for product teams</p>
+        <p className={`caption ${dark ? "text-ground-400" : "text-ground-500"}`}>Design systems for product teams</p>
       </div>
     </div>
   );
@@ -41,8 +41,8 @@ function SocialButtons({ dark = false }: { dark?: boolean }) {
           aria-label={label}
           className={`flex size-9 items-center justify-center rounded-full border transition-colors ${
             dark
-              ? "border-taupe-800 bg-taupe-900 text-taupe-300 hover:border-taupe-700 hover:text-white"
-              : "border-taupe-200 bg-white text-taupe-500 hover:border-taupe-300 hover:text-taupe-900"
+              ? "border-ground-800 bg-ground-900 text-ground-300 hover:border-ground-700 hover:text-white"
+              : "border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
           }`}
         >
           <Icon className="size-4" />
@@ -65,7 +65,7 @@ function FooterLinks({
 }) {
   return (
     <div>
-      <h3 className={`label ${dark ? "text-white" : "text-taupe-900"}`}>{title}</h3>
+      <h3 className={`label ${dark ? "text-white" : "text-ground-900"}`}>{title}</h3>
       <ul className="mt-4 space-y-3">
         {links.map((link, index) => (
           <li key={link}>
@@ -75,8 +75,8 @@ function FooterLinks({
                 active && index === 0
                   ? "text-brand-primary"
                   : dark
-                    ? "text-taupe-400 hover:text-white"
-                    : "text-taupe-500 hover:text-taupe-900"
+                    ? "text-ground-400 hover:text-white"
+                    : "text-ground-500 hover:text-ground-900"
               }`}
             >
               {link}
@@ -90,12 +90,12 @@ function FooterLinks({
 
 export default function FooterFourColumnDark() {
   return (
-    <footer className="w-full bg-taupe-950 px-8 py-14 text-white">
+    <footer className="w-full bg-ground-950 px-8 py-14 text-white">
       <div className="mx-auto max-w-6xl">
-        <div className="grid gap-8 border-b border-taupe-900 pb-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-8 border-b border-ground-900 pb-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div className="max-w-sm">
             <LogoMark dark />
-            <p className="body mt-5 text-taupe-400">
+            <p className="body mt-5 text-ground-400">
               Durable primitives and purposeful page sections for teams designing at scale.
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function FooterFourColumnDark() {
         </div>
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
           <SocialButtons dark />
-          <p className="caption text-taupe-500">© 2026 Northstar. All rights reserved.</p>
+          <p className="caption text-ground-500">© 2026 Northstar. All rights reserved.</p>
         </div>
       </div>
     </footer>

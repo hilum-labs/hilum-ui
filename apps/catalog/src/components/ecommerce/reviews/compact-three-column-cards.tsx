@@ -40,7 +40,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5 text-sm">
       {Array.from({ length: 5 }).map((_, index) => (
-        <span key={index} className={index < rating ? "text-brand-secondary" : "text-taupe-200"}>
+        <span key={index} className={index < rating ? "text-brand-secondary" : "text-ground-200"}>
           {index < rating ? "★" : "☆"}
         </span>
       ))}
@@ -52,7 +52,7 @@ export default function CompactThreeColumnCards() {
   const [activeAuthor, setActiveAuthor] = useState<ReviewAuthor>(reviews[1].author);
 
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white p-6">
+    <section className="w-full rounded-xl border border-ground-100 bg-white p-6">
       <div className="grid gap-4 md:grid-cols-3">
         {reviews.map((review, index) => {
           const active = activeAuthor === review.author;
@@ -64,18 +64,18 @@ export default function CompactThreeColumnCards() {
               className={`rounded-[22px] border p-5 text-left transition ${
                 active
                   ? "border-brand-primary/40 bg-brand-primary/5"
-                  : "border-taupe-100 hover:border-taupe-200 hover:bg-taupe-50"
+                  : "border-ground-100 hover:border-ground-200 hover:bg-ground-50"
               }`}
             >
               <div className="flex items-center justify-between gap-3">
-                <p className="body font-semibold text-taupe-900">{review.author}</p>
-                <p className="caption text-taupe-400">{reviewDates[index]}</p>
+                <p className="body font-semibold text-ground-900">{review.author}</p>
+                <p className="caption text-ground-400">{reviewDates[index]}</p>
               </div>
               <div className="mt-3">
                 <Stars rating={review.rating} />
               </div>
-              <p className="subheading mt-4 text-taupe-900">{review.title}</p>
-              <p className="body mt-3 leading-relaxed text-taupe-500">{review.body}</p>
+              <p className="subheading mt-4 text-ground-900">{review.title}</p>
+              <p className="body mt-3 leading-relaxed text-ground-500">{review.body}</p>
             </button>
           );
         })}

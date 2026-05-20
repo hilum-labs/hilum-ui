@@ -9,12 +9,12 @@ export default function SidebarExpandable() {
 
   return (
     <div className="p-8">
-      <div className="rounded-xl border border-taupe-100 overflow-hidden w-56 bg-white p-2">
+      <div className="rounded-xl border border-ground-100 overflow-hidden w-56 bg-white p-2">
         <div className="space-y-1">
           <button
             type="button"
             onClick={() => setAnalyticsOpen((value) => !value)}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-taupe-700 transition-colors hover:bg-taupe-50"
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-ground-700 transition-colors hover:bg-ground-50"
           >
             <ChevronRight size={16} className={`transition-transform ${analyticsOpen ? "rotate-90" : ""}`} />
             Analytics
@@ -29,7 +29,7 @@ export default function SidebarExpandable() {
                   className={`block w-full rounded-lg px-3 py-2 text-left text-sm ${
                     activeSubItem === item
                       ? "bg-brand-primary/10 text-brand-primary font-medium"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   }`}
                 >
                   {item}
@@ -40,7 +40,7 @@ export default function SidebarExpandable() {
           <button
             type="button"
             onClick={() => setCustomersOpen((value) => !value)}
-            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-taupe-700 transition-colors hover:bg-taupe-50"
+            className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-ground-700 transition-colors hover:bg-ground-50"
           >
             <ChevronRight size={16} className={`transition-transform ${customersOpen ? "rotate-90" : ""}`} />
             Customers
@@ -55,7 +55,7 @@ export default function SidebarExpandable() {
                   className={`block w-full rounded-lg px-3 py-2 text-left text-sm ${
                     activeSubItem === item
                       ? "bg-brand-primary/10 text-brand-primary font-medium"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   }`}
                 >
                   {item}

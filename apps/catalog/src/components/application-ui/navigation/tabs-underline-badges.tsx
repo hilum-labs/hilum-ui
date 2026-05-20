@@ -10,7 +10,7 @@ export default function TabsUnderlineBadges() {
 
   return (
     <div className="w-full bg-white px-6 py-5">
-      <nav className="flex flex-wrap gap-5 border-b border-taupe-200">
+      <nav className="flex flex-wrap gap-5 border-b border-ground-200">
         {tabItems.map((tab) => (
           <button
             key={tab}
@@ -19,7 +19,7 @@ export default function TabsUnderlineBadges() {
             className={`flex items-center gap-2 border-b-2 pb-2 px-1 text-sm transition-colors ${
               activeTab === tab
                 ? "border-brand-primary text-brand-primary font-medium"
-                : "border-transparent text-taupe-500 hover:text-taupe-700"
+                : "border-transparent text-ground-500 hover:text-ground-700"
             }`}
           >
             <span>{tab}</span>

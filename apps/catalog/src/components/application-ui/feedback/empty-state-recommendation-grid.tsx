@@ -30,14 +30,14 @@ export default function EmptyStateRecommendationGrid() {
     <div className="w-full bg-white px-6 py-10">
       <div className="grid gap-4 md:grid-cols-2">
         {cards.map((card) => (
-          <div key={card.title} className="rounded-xl border border-taupe-100 p-6">
+          <div key={card.title} className="rounded-xl border border-ground-100 p-6">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-primary/10">
                 <card.icon size={18} className="text-brand-primary" />
               </div>
-              <h3 className="heading text-taupe-900">{card.title}</h3>
+              <h3 className="heading text-ground-900">{card.title}</h3>
             </div>
-            <p className="body mt-2 text-taupe-600">{card.description}</p>
+            <p className="body mt-2 text-ground-600">{card.description}</p>
             <Button size="sm" variant="outline" className="mt-4">
               Connect
             </Button>

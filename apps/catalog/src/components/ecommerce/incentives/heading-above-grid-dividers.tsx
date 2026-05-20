@@ -56,8 +56,8 @@ function IconFeature({
           <Icon size={24} strokeWidth={1.8} />
         </IconContainer>
       </div>
-      <p className="subheading text-taupe-900">{title}</p>
-      <p className={`mt-2 ${detailed ? "body leading-relaxed text-taupe-500" : "caption leading-relaxed text-taupe-400"}`}>
+      <p className="subheading text-ground-900">{title}</p>
+      <p className={`mt-2 ${detailed ? "body leading-relaxed text-ground-500" : "caption leading-relaxed text-ground-400"}`}>
         {description}
       </p>
     </div>
@@ -66,18 +66,18 @@ function IconFeature({
 
 export default function HeadingAboveGridDividers() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white px-6 py-12">
+    <section className="w-full rounded-xl border border-ground-100 bg-white px-6 py-12">
       <div className="max-w-xl">
-        <h2 className="heading text-taupe-900">Designed to remove hesitation before checkout</h2>
-        <p className="body mt-3 text-taupe-500">
+        <h2 className="heading text-ground-900">Designed to remove hesitation before checkout</h2>
+        <p className="body mt-3 text-ground-500">
           A compact trust strip for high-intent shopping moments with clear, readable details.
         </p>
       </div>
-      <div className="mt-8 grid gap-0 rounded-[24px] border border-taupe-100 md:grid-cols-3">
+      <div className="mt-8 grid gap-0 rounded-[24px] border border-ground-100 md:grid-cols-3">
         {coreIncentives.map((item, index) => (
           <div
             key={item.title}
-            className={`px-6 py-6 ${index < coreIncentives.length - 1 ? "border-b border-taupe-100 md:border-b-0 md:border-r" : ""}`}
+            className={`px-6 py-6 ${index < coreIncentives.length - 1 ? "border-b border-ground-100 md:border-b-0 md:border-r" : ""}`}
           >
             <IconFeature {...item} detailed />
           </div>

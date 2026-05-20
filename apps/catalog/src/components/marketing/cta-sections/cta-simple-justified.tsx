@@ -5,10 +5,10 @@ export default function CTASimpleJustified() {
     <section className="w-full bg-white px-6 py-16 sm:px-10 lg:px-14">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
-          <h2 className="heading text-taupe-900">
+          <h2 className="heading text-ground-900">
             Turn launch prep into a repeatable system.
           </h2>
-          <p className="body mt-4 text-taupe-500">
+          <p className="body mt-4 text-ground-500">
             Standardize how teams brief, review, and deliver so high-stakes
             work feels coordinated instead of improvised.
           </p>

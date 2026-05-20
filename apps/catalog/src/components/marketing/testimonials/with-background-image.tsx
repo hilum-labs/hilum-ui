@@ -25,7 +25,7 @@ function QuoteMarks({ className = "" }: { className?: string }) {
 
 export default function WithBackgroundImage() {
   return (
-    <section className="relative w-full overflow-hidden bg-taupe-900 px-8 py-24">
+    <section className="relative w-full overflow-hidden bg-ground-900 px-8 py-24">
       <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.1),transparent_45%,rgba(255,77,1,0.14))]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_55%)]" />
 
@@ -38,7 +38,7 @@ export default function WithBackgroundImage() {
           <p className="subheading font-semibold text-white">
             {TESTIMONIAL.name}
           </p>
-          <p className="body text-taupe-300">
+          <p className="body text-ground-300">
             {TESTIMONIAL.title}
           </p>
         </div>

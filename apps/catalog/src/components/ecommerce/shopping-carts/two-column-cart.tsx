@@ -77,14 +77,14 @@ function CartRow({
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <a href={item.href} className="subheading text-taupe-900 transition hover:text-brand-primary">
+            <a href={item.href} className="subheading text-ground-900 transition hover:text-brand-primary">
               {item.name}
             </a>
-            <p className="caption mt-1 text-taupe-500">
+            <p className="caption mt-1 text-ground-500">
               {item.color} / {item.size}
             </p>
           </div>
-          <p className="body font-medium text-taupe-900">{formatCurrency(item.price * quantity)}</p>
+          <p className="body font-medium text-ground-900">{formatCurrency(item.price * quantity)}</p>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           {quantityControl}
@@ -104,12 +104,12 @@ export default function TwoColumnCart() {
 
   return (
     <div className="w-full bg-white p-6">
-      <div className="grid gap-8 rounded-[32px] border border-taupe-200 bg-taupe-50 p-6 lg:grid-cols-[1fr_320px]">
+      <div className="grid gap-8 rounded-[32px] border border-ground-200 bg-ground-50 p-6 lg:grid-cols-[1fr_320px]">
         <div className="rounded-[28px] bg-white p-6 shadow-natural">
           <div className="mb-6 flex items-center justify-between">
             <div>
-              <p className="label text-taupe-400">Cart review</p>
-              <h3 className="heading mt-2 text-taupe-900">Items in your bag</h3>
+              <p className="label text-ground-400">Cart review</p>
+              <h3 className="heading mt-2 text-ground-900">Items in your bag</h3>
             </div>
             <Badge variant="secondary">{CART_ITEMS.length} products</Badge>
           </div>
@@ -150,29 +150,29 @@ export default function TwoColumnCart() {
             ))}
           </div>
         </div>
-        <div className="rounded-[28px] border border-taupe-200 bg-white p-6 shadow-natural lg:sticky lg:top-6 lg:self-start">
-          <p className="label text-taupe-400">Order summary</p>
-          <h3 className="heading mt-2 text-taupe-900">Ready for checkout</h3>
-          <div className="mt-6 space-y-3 border-t border-taupe-100 pt-6">
-            <div className="flex items-center justify-between body text-taupe-500">
+        <div className="rounded-[28px] border border-ground-200 bg-white p-6 shadow-natural lg:sticky lg:top-6 lg:self-start">
+          <p className="label text-ground-400">Order summary</p>
+          <h3 className="heading mt-2 text-ground-900">Ready for checkout</h3>
+          <div className="mt-6 space-y-3 border-t border-ground-100 pt-6">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Subtotal</span>
-              <span className="text-taupe-900">{formatCurrency(subtotalTwo)}</span>
+              <span className="text-ground-900">{formatCurrency(subtotalTwo)}</span>
             </div>
-            <div className="flex items-center justify-between body text-taupe-500">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Shipping</span>
-              <span className="text-taupe-900">{formatCurrency(shippingTwo)}</span>
+              <span className="text-ground-900">{formatCurrency(shippingTwo)}</span>
             </div>
-            <div className="flex items-center justify-between body text-taupe-500">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Tax</span>
-              <span className="text-taupe-900">{formatCurrency(taxTwo)}</span>
+              <span className="text-ground-900">{formatCurrency(taxTwo)}</span>
             </div>
           </div>
-          <div className="mt-6 rounded-2xl bg-taupe-50 p-4">
+          <div className="mt-6 rounded-2xl bg-ground-50 p-4">
             <div className="flex items-center justify-between">
-              <p className="subheading text-taupe-900">Total</p>
-              <p className="heading text-taupe-900">{formatCurrency(subtotalTwo + shippingTwo + taxTwo)}</p>
+              <p className="subheading text-ground-900">Total</p>
+              <p className="heading text-ground-900">{formatCurrency(subtotalTwo + shippingTwo + taxTwo)}</p>
             </div>
-            <p className="caption mt-2 text-taupe-500">Delivery in 2 to 4 business days.</p>
+            <p className="caption mt-2 text-ground-500">Delivery in 2 to 4 business days.</p>
           </div>
           <Button className="mt-6 w-full">Checkout</Button>
         </div>

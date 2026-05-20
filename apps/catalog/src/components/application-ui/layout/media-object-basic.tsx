@@ -10,8 +10,8 @@ export default function MediaObjectBasic() {
           </AvatarFallback>
         </Avatar>
         <div>
-          <p className="subheading text-taupe-900">Jane Doe</p>
-          <p className="body text-taupe-500">
+          <p className="subheading text-ground-900">Jane Doe</p>
+          <p className="body text-ground-500">
             Full-stack engineer with expertise in React and Node.js. Passionate
             about clean code.
           </p>

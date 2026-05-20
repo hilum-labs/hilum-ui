@@ -45,7 +45,7 @@ export default function FourUpIconRow() {
   const [highlighted, setHighlighted] = useState(incentives[0].title);
 
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white px-6 py-12">
+    <section className="w-full rounded-xl border border-ground-100 bg-white px-6 py-12">
       <div className="grid gap-4 md:grid-cols-4">
         {gridFour.map((item) => (
           <button
@@ -55,14 +55,14 @@ export default function FourUpIconRow() {
             className={`rounded-[24px] border p-5 text-left transition ${
               highlighted === item.title
                 ? "border-brand-primary/40 bg-brand-primary/5"
-                : "border-taupe-100 bg-taupe-50 hover:border-taupe-200"
+                : "border-ground-100 bg-ground-50 hover:border-ground-200"
             }`}
           >
             <IconContainer>
               <item.icon size={24} strokeWidth={1.8} />
             </IconContainer>
-            <p className="subheading mt-4 text-taupe-900">{item.title}</p>
-            <p className="caption mt-2 leading-relaxed text-taupe-400">{item.description}</p>
+            <p className="subheading mt-4 text-ground-900">{item.title}</p>
+            <p className="caption mt-2 leading-relaxed text-ground-400">{item.description}</p>
           </button>
         ))}
       </div>

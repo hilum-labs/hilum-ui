@@ -39,13 +39,13 @@ function CheckboxRow({
   onChange: () => void;
 }) {
   return (
-    <label className="flex items-center justify-between gap-3 rounded-2xl border border-taupe-100 bg-white px-3 py-2 text-taupe-600">
+    <label className="flex items-center justify-between gap-3 rounded-2xl border border-ground-100 bg-white px-3 py-2 text-ground-600">
       <span className="body">{label}</span>
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="h-4 w-4 rounded border-taupe-300 text-brand-primary focus:ring-brand-primary"
+        className="h-4 w-4 rounded border-ground-300 text-brand-primary focus:ring-brand-primary"
       />
     </label>
   );
@@ -61,7 +61,7 @@ function MenuPanel({
   onToggle: (value: string) => void;
 }) {
   return (
-    <div className="absolute left-0 top-full z-10 mt-3 w-60 rounded-3xl border border-taupe-100 bg-white p-4 shadow-lg">
+    <div className="absolute left-0 top-full z-10 mt-3 w-60 rounded-3xl border border-ground-100 bg-white p-4 shadow-lg">
       <div className="space-y-2">
         {options.map((option) => (
           <CheckboxRow
@@ -92,8 +92,8 @@ export default function CenteredDropdowns() {
       <div className="mx-auto max-w-4xl">
         <div className="text-center">
           <p className="label text-brand-primary">Seasonal selection</p>
-          <h3 className="display mt-3 text-taupe-900">New Arrivals</h3>
-          <p className="body mx-auto mt-4 max-w-2xl text-taupe-600">
+          <h3 className="display mt-3 text-ground-900">New Arrivals</h3>
+          <p className="body mx-auto mt-4 max-w-2xl text-ground-600">
             A flexible browsing pattern for launches, editorial collections, or
             short-term merchandising campaigns.
           </p>
@@ -109,8 +109,8 @@ export default function CenteredDropdowns() {
                 }
                 className={`flex items-center gap-2 rounded-full border px-4 py-2 body transition-colors ${
                   centeredOpen === menu
-                    ? "border-brand-primary bg-brand-primary/5 text-taupe-900"
-                    : "border-taupe-200 bg-white text-taupe-600 hover:border-taupe-300"
+                    ? "border-brand-primary bg-brand-primary/5 text-ground-900"
+                    : "border-ground-200 bg-white text-ground-600 hover:border-ground-300"
                 }`}
               >
                 {menu}

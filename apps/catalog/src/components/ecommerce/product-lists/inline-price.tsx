@@ -35,16 +35,16 @@ const PRODUCTS = [
 export default function InlinePrice() {
   return (
     <section className="w-full bg-white px-6 py-8 md:px-8">
-      <div className="overflow-hidden rounded-[2rem] border border-taupe-100 bg-white">
+      <div className="overflow-hidden rounded-[2rem] border border-ground-100 bg-white">
         {PRODUCTS.map((product) => (
           <article
             key={product.name}
-            className="grid gap-4 border-b border-taupe-100 px-5 py-4 last:border-b-0 sm:grid-cols-[96px_1fr]"
+            className="grid gap-4 border-b border-ground-100 px-5 py-4 last:border-b-0 sm:grid-cols-[96px_1fr]"
           >
             <img src={product.image} alt={product.name} className="aspect-square w-24 rounded-2xl object-cover" />
             <div className="flex items-center justify-between gap-4">
-              <h3 className="body font-medium text-taupe-900">{product.name}</h3>
-              <p className="body text-taupe-500">{product.price}</p>
+              <h3 className="body font-medium text-ground-900">{product.name}</h3>
+              <p className="body text-ground-500">{product.price}</p>
             </div>
           </article>
         ))}

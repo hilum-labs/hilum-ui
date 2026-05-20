@@ -59,7 +59,7 @@ export default function ThreeColumnDescription() {
         {DESCRIPTION_CATEGORIES.map((category) => (
           <article
             key={category.name}
-            className="overflow-hidden rounded-[28px] border border-taupe-100 bg-white"
+            className="overflow-hidden rounded-[28px] border border-ground-100 bg-white"
           >
             <div className="overflow-hidden">
               <CategoryImage
@@ -69,9 +69,9 @@ export default function ThreeColumnDescription() {
               />
             </div>
             <div className="p-5">
-              <p className="subheading text-taupe-900">{category.name}</p>
-              <p className="body mt-3 text-taupe-600">{category.description}</p>
-              <p className="caption mt-4 text-taupe-400">{category.count}</p>
+              <p className="subheading text-ground-900">{category.name}</p>
+              <p className="body mt-3 text-ground-600">{category.description}</p>
+              <p className="caption mt-4 text-ground-400">{category.count}</p>
             </div>
           </article>
         ))}

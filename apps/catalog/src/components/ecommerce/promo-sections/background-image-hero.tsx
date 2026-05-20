@@ -10,11 +10,11 @@ export default function BackgroundImageHero() {
   return (
     <div className="relative min-h-[320px] w-full overflow-hidden rounded-xl">
       <img src={images.main} alt="Workspace accessories" className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-taupe-900/60" />
+      <div className="absolute inset-0 bg-ground-900/60" />
       <div className="relative flex min-h-[320px] flex-col items-center justify-center px-8 text-center">
         <Badge variant="warning">New arrivals</Badge>
         <h2 className="display mt-5 max-w-lg text-white">Level up your desk</h2>
-        <p className="body mt-3 max-w-md text-taupe-100">
+        <p className="body mt-3 max-w-md text-ground-100">
           Warm materials, quiet colors, and smart accessories built for everyday focus.
         </p>
         <div className="mt-6">

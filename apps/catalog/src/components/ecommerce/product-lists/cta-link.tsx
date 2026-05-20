@@ -28,15 +28,15 @@ export default function CtaLink() {
       <div className="grid gap-6 lg:grid-cols-3">
         {PRODUCTS.map((product) => (
           <article key={product.name}>
-            <div className="overflow-hidden rounded-3xl bg-taupe-100">
+            <div className="overflow-hidden rounded-3xl bg-ground-100">
               <img src={product.image} alt={product.name} className="aspect-[4/3] w-full object-cover" />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
               <div>
-                <h3 className="subheading text-taupe-900">{product.name}</h3>
-                <p className="caption mt-1 text-taupe-400">{product.description}</p>
+                <h3 className="subheading text-ground-900">{product.name}</h3>
+                <p className="caption mt-1 text-ground-400">{product.description}</p>
               </div>
-              <p className="body text-taupe-500">{product.price}</p>
+              <p className="body text-ground-500">{product.price}</p>
             </div>
           </article>
         ))}

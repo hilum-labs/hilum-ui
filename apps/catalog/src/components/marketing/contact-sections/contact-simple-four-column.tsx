@@ -33,14 +33,14 @@ function ContactCard({
   details: readonly string[];
 }) {
   return (
-    <article className="rounded-2xl border border-taupe-100 bg-white p-6">
+    <article className="rounded-2xl border border-ground-100 bg-white p-6">
       <div className="flex size-12 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary">
         <Icon className="size-5" />
       </div>
-      <h3 className="subheading mt-5 text-taupe-900">{title}</h3>
+      <h3 className="subheading mt-5 text-ground-900">{title}</h3>
       <div className="mt-3 space-y-1">
         {details.map((detail) => (
-          <p key={detail} className="body text-taupe-500">
+          <p key={detail} className="body text-ground-500">
             {detail}
           </p>
         ))}
@@ -55,7 +55,7 @@ export default function ContactSimpleFourColumn() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <p className="label text-brand-primary">Reach the right team</p>
-          <h2 className="heading mt-4 text-taupe-900">Choose the fastest way to contact us</h2>
+          <h2 className="heading mt-4 text-ground-900">Choose the fastest way to contact us</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {CONTACT_METHODS.map((method) => (

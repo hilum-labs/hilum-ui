@@ -28,8 +28,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -72,19 +72,19 @@ export default function Selects() {
                 <SelectItem value="ca">
                   <div className="flex w-full items-center justify-between gap-4">
                     <span>Canada</span>
-                    <span className="caption text-taupe-400">CA</span>
+                    <span className="caption text-ground-400">CA</span>
                   </div>
                 </SelectItem>
                 <SelectItem value="mx">
                   <div className="flex w-full items-center justify-between gap-4">
                     <span>Mexico</span>
-                    <span className="caption text-taupe-400">MX</span>
+                    <span className="caption text-ground-400">MX</span>
                   </div>
                 </SelectItem>
                 <SelectItem value="us">
                   <div className="flex w-full items-center justify-between gap-4">
                     <span>United States</span>
-                    <span className="caption text-taupe-400">US</span>
+                    <span className="caption text-ground-400">US</span>
                   </div>
                 </SelectItem>
               </SelectContent>
@@ -107,8 +107,8 @@ export default function Selects() {
                     </AvatarFallback>
                   </Avatar>
                   <div className="text-left">
-                    <p className="body text-taupe-900">{activePerson.name}</p>
-                    <p className="caption text-taupe-400">{activePerson.role}</p>
+                    <p className="body text-ground-900">{activePerson.name}</p>
+                    <p className="caption text-ground-400">{activePerson.role}</p>
                   </div>
                 </div>
               </SelectTrigger>
@@ -122,8 +122,8 @@ export default function Selects() {
                         </AvatarFallback>
                       </Avatar>
                       <div>
-                        <p className="body text-taupe-900">{person.name}</p>
-                        <p className="caption text-taupe-400">{person.role}</p>
+                        <p className="body text-ground-900">{person.name}</p>
+                        <p className="caption text-ground-400">{person.role}</p>
                       </div>
                     </div>
                   </SelectItem>

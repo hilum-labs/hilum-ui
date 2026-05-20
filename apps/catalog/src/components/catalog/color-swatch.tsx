@@ -30,7 +30,7 @@ export function ColorSwatch({
     <button onClick={handleCopy} className="group flex flex-col gap-2 text-left">
       <div
         className={cn(
-          "relative w-full overflow-hidden rounded-lg transition-all group-hover:ring-2 group-hover:ring-taupe-900/10 group-hover:ring-offset-2",
+          "relative w-full overflow-hidden rounded-lg transition-all group-hover:ring-2 group-hover:ring-ground-900/10 group-hover:ring-offset-2",
           size === "md" ? "h-14" : "h-9"
         )}
         style={{ backgroundColor: hex }}
@@ -38,7 +38,7 @@ export function ColorSwatch({
         <div
           className={cn(
             "absolute inset-0 flex items-center justify-center rounded-lg opacity-0 transition-opacity group-hover:opacity-100",
-            lightText ? "text-white" : "text-taupe-900"
+            lightText ? "text-white" : "text-ground-900"
           )}
         >
           {copied ? (
@@ -49,10 +49,10 @@ export function ColorSwatch({
         </div>
       </div>
       <div className="min-w-0">
-        <p className="truncate text-[11px] font-semibold text-taupe-700">{name}</p>
-        <p className="font-mono caption-xs text-taupe-400">{hex}</p>
+        <p className="truncate text-[11px] font-semibold text-ground-700">{name}</p>
+        <p className="font-mono caption-xs text-ground-400">{hex}</p>
         {usage && (
-          <p className="mt-0.5 caption-xs leading-tight text-taupe-300">{usage}</p>
+          <p className="mt-0.5 caption-xs leading-tight text-ground-300">{usage}</p>
         )}
       </div>
     </button>
@@ -83,24 +83,24 @@ export function TokenRow({ token, value, hex, usage, lightText = true }: TokenRo
   return (
     <button
       onClick={handleCopy}
-      className="group flex w-full items-center gap-4 rounded-lg px-4 py-3 text-left transition-colors hover:bg-taupe-50"
+      className="group flex w-full items-center gap-4 rounded-lg px-4 py-3 text-left transition-colors hover:bg-ground-50"
     >
       {/* Color dot */}
       <div
-        className="size-6 shrink-0 rounded-md border border-taupe-100"
+        className="size-6 shrink-0 rounded-md border border-ground-100"
         style={{ backgroundColor: hex }}
       />
       {/* Token name */}
       <div className="min-w-0 flex-1">
-        <p className="font-mono text-xs font-medium text-taupe-900">--{token}</p>
-        <p className="caption-xs text-taupe-400">{usage}</p>
+        <p className="font-mono text-xs font-medium text-ground-900">--{token}</p>
+        <p className="caption-xs text-ground-400">{usage}</p>
       </div>
       {/* Value */}
-      <span className="shrink-0 rounded bg-taupe-100 px-2 py-0.5 font-mono caption-xs text-taupe-600">
+      <span className="shrink-0 rounded bg-ground-100 px-2 py-0.5 font-mono caption-xs text-ground-600">
         {value}
       </span>
       {/* Copy feedback */}
-      <span className="w-12 shrink-0 text-right caption-xs font-medium text-taupe-300 opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="w-12 shrink-0 text-right caption-xs font-medium text-ground-300 opacity-0 transition-opacity group-hover:opacity-100">
         {copied ? "Copied!" : "Copy"}
       </span>
     </button>

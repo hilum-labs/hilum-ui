@@ -15,10 +15,10 @@ export default function StepsBullets() {
                   ? "h-3 w-3 bg-brand-primary"
                   : index === currentStep
                     ? "h-3 w-3 border-2 border-brand-primary bg-white"
-                    : "h-3 w-3 bg-taupe-200"
+                    : "h-3 w-3 bg-ground-200"
               }`}
             />
-            <span className={`body ${index === currentStep ? "font-medium text-taupe-900" : "text-taupe-500"}`}>
+            <span className={`body ${index === currentStep ? "font-medium text-ground-900" : "text-ground-500"}`}>
               {step}
             </span>
           </li>

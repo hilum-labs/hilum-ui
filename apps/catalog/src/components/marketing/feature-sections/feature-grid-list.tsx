@@ -38,28 +38,28 @@ export default function FeatureGridList() {
   return (
     <section className="w-full bg-white px-8 py-16 md:px-12">
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.95fr_1.35fr]">
-        <div className="rounded-[2rem] bg-taupe-900 p-8 text-white shadow-elevated">
+        <div className="rounded-[2rem] bg-ground-900 p-8 text-white shadow-elevated">
           <Badge variant="brand" className="mb-6">Control tower</Badge>
           <h3 className="heading text-white">Launch a clearer story across every channel</h3>
-          <p className="body mt-3 text-taupe-300">
+          <p className="body mt-3 text-ground-300">
             Manage content, approval flow, and performance signals in one operating layer designed for high-velocity teams.
           </p>
           <div className="mt-10 rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
-            <p className="caption text-taupe-400">Average launch prep time</p>
+            <p className="caption text-ground-400">Average launch prep time</p>
             <p className="mt-3 text-6xl font-semibold tracking-tight text-brand-secondary">3.2x</p>
-            <p className="body mt-3 text-taupe-300">faster than teams managing work across docs, tickets, and ad hoc review threads.</p>
+            <p className="body mt-3 text-ground-300">faster than teams managing work across docs, tickets, and ad hoc review threads.</p>
           </div>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <article key={feature.name} className="rounded-[1.5rem] border border-taupe-100 bg-taupe-50 p-5">
+              <article key={feature.name} className="rounded-[1.5rem] border border-ground-100 bg-ground-50 p-5">
                 <div className="mb-4 flex size-11 items-center justify-center rounded-2xl bg-white text-brand-primary shadow-natural">
                   <Icon className="size-5" />
                 </div>
-                <h4 className="subheading text-taupe-900">{feature.name}</h4>
-                <p className="body mt-2 text-taupe-500">{feature.description}</p>
+                <h4 className="subheading text-ground-900">{feature.name}</h4>
+                <p className="body mt-2 text-ground-500">{feature.description}</p>
               </article>
             );
           })}

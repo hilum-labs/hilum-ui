@@ -13,7 +13,7 @@ function PageNumber({
     <button
       type="button"
       className={`flex h-8 w-8 items-center justify-center rounded-md text-sm transition-colors ${
-        current ? "bg-brand-primary text-white" : "text-taupe-700 hover:bg-taupe-50"
+        current ? "bg-brand-primary text-white" : "text-ground-700 hover:bg-ground-50"
       }`}
     >
       {children}
@@ -27,7 +27,7 @@ export default function PaginationCentered() {
       <nav className="flex items-center justify-center gap-1">
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-md text-taupe-700 transition-colors hover:bg-taupe-50"
+          className="flex h-8 w-8 items-center justify-center rounded-md text-ground-700 transition-colors hover:bg-ground-50"
         >
           <ChevronLeft size={16} />
         </button>
@@ -36,13 +36,13 @@ export default function PaginationCentered() {
             {page}
           </PageNumber>
         ))}
-        <span className="px-1 text-taupe-400">…</span>
+        <span className="px-1 text-ground-400">…</span>
         {[8, 9, 10].map((page) => (
           <PageNumber key={page}>{page}</PageNumber>
         ))}
         <button
           type="button"
-          className="flex h-8 w-8 items-center justify-center rounded-md text-taupe-700 transition-colors hover:bg-taupe-50"
+          className="flex h-8 w-8 items-center justify-center rounded-md text-ground-700 transition-colors hover:bg-ground-50"
         >
           <ChevronRight size={16} />
         </button>

@@ -133,20 +133,20 @@ export default function AtomsPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Atoms</span>
+          <span className="font-semibold text-ground-900">Atoms</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Atoms</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Atoms</h1>
+        <p className="body max-w-md text-ground-400">
           The smallest functional units of the design system. These primitives
           are the foundation for all molecules and blocks.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">{totalComponents} components</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Based on shadcn/ui · Radix UI</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">{totalComponents} components</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Based on shadcn/ui · Radix UI</p>
         </div>
       </div>
 
@@ -156,8 +156,8 @@ export default function AtomsPage() {
           <section key={group.label}>
             {/* Section heading */}
             <div className="mb-6 flex items-center gap-3">
-              <h2 className="label text-taupe-400">{group.label}</h2>
-              <div className="h-px flex-1 bg-taupe-100" />
+              <h2 className="label text-ground-400">{group.label}</h2>
+              <div className="h-px flex-1 bg-ground-100" />
             </div>
 
             {/* Component grid */}
@@ -173,10 +173,10 @@ export default function AtomsPage() {
                         {CATEGORY_LABEL[component.category]}
                       </Badge>
                     </div>
-                    <CardTitle className="subheading text-taupe-900">
+                    <CardTitle className="subheading text-ground-900">
                       {component.name}
                     </CardTitle>
-                    <CardDescription className="caption leading-relaxed text-taupe-400">
+                    <CardDescription className="caption leading-relaxed text-ground-400">
                       {component.description}
                     </CardDescription>
                   </CardHeader>
@@ -185,7 +185,7 @@ export default function AtomsPage() {
                       asChild
                       variant="ghost"
                       size="sm"
-                      className="h-auto px-0 py-0 text-taupe-500 hover:text-taupe-900 hover:bg-transparent"
+                      className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
                     >
                       <Link to={`/atoms/${component.slug}`}>
                         View component →

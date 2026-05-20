@@ -32,15 +32,15 @@ function IconContainer({ children }: { children: ReactNode }) {
 
 export default function DetailedIconGrid() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white px-6 py-12">
+    <section className="w-full rounded-xl border border-ground-100 bg-white px-6 py-12">
       <div className="grid gap-6 md:grid-cols-3">
         {coreIncentives.map((item) => (
-          <div key={item.title} className="rounded-[24px] border border-taupe-100 bg-taupe-50 p-6">
+          <div key={item.title} className="rounded-[24px] border border-ground-100 bg-ground-50 p-6">
             <IconContainer>
               <item.icon size={24} strokeWidth={1.8} />
             </IconContainer>
-            <p className="subheading mt-4 text-taupe-900">{item.title}</p>
-            <p className="body mt-3 leading-relaxed text-taupe-500">{item.description}</p>
+            <p className="subheading mt-4 text-ground-900">{item.title}</p>
+            <p className="body mt-3 leading-relaxed text-ground-500">{item.description}</p>
           </div>
         ))}
       </div>

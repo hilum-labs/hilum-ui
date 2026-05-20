@@ -6,8 +6,8 @@ import ModalSimpleAlert from "@/components/application-ui/overlays/modal-simple-
 import modalSimpleAlertSource from "@/components/application-ui/overlays/modal-simple-alert?raw";
 import ModalSimpleWithDismiss from "@/components/application-ui/overlays/modal-simple-with-dismiss";
 import modalSimpleWithDismissSource from "@/components/application-ui/overlays/modal-simple-with-dismiss?raw";
-import ModalWithTaupeFooter from "@/components/application-ui/overlays/modal-with-taupe-footer";
-import modalWithTaupeFooterSource from "@/components/application-ui/overlays/modal-with-taupe-footer?raw";
+import ModalWithGroundFooter from "@/components/application-ui/overlays/modal-with-ground-footer";
+import modalWithGroundFooterSource from "@/components/application-ui/overlays/modal-with-ground-footer?raw";
 import ModalCenteredSingleAction from "@/components/application-ui/overlays/modal-centered-single-action";
 import modalCenteredSingleActionSource from "@/components/application-ui/overlays/modal-centered-single-action?raw";
 import ModalCenteredWideButtons from "@/components/application-ui/overlays/modal-centered-wide-buttons";
@@ -34,8 +34,8 @@ import slideOverCreateProjectFormSource from "@/components/application-ui/overla
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -43,24 +43,24 @@ function SectionHeading({ label }: { label: string }) {
 export default function OverlaysPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <div className="mb-10 flex flex-col gap-6 border-b border-taupe-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-10 flex flex-col gap-6 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-            <a href="/" className="hover:text-taupe-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+            <a href="/" className="hover:text-ground-700">
               Design System
             </a>
             <span>/</span>
-            <a href="/application-ui" className="hover:text-taupe-700">
+            <a href="/application-ui" className="hover:text-ground-700">
               Application UI
             </a>
             <span>/</span>
-            <span className="font-semibold text-taupe-900">Overlays</span>
+            <span className="font-semibold text-ground-900">Overlays</span>
           </div>
-          <h1 className="display mb-2 text-taupe-900">Overlays</h1>
-          <p className="body max-w-2xl text-taupe-400">
+          <h1 className="display mb-2 text-ground-900">Overlays</h1>
+          <p className="body max-w-2xl text-ground-400">
             Modals, notification toasts, and slide-over panels.
           </p>
-          <p className="caption mt-5 text-taupe-400">Overlay · 24 variants</p>
+          <p className="caption mt-5 text-ground-400">Overlay · 24 variants</p>
         </div>
         <div className="flex items-center gap-3">
           <Badge variant="secondary">Static previews</Badge>
@@ -92,10 +92,10 @@ export default function OverlaysPage() {
           <PreviewBlock
             title="With Taupe Footer"
             description="A conventional modal body with actions anchored in a separated footer."
-            code={modalWithTaupeFooterSource}
+            code={modalWithGroundFooterSource}
             previewClassName="p-6"
           >
-            <ModalWithTaupeFooter />
+            <ModalWithGroundFooter />
           </PreviewBlock>
 
           <PreviewBlock

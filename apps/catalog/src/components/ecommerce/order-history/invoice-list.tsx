@@ -44,7 +44,7 @@ function formatCurrency(value: number) {
 
 function StatusBadge({ status }: { status: string }) {
   return (
-    <Badge className="border border-brand-secondary/50 bg-brand-secondary/20 text-taupe-800">
+    <Badge className="border border-brand-secondary/50 bg-brand-secondary/20 text-ground-800">
       {status}
     </Badge>
   );
@@ -53,24 +53,24 @@ function StatusBadge({ status }: { status: string }) {
 export default function InvoiceList() {
   return (
     <div className="w-full bg-white p-6">
-      <div className="overflow-hidden rounded-[32px] border border-taupe-200 bg-white shadow-natural">
+      <div className="overflow-hidden rounded-[32px] border border-ground-200 bg-white shadow-natural">
         {ORDERS.map((order, index) => (
           <div
             key={order.id}
-            className={`grid gap-5 px-6 py-5 lg:grid-cols-[1fr_220px] ${index !== ORDERS.length - 1 ? "border-b border-taupe-100" : ""}`}
+            className={`grid gap-5 px-6 py-5 lg:grid-cols-[1fr_220px] ${index !== ORDERS.length - 1 ? "border-b border-ground-100" : ""}`}
           >
             <div>
               <div className="flex flex-wrap items-center gap-3">
-                <p className="subheading text-taupe-900">{order.date}</p>
-                <span className="caption text-taupe-400">Order {order.id}</span>
+                <p className="subheading text-ground-900">{order.date}</p>
+                <span className="caption text-ground-400">Order {order.id}</span>
               </div>
               <div className="mt-4 flex flex-wrap gap-4">
                 {order.products.map((product) => (
-                  <div key={product.name} className="flex items-center gap-3 rounded-2xl bg-taupe-50 p-3">
+                  <div key={product.name} className="flex items-center gap-3 rounded-2xl bg-ground-50 p-3">
                     <img src={product.img} alt={product.name} className="size-14 rounded-xl object-cover" />
                     <div>
-                      <p className="caption font-semibold text-taupe-900">{product.name}</p>
-                      <p className="caption text-taupe-500">{formatCurrency(product.price)}</p>
+                      <p className="caption font-semibold text-ground-900">{product.name}</p>
+                      <p className="caption text-ground-500">{formatCurrency(product.price)}</p>
                     </div>
                   </div>
                 ))}
@@ -78,8 +78,8 @@ export default function InvoiceList() {
             </div>
             <div className="flex flex-col items-start justify-between gap-4 lg:items-end">
               <div className="text-left lg:text-right">
-                <p className="caption text-taupe-400">Total</p>
-                <p className="heading mt-1 text-taupe-900">{formatCurrency(order.total)}</p>
+                <p className="caption text-ground-400">Total</p>
+                <p className="heading mt-1 text-ground-900">{formatCurrency(order.total)}</p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <StatusBadge status={order.status} />

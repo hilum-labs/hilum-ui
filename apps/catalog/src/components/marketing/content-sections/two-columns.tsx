@@ -14,7 +14,7 @@ function BulletList({ items }: { items: string[] }) {
           <span className="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-primary/10">
             <Check className="h-3.5 w-3.5 text-brand-primary" />
           </span>
-          <span className="body text-taupe-600">{item}</span>
+          <span className="body text-ground-600">{item}</span>
         </li>
       ))}
     </ul>
@@ -28,17 +28,17 @@ export default function TwoColumns() {
         <p className="label mb-4 uppercase tracking-wide text-brand-primary">
           Perspective
         </p>
-        <h3 className="heading text-taupe-900">
+        <h3 className="heading text-ground-900">
           A practical operating system for product teams
         </h3>
-        <p className="body mt-4 max-w-xl text-taupe-600">
+        <p className="body mt-4 max-w-xl text-ground-600">
           Good systems turn recurring judgment calls into defaults that teams can
           trust. That means less friction in planning, cleaner collaboration, and a
           sharper product surface over time.
         </p>
       </div>
       <div className="mt-8 lg:mt-0">
-        <p className="body text-taupe-600">
+        <p className="body text-ground-600">
           The result is not just visual consistency. It is a better workflow for
           everyone touching the product, from designers shaping the interface to
           marketers adapting the story.

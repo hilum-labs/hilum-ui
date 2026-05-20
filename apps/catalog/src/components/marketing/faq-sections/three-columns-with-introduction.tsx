@@ -33,8 +33,8 @@ export default function ThreeColumnsWithIntroduction() {
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-3">
         <div className="space-y-4">
           <Badge variant="outline">Pricing support</Badge>
-          <h2 className="heading text-taupe-900">Answers before you commit</h2>
-          <p className="body text-taupe-500">
+          <h2 className="heading text-ground-900">Answers before you commit</h2>
+          <p className="body text-ground-500">
             Everything prospects usually need to know before they start a
             trial, upgrade a workspace, or talk to procurement.
           </p>
@@ -49,8 +49,8 @@ export default function ThreeColumnsWithIntroduction() {
         <div className="grid gap-6 md:grid-cols-2 lg:col-span-2">
           {FAQS.map((item) => (
             <div key={item.q}>
-              <p className="body font-semibold text-taupe-900">{item.q}</p>
-              <p className="body mt-2 text-taupe-500">{item.a}</p>
+              <p className="body font-semibold text-ground-900">{item.q}</p>
+              <p className="body mt-2 text-ground-500">{item.a}</p>
             </div>
           ))}
         </div>

@@ -19,7 +19,7 @@ export default function WithSidebarForm() {
                 className={`flex rounded-lg px-3 py-2 caption transition-colors ${
                   i === 0
                     ? "bg-brand-primary/10 font-semibold text-brand-primary"
-                    : "text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900"
+                    : "text-ground-600 hover:bg-ground-50 hover:text-ground-900"
                 }`}
                 onClick={(e) => e.preventDefault()}
               >
@@ -33,8 +33,8 @@ export default function WithSidebarForm() {
       {/* Main form */}
       <form className="flex-1 flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <h2 className="subheading text-taupe-900 mb-1">Profile</h2>
-          <p className="caption text-taupe-400">This information will be displayed on your public profile.</p>
+          <h2 className="subheading text-ground-900 mb-1">Profile</h2>
+          <p className="caption text-ground-400">This information will be displayed on your public profile.</p>
         </div>
         <Separator />
         <div className="flex flex-col gap-4">

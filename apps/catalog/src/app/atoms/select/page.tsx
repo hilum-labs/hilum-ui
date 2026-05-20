@@ -48,8 +48,8 @@ const CODE = {
 </Select>`,
 
   native: `<select
-  className="h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900
-    focus:outline-none focus:ring-2 focus:ring-taupe-400/30 focus:border-taupe-400"
+  className="h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900
+    focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
 >
   <option value="">Select a country</option>
   <option value="us">United States</option>
@@ -75,8 +75,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -85,15 +85,15 @@ export default function SelectPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Select</span>
+          <span className="font-semibold text-ground-900">Select</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Select</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Select</h1>
+        <p className="body max-w-lg text-ground-500">
           Dropdown list for choosing a single option. Custom Radix-based component with grouped and native variants.
         </p>
       </div>
@@ -156,7 +156,7 @@ export default function SelectPage() {
           <PreviewBlock title="Native HTML select" description="OS-rendered dropdown, works without JavaScript" code={CODE.native} previewClassName="flex-col items-start">
             <div className="flex flex-col gap-3 w-64">
               <select
-                className="h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900 focus:outline-none focus:ring-2 focus:ring-taupe-400/30 focus:border-taupe-400"
+                className="h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
                 defaultValue=""
               >
                 <option value="" disabled>Select a country</option>
@@ -168,7 +168,7 @@ export default function SelectPage() {
                 <option value="fr">France</option>
               </select>
               <select
-                className="h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900 focus:outline-none focus:ring-2 focus:ring-taupe-400/30 focus:border-taupe-400"
+                className="h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
                 defaultValue=""
                 disabled
               >

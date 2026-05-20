@@ -13,26 +13,26 @@ export default function NotFound404PopularPages() {
       <div className="mx-auto max-w-xl">
         <div className="text-center">
           <p className="label uppercase tracking-widest text-brand-primary">404 error</p>
-          <h1 className="display mt-4 text-taupe-900">This page does not exist</h1>
-          <p className="body mt-3 text-taupe-500">
+          <h1 className="display mt-4 text-ground-900">This page does not exist</h1>
+          <p className="body mt-3 text-ground-500">
             The page you are looking for could not be found.
           </p>
         </div>
         <div className="mt-10">
-          <p className="label uppercase tracking-widest text-taupe-400">Popular pages</p>
-          <ul className="mt-4 divide-y divide-taupe-100 border-y border-taupe-100">
+          <p className="label uppercase tracking-widest text-ground-400">Popular pages</p>
+          <ul className="mt-4 divide-y divide-ground-100 border-y border-ground-100">
             {POPULAR_LINKS.map((link) => (
               <li key={link.title} className="group relative flex items-start gap-4 py-4">
                 <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10 text-brand-primary">
                   <link.icon size={18} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <a href="#" className="body font-semibold text-taupe-900 before:absolute before:inset-0">
+                  <a href="#" className="body font-semibold text-ground-900 before:absolute before:inset-0">
                     {link.title}
                   </a>
-                  <p className="caption text-taupe-500">{link.description}</p>
+                  <p className="caption text-ground-500">{link.description}</p>
                 </div>
-                <ArrowRight size={16} className="mt-1 shrink-0 text-taupe-300 transition-transform group-hover:translate-x-1 group-hover:text-taupe-600" />
+                <ArrowRight size={16} className="mt-1 shrink-0 text-ground-300 transition-transform group-hover:translate-x-1 group-hover:text-ground-600" />
               </li>
             ))}
           </ul>

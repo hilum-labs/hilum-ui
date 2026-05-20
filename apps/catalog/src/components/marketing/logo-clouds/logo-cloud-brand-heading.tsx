@@ -12,7 +12,7 @@ const COMPANIES = [
 
 function LogoWordmark({
   name,
-  className = "text-taupe-300",
+  className = "text-ground-300",
 }: {
   name: string;
   className?: string;

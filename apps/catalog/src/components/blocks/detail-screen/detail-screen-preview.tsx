@@ -29,10 +29,10 @@ const FEED = [
   {
     id: 1,
     icon: <MessageSquare size={14} />,
-    iconBgClass: "bg-brand-secondary text-taupe-900",
+    iconBgClass: "bg-brand-secondary text-ground-900",
     content: (
-      <p className="caption text-taupe-600">
-        <span className="font-semibold text-taupe-900">Sophie Chen</span> left a comment:{" "}
+      <p className="caption text-ground-600">
+        <span className="font-semibold text-ground-900">Sophie Chen</span> left a comment:{" "}
         "Tom has been leading the platform migration with exceptional clarity."
       </p>
     ),
@@ -41,11 +41,11 @@ const FEED = [
   {
     id: 2,
     icon: <Edit size={14} />,
-    iconBgClass: "bg-taupe-100 text-taupe-500",
+    iconBgClass: "bg-ground-100 text-ground-500",
     content: (
-      <p className="caption text-taupe-600">
-        <span className="font-semibold text-taupe-900">HR System</span> updated role to{" "}
-        <span className="font-medium text-taupe-900">Engineering Manager</span>
+      <p className="caption text-ground-600">
+        <span className="font-semibold text-ground-900">HR System</span> updated role to{" "}
+        <span className="font-medium text-ground-900">Engineering Manager</span>
       </p>
     ),
     date: "3 days ago",
@@ -55,8 +55,8 @@ const FEED = [
     icon: <Calendar size={14} />,
     iconBgClass: "bg-brand-primary text-white",
     content: (
-      <p className="caption text-taupe-600">
-        <span className="font-semibold text-taupe-900">Tom Cook</span> joined the team.
+      <p className="caption text-ground-600">
+        <span className="font-semibold text-ground-900">Tom Cook</span> joined the team.
       </p>
     ),
     date: "Jan 2021",
@@ -87,9 +87,9 @@ export default function DetailScreenPreview() {
 
       <div className="grid grid-cols-5 gap-5">
         {/* Details card */}
-        <div className="col-span-3 rounded-xl border border-taupe-100 bg-white shadow-natural overflow-hidden">
-          <div className="border-b border-taupe-100 px-5 py-3.5">
-            <p className="label text-taupe-900">Details</p>
+        <div className="col-span-3 rounded-xl border border-ground-100 bg-white shadow-natural overflow-hidden">
+          <div className="border-b border-ground-100 px-5 py-3.5">
+            <p className="label text-ground-900">Details</p>
           </div>
           <DescriptionList items={DL_ITEMS} columns={2} />
         </div>
@@ -97,23 +97,23 @@ export default function DetailScreenPreview() {
         {/* Right column */}
         <div className="col-span-2 flex flex-col gap-5">
           {/* Team card */}
-          <div className="rounded-xl border border-taupe-100 bg-white shadow-natural overflow-hidden">
-            <div className="border-b border-taupe-100 px-5 py-3.5">
-              <p className="label text-taupe-900">Team</p>
+          <div className="rounded-xl border border-ground-100 bg-white shadow-natural overflow-hidden">
+            <div className="border-b border-ground-100 px-5 py-3.5">
+              <p className="label text-ground-900">Team</p>
             </div>
             <div className="p-5 flex flex-col gap-3">
               {[
-                { name: "Sophie Chen", role: "Senior Engineer", color: "bg-brand-secondary text-taupe-900", initials: "SC" },
+                { name: "Sophie Chen", role: "Senior Engineer", color: "bg-brand-secondary text-ground-900", initials: "SC" },
                 { name: "James Park", role: "Engineer", color: "bg-brand-primary text-white", initials: "JP" },
-                { name: "Mia Torres", role: "Engineer", color: "bg-taupe-900 text-white", initials: "MT" },
+                { name: "Mia Torres", role: "Engineer", color: "bg-ground-900 text-white", initials: "MT" },
               ].map((m) => (
                 <div key={m.name} className="flex items-center gap-3">
                   <Avatar size="sm">
                     <AvatarFallback className={m.color}>{m.initials}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="caption font-semibold text-taupe-900">{m.name}</p>
-                    <p className="caption-xs text-taupe-400">{m.role}</p>
+                    <p className="caption font-semibold text-ground-900">{m.name}</p>
+                    <p className="caption-xs text-ground-400">{m.role}</p>
                   </div>
                 </div>
               ))}
@@ -121,17 +121,17 @@ export default function DetailScreenPreview() {
           </div>
 
           {/* Contact card */}
-          <div className="rounded-xl border border-taupe-100 bg-white shadow-natural overflow-hidden">
-            <div className="border-b border-taupe-100 px-5 py-3.5">
-              <p className="label text-taupe-900">Contact</p>
+          <div className="rounded-xl border border-ground-100 bg-white shadow-natural overflow-hidden">
+            <div className="border-b border-ground-100 px-5 py-3.5">
+              <p className="label text-ground-900">Contact</p>
             </div>
-            <div className="divide-y divide-taupe-50">
-              <a href={`mailto:${PERSON.email}`} className="flex items-center gap-3 px-5 py-3 caption text-taupe-600 hover:bg-taupe-50 transition-colors">
-                <Mail size={13} className="text-taupe-400" />
+            <div className="divide-y divide-ground-50">
+              <a href={`mailto:${PERSON.email}`} className="flex items-center gap-3 px-5 py-3 caption text-ground-600 hover:bg-ground-50 transition-colors">
+                <Mail size={13} className="text-ground-400" />
                 {PERSON.email}
               </a>
-              <a href={`tel:${PERSON.phone}`} className="flex items-center gap-3 px-5 py-3 caption text-taupe-600 hover:bg-taupe-50 transition-colors">
-                <Phone size={13} className="text-taupe-400" />
+              <a href={`tel:${PERSON.phone}`} className="flex items-center gap-3 px-5 py-3 caption text-ground-600 hover:bg-ground-50 transition-colors">
+                <Phone size={13} className="text-ground-400" />
                 {PERSON.phone}
               </a>
             </div>
@@ -140,9 +140,9 @@ export default function DetailScreenPreview() {
       </div>
 
       {/* Activity */}
-      <div className="rounded-xl border border-taupe-100 bg-white shadow-natural overflow-hidden">
-        <div className="border-b border-taupe-100 px-5 py-3.5">
-          <p className="label text-taupe-900">Activity</p>
+      <div className="rounded-xl border border-ground-100 bg-white shadow-natural overflow-hidden">
+        <div className="border-b border-ground-100 px-5 py-3.5">
+          <p className="label text-ground-900">Activity</p>
         </div>
         <div className="p-5">
           <ActivityFeed events={FEED} />

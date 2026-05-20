@@ -27,8 +27,8 @@ import tallImagesCtaSource from "@/components/ecommerce/product-lists/tall-image
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -36,21 +36,21 @@ function SectionHeading({ label }: { label: string }) {
 export default function ProductListsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <div className="mb-10 flex flex-col gap-5 border-b border-taupe-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-10 flex flex-col gap-5 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-            <a href="#" className="hover:text-taupe-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+            <a href="#" className="hover:text-ground-700">
               Design System
             </a>
             <span>/</span>
-            <a href="#" className="hover:text-taupe-700">
+            <a href="#" className="hover:text-ground-700">
               Ecommerce
             </a>
             <span>/</span>
-            <span className="font-semibold text-taupe-900">Product Lists</span>
+            <span className="font-semibold text-ground-900">Product Lists</span>
           </div>
-          <h1 className="display text-taupe-900">Product Lists</h1>
-          <p className="body mt-3 text-taupe-500">
+          <h1 className="display text-ground-900">Product Lists</h1>
+          <p className="body mt-3 text-ground-500">
             Product grids and lists with images, ratings, color swatches, and CTAs.
           </p>
         </div>

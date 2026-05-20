@@ -44,13 +44,13 @@ export default function ImageOverlay() {
       <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
         {PRODUCTS.map((product) => (
           <article key={product.name} className="group">
-            <div className="relative overflow-hidden rounded-[2rem] bg-taupe-100">
+            <div className="relative overflow-hidden rounded-[2rem] bg-ground-100">
               <img
                 src={product.image}
                 alt={product.name}
                 className="aspect-square w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-taupe-950 via-taupe-950/60 to-transparent p-4">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ground-950 via-ground-950/60 to-transparent p-4">
                 <div className="mb-3 flex items-end justify-between gap-3">
                   <div>
                     <h3 className="body font-medium text-white">{product.name}</h3>

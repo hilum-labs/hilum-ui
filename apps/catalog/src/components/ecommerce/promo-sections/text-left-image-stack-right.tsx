@@ -18,7 +18,7 @@ function Tile({
   className?: string;
 }) {
   return (
-    <div className={`overflow-hidden rounded-[28px] border border-taupe-100 bg-white shadow-natural ${className ?? ""}`}>
+    <div className={`overflow-hidden rounded-[28px] border border-ground-100 bg-white shadow-natural ${className ?? ""}`}>
       <img src={src} alt={alt} className="h-full w-full object-cover" />
     </div>
   );
@@ -30,8 +30,8 @@ export default function TextLeftImageStackRight() {
       <div className="flex items-center px-8 py-10 md:px-10">
         <div className="max-w-md">
           <Badge variant="brand">Curated desk edit</Badge>
-          <h2 className="display mt-5 text-taupe-900">Reimagine your workspace</h2>
-          <p className="body mt-3 text-taupe-500">
+          <h2 className="display mt-5 text-ground-900">Reimagine your workspace</h2>
+          <p className="body mt-3 text-ground-500">
             Layer in sculptural lighting, thoughtful storage, and tactile materials that make long work sessions feel better.
           </p>
           <div className="mt-6">

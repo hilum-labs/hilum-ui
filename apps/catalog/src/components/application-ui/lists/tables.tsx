@@ -119,7 +119,7 @@ export default function Tables() {
 
   const sortIcon = (column: Exclude<SortColumn, null>) => {
     if (sortColumn !== column) {
-      return <ChevronUp size={12} className="text-taupe-300" />;
+      return <ChevronUp size={12} className="text-ground-300" />;
     }
 
     if (sortDirection === "desc") {
@@ -155,7 +155,7 @@ export default function Tables() {
         <TableBody>
           {PEOPLE.map((person) => (
             <TableRow key={person.email}>
-              <TableCell className="font-medium text-taupe-900">{person.name}</TableCell>
+              <TableCell className="font-medium text-ground-900">{person.name}</TableCell>
               <TableCell>{person.title}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell>{person.dept}</TableCell>
@@ -185,7 +185,7 @@ export default function Tables() {
               <TableCell>
                 <Checkbox />
               </TableCell>
-              <TableCell className="font-medium text-taupe-900">{person.name}</TableCell>
+              <TableCell className="font-medium text-ground-900">{person.name}</TableCell>
               <TableCell>{person.title}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell className="text-right">
@@ -213,14 +213,14 @@ export default function Tables() {
                   <div className="flex items-center gap-3">
                     <PersonAvatar person={person} />
                     <div>
-                      <p className="body font-medium text-taupe-900">{person.name}</p>
-                      <p className="caption text-taupe-400">{person.email}</p>
+                      <p className="body font-medium text-ground-900">{person.name}</p>
+                      <p className="caption text-ground-400">{person.email}</p>
                     </div>
                   </div>
                 </TableCell>
                 <TableCell>
-                  <p className="body text-taupe-900">{person.title}</p>
-                  <p className="caption text-taupe-400">{person.dept}</p>
+                  <p className="body text-ground-900">{person.title}</p>
+                  <p className="caption text-ground-400">{person.dept}</p>
                 </TableCell>
                 <TableCell>
                   <Badge variant={status.variant}>{status.label}</Badge>
@@ -242,8 +242,8 @@ export default function Tables() {
         </TableHeader>
         <TableBody>
           {PEOPLE.map((person, index) => (
-            <TableRow key={person.email} className={index % 2 !== 0 ? "bg-taupe-50" : ""}>
-              <TableCell className="font-medium text-taupe-900">{person.name}</TableCell>
+            <TableRow key={person.email} className={index % 2 !== 0 ? "bg-ground-50" : ""}>
+              <TableCell className="font-medium text-ground-900">{person.name}</TableCell>
               <TableCell>{person.dept}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell>{person.title}</TableCell>
@@ -276,7 +276,7 @@ export default function Tables() {
         <TableBody>
           {sortedPeople.map((person) => (
             <TableRow key={person.email}>
-              <TableCell className="font-medium text-taupe-900">{person.name}</TableCell>
+              <TableCell className="font-medium text-ground-900">{person.name}</TableCell>
               <TableCell>{person.title}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell>{person.dept}</TableCell>
@@ -285,8 +285,8 @@ export default function Tables() {
         </TableBody>
       </Table>
 
-      <Table containerClassName="max-h-[280px] overflow-auto rounded-xl border border-taupe-100 bg-white">
-        <TableHeader className="sticky top-0 z-10 bg-taupe-50">
+      <Table containerClassName="max-h-[280px] overflow-auto rounded-xl border border-ground-100 bg-white">
+        <TableHeader className="sticky top-0 z-10 bg-ground-50">
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Title</TableHead>
@@ -297,7 +297,7 @@ export default function Tables() {
         <TableBody>
           {stickyPeople.map((person) => (
             <TableRow key={person.id}>
-              <TableCell className="font-medium text-taupe-900">{person.name}</TableCell>
+              <TableCell className="font-medium text-ground-900">{person.name}</TableCell>
               <TableCell>{person.title}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell>{person.dept}</TableCell>

@@ -51,7 +51,7 @@ function AvatarCircle({
   return (
     <div
       className={`${size} flex items-center justify-center rounded-full body font-semibold ${
-        dark ? "bg-taupe-800 text-taupe-200 ring-2 ring-taupe-700" : "bg-taupe-200 text-taupe-500"
+        dark ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700" : "bg-ground-200 text-ground-500"
       }`}
     >
       {initials}
@@ -61,12 +61,12 @@ function AvatarCircle({
 
 export default function DarkVersionWithLargeImages() {
   return (
-    <section className="w-full bg-taupe-900 px-8 py-16 text-white">
+    <section className="w-full bg-ground-900 px-8 py-16 text-white">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <Badge variant="warning">Team</Badge>
           <h2 className="heading mt-4 text-white">The group leading product, systems, and go-to-market</h2>
-          <p className="body mt-4 text-taupe-300">
+          <p className="body mt-4 text-ground-300">
             A darker presentation for landing pages that need stronger contrast or a more premium editorial tone.
           </p>
         </div>
@@ -74,12 +74,12 @@ export default function DarkVersionWithLargeImages() {
           {TEAM.map((member) => (
             <article
               key={member.name}
-              className="rounded-3xl border border-taupe-800 bg-taupe-950 p-8"
+              className="rounded-3xl border border-ground-800 bg-ground-950 p-8"
             >
               <AvatarCircle initials={member.initials} size="size-32" dark />
               <h3 className="subheading mt-6 text-white">{member.name}</h3>
-              <p className="body mt-2 text-taupe-400">{member.role}</p>
-              <p className="body mt-4 text-taupe-300">{member.bio}</p>
+              <p className="body mt-2 text-ground-400">{member.role}</p>
+              <p className="body mt-4 text-ground-300">{member.bio}</p>
             </article>
           ))}
         </div>

@@ -58,7 +58,7 @@ export default function ThreeColumn() {
         {THREE_COLUMN_CATEGORIES.map((category) => (
           <article
             key={category.name}
-            className="overflow-hidden rounded-[28px] border border-taupe-100 bg-white"
+            className="overflow-hidden rounded-[28px] border border-ground-100 bg-white"
           >
             <div className="overflow-hidden">
               <CategoryImage
@@ -68,7 +68,7 @@ export default function ThreeColumn() {
               />
             </div>
             <div className="p-5">
-              <p className="subheading text-taupe-900">{category.name}</p>
+              <p className="subheading text-ground-900">{category.name}</p>
               <a
                 href="#"
                 className="body mt-3 inline-flex items-center gap-2 text-brand-primary"

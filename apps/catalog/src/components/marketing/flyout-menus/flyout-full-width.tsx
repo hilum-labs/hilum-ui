@@ -70,19 +70,19 @@ function FlyoutLink({
   return (
     <a
       href={item.href}
-      className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-taupe-50"
+      className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-ground-50"
     >
       <div
         className={cn(
-          "flex size-10 shrink-0 items-center justify-center rounded-lg bg-taupe-100 text-taupe-700",
+          "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
           iconClassName
         )}
       >
         <Icon size={18} />
       </div>
       <div>
-        <p className="body font-medium text-taupe-900">{item.name}</p>
-        <p className="caption mt-1 text-taupe-500">{item.description}</p>
+        <p className="body font-medium text-ground-900">{item.name}</p>
+        <p className="caption mt-1 text-ground-500">{item.description}</p>
       </div>
     </a>
   );
@@ -93,15 +93,15 @@ export default function FlyoutFullWidth() {
 
   return (
     <div className="relative min-h-[26rem] bg-white">
-      <div className="flex items-center justify-between border-b border-taupe-100 px-6 py-4">
+      <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
         <div className="flex items-center gap-10">
-          <span className="subheading text-taupe-900">Acme</span>
+          <span className="subheading text-ground-900">Acme</span>
           <div className="flex items-center gap-6">
             <div className="relative">
               <button
                 type="button"
                 onClick={() => setOpen(!open)}
-                className="inline-flex items-center gap-1 body font-medium text-taupe-700 transition-colors hover:text-taupe-900"
+                className="inline-flex items-center gap-1 body font-medium text-ground-700 transition-colors hover:text-ground-900"
               >
                 Products
                 <ChevronDown
@@ -110,10 +110,10 @@ export default function FlyoutFullWidth() {
                 />
               </button>
             </div>
-            <a href="#pricing" className="body text-taupe-500 hover:text-taupe-900">
+            <a href="#pricing" className="body text-ground-500 hover:text-ground-900">
               Pricing
             </a>
-            <a href="#docs" className="body text-taupe-500 hover:text-taupe-900">
+            <a href="#docs" className="body text-ground-500 hover:text-ground-900">
               Docs
             </a>
           </div>
@@ -122,12 +122,12 @@ export default function FlyoutFullWidth() {
       </div>
 
       {open ? (
-        <div className="absolute left-0 top-[4.5rem] z-10 w-full border-t border-taupe-100 bg-white shadow-elevated">
+        <div className="absolute left-0 top-[4.5rem] z-10 w-full border-t border-ground-100 bg-white shadow-elevated">
           <div className="grid gap-8 px-6 py-6 md:grid-cols-[1.35fr_0.85fr]">
             <div>
               <div className="mb-4 flex items-center gap-3">
-                <h3 className="label text-taupe-400">Explore products</h3>
-                <div className="h-px flex-1 bg-taupe-100" />
+                <h3 className="label text-ground-400">Explore products</h3>
+                <div className="h-px flex-1 bg-ground-100" />
               </div>
               <div className="grid gap-2 md:grid-cols-2">
                 {FULL_WIDTH_ITEMS.map((item) => (
@@ -135,9 +135,9 @@ export default function FlyoutFullWidth() {
                 ))}
               </div>
             </div>
-            <div className="rounded-2xl bg-taupe-50 p-5">
+            <div className="rounded-2xl bg-ground-50 p-5">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="label text-taupe-400">Recent posts</h3>
+                <h3 className="label text-ground-400">Recent posts</h3>
                 <Badge variant="secondary">Editorial</Badge>
               </div>
               <div className="mt-4 space-y-3">
@@ -145,10 +145,10 @@ export default function FlyoutFullWidth() {
                   <a
                     key={post.title}
                     href={`#${post.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                    className="block rounded-xl border border-taupe-100 bg-white p-4 transition-colors hover:border-taupe-200 hover:bg-taupe-50"
+                    className="block rounded-xl border border-ground-100 bg-white p-4 transition-colors hover:border-ground-200 hover:bg-ground-50"
                   >
-                    <p className="body font-medium text-taupe-900">{post.title}</p>
-                    <p className="caption mt-2 text-taupe-500">{post.date}</p>
+                    <p className="body font-medium text-ground-900">{post.title}</p>
+                    <p className="caption mt-2 text-ground-500">{post.date}</p>
                   </a>
                 ))}
               </div>
@@ -161,8 +161,8 @@ export default function FlyoutFullWidth() {
       ) : null}
 
       <div className="px-6 py-12">
-        <div className="rounded-2xl border border-dashed border-taupe-200 bg-taupe-50 p-6">
-          <p className="body max-w-2xl text-taupe-500">
+        <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
+          <p className="body max-w-2xl text-ground-500">
             Full-width panels let the menu behave like a small landing surface, combining navigation with editorial context.
           </p>
         </div>

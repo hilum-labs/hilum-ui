@@ -21,19 +21,19 @@ const CODE = {
         <span className="label font-semibold text-brand-primary">AC</span>
       </div>
       <div className="min-w-0">
-        <p className="subheading text-taupe-900">Alex Chen</p>
-        <p className="caption text-taupe-400">@alexchen</p>
-        <p className="caption mt-2 text-taupe-500">
+        <p className="subheading text-ground-900">Alex Chen</p>
+        <p className="caption text-ground-400">@alexchen</p>
+        <p className="caption mt-2 text-ground-500">
           Product designer building design systems and tools.
         </p>
         <div className="mt-3 flex gap-4">
           <div>
-            <p className="label font-semibold text-taupe-900">248</p>
-            <p className="caption-xs text-taupe-400">Following</p>
+            <p className="label font-semibold text-ground-900">248</p>
+            <p className="caption-xs text-ground-400">Following</p>
           </div>
           <div>
-            <p className="label font-semibold text-taupe-900">1.4k</p>
-            <p className="caption-xs text-taupe-400">Followers</p>
+            <p className="label font-semibold text-ground-900">1.4k</p>
+            <p className="caption-xs text-ground-400">Followers</p>
           </div>
         </div>
       </div>
@@ -42,19 +42,19 @@ const CODE = {
 </HoverCard>`,
 
   linkPreview: `<HoverCard>
-  <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-taupe-900">
+  <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-ground-900">
     The Future of Design Systems
   </HoverCardTrigger>
   <HoverCardContent>
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-1.5">
         <div className="size-3.5 rounded-sm bg-brand-primary/20" />
-        <span className="caption-xs text-taupe-400">designsystems.com</span>
+        <span className="caption-xs text-ground-400">designsystems.com</span>
       </div>
-      <p className="subheading text-taupe-900 leading-snug">
+      <p className="subheading text-ground-900 leading-snug">
         The Future of Design Systems
       </p>
-      <p className="caption text-taupe-500 leading-relaxed">
+      <p className="caption text-ground-500 leading-relaxed">
         How component libraries are evolving to meet the demands of
         AI-assisted workflows and multi-platform delivery.
       </p>
@@ -72,18 +72,18 @@ const CODE = {
   {users.map((user) => (
     <HoverCard key={user.handle} openDelay={100}>
       <HoverCardTrigger asChild>
-        <button className="relative flex size-9 items-center justify-center rounded-full border-2 border-white bg-taupe-100 cursor-pointer hover:z-10 transition-transform hover:scale-110">
-          <span className="caption-xs font-semibold text-taupe-600">{user.initials}</span>
+        <button className="relative flex size-9 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110">
+          <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
         </button>
       </HoverCardTrigger>
       <HoverCardContent side="top">
         <div className="flex items-center gap-3">
-          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-taupe-100">
-            <span className="caption-xs font-semibold text-taupe-600">{user.initials}</span>
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ground-100">
+            <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
           </div>
           <div>
-            <p className="body font-medium text-taupe-900">{user.name}</p>
-            <p className="caption text-taupe-400">{user.handle} · {user.followers} followers</p>
+            <p className="body font-medium text-ground-900">{user.name}</p>
+            <p className="caption text-ground-400">{user.handle} · {user.followers} followers</p>
           </div>
         </div>
       </HoverCardContent>
@@ -101,8 +101,8 @@ const USERS = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -111,15 +111,15 @@ export default function HoverCardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Hover Card</span>
+          <span className="font-semibold text-ground-900">Hover Card</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Hover Card</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Hover Card</h1>
+        <p className="body max-w-lg text-ground-500">
           Rich floating card revealed on hover, for previewing user profiles, links, and contextual details.
         </p>
       </div>
@@ -143,19 +143,19 @@ export default function HoverCardPage() {
                       <span className="label font-semibold text-brand-primary">AC</span>
                     </div>
                     <div className="min-w-0">
-                      <p className="subheading text-taupe-900">Alex Chen</p>
-                      <p className="caption text-taupe-400">@alexchen</p>
-                      <p className="caption mt-2 text-taupe-500">
+                      <p className="subheading text-ground-900">Alex Chen</p>
+                      <p className="caption text-ground-400">@alexchen</p>
+                      <p className="caption mt-2 text-ground-500">
                         Product designer building design systems and tools.
                       </p>
                       <div className="mt-3 flex gap-4">
                         <div>
-                          <p className="label font-semibold text-taupe-900">248</p>
-                          <p className="caption-xs text-taupe-400">Following</p>
+                          <p className="label font-semibold text-ground-900">248</p>
+                          <p className="caption-xs text-ground-400">Following</p>
                         </div>
                         <div>
-                          <p className="label font-semibold text-taupe-900">1.4k</p>
-                          <p className="caption-xs text-taupe-400">Followers</p>
+                          <p className="label font-semibold text-ground-900">1.4k</p>
+                          <p className="caption-xs text-ground-400">Followers</p>
                         </div>
                       </div>
                     </div>
@@ -170,19 +170,19 @@ export default function HoverCardPage() {
               code={CODE.linkPreview}
             >
               <HoverCard>
-                <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-taupe-900">
+                <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-ground-900">
                   The Future of Design Systems
                 </HoverCardTrigger>
                 <HoverCardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-1.5">
                       <div className="size-3.5 rounded-sm bg-brand-primary/20" />
-                      <span className="caption-xs text-taupe-400">designsystems.com</span>
+                      <span className="caption-xs text-ground-400">designsystems.com</span>
                     </div>
-                    <p className="subheading text-taupe-900 leading-snug">
+                    <p className="subheading text-ground-900 leading-snug">
                       The Future of Design Systems
                     </p>
-                    <p className="caption text-taupe-500 leading-relaxed">
+                    <p className="caption text-ground-500 leading-relaxed">
                       How component libraries are evolving to meet the demands of
                       AI-assisted workflows and multi-platform delivery.
                     </p>
@@ -200,18 +200,18 @@ export default function HoverCardPage() {
                 {USERS.map((user) => (
                   <HoverCard key={user.handle} openDelay={100}>
                     <HoverCardTrigger asChild>
-                      <button className="relative flex size-9 items-center justify-center rounded-full border-2 border-white bg-taupe-100 cursor-pointer hover:z-10 transition-transform hover:scale-110 focus:outline-none">
-                        <span className="caption-xs font-semibold text-taupe-600">{user.initials}</span>
+                      <button className="relative flex size-9 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110 focus:outline-none">
+                        <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
                       </button>
                     </HoverCardTrigger>
                     <HoverCardContent side="top">
                       <div className="flex items-center gap-3">
-                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-taupe-100">
-                          <span className="caption-xs font-semibold text-taupe-600">{user.initials}</span>
+                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ground-100">
+                          <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
                         </div>
                         <div>
-                          <p className="body font-medium text-taupe-900">{user.name}</p>
-                          <p className="caption text-taupe-400">
+                          <p className="body font-medium text-ground-900">{user.name}</p>
+                          <p className="caption text-ground-400">
                             {user.handle} · {user.followers} followers
                           </p>
                         </div>

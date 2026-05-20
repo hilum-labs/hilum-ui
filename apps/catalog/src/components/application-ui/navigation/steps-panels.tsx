@@ -15,12 +15,12 @@ export default function StepsPanels() {
           <div
             key={step}
             className={`flex-1 rounded-lg border px-6 py-4 ${
-              index === 1 ? "border-brand-primary" : "border-taupe-100"
+              index === 1 ? "border-brand-primary" : "border-ground-100"
             }`}
           >
-            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-taupe-400"}`}>Step {index + 1}</p>
-            <p className="body mt-2 font-semibold text-taupe-900">{step}</p>
-            <p className="caption mt-1 text-taupe-500">{descriptions[index]}</p>
+            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-ground-400"}`}>Step {index + 1}</p>
+            <p className="body mt-2 font-semibold text-ground-900">{step}</p>
+            <p className="caption mt-1 text-ground-500">{descriptions[index]}</p>
           </div>
         ))}
       </div>

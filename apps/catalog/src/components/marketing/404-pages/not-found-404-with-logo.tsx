@@ -7,8 +7,8 @@ export default function NotFound404WithLogo() {
         <span className="body font-bold text-white">D</span>
       </div>
       <p className="label uppercase tracking-widest text-brand-primary">404 error</p>
-      <h1 className="display mt-4 text-taupe-900">Page not found</h1>
-      <p className="body mt-4 max-w-sm text-taupe-500">
+      <h1 className="display mt-4 text-ground-900">Page not found</h1>
+      <p className="body mt-4 max-w-sm text-ground-500">
         Sorry, we couldn&apos;t find the page you&apos;re looking for.
       </p>
       <div className="mt-8">

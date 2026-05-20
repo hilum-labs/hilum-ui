@@ -5,7 +5,7 @@ import { Separator } from "@hilum/ui";
 
 export default function SignInSplit() {
   return (
-    <div className="flex overflow-hidden rounded-xl border border-taupe-100 shadow-natural">
+    <div className="flex overflow-hidden rounded-xl border border-ground-100 shadow-natural">
       {/* Form side */}
       <div className="flex flex-1 flex-col justify-center px-8 py-10">
         <div className="mx-auto w-full max-w-xs">
@@ -13,10 +13,10 @@ export default function SignInSplit() {
             <div className="mb-4 flex size-9 items-center justify-center rounded-xl bg-brand-primary">
               <span className="caption font-bold text-white">D</span>
             </div>
-            <h1 className="subheading font-semibold text-taupe-900">Sign in to your account</h1>
-            <p className="mt-1 caption text-taupe-400">
+            <h1 className="subheading font-semibold text-ground-900">Sign in to your account</h1>
+            <p className="mt-1 caption text-ground-400">
               Or{" "}
-              <a href="#" className="font-medium text-taupe-900 underline underline-offset-2">
+              <a href="#" className="font-medium text-ground-900 underline underline-offset-2">
                 start your free trial
               </a>
             </p>
@@ -28,7 +28,7 @@ export default function SignInSplit() {
             <Field label="Password" htmlFor="split-pw">
               <Input id="split-pw" type="password" placeholder="••••••••" />
             </Field>
-            <a href="#" className="caption font-medium text-taupe-500 hover:text-taupe-900 self-end -mt-0.5">
+            <a href="#" className="caption font-medium text-ground-500 hover:text-ground-900 self-end -mt-0.5">
               Forgot password?
             </a>
             <Button className="w-full mt-1">Sign in</Button>

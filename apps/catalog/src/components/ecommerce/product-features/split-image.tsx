@@ -10,7 +10,7 @@ function FeatureList({ items }: { items: string[] }) {
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3">
           <span className="mt-1 h-2.5 w-2.5 rounded-full bg-brand-primary" />
-          <span className="body text-taupe-600">{item}</span>
+          <span className="body text-ground-600">{item}</span>
         </li>
       ))}
     </ul>
@@ -39,12 +39,12 @@ export default function SplitImage() {
   return (
     <section className="w-full bg-white px-6 py-8 sm:px-8">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="rounded-[28px] border border-taupe-100 bg-taupe-50 p-6">
+        <div className="rounded-[28px] border border-ground-100 bg-ground-50 p-6">
           <p className="label mb-3 text-brand-primary">Why it works</p>
-          <h3 className="heading text-taupe-900">
+          <h3 className="heading text-ground-900">
             A compact carry built around useful limits.
           </h3>
-          <p className="body mt-4 text-taupe-600">
+          <p className="body mt-4 text-ground-600">
             The form factor rewards clear priorities: laptop accessories, a small
             notebook, charger, wallet, and a layer for the change in weather.
           </p>

@@ -1,9 +1,9 @@
 import { Button } from "@hilum/ui";
 
 const INPUT_CLASS =
-  "h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
+  "h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
 const TEXTAREA_CLASS =
-  "w-full rounded-lg border border-taupe-200 bg-white px-3 py-2 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary resize-none";
+  "w-full rounded-lg border border-ground-200 bg-white px-3 py-2 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary resize-none";
 
 function Field({
   placeholder,
@@ -24,11 +24,11 @@ export default function ContactCentered() {
     <section className="w-full bg-white px-8 py-16">
       <div className="mx-auto max-w-xl text-center">
         <p className="label text-brand-primary">Start a conversation</p>
-        <h2 className="heading mt-4 text-taupe-900">Talk to the team</h2>
-        <p className="body mt-4 text-taupe-500">
+        <h2 className="heading mt-4 text-ground-900">Talk to the team</h2>
+        <p className="body mt-4 text-ground-500">
           Share a few project details and we will follow up with the right specialist.
         </p>
-        <form className="mt-8 rounded-2xl border border-taupe-100 bg-taupe-50 p-8 text-left">
+        <form className="mt-8 rounded-2xl border border-ground-100 bg-ground-50 p-8 text-left">
           <div className="grid gap-4 sm:grid-cols-2">
             <Field placeholder="Name" />
             <Field type="email" placeholder="Email" />

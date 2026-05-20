@@ -36,21 +36,21 @@ function IconContainer({ children }: { children: ReactNode }) {
 
 export default function LargeTwoByTwoCards() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white p-6">
+    <section className="w-full rounded-xl border border-ground-100 bg-white p-6">
       <div className="grid gap-5 md:grid-cols-2">
         {incentives.map((item) => (
           <div
             key={item.title}
-            className="rounded-[28px] border border-taupe-100 bg-taupe-50 p-7"
+            className="rounded-[28px] border border-ground-100 bg-ground-50 p-7"
           >
             <IconContainer>
               <item.icon size={26} strokeWidth={1.8} />
             </IconContainer>
             <div className="mt-5 flex items-center justify-between gap-4">
-              <p className="heading text-taupe-900">{item.title}</p>
+              <p className="heading text-ground-900">{item.title}</p>
               <Badge variant="secondary">Trust signal</Badge>
             </div>
-            <p className="body mt-3 max-w-md leading-relaxed text-taupe-500">{item.description}</p>
+            <p className="body mt-3 max-w-md leading-relaxed text-ground-500">{item.description}</p>
           </div>
         ))}
       </div>

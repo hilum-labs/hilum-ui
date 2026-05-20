@@ -10,8 +10,8 @@ function ButtonRow({
   render: (size: "sm" | "default" | "lg") => ReactNode;
 }) {
   return (
-    <div className="grid gap-3 border-b border-taupe-100 py-4 last:border-b-0 md:grid-cols-[140px_minmax(0,1fr)] md:items-center">
-      <p className="body font-medium text-taupe-900">{label}</p>
+    <div className="grid gap-3 border-b border-ground-100 py-4 last:border-b-0 md:grid-cols-[140px_minmax(0,1fr)] md:items-center">
+      <p className="body font-medium text-ground-900">{label}</p>
       <div className="flex flex-wrap items-center gap-3">
         {render("sm")}
         {render("default")}
@@ -24,7 +24,7 @@ function ButtonRow({
 export default function Buttons() {
   return (
     <div className="bg-white px-8 py-10">
-      <div className="rounded-2xl border border-taupe-100 bg-taupe-50/60 px-5 py-2">
+      <div className="rounded-2xl border border-ground-100 bg-ground-50/60 px-5 py-2">
         <ButtonRow
           label="Primary"
           render={(size) => <Button size={size === "default" ? "default" : size}>Save</Button>}

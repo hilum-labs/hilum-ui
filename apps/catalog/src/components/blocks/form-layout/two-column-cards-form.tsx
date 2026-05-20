@@ -56,8 +56,8 @@ const CARD_SECTIONS = [
         ].map((item) => (
           <div key={item.id} className="flex items-center justify-between gap-4">
             <div>
-              <Label htmlFor={item.id} className="body font-medium text-taupe-900">{item.label}</Label>
-              <p className="caption text-taupe-400 mt-0.5">{item.desc}</p>
+              <Label htmlFor={item.id} className="body font-medium text-ground-900">{item.label}</Label>
+              <p className="caption text-ground-400 mt-0.5">{item.desc}</p>
             </div>
             <Switch id={item.id} />
           </div>
@@ -71,15 +71,15 @@ export default function TwoColumnCardsForm() {
   return (
     <div className="flex flex-col gap-5 w-full">
       {CARD_SECTIONS.map((section) => (
-        <form key={section.id} className="rounded-xl border border-taupe-100 bg-white shadow-natural overflow-hidden" onSubmit={(e) => e.preventDefault()}>
-          <div className="border-b border-taupe-100 px-5 py-4">
-            <p className="body font-semibold text-taupe-900">{section.title}</p>
-            <p className="caption text-taupe-400 mt-0.5">{section.description}</p>
+        <form key={section.id} className="rounded-xl border border-ground-100 bg-white shadow-natural overflow-hidden" onSubmit={(e) => e.preventDefault()}>
+          <div className="border-b border-ground-100 px-5 py-4">
+            <p className="body font-semibold text-ground-900">{section.title}</p>
+            <p className="caption text-ground-400 mt-0.5">{section.description}</p>
           </div>
           <div className="p-5">
             {section.fields}
           </div>
-          <div className="border-t border-taupe-100 bg-taupe-50 flex justify-end gap-2 px-5 py-3">
+          <div className="border-t border-ground-100 bg-ground-50 flex justify-end gap-2 px-5 py-3">
             <Button variant="outline" size="sm" type="button">Cancel</Button>
             <Button size="sm" type="submit">Save</Button>
           </div>

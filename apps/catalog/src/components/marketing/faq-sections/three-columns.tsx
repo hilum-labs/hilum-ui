@@ -30,8 +30,8 @@ export default function ThreeColumns() {
     <section className="w-full bg-white px-8 py-16">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
-          <h2 className="heading text-taupe-900">Frequently asked questions</h2>
-          <p className="body mt-3 text-taupe-500">
+          <h2 className="heading text-ground-900">Frequently asked questions</h2>
+          <p className="body mt-3 text-ground-500">
             Clear answers for the most common product, billing, and
             account questions.
           </p>
@@ -40,10 +40,10 @@ export default function ThreeColumns() {
           {FAQS.map((item) => (
             <article
               key={item.q}
-              className="rounded-lg border border-taupe-100 bg-white p-6"
+              className="rounded-lg border border-ground-100 bg-white p-6"
             >
-              <h3 className="body font-semibold text-taupe-900">{item.q}</h3>
-              <p className="body mt-3 text-taupe-500">{item.a}</p>
+              <h3 className="body font-semibold text-ground-900">{item.q}</h3>
+              <p className="body mt-3 text-ground-500">{item.a}</p>
             </article>
           ))}
         </div>

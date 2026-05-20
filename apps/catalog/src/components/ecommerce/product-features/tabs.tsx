@@ -48,7 +48,7 @@ function FeatureList({ items }: { items: string[] }) {
       {items.map((item) => (
         <li key={item} className="flex items-start gap-3">
           <span className="mt-1 h-2.5 w-2.5 rounded-full bg-brand-primary" />
-          <span className="body text-taupe-600">{item}</span>
+          <span className="body text-ground-600">{item}</span>
         </li>
       ))}
     </ul>
@@ -78,8 +78,8 @@ export default function Tabs() {
 
   return (
     <section className="w-full bg-white px-6 py-8 sm:px-8">
-      <div className="rounded-[28px] border border-taupe-100 bg-white p-6">
-        <div className="flex flex-wrap gap-6 border-b border-taupe-100">
+      <div className="rounded-[28px] border border-ground-100 bg-white p-6">
+        <div className="flex flex-wrap gap-6 border-b border-ground-100">
           {(Object.keys(TAB_CONTENT) as FeatureTab[]).map((tab) => (
             <button
               key={tab}
@@ -87,8 +87,8 @@ export default function Tabs() {
               onClick={() => setActiveTab(tab)}
               className={`pb-4 subheading transition-colors ${
                 activeTab === tab
-                  ? "border-b-2 border-brand-primary text-taupe-900"
-                  : "text-taupe-400 hover:text-taupe-700"
+                  ? "border-b-2 border-brand-primary text-ground-900"
+                  : "text-ground-400 hover:text-ground-700"
               }`}
             >
               {tab}
@@ -98,10 +98,10 @@ export default function Tabs() {
         <div className="mt-6 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="label mb-3 text-brand-primary">{activeTab}</p>
-            <h3 className="heading text-taupe-900">
+            <h3 className="heading text-ground-900">
               {TAB_CONTENT[activeTab].title}
             </h3>
-            <p className="body mt-4 text-taupe-600">
+            <p className="body mt-4 text-ground-600">
               {TAB_CONTENT[activeTab].description}
             </p>
             <div className="mt-6">

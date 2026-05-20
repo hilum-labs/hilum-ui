@@ -40,8 +40,8 @@ export default function FeatureSimpleThreeColumn() {
       <div className="mx-auto max-w-5xl">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="brand" className="mb-4">Platform overview</Badge>
-          <h3 className="heading text-taupe-900">Everything your team needs to ship with confidence</h3>
-          <p className="body mt-3 text-taupe-500">
+          <h3 className="heading text-ground-900">Everything your team needs to ship with confidence</h3>
+          <p className="body mt-3 text-ground-500">
             Bring product, design, marketing, and operations into one system that turns strategy into launch-ready work.
           </p>
         </div>
@@ -49,12 +49,12 @@ export default function FeatureSimpleThreeColumn() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <article key={feature.name} className="rounded-2xl border border-taupe-100 p-6 shadow-natural">
+              <article key={feature.name} className="rounded-2xl border border-ground-100 p-6 shadow-natural">
                 <div className="mb-4 flex size-12 items-center justify-center rounded-2xl bg-brand-primary/10 text-brand-primary">
                   <Icon className="size-5" />
                 </div>
-                <h4 className="subheading text-taupe-900">{feature.name}</h4>
-                <p className="body mt-2 text-taupe-500">{feature.description}</p>
+                <h4 className="subheading text-ground-900">{feature.name}</h4>
+                <p className="body mt-2 text-ground-500">{feature.description}</p>
               </article>
             );
           })}

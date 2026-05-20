@@ -5,7 +5,7 @@ import { X, ArrowRight } from "lucide-react";
 export default function BannerHeaderCentered() {
   const [visible, setVisible] = useState(true);
   return (
-    <div className="relative w-full overflow-hidden rounded-xl border border-taupe-100 bg-white shadow-natural">
+    <div className="relative w-full overflow-hidden rounded-xl border border-ground-100 bg-white shadow-natural">
       {visible && (
         <div className="relative isolate flex items-center justify-center gap-x-4 overflow-hidden bg-brand-primary px-6 py-2.5">
           {/* decorative dots */}
@@ -34,7 +34,7 @@ export default function BannerHeaderCentered() {
         </div>
       )}
       <div className="flex h-40 items-center justify-center">
-        <p className="body text-taupe-400">Page content sits below the banner</p>
+        <p className="body text-ground-400">Page content sits below the banner</p>
       </div>
     </div>
   );

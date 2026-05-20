@@ -44,7 +44,7 @@ function ProgressTracker({ activeStep }: { activeStep: number }) {
         return (
           <div key={step} className="relative flex items-start gap-3">
             {index < TRACKING_STEPS.length - 1 ? (
-              <div className="absolute left-4 top-4 hidden h-px w-[calc(100%-1rem)] bg-taupe-200 md:block" />
+              <div className="absolute left-4 top-4 hidden h-px w-[calc(100%-1rem)] bg-ground-200 md:block" />
             ) : null}
             <div
               className={`relative z-10 flex size-8 items-center justify-center rounded-full border ${
@@ -52,16 +52,16 @@ function ProgressTracker({ activeStep }: { activeStep: number }) {
                   ? "border-brand-primary bg-brand-primary text-white"
                   : isActive
                     ? "border-brand-primary bg-white text-brand-primary ring-2 ring-brand-primary"
-                    : "border-taupe-200 bg-white text-taupe-400"
+                    : "border-ground-200 bg-white text-ground-400"
               }`}
             >
               {isCompleted ? <CheckCircle size={14} /> : index + 1}
             </div>
             <div>
-              <p className={`label ${isCompleted ? "text-brand-primary" : isActive ? "text-brand-primary" : "text-taupe-400"}`}>
+              <p className={`label ${isCompleted ? "text-brand-primary" : isActive ? "text-brand-primary" : "text-ground-400"}`}>
                 Step {index + 1}
               </p>
-              <p className={`body font-medium ${isCompleted || isActive ? "text-taupe-900" : "text-taupe-500"}`}>{step}</p>
+              <p className={`body font-medium ${isCompleted || isActive ? "text-ground-900" : "text-ground-500"}`}>{step}</p>
             </div>
           </div>
         );
@@ -74,13 +74,13 @@ export default function OrderSummaryProgressBars() {
   const [activeStep, setActiveStep] = useState(2);
 
   return (
-    <div className="w-full bg-taupe-50 p-6">
-      <div className="space-y-8 rounded-[32px] border border-taupe-200 bg-white p-8 shadow-natural">
+    <div className="w-full bg-ground-50 p-6">
+      <div className="space-y-8 rounded-[32px] border border-ground-200 bg-white p-8 shadow-natural">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="label text-taupe-400">Tracking view</p>
-            <h3 className="heading mt-2 text-taupe-900">Order progress</h3>
-            <p className="caption mt-2 text-taupe-500">Move through the delivery stages to preview the component states.</p>
+            <p className="label text-ground-400">Tracking view</p>
+            <h3 className="heading mt-2 text-ground-900">Order progress</h3>
+            <p className="caption mt-2 text-ground-500">Move through the delivery stages to preview the component states.</p>
           </div>
           <div className="flex gap-3">
             <Button variant="outline" onClick={() => setActiveStep((step) => Math.max(0, step - 1))}>
@@ -96,16 +96,16 @@ export default function OrderSummaryProgressBars() {
         <ProgressTracker activeStep={activeStep} />
         <div className="grid gap-4 md:grid-cols-2">
           {ORDER.products.map((product) => (
-            <div key={product.name} className="rounded-[24px] border border-taupe-100 p-4">
+            <div key={product.name} className="rounded-[24px] border border-ground-100 p-4">
               <div className="flex items-center gap-4">
                 <img src={product.img} alt={product.name} className="size-20 rounded-2xl object-cover" />
                 <div className="flex-1">
-                  <p className="subheading text-taupe-900">{product.name}</p>
-                  <p className="caption mt-1 text-taupe-500">
+                  <p className="subheading text-ground-900">{product.name}</p>
+                  <p className="caption mt-1 text-ground-500">
                     {activeStep >= 2 ? "Tracking label created and carrier confirmed." : "Preparing the shipment and packing the order."}
                   </p>
                 </div>
-                <p className="body font-medium text-taupe-900">{formatCurrency(product.price)}</p>
+                <p className="body font-medium text-ground-900">{formatCurrency(product.price)}</p>
               </div>
             </div>
           ))}

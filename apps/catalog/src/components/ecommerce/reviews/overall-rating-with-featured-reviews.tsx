@@ -50,7 +50,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5 text-sm">
       {Array.from({ length: 5 }).map((_, index) => (
-        <span key={index} className={index < rating ? "text-brand-secondary" : "text-taupe-200"}>
+        <span key={index} className={index < rating ? "text-brand-secondary" : "text-ground-200"}>
           {index < rating ? "★" : "☆"}
         </span>
       ))}
@@ -63,22 +63,22 @@ export default function OverallRatingWithFeaturedReviews() {
   const featuredReviews = reviews.slice(0, 2);
 
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white p-6">
+    <section className="w-full rounded-xl border border-ground-100 bg-white p-6">
       <div className="grid gap-8 md:grid-cols-[0.85fr_1.15fr]">
-        <div className="rounded-[28px] border border-taupe-100 bg-taupe-50 p-6">
+        <div className="rounded-[28px] border border-ground-100 bg-ground-50 p-6">
           <Badge variant="secondary">Verified reviews</Badge>
           <div className="mt-6 flex items-center gap-4">
-            <p className="display text-taupe-900">4.8</p>
+            <p className="display text-ground-900">4.8</p>
             <div>
               <Stars rating={5} />
-              <p className="caption mt-2 text-taupe-400">Based on 512 reviews</p>
+              <p className="caption mt-2 text-ground-400">Based on 512 reviews</p>
             </div>
           </div>
           <div className="mt-8 space-y-4">
             {ratingDistribution.map((row) => (
               <div key={row.label} className="grid grid-cols-[32px_1fr] items-center gap-3">
-                <p className="caption text-taupe-400">{row.label}</p>
-                <div className="h-2 rounded-full bg-taupe-100">
+                <p className="caption text-ground-400">{row.label}</p>
+                <div className="h-2 rounded-full bg-ground-100">
                   <div className="h-2 rounded-full bg-brand-primary" style={{ width: row.width }} />
                 </div>
               </div>
@@ -99,29 +99,29 @@ export default function OverallRatingWithFeaturedReviews() {
                 className={`rounded-[28px] border p-6 text-left transition ${
                   active
                     ? "border-brand-primary/40 bg-brand-primary/5"
-                    : "border-taupe-100 hover:border-taupe-200"
+                    : "border-ground-100 hover:border-ground-200"
                 }`}
               >
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-4">
                     <Avatar size="lg">
-                      <AvatarFallback className="bg-brand-secondary/60 text-taupe-900">
+                      <AvatarFallback className="bg-brand-secondary/60 text-ground-900">
                         {review.avatar}
                       </AvatarFallback>
                     </Avatar>
                     <div>
-                      <p className="body font-semibold text-taupe-900">{review.author}</p>
-                      <p className="caption mt-0.5 text-taupe-400">{review.title}</p>
+                      <p className="body font-semibold text-ground-900">{review.author}</p>
+                      <p className="caption mt-0.5 text-ground-400">{review.title}</p>
                     </div>
                   </div>
-                  <div className="flex size-10 items-center justify-center rounded-full bg-taupe-100 text-taupe-500">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-ground-100 text-ground-500">
                     <MessageSquareQuote size={18} />
                   </div>
                 </div>
                 <div className="mt-4">
                   <Stars rating={review.rating} />
                 </div>
-                <p className="body mt-4 leading-relaxed text-taupe-500">{review.body}</p>
+                <p className="body mt-4 leading-relaxed text-ground-500">{review.body}</p>
               </button>
             );
           })}

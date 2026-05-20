@@ -7,9 +7,9 @@ export default function DividerWithToolbar() {
 
   return (
     <div className="w-full bg-white p-6">
-      <div className="body pb-2 text-taupe-500">Results</div>
-      <div className="flex items-center justify-between border-b border-taupe-100 py-2">
-        <span className="caption text-taupe-500">24 items</span>
+      <div className="body pb-2 text-ground-500">Results</div>
+      <div className="flex items-center justify-between border-b border-ground-100 py-2">
+        <span className="caption text-ground-500">24 items</span>
         <div className="flex items-center gap-1">
           <button
             onClick={() => setActiveTool("filter")}
@@ -17,7 +17,7 @@ export default function DividerWithToolbar() {
               "rounded p-1 transition-colors",
               activeTool === "filter"
                 ? "bg-brand-primary/10 text-brand-primary"
-                : "text-taupe-500 hover:bg-taupe-50"
+                : "text-ground-500 hover:bg-ground-50"
             )}
           >
             <Filter className="size-3.5" />
@@ -28,7 +28,7 @@ export default function DividerWithToolbar() {
               "rounded p-1 transition-colors",
               activeTool === "sort"
                 ? "bg-brand-primary/10 text-brand-primary"
-                : "text-taupe-500 hover:bg-taupe-50"
+                : "text-ground-500 hover:bg-ground-50"
             )}
           >
             <ArrowUpDown className="size-3.5" />
@@ -39,14 +39,14 @@ export default function DividerWithToolbar() {
               "rounded p-1 transition-colors",
               activeTool === "grid"
                 ? "bg-brand-primary/10 text-brand-primary"
-                : "text-taupe-500 hover:bg-taupe-50"
+                : "text-ground-500 hover:bg-ground-50"
             )}
           >
             <Grid3x3 className="size-3.5" />
           </button>
         </div>
       </div>
-      <div className="body pt-2 text-taupe-500">Filtered content</div>
+      <div className="body pt-2 text-ground-500">Filtered content</div>
     </div>
   );
 }

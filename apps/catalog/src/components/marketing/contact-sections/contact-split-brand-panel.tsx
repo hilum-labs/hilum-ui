@@ -1,9 +1,9 @@
 import { Button } from "@hilum/ui";
 
 const INPUT_CLASS =
-  "h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
+  "h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
 const TEXTAREA_CLASS =
-  "w-full rounded-lg border border-taupe-200 bg-white px-3 py-2 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary resize-none";
+  "w-full rounded-lg border border-ground-200 bg-white px-3 py-2 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary resize-none";
 
 function Field({
   placeholder,
@@ -21,7 +21,7 @@ function MessageField({ rows = 5 }: { rows?: number }) {
 
 function ContactForm({ compact = false }: { compact?: boolean }) {
   return (
-    <form className={`rounded-2xl border border-taupe-100 bg-white ${compact ? "p-6" : "p-8"}`}>
+    <form className={`rounded-2xl border border-ground-100 bg-white ${compact ? "p-6" : "p-8"}`}>
       <div className={`grid gap-4 ${compact ? "md:grid-cols-2" : "sm:grid-cols-2"}`}>
         <Field placeholder="Name" />
         <Field type="email" placeholder="Email" />
@@ -63,9 +63,9 @@ export default function ContactSplitBrandPanel() {
       </div>
       <div className="bg-white px-8 py-14">
         <div className="mx-auto max-w-xl">
-          <p className="label text-taupe-400">Project brief</p>
-          <h3 className="heading mt-4 text-taupe-900">Request a tailored walkthrough</h3>
-          <p className="body mt-4 text-taupe-500">
+          <p className="label text-ground-400">Project brief</p>
+          <h3 className="heading mt-4 text-ground-900">Request a tailored walkthrough</h3>
+          <p className="body mt-4 text-ground-500">
             Share your team size, current stack, and timeline. We will reply with recommended scope and a proposed intro call.
           </p>
           <div className="mt-8">

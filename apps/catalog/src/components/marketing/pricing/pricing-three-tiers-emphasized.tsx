@@ -30,12 +30,12 @@ export default function PricingThreeTiersEmphasized() {
   ];
 
   return (
-    <section className="w-full bg-taupe-50 px-8 py-16 md:px-12">
+    <section className="w-full bg-ground-50 px-8 py-16 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="brand" className="mb-4">Recommended pricing</Badge>
-          <h3 className="heading text-taupe-900">Highlight the plan you want most teams to choose</h3>
-          <p className="body mt-3 text-taupe-500">
+          <h3 className="heading text-ground-900">Highlight the plan you want most teams to choose</h3>
+          <p className="body mt-3 text-ground-500">
             Use emphasis, hierarchy, and a stronger call to action to guide buyers toward the highest-fit tier.
           </p>
         </div>
@@ -47,23 +47,23 @@ export default function PricingThreeTiersEmphasized() {
                 "rounded-[2rem] border bg-white p-8",
                 tier.featured
                   ? "border-brand-primary ring-2 ring-brand-primary shadow-elevated lg:-translate-y-3"
-                  : "border-taupe-100 shadow-natural",
+                  : "border-ground-100 shadow-natural",
               ].join(" ")}
             >
               <div className="flex items-center justify-between">
-                <h4 className="subheading text-taupe-900">{tier.name}</h4>
+                <h4 className="subheading text-ground-900">{tier.name}</h4>
                 {tier.featured && <Badge variant="brand">Most popular</Badge>}
               </div>
               <div className="mt-6 flex items-end gap-2">
-                <p className="text-5xl font-semibold tracking-tight text-taupe-900">{tier.price}</p>
-                <p className="body pb-1 text-taupe-400">/mo</p>
+                <p className="text-5xl font-semibold tracking-tight text-ground-900">{tier.price}</p>
+                <p className="body pb-1 text-ground-400">/mo</p>
               </div>
-              <p className="body mt-3 text-taupe-500">{tier.description}</p>
+              <p className="body mt-3 text-ground-500">{tier.description}</p>
               <div className="mt-6 space-y-3">
                 {tier.features.map((feature) => (
                   <div key={feature} className="flex items-start gap-3">
                     <Check className="mt-0.5 size-4 text-brand-primary" />
-                    <p className="body text-taupe-600">{feature}</p>
+                    <p className="body text-ground-600">{feature}</p>
                   </div>
                 ))}
               </div>

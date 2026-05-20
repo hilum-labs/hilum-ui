@@ -23,8 +23,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -36,14 +36,14 @@ export default function FormLayouts() {
       <div className="space-y-8">
         <VariantCard title="1. Simple stacked" className="p-0">
           <div className="mx-auto max-w-2xl px-8 py-10">
-            <div className="mb-8 flex flex-col gap-4 border-b border-taupe-100 pb-6 md:flex-row md:items-center md:justify-between">
+            <div className="mb-8 flex flex-col gap-4 border-b border-ground-100 pb-6 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center gap-4">
                 <Avatar size="xl">
                   <AvatarFallback className="bg-brand-primary text-white">TC</AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="subheading text-taupe-900">Tom Cook</p>
-                  <p className="caption text-taupe-400">tom@example.com</p>
+                  <p className="subheading text-ground-900">Tom Cook</p>
+                  <p className="caption text-ground-400">tom@example.com</p>
                 </div>
               </div>
               <Button variant="outline">Change</Button>

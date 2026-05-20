@@ -10,7 +10,7 @@
 // CSS structure (D6, D7):
 //   1. @source "../src" — tells Tailwind to scan this package's source for class names.
 //   2. Tailwind v4 `@theme` block — palette + brand + fonts + radius + shadow + animations
-//      + z-index semantic scale. These become Tailwind utility prefixes (bg-taupe-50,
+//      + z-index semantic scale. These become Tailwind utility prefixes (bg-ground-50,
 //      font-serif, shadow-natural, z-modal, etc.).
 //   3. `@theme inline` — semantic mappings that reference the dynamic :root vars.
 //   4. `:root` — light-mode defaults for all semantic tokens.
@@ -41,7 +41,7 @@ lines.push('')
 
 /* ---------------- @theme — Tailwind utility palette ---------------- */
 lines.push('@theme {')
-for (const [k, v] of Object.entries(tokens.taupe))  lines.push(`  --color-taupe-${k}: ${v};`)
+for (const [k, v] of Object.entries(tokens.ground))  lines.push(`  --color-ground-${k}: ${v};`)
 for (const [k, v] of Object.entries(tokens.purple)) lines.push(`  --color-purple-${k}: ${v};`)
 for (const [k, v] of Object.entries(tokens.brand))  lines.push(`  --color-brand-${k}: ${v};`)
 for (const [k, v] of Object.entries(tokens.butter)) lines.push(`  --color-butter-${k}: ${v};`)

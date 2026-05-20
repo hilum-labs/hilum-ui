@@ -24,7 +24,7 @@ function Avatar({
 }) {
   return (
     <div
-      className={`flex items-center justify-center rounded-full bg-taupe-200 body font-semibold text-taupe-400 ${className ?? ""}`}
+      className={`flex items-center justify-center rounded-full bg-ground-200 body font-semibold text-ground-400 ${className ?? ""}`}
     >
       {initials}
     </div>
@@ -33,7 +33,7 @@ function Avatar({
 
 export default function SideBySideOnBrand() {
   return (
-    <section className="w-full bg-taupe-900 px-8 py-16">
+    <section className="w-full bg-ground-900 px-8 py-16">
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
         <article className="space-y-6">
           <p className="body leading-7 text-white">
@@ -48,15 +48,15 @@ export default function SideBySideOnBrand() {
               <p className="body font-semibold text-white">
                 {TESTIMONIALS[0].name}
               </p>
-              <p className="caption text-taupe-400">
+              <p className="caption text-ground-400">
                 {TESTIMONIALS[0].role}
               </p>
             </div>
           </div>
-          <div className="h-px bg-taupe-700 md:hidden" />
+          <div className="h-px bg-ground-700 md:hidden" />
         </article>
 
-        <div className="hidden h-full w-px bg-taupe-700 md:block" />
+        <div className="hidden h-full w-px bg-ground-700 md:block" />
 
         <article className="space-y-6">
           <p className="body leading-7 text-white">
@@ -71,7 +71,7 @@ export default function SideBySideOnBrand() {
               <p className="body font-semibold text-white">
                 {TESTIMONIALS[1].name}
               </p>
-              <p className="caption text-taupe-400">
+              <p className="caption text-ground-400">
                 {TESTIMONIALS[1].role}
               </p>
             </div>

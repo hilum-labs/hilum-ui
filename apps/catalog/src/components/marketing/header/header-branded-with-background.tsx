@@ -20,7 +20,7 @@ export default function HeaderBrandedWithBackground() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Button
             variant="secondary"
-            className="bg-white text-taupe-900 hover:bg-white/90"
+            className="bg-white text-ground-900 hover:bg-white/90"
           >
             Start a project
           </Button>

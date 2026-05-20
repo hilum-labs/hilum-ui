@@ -10,9 +10,9 @@ const PRODUCT_DESCRIPTION =
   "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous?";
 
 const COLORS = [
-  { name: "White", swatchClass: "bg-white border border-taupe-300" },
-  { name: "Gray", swatchClass: "bg-taupe-400" },
-  { name: "Black", swatchClass: "bg-taupe-900" },
+  { name: "White", swatchClass: "bg-white border border-ground-300" },
+  { name: "Gray", swatchClass: "bg-ground-400" },
+  { name: "Black", swatchClass: "bg-ground-900" },
 ] as const;
 
 const SIZES = ["XS", "S", "M", "L", "XL"] as const;
@@ -37,8 +37,8 @@ function ColorSelector({
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <p className="label text-taupe-900">Color</p>
-        <p className="caption text-taupe-400">{selectedColor}</p>
+        <p className="label text-ground-900">Color</p>
+        <p className="caption text-ground-400">{selectedColor}</p>
       </div>
       <div className="mt-3 flex items-center gap-3">
         {COLORS.map((color) => {
@@ -51,7 +51,7 @@ function ColorSelector({
               onClick={() => onChange(color.name)}
               aria-label={`Select ${color.name}`}
               className={`flex size-9 items-center justify-center rounded-full border transition ${
-                active ? "border-taupe-900" : "border-transparent hover:border-taupe-200"
+                active ? "border-ground-900" : "border-transparent hover:border-ground-200"
               }`}
             >
               <span className={`size-6 rounded-full ${color.swatchClass}`} />
@@ -75,7 +75,7 @@ function SizeSelector({
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <p className="label text-taupe-900">Size</p>
+        <p className="label text-ground-900">Size</p>
         <a href="#" className="caption text-brand-primary hover:opacity-80">
           Size guide
         </a>
@@ -92,11 +92,11 @@ function SizeSelector({
               className={`rounded-full border px-4 py-2 transition ${
                 large
                   ? active
-                    ? "border-taupe-900 bg-taupe-900 text-white"
-                    : "border-taupe-200 bg-white text-taupe-700 hover:border-taupe-400"
+                    ? "border-ground-900 bg-ground-900 text-white"
+                    : "border-ground-200 bg-white text-ground-700 hover:border-ground-400"
                   : active
-                    ? "border-taupe-900 bg-taupe-900 text-white"
-                    : "border-taupe-200 bg-white text-taupe-700 hover:border-taupe-400"
+                    ? "border-ground-900 bg-ground-900 text-white"
+                    : "border-ground-200 bg-white text-ground-700 hover:border-ground-400"
               } ${large ? "body min-h-14 rounded-2xl font-medium" : "caption font-medium"}`}
             >
               {size}
@@ -119,8 +119,8 @@ function ProductHeader() {
           ))}
         </div>
       </div>
-      <h3 className="heading mt-5 text-taupe-900">{PRODUCT_NAME}</h3>
-      <p className="subheading mt-3 text-taupe-900">{PRODUCT_PRICE}</p>
+      <h3 className="heading mt-5 text-ground-900">{PRODUCT_NAME}</h3>
+      <p className="subheading mt-3 text-ground-900">{PRODUCT_PRICE}</p>
     </div>
   );
 }
@@ -135,7 +135,7 @@ export default function TieredImagesVariant() {
         <img
           src={PRODUCT_IMAGES[0]}
           alt={PRODUCT_NAME}
-          className="aspect-[4/5] w-full rounded-[2rem] bg-taupe-50 object-cover"
+          className="aspect-[4/5] w-full rounded-[2rem] bg-ground-50 object-cover"
         />
         <div className="grid gap-4">
           {PRODUCT_IMAGES.slice(1, 3).map((image) => (
@@ -143,7 +143,7 @@ export default function TieredImagesVariant() {
               key={image}
               src={image}
               alt={PRODUCT_NAME}
-              className="aspect-[4/3] w-full rounded-[2rem] bg-taupe-50 object-cover"
+              className="aspect-[4/3] w-full rounded-[2rem] bg-ground-50 object-cover"
             />
           ))}
         </div>
@@ -151,23 +151,23 @@ export default function TieredImagesVariant() {
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <ProductHeader />
-          <p className="body mt-6 max-w-2xl text-taupe-500">{PRODUCT_DESCRIPTION}</p>
+          <p className="body mt-6 max-w-2xl text-ground-500">{PRODUCT_DESCRIPTION}</p>
         </div>
         <div className="space-y-8">
           <ColorSelector selectedColor={selectedColor} onChange={setSelectedColor} />
           <SizeSelector selectedSize={selectedSize} onChange={setSelectedSize} />
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-2xl border border-taupe-100 p-4">
+            <div className="rounded-2xl border border-ground-100 p-4">
               <Truck className="size-5 text-brand-primary" />
-              <p className="caption mt-3 text-taupe-400">Ships free over $100</p>
+              <p className="caption mt-3 text-ground-400">Ships free over $100</p>
             </div>
-            <div className="rounded-2xl border border-taupe-100 p-4">
+            <div className="rounded-2xl border border-ground-100 p-4">
               <RotateCcw className="size-5 text-brand-primary" />
-              <p className="caption mt-3 text-taupe-400">30-day returns</p>
+              <p className="caption mt-3 text-ground-400">30-day returns</p>
             </div>
-            <div className="rounded-2xl border border-taupe-100 p-4">
+            <div className="rounded-2xl border border-ground-100 p-4">
               <ShieldCheck className="size-5 text-brand-primary" />
-              <p className="caption mt-3 text-taupe-400">Premium knit finish</p>
+              <p className="caption mt-3 text-ground-400">Premium knit finish</p>
             </div>
           </div>
           <Button className="min-w-40">Add to bag</Button>

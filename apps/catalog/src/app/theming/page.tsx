@@ -117,9 +117,9 @@ function PaletteGenerator() {
 
       {/* Live component preview */}
       <div>
-        <p className="caption mb-3 text-taupe-400">Live component preview</p>
+        <p className="caption mb-3 text-ground-400">Live component preview</p>
         <div
-          className="flex flex-wrap items-center gap-3 rounded-xl border border-taupe-100 p-5"
+          className="flex flex-wrap items-center gap-3 rounded-xl border border-ground-100 p-5"
           style={previewVars}
         >
           <Button>Primary</Button>
@@ -151,11 +151,11 @@ function ColorPicker({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <p className="caption font-medium text-taupe-500">{label}</p>
+      <p className="caption font-medium text-ground-500">{label}</p>
       <div className="flex items-center gap-2">
         <label className="relative cursor-pointer">
           <div
-            className="size-9 rounded-md border border-taupe-200 shadow-natural"
+            className="size-9 rounded-md border border-ground-200 shadow-natural"
             style={{ backgroundColor: value }}
           />
           <input
@@ -173,10 +173,10 @@ function ColorPicker({
             if (/^#([0-9a-fA-F]{3}){1,2}$/.test(v)) onChange(v);
           }}
           spellCheck={false}
-          className="h-9 w-28 rounded-md border border-taupe-200 bg-white px-3 font-mono caption text-taupe-900 focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
+          className="h-9 w-28 rounded-md border border-ground-200 bg-white px-3 font-mono caption text-ground-900 focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
         />
       </div>
-      <p className="caption-xs text-taupe-300">
+      <p className="caption-xs text-ground-300">
         {label}-500 anchor · 11 shades generated
       </p>
     </div>
@@ -192,7 +192,7 @@ function PaletteRow({
 }) {
   return (
     <div>
-      <p className="caption mb-1.5 text-taupe-400">{label}</p>
+      <p className="caption mb-1.5 text-ground-400">{label}</p>
       <div className="flex gap-1">
         {SHADE_KEYS.map((k) => {
           const hex = shades[k];
@@ -205,7 +205,7 @@ function PaletteRow({
                 title={hex}
               />
               <p
-                className="caption-xs font-mono text-taupe-400 hidden sm:block"
+                className="caption-xs font-mono text-ground-400 hidden sm:block"
                 style={{ fontSize: "9px" }}
               >
                 {k}
@@ -232,12 +232,12 @@ function CodeBlock({ code, language = "tsx" }: { code: string; language?: string
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
         }}
-        className="absolute right-3 top-3 z-10 flex h-7 items-center gap-1.5 rounded-md bg-taupe-800 px-2.5 caption font-medium text-taupe-300 hover:bg-taupe-700 hover:text-white transition-colors"
+        className="absolute right-3 top-3 z-10 flex h-7 items-center gap-1.5 rounded-md bg-ground-800 px-2.5 caption font-medium text-ground-300 hover:bg-ground-700 hover:text-white transition-colors"
       >
         {copied ? "Copied!" : "Copy"}
       </button>
-      <pre className="overflow-x-auto bg-taupe-950 px-5 py-5 caption leading-relaxed">
-        <code className="font-mono text-taupe-300">{code}</code>
+      <pre className="overflow-x-auto bg-ground-950 px-5 py-5 caption leading-relaxed">
+        <code className="font-mono text-ground-300">{code}</code>
       </pre>
     </div>
   );
@@ -287,7 +287,7 @@ const overrideRows = [
   { var: "--primary-foreground", value: "auto (WCAG)", affects: "Text on primary surfaces" },
   { var: "--accent / --accent-foreground", value: "primary-50 / primary-700", affects: "Hover tints, accent surfaces" },
   { var: "--ring", value: "primary hex", affects: "Focus rings on all interactive elements" },
-  { var: "--warning / --warning-foreground", value: "secondary-200 / taupe-900", affects: "Warning banners and callouts" },
+  { var: "--warning / --warning-foreground", value: "secondary-200 / ground-900", affects: "Warning banners and callouts" },
   { var: "--color-primary-{50…950}", value: "generated palette", affects: "Product CSS: var(--color-primary-100), etc." },
   { var: "--color-secondary-{50…950}", value: "generated palette", affects: "Product CSS: var(--color-secondary-100), etc." },
 ];
@@ -299,8 +299,8 @@ const overrideRows = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-6 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -318,20 +318,20 @@ export default function ThemingPage() {
 
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <Link to="/" className="hover:text-taupe-700">Design System</Link>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <Link to="/" className="hover:text-ground-700">Design System</Link>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Theming</span>
+          <span className="font-semibold text-ground-900">Theming</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Theming</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Theming</h1>
+        <p className="body max-w-lg text-ground-500">
           Per-product color customization via OKLCH palette generation. Pass two
           hex values — get a full 11-shade palette and a CSS override ready to
           inject.
         </p>
-        <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-taupe-100 pt-5">
+        <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-ground-100 pt-5">
           <Badge variant="secondary">@hilum/ui/create-theme</Badge>
-          <span className="caption text-taupe-300">No external dependencies · Works in Node + browser</span>
+          <span className="caption text-ground-300">No external dependencies · Works in Node + browser</span>
         </div>
       </div>
 
@@ -349,8 +349,8 @@ export default function ThemingPage() {
                 className={[
                   "rounded-md px-3 py-1.5 caption font-medium transition-colors",
                   pkgManager === pm
-                    ? "bg-taupe-900 text-white"
-                    : "text-taupe-500 hover:bg-taupe-100",
+                    ? "bg-ground-900 text-white"
+                    : "text-ground-500 hover:bg-ground-100",
                 ].join(" ")}
               >
                 {pm}
@@ -360,18 +360,18 @@ export default function ThemingPage() {
           <CodeBlock code={installCode} language="bash" />
 
           <div className="mt-4">
-            <p className="caption mb-2 text-taupe-400">
+            <p className="caption mb-2 text-ground-400">
               Then import the base token CSS in your globals:
             </p>
             <CodeBlock code={SETUP_CSS} language="css" />
           </div>
 
-          <div className="mt-4 rounded-xl border border-taupe-100 bg-taupe-50 p-4">
-            <p className="caption font-semibold text-taupe-700">Peer dependencies</p>
-            <p className="caption mt-1 text-taupe-400">
-              <code className="font-mono text-taupe-600">react@^19</code> and{" "}
-              <code className="font-mono text-taupe-600">react-dom@^19</code> are required.
-              <code className="font-mono text-taupe-600 ml-2">tailwindcss@^4</code> is required in any app that uses the token utilities.
+          <div className="mt-4 rounded-xl border border-ground-100 bg-ground-50 p-4">
+            <p className="caption font-semibold text-ground-700">Peer dependencies</p>
+            <p className="caption mt-1 text-ground-400">
+              <code className="font-mono text-ground-600">react@^19</code> and{" "}
+              <code className="font-mono text-ground-600">react-dom@^19</code> are required.
+              <code className="font-mono text-ground-600 ml-2">tailwindcss@^4</code> is required in any app that uses the token utilities.
             </p>
           </div>
         </section>
@@ -379,19 +379,19 @@ export default function ThemingPage() {
         {/* ── Palette Generator ─────────────────────────────────────── */}
         <section id="palette-generator">
           <SectionHeading label="Palette generator" />
-          <p className="body mb-6 max-w-lg text-taupe-500">
+          <p className="body mb-6 max-w-lg text-ground-500">
             Pick any two hex colors. The algorithm treats your input as the
             500-level anchor and generates 11 perceptually-uniform shades via
             OKLCH color space interpolation.
           </p>
-          <div className="overflow-hidden rounded-xl border border-taupe-100">
-            <div className="border-b border-taupe-100 bg-white px-5 py-3">
-              <p className="subheading text-taupe-900">Interactive preview</p>
-              <p className="caption mt-0.5 text-taupe-400">
+          <div className="overflow-hidden rounded-xl border border-ground-100">
+            <div className="border-b border-ground-100 bg-white px-5 py-3">
+              <p className="subheading text-ground-900">Interactive preview</p>
+              <p className="caption mt-0.5 text-ground-400">
                 Change the colors to see the generated palette and how components adapt
               </p>
             </div>
-            <div className="bg-taupe-50 p-6">
+            <div className="bg-ground-50 p-6">
               <PaletteGenerator />
             </div>
           </div>
@@ -405,8 +405,8 @@ export default function ThemingPage() {
 
             {/* ThemeProvider */}
             <div>
-              <p className="subheading mb-1 text-taupe-900">ThemeProvider (recommended)</p>
-              <p className="caption mb-3 text-taupe-400">
+              <p className="subheading mb-1 text-ground-900">ThemeProvider (recommended)</p>
+              <p className="caption mb-3 text-ground-400">
                 Wrap your app root. Re-applies automatically when props change.
               </p>
               <CodeBlock code={USAGE_PROVIDER} />
@@ -414,8 +414,8 @@ export default function ThemingPage() {
 
             {/* applyTheme */}
             <div>
-              <p className="subheading mb-1 text-taupe-900">applyTheme()</p>
-              <p className="caption mb-3 text-taupe-400">
+              <p className="subheading mb-1 text-ground-900">applyTheme()</p>
+              <p className="caption mb-3 text-ground-400">
                 Imperative alternative. Useful for Electron apps that apply a theme at init before React mounts.
               </p>
               <CodeBlock code={USAGE_APPLY} />
@@ -423,8 +423,8 @@ export default function ThemingPage() {
 
             {/* createTheme */}
             <div>
-              <p className="subheading mb-1 text-taupe-900">createTheme() — pure / build-time</p>
-              <p className="caption mb-3 text-taupe-400">
+              <p className="subheading mb-1 text-ground-900">createTheme() — pure / build-time</p>
+              <p className="caption mb-3 text-ground-400">
                 Returns the raw CSS string and palette. Works in Node — use it in build scripts, SSG pipelines, or to write a static CSS file per product.
               </p>
               <CodeBlock code={USAGE_CREATE} />
@@ -432,10 +432,10 @@ export default function ThemingPage() {
 
             {/* Manual CSS */}
             <div>
-              <p className="subheading mb-1 text-taupe-900">Manual CSS override</p>
-              <p className="caption mb-3 text-taupe-400">
+              <p className="subheading mb-1 text-ground-900">Manual CSS override</p>
+              <p className="caption mb-3 text-ground-400">
                 For non-React consumers or when full palette generation isn't needed. Import after{" "}
-                <code className="font-mono text-taupe-600">tokens.css</code>.
+                <code className="font-mono text-ground-600">tokens.css</code>.
               </p>
               <CodeBlock code={USAGE_MANUAL_CSS} language="css" />
             </div>
@@ -445,29 +445,29 @@ export default function ThemingPage() {
         {/* ── What gets overridden ──────────────────────────────────── */}
         <section id="overrides">
           <SectionHeading label="What gets overridden" />
-          <p className="body mb-4 max-w-lg text-taupe-500">
+          <p className="body mb-4 max-w-lg text-ground-500">
             The generated CSS overrides CSS custom properties that back Tailwind
-            v4 utilities. Unlayered <code className="font-mono text-taupe-600">:root</code> rules beat{" "}
-            <code className="font-mono text-taupe-600">@layer theme</code>, so the override
+            v4 utilities. Unlayered <code className="font-mono text-ground-600">:root</code> rules beat{" "}
+            <code className="font-mono text-ground-600">@layer theme</code>, so the override
             takes effect without rebuilding Tailwind.
           </p>
-          <div className="overflow-hidden rounded-xl border border-taupe-100">
-            <div className="grid grid-cols-[200px_160px_1fr] border-b border-taupe-100 bg-taupe-50 px-5 py-2">
-              <p className="label text-taupe-400">CSS variable</p>
-              <p className="label text-taupe-400">Value</p>
-              <p className="label text-taupe-400">Affects</p>
+          <div className="overflow-hidden rounded-xl border border-ground-100">
+            <div className="grid grid-cols-[200px_160px_1fr] border-b border-ground-100 bg-ground-50 px-5 py-2">
+              <p className="label text-ground-400">CSS variable</p>
+              <p className="label text-ground-400">Value</p>
+              <p className="label text-ground-400">Affects</p>
             </div>
             {overrideRows.map((row, i) => (
               <div
                 key={row.var}
                 className={[
                   "grid grid-cols-[200px_160px_1fr] items-start gap-3 px-5 py-3",
-                  i !== overrideRows.length - 1 && "border-b border-taupe-100",
+                  i !== overrideRows.length - 1 && "border-b border-ground-100",
                 ].filter(Boolean).join(" ")}
               >
-                <code className="font-mono caption text-taupe-700 break-all">{row.var}</code>
-                <p className="caption text-taupe-500">{row.value}</p>
-                <p className="caption text-taupe-400">{row.affects}</p>
+                <code className="font-mono caption text-ground-700 break-all">{row.var}</code>
+                <p className="caption text-ground-500">{row.value}</p>
+                <p className="caption text-ground-400">{row.affects}</p>
               </div>
             ))}
           </div>
@@ -479,24 +479,24 @@ export default function ThemingPage() {
 
           {/* Functions */}
           <div className="mb-8">
-            <p className="subheading mb-3 text-taupe-900">Exports</p>
-            <div className="overflow-hidden rounded-xl border border-taupe-100">
-              <div className="grid grid-cols-[200px_200px_1fr] border-b border-taupe-100 bg-taupe-50 px-5 py-2">
-                <p className="label text-taupe-400">Export</p>
-                <p className="label text-taupe-400">Signature</p>
-                <p className="label text-taupe-400">Description</p>
+            <p className="subheading mb-3 text-ground-900">Exports</p>
+            <div className="overflow-hidden rounded-xl border border-ground-100">
+              <div className="grid grid-cols-[200px_200px_1fr] border-b border-ground-100 bg-ground-50 px-5 py-2">
+                <p className="label text-ground-400">Export</p>
+                <p className="label text-ground-400">Signature</p>
+                <p className="label text-ground-400">Description</p>
               </div>
               {apiRows.map((row, i) => (
                 <div
                   key={row.name}
                   className={[
                     "grid grid-cols-[200px_200px_1fr] items-start gap-3 px-5 py-3",
-                    i !== apiRows.length - 1 && "border-b border-taupe-100",
+                    i !== apiRows.length - 1 && "border-b border-ground-100",
                   ].filter(Boolean).join(" ")}
                 >
-                  <code className="font-mono caption font-semibold text-taupe-700">{row.name}</code>
-                  <code className="font-mono caption text-taupe-400">{row.sig}</code>
-                  <p className="caption text-taupe-400">{row.desc}</p>
+                  <code className="font-mono caption font-semibold text-ground-700">{row.name}</code>
+                  <code className="font-mono caption text-ground-400">{row.sig}</code>
+                  <p className="caption text-ground-400">{row.desc}</p>
                 </div>
               ))}
             </div>
@@ -504,24 +504,24 @@ export default function ThemingPage() {
 
           {/* ThemeConfig */}
           <div className="mb-8">
-            <p className="subheading mb-3 text-taupe-900">ThemeConfig</p>
-            <div className="overflow-hidden rounded-xl border border-taupe-100">
-              <div className="grid grid-cols-[120px_120px_1fr] border-b border-taupe-100 bg-taupe-50 px-5 py-2">
-                <p className="label text-taupe-400">Prop</p>
-                <p className="label text-taupe-400">Type</p>
-                <p className="label text-taupe-400">Description</p>
+            <p className="subheading mb-3 text-ground-900">ThemeConfig</p>
+            <div className="overflow-hidden rounded-xl border border-ground-100">
+              <div className="grid grid-cols-[120px_120px_1fr] border-b border-ground-100 bg-ground-50 px-5 py-2">
+                <p className="label text-ground-400">Prop</p>
+                <p className="label text-ground-400">Type</p>
+                <p className="label text-ground-400">Description</p>
               </div>
               {configRows.map((row, i) => (
                 <div
                   key={row.prop}
                   className={[
                     "grid grid-cols-[120px_120px_1fr] items-start gap-3 px-5 py-3",
-                    i !== configRows.length - 1 && "border-b border-taupe-100",
+                    i !== configRows.length - 1 && "border-b border-ground-100",
                   ].filter(Boolean).join(" ")}
                 >
-                  <code className="font-mono caption font-semibold text-taupe-700">{row.prop}</code>
-                  <code className="font-mono caption text-taupe-400">{row.type}</code>
-                  <p className="caption text-taupe-400">{row.desc}</p>
+                  <code className="font-mono caption font-semibold text-ground-700">{row.prop}</code>
+                  <code className="font-mono caption text-ground-400">{row.type}</code>
+                  <p className="caption text-ground-400">{row.desc}</p>
                 </div>
               ))}
             </div>
@@ -529,24 +529,24 @@ export default function ThemingPage() {
 
           {/* ThemeResult */}
           <div>
-            <p className="subheading mb-3 text-taupe-900">ThemeResult</p>
-            <div className="overflow-hidden rounded-xl border border-taupe-100">
-              <div className="grid grid-cols-[180px_200px_1fr] border-b border-taupe-100 bg-taupe-50 px-5 py-2">
-                <p className="label text-taupe-400">Field</p>
-                <p className="label text-taupe-400">Type</p>
-                <p className="label text-taupe-400">Description</p>
+            <p className="subheading mb-3 text-ground-900">ThemeResult</p>
+            <div className="overflow-hidden rounded-xl border border-ground-100">
+              <div className="grid grid-cols-[180px_200px_1fr] border-b border-ground-100 bg-ground-50 px-5 py-2">
+                <p className="label text-ground-400">Field</p>
+                <p className="label text-ground-400">Type</p>
+                <p className="label text-ground-400">Description</p>
               </div>
               {resultRows.map((row, i) => (
                 <div
                   key={row.prop}
                   className={[
                     "grid grid-cols-[180px_200px_1fr] items-start gap-3 px-5 py-3",
-                    i !== resultRows.length - 1 && "border-b border-taupe-100",
+                    i !== resultRows.length - 1 && "border-b border-ground-100",
                   ].filter(Boolean).join(" ")}
                 >
-                  <code className="font-mono caption font-semibold text-taupe-700">{row.prop}</code>
-                  <code className="font-mono caption text-taupe-400">{row.type}</code>
-                  <p className="caption text-taupe-400">{row.desc}</p>
+                  <code className="font-mono caption font-semibold text-ground-700">{row.prop}</code>
+                  <code className="font-mono caption text-ground-400">{row.type}</code>
+                  <p className="caption text-ground-400">{row.desc}</p>
                 </div>
               ))}
             </div>
@@ -557,7 +557,7 @@ export default function ThemingPage() {
         <section id="algorithm">
           <SectionHeading label="How palettes are generated" />
           <div className="flex flex-col gap-4 max-w-2xl">
-            <p className="body text-taupe-500">
+            <p className="body text-ground-500">
               Palette generation uses the OKLCH color space — a perceptually
               uniform model where equal numerical steps produce equal perceived
               changes. No external dependency; the conversion math is inlined (~100 lines).
@@ -570,8 +570,8 @@ export default function ThemingPage() {
                 "Foreground colors (primaryForeground) are chosen using WCAG relative luminance with a 0.179 threshold — the crossover point where white and black have equal contrast.",
               ].map((step, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="caption font-semibold text-taupe-300 shrink-0 w-4">{i + 1}.</span>
-                  <p className="caption text-taupe-500">{step}</p>
+                  <span className="caption font-semibold text-ground-300 shrink-0 w-4">{i + 1}.</span>
+                  <p className="caption text-ground-500">{step}</p>
                 </li>
               ))}
             </ol>

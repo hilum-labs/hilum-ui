@@ -27,10 +27,10 @@ const FAQS = [
 
 export default function TwoColumnsOnDark() {
   return (
-    <section className="w-full bg-taupe-900 px-8 py-16">
+    <section className="w-full bg-ground-900 px-8 py-16">
       <div className="mx-auto max-w-5xl">
         <h2 className="heading text-white">Frequently asked questions</h2>
-        <p className="body mt-3 max-w-2xl text-taupe-300">
+        <p className="body mt-3 max-w-2xl text-ground-300">
           Useful for footer-adjacent support sections or darker product
           narratives that need consistent contrast.
         </p>
@@ -39,7 +39,7 @@ export default function TwoColumnsOnDark() {
           {FAQS.map((item) => (
             <div key={item.q}>
               <dt className="body font-semibold text-white">{item.q}</dt>
-              <dd className="body mt-2 text-taupe-300">{item.a}</dd>
+              <dd className="body mt-2 text-ground-300">{item.a}</dd>
             </div>
           ))}
         </dl>

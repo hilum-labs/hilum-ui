@@ -30,13 +30,13 @@ export function PreviewBlock({
   };
 
   return (
-    <div className={cn("overflow-hidden rounded-xl border border-taupe-100", className)}>
+    <div className={cn("overflow-hidden rounded-xl border border-ground-100", className)}>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-taupe-100 bg-white px-5 py-3">
+      <div className="flex items-center justify-between border-b border-ground-100 bg-white px-5 py-3">
         <div>
-          <p className="subheading text-taupe-900">{title}</p>
+          <p className="subheading text-ground-900">{title}</p>
           {description && (
-            <p className="caption mt-0.5 text-taupe-400">{description}</p>
+            <p className="caption mt-0.5 text-ground-400">{description}</p>
           )}
         </div>
         <button
@@ -44,8 +44,8 @@ export function PreviewBlock({
           className={cn(
             "flex h-7 items-center gap-1.5 rounded-md px-2.5 caption font-medium transition-colors",
             showCode
-              ? "bg-taupe-900 text-white"
-              : "text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700"
+              ? "bg-ground-900 text-white"
+              : "text-ground-400 hover:bg-ground-100 hover:text-ground-700"
           )}
         >
           <Code2 size={12} />
@@ -57,7 +57,7 @@ export function PreviewBlock({
       <div
         className={cn(
           "flex min-h-32 flex-wrap items-center justify-center gap-3 p-8",
-          "bg-taupe-50",
+          "bg-ground-50",
           previewClassName
         )}
       >
@@ -66,16 +66,16 @@ export function PreviewBlock({
 
       {/* Code panel */}
       {showCode && (
-        <div className="relative border-t border-taupe-100">
+        <div className="relative border-t border-ground-100">
           <button
             onClick={handleCopy}
-            className="absolute right-3 top-3 z-10 flex h-7 items-center gap-1.5 rounded-md bg-taupe-800 px-2.5 text-xs font-medium text-taupe-300 transition-colors hover:bg-taupe-700 hover:text-white"
+            className="absolute right-3 top-3 z-10 flex h-7 items-center gap-1.5 rounded-md bg-ground-800 px-2.5 text-xs font-medium text-ground-300 transition-colors hover:bg-ground-700 hover:text-white"
           >
             {copied ? <Check size={11} /> : <Copy size={11} />}
             {copied ? "Copied!" : "Copy"}
           </button>
-          <pre className="overflow-x-auto bg-taupe-950 px-5 py-5 caption leading-relaxed">
-            <code className="font-mono text-taupe-300">{code}</code>
+          <pre className="overflow-x-auto bg-ground-950 px-5 py-5 caption leading-relaxed">
+            <code className="font-mono text-ground-300">{code}</code>
           </pre>
         </div>
       )}

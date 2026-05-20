@@ -10,10 +10,10 @@ export default function HeroWithAngledImage() {
             <p className="label uppercase tracking-[0.24em] text-brand-primary">
               New analytics workspace
             </p>
-            <h1 className="display mt-5 text-taupe-900">
+            <h1 className="display mt-5 text-ground-900">
               See momentum build before the quarter closes.
             </h1>
-            <p className="body mt-5 text-taupe-500">
+            <p className="body mt-5 text-ground-500">
               Track campaign lift, pipeline contribution, and team capacity in
               one view designed for leaders who need signal, not noise.
             </p>
@@ -24,16 +24,16 @@ export default function HeroWithAngledImage() {
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-tl-[2rem] rounded-br-[2rem] bg-taupe-100 p-6">
+        <div className="overflow-hidden rounded-tl-[2rem] rounded-br-[2rem] bg-ground-100 p-6">
           <div className="flex h-full min-h-[320px] items-end">
             <div className="w-full rounded-[1.5rem] bg-white p-6 shadow-elevated">
               <div className="grid gap-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="caption text-taupe-400">Weekly pipeline lift</p>
-                    <p className="heading mt-1 text-taupe-900">+18.4%</p>
+                    <p className="caption text-ground-400">Weekly pipeline lift</p>
+                    <p className="heading mt-1 text-ground-900">+18.4%</p>
                   </div>
-                  <span className="rounded-full bg-brand-secondary px-3 py-1 label text-taupe-900">
+                  <span className="rounded-full bg-brand-secondary px-3 py-1 label text-ground-900">
                     Ahead of target
                   </span>
                 </div>

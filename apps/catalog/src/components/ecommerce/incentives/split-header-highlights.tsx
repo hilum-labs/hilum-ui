@@ -58,8 +58,8 @@ function IconFeature({
           <Icon size={24} strokeWidth={1.8} />
         </IconContainer>
       </div>
-      <p className="subheading text-taupe-900">{title}</p>
-      <p className={`mt-2 ${detailed ? "body leading-relaxed text-taupe-500" : "caption leading-relaxed text-taupe-400"}`}>
+      <p className="subheading text-ground-900">{title}</p>
+      <p className={`mt-2 ${detailed ? "body leading-relaxed text-ground-500" : "caption leading-relaxed text-ground-400"}`}>
         {description}
       </p>
     </div>
@@ -68,12 +68,12 @@ function IconFeature({
 
 export default function SplitHeaderHighlights() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white px-6 py-12">
+    <section className="w-full rounded-xl border border-ground-100 bg-white px-6 py-12">
       <div className="grid gap-8 md:grid-cols-[0.7fr_1.3fr] md:items-center">
         <div className="max-w-sm">
           <Badge variant="warning">Always on</Badge>
-          <h2 className="heading mt-5 text-taupe-900">Free delivery on all orders over $100</h2>
-          <p className="body mt-3 text-taupe-500">
+          <h2 className="heading mt-5 text-ground-900">Free delivery on all orders over $100</h2>
+          <p className="body mt-3 text-ground-500">
             Pair the delivery message with two complementary trust notes to keep the section direct and conversion-focused.
           </p>
           <div className="mt-6">

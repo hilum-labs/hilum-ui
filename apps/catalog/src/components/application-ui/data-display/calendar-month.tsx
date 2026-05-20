@@ -24,12 +24,12 @@ export default function CalendarMonth() {
   const [currentMonth] = useState("January 2022");
 
   return (
-    <div className="w-full rounded-xl border border-taupe-100 bg-white p-6">
+    <div className="w-full rounded-xl border border-ground-100 bg-white p-6">
       <div className="mb-4 flex items-center justify-between">
         <Button variant="outline" size="icon-sm" aria-label="Previous month">
           <ChevronLeft className="size-4" />
         </Button>
-        <h3 className="subheading text-taupe-900">{currentMonth}</h3>
+        <h3 className="subheading text-ground-900">{currentMonth}</h3>
         <Button variant="outline" size="icon-sm" aria-label="Next month">
           <ChevronRight className="size-4" />
         </Button>
@@ -37,7 +37,7 @@ export default function CalendarMonth() {
 
       <div className="mb-2 grid grid-cols-7 gap-y-2">
         {daysOfWeek.map((day) => (
-          <p key={day} className="text-center caption text-taupe-400">
+          <p key={day} className="text-center caption text-ground-400">
             {day}
           </p>
         ))}
@@ -61,7 +61,7 @@ export default function CalendarMonth() {
                   "flex size-8 items-center justify-center rounded-full body transition-colors",
                   isToday
                     ? "bg-brand-primary text-white"
-                    : "text-taupe-700"
+                    : "text-ground-700"
                 )}
               >
                 {day}
@@ -74,28 +74,28 @@ export default function CalendarMonth() {
         })}
       </div>
 
-      <div className="mt-6 border-t border-taupe-100 pt-4">
-        <p className="mb-3 subheading text-taupe-900">Events in January</p>
+      <div className="mt-6 border-t border-ground-100 pt-4">
+        <p className="mb-3 subheading text-ground-900">Events in January</p>
         <div className="space-y-2">
           {events.map((event) => (
             <div
               key={event.day}
-              className="flex items-center justify-between rounded-lg border border-taupe-100 px-4 py-3"
+              className="flex items-center justify-between rounded-lg border border-ground-100 px-4 py-3"
             >
               <div className="flex items-center gap-3">
                 <Avatar className="size-8">
-                  <AvatarFallback className="bg-brand-secondary text-taupe-900">
+                  <AvatarFallback className="bg-brand-secondary text-ground-900">
                     {event.day}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="body font-medium text-taupe-900">
+                  <p className="body font-medium text-ground-900">
                     {event.name}
                   </p>
-                  <p className="caption text-taupe-500">January {event.day}</p>
+                  <p className="caption text-ground-500">January {event.day}</p>
                 </div>
               </div>
-              <p className="caption text-taupe-500">{event.time}</p>
+              <p className="caption text-ground-500">{event.time}</p>
             </div>
           ))}
         </div>

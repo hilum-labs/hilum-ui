@@ -26,9 +26,9 @@ const generations = [
 
 const members = [
   { id: 1, name: "Sarah Parker",  email: "s.parker@acme.com",   role: "Designer",       dept: "Product",     status: "Active",   initials: "SP", color: "bg-brand-primary",  textColor: "text-white"      },
-  { id: 2, name: "George Lin",    email: "g.lin@acme.com",      role: "Engineer",       dept: "Engineering", status: "Active",   initials: "GL", color: "bg-brand-secondary",    textColor: "text-taupe-900" },
-  { id: 3, name: "Ana Portillo",  email: "a.portillo@acme.com", role: "Product Manager",dept: "Product",     status: "On leave", initials: "AP", color: "bg-brand-secondary",  textColor: "text-taupe-900" },
-  { id: 4, name: "Lucas Meyer",   email: "l.meyer@acme.com",    role: "Engineer",       dept: "Engineering", status: "Active",   initials: "LM", color: "bg-taupe-900",     textColor: "text-white"      },
+  { id: 2, name: "George Lin",    email: "g.lin@acme.com",      role: "Engineer",       dept: "Engineering", status: "Active",   initials: "GL", color: "bg-brand-secondary",    textColor: "text-ground-900" },
+  { id: 3, name: "Ana Portillo",  email: "a.portillo@acme.com", role: "Product Manager",dept: "Product",     status: "On leave", initials: "AP", color: "bg-brand-secondary",  textColor: "text-ground-900" },
+  { id: 4, name: "Lucas Meyer",   email: "l.meyer@acme.com",    role: "Engineer",       dept: "Engineering", status: "Active",   initials: "LM", color: "bg-ground-900",     textColor: "text-white"      },
   { id: 5, name: "Emma Chen",     email: "e.chen@acme.com",     role: "Designer",       dept: "Brand",       status: "Active",   initials: "EC", color: "bg-brand-primary",  textColor: "text-white"      },
 ];
 
@@ -77,8 +77,8 @@ import { Badge } from "@hilum/ui"
   <TableBody>
     {rows.map((row) => (
       <TableRow key={row.id}>
-        <TableCell className="font-medium text-taupe-900">{row.voice}</TableCell>
-        <TableCell className="max-w-[200px] truncate text-taupe-500">{row.text}</TableCell>
+        <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
+        <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
         <TableCell>{row.duration}</TableCell>
         <TableCell><Badge variant={statusVariant[row.status]}>{row.status}</Badge></TableCell>
       </TableRow>
@@ -89,7 +89,7 @@ import { Badge } from "@hilum/ui"
   striped: `// Alternate row background using className on TableRow
 <TableBody>
   {rows.map((row, i) => (
-    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-taupe-50" : ""}>
+    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-ground-50" : ""}>
       ...
     </TableRow>
   ))}
@@ -106,14 +106,14 @@ import { Badge } from "@hilum/ui"
             <AvatarFallback className={cn(m.color, m.textColor, "font-semibold")}>{m.initials}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-medium text-taupe-900">{m.name}</p>
-            <p className="caption text-taupe-400">{m.email}</p>
+            <p className="font-medium text-ground-900">{m.name}</p>
+            <p className="caption text-ground-400">{m.email}</p>
           </div>
         </div>
       </TableCell>
       <TableCell>
-        <p className="body text-taupe-900">{m.role}</p>
-        <p className="caption text-taupe-400">{m.dept}</p>
+        <p className="body text-ground-900">{m.role}</p>
+        <p className="caption text-ground-400">{m.dept}</p>
       </TableCell>
       <TableCell><Badge variant={statusVariant[m.status]}>{m.status}</Badge></TableCell>
     </TableRow>
@@ -159,7 +159,7 @@ const toggle = (id: number) =>
   {Object.entries(grouped).map(([group, rows]) => (
     <Fragment key={group}>
       <TableRow className="hover:bg-transparent">
-        <TableHead colSpan={4} className="bg-taupe-50 py-2">{group}</TableHead>
+        <TableHead colSpan={4} className="bg-ground-50 py-2">{group}</TableHead>
       </TableRow>
       {rows.map((row) => (
         <TableRow key={row.id}>...</TableRow>
@@ -172,10 +172,10 @@ const toggle = (id: number) =>
 const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(null)
 
 <TableHead>
-  <button className="flex items-center gap-1 hover:text-taupe-700"
+  <button className="flex items-center gap-1 hover:text-ground-700"
     onClick={() => setSort(s => s?.col === "name" ? { col: "name", dir: s.dir === "asc" ? "desc" : "asc" } : { col: "name", dir: "asc" })}>
     Name
-    <ChevronsUpDown size={12} className="text-taupe-300" />
+    <ChevronsUpDown size={12} className="text-ground-300" />
   </button>
 </TableHead>`,
 
@@ -196,7 +196,7 @@ const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(nu
   <TableBody>
     {lines.map((line) => (
       <TableRow key={line.description}>
-        <TableCell className="font-medium text-taupe-900">{line.description}</TableCell>
+        <TableCell className="font-medium text-ground-900">{line.description}</TableCell>
         <TableCell className="text-right">{line.hrs}h</TableCell>
         <TableCell className="text-right">{line.rate}/hr</TableCell>
         <TableCell className="text-right font-medium">{line.amount.toLocaleString()}</TableCell>
@@ -205,12 +205,12 @@ const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(nu
   </TableBody>
   <TableFooter>
     <TableRow>
-      <TableCell colSpan={3} className="text-right font-medium text-taupe-500">Subtotal</TableCell>
-      <TableCell className="text-right font-semibold text-taupe-900">${subtotal.toLocaleString()}</TableCell>
+      <TableCell colSpan={3} className="text-right font-medium text-ground-500">Subtotal</TableCell>
+      <TableCell className="text-right font-semibold text-ground-900">${subtotal.toLocaleString()}</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell colSpan={3} className="text-right font-medium text-taupe-500">Total</TableCell>
-      <TableCell className="text-right font-semibold text-taupe-900">${total.toLocaleString()}</TableCell>
+      <TableCell colSpan={3} className="text-right font-medium text-ground-500">Total</TableCell>
+      <TableCell className="text-right font-semibold text-ground-900">${total.toLocaleString()}</TableCell>
     </TableRow>
   </TableFooter>
 </Table>`,
@@ -230,8 +230,8 @@ function CheckboxTable() {
   return (
     <div className="w-full">
       {selected.length > 0 && (
-        <div className="mb-2 flex items-center gap-2 rounded-lg bg-taupe-50 px-4 py-2">
-          <span className="body text-taupe-600">{selected.length} selected</span>
+        <div className="mb-2 flex items-center gap-2 rounded-lg bg-ground-50 px-4 py-2">
+          <span className="body text-ground-600">{selected.length} selected</span>
           <div className="flex-1" />
           <Button size="sm" variant="ghost" className="text-red-500 hover:text-red-600">
             <Trash2 size={13} /> Delete
@@ -258,7 +258,7 @@ function CheckboxTable() {
             <TableRow
               key={m.id}
               data-state={selected.includes(m.id) ? "selected" : undefined}
-              className={cn(selected.includes(m.id) && "bg-taupe-50")}
+              className={cn(selected.includes(m.id) && "bg-ground-50")}
             >
               <TableCell>
                 <Checkbox
@@ -274,12 +274,12 @@ function CheckboxTable() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="body font-medium text-taupe-900">{m.name}</p>
-                    <p className="caption text-taupe-400">{m.email}</p>
+                    <p className="body font-medium text-ground-900">{m.name}</p>
+                    <p className="caption text-ground-400">{m.email}</p>
                   </div>
                 </div>
               </TableCell>
-              <TableCell className="body text-taupe-700">{m.role}</TableCell>
+              <TableCell className="body text-ground-700">{m.role}</TableCell>
               <TableCell>
                 <Badge variant={statusVariant[m.status]}>{m.status}</Badge>
               </TableCell>
@@ -300,7 +300,7 @@ function SortableTable() {
     setSort((s) => s?.col === col ? (s.dir === "asc" ? { col, dir: "desc" } : null) : { col, dir: "asc" });
 
   const SortIcon = ({ col }: { col: string }) => {
-    if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-taupe-300" />;
+    if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-ground-300" />;
     return sort.dir === "asc" ? <ChevronUp size={12} /> : <ChevronDown size={12} />;
   };
 
@@ -328,8 +328,8 @@ function SortableTable() {
               <button
                 onClick={() => cycleSort(key)}
                 className={cn(
-                  "flex items-center gap-1 transition-colors hover:text-taupe-700",
-                  sort?.col === key && "text-taupe-900"
+                  "flex items-center gap-1 transition-colors hover:text-ground-700",
+                  sort?.col === key && "text-ground-900"
                 )}
               >
                 {label}
@@ -342,10 +342,10 @@ function SortableTable() {
       <TableBody>
         {sorted.map((t) => (
           <TableRow key={t.id}>
-            <TableCell className="font-mono text-xs text-taupe-400">{t.id}</TableCell>
-            <TableCell className="font-medium text-taupe-900">{t.company}</TableCell>
-            <TableCell className="text-taupe-500">{t.date}</TableCell>
-            <TableCell className="font-medium text-taupe-900">{t.amount}</TableCell>
+            <TableCell className="font-mono text-xs text-ground-400">{t.id}</TableCell>
+            <TableCell className="font-medium text-ground-900">{t.company}</TableCell>
+            <TableCell className="text-ground-500">{t.date}</TableCell>
+            <TableCell className="font-medium text-ground-900">{t.amount}</TableCell>
             <TableCell>
               <Badge variant={statusVariant[t.status] ?? "secondary"}>{t.status}</Badge>
             </TableCell>
@@ -363,8 +363,8 @@ function SortableTable() {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -373,15 +373,15 @@ export default function TablePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Table</span>
+          <span className="font-semibold text-ground-900">Table</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Table</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Table</h1>
+        <p className="body max-w-lg text-ground-500">
           Structured data display with rows and columns. Supports striped rows, avatars, checkboxes, sorting, sticky headers, grouped rows, and summary footers.
         </p>
       </div>
@@ -411,8 +411,8 @@ export default function TablePage() {
                 <TableBody>
                   {generations.map((row) => (
                     <TableRow key={row.id}>
-                      <TableCell className="font-medium text-taupe-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-taupe-500">{row.text}</TableCell>
+                      <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
                       <TableCell>{row.duration}</TableCell>
                       <TableCell>
                         <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
@@ -440,9 +440,9 @@ export default function TablePage() {
                 </TableHeader>
                 <TableBody>
                   {generations.map((row, i) => (
-                    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-taupe-50 hover:bg-taupe-100/50" : ""}>
-                      <TableCell className="font-medium text-taupe-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-taupe-500">{row.text}</TableCell>
+                    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-ground-50 hover:bg-ground-100/50" : ""}>
+                      <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
                       <TableCell>{row.duration}</TableCell>
                       <TableCell>
                         <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
@@ -473,11 +473,11 @@ export default function TablePage() {
                 <TableBody>
                   {transactions.map((t) => (
                     <TableRow key={t.id}>
-                      <TableCell className="py-1.5 font-mono text-xs text-taupe-400">{t.id}</TableCell>
-                      <TableCell className="py-1.5 font-medium text-taupe-900">{t.company}</TableCell>
-                      <TableCell className="py-1.5 text-taupe-500">{t.type}</TableCell>
-                      <TableCell className="py-1.5 font-medium text-taupe-900">{t.amount}</TableCell>
-                      <TableCell className="py-1.5 text-taupe-500">{t.date}</TableCell>
+                      <TableCell className="py-1.5 font-mono text-xs text-ground-400">{t.id}</TableCell>
+                      <TableCell className="py-1.5 font-medium text-ground-900">{t.company}</TableCell>
+                      <TableCell className="py-1.5 text-ground-500">{t.type}</TableCell>
+                      <TableCell className="py-1.5 font-medium text-ground-900">{t.amount}</TableCell>
+                      <TableCell className="py-1.5 text-ground-500">{t.date}</TableCell>
                       <TableCell className="py-1.5">
                         <Badge variant={statusVariant[t.status] ?? "secondary"}>{t.status}</Badge>
                       </TableCell>
@@ -517,14 +517,14 @@ export default function TablePage() {
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="body font-medium text-taupe-900">{m.name}</p>
-                          <p className="caption text-taupe-400">{m.email}</p>
+                          <p className="body font-medium text-ground-900">{m.name}</p>
+                          <p className="caption text-ground-400">{m.email}</p>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <p className="body text-taupe-900">{m.role}</p>
-                      <p className="caption text-taupe-400">{m.dept}</p>
+                      <p className="body text-ground-900">{m.role}</p>
+                      <p className="caption text-ground-400">{m.dept}</p>
                     </TableCell>
                     <TableCell>
                       <Badge variant={statusVariant[m.status]}>{m.status}</Badge>
@@ -576,17 +576,17 @@ export default function TablePage() {
                       <TableRow key={group} className="hover:bg-transparent">
                         <TableCell
                           colSpan={4}
-                          className="bg-taupe-50 py-2 label text-taupe-500"
+                          className="bg-ground-50 py-2 label text-ground-500"
                         >
                           {group}
                         </TableCell>
                       </TableRow>
                       {rows.map((t) => (
                         <TableRow key={t.id}>
-                          <TableCell className="font-medium text-taupe-900">{t.company}</TableCell>
-                          <TableCell className="text-taupe-500">{t.type}</TableCell>
-                          <TableCell className="font-medium text-taupe-900">{t.amount}</TableCell>
-                          <TableCell className="text-taupe-500">{t.date}</TableCell>
+                          <TableCell className="font-medium text-ground-900">{t.company}</TableCell>
+                          <TableCell className="text-ground-500">{t.type}</TableCell>
+                          <TableCell className="font-medium text-ground-900">{t.amount}</TableCell>
+                          <TableCell className="text-ground-500">{t.date}</TableCell>
                         </TableRow>
                       ))}
                     </>
@@ -619,7 +619,7 @@ export default function TablePage() {
             code={CODE.sticky}
             previewClassName="flex-col items-stretch"
           >
-            <Table containerClassName="max-h-56 overflow-auto rounded-xl border border-taupe-100 bg-white">
+            <Table containerClassName="max-h-56 overflow-auto rounded-xl border border-ground-100 bg-white">
               <TableHeader className="sticky top-0 z-10 bg-white/90 backdrop-blur-sm">
                   <TableRow>
                     <TableHead>Voice</TableHead>
@@ -631,8 +631,8 @@ export default function TablePage() {
                 <TableBody>
                   {[...generations, ...generations].map((row, i) => (
                     <TableRow key={i}>
-                      <TableCell className="font-medium text-taupe-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-taupe-500">{row.text}</TableCell>
+                      <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
                       <TableCell>{row.duration}</TableCell>
                       <TableCell>
                         <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
@@ -665,25 +665,25 @@ export default function TablePage() {
               <TableBody>
                 {invoiceLines.map((line) => (
                   <TableRow key={line.description}>
-                    <TableCell className="font-medium text-taupe-900">{line.description}</TableCell>
-                    <TableCell className="text-right text-taupe-500">{line.hrs}h</TableCell>
-                    <TableCell className="text-right text-taupe-500">${line.rate}/hr</TableCell>
-                    <TableCell className="text-right font-medium text-taupe-900">${line.amount.toLocaleString()}</TableCell>
+                    <TableCell className="font-medium text-ground-900">{line.description}</TableCell>
+                    <TableCell className="text-right text-ground-500">{line.hrs}h</TableCell>
+                    <TableCell className="text-right text-ground-500">${line.rate}/hr</TableCell>
+                    <TableCell className="text-right font-medium text-ground-900">${line.amount.toLocaleString()}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right text-taupe-500">Subtotal</TableCell>
-                  <TableCell className="text-right font-semibold text-taupe-900">${subtotal.toLocaleString()}</TableCell>
+                  <TableCell colSpan={3} className="text-right text-ground-500">Subtotal</TableCell>
+                  <TableCell className="text-right font-semibold text-ground-900">${subtotal.toLocaleString()}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right text-taupe-500">Tax (20%)</TableCell>
-                  <TableCell className="text-right font-semibold text-taupe-900">${tax.toLocaleString()}</TableCell>
+                  <TableCell colSpan={3} className="text-right text-ground-500">Tax (20%)</TableCell>
+                  <TableCell className="text-right font-semibold text-ground-900">${tax.toLocaleString()}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right font-semibold text-taupe-900">Total</TableCell>
-                  <TableCell className="text-right font-semibold text-taupe-900">${total.toLocaleString()}</TableCell>
+                  <TableCell colSpan={3} className="text-right font-semibold text-ground-900">Total</TableCell>
+                  <TableCell className="text-right font-semibold text-ground-900">${total.toLocaleString()}</TableCell>
                 </TableRow>
               </TableFooter>
             </Table>

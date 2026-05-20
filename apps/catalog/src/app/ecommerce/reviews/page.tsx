@@ -15,25 +15,25 @@ import OverallRatingWithFeaturedReviews from "@/components/ecommerce/reviews/ove
 import overallRatingWithFeaturedReviewsSource from "@/components/ecommerce/reviews/overall-rating-with-featured-reviews?raw";
 
 function SectionHeading({ label }: { label: string }) {
-  return <div className="mb-4 flex items-center gap-3"><h2 className="label text-taupe-400">{label}</h2><div className="h-px flex-1 bg-taupe-100" /></div>;
+  return <div className="mb-4 flex items-center gap-3"><h2 className="label text-ground-400">{label}</h2><div className="h-px flex-1 bg-ground-100" /></div>;
 }
 
 export default function ReviewsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/ecommerce" className="hover:text-taupe-700">Ecommerce</a>
+          <a href="/ecommerce" className="hover:text-ground-700">Ecommerce</a>
           <span>/</span>
-          <span className="body font-semibold text-taupe-900">Reviews</span>
+          <span className="body font-semibold text-ground-900">Reviews</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Reviews</h1>
-        <p className="body max-w-2xl text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Reviews</h1>
+        <p className="body max-w-2xl text-ground-400">
           Customer review sections with star ratings, avatars, and summary charts.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <Badge variant="secondary">Social Proof · 4 variants</Badge>
         </div>
       </div>

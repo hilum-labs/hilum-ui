@@ -17,7 +17,7 @@ function Avatar({
 }) {
   return (
     <div
-      className={`flex items-center justify-center rounded-full bg-taupe-200 body font-semibold text-taupe-400 ${className ?? ""}`}
+      className={`flex items-center justify-center rounded-full bg-ground-200 body font-semibold text-ground-400 ${className ?? ""}`}
     >
       {initials}
     </div>
@@ -28,28 +28,28 @@ export default function WithOverlappingImage() {
   return (
     <section className="w-full overflow-hidden bg-white">
       <div className="grid md:grid-cols-2">
-        <div className="bg-taupe-50 p-8 md:p-12">
+        <div className="bg-ground-50 p-8 md:p-12">
           <div className="mx-auto max-w-md">
             <div className="mb-4 flex items-center gap-2">
               <Badge variant="outline">Case Study</Badge>
-              <span className="caption text-taupe-400">Editorial layout</span>
+              <span className="caption text-ground-400">Editorial layout</span>
             </div>
-            <div className="aspect-square w-full rounded-2xl bg-taupe-200 shadow-natural md:translate-x-8" />
+            <div className="aspect-square w-full rounded-2xl bg-ground-200 shadow-natural md:translate-x-8" />
           </div>
         </div>
 
         <div className="flex items-center px-8 py-16 md:px-16">
           <div className="max-w-xl">
-            <p className="heading leading-tight text-taupe-900">
+            <p className="heading leading-tight text-ground-900">
               {TESTIMONIAL.quote}
             </p>
             <div className="mt-8 flex items-center gap-4">
               <Avatar initials={TESTIMONIAL.initials} className="size-12" />
               <div>
-                <p className="subheading font-semibold text-taupe-900">
+                <p className="subheading font-semibold text-ground-900">
                   {TESTIMONIAL.name}
                 </p>
-                <p className="body text-taupe-500">
+                <p className="body text-ground-500">
                   {TESTIMONIAL.title}
                 </p>
               </div>

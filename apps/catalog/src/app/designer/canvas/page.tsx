@@ -94,11 +94,11 @@ const layerTypes = [
 
 export default function CanvasDemo() {
   return (
-    <div className="h-screen flex flex-col bg-taupe-50">
-      <header className="flex items-center justify-between px-6 py-4 border-b border-taupe-100">
+    <div className="h-screen flex flex-col bg-ground-50">
+      <header className="flex items-center justify-between px-6 py-4 border-b border-ground-100">
         <div>
-          <h1 className="heading text-taupe-900">Canvas demo</h1>
-          <p className="caption text-taupe-500 mt-0.5">
+          <h1 className="heading text-ground-900">Canvas demo</h1>
+          <p className="caption text-ground-500 mt-0.5">
             Live <code className="font-mono">@hilum/designer-canvas</code> — drag layers, marquee-select, zoom with Cmd+wheel.
           </p>
         </div>

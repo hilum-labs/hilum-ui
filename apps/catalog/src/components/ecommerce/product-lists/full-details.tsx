@@ -37,20 +37,20 @@ export default function FullDetails() {
         {PRODUCTS.map((product) => (
           <article
             key={product.name}
-            className="rounded-[2rem] border border-taupe-100 bg-white p-4 shadow-natural"
+            className="rounded-[2rem] border border-ground-100 bg-white p-4 shadow-natural"
           >
-            <div className="overflow-hidden rounded-2xl bg-taupe-50">
+            <div className="overflow-hidden rounded-2xl bg-ground-50">
               <img src={product.image} alt={product.name} className="aspect-square w-full object-cover" />
             </div>
             <div className="mt-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="subheading text-taupe-900">{product.name}</h3>
-                  <p className="caption mt-1 text-taupe-400">{product.options.join(" · ")}</p>
+                  <h3 className="subheading text-ground-900">{product.name}</h3>
+                  <p className="caption mt-1 text-ground-400">{product.options.join(" · ")}</p>
                 </div>
-                <p className="body text-taupe-500">{product.price}</p>
+                <p className="body text-ground-500">{product.price}</p>
               </div>
-              <p className="caption mt-4 text-taupe-500">{product.description}</p>
+              <p className="caption mt-4 text-ground-500">{product.description}</p>
             </div>
           </article>
         ))}

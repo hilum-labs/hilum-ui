@@ -49,15 +49,15 @@ export default function DesignerIndex() {
   return (
     <div className="mx-auto max-w-5xl px-8 py-12">
       <div className="mb-10">
-        <p className="caption-xs uppercase tracking-wider font-semibold text-taupe-400">
+        <p className="caption-xs uppercase tracking-wider font-semibold text-ground-400">
           Section
         </p>
-        <h1 className="display text-taupe-900 mt-1">Designer</h1>
-        <p className="body-lg text-taupe-500 mt-3 max-w-2xl">
+        <h1 className="display text-ground-900 mt-1">Designer</h1>
+        <p className="body-lg text-ground-500 mt-3 max-w-2xl">
           Composable canvas-editor primitives. The chrome lives in{" "}
-          <code className="caption font-mono bg-taupe-50 px-1.5 py-0.5 rounded text-taupe-900">@hilum/designer</code>{" "}
+          <code className="caption font-mono bg-ground-50 px-1.5 py-0.5 rounded text-ground-900">@hilum/designer</code>{" "}
           (engine-agnostic) and the canvas engine in{" "}
-          <code className="caption font-mono bg-taupe-50 px-1.5 py-0.5 rounded text-taupe-900">@hilum/designer-canvas</code>{" "}
+          <code className="caption font-mono bg-ground-50 px-1.5 py-0.5 rounded text-ground-900">@hilum/designer-canvas</code>{" "}
           (generic free-positioned canvas with a pluggable renderer registry).
         </p>
       </div>

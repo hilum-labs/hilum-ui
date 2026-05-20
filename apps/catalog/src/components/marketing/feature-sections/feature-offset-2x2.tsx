@@ -26,12 +26,12 @@ export default function FeatureOffset2x2() {
   ];
 
   return (
-    <section className="w-full bg-taupe-50 px-8 py-16 md:px-12">
+    <section className="w-full bg-ground-50 px-8 py-16 md:px-12">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-3 lg:items-start">
         <div className="lg:col-span-1">
           <Badge variant="brand" className="mb-4">Strategy + execution</Badge>
-          <h3 className="display text-taupe-900">A flexible system for teams that need both speed and control</h3>
-          <p className="body mt-4 max-w-sm text-taupe-500">
+          <h3 className="display text-ground-900">A flexible system for teams that need both speed and control</h3>
+          <p className="body mt-4 max-w-sm text-ground-500">
             Pair strategic planning with reusable execution blocks so teams can ship consistent work without adding more process.
           </p>
           <div className="mt-6">
@@ -46,11 +46,11 @@ export default function FeatureOffset2x2() {
             const Icon = feature.icon;
             return (
               <article key={feature.name} className="rounded-[1.75rem] bg-white p-6 shadow-natural">
-                <div className="mb-4 flex size-12 items-center justify-center rounded-2xl bg-brand-secondary/25 text-taupe-800">
+                <div className="mb-4 flex size-12 items-center justify-center rounded-2xl bg-brand-secondary/25 text-ground-800">
                   <Icon className="size-5" />
                 </div>
-                <h4 className="subheading text-taupe-900">{feature.name}</h4>
-                <p className="body mt-2 text-taupe-500">{feature.description}</p>
+                <h4 className="subheading text-ground-900">{feature.name}</h4>
+                <p className="body mt-2 text-ground-500">{feature.description}</p>
               </article>
             );
           })}

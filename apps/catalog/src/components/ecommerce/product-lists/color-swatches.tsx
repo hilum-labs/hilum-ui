@@ -8,7 +8,7 @@ const PRODUCTS = [
     image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
     colors: [
       { name: "Natural", className: "bg-brand-secondary" },
-      { name: "Cinder", className: "bg-taupe-800" },
+      { name: "Cinder", className: "bg-ground-800" },
       { name: "Signal", className: "bg-brand-primary" },
     ],
   },
@@ -17,9 +17,9 @@ const PRODUCTS = [
     price: "$35",
     image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
     colors: [
-      { name: "Mist", className: "bg-taupe-200" },
-      { name: "Stone", className: "bg-taupe-500" },
-      { name: "Midnight", className: "bg-taupe-900" },
+      { name: "Mist", className: "bg-ground-200" },
+      { name: "Stone", className: "bg-ground-500" },
+      { name: "Midnight", className: "bg-ground-900" },
     ],
   },
   {
@@ -27,9 +27,9 @@ const PRODUCTS = [
     price: "$89",
     image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
     colors: [
-      { name: "Porcelain", className: "bg-white border border-taupe-300" },
+      { name: "Porcelain", className: "bg-white border border-ground-300" },
       { name: "Oat", className: "bg-brand-secondary" },
-      { name: "Char", className: "bg-taupe-700" },
+      { name: "Char", className: "bg-ground-700" },
     ],
   },
   {
@@ -37,9 +37,9 @@ const PRODUCTS = [
     price: "$32",
     image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
     colors: [
-      { name: "Flint", className: "bg-taupe-400" },
+      { name: "Flint", className: "bg-ground-400" },
       { name: "Signal", className: "bg-brand-primary" },
-      { name: "Night", className: "bg-taupe-900" },
+      { name: "Night", className: "bg-ground-900" },
     ],
   },
 ] as const;
@@ -67,18 +67,18 @@ export default function ColorSwatches() {
             return (
               <article
                 key={product.name}
-                className="w-72 shrink-0 rounded-[2rem] border border-taupe-100 bg-white p-4 shadow-natural md:w-auto"
+                className="w-72 shrink-0 rounded-[2rem] border border-ground-100 bg-white p-4 shadow-natural md:w-auto"
               >
-                <div className="overflow-hidden rounded-2xl bg-taupe-50">
+                <div className="overflow-hidden rounded-2xl bg-ground-50">
                   <img src={product.image} alt={product.name} className="aspect-square w-full object-cover" />
                 </div>
                 <div className="mt-4">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <h3 className="body font-medium text-taupe-900">{product.name}</h3>
-                      <p className="caption mt-1 text-taupe-400">Shown in {activeColor.name}</p>
+                      <h3 className="body font-medium text-ground-900">{product.name}</h3>
+                      <p className="caption mt-1 text-ground-400">Shown in {activeColor.name}</p>
                     </div>
-                    <p className="body text-taupe-500">{product.price}</p>
+                    <p className="body text-ground-500">{product.price}</p>
                   </div>
                   <div className="mt-4 flex items-center gap-2">
                     {product.colors.map((color, colorIndex) => (
@@ -94,8 +94,8 @@ export default function ColorSwatches() {
                         aria-label={`${product.name} in ${color.name}`}
                         className={`flex size-7 items-center justify-center rounded-full border transition ${
                           selectedSwatches[product.name] === colorIndex
-                            ? "border-taupe-900"
-                            : "border-transparent hover:border-taupe-200"
+                            ? "border-ground-900"
+                            : "border-transparent hover:border-ground-200"
                         }`}
                       >
                         <span className={`size-5 rounded-full ${color.className}`} />

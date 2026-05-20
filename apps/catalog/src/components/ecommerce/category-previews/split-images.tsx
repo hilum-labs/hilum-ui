@@ -42,14 +42,14 @@ export default function SplitImages() {
         </article>
 
         <div className="grid gap-4">
-          <article className="overflow-hidden rounded-[32px] border border-taupe-100 bg-white">
+          <article className="overflow-hidden rounded-[32px] border border-ground-100 bg-white">
             <CategoryImage
               src={COLLECTION_ONE}
               alt="Desk and Office collection"
               className="aspect-[16/10]"
             />
             <div className="p-5">
-              <p className="subheading text-taupe-900">Desk and Office</p>
+              <p className="subheading text-ground-900">Desk and Office</p>
               <a
                 href="#"
                 className="body mt-3 inline-flex items-center gap-2 text-brand-primary"
@@ -58,14 +58,14 @@ export default function SplitImages() {
               </a>
             </div>
           </article>
-          <article className="overflow-hidden rounded-[32px] border border-taupe-100 bg-white">
+          <article className="overflow-hidden rounded-[32px] border border-ground-100 bg-white">
             <CategoryImage
               src={RELATED_ONE}
               alt="Accessories collection"
               className="aspect-[16/10]"
             />
             <div className="p-5">
-              <p className="subheading text-taupe-900">Accessories</p>
+              <p className="subheading text-ground-900">Accessories</p>
               <a
                 href="#"
                 className="body mt-3 inline-flex items-center gap-2 text-brand-primary"

@@ -9,8 +9,8 @@ import { cn } from "@hilum/ui";
 
 function PanelContent({ label, className }: { label: string; className?: string }) {
   return (
-    <div className={cn("flex h-full items-center justify-center bg-taupe-50 p-4", className)}>
-      <span className="label text-taupe-400">{label}</span>
+    <div className={cn("flex h-full items-center justify-center bg-ground-50 p-4", className)}>
+      <span className="label text-ground-400">{label}</span>
     </div>
   );
 }
@@ -18,8 +18,8 @@ function PanelContent({ label, className }: { label: string; className?: string 
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -31,16 +31,16 @@ const CODE = {
   ResizableHandle,
 } from "@hilum/ui";
 
-<ResizablePanelGroup direction="horizontal" className="h-[300px] rounded-xl border border-taupe-100 overflow-hidden">
+<ResizablePanelGroup direction="horizontal" className="h-[300px] rounded-xl border border-ground-100 overflow-hidden">
   <ResizablePanel defaultSize={50}>
-    <div className="flex h-full items-center justify-center bg-taupe-50 p-4">
-      <span className="label text-taupe-400">Left panel</span>
+    <div className="flex h-full items-center justify-center bg-ground-50 p-4">
+      <span className="label text-ground-400">Left panel</span>
     </div>
   </ResizablePanel>
   <ResizableHandle />
   <ResizablePanel defaultSize={50}>
     <div className="flex h-full items-center justify-center bg-white p-4">
-      <span className="label text-taupe-400">Right panel</span>
+      <span className="label text-ground-400">Right panel</span>
     </div>
   </ResizablePanel>
 </ResizablePanelGroup>`,
@@ -51,22 +51,22 @@ const CODE = {
   ResizableHandle,
 } from "@hilum/ui";
 
-<ResizablePanelGroup direction="horizontal" className="h-[300px] rounded-xl border border-taupe-100 overflow-hidden">
+<ResizablePanelGroup direction="horizontal" className="h-[300px] rounded-xl border border-ground-100 overflow-hidden">
   <ResizablePanel defaultSize={25} minSize={20}>
-    <div className="flex h-full items-center justify-center bg-taupe-50 p-4">
-      <span className="label text-taupe-400">Sidebar</span>
+    <div className="flex h-full items-center justify-center bg-ground-50 p-4">
+      <span className="label text-ground-400">Sidebar</span>
     </div>
   </ResizablePanel>
   <ResizableHandle />
   <ResizablePanel defaultSize={50} minSize={20}>
     <div className="flex h-full items-center justify-center bg-white p-4">
-      <span className="label text-taupe-400">Main Content</span>
+      <span className="label text-ground-400">Main Content</span>
     </div>
   </ResizablePanel>
   <ResizableHandle />
   <ResizablePanel defaultSize={25} minSize={20}>
-    <div className="flex h-full items-center justify-center bg-taupe-50 p-4">
-      <span className="label text-taupe-400">Details</span>
+    <div className="flex h-full items-center justify-center bg-ground-50 p-4">
+      <span className="label text-ground-400">Details</span>
     </div>
   </ResizablePanel>
 </ResizablePanelGroup>`,
@@ -77,16 +77,16 @@ const CODE = {
   ResizableHandle,
 } from "@hilum/ui";
 
-<ResizablePanelGroup direction="vertical" className="h-[400px] rounded-xl border border-taupe-100 overflow-hidden">
+<ResizablePanelGroup direction="vertical" className="h-[400px] rounded-xl border border-ground-100 overflow-hidden">
   <ResizablePanel defaultSize={40}>
-    <div className="flex h-full items-center justify-center bg-taupe-50 p-4">
-      <span className="label text-taupe-400">Header / Toolbar</span>
+    <div className="flex h-full items-center justify-center bg-ground-50 p-4">
+      <span className="label text-ground-400">Header / Toolbar</span>
     </div>
   </ResizablePanel>
   <ResizableHandle />
   <ResizablePanel defaultSize={60}>
     <div className="flex h-full items-center justify-center bg-white p-4">
-      <span className="label text-taupe-400">Content Area</span>
+      <span className="label text-ground-400">Content Area</span>
     </div>
   </ResizablePanel>
 </ResizablePanelGroup>`,
@@ -97,10 +97,10 @@ const CODE = {
   ResizableHandle,
 } from "@hilum/ui";
 
-<ResizablePanelGroup direction="horizontal" className="h-[400px] rounded-xl border border-taupe-100 overflow-hidden">
+<ResizablePanelGroup direction="horizontal" className="h-[400px] rounded-xl border border-ground-100 overflow-hidden">
   <ResizablePanel defaultSize={30}>
-    <div className="flex h-full items-center justify-center bg-taupe-50 p-4">
-      <span className="label text-taupe-400">Navigation</span>
+    <div className="flex h-full items-center justify-center bg-ground-50 p-4">
+      <span className="label text-ground-400">Navigation</span>
     </div>
   </ResizablePanel>
   <ResizableHandle withHandle={false} />
@@ -108,13 +108,13 @@ const CODE = {
     <ResizablePanelGroup direction="vertical">
       <ResizablePanel defaultSize={60}>
         <div className="flex h-full items-center justify-center bg-white p-4">
-          <span className="label text-taupe-400">Editor</span>
+          <span className="label text-ground-400">Editor</span>
         </div>
       </ResizablePanel>
       <ResizableHandle />
       <ResizablePanel defaultSize={40}>
-        <div className="flex h-full items-center justify-center bg-taupe-50 p-4">
-          <span className="label text-taupe-400">Terminal / Output</span>
+        <div className="flex h-full items-center justify-center bg-ground-50 p-4">
+          <span className="label text-ground-400">Terminal / Output</span>
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>
@@ -126,15 +126,15 @@ export default function ResizablePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Resizable</span>
+          <span className="font-semibold text-ground-900">Resizable</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Resizable</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Resizable</h1>
+        <p className="body max-w-lg text-ground-500">
           Draggable panel layouts for building resizable split-view interfaces.
         </p>
       </div>
@@ -148,7 +148,7 @@ export default function ResizablePage() {
           code={CODE.horizontal}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-taupe-100" style={{ height: 300 }}>
+          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 300 }}>
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={50}>
                 <PanelContent label="Left panel" />
@@ -167,7 +167,7 @@ export default function ResizablePage() {
           code={CODE.threePanel}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-taupe-100" style={{ height: 300 }}>
+          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 300 }}>
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={25} minSize={20}>
                 <PanelContent label="Sidebar" />
@@ -192,7 +192,7 @@ export default function ResizablePage() {
           code={CODE.vertical}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-taupe-100" style={{ height: 400 }}>
+          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 400 }}>
             <ResizablePanelGroup direction="vertical">
               <ResizablePanel defaultSize={40}>
                 <PanelContent label="Header / Toolbar" />
@@ -213,7 +213,7 @@ export default function ResizablePage() {
           code={CODE.nested}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-taupe-100" style={{ height: 400 }}>
+          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 400 }}>
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={30}>
                 <PanelContent label="Navigation" />

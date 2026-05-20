@@ -14,8 +14,8 @@ import headerWithFlyoutSource from "@/components/marketing/nav-headers/header-wi
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -24,8 +24,8 @@ export default function NavHeadersPage() {
   return (
     <div className="space-y-10 p-8">
       <div className="space-y-3">
-        <h1 className="heading text-taupe-900">Nav Headers</h1>
-        <p className="body text-taupe-500">
+        <h1 className="heading text-ground-900">Nav Headers</h1>
+        <p className="body text-ground-500">
           Marketing navigation patterns with responsive drawers, centered link layouts, and a full-width flyout.
         </p>
       </div>

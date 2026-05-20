@@ -33,21 +33,21 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
         </AvatarFallback>
       </Avatar>
       <div>
-        <p className="text-sm font-medium text-taupe-900">Sarah Parker</p>
-        <p className="text-xs text-taupe-400">Grade 10 · Class A</p>
+        <p className="text-sm font-medium text-ground-900">Sarah Parker</p>
+        <p className="text-xs text-ground-400">Grade 10 · Class A</p>
       </div>
     </div>
   </CardContent>
 </Card>`,
 
   cardFeature: `{/* Feature card — icon + label + description on gray */}
-<div className="w-56 rounded-2xl bg-taupe-50 p-6 flex flex-col gap-10">
+<div className="w-56 rounded-2xl bg-ground-50 p-6 flex flex-col gap-10">
   <div className="size-14 rounded-2xl bg-white shadow-sm flex items-center justify-center">
-    <AudioLines size={22} strokeWidth={1.5} className="text-taupe-600" />
+    <AudioLines size={22} strokeWidth={1.5} className="text-ground-600" />
   </div>
   <div>
-    <p className="text-sm font-medium text-taupe-400 mb-2">Voices</p>
-    <p className="text-sm font-medium text-taupe-900 leading-snug">
+    <p className="text-sm font-medium text-ground-400 mb-2">Voices</p>
+    <p className="text-sm font-medium text-ground-900 leading-snug">
       Clone a replica of your own voice, design one from a prompt,
       or explore 1000s of voices from the library.
     </p>
@@ -55,7 +55,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
 </div>`,
 
   cardIllustration: `{/* Illustration card — centered art + title + description */}
-<div className="w-56 rounded-2xl bg-taupe-50 p-6 flex flex-col gap-6">
+<div className="w-56 rounded-2xl bg-ground-50 p-6 flex flex-col gap-6">
   <div className="flex flex-1 items-center justify-center py-6">
     {/* Replace with your illustration */}
     <svg viewBox="0 0 100 100" className="w-28 h-28">
@@ -69,25 +69,25 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
     </svg>
   </div>
   <div>
-    <p className="text-sm font-semibold text-taupe-900 mb-1">Provenance</p>
-    <p className="text-xs text-taupe-400 leading-relaxed">
+    <p className="text-sm font-semibold text-ground-900 mb-1">Provenance</p>
+    <p className="text-xs text-ground-400 leading-relaxed">
       We believe that you should know if audio is AI-generated.
     </p>
   </div>
 </div>`,
 
   cardStats: `{/* Stats card — gray outer, white inner panel with chart */}
-<div className="w-64 rounded-2xl bg-taupe-50 p-5 flex flex-col gap-6">
+<div className="w-64 rounded-2xl bg-ground-50 p-5 flex flex-col gap-6">
   <div className="bg-white rounded-xl p-4 shadow-sm">
-    <p className="text-sm font-semibold text-taupe-900">Success rate</p>
-    <p className="text-2xl font-semibold text-taupe-400 mt-0.5">61.5%</p>
+    <p className="text-sm font-semibold text-ground-900">Success rate</p>
+    <p className="text-2xl font-semibold text-ground-400 mt-0.5">61.5%</p>
     <svg viewBox="0 0 200 80" className="w-full mt-3">
       {/* chart lines */}
     </svg>
   </div>
   <div>
-    <p className="text-sm font-medium text-taupe-400 mb-1">Analytics</p>
-    <p className="text-sm font-medium text-taupe-900 leading-snug">
+    <p className="text-sm font-medium text-ground-400 mb-1">Analytics</p>
+    <p className="text-sm font-medium text-ground-900 leading-snug">
       Easily measure success rates and CX metrics, optimizing flows over time.
     </p>
   </div>
@@ -95,7 +95,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
 
   cardMedia: `{/* Media/cover card — full-bleed gradient with text overlay */}
 <div className="relative w-56 aspect-square rounded-2xl overflow-hidden
-  bg-gradient-to-br from-brand-primary via-taupe-800 to-taupe-950">
+  bg-gradient-to-br from-brand-primary via-ground-800 to-ground-950">
   <div className="absolute inset-0 p-5 flex flex-col justify-between">
     <div className="size-8 bg-white/20 backdrop-blur-sm rounded-lg" />
     <p className="text-white text-sm font-medium leading-snug">
@@ -105,7 +105,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
 </div>`,
 
   cardArticle: `{/* Article card — colored header + white pill badge + title below */}
-<div className="w-56 rounded-2xl overflow-hidden border border-taupe-100">
+<div className="w-56 rounded-2xl overflow-hidden border border-ground-100">
   <div className="relative aspect-video
     bg-gradient-to-br from-blue-600 via-red-500/60 to-purple-700">
     {/* Subtle grid pattern */}
@@ -113,31 +113,31 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
       [background-image:repeating-linear-gradient(0deg,transparent,transparent_30px,white_30px,white_31px),
         repeating-linear-gradient(90deg,transparent,transparent_30px,white_30px,white_31px)]" />
     <div className="absolute top-3 left-3 bg-white rounded-full px-3 py-1
-      text-xs font-semibold text-taupe-900 shadow-sm">
+      text-xs font-semibold text-ground-900 shadow-sm">
       Jan 2026
     </div>
   </div>
-  <div className="bg-white px-4 py-3 border-t border-taupe-100">
-    <p className="text-sm font-semibold text-taupe-900">Introducing Scribe v2</p>
+  <div className="bg-white px-4 py-3 border-t border-ground-100">
+    <p className="text-sm font-semibold text-ground-900">Introducing Scribe v2</p>
   </div>
 </div>`,
 
   cardBlog: `{/* Blog card — large image header + title + category/date meta */}
 <div className="w-56 rounded-2xl overflow-hidden">
   <div className="aspect-square rounded-2xl overflow-hidden
-    bg-gradient-to-b from-sky-300 via-teal-700 to-taupe-900
+    bg-gradient-to-b from-sky-300 via-teal-700 to-ground-900
     flex items-center justify-center">
     <p className="text-white text-xl font-medium text-center px-4">
       Expressive mode
     </p>
   </div>
   <div className="pt-4">
-    <p className="text-sm font-semibold text-taupe-900 leading-snug mb-1.5">
+    <p className="text-sm font-semibold text-ground-900 leading-snug mb-1.5">
       Introducing Expressive Mode for ElevenAgents
     </p>
     <div className="flex items-center gap-2">
-      <span className="text-xs font-semibold text-taupe-900">Product</span>
-      <span className="text-xs text-taupe-400">Feb 10, 2026</span>
+      <span className="text-xs font-semibold text-ground-900">Product</span>
+      <span className="text-xs text-ground-400">Feb 10, 2026</span>
     </div>
   </div>
 </div>`,
@@ -146,8 +146,8 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -156,15 +156,15 @@ export default function CardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Card</span>
+          <span className="font-semibold text-ground-900">Card</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Card</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Card</h1>
+        <p className="body max-w-lg text-ground-500">
           Contained surface for grouping related content. Supports media, stats, and article layouts.
         </p>
       </div>
@@ -194,10 +194,10 @@ export default function CardPage() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium text-taupe-900">
+                  <p className="text-sm font-medium text-ground-900">
                     Sarah Parker
                   </p>
-                  <p className="text-xs text-taupe-400">
+                  <p className="text-xs text-ground-400">
                     Grade 10 · Class A
                   </p>
                 </div>
@@ -214,11 +214,11 @@ export default function CardPage() {
           <Card variant="muted" className="w-56 rounded-2xl">
             <CardContent className="flex flex-col gap-10 p-6">
               <div className="flex size-14 items-center justify-center rounded-2xl bg-white shadow-sm">
-                <AudioLines size={22} strokeWidth={1.5} className="text-taupe-600" />
+                <AudioLines size={22} strokeWidth={1.5} className="text-ground-600" />
               </div>
               <div>
-                <p className="mb-2 text-sm font-medium text-taupe-400">Voices</p>
-                <p className="text-sm font-medium leading-snug text-taupe-900">
+                <p className="mb-2 text-sm font-medium text-ground-400">Voices</p>
+                <p className="text-sm font-medium leading-snug text-ground-900">
                   Clone a replica of your own voice, design one from a
                   prompt, or explore 1000s of voices from the library.
                 </p>
@@ -262,7 +262,7 @@ export default function CardPage() {
               <Card className="rounded-xl">
                 <CardContent className="p-4">
                   <CardTitle>Success rate</CardTitle>
-                  <p className="mt-0.5 text-2xl font-semibold text-taupe-400">61.5%</p>
+                  <p className="mt-0.5 text-2xl font-semibold text-ground-400">61.5%</p>
                   <svg viewBox="0 0 200 72" className="mt-3 w-full" preserveAspectRatio="none">
                     <line x1="0" y1="0" x2="200" y2="0" stroke="#f5f5f4" strokeWidth="1" />
                     <line x1="0" y1="36" x2="200" y2="36" stroke="#f5f5f4" strokeWidth="1" />
@@ -280,8 +280,8 @@ export default function CardPage() {
                 </CardContent>
               </Card>
               <div>
-                <p className="mb-1 text-sm font-medium text-taupe-400">Analytics</p>
-                <p className="text-sm font-medium leading-snug text-taupe-900">
+                <p className="mb-1 text-sm font-medium text-ground-400">Analytics</p>
+                <p className="text-sm font-medium leading-snug text-ground-900">
                   Easily measure success rates and CX metrics, optimizing flows over time.
                 </p>
               </div>
@@ -295,7 +295,7 @@ export default function CardPage() {
           code={CODE.cardMedia}
         >
           <Card className="relative aspect-square w-52 overflow-hidden rounded-2xl border-0 shadow-none">
-            <CardMedia className="absolute inset-0 bg-gradient-to-br from-brand-primary via-taupe-800 to-taupe-950">
+            <CardMedia className="absolute inset-0 bg-gradient-to-br from-brand-primary via-ground-800 to-ground-950">
               <div className="absolute inset-0 bg-gradient-to-tl from-black/30 via-transparent to-transparent" />
             </CardMedia>
             <CardContent className="absolute inset-0 flex flex-col justify-between p-5">
@@ -317,7 +317,7 @@ export default function CardPage() {
           <Card className="w-52 overflow-hidden rounded-2xl">
             <CardMedia className="relative aspect-video bg-gradient-to-br from-blue-600 via-red-500/60 to-purple-700">
               <div className="absolute inset-0 opacity-20 [background-image:repeating-linear-gradient(0deg,transparent,transparent_24px,rgba(255,255,255,0.6)_24px,rgba(255,255,255,0.6)_25px),repeating-linear-gradient(90deg,transparent,transparent_24px,rgba(255,255,255,0.6)_24px,rgba(255,255,255,0.6)_25px)]" />
-              <div className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-taupe-900 shadow-sm">
+              <div className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-xs font-semibold text-ground-900 shadow-sm">
                 Jan 2026
               </div>
             </CardMedia>
@@ -333,7 +333,7 @@ export default function CardPage() {
           code={CODE.cardBlog}
         >
           <Card variant="ghost" className="w-52 overflow-hidden rounded-2xl">
-            <CardMedia className="flex aspect-square items-center justify-center rounded-2xl bg-gradient-to-b from-sky-300 via-teal-700 to-taupe-900">
+            <CardMedia className="flex aspect-square items-center justify-center rounded-2xl bg-gradient-to-b from-sky-300 via-teal-700 to-ground-900">
               <p className="px-4 text-center text-xl font-medium text-white">
                 Expressive mode
               </p>
@@ -343,8 +343,8 @@ export default function CardPage() {
                 Introducing Expressive Mode for ElevenAgents
               </CardTitle>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-taupe-900">Product</span>
-                <span className="text-xs text-taupe-400">Feb 10, 2026</span>
+                <span className="text-xs font-semibold text-ground-900">Product</span>
+                <span className="text-xs text-ground-400">Feb 10, 2026</span>
               </div>
             </CardContent>
           </Card>

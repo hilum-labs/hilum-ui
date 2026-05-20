@@ -108,8 +108,8 @@ import { ChevronDown } from "lucide-react"
   </DropdownMenuTrigger>
   <DropdownMenuContent>
     <div className="px-2.5 py-2">
-      <p className="caption text-taupe-400">Signed in as</p>
-      <p className="body font-medium text-taupe-900 truncate">tom@example.com</p>
+      <p className="caption text-ground-400">Signed in as</p>
+      <p className="body font-medium text-ground-900 truncate">tom@example.com</p>
     </div>
     <DropdownMenuSeparator />
     <DropdownMenuItem>Account settings</DropdownMenuItem>
@@ -156,8 +156,8 @@ import { MoreHorizontal } from "lucide-react"
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -166,15 +166,15 @@ export default function DropdownMenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Dropdown Menu</span>
+          <span className="font-semibold text-ground-900">Dropdown Menu</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Dropdown Menu</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Dropdown Menu</h1>
+        <p className="body max-w-lg text-ground-500">
           Contextual menu revealed on trigger interaction.
         </p>
       </div>
@@ -304,8 +304,8 @@ export default function DropdownMenuPage() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <div className="px-2.5 py-2">
-                <p className="caption text-taupe-400">Signed in as</p>
-                <p className="body font-medium text-taupe-900 truncate">
+                <p className="caption text-ground-400">Signed in as</p>
+                <p className="body font-medium text-ground-900 truncate">
                   tom@example.com
                 </p>
               </div>

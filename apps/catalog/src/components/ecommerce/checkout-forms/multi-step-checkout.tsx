@@ -117,10 +117,10 @@ function FormSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="rounded-[24px] border border-taupe-100 p-5">
+    <section className="rounded-[24px] border border-ground-100 p-5">
       <div className="mb-5">
-        <h3 className="subheading text-taupe-900">{title}</h3>
-        <p className="caption mt-1 text-taupe-500">{description}</p>
+        <h3 className="subheading text-ground-900">{title}</h3>
+        <p className="caption mt-1 text-ground-500">{description}</p>
       </div>
       {children}
     </section>
@@ -132,7 +132,7 @@ export default function MultiStepCheckout() {
 
   return (
     <div className="w-full bg-white p-6">
-      <div className="rounded-[32px] border border-taupe-200 bg-white p-8 shadow-natural">
+      <div className="rounded-[32px] border border-ground-200 bg-white p-8 shadow-natural">
         <div className="mb-8 grid gap-4 sm:grid-cols-3">
           {STEPS.map((step, index) => {
             const Icon = step.icon;
@@ -149,7 +149,7 @@ export default function MultiStepCheckout() {
                     ? "border-brand-primary/20 bg-brand-primary/10"
                     : isCurrent
                       ? "border-brand-primary bg-white"
-                      : "border-taupe-200 bg-taupe-50"
+                      : "border-ground-200 bg-ground-50"
                 }`}
               >
                 <div
@@ -158,16 +158,16 @@ export default function MultiStepCheckout() {
                       ? "bg-brand-primary text-white"
                       : isCurrent
                         ? "ring-2 ring-brand-primary text-brand-primary"
-                        : "bg-white text-taupe-400"
+                        : "bg-white text-ground-400"
                   }`}
                 >
                   {isCompleted ? <Check size={16} /> : <Icon size={16} />}
                 </div>
                 <div>
-                  <p className={`label ${isCompleted || isCurrent ? "text-brand-primary" : "text-taupe-400"}`}>
+                  <p className={`label ${isCompleted || isCurrent ? "text-brand-primary" : "text-ground-400"}`}>
                     Step {index + 1}
                   </p>
-                  <p className="body font-medium text-taupe-900">{step.label}</p>
+                  <p className="body font-medium text-ground-900">{step.label}</p>
                 </div>
               </button>
             );

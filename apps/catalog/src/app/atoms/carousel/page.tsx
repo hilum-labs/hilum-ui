@@ -24,8 +24,8 @@ import {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -35,11 +35,11 @@ function SectionHeading({ label }: { label: string }) {
 /* ------------------------------------------------------------------ */
 
 const IMAGE_SLIDES = [
-  { bg: "bg-taupe-100", label: "Slide 1", Icon: ImageIcon },
+  { bg: "bg-ground-100", label: "Slide 1", Icon: ImageIcon },
   { bg: "bg-brand-primary/10", label: "Slide 2", Icon: Star },
   { bg: "bg-brand-secondary/20", label: "Slide 3", Icon: Zap },
   { bg: "bg-brand-secondary/40", label: "Slide 4", Icon: Rocket },
-  { bg: "bg-taupe-200", label: "Slide 5", Icon: Shield },
+  { bg: "bg-ground-200", label: "Slide 5", Icon: Shield },
 ];
 
 const CARD_SLIDES = [
@@ -98,21 +98,21 @@ const VERTICAL_SLIDES = [
   {
     initials: "MC",
     bg: "bg-brand-secondary/20",
-    color: "text-taupe-700",
+    color: "text-ground-700",
     name: "Marcus Chen",
     role: "CTO",
   },
   {
     initials: "PN",
     bg: "bg-brand-secondary/40",
-    color: "text-taupe-700",
+    color: "text-ground-700",
     name: "Priya Nair",
     role: "Frontend Engineer",
   },
   {
     initials: "TR",
-    bg: "bg-taupe-100",
-    color: "text-taupe-700",
+    bg: "bg-ground-100",
+    color: "text-ground-700",
     name: "Tomás Rivera",
     role: "Product Designer",
   },
@@ -144,8 +144,8 @@ const CODE = {
       {slides.map((slide, i) => (
         <CarouselItem key={i}>
           <div className={\`aspect-square rounded-2xl \${slide.bg} flex items-center justify-center\`}>
-            <slide.Icon className="size-10 text-taupe-400" />
-            <span className="body text-taupe-500 ml-2">{slide.label}</span>
+            <slide.Icon className="size-10 text-ground-400" />
+            <span className="body text-ground-500 ml-2">{slide.label}</span>
           </div>
         </CarouselItem>
       ))}
@@ -160,13 +160,13 @@ const CODE = {
     <CarouselContent>
       {cards.map((card, i) => (
         <CarouselItem key={i} className="basis-1/3">
-          <div className="bg-white rounded-xl border border-taupe-100 p-5 shadow-natural">
+          <div className="bg-white rounded-xl border border-ground-100 p-5 shadow-natural">
             <div className="mb-3 flex size-9 items-center justify-center rounded-full bg-brand-primary/10">
               <card.Icon className="size-4 text-brand-primary" />
             </div>
-            <p className="subheading text-taupe-900 mb-1">{card.title}</p>
+            <p className="subheading text-ground-900 mb-1">{card.title}</p>
             {card.lines.map((l, j) => (
-              <p key={j} className="caption text-taupe-400">{l}</p>
+              <p key={j} className="caption text-ground-400">{l}</p>
             ))}
           </div>
         </CarouselItem>
@@ -182,10 +182,10 @@ const CODE = {
     <CarouselContent>
       {testimonials.map((t, i) => (
         <CarouselItem key={i}>
-          <div className="bg-taupe-50 rounded-2xl p-8">
-            <p className="body text-taupe-700 italic mb-4">"{t.quote}"</p>
-            <p className="subheading text-taupe-900">{t.name}</p>
-            <p className="caption text-taupe-400">{t.role}</p>
+          <div className="bg-ground-50 rounded-2xl p-8">
+            <p className="body text-ground-700 italic mb-4">"{t.quote}"</p>
+            <p className="subheading text-ground-900">{t.name}</p>
+            <p className="caption text-ground-400">{t.role}</p>
           </div>
         </CarouselItem>
       ))}
@@ -201,13 +201,13 @@ const CODE = {
       <CarouselContent className="h-[300px]">
         {people.map((person, i) => (
           <CarouselItem key={i}>
-            <div className="flex items-center gap-3 rounded-xl border border-taupe-100 bg-white p-3 shadow-natural">
+            <div className="flex items-center gap-3 rounded-xl border border-ground-100 bg-white p-3 shadow-natural">
               <div className={\`flex size-9 shrink-0 items-center justify-center rounded-full \${person.bg}\`}>
                 <span className={\`label \${person.color}\`}>{person.initials}</span>
               </div>
               <div>
-                <p className="subheading text-taupe-900">{person.name}</p>
-                <p className="caption text-taupe-400">{person.role}</p>
+                <p className="subheading text-ground-900">{person.name}</p>
+                <p className="caption text-ground-400">{person.role}</p>
               </div>
             </div>
           </CarouselItem>
@@ -229,15 +229,15 @@ export default function CarouselPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Carousel</span>
+          <span className="font-semibold text-ground-900">Carousel</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Carousel</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Carousel</h1>
+        <p className="body max-w-lg text-ground-500">
           A scrollable slide container built on Embla Carousel. Supports looping,
           multi-item views, and vertical orientation.
         </p>
@@ -261,8 +261,8 @@ export default function CarouselPage() {
                     <div
                       className={`aspect-square rounded-2xl ${slide.bg} flex flex-col items-center justify-center gap-2`}
                     >
-                      <slide.Icon className="size-10 text-taupe-400" />
-                      <span className="body text-taupe-500">{slide.label}</span>
+                      <slide.Icon className="size-10 text-ground-400" />
+                      <span className="body text-ground-500">{slide.label}</span>
                     </div>
                   </CarouselItem>
                 ))}
@@ -285,13 +285,13 @@ export default function CarouselPage() {
               <CarouselContent>
                 {CARD_SLIDES.map((card, i) => (
                   <CarouselItem key={i} className="basis-1/3">
-                    <div className="h-full rounded-xl border border-taupe-100 bg-white p-5 shadow-natural">
+                    <div className="h-full rounded-xl border border-ground-100 bg-white p-5 shadow-natural">
                       <div className="mb-3 flex size-9 items-center justify-center rounded-full bg-brand-primary/10">
                         <card.Icon className="size-4 text-brand-primary" />
                       </div>
-                      <p className="subheading mb-1 text-taupe-900">{card.title}</p>
+                      <p className="subheading mb-1 text-ground-900">{card.title}</p>
                       {card.lines.map((line, j) => (
-                        <p key={j} className="caption text-taupe-400">
+                        <p key={j} className="caption text-ground-400">
                           {line}
                         </p>
                       ))}
@@ -317,12 +317,12 @@ export default function CarouselPage() {
               <CarouselContent>
                 {TESTIMONIALS.map((t, i) => (
                   <CarouselItem key={i}>
-                    <div className="rounded-2xl bg-taupe-50 p-8">
-                      <p className="body mb-4 italic text-taupe-700">
+                    <div className="rounded-2xl bg-ground-50 p-8">
+                      <p className="body mb-4 italic text-ground-700">
                         &ldquo;{t.quote}&rdquo;
                       </p>
-                      <p className="subheading text-taupe-900">{t.name}</p>
-                      <p className="caption text-taupe-400">{t.role}</p>
+                      <p className="subheading text-ground-900">{t.name}</p>
+                      <p className="caption text-ground-400">{t.role}</p>
                     </div>
                   </CarouselItem>
                 ))}
@@ -346,7 +346,7 @@ export default function CarouselPage() {
                 <CarouselContent className="h-[300px]">
                   {VERTICAL_SLIDES.map((person, i) => (
                     <CarouselItem key={i}>
-                      <div className="flex items-center gap-3 rounded-xl border border-taupe-100 bg-white p-3 shadow-natural">
+                      <div className="flex items-center gap-3 rounded-xl border border-ground-100 bg-white p-3 shadow-natural">
                         <div
                           className={`flex size-9 shrink-0 items-center justify-center rounded-full ${person.bg}`}
                         >
@@ -355,8 +355,8 @@ export default function CarouselPage() {
                           </span>
                         </div>
                         <div>
-                          <p className="subheading text-taupe-900">{person.name}</p>
-                          <p className="caption text-taupe-400">{person.role}</p>
+                          <p className="subheading text-ground-900">{person.name}</p>
+                          <p className="caption text-ground-400">{person.role}</p>
                         </div>
                       </div>
                     </CarouselItem>

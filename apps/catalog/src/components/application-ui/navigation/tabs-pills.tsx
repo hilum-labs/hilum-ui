@@ -8,7 +8,7 @@ export default function TabsPills() {
 
   return (
     <div className="w-full bg-white px-6 py-5">
-      <nav className="flex gap-1 rounded-xl bg-taupe-50 p-1">
+      <nav className="flex gap-1 rounded-xl bg-ground-50 p-1">
         {tabItems.map((tab) => (
           <button
             key={tab}
@@ -17,7 +17,7 @@ export default function TabsPills() {
             className={
               activeTab === tab
                 ? "rounded-lg bg-brand-primary/10 px-3 py-1.5 text-sm font-medium text-brand-primary"
-                : "rounded-lg px-3 py-1.5 text-sm text-taupe-600 hover:text-taupe-900"
+                : "rounded-lg px-3 py-1.5 text-sm text-ground-600 hover:text-ground-900"
             }
           >
             {tab}

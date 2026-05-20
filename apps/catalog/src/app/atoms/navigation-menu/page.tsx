@@ -32,15 +32,15 @@ function ProductCard({ icon, title, description, href = "#" }: ProductCardProps)
       href={href}
       className={cn(
         "flex select-none flex-col gap-1 rounded-xl p-3",
-        "hover:bg-taupe-50 outline-none transition-colors",
+        "hover:bg-ground-50 outline-none transition-colors",
         "no-underline"
       )}
     >
       <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
         {icon}
       </div>
-      <p className="subheading text-taupe-900">{title}</p>
-      <p className="caption text-taupe-400">{description}</p>
+      <p className="subheading text-ground-900">{title}</p>
+      <p className="caption text-ground-400">{description}</p>
     </NavigationMenuLink>
   );
 }
@@ -57,12 +57,12 @@ function DevLink({ title, description, href = "#" }: DevLinkProps) {
       href={href}
       className={cn(
         "flex select-none flex-col gap-0.5 rounded-md p-2.5",
-        "hover:bg-taupe-50 outline-none transition-colors",
+        "hover:bg-ground-50 outline-none transition-colors",
         "no-underline"
       )}
     >
-      <p className="body font-medium text-taupe-900">{title}</p>
-      <p className="caption text-taupe-400">{description}</p>
+      <p className="body font-medium text-ground-900">{title}</p>
+      <p className="caption text-ground-400">{description}</p>
     </NavigationMenuLink>
   );
 }
@@ -185,8 +185,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -367,19 +367,19 @@ export default function NavigationMenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">
+          <a href="/atoms" className="hover:text-ground-700">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Navigation Menu</span>
+          <span className="font-semibold text-ground-900">Navigation Menu</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Navigation Menu</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Navigation Menu</h1>
+        <p className="body max-w-lg text-ground-500">
           Horizontal navigation with rich dropdown panels. Supports direct
           content dropdowns and animated viewport transitions.
         </p>

@@ -37,13 +37,13 @@ export default function ImageGrid() {
   return (
     <section className="w-full bg-white px-6 py-8 sm:px-8">
       <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="rounded-[28px] border border-taupe-100 bg-white p-6">
+        <div className="rounded-[28px] border border-ground-100 bg-white p-6">
           <p className="label mb-4 text-brand-primary">Product details</p>
-          <dl className="divide-y divide-taupe-100">
+          <dl className="divide-y divide-ground-100">
             {PRODUCT_SPECS.map((spec) => (
               <div key={spec.label} className="py-4 first:pt-0 last:pb-0">
-                <dt className="label text-taupe-400">{spec.label}</dt>
-                <dd className="body mt-2 text-taupe-900">{spec.value}</dd>
+                <dt className="label text-ground-400">{spec.label}</dt>
+                <dd className="body mt-2 text-ground-900">{spec.value}</dd>
               </div>
             ))}
           </dl>

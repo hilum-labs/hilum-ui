@@ -6,8 +6,8 @@ import { PreviewBlock } from "@/components/catalog/preview-block";
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -26,12 +26,12 @@ const [to, setTo] = React.useState<Date | undefined>()
 
 <div className="flex items-end gap-3">
   <div className="flex flex-col gap-1.5">
-    <span className="label text-taupe-400">From</span>
+    <span className="label text-ground-400">From</span>
     <DatePicker value={from} onChange={setFrom} placeholder="Start date" />
   </div>
-  <span className="body text-taupe-400 pb-1.5">—</span>
+  <span className="body text-ground-400 pb-1.5">—</span>
   <div className="flex flex-col gap-1.5">
-    <span className="label text-taupe-400">To</span>
+    <span className="label text-ground-400">To</span>
     <DatePicker value={to} onChange={setTo} placeholder="End date" />
   </div>
 </div>`,
@@ -49,15 +49,15 @@ export default function DatePickerPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Date Picker</span>
+          <span className="font-semibold text-ground-900">Date Picker</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Date Picker</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Date Picker</h1>
+        <p className="body max-w-lg text-ground-500">
           A composable date picker combining Calendar with a Popover trigger.
           Supports single dates, date ranges, and disabled states.
         </p>
@@ -74,9 +74,9 @@ export default function DatePickerPage() {
           >
             <div className="flex flex-col items-center gap-3">
               <DatePicker value={date} onChange={setDate} />
-              <p className="caption text-taupe-400">
+              <p className="caption text-ground-400">
                 Selected:{" "}
-                <span className="text-taupe-700">
+                <span className="text-ground-700">
                   {date ? formatDate(date) : "None"}
                 </span>
               </p>
@@ -94,16 +94,16 @@ export default function DatePickerPage() {
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-end gap-3">
                 <div className="flex flex-col gap-1.5">
-                  <span className="label text-taupe-400">From</span>
+                  <span className="label text-ground-400">From</span>
                   <DatePicker
                     value={from}
                     onChange={setFrom}
                     placeholder="Start date"
                   />
                 </div>
-                <span className="body text-taupe-400 pb-1.5">—</span>
+                <span className="body text-ground-400 pb-1.5">—</span>
                 <div className="flex flex-col gap-1.5">
-                  <span className="label text-taupe-400">To</span>
+                  <span className="label text-ground-400">To</span>
                   <DatePicker
                     value={to}
                     onChange={setTo}
@@ -111,14 +111,14 @@ export default function DatePickerPage() {
                   />
                 </div>
               </div>
-              <p className="caption text-taupe-400">
+              <p className="caption text-ground-400">
                 From:{" "}
-                <span className="text-taupe-700">
+                <span className="text-ground-700">
                   {from ? formatDate(from) : "—"}
                 </span>
                 {"  ·  "}
                 To:{" "}
-                <span className="text-taupe-700">
+                <span className="text-ground-700">
                   {to ? formatDate(to) : "—"}
                 </span>
               </p>
@@ -135,7 +135,7 @@ export default function DatePickerPage() {
           >
             <div className="flex flex-col items-center gap-3">
               <DatePicker disabled placeholder="Pick a date" />
-              <p className="caption text-taupe-400">
+              <p className="caption text-ground-400">
                 This field is currently unavailable.
               </p>
             </div>

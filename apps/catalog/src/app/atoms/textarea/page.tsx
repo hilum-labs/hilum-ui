@@ -23,13 +23,13 @@ const CODE = {
     <AvatarFallback className="bg-brand-primary text-white">TC</AvatarFallback>
   </Avatar>
   <div className="flex-1">
-    <Textarea placeholder="Add a comment..." className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-taupe-200" />
-    <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-taupe-200 bg-taupe-50 px-3 py-2">
+    <Textarea placeholder="Add a comment..." className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-ground-200" />
+    <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-ground-200 bg-ground-50 px-3 py-2">
       <div className="flex items-center gap-1">
-        <button type="button" className="p-1 text-taupe-400 hover:text-taupe-700 rounded"><Smile size={16} /></button>
-        <button type="button" className="p-1 text-taupe-400 hover:text-taupe-700 rounded"><Paperclip size={16} /></button>
-        <button type="button" className="p-1 text-taupe-400 hover:text-taupe-700 rounded"><AtSign size={16} /></button>
-        <button type="button" className="p-1 text-taupe-400 hover:text-taupe-700 rounded"><Link2 size={16} /></button>
+        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><Smile size={16} /></button>
+        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><Paperclip size={16} /></button>
+        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><AtSign size={16} /></button>
+        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><Link2 size={16} /></button>
       </div>
       <Button size="sm">Post</Button>
     </div>
@@ -37,9 +37,9 @@ const CODE = {
 </div>`,
 
   withPreview: `// Write/Preview tab interface with formatting toolbar
-<div className="rounded-lg border border-taupe-200 overflow-hidden">
+<div className="rounded-lg border border-ground-200 overflow-hidden">
   <Tabs defaultValue="write">
-    <div className="flex items-center border-b border-taupe-200 bg-taupe-50 px-3">
+    <div className="flex items-center border-b border-ground-200 bg-ground-50 px-3">
       <TabsList className="bg-transparent">
         <TabsTrigger value="write">Write</TabsTrigger>
         <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -49,7 +49,7 @@ const CODE = {
       <Textarea className="rounded-none border-0 focus-visible:ring-0" rows={6} />
     </TabsContent>
     <TabsContent value="preview">
-      <div className="min-h-[120px] p-3 caption text-taupe-400">Nothing to preview</div>
+      <div className="min-h-[120px] p-3 caption text-ground-400">Nothing to preview</div>
     </TabsContent>
   </Tabs>
 </div>`,
@@ -58,13 +58,13 @@ const CODE = {
 <div>
   <Textarea
     placeholder="Add your note..."
-    className="rounded-none border-0 border-b border-taupe-200 px-0 focus-visible:ring-0 focus-visible:border-taupe-900"
+    className="rounded-none border-0 border-b border-ground-200 px-0 focus-visible:ring-0 focus-visible:border-ground-900"
   />
   <div className="mt-2 flex justify-between">
     <div className="flex gap-1">
-      <button className="p-1.5 rounded text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700"><Bold size={15} /></button>
-      <button className="p-1.5 rounded text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700"><Italic size={15} /></button>
-      <button className="p-1.5 rounded text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700"><List size={15} /></button>
+      <button className="p-1.5 rounded text-ground-400 hover:bg-ground-100 hover:text-ground-700"><Bold size={15} /></button>
+      <button className="p-1.5 rounded text-ground-400 hover:bg-ground-100 hover:text-ground-700"><Italic size={15} /></button>
+      <button className="p-1.5 rounded text-ground-400 hover:bg-ground-100 hover:text-ground-700"><List size={15} /></button>
     </div>
     <div className="flex gap-2">
       <Button variant="outline" size="sm">Cancel</Button>
@@ -74,15 +74,15 @@ const CODE = {
 </div>`,
 
   titleAndPills: `// Title input + body textarea + pill action buttons
-<div className="rounded-lg border border-taupe-200 overflow-hidden">
-  <input placeholder="Title" className="w-full border-b border-taupe-200 px-4 py-3 body font-medium text-taupe-900 placeholder:text-taupe-400 focus:outline-none" />
+<div className="rounded-lg border border-ground-200 overflow-hidden">
+  <input placeholder="Title" className="w-full border-b border-ground-200 px-4 py-3 body font-medium text-ground-900 placeholder:text-ground-400 focus:outline-none" />
   <Textarea placeholder="Write a description..." className="rounded-none border-0 focus-visible:ring-0" rows={4} />
-  <div className="flex items-center gap-2 border-t border-taupe-100 px-3 py-2 bg-taupe-50 flex-wrap">
+  <div className="flex items-center gap-2 border-t border-ground-100 px-3 py-2 bg-ground-50 flex-wrap">
     {pillActions.map((p) => (
-      <button key={p.label} className="flex items-center gap-1.5 rounded-full border border-taupe-200 bg-white px-3 py-1 caption text-taupe-600 hover:bg-taupe-50">
+      <button key={p.label} className="flex items-center gap-1.5 rounded-full border border-ground-200 bg-white px-3 py-1 caption text-ground-600 hover:bg-ground-50">
         <p.icon size={12} />
         {p.label}
-        <ChevronDown size={10} className="text-taupe-400" />
+        <ChevronDown size={10} className="text-ground-400" />
       </button>
     ))}
   </div>
@@ -92,8 +92,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -110,15 +110,15 @@ export default function TextareaPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Textarea</span>
+          <span className="font-semibold text-ground-900">Textarea</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Textarea</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Textarea</h1>
+        <p className="body max-w-lg text-ground-500">
           Multi-line text input. Multiple composition variants for comment boxes, editors, and note fields.
         </p>
       </div>
@@ -147,12 +147,12 @@ export default function TextareaPage() {
                   <Textarea
                     placeholder="Add a comment..."
                     rows={3}
-                    className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-taupe-200 resize-none"
+                    className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-ground-200 resize-none"
                   />
-                  <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-taupe-200 bg-taupe-50 px-3 py-2">
+                  <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-ground-200 bg-ground-50 px-3 py-2">
                     <div className="flex items-center gap-1">
                       {[Smile, Paperclip, AtSign, Link2].map((Icon, i) => (
-                        <button key={i} type="button" className="rounded p-1 text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors">
+                        <button key={i} type="button" className="rounded p-1 text-ground-400 hover:bg-ground-100 hover:text-ground-700 transition-colors">
                           <Icon size={15} />
                         </button>
                       ))}
@@ -168,20 +168,20 @@ export default function TextareaPage() {
         <div>
           <Heading label="Textarea · With write/preview tabs" />
           <PreviewBlock title="Write and preview tabs" description="Toggle between editing mode and rendered output" code={CODE.withPreview} previewClassName="items-start">
-            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-taupe-200">
+            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-ground-200">
               <Tabs defaultValue="write">
-                <div className="flex items-center gap-2 border-b border-taupe-200 bg-taupe-50 px-3 pt-2">
+                <div className="flex items-center gap-2 border-b border-ground-200 bg-ground-50 px-3 pt-2">
                   <TabsList className="h-8 bg-transparent p-0 gap-0">
-                    <TabsTrigger value="write" className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-taupe-200 data-[state=active]:bg-white caption px-3 h-8">
+                    <TabsTrigger value="write" className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-ground-200 data-[state=active]:bg-white caption px-3 h-8">
                       Write
                     </TabsTrigger>
-                    <TabsTrigger value="preview" className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-taupe-200 data-[state=active]:bg-white caption px-3 h-8">
+                    <TabsTrigger value="preview" className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-ground-200 data-[state=active]:bg-white caption px-3 h-8">
                       Preview
                     </TabsTrigger>
                   </TabsList>
                   <div className="ml-auto flex items-center gap-1 pb-1">
                     {[Bold, Italic, List, Link2].map((Icon, i) => (
-                      <button key={i} type="button" className="rounded p-1 text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors">
+                      <button key={i} type="button" className="rounded p-1 text-ground-400 hover:bg-ground-100 hover:text-ground-700 transition-colors">
                         <Icon size={13} />
                       </button>
                     ))}
@@ -197,7 +197,7 @@ export default function TextareaPage() {
                   />
                 </TabsContent>
                 <TabsContent value="preview" className="mt-0">
-                  <div className={cn("min-h-[144px] p-3 body", previewContent ? "text-taupe-900 whitespace-pre-wrap" : "text-taupe-400")}>
+                  <div className={cn("min-h-[144px] p-3 body", previewContent ? "text-ground-900 whitespace-pre-wrap" : "text-ground-400")}>
                     {previewContent || "Nothing to preview yet."}
                   </div>
                 </TabsContent>
@@ -212,13 +212,13 @@ export default function TextareaPage() {
             <div className="w-full max-w-lg">
               <Textarea
                 placeholder="Add your note..."
-                className="rounded-none border-0 border-b border-taupe-200 px-0 focus-visible:ring-0 focus-visible:border-taupe-900 resize-none"
+                className="rounded-none border-0 border-b border-ground-200 px-0 focus-visible:ring-0 focus-visible:border-ground-900 resize-none"
                 rows={3}
               />
               <div className="mt-2 flex items-center justify-between">
                 <div className="flex gap-0.5">
                   {[Bold, Italic, List].map((Icon, i) => (
-                    <button key={i} type="button" className="rounded p-1.5 text-taupe-400 hover:bg-taupe-100 hover:text-taupe-700 transition-colors">
+                    <button key={i} type="button" className="rounded p-1.5 text-ground-400 hover:bg-ground-100 hover:text-ground-700 transition-colors">
                       <Icon size={14} />
                     </button>
                   ))}
@@ -235,27 +235,27 @@ export default function TextareaPage() {
         <div>
           <Heading label="Textarea · Title and pill actions" />
           <PreviewBlock title="Issue / task composer" description="Title input + body textarea + pill buttons for assignee, label, due date" code={CODE.titleAndPills} previewClassName="items-start">
-            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-taupe-200">
+            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-ground-200">
               <input
                 placeholder="New issue title..."
-                className="w-full border-b border-taupe-200 px-4 py-3 body font-medium text-taupe-900 placeholder:text-taupe-400 focus:outline-none bg-white"
+                className="w-full border-b border-ground-200 px-4 py-3 body font-medium text-ground-900 placeholder:text-ground-400 focus:outline-none bg-white"
               />
               <Textarea
                 placeholder="Add a description..."
                 className="rounded-none border-0 focus-visible:ring-0 resize-none"
                 rows={4}
               />
-              <div className="flex items-center gap-2 border-t border-taupe-100 bg-taupe-50 px-3 py-2 flex-wrap justify-between">
+              <div className="flex items-center gap-2 border-t border-ground-100 bg-ground-50 px-3 py-2 flex-wrap justify-between">
                 <div className="flex items-center gap-2 flex-wrap">
                   {PILL_ACTIONS.map((p) => (
                     <button
                       key={p.label}
                       type="button"
-                      className="flex items-center gap-1.5 rounded-full border border-taupe-200 bg-white px-3 py-1 caption text-taupe-600 hover:bg-taupe-50 transition-colors"
+                      className="flex items-center gap-1.5 rounded-full border border-ground-200 bg-white px-3 py-1 caption text-ground-600 hover:bg-ground-50 transition-colors"
                     >
                       <p.icon size={12} />
                       {p.label}
-                      <ChevronDown size={10} className="text-taupe-400" />
+                      <ChevronDown size={10} className="text-ground-400" />
                     </button>
                   ))}
                 </div>

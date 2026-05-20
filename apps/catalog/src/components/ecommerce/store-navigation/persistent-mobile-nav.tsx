@@ -64,12 +64,12 @@ const categories: NavCategory[] = [
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-lg bg-taupe-900 text-sm font-semibold text-white">
+      <div className="flex size-9 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
         D
       </div>
       <div>
-        <p className="body font-semibold text-taupe-900">Drift</p>
-        <p className="caption text-taupe-400">Modern store</p>
+        <p className="body font-semibold text-ground-900">Drift</p>
+        <p className="caption text-ground-400">Modern store</p>
       </div>
     </div>
   );
@@ -77,7 +77,7 @@ function LogoMark() {
 
 function CartButton() {
   return (
-    <button className="relative flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700 transition-colors hover:bg-taupe-50">
+    <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
       <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
         2
@@ -88,7 +88,7 @@ function CartButton() {
 
 function PageContent({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center justify-center bg-taupe-50 body text-taupe-400 ${compact ? "h-[200px]" : "h-32"}`}>
+    <div className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}>
       Page content
     </div>
   );
@@ -96,14 +96,14 @@ function PageContent({ compact = false }: { compact?: boolean }) {
 
 function DoubleColumnMenu({ category }: { category: NavCategory }) {
   return (
-    <div className="grid gap-5 border-t border-taupe-100 bg-white px-5 py-5 md:grid-cols-[1.1fr_0.9fr]">
+    <div className="grid gap-5 border-t border-ground-100 bg-white px-5 py-5 md:grid-cols-[1.1fr_0.9fr]">
       <div className="grid gap-4 sm:grid-cols-2">
         {category.sections.map((section) => (
-          <div key={section.label} className="rounded-[24px] border border-taupe-100 bg-taupe-50 p-5">
-            <p className="label mb-3 text-taupe-400">{section.label}</p>
+          <div key={section.label} className="rounded-[24px] border border-ground-100 bg-ground-50 p-5">
+            <p className="label mb-3 text-ground-400">{section.label}</p>
             <div className="space-y-2">
               {section.links.map((link) => (
-                <a key={link} href="#" className="block body text-taupe-600 transition-colors hover:text-taupe-900">
+                <a key={link} href="#" className="block body text-ground-600 transition-colors hover:text-ground-900">
                   {link}
                 </a>
               ))}
@@ -113,14 +113,14 @@ function DoubleColumnMenu({ category }: { category: NavCategory }) {
       </div>
       <div className="grid gap-4">
         {category.featured.map((item) => (
-          <div key={item.title} className="overflow-hidden rounded-[24px] border border-taupe-100">
+          <div key={item.title} className="overflow-hidden rounded-[24px] border border-ground-100">
             <img src={item.image} alt={item.title} className="h-28 w-full object-cover" />
             <div className="space-y-1 p-4">
               <div className="flex items-center justify-between gap-3">
-                <p className="body font-semibold text-taupe-900">{item.title}</p>
+                <p className="body font-semibold text-ground-900">{item.title}</p>
                 <Badge variant="secondary">{category.name}</Badge>
               </div>
-              <p className="caption leading-relaxed text-taupe-400">{item.subtitle}</p>
+              <p className="caption leading-relaxed text-ground-400">{item.subtitle}</p>
             </div>
           </div>
         ))}
@@ -135,9 +135,9 @@ export default function PersistentMobileNav() {
   const persistentCategory = categories.find((category) => category.name === persistentMenu) ?? categories[0];
 
   return (
-    <div className="w-full rounded-xl border border-taupe-100 overflow-hidden bg-white">
+    <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">
       <div className="relative h-[360px] overflow-hidden">
-        <div className="border-b border-taupe-100 px-5 py-4">
+        <div className="border-b border-ground-100 px-5 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <LogoMark />
@@ -149,7 +149,7 @@ export default function PersistentMobileNav() {
                     className={`rounded-full px-4 py-2 body transition-colors ${
                       persistentMenu === category.name
                         ? "bg-brand-primary text-white"
-                        : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                        : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                     }`}
                   >
                     {category.name}
@@ -158,7 +158,7 @@ export default function PersistentMobileNav() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700">
+              <button className="flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700">
                 <Search size={17} />
               </button>
               <CartButton />
@@ -167,7 +167,7 @@ export default function PersistentMobileNav() {
         </div>
         <DoubleColumnMenu category={persistentCategory} />
         <PageContent compact />
-        <div className="absolute inset-x-0 bottom-0 border-t border-taupe-100 bg-white/95 backdrop-blur">
+        <div className="absolute inset-x-0 bottom-0 border-t border-ground-100 bg-white/95 backdrop-blur">
           <div className="grid grid-cols-4">
             {[
               { label: "Home", icon: House },
@@ -178,7 +178,7 @@ export default function PersistentMobileNav() {
               <button
                 key={item.label}
                 className={`flex flex-col items-center gap-1 py-3 caption transition-colors ${
-                  index === 1 ? "text-brand-primary" : "text-taupe-400 hover:text-taupe-900"
+                  index === 1 ? "text-brand-primary" : "text-ground-400 hover:text-ground-900"
                 }`}
               >
                 <item.icon size={17} />

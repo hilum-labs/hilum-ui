@@ -3,7 +3,7 @@ import { type ReactNode, useState } from "react";
 
 type Plan = "startup" | "business" | "enterprise";
 type ApparelSize = "S" | "M" | "L" | "XL";
-type AccentColor = "white" | "taupe" | "black" | "brand-primary";
+type AccentColor = "white" | "ground" | "black" | "brand-primary";
 
 const planOptions: Array<{ value: Plan; label: string; price: string }> = [
   { value: "startup", label: "Startup", price: "$18 / mo" },
@@ -21,8 +21,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -63,18 +63,18 @@ export default function RadioGroups() {
             ].map((option) => (
               <label
                 key={option.value}
-                className="flex cursor-pointer items-start gap-3 rounded-xl border border-taupe-100 bg-white p-3"
+                className="flex cursor-pointer items-start gap-3 rounded-xl border border-ground-100 bg-white p-3"
               >
                 <input
                   type="radio"
                   name="contact-preference"
                   checked={contactPreference === option.value}
                   onChange={() => setContactPreference(option.value)}
-                  className="mt-1 size-4 border-taupe-300 text-brand-primary focus:ring-brand-primary/30"
+                  className="mt-1 size-4 border-ground-300 text-brand-primary focus:ring-brand-primary/30"
                 />
                 <div>
-                  <p className="body font-medium text-taupe-900">{option.label}</p>
-                  <p className="caption text-taupe-400">{option.description}</p>
+                  <p className="body font-medium text-ground-900">{option.label}</p>
+                  <p className="caption text-ground-400">{option.description}</p>
                 </div>
               </label>
             ))}
@@ -94,11 +94,11 @@ export default function RadioGroups() {
                   className={`rounded-2xl border p-5 text-left transition ${
                     active
                       ? "border-brand-primary ring-2 ring-brand-primary"
-                      : "border-taupe-200 hover:border-taupe-300"
+                      : "border-ground-200 hover:border-ground-300"
                   }`}
                 >
-                  <p className="body font-medium text-taupe-900">{plan.label}</p>
-                  <p className="caption mt-1 text-taupe-400">{plan.price}</p>
+                  <p className="body font-medium text-ground-900">{plan.label}</p>
+                  <p className="caption mt-1 text-ground-400">{plan.price}</p>
                 </button>
               );
             })}
@@ -118,7 +118,7 @@ export default function RadioGroups() {
                   className={`rounded-full px-4 py-2 body font-medium transition ${
                     active
                       ? "bg-brand-primary text-white"
-                      : "border border-taupe-200 bg-white text-taupe-700 hover:border-taupe-300"
+                      : "border border-ground-200 bg-white text-ground-700 hover:border-ground-300"
                   }`}
                 >
                   {size}
@@ -133,11 +133,11 @@ export default function RadioGroups() {
             {[
               {
                 value: "white" as const,
-                className: "border border-taupe-200 bg-white",
+                className: "border border-ground-200 bg-white",
               },
               {
-                value: "taupe" as const,
-                className: "bg-taupe-500",
+                value: "ground" as const,
+                className: "bg-ground-500",
               },
               {
                 value: "black" as const,

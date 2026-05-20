@@ -6,10 +6,10 @@ import { Toaster } from '@hilum/ui'
 
 export function App() {
   return (
-    <div className="flex min-h-screen bg-white text-taupe-900 antialiased">
+    <div className="flex min-h-screen bg-white text-ground-900 antialiased">
       <Sidebar />
       <main className="flex-1 overflow-auto">
-        <Suspense fallback={<div className="p-8 caption text-taupe-500">Loading…</div>}>
+        <Suspense fallback={<div className="p-8 caption text-ground-500">Loading…</div>}>
           {useRoutes(routes)}
         </Suspense>
       </main>

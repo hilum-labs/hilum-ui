@@ -23,7 +23,7 @@ const CONTENT_ROWS = [
 
 function ShellFrame({ children }: { children: any }) {
   return (
-    <div className="flex min-h-[480px] overflow-hidden rounded-xl border border-taupe-100">
+    <div className="flex min-h-[480px] overflow-hidden rounded-xl border border-ground-100">
       {children}
     </div>
   );
@@ -34,7 +34,7 @@ function LogoMark({ tone }: { tone: "light" | "dark" | "brand" }) {
     tone === "light"
       ? "bg-brand-primary text-white"
       : tone === "dark"
-        ? "bg-white text-taupe-900"
+        ? "bg-white text-ground-900"
         : "bg-white/15 text-white";
 
   return (
@@ -43,10 +43,10 @@ function LogoMark({ tone }: { tone: "light" | "dark" | "brand" }) {
         <span className="subheading font-medium">D</span>
       </div>
       <div>
-        <p className={tone === "light" ? "body font-medium text-taupe-900" : "body font-medium text-white"}>
+        <p className={tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"}>
           Design Co.
         </p>
-        <p className={tone === "light" ? "caption text-taupe-400" : "caption text-white/60"}>
+        <p className={tone === "light" ? "caption text-ground-400" : "caption text-white/60"}>
           Product workspace
         </p>
       </div>
@@ -59,16 +59,16 @@ function UserCard({ tone }: { tone: "light" | "dark" | "brand" }) {
     tone === "light"
       ? "bg-brand-primary text-white"
       : tone === "dark"
-        ? "bg-white text-taupe-900"
+        ? "bg-white text-ground-900"
         : "bg-white/15 text-white";
   const cardClass =
     tone === "light"
-      ? "border-taupe-100"
+      ? "border-ground-100"
       : tone === "dark"
-        ? "border-taupe-800"
+        ? "border-ground-800"
         : "border-white/15";
-  const nameClass = tone === "light" ? "text-taupe-900" : "text-white";
-  const emailClass = tone === "light" ? "text-taupe-400" : "text-white/60";
+  const nameClass = tone === "light" ? "text-ground-900" : "text-white";
+  const emailClass = tone === "light" ? "text-ground-400" : "text-white/60";
 
   return (
     <div className={`border-t p-4 ${cardClass}`}>
@@ -91,18 +91,18 @@ function SidebarNav({ tone }: { tone: "light" | "dark" | "brand" }) {
       <ul className="space-y-1">
         {NAV_ITEMS.map((item, index) => {
           const isActive = index === 0;
-          let itemClass = "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900";
+          let itemClass = "text-ground-500 hover:bg-ground-50 hover:text-ground-900";
 
           if (tone === "light") {
             itemClass = isActive
               ? "bg-brand-primary/10 text-brand-primary font-medium"
-              : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900";
+              : "text-ground-500 hover:bg-ground-50 hover:text-ground-900";
           }
 
           if (tone === "dark") {
             itemClass = isActive
-              ? "bg-taupe-800 text-white font-medium"
-              : "text-taupe-300 hover:bg-taupe-800 hover:text-white";
+              ? "bg-ground-800 text-white font-medium"
+              : "text-ground-300 hover:bg-ground-800 hover:text-white";
           }
 
           if (tone === "brand") {
@@ -142,8 +142,8 @@ function ContentRows({
     <div className={`flex-1 p-6 ${surfaceClassName}`}>
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h3 className="heading text-taupe-900">{title}</h3>
-          <p className="caption mt-1 text-taupe-400">{subtitle}</p>
+          <h3 className="heading text-ground-900">{title}</h3>
+          <p className="caption mt-1 text-ground-400">{subtitle}</p>
         </div>
         <Badge variant="secondary">Updated 8m ago</Badge>
       </div>
@@ -152,15 +152,15 @@ function ContentRows({
           <div key={row.title} className={`rounded-xl p-4 ${cardClassName}`}>
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="body font-medium text-taupe-900">{row.title}</p>
-                <p className="caption mt-1 text-taupe-400">{row.meta}</p>
+                <p className="body font-medium text-ground-900">{row.title}</p>
+                <p className="caption mt-1 text-ground-400">{row.meta}</p>
               </div>
-              <div className="h-2 w-20 rounded-full bg-taupe-100" />
+              <div className="h-2 w-20 rounded-full bg-ground-100" />
             </div>
             <div className="mt-4 space-y-2">
-              <div className="h-2 w-full rounded-full bg-taupe-100" />
-              <div className="h-2 w-10/12 rounded-full bg-taupe-100" />
-              <div className="h-2 w-7/12 rounded-full bg-taupe-100" />
+              <div className="h-2 w-full rounded-full bg-ground-100" />
+              <div className="h-2 w-10/12 rounded-full bg-ground-100" />
+              <div className="h-2 w-7/12 rounded-full bg-ground-100" />
             </div>
           </div>
         ))}
@@ -180,16 +180,16 @@ export default function LightSidebarShell() {
             <button
               type="button"
               aria-label="Close navigation"
-              className="absolute inset-0 z-20 bg-taupe-900/25 lg:hidden"
+              className="absolute inset-0 z-20 bg-ground-900/25 lg:hidden"
               onClick={() => setSidebarOpen(false)}
             />
-            <aside className="absolute inset-y-0 left-0 z-30 flex w-56 flex-col border-r border-taupe-100 bg-white lg:hidden">
-              <div className="border-b border-taupe-100 p-4">
+            <aside className="absolute inset-y-0 left-0 z-30 flex w-56 flex-col border-r border-ground-100 bg-white lg:hidden">
+              <div className="border-b border-ground-100 p-4">
                 <div className="flex items-center justify-between">
                   <LogoMark tone="light" />
                   <button
                     type="button"
-                    className="rounded-lg p-2 text-taupe-500 transition-colors hover:bg-taupe-50 hover:text-taupe-900"
+                    className="rounded-lg p-2 text-ground-500 transition-colors hover:bg-ground-50 hover:text-ground-900"
                     onClick={() => setSidebarOpen(false)}
                   >
                     <X className="size-4" />
@@ -202,8 +202,8 @@ export default function LightSidebarShell() {
           </>
         )}
 
-        <aside className="hidden w-56 flex-col border-r border-taupe-100 bg-white lg:flex">
-          <div className="border-b border-taupe-100 p-4">
+        <aside className="hidden w-56 flex-col border-r border-ground-100 bg-white lg:flex">
+          <div className="border-b border-ground-100 p-4">
             <LogoMark tone="light" />
           </div>
           <SidebarNav tone="light" />
@@ -211,18 +211,18 @@ export default function LightSidebarShell() {
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col bg-white">
-          <div className="flex items-center justify-between border-b border-taupe-100 px-5 py-4">
+          <div className="flex items-center justify-between border-b border-ground-100 px-5 py-4">
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                className="rounded-lg p-2 text-taupe-500 transition-colors hover:bg-taupe-50 hover:text-taupe-900 lg:hidden"
+                className="rounded-lg p-2 text-ground-500 transition-colors hover:bg-ground-50 hover:text-ground-900 lg:hidden"
                 onClick={() => setSidebarOpen(true)}
               >
                 <Menu className="size-4" />
               </button>
               <div>
-                <p className="heading text-taupe-900">Dashboard</p>
-                <p className="caption text-taupe-400">Overview of campaigns, team activity, and reporting.</p>
+                <p className="heading text-ground-900">Dashboard</p>
+                <p className="caption text-ground-400">Overview of campaigns, team activity, and reporting.</p>
               </div>
             </div>
             <Button size="sm">
@@ -233,8 +233,8 @@ export default function LightSidebarShell() {
           <ContentRows
             title="Performance overview"
             subtitle="A neutral shell with a light sidebar for administration and project pages."
-            surfaceClassName="bg-taupe-50"
-            cardClassName="border border-taupe-100 bg-white"
+            surfaceClassName="bg-ground-50"
+            cardClassName="border border-ground-100 bg-white"
           />
         </div>
       </div>

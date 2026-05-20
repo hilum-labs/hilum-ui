@@ -12,12 +12,12 @@ function Logo({ dark = false }: { dark?: boolean }) {
       <div
         className={cn(
           "flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold",
-          dark ? "bg-brand-secondary text-taupe-900" : "bg-brand-primary text-white"
+          dark ? "bg-brand-secondary text-ground-900" : "bg-brand-primary text-white"
         )}
       >
         D
       </div>
-      <span className={cn("subheading", dark ? "text-white" : "text-taupe-900")}>Acme</span>
+      <span className={cn("subheading", dark ? "text-white" : "text-ground-900")}>Acme</span>
     </div>
   );
 }
@@ -42,7 +42,7 @@ function DesktopLinks({
           href={`#${link.toLowerCase()}`}
           className={cn(
             "body transition-colors",
-            dark ? "text-taupe-300 hover:text-white" : "text-taupe-600 hover:text-taupe-900"
+            dark ? "text-ground-300 hover:text-white" : "text-ground-600 hover:text-ground-900"
           )}
         >
           {link}
@@ -66,8 +66,8 @@ function MobileMenuButton({
       className={cn(
         "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors md:hidden",
         dark
-          ? "text-taupe-300 hover:bg-taupe-800 hover:text-white"
-          : "text-taupe-600 hover:bg-taupe-100 hover:text-taupe-900"
+          ? "text-ground-300 hover:bg-ground-800 hover:text-white"
+          : "text-ground-600 hover:bg-ground-100 hover:text-ground-900"
       )}
     >
       <Menu size={18} />
@@ -94,7 +94,7 @@ function MobileDrawer({
     <div
       className={cn(
         "absolute inset-x-0 top-0 z-50 rounded-xl border p-4 shadow-elevated",
-        dark ? "border-taupe-700 bg-taupe-900" : "border-taupe-100 bg-white"
+        dark ? "border-ground-700 bg-ground-900" : "border-ground-100 bg-white"
       )}
     >
       <div className="mb-4 flex items-center justify-between">
@@ -105,8 +105,8 @@ function MobileDrawer({
           className={cn(
             "inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
             dark
-              ? "text-taupe-300 hover:bg-taupe-800 hover:text-white"
-              : "text-taupe-500 hover:bg-taupe-100 hover:text-taupe-900"
+              ? "text-ground-300 hover:bg-ground-800 hover:text-white"
+              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900"
           )}
         >
           <X size={18} />
@@ -121,18 +121,18 @@ export default function HeaderBrandedDark() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="relative min-h-[16rem] w-full bg-taupe-950">
-      <header className="border-b border-taupe-800 bg-taupe-900 px-6 py-4">
+    <div className="relative min-h-[16rem] w-full bg-ground-950">
+      <header className="border-b border-ground-800 bg-ground-900 px-6 py-4">
         <div className="flex items-center justify-between gap-6">
           <Logo dark />
           <DesktopLinks dark />
           <div className="hidden items-center gap-2 md:flex">
-            <Button variant="ghost" size="sm" className="text-taupe-400 hover:bg-taupe-800 hover:text-white">
+            <Button variant="ghost" size="sm" className="text-ground-400 hover:bg-ground-800 hover:text-white">
               Sign in
             </Button>
             <Button
               size="sm"
-              className="bg-brand-secondary text-taupe-900 hover:bg-brand-secondary/90"
+              className="bg-brand-secondary text-ground-900 hover:bg-brand-secondary/90"
             >
               Get started
             </Button>
@@ -147,7 +147,7 @@ export default function HeaderBrandedDark() {
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="block rounded-lg px-3 py-3 body text-taupe-300 transition-colors hover:bg-taupe-800 hover:text-white"
+              className="block rounded-lg px-3 py-3 body text-ground-300 transition-colors hover:bg-ground-800 hover:text-white"
             >
               {link}
             </a>
@@ -157,13 +157,13 @@ export default function HeaderBrandedDark() {
           <Button
             variant="ghost"
             size="sm"
-            className="flex-1 text-taupe-400 hover:bg-taupe-800 hover:text-white"
+            className="flex-1 text-ground-400 hover:bg-ground-800 hover:text-white"
           >
             Sign in
           </Button>
           <Button
             size="sm"
-            className="flex-1 bg-brand-secondary text-taupe-900 hover:bg-brand-secondary/90"
+            className="flex-1 bg-brand-secondary text-ground-900 hover:bg-brand-secondary/90"
           >
             Get started
           </Button>
@@ -171,8 +171,8 @@ export default function HeaderBrandedDark() {
       </MobileDrawer>
 
       <div className="px-6 py-10">
-        <div className="rounded-2xl border border-dashed border-taupe-700 bg-taupe-900 p-6">
-          <p className="body text-taupe-300">
+        <div className="rounded-2xl border border-dashed border-ground-700 bg-ground-900 p-6">
+          <p className="body text-ground-300">
             A branded dark header shifts the tone immediately while keeping the interaction model familiar.
           </p>
         </div>

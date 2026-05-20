@@ -26,8 +26,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -77,18 +77,18 @@ export default function ButtonGroups() {
 
         <VariantCard title="3. With checkbox and dropdown">
           <DropdownMenu>
-            <div className="inline-flex items-center overflow-hidden rounded-md border border-taupe-200 bg-white shadow-natural">
+            <div className="inline-flex items-center overflow-hidden rounded-md border border-ground-200 bg-white shadow-natural">
               <label className="flex items-center gap-2 px-3 py-2">
                 <Checkbox
                   checked={filterChecked}
                   onCheckedChange={(checked) => setFilterChecked(checked === true)}
                 />
-                <span className="body text-taupe-700">Assigned to me</span>
+                <span className="body text-ground-700">Assigned to me</span>
               </label>
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="border-l border-taupe-200 px-3 py-2 text-taupe-500 transition hover:bg-taupe-50 hover:text-taupe-700"
+                  className="border-l border-ground-200 px-3 py-2 text-ground-500 transition hover:bg-ground-50 hover:text-ground-700"
                 >
                   <ChevronDown size={14} />
                 </button>

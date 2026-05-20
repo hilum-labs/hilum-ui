@@ -36,7 +36,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5 text-sm">
       {Array.from({ length: 5 }).map((_, index) => (
-        <span key={index} className={index < rating ? "text-brand-secondary" : "text-taupe-200"}>
+        <span key={index} className={index < rating ? "text-brand-secondary" : "text-ground-200"}>
           {index < rating ? "★" : "☆"}
         </span>
       ))}
@@ -46,29 +46,29 @@ function Stars({ rating }: { rating: number }) {
 
 export default function EditorialListWithDividers() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white px-6">
+    <section className="w-full rounded-xl border border-ground-100 bg-white px-6">
       {reviews.map((review, index) => (
         <article
           key={review.author}
-          className={`py-6 ${index < reviews.length - 1 ? "border-b border-taupe-100" : ""}`}
+          className={`py-6 ${index < reviews.length - 1 ? "border-b border-ground-100" : ""}`}
         >
           <div className="flex items-center gap-4">
             <Avatar size="lg">
-              <AvatarFallback className="bg-taupe-100 text-taupe-700">
+              <AvatarFallback className="bg-ground-100 text-ground-700">
                 {review.avatar}
               </AvatarFallback>
             </Avatar>
             <div className="flex-1">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="body font-semibold text-taupe-900">{review.author}</p>
-                  <p className="caption mt-0.5 text-taupe-400">{review.title}</p>
+                  <p className="body font-semibold text-ground-900">{review.author}</p>
+                  <p className="caption mt-0.5 text-ground-400">{review.title}</p>
                 </div>
                 <Stars rating={review.rating} />
               </div>
             </div>
           </div>
-          <p className="body mt-4 max-w-4xl leading-relaxed text-taupe-500">{review.body}</p>
+          <p className="body mt-4 max-w-4xl leading-relaxed text-ground-500">{review.body}</p>
         </article>
       ))}
     </section>

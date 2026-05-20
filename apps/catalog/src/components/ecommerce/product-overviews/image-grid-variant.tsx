@@ -10,9 +10,9 @@ const PRODUCT_DESCRIPTION =
   "The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous?";
 
 const COLORS = [
-  { name: "White", swatchClass: "bg-white border border-taupe-300" },
-  { name: "Gray", swatchClass: "bg-taupe-400" },
-  { name: "Black", swatchClass: "bg-taupe-900" },
+  { name: "White", swatchClass: "bg-white border border-ground-300" },
+  { name: "Gray", swatchClass: "bg-ground-400" },
+  { name: "Black", swatchClass: "bg-ground-900" },
 ] as const;
 
 const SIZES = ["XS", "S", "M", "L", "XL"] as const;
@@ -44,8 +44,8 @@ function ColorSelector({
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <p className="label text-taupe-900">Color</p>
-        <p className="caption text-taupe-400">{selectedColor}</p>
+        <p className="label text-ground-900">Color</p>
+        <p className="caption text-ground-400">{selectedColor}</p>
       </div>
       <div className="mt-3 flex items-center gap-3">
         {COLORS.map((color) => {
@@ -58,7 +58,7 @@ function ColorSelector({
               onClick={() => onChange(color.name)}
               aria-label={`Select ${color.name}`}
               className={`flex size-9 items-center justify-center rounded-full border transition ${
-                active ? "border-taupe-900" : "border-transparent hover:border-taupe-200"
+                active ? "border-ground-900" : "border-transparent hover:border-ground-200"
               }`}
             >
               <span className={`size-6 rounded-full ${color.swatchClass}`} />
@@ -82,7 +82,7 @@ function SizeSelector({
   return (
     <div>
       <div className="flex items-center justify-between gap-4">
-        <p className="label text-taupe-900">Size</p>
+        <p className="label text-ground-900">Size</p>
         <a href="#" className="caption text-brand-primary hover:opacity-80">
           Size guide
         </a>
@@ -99,11 +99,11 @@ function SizeSelector({
               className={`rounded-full border px-4 py-2 transition ${
                 large
                   ? active
-                    ? "border-taupe-900 bg-taupe-900 text-white"
-                    : "border-taupe-200 bg-white text-taupe-700 hover:border-taupe-400"
+                    ? "border-ground-900 bg-ground-900 text-white"
+                    : "border-ground-200 bg-white text-ground-700 hover:border-ground-400"
                   : active
-                    ? "border-taupe-900 bg-taupe-900 text-white"
-                    : "border-taupe-200 bg-white text-taupe-700 hover:border-taupe-400"
+                    ? "border-ground-900 bg-ground-900 text-white"
+                    : "border-ground-200 bg-white text-ground-700 hover:border-ground-400"
               } ${large ? "body min-h-14 rounded-2xl font-medium" : "caption font-medium"}`}
             >
               {size}
@@ -126,8 +126,8 @@ function ProductHeader() {
           ))}
         </div>
       </div>
-      <h3 className="heading mt-5 text-taupe-900">{PRODUCT_NAME}</h3>
-      <p className="subheading mt-3 text-taupe-900">{PRODUCT_PRICE}</p>
+      <h3 className="heading mt-5 text-ground-900">{PRODUCT_NAME}</h3>
+      <p className="subheading mt-3 text-ground-900">{PRODUCT_PRICE}</p>
     </div>
   );
 }
@@ -144,27 +144,27 @@ export default function ImageGridVariant() {
             key={image}
             src={image}
             alt={PRODUCT_NAME}
-            className="aspect-square w-full rounded-[2rem] bg-taupe-50 object-cover"
+            className="aspect-square w-full rounded-[2rem] bg-ground-50 object-cover"
           />
         ))}
       </div>
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <ProductHeader />
-          <p className="body mt-6 max-w-2xl text-taupe-500">{PRODUCT_DESCRIPTION}</p>
+          <p className="body mt-6 max-w-2xl text-ground-500">{PRODUCT_DESCRIPTION}</p>
           <div className="mt-8 grid gap-8 md:grid-cols-2">
             <ColorSelector selectedColor={selectedColor} onChange={setSelectedColor} />
             <SizeSelector selectedSize={selectedSize} onChange={setSelectedSize} />
           </div>
           <Button className="mt-8 min-w-40">Add to bag</Button>
         </div>
-        <div className="rounded-[2rem] border border-taupe-100 p-6 shadow-natural">
-          <p className="label text-taupe-900">Specifications</p>
-          <dl className="mt-5 divide-y divide-taupe-100">
+        <div className="rounded-[2rem] border border-ground-100 p-6 shadow-natural">
+          <p className="label text-ground-900">Specifications</p>
+          <dl className="mt-5 divide-y divide-ground-100">
             {SPECIFICATIONS.map((spec) => (
               <div key={spec.label} className="flex items-center justify-between gap-4 py-3">
-                <dt className="caption text-taupe-400">{spec.label}</dt>
-                <dd className="body text-taupe-700">{spec.value}</dd>
+                <dt className="caption text-ground-400">{spec.label}</dt>
+                <dd className="body text-ground-700">{spec.value}</dd>
               </div>
             ))}
           </dl>

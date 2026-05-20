@@ -9,10 +9,10 @@ function PricingStatus({ value }: { value: "check" | "x" | "minus" }) {
   }
 
   if (value === "x") {
-    return <X className="mx-auto size-4 text-taupe-300" />;
+    return <X className="mx-auto size-4 text-ground-300" />;
   }
 
-  return <Minus className="mx-auto size-4 text-taupe-300" />;
+  return <Minus className="mx-auto size-4 text-ground-300" />;
 }
 
 export default function PricingBrandComparison() {
@@ -44,12 +44,12 @@ export default function PricingBrandComparison() {
   ] as const;
 
   return (
-    <section className="w-full bg-taupe-900 px-8 py-16 text-white md:px-12">
+    <section className="w-full bg-ground-900 px-8 py-16 text-white md:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="brand" className="mb-4">Dark comparison</Badge>
           <h3 className="heading text-white">Pair pricing cards with a deeper feature comparison</h3>
-          <p className="body mt-3 text-taupe-300">
+          <p className="body mt-3 text-ground-300">
             Start with clear buying options, then let buyers scan the details that matter most before talking to sales.
           </p>
         </div>
@@ -59,7 +59,7 @@ export default function PricingBrandComparison() {
               key={tier.name}
               className={[
                 "rounded-[2rem] border p-7",
-                tier.featured ? "border-brand-primary bg-white/10 shadow-elevated" : "border-taupe-700 bg-white/5",
+                tier.featured ? "border-brand-primary bg-white/10 shadow-elevated" : "border-ground-700 bg-white/5",
               ].join(" ")}
             >
               <div className="flex items-center justify-between">
@@ -68,29 +68,29 @@ export default function PricingBrandComparison() {
               </div>
               <div className="mt-5 flex items-end gap-2">
                 <p className="text-5xl font-semibold tracking-tight text-white">{tier.price}</p>
-                <p className="body pb-1 text-taupe-400">/mo</p>
+                <p className="body pb-1 text-ground-400">/mo</p>
               </div>
-              <p className="body mt-3 text-taupe-300">{tier.description}</p>
+              <p className="body mt-3 text-ground-300">{tier.description}</p>
               <Button variant={tier.featured ? "brand" : "outline"} className="mt-6 w-full">
                 {tier.featured ? "Choose Growth" : `Select ${tier.name}`}
               </Button>
             </article>
           ))}
         </div>
-        <div className="mt-8 overflow-hidden rounded-[2rem] border border-taupe-700 bg-white">
+        <div className="mt-8 overflow-hidden rounded-[2rem] border border-ground-700 bg-white">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="border-b border-taupe-100">
-                <th className="px-6 py-4 text-left subheading text-taupe-900">Feature</th>
-                <th className="px-6 py-4 text-center subheading text-taupe-900">Starter</th>
-                <th className="px-6 py-4 text-center subheading text-taupe-900">Growth</th>
-                <th className="px-6 py-4 text-center subheading text-taupe-900">Scale</th>
+              <tr className="border-b border-ground-100">
+                <th className="px-6 py-4 text-left subheading text-ground-900">Feature</th>
+                <th className="px-6 py-4 text-center subheading text-ground-900">Starter</th>
+                <th className="px-6 py-4 text-center subheading text-ground-900">Growth</th>
+                <th className="px-6 py-4 text-center subheading text-ground-900">Scale</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-taupe-100">
+            <tbody className="divide-y divide-ground-100">
               {rows.map((row) => (
                 <tr key={row.label}>
-                  <td className="px-6 py-4 body text-taupe-700">{row.label}</td>
+                  <td className="px-6 py-4 body text-ground-700">{row.label}</td>
                   <td className="px-6 py-4 text-center"><PricingStatus value={row.starter} /></td>
                   <td className="px-6 py-4 text-center"><PricingStatus value={row.growth} /></td>
                   <td className="px-6 py-4 text-center"><PricingStatus value={row.scale} /></td>

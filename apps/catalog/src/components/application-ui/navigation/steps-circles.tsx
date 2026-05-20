@@ -21,14 +21,14 @@ export default function StepsCircles() {
                   {index + 1}
                 </div>
               ) : (
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-taupe-200 text-sm font-medium text-taupe-400">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-ground-200 text-sm font-medium text-ground-400">
                   {index + 1}
                 </div>
               )}
-              <span className="caption mt-3 text-taupe-600">{step}</span>
+              <span className="caption mt-3 text-ground-600">{step}</span>
             </li>
             {index < stepItems.length - 1 ? (
-              <div className={`mt-4 h-px flex-1 ${index < currentStep ? "bg-brand-primary" : "bg-taupe-200"}`} />
+              <div className={`mt-4 h-px flex-1 ${index < currentStep ? "bg-brand-primary" : "bg-ground-200"}`} />
             ) : null}
           </div>
         ))}

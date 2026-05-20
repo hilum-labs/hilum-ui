@@ -15,7 +15,7 @@ function SocialButtons() {
         <button
           key={label}
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full border transition-colors border-taupe-200 bg-white text-taupe-500 hover:border-taupe-300 hover:text-taupe-900"
+          className="flex size-9 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
         >
           <Icon className="size-4" />
         </button>
@@ -28,11 +28,11 @@ export default function FooterSocialLinksOnly() {
   return (
     <footer className="w-full bg-white px-8 py-12">
       <div className="mx-auto max-w-3xl text-center">
-        <p className="heading text-taupe-900">Northstar</p>
+        <p className="heading text-ground-900">Northstar</p>
         <div className="mt-6 flex justify-center">
           <SocialButtons />
         </div>
-        <p className="caption mt-6 text-taupe-400">© 2026 Northstar. Crafted for modern product teams.</p>
+        <p className="caption mt-6 text-ground-400">© 2026 Northstar. Crafted for modern product teams.</p>
       </div>
     </footer>
   );

@@ -39,7 +39,7 @@ const POSTS = [
 function Avatar({ initials, size = "size-10" }: { initials: string; size?: string }) {
   return (
     <div
-      className={`${size} flex items-center justify-center rounded-full bg-taupe-200 body font-semibold text-taupe-500`}
+      className={`${size} flex items-center justify-center rounded-full bg-ground-200 body font-semibold text-ground-500`}
     >
       {initials}
     </div>
@@ -53,12 +53,12 @@ export default function BlogSectionList() {
         <div className="mb-10 flex items-end justify-between gap-6">
           <div className="max-w-2xl">
             <Badge variant="outline">Editorial</Badge>
-            <h3 className="heading mt-4 text-taupe-900">A sharper read on product craft</h3>
-            <p className="body mt-3 text-taupe-500">
+            <h3 className="heading mt-4 text-ground-900">A sharper read on product craft</h3>
+            <p className="body mt-3 text-ground-500">
               A simplified article index with denser content, clearer scanning, and a more newsroom-like rhythm.
             </p>
           </div>
-          <Button variant="ghost" className="hidden text-taupe-600 lg:inline-flex">
+          <Button variant="ghost" className="hidden text-ground-600 lg:inline-flex">
             Browse all articles
           </Button>
         </div>
@@ -67,25 +67,25 @@ export default function BlogSectionList() {
           {POSTS.map((post) => (
             <article
               key={post.title}
-              className="flex h-full flex-col rounded-2xl border border-taupe-100 bg-taupe-50 p-6"
+              className="flex h-full flex-col rounded-2xl border border-ground-100 bg-ground-50 p-6"
             >
               <Badge variant="secondary" className="w-fit">
                 {post.category}
               </Badge>
-              <h4 className="subheading mt-4 text-taupe-900">{post.title}</h4>
-              <p className="caption mt-3 leading-6 text-taupe-500">{post.excerpt}</p>
-              <div className="mt-5 flex items-center gap-3 border-t border-taupe-200 pt-5">
+              <h4 className="subheading mt-4 text-ground-900">{post.title}</h4>
+              <p className="caption mt-3 leading-6 text-ground-500">{post.excerpt}</p>
+              <div className="mt-5 flex items-center gap-3 border-t border-ground-200 pt-5">
                 <Avatar initials={post.authorInitials} size="size-9" />
                 <div className="min-w-0 flex-1">
-                  <p className="body font-medium text-taupe-900">{post.author}</p>
-                  <p className="caption text-taupe-500">
+                  <p className="body font-medium text-ground-900">{post.author}</p>
+                  <p className="caption text-ground-500">
                     {post.date}
-                    <span className="mx-2 text-taupe-300">•</span>
+                    <span className="mx-2 text-ground-300">•</span>
                     {post.readTime}
                   </p>
                 </div>
               </div>
-              <button className="mt-5 inline-flex items-center gap-2 body font-medium text-taupe-900 transition-colors hover:text-brand-primary">
+              <button className="mt-5 inline-flex items-center gap-2 body font-medium text-ground-900 transition-colors hover:text-brand-primary">
                 Read more
                 <ArrowRight className="size-4" />
               </button>

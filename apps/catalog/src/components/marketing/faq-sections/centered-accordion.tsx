@@ -64,14 +64,14 @@ export default function CenteredAccordion() {
     <section className="w-full bg-white px-8 py-16">
       <div className="mx-auto max-w-2xl">
         <div className="mb-8 text-center">
-          <h2 className="heading text-taupe-900">Frequently asked questions</h2>
-          <p className="body mt-3 text-taupe-500">
+          <h2 className="heading text-ground-900">Frequently asked questions</h2>
+          <p className="body mt-3 text-ground-500">
             Concise answers for the details customers usually ask before
             signing off on a purchase.
           </p>
         </div>
 
-        <div className="divide-y divide-taupe-100 border-y border-taupe-100">
+        <div className="divide-y divide-ground-100 border-y border-ground-100">
           {FAQS.map((item, index) => {
             const isOpen = !!openItems[index];
 
@@ -82,18 +82,18 @@ export default function CenteredAccordion() {
                   onClick={() => toggleItem(index)}
                   className="flex w-full items-center justify-between gap-4 px-1 py-5 text-left"
                 >
-                  <span className="body font-semibold text-taupe-900">
+                  <span className="body font-semibold text-ground-900">
                     {item.q}
                   </span>
                   <ChevronDownIcon
-                    className={`size-5 shrink-0 text-taupe-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                    className={`size-5 shrink-0 text-ground-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
                 <div
                   className={`grid overflow-hidden transition-all duration-300 ease-out ${isOpen ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]"}`}
                 >
                   <div className="overflow-hidden">
-                    <p className="body pr-10 text-taupe-500">{item.a}</p>
+                    <p className="body pr-10 text-ground-500">{item.a}</p>
                   </div>
                 </div>
               </div>

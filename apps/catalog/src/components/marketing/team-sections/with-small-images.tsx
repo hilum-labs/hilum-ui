@@ -49,7 +49,7 @@ function AvatarCircle({
   return (
     <div
       className={`${size} flex items-center justify-center rounded-full body font-semibold ${
-        dark ? "bg-taupe-800 text-taupe-200 ring-2 ring-taupe-700" : "bg-taupe-200 text-taupe-500"
+        dark ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700" : "bg-ground-200 text-ground-500"
       }`}
     >
       {initials}
@@ -63,22 +63,22 @@ export default function WithSmallImages() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <p className="label text-brand-primary">Core team</p>
-          <h2 className="heading mt-4 text-taupe-900">Cross-functional leaders with strong product instincts</h2>
+          <h2 className="heading mt-4 text-ground-900">Cross-functional leaders with strong product instincts</h2>
         </div>
         <div className="grid gap-4 lg:grid-cols-3">
           {TEAM.map((member) => (
             <article
               key={member.name}
-              className="rounded-2xl border border-taupe-100 bg-white p-5"
+              className="rounded-2xl border border-ground-100 bg-white p-5"
             >
               <div className="flex items-center gap-3">
                 <AvatarCircle initials={member.initials} size="size-12" />
                 <div>
-                  <h3 className="body font-medium text-taupe-900">{member.name}</h3>
-                  <p className="caption text-taupe-500">{member.role}</p>
+                  <h3 className="body font-medium text-ground-900">{member.name}</h3>
+                  <p className="caption text-ground-500">{member.role}</p>
                 </div>
               </div>
-              <p className="body mt-4 text-taupe-600">{member.bio}</p>
+              <p className="body mt-4 text-ground-600">{member.bio}</p>
             </article>
           ))}
         </div>

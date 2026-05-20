@@ -6,9 +6,9 @@ function Stat({
   label: string;
 }) {
   return (
-    <div className="rounded-2xl border border-taupe-100 bg-white p-5">
+    <div className="rounded-2xl border border-ground-100 bg-white p-5">
       <p className="heading text-brand-primary">{value}</p>
-      <p className="body mt-1 text-taupe-600">{label}</p>
+      <p className="body mt-1 text-ground-600">{label}</p>
     </div>
   );
 }
@@ -20,24 +20,24 @@ export default function WithTestimonialAndStats() {
         <p className="label mb-4 uppercase tracking-wide text-brand-primary">
           Outcomes
         </p>
-        <h3 className="heading text-taupe-900">
+        <h3 className="heading text-ground-900">
           A system that helps teams align quickly
         </h3>
-        <p className="body mt-4 text-taupe-600">
+        <p className="body mt-4 text-ground-600">
           Pair qualitative proof with quantitative proof. This layout gives the
           customer story room to breathe while keeping the business impact visible.
         </p>
       </div>
       <div className="mt-10 lg:grid lg:grid-cols-[1fr_0.95fr] lg:gap-10">
-        <aside className="rounded-2xl border border-taupe-100 bg-taupe-50 p-8">
+        <aside className="rounded-2xl border border-ground-100 bg-ground-50 p-8">
           <div className="flex items-center gap-4">
-            <div className="h-10 w-10 rounded-full bg-taupe-200" />
+            <div className="h-10 w-10 rounded-full bg-ground-200" />
             <div>
-              <p className="subheading text-taupe-900">Elena Park</p>
-              <p className="body text-taupe-500">Head of Design, Arcwell</p>
+              <p className="subheading text-ground-900">Elena Park</p>
+              <p className="body text-ground-500">Head of Design, Arcwell</p>
             </div>
           </div>
-          <p className="heading mt-8 leading-tight text-taupe-900">
+          <p className="heading mt-8 leading-tight text-ground-900">
             &ldquo;The library gave our team a common starting point, but the real
             win was how quickly product and marketing began speaking the same
             language.&rdquo;

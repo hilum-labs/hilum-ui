@@ -17,8 +17,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -35,7 +35,7 @@ export default function Textareas() {
               id="project-note"
               defaultValue="We should move the onboarding audit one week earlier so the team can absorb feedback before launch."
             />
-            <p className="caption text-taupe-400">121 / 240 characters</p>
+            <p className="caption text-ground-400">121 / 240 characters</p>
           </div>
         </VariantCard>
 
@@ -52,7 +52,7 @@ export default function Textareas() {
               <div className="mt-3 flex items-center justify-between">
                 <button
                   type="button"
-                  className="inline-flex items-center gap-2 rounded-full border border-taupe-200 px-3 py-1.5 caption text-taupe-500 transition hover:border-taupe-300 hover:text-taupe-700"
+                  className="inline-flex items-center gap-2 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-500 transition hover:border-ground-300 hover:text-ground-700"
                 >
                   <Paperclip size={14} />
                   Attach file
@@ -69,21 +69,21 @@ export default function Textareas() {
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full border border-taupe-200 px-3 py-1.5 caption text-taupe-600 transition hover:border-taupe-300 hover:text-taupe-900"
+                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition hover:border-ground-300 hover:text-ground-900"
               >
                 <Bold size={13} />
                 Bold
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full border border-taupe-200 px-3 py-1.5 caption text-taupe-600 transition hover:border-taupe-300 hover:text-taupe-900"
+                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition hover:border-ground-300 hover:text-ground-900"
               >
                 <Italic size={13} />
                 Italic
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full border border-taupe-200 px-3 py-1.5 caption text-taupe-600 transition hover:border-taupe-300 hover:text-taupe-900"
+                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition hover:border-ground-300 hover:text-ground-900"
               >
                 <Underline size={13} />
                 Link

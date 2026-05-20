@@ -70,8 +70,8 @@ export default function ScrollingCards() {
     <section className="w-full bg-white px-6 py-8 sm:px-8">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="subheading text-taupe-900">{selectedPreview.name}</p>
-          <p className="body mt-2 text-taupe-600">{selectedPreview.description}</p>
+          <p className="subheading text-ground-900">{selectedPreview.name}</p>
+          <p className="body mt-2 text-ground-600">{selectedPreview.description}</p>
         </div>
         <Badge variant="outline">{selectedPreview.count}</Badge>
       </div>
@@ -86,7 +86,7 @@ export default function ScrollingCards() {
               className={`w-64 shrink-0 overflow-hidden rounded-[28px] border text-left transition-colors ${
                 selectedCategory === category.name
                   ? "border-brand-primary bg-brand-primary/5"
-                  : "border-taupe-100 bg-white"
+                  : "border-ground-100 bg-white"
               }`}
             >
               <div className="overflow-hidden">
@@ -98,10 +98,10 @@ export default function ScrollingCards() {
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="subheading text-taupe-900">{category.name}</p>
-                  <span className="caption text-taupe-400">{category.count}</span>
+                  <p className="subheading text-ground-900">{category.name}</p>
+                  <span className="caption text-ground-400">{category.count}</span>
                 </div>
-                <p className="body mt-3 text-taupe-600">{category.description}</p>
+                <p className="body mt-3 text-ground-600">{category.description}</p>
               </div>
             </button>
           ))}

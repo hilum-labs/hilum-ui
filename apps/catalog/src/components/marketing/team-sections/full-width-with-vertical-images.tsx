@@ -47,8 +47,8 @@ function PortraitPlaceholder({
   className: string;
 }) {
   return (
-    <div className={`${className} flex items-center justify-center bg-taupe-100`}>
-      <div className="rounded-full border border-taupe-200 bg-white px-4 py-2 subheading text-taupe-500">
+    <div className={`${className} flex items-center justify-center bg-ground-100`}>
+      <div className="rounded-full border border-ground-200 bg-white px-4 py-2 subheading text-ground-500">
         {initials}
       </div>
     </div>
@@ -62,9 +62,9 @@ export default function FullWidthWithVerticalImages() {
         <div className="mb-10 flex flex-wrap items-end justify-between gap-6">
           <div className="max-w-2xl">
             <Badge variant="secondary">Leadership team</Badge>
-            <h2 className="heading mt-4 text-taupe-900">A stronger visual roster for about pages</h2>
+            <h2 className="heading mt-4 text-ground-900">A stronger visual roster for about pages</h2>
           </div>
-          <p className="body max-w-md text-taupe-500">
+          <p className="body max-w-md text-ground-500">
             Use large cards when individual profiles should feel more prominent and the team story needs more presence.
           </p>
         </div>
@@ -72,12 +72,12 @@ export default function FullWidthWithVerticalImages() {
           {TEAM.map((member) => (
             <article
               key={member.name}
-              className="rounded-3xl border border-taupe-100 bg-white p-5"
+              className="rounded-3xl border border-ground-100 bg-white p-5"
             >
               <PortraitPlaceholder initials={member.initials} className="w-full aspect-[3/4] rounded-2xl" />
-              <h3 className="subheading mt-5 text-taupe-900">{member.name}</h3>
-              <p className="body mt-2 text-taupe-500">{member.role}</p>
-              <p className="caption mt-3 leading-6 text-taupe-500">{member.bio}</p>
+              <h3 className="subheading mt-5 text-ground-900">{member.name}</h3>
+              <p className="body mt-2 text-ground-500">{member.role}</p>
+              <p className="caption mt-3 leading-6 text-ground-500">{member.bio}</p>
             </article>
           ))}
         </div>

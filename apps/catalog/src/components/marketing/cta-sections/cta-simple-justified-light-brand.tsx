@@ -6,10 +6,10 @@ export default function CTASimpleJustifiedLightBrand() {
     <section className="w-full bg-brand-secondary/30 px-6 py-16 sm:px-10 lg:px-14">
       <div className="mx-auto flex max-w-6xl flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div className="max-w-2xl">
-          <h2 className="heading text-taupe-900">
+          <h2 className="heading text-ground-900">
             Make the next launch your cleanest one yet.
           </h2>
-          <p className="body mt-4 text-taupe-600">
+          <p className="body mt-4 text-ground-600">
             Bring briefs, reviews, decisions, and approvals into a single
             rhythm that every stakeholder can follow.
           </p>

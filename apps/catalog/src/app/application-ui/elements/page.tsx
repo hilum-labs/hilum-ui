@@ -15,8 +15,8 @@ import buttonsSource from "@/components/application-ui/elements/buttons?raw";
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -25,21 +25,21 @@ export default function ElementsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">
             Design System
           </a>
           <span>/</span>
-          <a href="/application-ui" className="hover:text-taupe-700">
+          <a href="/application-ui" className="hover:text-ground-700">
             Application UI
           </a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Elements</span>
+          <span className="font-semibold text-ground-900">Elements</span>
         </div>
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="display mb-2 text-taupe-900">Elements</h1>
-            <p className="body max-w-2xl text-taupe-500">
+            <h1 className="display mb-2 text-ground-900">Elements</h1>
+            <p className="body max-w-2xl text-ground-500">
               Avatars, badges, button groups, buttons, and dropdown menus.
             </p>
           </div>

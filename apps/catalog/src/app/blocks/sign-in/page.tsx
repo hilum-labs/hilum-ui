@@ -10,8 +10,8 @@ import signInSplitSource from "@/components/blocks/sign-in/sign-in-split?raw";
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -20,21 +20,21 @@ export default function SignInPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/blocks" className="hover:text-taupe-700">Blocks</a>
+          <a href="/blocks" className="hover:text-ground-700">Blocks</a>
           <span>/</span>
-          <span className="body font-semibold text-taupe-900">Sign In</span>
+          <span className="body font-semibold text-ground-900">Sign In</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Sign In</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Sign In</h1>
+        <p className="body max-w-md text-ground-400">
           Authentication form layouts — card, compact stacked, and split-screen.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">Block</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Field · Input · Button · Checkbox · Separator</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">Block</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Field · Input · Button · Checkbox · Separator</p>
         </div>
       </div>
 

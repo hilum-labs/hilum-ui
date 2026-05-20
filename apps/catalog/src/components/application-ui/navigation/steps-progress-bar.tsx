@@ -7,15 +7,15 @@ export default function StepsProgressBar() {
       <div className="flex items-center justify-between">
         {stepItems.map((step, index) => (
           <div key={step} className="text-center">
-            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-taupe-400"}`}>Step {index + 1}</p>
-            <p className={`body mt-1 ${index === 1 ? "font-semibold text-taupe-900" : "text-taupe-500"}`}>{step}</p>
+            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-ground-400"}`}>Step {index + 1}</p>
+            <p className={`body mt-1 ${index === 1 ? "font-semibold text-ground-900" : "text-ground-500"}`}>{step}</p>
           </div>
         ))}
       </div>
-      <div className="mt-5 h-2 rounded-full bg-taupe-100">
+      <div className="mt-5 h-2 rounded-full bg-ground-100">
         <div className="h-2 rounded-full bg-brand-primary" style={{ width: "66%" }} />
       </div>
-      <p className="caption mt-3 text-taupe-500">Step 2 of 3</p>
+      <p className="caption mt-3 text-ground-500">Step 2 of 3</p>
     </div>
   );
 }

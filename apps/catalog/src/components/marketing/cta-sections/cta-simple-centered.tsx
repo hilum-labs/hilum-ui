@@ -4,8 +4,8 @@ export default function CTASimpleCentered() {
   return (
     <section className="w-full bg-white px-6 py-16 sm:px-10 lg:px-14">
       <div className="mx-auto max-w-3xl text-center">
-        <h2 className="heading text-taupe-900">Ready to dive in?</h2>
-        <p className="body mt-4 text-taupe-500">
+        <h2 className="heading text-ground-900">Ready to dive in?</h2>
+        <p className="body mt-4 text-ground-500">
           Spin up a workspace, invite your team, and start planning your next
           launch in the same afternoon.
         </p>

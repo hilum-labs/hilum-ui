@@ -65,12 +65,12 @@ const pages = ["Company", "Stores"];
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-lg bg-taupe-900 text-sm font-semibold text-white">
+      <div className="flex size-9 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
         D
       </div>
       <div>
-        <p className="body font-semibold text-taupe-900">Drift</p>
-        <p className="caption text-taupe-400">Modern store</p>
+        <p className="body font-semibold text-ground-900">Drift</p>
+        <p className="caption text-ground-400">Modern store</p>
       </div>
     </div>
   );
@@ -78,7 +78,7 @@ function LogoMark() {
 
 function CartButton() {
   return (
-    <button className="relative flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700 transition-colors hover:bg-taupe-50">
+    <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
       <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
         2
@@ -89,7 +89,7 @@ function CartButton() {
 
 function PageContent({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center justify-center bg-taupe-50 body text-taupe-400 ${compact ? "h-[200px]" : "h-32"}`}>
+    <div className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}>
       Page content
     </div>
   );
@@ -97,26 +97,26 @@ function PageContent({ compact = false }: { compact?: boolean }) {
 
 function ImageGridMenu({ category }: { category: NavCategory }) {
   return (
-    <div className="border-t border-taupe-100 bg-white px-5 py-5">
+    <div className="border-t border-ground-100 bg-white px-5 py-5">
       <div className="grid gap-5 md:grid-cols-[1.1fr_0.9fr]">
         <div className="grid gap-4 sm:grid-cols-2">
           {category.featured.map((item) => (
-            <a key={item.title} href="#" className="group overflow-hidden rounded-[24px] border border-taupe-100 bg-taupe-50">
+            <a key={item.title} href="#" className="group overflow-hidden rounded-[24px] border border-ground-100 bg-ground-50">
               <img src={item.image} alt={item.title} className="h-36 w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
               <div className="space-y-1 p-4">
-                <p className="body font-semibold text-taupe-900">{item.title}</p>
-                <p className="caption text-taupe-400">{item.subtitle}</p>
+                <p className="body font-semibold text-ground-900">{item.title}</p>
+                <p className="caption text-ground-400">{item.subtitle}</p>
               </div>
             </a>
           ))}
         </div>
         <div className="grid gap-5 sm:grid-cols-3">
           {category.sections.map((section) => (
-            <div key={section.label} className="rounded-2xl bg-taupe-50 p-4">
-              <p className="label mb-3 text-taupe-400">{section.label}</p>
+            <div key={section.label} className="rounded-2xl bg-ground-50 p-4">
+              <p className="label mb-3 text-ground-400">{section.label}</p>
               <div className="space-y-2">
                 {section.links.map((link) => (
-                  <a key={link} href="#" className="block body text-taupe-600 transition-colors hover:text-taupe-900">
+                  <a key={link} href="#" className="block body text-ground-600 transition-colors hover:text-ground-900">
                     {link}
                   </a>
                 ))}
@@ -135,9 +135,9 @@ export default function ImageGridMegaMenu() {
   const gridCategory = categories.find((category) => category.name === gridMenu) ?? categories[0];
 
   return (
-    <div className="w-full rounded-xl border border-taupe-100 overflow-hidden bg-white">
+    <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">
       <div className="h-[360px]">
-        <div className="border-b border-taupe-100 px-5 py-4">
+        <div className="border-b border-ground-100 px-5 py-4">
           <div className="flex items-center justify-between">
             <LogoMark />
             <div className="flex items-center gap-2">
@@ -149,20 +149,20 @@ export default function ImageGridMegaMenu() {
                   className={`rounded-full px-4 py-2 body transition-colors ${
                     gridMenu === category.name
                       ? "bg-brand-primary text-white"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   }`}
                 >
                   {category.name}
                 </button>
               ))}
               {pages.map((page) => (
-                <a key={page} href="#" className="px-3 py-2 body text-taupe-500 transition-colors hover:text-taupe-900">
+                <a key={page} href="#" className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900">
                   {page}
                 </a>
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <button className="flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700">
+              <button className="flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700">
                 <Search size={17} />
               </button>
               <CartButton />

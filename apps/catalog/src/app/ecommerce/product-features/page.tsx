@@ -23,8 +23,8 @@ import wideImagesSource from "@/components/ecommerce/product-features/wide-image
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -34,22 +34,22 @@ export default function ProductFeaturesPage() {
     <div className="h-full overflow-y-auto bg-white">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-            <a href="/" className="hover:text-taupe-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+            <a href="/" className="hover:text-ground-700">
               Design System
             </a>
             <span>/</span>
-            <a href="/ecommerce" className="hover:text-taupe-700">
+            <a href="/ecommerce" className="hover:text-ground-700">
               Ecommerce
             </a>
             <span>/</span>
-            <span className="font-semibold text-taupe-900">Product Features</span>
+            <span className="font-semibold text-ground-900">Product Features</span>
           </div>
           <div className="mb-4 flex items-center gap-3">
             <Badge variant="secondary">Product · 9 variants</Badge>
           </div>
-          <h1 className="display mb-2 text-taupe-900">Product Features</h1>
-          <p className="body max-w-2xl text-taupe-400">
+          <h1 className="display mb-2 text-ground-900">Product Features</h1>
+          <p className="body max-w-2xl text-ground-400">
             Showcase product specs and details with images, tabs, and alternating
             layouts.
           </p>

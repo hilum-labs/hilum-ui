@@ -13,14 +13,14 @@
 //   brand.primary   #C100F1 — vivid purple — purple-500 on the scale below
 //   brand.secondary #FFF5BF — pale lemon   — butter-200 on the scale below
 //
-// taupe — neutral spine for text, borders, and structure (values: Tailwind neutral)
+// ground — neutral spine for text, borders, and structure (values: Tailwind neutral)
 
 export const tokens = {
   /* ============================================================== *
    *  PALETTE — concrete colors                                      *
    * ============================================================== */
 
-  taupe: {
+  ground: {
     50: "#fafafa",
     100: "#f5f5f5",
     200: "#e5e5e5",
@@ -79,40 +79,40 @@ export const tokens = {
   semantic: {
     light: {
       background: "#ffffff",
-      foreground: "#171717", // taupe-900
+      foreground: "#171717", // ground-900
       card: "#ffffff",
       cardForeground: "#171717",
-      surface: "#fafafa", // taupe-50
-      surfaceForeground: "#262626", // taupe-800
-      border: "#f5f5f5", // taupe-100
+      surface: "#fafafa", // ground-50
+      surfaceForeground: "#262626", // ground-800
+      border: "#f5f5f5", // ground-100
       input: "#f5f5f5",
       muted: "#fafafa",
-      mutedForeground: "#737373", // taupe-500
+      mutedForeground: "#737373", // ground-500
       accent: "#fdf0ff", // purple-50
       accentForeground: "#740092", // purple-700
       primary: "#c100f1", // purple-500 = brand.primary
       primaryForeground: "#ffffff",
-      secondary: "#fafafa", // taupe-50
-      secondaryForeground: "#404040", // taupe-700
+      secondary: "#fafafa", // ground-50
+      secondaryForeground: "#404040", // ground-700
       destructive: "#dc2626",
       destructiveForeground: "#ffffff",
       success: "#CDEA19", // lime — functional semantic only
       successForeground: "#171717",
       warning: "#fff5bf", // butter-200 = brand.secondary
-      warningForeground: "#171717", // taupe-900
+      warningForeground: "#171717", // ground-900
       ring: "#c100f1", // purple-500 = brand.primary
     },
     dark: {
-      background: "#0a0a0a", // taupe-950
-      foreground: "#fafafa", // taupe-50
-      card: "#171717", // taupe-900
+      background: "#0a0a0a", // ground-950
+      foreground: "#fafafa", // ground-50
+      card: "#171717", // ground-900
       cardForeground: "#fafafa",
       surface: "#171717",
       surfaceForeground: "#f5f5f5",
-      border: "#262626", // taupe-800
+      border: "#262626", // ground-800
       input: "#262626",
       muted: "#171717",
-      mutedForeground: "#a3a3a3", // taupe-400
+      mutedForeground: "#a3a3a3", // ground-400
       accent: "#330040", // purple-900
       accentForeground: "#f5d6ff", // purple-100
       primary: "#c100f1", // purple-500 — brand stays consistent (D8)

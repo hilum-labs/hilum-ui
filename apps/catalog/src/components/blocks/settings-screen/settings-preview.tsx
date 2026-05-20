@@ -33,7 +33,7 @@ export default function SettingsPreview() {
       <PageHeading title="Settings" />
 
       {/* Profile */}
-      <div className="grid grid-cols-3 gap-6 border-b border-taupe-100 pb-8">
+      <div className="grid grid-cols-3 gap-6 border-b border-ground-100 pb-8">
         <div>
           <SectionHeadingComponent
             title="Profile"
@@ -63,7 +63,7 @@ export default function SettingsPreview() {
       </div>
 
       {/* Notifications */}
-      <div className="grid grid-cols-3 gap-6 border-b border-taupe-100 pb-8">
+      <div className="grid grid-cols-3 gap-6 border-b border-ground-100 pb-8">
         <div>
           <SectionHeadingComponent
             title="Notifications"
@@ -76,8 +76,8 @@ export default function SettingsPreview() {
             return (
               <div key={n.id} className="flex items-center justify-between gap-4">
                 <div>
-                  <Label htmlFor={n.id} className="body font-medium text-taupe-900">{n.label}</Label>
-                  <p className="caption text-taupe-400 mt-0.5">{n.description}</p>
+                  <Label htmlFor={n.id} className="body font-medium text-ground-900">{n.label}</Label>
+                  <p className="caption text-ground-400 mt-0.5">{n.description}</p>
                 </div>
                 <Switch
                   id={n.id}
@@ -91,7 +91,7 @@ export default function SettingsPreview() {
       </div>
 
       {/* Password */}
-      <div className="grid grid-cols-3 gap-6 border-b border-taupe-100 pb-8">
+      <div className="grid grid-cols-3 gap-6 border-b border-ground-100 pb-8">
         <div>
           <SectionHeadingComponent
             title="Password"

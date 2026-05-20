@@ -15,7 +15,7 @@ function Avatar({
 }) {
   return (
     <div
-      className={`flex items-center justify-center rounded-full bg-taupe-200 body font-semibold text-taupe-400 ${className ?? ""}`}
+      className={`flex items-center justify-center rounded-full bg-ground-200 body font-semibold text-ground-400 ${className ?? ""}`}
     >
       {initials}
     </div>
@@ -30,14 +30,14 @@ export default function WithLargeAvatar() {
           initials={TESTIMONIAL.initials}
           className="mb-8 size-20 text-2xl"
         />
-        <p className="display italic text-taupe-900">
+        <p className="display italic text-ground-900">
           {TESTIMONIAL.quote}
         </p>
         <div className="mt-8">
-          <p className="subheading font-semibold text-taupe-900">
+          <p className="subheading font-semibold text-ground-900">
             {TESTIMONIAL.name}
           </p>
-          <p className="body text-taupe-500">
+          <p className="body text-ground-500">
             {TESTIMONIAL.company}
           </p>
         </div>

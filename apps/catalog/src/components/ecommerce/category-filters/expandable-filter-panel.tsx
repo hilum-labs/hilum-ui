@@ -31,13 +31,13 @@ function CheckboxRow({
   onChange: () => void;
 }) {
   return (
-    <label className="flex items-center justify-between gap-3 rounded-2xl border border-taupe-100 bg-white px-3 py-2 text-taupe-600">
+    <label className="flex items-center justify-between gap-3 rounded-2xl border border-ground-100 bg-white px-3 py-2 text-ground-600">
       <span className="body">{label}</span>
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="h-4 w-4 rounded border-taupe-300 text-brand-primary focus:ring-brand-primary"
+        className="h-4 w-4 rounded border-ground-300 text-brand-primary focus:ring-brand-primary"
       />
     </label>
   );
@@ -62,7 +62,7 @@ export default function ExpandableFilterPanel() {
 
   return (
     <section className="min-h-[320px] w-full bg-white px-6 py-8 sm:px-8">
-      <div className="rounded-[28px] border border-taupe-100 bg-white p-5">
+      <div className="rounded-[28px] border border-ground-100 bg-white p-5">
         <div className="flex items-center justify-between gap-4">
           <Button
             variant={panelOpen ? "default" : "outline"}
@@ -72,7 +72,7 @@ export default function ExpandableFilterPanel() {
             <SlidersHorizontal className="size-4" />
             Filters
           </Button>
-          <p className="caption text-taupe-400">
+          <p className="caption text-ground-400">
             {panelColors.length + panelSizes.length + 1} conditions applied
           </p>
         </div>
@@ -85,9 +85,9 @@ export default function ExpandableFilterPanel() {
           }`}
         >
           <div className="min-h-0">
-            <div className="grid gap-6 rounded-[24px] border border-taupe-100 bg-taupe-50 p-5 md:grid-cols-3">
+            <div className="grid gap-6 rounded-[24px] border border-ground-100 bg-ground-50 p-5 md:grid-cols-3">
               <div>
-                <p className="subheading text-taupe-900">Color</p>
+                <p className="subheading text-ground-900">Color</p>
                 <div className="mt-3 space-y-2">
                   {COLOR_OPTIONS.map((option) => (
                     <CheckboxRow
@@ -100,7 +100,7 @@ export default function ExpandableFilterPanel() {
                 </div>
               </div>
               <div>
-                <p className="subheading text-taupe-900">Size</p>
+                <p className="subheading text-ground-900">Size</p>
                 <div className="mt-3 space-y-2">
                   {SIZE_OPTIONS.map((option) => (
                     <CheckboxRow
@@ -113,20 +113,20 @@ export default function ExpandableFilterPanel() {
                 </div>
               </div>
               <div>
-                <p className="subheading text-taupe-900">Price</p>
+                <p className="subheading text-ground-900">Price</p>
                 <div className="mt-3 space-y-2">
                   {PRICE_OPTIONS.map((option) => (
                     <label
                       key={option}
-                      className="flex items-center justify-between rounded-2xl border border-taupe-100 bg-white px-3 py-2"
+                      className="flex items-center justify-between rounded-2xl border border-ground-100 bg-white px-3 py-2"
                     >
-                      <span className="body text-taupe-600">{option}</span>
+                      <span className="body text-ground-600">{option}</span>
                       <input
                         type="radio"
                         name="price"
                         checked={panelPrice === option}
                         onChange={() => setPanelPrice(option)}
-                        className="h-4 w-4 border-taupe-300 text-brand-primary focus:ring-brand-primary"
+                        className="h-4 w-4 border-ground-300 text-brand-primary focus:ring-brand-primary"
                       />
                     </label>
                   ))}

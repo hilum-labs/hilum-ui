@@ -24,7 +24,7 @@ function CategoryImage({
 
 export default function OverlayPanel() {
   return (
-    <section className="w-full overflow-hidden rounded-[32px] bg-taupe-900 lg:grid lg:grid-cols-[1.5fr_1fr]">
+    <section className="w-full overflow-hidden rounded-[32px] bg-ground-900 lg:grid lg:grid-cols-[1.5fr_1fr]">
       <div className="min-h-[360px]">
         <CategoryImage
           src={EDITION_ONE}
@@ -32,7 +32,7 @@ export default function OverlayPanel() {
           className="min-h-[360px]"
         />
       </div>
-      <div className="flex flex-col justify-center bg-taupe-900 p-8 text-white sm:p-10">
+      <div className="flex flex-col justify-center bg-ground-900 p-8 text-white sm:p-10">
         <p className="label text-brand-secondary">Featured category</p>
         <h3 className="display mt-3">Travel</h3>
         <p className="body mt-4 text-white/75">

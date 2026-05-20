@@ -43,13 +43,13 @@ export default function PricingSplitBrandPanel() {
           </div>
         </div>
         <div className="bg-white px-8 py-10">
-          <p className="label text-taupe-400">What's included</p>
-          <h4 className="heading mt-3 text-taupe-900">Every capability needed to run coordinated launches</h4>
+          <p className="label text-ground-400">What's included</p>
+          <h4 className="heading mt-3 text-ground-900">Every capability needed to run coordinated launches</h4>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {rightFeatures.map((feature) => (
-              <div key={feature} className="flex items-start gap-3 rounded-2xl bg-taupe-50 px-4 py-4">
+              <div key={feature} className="flex items-start gap-3 rounded-2xl bg-ground-50 px-4 py-4">
                 <Check className="mt-0.5 size-4 text-brand-primary" />
-                <p className="body text-taupe-600">{feature}</p>
+                <p className="body text-ground-600">{feature}</p>
               </div>
             ))}
           </div>

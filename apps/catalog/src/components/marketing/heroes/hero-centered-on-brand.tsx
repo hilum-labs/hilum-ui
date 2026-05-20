@@ -13,21 +13,21 @@ const GRADIENT_NODES = [
     eyebrow: "Creator match",
     label: "Amber Liu",
     className: "left-[15%] top-[68%] hidden md:block",
-    badgeClassName: "bg-[#f3ede5] text-taupe-900",
+    badgeClassName: "bg-[#f3ede5] text-ground-900",
   },
   {
     badge: "JQ",
     eyebrow: "Verified payout",
     label: "Jordan Quinn",
     className: "left-[40%] top-[46%] hidden lg:block",
-    badgeClassName: "bg-[#ffd9f3] text-taupe-900",
+    badgeClassName: "bg-[#ffd9f3] text-ground-900",
   },
   {
     badge: "92%",
     eyebrow: "Campaign health",
     label: "On track this week",
     className: "right-[16%] top-[58%] hidden md:block",
-    badgeClassName: "bg-[#fff5bf] text-taupe-900",
+    badgeClassName: "bg-[#fff5bf] text-ground-900",
   },
 ];
 
@@ -79,13 +79,13 @@ export default function HeroCenteredOnBrand() {
 
       <div className="relative mx-auto flex min-h-[720px] max-w-6xl flex-col justify-between">
         <div className="max-w-2xl px-2 pt-10 sm:pt-14">
-          <p className="label uppercase tracking-[0.24em] text-taupe-400">
+          <p className="label uppercase tracking-[0.24em] text-ground-400">
             Creator campaigns, visualized
           </p>
-          <h1 className="display mt-6 text-balance text-taupe-900 sm:text-[4.25rem] sm:leading-[0.96]">
+          <h1 className="display mt-6 text-balance text-ground-900 sm:text-[4.25rem] sm:leading-[0.96]">
             The fastest way to run creator marketing.
           </h1>
-          <p className="body-lg mt-5 max-w-xl text-taupe-500">
+          <p className="body-lg mt-5 max-w-xl text-ground-500">
             Connect brands, creators, and agency partners through verified
             campaigns, transparent payouts, and one operating view that keeps
             every launch moving.
@@ -93,14 +93,14 @@ export default function HeroCenteredOnBrand() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button
               size="lg"
-              className="w-full rounded-full bg-taupe-950 px-7 text-white shadow-elevated hover:bg-taupe-800 sm:w-auto"
+              className="w-full rounded-full bg-ground-950 px-7 text-white shadow-elevated hover:bg-ground-800 sm:w-auto"
             >
               Launch a campaign
             </Button>
             <Button
               variant="outline"
               size="lg"
-              className="w-full rounded-full border-white/70 bg-white/72 px-7 text-taupe-900 backdrop-blur-md hover:bg-white sm:w-auto"
+              className="w-full rounded-full border-white/70 bg-white/72 px-7 text-ground-900 backdrop-blur-md hover:bg-white sm:w-auto"
             >
               Join as a creator
             </Button>
@@ -117,8 +117,8 @@ export default function HeroCenteredOnBrand() {
                   {node.badge}
                 </div>
                 <div>
-                  <p className="caption text-taupe-400">{node.eyebrow}</p>
-                  <p className="body text-taupe-900">{node.label}</p>
+                  <p className="caption text-ground-400">{node.eyebrow}</p>
+                  <p className="body text-ground-900">{node.label}</p>
                 </div>
               </div>
             </div>
@@ -136,8 +136,8 @@ export default function HeroCenteredOnBrand() {
                 <div className="mb-3 flex items-center gap-3">
                   <div className="size-10 rounded-2xl border border-white/70 bg-white/80 shadow-natural" />
                   <div>
-                    <p className="body font-medium text-taupe-900">{title}</p>
-                    <p className="caption text-taupe-400">{copy}</p>
+                    <p className="body font-medium text-ground-900">{title}</p>
+                    <p className="caption text-ground-400">{copy}</p>
                   </div>
                 </div>
               </div>

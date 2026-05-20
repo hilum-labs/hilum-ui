@@ -44,18 +44,18 @@ function ColorSwatchButton({
       onClick={onToggle}
       className={`flex w-full items-center justify-between rounded-2xl border px-3 py-2 text-left transition-colors ${
         selected
-          ? "border-brand-primary bg-brand-primary/5 text-taupe-900"
-          : "border-taupe-100 bg-white text-taupe-600 hover:border-taupe-200"
+          ? "border-brand-primary bg-brand-primary/5 text-ground-900"
+          : "border-ground-100 bg-white text-ground-600 hover:border-ground-200"
       }`}
     >
       <span className="body flex items-center gap-3">
         <span
-          className="h-4 w-4 rounded-full border border-taupe-200"
+          className="h-4 w-4 rounded-full border border-ground-200"
           style={{ backgroundColor: color.swatch }}
         />
         {color.name}
       </span>
-      <span className="caption text-taupe-400">{selected ? "On" : "Off"}</span>
+      <span className="caption text-ground-400">{selected ? "On" : "Off"}</span>
     </button>
   );
 }
@@ -70,13 +70,13 @@ function CheckboxRow({
   onChange: () => void;
 }) {
   return (
-    <label className="flex items-center justify-between gap-3 rounded-2xl border border-taupe-100 bg-white px-3 py-2 text-taupe-600">
+    <label className="flex items-center justify-between gap-3 rounded-2xl border border-ground-100 bg-white px-3 py-2 text-ground-600">
       <span className="body">{label}</span>
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="h-4 w-4 rounded border-taupe-300 text-brand-primary focus:ring-brand-primary"
+        className="h-4 w-4 rounded border-ground-300 text-brand-primary focus:ring-brand-primary"
       />
     </label>
   );
@@ -107,7 +107,7 @@ export default function SidebarFilters() {
 
   return (
     <section className="min-h-[320px] w-full bg-white lg:flex">
-      <aside className="w-full border-b border-taupe-100 p-6 lg:w-64 lg:border-b-0 lg:border-r">
+      <aside className="w-full border-b border-ground-100 p-6 lg:w-64 lg:border-b-0 lg:border-r">
         <div className="space-y-6">
           {([
             ["color", "Color"],
@@ -125,9 +125,9 @@ export default function SidebarFilters() {
                 }
                 className="flex w-full items-center justify-between text-left"
               >
-                <span className="subheading text-taupe-900">{label}</span>
+                <span className="subheading text-ground-900">{label}</span>
                 <ChevronDown
-                  className={`size-4 text-taupe-400 transition-transform ${
+                  className={`size-4 text-ground-400 transition-transform ${
                     sidebarGroups[key] ? "rotate-180" : ""
                   }`}
                 />
@@ -171,10 +171,10 @@ export default function SidebarFilters() {
       </aside>
 
       <div className="flex-1 p-6">
-        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-taupe-100 pb-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 border-b border-ground-100 pb-4">
           <div>
-            <p className="subheading text-taupe-900">Showing 48 results</p>
-            <p className="caption mt-1 text-taupe-400">
+            <p className="subheading text-ground-900">Showing 48 results</p>
+            <p className="caption mt-1 text-ground-400">
               {sidebarSelections.length} active filters
             </p>
           </div>
@@ -190,11 +190,11 @@ export default function SidebarFilters() {
           {FILTER_PRODUCTS.map((product) => (
             <div
               key={product.name}
-              className="rounded-[28px] border border-taupe-100 bg-taupe-50 p-4"
+              className="rounded-[28px] border border-ground-100 bg-ground-50 p-4"
             >
               <div className="h-28 rounded-2xl bg-brand-secondary/40" />
-              <p className="subheading mt-4 text-taupe-900">{product.name}</p>
-              <p className="body mt-2 text-taupe-600">{product.price}</p>
+              <p className="subheading mt-4 text-ground-900">{product.name}</p>
+              <p className="body mt-2 text-ground-600">{product.price}</p>
             </div>
           ))}
         </div>

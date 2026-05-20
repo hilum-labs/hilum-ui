@@ -24,12 +24,12 @@ export default function CalendarSmallWithMeetings() {
 
   return (
     <div className="flex w-full flex-col gap-6 lg:flex-row">
-      <div className="flex-1 rounded-xl border border-taupe-100 bg-white p-5">
+      <div className="flex-1 rounded-xl border border-ground-100 bg-white p-5">
         <div className="mb-4 flex items-center justify-between">
           <Button variant="outline" size="icon-sm" aria-label="Previous month">
             <ChevronLeft className="size-4" />
           </Button>
-          <h3 className="subheading text-taupe-900">{currentMonth}</h3>
+          <h3 className="subheading text-ground-900">{currentMonth}</h3>
           <Button variant="outline" size="icon-sm" aria-label="Next month">
             <ChevronRight className="size-4" />
           </Button>
@@ -37,7 +37,7 @@ export default function CalendarSmallWithMeetings() {
 
         <div className="mb-2 grid grid-cols-7 gap-y-1.5">
           {daysOfWeek.map((day) => (
-            <p key={day} className="text-center caption text-taupe-400">
+            <p key={day} className="text-center caption text-ground-400">
               {day}
             </p>
           ))}
@@ -61,7 +61,7 @@ export default function CalendarSmallWithMeetings() {
                     "flex size-7 items-center justify-center rounded-full caption font-medium transition-colors",
                     isToday
                       ? "bg-brand-primary text-white"
-                      : "text-taupe-700"
+                      : "text-ground-700"
                   )}
                 >
                   {day}
@@ -76,14 +76,14 @@ export default function CalendarSmallWithMeetings() {
       </div>
 
       <div className="flex-1">
-        <p className="mb-3 subheading text-taupe-900">Today&apos;s Meetings</p>
+        <p className="mb-3 subheading text-ground-900">Today&apos;s Meetings</p>
         {events.map((event) => (
           <div
             key={`meeting-${event.day}`}
-            className="mb-2 rounded-lg border border-taupe-100 bg-white px-4 py-3"
+            className="mb-2 rounded-lg border border-ground-100 bg-white px-4 py-3"
           >
-            <p className="body font-medium text-taupe-900">{event.name}</p>
-            <p className="caption text-taupe-500">{event.time}</p>
+            <p className="body font-medium text-ground-900">{event.name}</p>
+            <p className="caption text-ground-500">{event.time}</p>
           </div>
         ))}
       </div>

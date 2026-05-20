@@ -27,17 +27,17 @@ export default function SupportingText() {
         {PRODUCTS.map((product) => (
           <article
             key={product.name}
-            className="rounded-[2rem] border border-taupe-100 bg-white p-4 shadow-natural transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-elevated"
+            className="rounded-[2rem] border border-ground-100 bg-white p-4 shadow-natural transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-elevated"
           >
-            <div className="overflow-hidden rounded-2xl bg-taupe-50">
+            <div className="overflow-hidden rounded-2xl bg-ground-50">
               <img src={product.image} alt={product.name} className="aspect-[4/3] w-full object-cover" />
             </div>
             <div className="mt-5">
               <div className="flex items-start justify-between gap-4">
-                <h3 className="subheading text-taupe-900">{product.name}</h3>
-                <p className="body text-taupe-500">{product.price}</p>
+                <h3 className="subheading text-ground-900">{product.name}</h3>
+                <p className="body text-ground-500">{product.price}</p>
               </div>
-              <p className="body mt-3 text-taupe-500">{product.description}</p>
+              <p className="body mt-3 text-ground-500">{product.description}</p>
             </div>
           </article>
         ))}

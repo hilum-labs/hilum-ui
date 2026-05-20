@@ -55,20 +55,20 @@ function QuantityStepper({
   onChange: (next: number) => void;
 }) {
   return (
-    <div className="inline-flex items-center rounded-full border border-taupe-200 bg-white">
+    <div className="inline-flex items-center rounded-full border border-ground-200 bg-white">
       <button
         type="button"
         onClick={() => onChange(Math.max(1, value - 1))}
-        className="flex size-9 items-center justify-center text-taupe-500 transition hover:bg-taupe-50 hover:text-taupe-900"
+        className="flex size-9 items-center justify-center text-ground-500 transition hover:bg-ground-50 hover:text-ground-900"
         aria-label="Decrease quantity"
       >
         <Minus size={14} />
       </button>
-      <div className="w-10 text-center body font-medium text-taupe-900">{value}</div>
+      <div className="w-10 text-center body font-medium text-ground-900">{value}</div>
       <button
         type="button"
         onClick={() => onChange(Math.min(8, value + 1))}
-        className="flex size-9 items-center justify-center text-taupe-500 transition hover:bg-taupe-50 hover:text-taupe-900"
+        className="flex size-9 items-center justify-center text-ground-500 transition hover:bg-ground-50 hover:text-ground-900"
         aria-label="Increase quantity"
       >
         <Plus size={14} />
@@ -100,14 +100,14 @@ function CartRow({
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <a href={item.href} className="subheading text-taupe-900 transition hover:text-brand-primary">
+            <a href={item.href} className="subheading text-ground-900 transition hover:text-brand-primary">
               {item.name}
             </a>
-            <p className="caption mt-1 text-taupe-500">
+            <p className="caption mt-1 text-ground-500">
               {item.color} / {item.size}
             </p>
           </div>
-          <p className="body font-medium text-taupe-900">{formatCurrency(item.price * quantity)}</p>
+          <p className="body font-medium text-ground-900">{formatCurrency(item.price * quantity)}</p>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           {quantityControl}
@@ -129,11 +129,11 @@ export default function ExtendedSummaryCart() {
   const taxThree = subtotalThree * 0.08;
 
   return (
-    <div className="w-full bg-taupe-50 p-6">
-      <div className="grid gap-8 rounded-[32px] border border-taupe-200 bg-white p-6 xl:grid-cols-[1fr_360px]">
+    <div className="w-full bg-ground-50 p-6">
+      <div className="grid gap-8 rounded-[32px] border border-ground-200 bg-white p-6 xl:grid-cols-[1fr_360px]">
         <div className="space-y-6 rounded-[28px] bg-white p-2">
           {CART_ITEMS.map((item) => (
-            <div key={item.id} className="rounded-[24px] border border-taupe-100 p-5">
+            <div key={item.id} className="rounded-[24px] border border-ground-100 p-5">
               <CartRow
                 item={item}
                 quantity={cartThree[item.id]}
@@ -144,7 +144,7 @@ export default function ExtendedSummaryCart() {
                   />
                 }
                 action={
-                  <div className="caption text-taupe-500">
+                  <div className="caption text-ground-500">
                     Ships in 24 hours
                   </div>
                 }
@@ -152,11 +152,11 @@ export default function ExtendedSummaryCart() {
             </div>
           ))}
         </div>
-        <div className="rounded-[28px] border border-taupe-200 bg-taupe-50 p-6">
+        <div className="rounded-[28px] border border-ground-200 bg-ground-50 p-6">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="label text-taupe-400">Extended summary</p>
-              <h3 className="heading mt-2 text-taupe-900">Estimate your order</h3>
+              <p className="label text-ground-400">Extended summary</p>
+              <h3 className="heading mt-2 text-ground-900">Estimate your order</h3>
             </div>
             {appliedPromo ? (
               <Badge variant="success">
@@ -182,31 +182,31 @@ export default function ExtendedSummaryCart() {
               </Button>
             </div>
           </div>
-          <div className="mt-6 space-y-3 border-t border-taupe-200 pt-6">
-            <div className="flex items-center justify-between body text-taupe-500">
+          <div className="mt-6 space-y-3 border-t border-ground-200 pt-6">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Subtotal</span>
-              <span className="text-taupe-900">{formatCurrency(subtotalThree)}</span>
+              <span className="text-ground-900">{formatCurrency(subtotalThree)}</span>
             </div>
-            <div className="flex items-center justify-between body text-taupe-500">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Discount</span>
               <span className="text-brand-primary">-{formatCurrency(discountThree)}</span>
             </div>
-            <div className="flex items-center justify-between body text-taupe-500">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Shipping estimate</span>
-              <span className="text-taupe-900">{formatCurrency(shippingThree)}</span>
+              <span className="text-ground-900">{formatCurrency(shippingThree)}</span>
             </div>
-            <div className="flex items-center justify-between body text-taupe-500">
+            <div className="flex items-center justify-between body text-ground-500">
               <span>Tax</span>
-              <span className="text-taupe-900">{formatCurrency(taxThree)}</span>
+              <span className="text-ground-900">{formatCurrency(taxThree)}</span>
             </div>
           </div>
           <div className="mt-6 rounded-2xl bg-white p-4">
             <div className="flex items-center justify-between">
               <div>
-                <p className="subheading text-taupe-900">Total due today</p>
-                <p className="caption mt-1 text-taupe-500">Standard shipping arrives this week.</p>
+                <p className="subheading text-ground-900">Total due today</p>
+                <p className="caption mt-1 text-ground-500">Standard shipping arrives this week.</p>
               </div>
-              <p className="heading text-taupe-900">
+              <p className="heading text-ground-900">
                 {formatCurrency(subtotalThree - discountThree + shippingThree + taxThree)}
               </p>
             </div>

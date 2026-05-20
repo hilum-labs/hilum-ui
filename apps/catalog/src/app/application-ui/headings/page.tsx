@@ -42,28 +42,28 @@ import { PreviewBlock } from "@/components/catalog/preview-block";
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
 
 export default function HeadingsPage() {
   return (
-    <div className="min-h-screen bg-taupe-50">
+    <div className="min-h-screen bg-ground-50">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <p className="caption mb-2 text-taupe-400">
+          <p className="caption mb-2 text-ground-400">
             Design System / Application UI / Headings
           </p>
-          <h1 className="display mb-2 text-taupe-900">Headings</h1>
-          <p className="body mb-4 text-taupe-500">
+          <h1 className="display mb-2 text-ground-900">Headings</h1>
+          <p className="body mb-4 text-ground-500">
             Card headings, page headings, and section headings with actions, avatars,
             and metadata.
           </p>
           <Badge variant="outline">Layout · 17 variants</Badge>
         </div>
-        <div className="mb-10 h-px bg-taupe-100" />
+        <div className="mb-10 h-px bg-ground-100" />
 
         <div className="space-y-10">
           <section>

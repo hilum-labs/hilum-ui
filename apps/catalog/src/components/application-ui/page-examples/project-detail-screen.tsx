@@ -50,7 +50,7 @@ const FILE_ITEMS = [
 
 function ExampleFrame({ children }: { children: any }) {
   return (
-    <div className="min-h-[600px] overflow-hidden rounded-xl border border-taupe-100 bg-white">
+    <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}
     </div>
   );
@@ -61,15 +61,15 @@ export default function ProjectDetailScreen() {
 
   return (
     <ExampleFrame>
-      <div className="flex min-h-[600px] flex-col bg-taupe-50">
-        <div className="border-b border-taupe-200 bg-white px-6 py-4">
+      <div className="flex min-h-[600px] flex-col bg-ground-50">
+        <div className="border-b border-ground-200 bg-white px-6 py-4">
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-3">
                 <div className="flex size-9 items-center justify-center rounded-2xl bg-brand-primary text-white">
                   <span className="body font-medium">D</span>
                 </div>
-                <span className="body font-medium text-taupe-900">Design Co.</span>
+                <span className="body font-medium text-ground-900">Design Co.</span>
               </div>
               <div className="hidden items-center gap-2 md:flex">
                 {APP_NAV.map((item, index) => (
@@ -79,7 +79,7 @@ export default function ProjectDetailScreen() {
                     className={`rounded-full px-3 py-1.5 body transition-colors ${
                       index === 2
                         ? "bg-brand-primary/10 text-brand-primary font-medium"
-                        : "text-taupe-500 hover:text-taupe-900"
+                        : "text-ground-500 hover:text-ground-900"
                     }`}
                   >
                     {item.label}
@@ -91,17 +91,17 @@ export default function ProjectDetailScreen() {
           </div>
         </div>
         <div className="flex-1 p-6">
-          <div className="rounded-2xl border border-taupe-100 bg-white p-6">
-            <div className="caption mb-3 flex items-center gap-1.5 text-taupe-400">
+          <div className="rounded-2xl border border-ground-100 bg-white p-6">
+            <div className="caption mb-3 flex items-center gap-1.5 text-ground-400">
               <span>Projects</span>
               <ChevronRight className="size-3" />
-              <span className="text-taupe-900">Website Redesign</span>
+              <span className="text-ground-900">Website Redesign</span>
             </div>
             <div className="mb-6 flex flex-wrap items-center gap-3">
-              <h3 className="heading text-taupe-900">Website Redesign</h3>
-              <Badge className="bg-brand-secondary/20 text-taupe-800">Active</Badge>
+              <h3 className="heading text-ground-900">Website Redesign</h3>
+              <Badge className="bg-brand-secondary/20 text-ground-800">Active</Badge>
             </div>
-            <div className="mb-6 flex flex-wrap gap-2 border-b border-taupe-100 pb-4">
+            <div className="mb-6 flex flex-wrap gap-2 border-b border-ground-100 pb-4">
               {PROJECT_TABS.map((tab) => (
                 <button
                   key={tab}
@@ -110,7 +110,7 @@ export default function ProjectDetailScreen() {
                   className={`rounded-full px-3 py-1.5 body transition-colors ${
                     activeTab === tab
                       ? "bg-brand-primary/10 text-brand-primary font-medium"
-                      : "text-taupe-500 hover:text-taupe-900"
+                      : "text-ground-500 hover:text-ground-900"
                   }`}
                 >
                   {tab}
@@ -121,7 +121,7 @@ export default function ProjectDetailScreen() {
             {activeTab === "Overview" && (
               <div className="grid gap-6 lg:grid-cols-[1.4fr_1fr]">
                 <div>
-                  <p className="body text-taupe-600">
+                  <p className="body text-ground-600">
                     The redesign project is focused on simplifying the marketing site, tightening conversion flows,
                     and aligning content design across product launches.
                   </p>
@@ -132,24 +132,24 @@ export default function ProjectDetailScreen() {
                       ["Budget", "$84,000"],
                       ["Review cadence", "Weekly"],
                     ].map(([label, value]) => (
-                      <div key={label} className="rounded-xl bg-taupe-50 p-4">
-                        <p className="label text-taupe-400">{label}</p>
-                        <p className="body mt-2 font-medium text-taupe-900">{value}</p>
+                      <div key={label} className="rounded-xl bg-ground-50 p-4">
+                        <p className="label text-ground-400">{label}</p>
+                        <p className="body mt-2 font-medium text-ground-900">{value}</p>
                       </div>
                     ))}
                   </div>
                 </div>
-                <div className="rounded-xl border border-taupe-100 bg-taupe-50 p-4">
-                  <p className="subheading text-taupe-900">Milestones</p>
+                <div className="rounded-xl border border-ground-100 bg-ground-50 p-4">
+                  <p className="subheading text-ground-900">Milestones</p>
                   <div className="mt-4 space-y-3">
                     {["Audit complete", "Wireframes approved", "Final QA review"].map((item, index) => (
                       <div key={item} className="flex items-center gap-3">
-                        <div className={`flex size-8 items-center justify-center rounded-full ${index < 2 ? "bg-brand-secondary/20 text-taupe-900" : "bg-white text-taupe-500"}`}>
+                        <div className={`flex size-8 items-center justify-center rounded-full ${index < 2 ? "bg-brand-secondary/20 text-ground-900" : "bg-white text-ground-500"}`}>
                           <CheckCircle2 className="size-4" />
                         </div>
                         <div>
-                          <p className="body font-medium text-taupe-900">{item}</p>
-                          <p className="caption text-taupe-400">{index < 2 ? "Completed" : "Due next week"}</p>
+                          <p className="body font-medium text-ground-900">{item}</p>
+                          <p className="caption text-ground-400">{index < 2 ? "Completed" : "Due next week"}</p>
                         </div>
                       </div>
                     ))}
@@ -161,10 +161,10 @@ export default function ProjectDetailScreen() {
             {activeTab === "Activity" && (
               <div className="space-y-4">
                 {ACTIVITY_FEED.map((item) => (
-                  <div key={item.title} className="rounded-xl bg-taupe-50 p-4">
-                    <p className="body font-medium text-taupe-900">{item.title}</p>
-                    <p className="caption mt-1 text-taupe-400">{item.detail}</p>
-                    <p className="caption mt-3 text-taupe-400">{item.time}</p>
+                  <div key={item.title} className="rounded-xl bg-ground-50 p-4">
+                    <p className="body font-medium text-ground-900">{item.title}</p>
+                    <p className="caption mt-1 text-ground-400">{item.detail}</p>
+                    <p className="caption mt-3 text-ground-400">{item.time}</p>
                   </div>
                 ))}
               </div>
@@ -176,13 +176,13 @@ export default function ProjectDetailScreen() {
                   const Icon = item.icon;
 
                   return (
-                    <div key={item.name} className="rounded-xl border border-taupe-100 bg-taupe-50 p-4">
+                    <div key={item.name} className="rounded-xl border border-ground-100 bg-ground-50 p-4">
                       <div className="flex items-center justify-between gap-4">
                         <div>
-                          <p className="body font-medium text-taupe-900">{item.name}</p>
-                          <p className="caption mt-1 text-taupe-400">{item.detail}</p>
+                          <p className="body font-medium text-ground-900">{item.name}</p>
+                          <p className="caption mt-1 text-ground-400">{item.detail}</p>
                         </div>
-                        <div className="flex size-9 items-center justify-center rounded-full bg-white text-taupe-600">
+                        <div className="flex size-9 items-center justify-center rounded-full bg-white text-ground-600">
                           <Icon className="size-4" />
                         </div>
                       </div>
@@ -200,9 +200,9 @@ export default function ProjectDetailScreen() {
                   ["Notifications", "Daily digest at 9:00 AM"],
                   ["Connected tools", "Figma, Notion, and Analytics"],
                 ].map(([label, value]) => (
-                  <div key={label} className="rounded-xl border border-taupe-100 bg-taupe-50 p-4">
-                    <p className="label text-taupe-400">{label}</p>
-                    <p className="body mt-2 font-medium text-taupe-900">{value}</p>
+                  <div key={label} className="rounded-xl border border-ground-100 bg-ground-50 p-4">
+                    <p className="label text-ground-400">{label}</p>
+                    <p className="body mt-2 font-medium text-ground-900">{value}</p>
                   </div>
                 ))}
               </div>

@@ -7,8 +7,8 @@ import PanelWithHeader from "@/components/application-ui/layout/panel-with-heade
 import panelWithHeaderSource from "@/components/application-ui/layout/panel-with-header?raw";
 import PanelWithHeaderAndFooter from "@/components/application-ui/layout/panel-with-header-and-footer";
 import panelWithHeaderAndFooterSource from "@/components/application-ui/layout/panel-with-header-and-footer?raw";
-import PanelWithTaupeBody from "@/components/application-ui/layout/panel-with-taupe-body";
-import panelWithTaupeBodySource from "@/components/application-ui/layout/panel-with-taupe-body?raw";
+import PanelWithGroundBody from "@/components/application-ui/layout/panel-with-ground-body";
+import panelWithGroundBodySource from "@/components/application-ui/layout/panel-with-ground-body?raw";
 import PanelWell from "@/components/application-ui/layout/panel-well";
 import panelWellSource from "@/components/application-ui/layout/panel-well?raw";
 
@@ -49,27 +49,27 @@ import listContainerSeparateCardsSource from "@/components/application-ui/layout
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
 
 export default function LayoutPage() {
   return (
-    <div className="min-h-screen bg-taupe-50">
+    <div className="min-h-screen bg-ground-50">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <p className="caption mb-2 text-taupe-400">
+          <p className="caption mb-2 text-ground-400">
             Design System / Application UI / Layout
           </p>
-          <h1 className="display mb-2 text-taupe-900">Layout</h1>
-          <p className="body mb-4 text-taupe-500">
+          <h1 className="display mb-2 text-ground-900">Layout</h1>
+          <p className="body mb-4 text-ground-500">
             Panels, media objects, dividers, containers, and list containers.
           </p>
           <Badge variant="outline">Layout · 17 variants</Badge>
         </div>
-        <div className="mb-10 h-px bg-taupe-100" />
+        <div className="mb-10 h-px bg-ground-100" />
 
         <div className="space-y-10">
           <section>
@@ -84,8 +84,8 @@ export default function LayoutPage() {
               <PreviewBlock title="With header and footer" description="Common for confirmation or approval flows." code={panelWithHeaderAndFooterSource} previewClassName="p-6">
                 <PanelWithHeaderAndFooter />
               </PreviewBlock>
-              <PreviewBlock title="With taupe body" description="Creates hierarchy by tinting the body region." code={panelWithTaupeBodySource} previewClassName="p-6">
-                <PanelWithTaupeBody />
+              <PreviewBlock title="With ground body" description="Creates hierarchy by tinting the body region." code={panelWithGroundBodySource} previewClassName="p-6">
+                <PanelWithGroundBody />
               </PreviewBlock>
               <PreviewBlock title="Well" description="An inset panel for secondary or supporting content." code={panelWellSource} previewClassName="p-6">
                 <PanelWell />

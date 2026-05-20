@@ -22,8 +22,8 @@ import pricingComparisonTableSource from "@/components/marketing/pricing/pricing
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -32,15 +32,15 @@ export default function PricingPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/marketing" className="hover:text-taupe-700">Marketing</a>
+          <a href="/marketing" className="hover:text-ground-700">Marketing</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Pricing</span>
+          <span className="font-semibold text-ground-900">Pricing</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Pricing</h1>
-        <p className="body max-w-2xl text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Pricing</h1>
+        <p className="body max-w-2xl text-ground-500">
           Nine pricing section patterns covering straightforward tiers, single-plan layouts, split panels, and full comparison tables.
         </p>
       </div>

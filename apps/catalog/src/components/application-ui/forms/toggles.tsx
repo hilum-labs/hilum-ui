@@ -13,8 +13,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -31,15 +31,15 @@ export default function Toggles() {
         <VariantCard title="1. Simple toggle">
           <label className="flex items-center gap-3">
             <Switch checked={emailUpdates} onCheckedChange={setEmailUpdates} />
-            <span className="body text-taupe-700">Email updates</span>
+            <span className="body text-ground-700">Email updates</span>
           </label>
         </VariantCard>
 
         <VariantCard title="2. With left label and description">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <p className="body font-medium text-taupe-900">Enable automatic renewals</p>
-              <p className="caption text-taupe-400">
+              <p className="body font-medium text-ground-900">Enable automatic renewals</p>
+              <p className="caption text-ground-400">
                 Renew annual plans before they expire and avoid service interruption.
               </p>
             </div>
@@ -52,16 +52,16 @@ export default function Toggles() {
             <div className="flex items-center gap-3">
               <span
                 className={`rounded-full p-2 ${
-                  darkMode ? "bg-taupe-900 text-white" : "bg-brand-secondary/70 text-taupe-800"
+                  darkMode ? "bg-ground-900 text-white" : "bg-brand-secondary/70 text-ground-800"
                 }`}
               >
                 {darkMode ? <Moon size={16} /> : <Sun size={16} />}
               </span>
               <div>
-                <p className="body font-medium text-taupe-900">
+                <p className="body font-medium text-ground-900">
                   {darkMode ? "Night mode" : "Day mode"}
                 </p>
-                <p className="caption text-taupe-400">
+                <p className="caption text-ground-400">
                   Switch the editor appearance for focused work.
                 </p>
               </div>

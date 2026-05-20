@@ -11,8 +11,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -62,8 +62,8 @@ export default function Avatars() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="body font-medium text-taupe-900">{name}</p>
-                  <p className="caption text-taupe-400">{email}</p>
+                  <p className="body font-medium text-ground-900">{name}</p>
+                  <p className="caption text-ground-400">{email}</p>
                 </div>
               </div>
             ))}
@@ -85,12 +85,12 @@ export default function Avatars() {
         <VariantCard title="5. With placeholder icon" className="lg:col-span-2">
           <div className="flex items-center gap-4">
             <Avatar className="size-12">
-              <AvatarFallback className="bg-taupe-100 text-taupe-400">
+              <AvatarFallback className="bg-ground-100 text-ground-400">
                 <User size={20} />
               </AvatarFallback>
             </Avatar>
             <Avatar className="size-14">
-              <AvatarFallback className="bg-taupe-100 text-taupe-400">
+              <AvatarFallback className="bg-ground-100 text-ground-400">
                 <User size={24} />
               </AvatarFallback>
             </Avatar>

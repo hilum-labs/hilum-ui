@@ -14,15 +14,15 @@ export default function TextWithProductTiles() {
   const [selectedTile, setSelectedTile] = useState("Desk Shelf");
 
   return (
-    <div className="grid min-h-[340px] w-full overflow-hidden rounded-xl border border-taupe-100 bg-white md:grid-cols-[0.82fr_1.18fr]">
-      <div className="flex items-center border-b border-taupe-100 px-8 py-10 md:border-b-0 md:border-r md:border-taupe-100">
+    <div className="grid min-h-[340px] w-full overflow-hidden rounded-xl border border-ground-100 bg-white md:grid-cols-[0.82fr_1.18fr]">
+      <div className="flex items-center border-b border-ground-100 px-8 py-10 md:border-b-0 md:border-r md:border-ground-100">
         <div className="max-w-sm">
           <Badge variant="brand">Desk favorites</Badge>
-          <h2 className="display mt-5 text-taupe-900">Everything your workspace needs</h2>
-          <p className="body mt-3 text-taupe-500">
+          <h2 className="display mt-5 text-ground-900">Everything your workspace needs</h2>
+          <p className="body mt-3 text-ground-500">
             Start with versatile essentials, then layer in statement pieces that help the whole room feel considered.
           </p>
-          <p className="caption mt-5 text-taupe-400">Currently spotlighting: {selectedTile}</p>
+          <p className="caption mt-5 text-ground-400">Currently spotlighting: {selectedTile}</p>
           <div className="mt-6">
             <Button>Shop curated picks</Button>
           </div>
@@ -42,13 +42,13 @@ export default function TextWithProductTiles() {
             className={`overflow-hidden rounded-[24px] border text-left transition ${
               selectedTile === tile.title
                 ? "border-brand-primary shadow-natural"
-                : "border-taupe-100 hover:border-taupe-200"
+                : "border-ground-100 hover:border-ground-200"
             }`}
           >
             <img src={tile.image} alt={tile.title} className="h-32 w-full object-cover" />
             <div className="bg-white p-4">
-              <p className="body font-semibold text-taupe-900">{tile.title}</p>
-              <p className="caption mt-1 text-taupe-400">Built for daily use</p>
+              <p className="body font-semibold text-ground-900">{tile.title}</p>
+              <p className="caption mt-1 text-ground-400">Built for daily use</p>
             </div>
           </button>
         ))}

@@ -44,7 +44,7 @@ function formatCurrency(value: number) {
 
 function StatusBadge({ status }: { status: string }) {
   return (
-    <Badge className="border border-brand-secondary/50 bg-brand-secondary/20 text-taupe-800">
+    <Badge className="border border-brand-secondary/50 bg-brand-secondary/20 text-ground-800">
       {status}
     </Badge>
   );
@@ -52,21 +52,21 @@ function StatusBadge({ status }: { status: string }) {
 
 export default function InvoiceTable() {
   return (
-    <div className="w-full bg-taupe-50 p-6">
-      <div className="overflow-hidden rounded-[32px] border border-taupe-200 bg-white shadow-natural">
+    <div className="w-full bg-ground-50 p-6">
+      <div className="overflow-hidden rounded-[32px] border border-ground-200 bg-white shadow-natural">
         <table className="min-w-full">
-          <thead className="border-b border-taupe-100 bg-taupe-50">
+          <thead className="border-b border-ground-100 bg-ground-50">
             <tr>
-              <th className="px-6 py-4 text-left label text-taupe-400">Order</th>
-              <th className="px-6 py-4 text-left label text-taupe-400">Date</th>
-              <th className="px-6 py-4 text-left label text-taupe-400">Total</th>
-              <th className="px-6 py-4 text-left label text-taupe-400">Status</th>
-              <th className="px-6 py-4 text-right label text-taupe-400">Action</th>
+              <th className="px-6 py-4 text-left label text-ground-400">Order</th>
+              <th className="px-6 py-4 text-left label text-ground-400">Date</th>
+              <th className="px-6 py-4 text-left label text-ground-400">Total</th>
+              <th className="px-6 py-4 text-left label text-ground-400">Status</th>
+              <th className="px-6 py-4 text-right label text-ground-400">Action</th>
             </tr>
           </thead>
           <tbody>
             {ORDERS.map((order, index) => (
-              <tr key={order.id} className={index !== ORDERS.length - 1 ? "border-b border-taupe-100" : ""}>
+              <tr key={order.id} className={index !== ORDERS.length - 1 ? "border-b border-ground-100" : ""}>
                 <td className="px-6 py-5">
                   <div className="flex items-center gap-4">
                     <div className="flex -space-x-2">
@@ -80,15 +80,15 @@ export default function InvoiceTable() {
                       ))}
                     </div>
                     <div>
-                      <p className="body font-medium text-taupe-900">{order.id}</p>
-                      <p className="caption text-taupe-500">
+                      <p className="body font-medium text-ground-900">{order.id}</p>
+                      <p className="caption text-ground-500">
                         {order.products.map((product) => product.name).join(", ")}
                       </p>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-5 body text-taupe-600">{order.date}</td>
-                <td className="px-6 py-5 body font-medium text-taupe-900">{formatCurrency(order.total)}</td>
+                <td className="px-6 py-5 body text-ground-600">{order.date}</td>
+                <td className="px-6 py-5 body font-medium text-ground-900">{formatCurrency(order.total)}</td>
                 <td className="px-6 py-5">
                   <StatusBadge status={order.status} />
                 </td>

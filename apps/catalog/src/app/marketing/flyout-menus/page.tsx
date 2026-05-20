@@ -16,8 +16,8 @@ import flyoutFullWidthTwoColumnsSource from "@/components/marketing/flyout-menus
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -26,8 +26,8 @@ export default function FlyoutMenusPage() {
   return (
     <div className="space-y-10 p-8">
       <div className="space-y-3">
-        <h1 className="heading text-taupe-900">Flyout Menus</h1>
-        <p className="body text-taupe-500">
+        <h1 className="heading text-ground-900">Flyout Menus</h1>
+        <p className="body text-ground-500">
           Click-driven dropdown patterns for product navigation, editorial callouts, and full-width discovery menus.
         </p>
       </div>

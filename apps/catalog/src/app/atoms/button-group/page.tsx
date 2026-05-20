@@ -46,7 +46,7 @@ import { Bookmark } from "lucide-react"
   <ButtonGroupItem>
     <Bookmark size={14} /> Save
   </ButtonGroupItem>
-  <ButtonGroupItem className="px-2.5 caption text-taupe-400">
+  <ButtonGroupItem className="px-2.5 caption text-ground-400">
     12k
   </ButtonGroupItem>
 </ButtonGroup>`,
@@ -55,8 +55,8 @@ import { Bookmark } from "lucide-react"
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -65,21 +65,21 @@ export default function ButtonGroupPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="body font-semibold text-taupe-900">Button Group</span>
+          <span className="body font-semibold text-ground-900">Button Group</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Button Group</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Button Group</h1>
+        <p className="body max-w-md text-ground-400">
           Multiple related actions or view toggles presented as a unified control. Items share borders and appear as a single component.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">Atom</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Button</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">Atom</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Button</p>
         </div>
       </div>
 
@@ -132,7 +132,7 @@ export default function ButtonGroupPage() {
                   <ButtonGroupItem>
                     <Bookmark size={14} /> Save
                   </ButtonGroupItem>
-                  <ButtonGroupItem className="px-2.5 caption text-taupe-400">
+                  <ButtonGroupItem className="px-2.5 caption text-ground-400">
                     12k
                   </ButtonGroupItem>
                 </ButtonGroup>
@@ -140,7 +140,7 @@ export default function ButtonGroupPage() {
                   <ButtonGroupItem active>
                     <Star size={14} /> Star
                   </ButtonGroupItem>
-                  <ButtonGroupItem className="px-2.5 caption text-taupe-400">
+                  <ButtonGroupItem className="px-2.5 caption text-ground-400">
                     847
                   </ButtonGroupItem>
                 </ButtonGroup>
@@ -148,7 +148,7 @@ export default function ButtonGroupPage() {
                   <ButtonGroupItem>
                     <Heart size={14} /> Like
                   </ButtonGroupItem>
-                  <ButtonGroupItem className="px-2.5 caption text-taupe-400">
+                  <ButtonGroupItem className="px-2.5 caption text-ground-400">
                     2.1k
                   </ButtonGroupItem>
                 </ButtonGroup>

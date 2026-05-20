@@ -34,7 +34,7 @@ export default function WideImages() {
             alt="Everyday Ruck Snack hero"
             className="aspect-[2.2/1] min-h-[320px]"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-taupe-950/75 via-taupe-950/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ground-950/75 via-ground-950/25 to-transparent" />
           <div className="absolute inset-y-0 left-0 flex max-w-md flex-col justify-center p-8 text-white">
             <p className="label text-brand-secondary">Wide hero</p>
             <h3 className="heading mt-3">A refined daily carry without visual noise.</h3>
@@ -60,10 +60,10 @@ export default function WideImages() {
           </div>
           <div>
             <p className="label text-brand-primary">Closer view</p>
-            <h3 className="heading mt-3 text-taupe-900">
+            <h3 className="heading mt-3 text-ground-900">
               Material, zipper path, and seam placement in one pass.
             </h3>
-            <p className="body mt-4 text-taupe-600">
+            <p className="body mt-4 text-ground-600">
               This block shifts the emphasis from aspiration to evidence. It is a
               straightforward way to show how finish, fit, and function line up.
             </p>
@@ -78,10 +78,10 @@ export default function WideImages() {
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-white via-white/95 to-transparent p-8">
             <p className="label text-brand-primary">Final detail</p>
-            <h3 className="heading mt-3 text-taupe-900">
+            <h3 className="heading mt-3 text-ground-900">
               The closing frame leaves room for a practical takeaway.
             </h3>
-            <p className="body mt-3 max-w-2xl text-taupe-600">
+            <p className="body mt-3 max-w-2xl text-ground-600">
               Weight, comfort, and long-term durability are usually the last
               questions before purchase. Putting that answer beside the final image
               keeps the story useful right up to the end.

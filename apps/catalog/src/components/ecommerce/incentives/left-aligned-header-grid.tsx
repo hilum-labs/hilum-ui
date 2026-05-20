@@ -57,8 +57,8 @@ function IconFeature({
           <Icon size={24} strokeWidth={1.8} />
         </IconContainer>
       </div>
-      <p className="subheading text-taupe-900">{title}</p>
-      <p className={`mt-2 ${detailed ? "body leading-relaxed text-taupe-500" : "caption leading-relaxed text-taupe-400"}`}>
+      <p className="subheading text-ground-900">{title}</p>
+      <p className={`mt-2 ${detailed ? "body leading-relaxed text-ground-500" : "caption leading-relaxed text-ground-400"}`}>
         {description}
       </p>
     </div>
@@ -67,12 +67,12 @@ function IconFeature({
 
 export default function LeftAlignedHeaderGrid() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white px-6 py-12">
+    <section className="w-full rounded-xl border border-ground-100 bg-white px-6 py-12">
       <div className="grid gap-8 md:grid-cols-[0.72fr_1.28fr]">
         <div className="max-w-sm">
           <Badge variant="brand">Why people buy</Badge>
-          <h2 className="heading mt-5 text-taupe-900">A few reasons customers trust the experience</h2>
-          <p className="body mt-3 text-taupe-500">
+          <h2 className="heading mt-5 text-ground-900">A few reasons customers trust the experience</h2>
+          <p className="body mt-3 text-ground-500">
             These incentives work well under category pages, product detail content, or order summary screens where buyers need quick reassurance.
           </p>
         </div>

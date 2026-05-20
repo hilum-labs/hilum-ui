@@ -26,17 +26,17 @@ export default function StackedShell() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="overflow-hidden rounded-xl border border-taupe-100 bg-taupe-50 shadow-natural">
+    <div className="overflow-hidden rounded-xl border border-ground-100 bg-ground-50 shadow-natural">
       {/* Top nav */}
-      <header className="bg-white border-b border-taupe-100">
+      <header className="bg-white border-b border-ground-100">
         <div className="px-5">
           <div className="flex h-13 items-center justify-between gap-6">
             {/* Logo */}
             <div className="flex items-center gap-2 shrink-0">
-              <div className="flex size-6 items-center justify-center rounded-md bg-taupe-900">
+              <div className="flex size-6 items-center justify-center rounded-md bg-ground-900">
                 <span className="caption-xs font-bold text-white">DS</span>
               </div>
-              <span className="label font-semibold text-taupe-900">Acme Inc.</span>
+              <span className="label font-semibold text-ground-900">Acme Inc.</span>
             </div>
 
             {/* Desktop nav */}
@@ -49,7 +49,7 @@ export default function StackedShell() {
                     "rounded-lg px-3 py-1.5 caption transition-colors",
                     item.active
                       ? "bg-brand-primary/10 text-brand-primary font-medium"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   )}
                 >
                   {item.label}
@@ -59,17 +59,17 @@ export default function StackedShell() {
 
             {/* Right controls */}
             <div className="flex items-center gap-2">
-              <button className="relative p-1.5 text-taupe-400 hover:text-taupe-700 transition-colors">
+              <button className="relative p-1.5 text-ground-400 hover:text-ground-700 transition-colors">
                 <Bell size={15} />
                 <span className="absolute top-1 right-1 size-1.5 rounded-full bg-brand-primary" />
               </button>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <button className="flex items-center gap-1.5 rounded-lg px-1.5 py-1 hover:bg-taupe-50 transition-colors">
+                  <button className="flex items-center gap-1.5 rounded-lg px-1.5 py-1 hover:bg-ground-50 transition-colors">
                     <Avatar size="xs">
                       <AvatarFallback className="bg-brand-primary text-white">TC</AvatarFallback>
                     </Avatar>
-                    <ChevronDown size={12} className="text-taupe-400 hidden sm:block" />
+                    <ChevronDown size={12} className="text-ground-400 hidden sm:block" />
                   </button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-44">
@@ -82,7 +82,7 @@ export default function StackedShell() {
               <Button
                 variant="ghost"
                 size="sm"
-                className="size-8 p-0 text-taupe-500 sm:hidden"
+                className="size-8 p-0 text-ground-500 sm:hidden"
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
                 {mobileOpen ? <X size={15} /> : <Menu size={15} />}
@@ -93,7 +93,7 @@ export default function StackedShell() {
 
         {/* Mobile nav */}
         {mobileOpen && (
-          <div className="border-t border-taupe-100 px-3 py-2 sm:hidden">
+          <div className="border-t border-ground-100 px-3 py-2 sm:hidden">
             <nav className="flex flex-col gap-0.5">
               {NAV_ITEMS.map((item) => (
                 <a
@@ -103,7 +103,7 @@ export default function StackedShell() {
                     "rounded-lg px-3 py-2 caption",
                     item.active
                       ? "bg-brand-primary/10 text-brand-primary font-semibold"
-                      : "text-taupe-500"
+                      : "text-ground-500"
                   )}
                 >
                   {item.label}
@@ -116,8 +116,8 @@ export default function StackedShell() {
 
       {/* Page */}
       <main className="p-6">
-        <h1 className="heading font-semibold text-taupe-900 mb-1">Dashboard</h1>
-        <p className="caption text-taupe-400 mb-6">Here's what's happening today.</p>
+        <h1 className="heading font-semibold text-ground-900 mb-1">Dashboard</h1>
+        <p className="caption text-ground-400 mb-6">Here's what's happening today.</p>
         <div className="grid grid-cols-4 gap-3 mb-6">
           {[
             { label: "Revenue", value: "$32,450", delta: "+4.6%" },
@@ -125,21 +125,21 @@ export default function StackedShell() {
             { label: "Orders", value: "847", delta: "-0.5%" },
             { label: "Uptime", value: "99.9%", delta: "+0.1%" },
           ].map((s) => (
-            <div key={s.label} className="rounded-xl border border-taupe-100 bg-white p-4 shadow-natural">
-              <p className="caption text-taupe-400 mb-1">{s.label}</p>
-              <p className="heading font-semibold text-taupe-900">{s.value}</p>
-              <p className="caption-xs text-taupe-400 mt-0.5">{s.delta} vs last mo.</p>
+            <div key={s.label} className="rounded-xl border border-ground-100 bg-white p-4 shadow-natural">
+              <p className="caption text-ground-400 mb-1">{s.label}</p>
+              <p className="heading font-semibold text-ground-900">{s.value}</p>
+              <p className="caption-xs text-ground-400 mt-0.5">{s.delta} vs last mo.</p>
             </div>
           ))}
         </div>
-        <div className="rounded-xl border border-taupe-100 bg-white shadow-natural overflow-hidden">
-          <div className="border-b border-taupe-100 px-5 py-3 flex items-center justify-between">
-            <p className="label text-taupe-900">Recent activity</p>
+        <div className="rounded-xl border border-ground-100 bg-white shadow-natural overflow-hidden">
+          <div className="border-b border-ground-100 px-5 py-3 flex items-center justify-between">
+            <p className="label text-ground-900">Recent activity</p>
             <Badge variant="secondary" className="caption-xs">View all</Badge>
           </div>
-          <div className="divide-y divide-taupe-50">
+          <div className="divide-y divide-ground-50">
             {["Invoice #1234 paid", "New user signup: alex@example.com", "Deployment to production succeeded"].map((item) => (
-              <div key={item} className="px-5 py-3 caption text-taupe-600">{item}</div>
+              <div key={item} className="px-5 py-3 caption text-ground-600">{item}</div>
             ))}
           </div>
         </div>

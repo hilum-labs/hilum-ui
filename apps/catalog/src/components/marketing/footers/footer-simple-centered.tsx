@@ -16,13 +16,13 @@ const SOCIALS = [
 
 function LogoMark() {
   return (
-    <div className="flex items-center gap-3 text-taupe-900">
-      <div className="flex size-10 items-center justify-center rounded-xl body font-semibold bg-taupe-900 text-white">
+    <div className="flex items-center gap-3 text-ground-900">
+      <div className="flex size-10 items-center justify-center rounded-xl body font-semibold bg-ground-900 text-white">
         NS
       </div>
       <div>
         <p className="body font-medium">Northstar</p>
-        <p className="caption text-taupe-500">Design systems for product teams</p>
+        <p className="caption text-ground-500">Design systems for product teams</p>
       </div>
     </div>
   );
@@ -35,7 +35,7 @@ function SocialButtons() {
         <button
           key={label}
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full border transition-colors border-taupe-200 bg-white text-taupe-500 hover:border-taupe-300 hover:text-taupe-900"
+          className="flex size-9 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
         >
           <Icon className="size-4" />
         </button>
@@ -53,7 +53,7 @@ export default function FooterSimpleCentered() {
         </div>
         <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           {[...FOOTER_NAV.product, ...FOOTER_NAV.company.slice(0, 2)].map((link) => (
-            <a key={link} href="#" className="body text-taupe-500 transition-colors hover:text-taupe-900">
+            <a key={link} href="#" className="body text-ground-500 transition-colors hover:text-ground-900">
               {link}
             </a>
           ))}
@@ -61,7 +61,7 @@ export default function FooterSimpleCentered() {
         <div className="mt-8 flex justify-center">
           <SocialButtons />
         </div>
-        <p className="caption mt-8 text-taupe-400">© 2026 Northstar. All rights reserved.</p>
+        <p className="caption mt-8 text-ground-400">© 2026 Northstar. All rights reserved.</p>
       </div>
     </footer>
   );

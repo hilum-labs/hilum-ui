@@ -8,8 +8,8 @@ export default function SectionHeadingWithInlineTabs() {
 
   return (
     <div className="w-full bg-white p-6">
-      <div className="flex items-center justify-between border-b border-taupe-100 pb-3">
-        <h2 className="subheading text-taupe-900">Team Members</h2>
+      <div className="flex items-center justify-between border-b border-ground-100 pb-3">
+        <h2 className="subheading text-ground-900">Team Members</h2>
         <div className="flex gap-4">
           {tabs.map((tab) => (
             <button
@@ -18,8 +18,8 @@ export default function SectionHeadingWithInlineTabs() {
               className={cn(
                 "caption border-b-2 pb-1 transition-colors",
                 activeTab === tab
-                  ? "border-brand-primary text-taupe-900"
-                  : "border-transparent text-taupe-400 hover:text-taupe-700"
+                  ? "border-brand-primary text-ground-900"
+                  : "border-transparent text-ground-400 hover:text-ground-700"
               )}
             >
               {tab}

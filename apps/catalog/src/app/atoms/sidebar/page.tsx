@@ -56,8 +56,8 @@ const navSecondary = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -85,10 +85,10 @@ const navMain = [
   <Sidebar collapsible="icon">
     <SidebarHeader>
       <div className="flex items-center gap-2.5 group-data-[state=collapsed]/sidebar-wrapper:justify-center">
-        <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-taupe-900">
+        <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-ground-900">
           <span className="caption font-bold text-white">D</span>
         </div>
-        <span className="body font-semibold text-taupe-900 group-data-[state=collapsed]/sidebar-wrapper:hidden">
+        <span className="body font-semibold text-ground-900 group-data-[state=collapsed]/sidebar-wrapper:hidden">
           Design Co.
         </span>
       </div>
@@ -118,12 +118,12 @@ const navMain = [
 
     <SidebarFooter>
       <div className="flex items-center gap-2.5 group-data-[state=collapsed]/sidebar-wrapper:justify-center">
-        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-taupe-200 caption font-semibold text-taupe-700">
+        <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-ground-200 caption font-semibold text-ground-700">
           W
         </div>
         <div className="flex-1 min-w-0 group-data-[state=collapsed]/sidebar-wrapper:hidden">
-          <p className="body font-medium text-taupe-900 truncate">William Chen</p>
-          <p className="caption text-taupe-400 truncate">w@designco.com</p>
+          <p className="body font-medium text-ground-900 truncate">William Chen</p>
+          <p className="caption text-ground-400 truncate">w@designco.com</p>
         </div>
       </div>
     </SidebarFooter>
@@ -132,13 +132,13 @@ const navMain = [
   </Sidebar>
 
   <SidebarInset>
-    <header className="flex h-12 items-center gap-2 border-b border-taupe-100 px-4">
+    <header className="flex h-12 items-center gap-2 border-b border-ground-100 px-4">
       <SidebarTrigger />
-      <div className="h-4 w-px bg-taupe-100" />
-      <span className="body font-medium text-taupe-900">Dashboard</span>
+      <div className="h-4 w-px bg-ground-100" />
+      <span className="body font-medium text-ground-900">Dashboard</span>
     </header>
     <div className="flex-1 p-6">
-      <p className="body text-taupe-400">Main content area</p>
+      <p className="body text-ground-400">Main content area</p>
     </div>
   </SidebarInset>
 </SidebarProvider>`;
@@ -241,10 +241,10 @@ function DefaultSidebarContent() {
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2.5 px-1 group-data-[state=collapsed]/sidebar-wrapper:justify-center group-data-[state=collapsed]/sidebar-wrapper:px-0">
-          <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-taupe-900">
+          <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-ground-900">
             <span className="caption font-bold text-white">D</span>
           </div>
-          <span className="body font-semibold text-taupe-900 group-data-[state=collapsed]/sidebar-wrapper:hidden">
+          <span className="body font-semibold text-ground-900 group-data-[state=collapsed]/sidebar-wrapper:hidden">
             Design Co.
           </span>
         </div>
@@ -294,14 +294,14 @@ function DefaultSidebarContent() {
 
       <SidebarFooter>
         <div className="flex items-center gap-2.5 px-1 group-data-[state=collapsed]/sidebar-wrapper:justify-center group-data-[state=collapsed]/sidebar-wrapper:px-0">
-          <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-taupe-200 caption font-semibold text-taupe-600">
+          <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-ground-200 caption font-semibold text-ground-600">
             W
           </div>
           <div className="flex min-w-0 flex-1 flex-col group-data-[state=collapsed]/sidebar-wrapper:hidden">
-            <span className="body font-medium text-taupe-900 truncate">William Chen</span>
-            <span className="caption text-taupe-400 truncate">w@designco.com</span>
+            <span className="body font-medium text-ground-900 truncate">William Chen</span>
+            <span className="caption text-ground-400 truncate">w@designco.com</span>
           </div>
-          <button className="shrink-0 text-taupe-400 hover:text-taupe-700 transition-colors group-data-[state=collapsed]/sidebar-wrapper:hidden">
+          <button className="shrink-0 text-ground-400 hover:text-ground-700 transition-colors group-data-[state=collapsed]/sidebar-wrapper:hidden">
             <LogOut size={14} />
           </button>
         </div>
@@ -321,15 +321,15 @@ export default function SidebarPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Page header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Sidebar</span>
+          <span className="font-semibold text-ground-900">Sidebar</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Sidebar</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Sidebar</h1>
+        <p className="body max-w-lg text-ground-500">
           Composable sidebar system supporting collapsible modes, icon-only
           collapse, sub-menus, badges, and flexible layout composition.
         </p>
@@ -345,16 +345,16 @@ export default function SidebarPage() {
           code={CODE_DEFAULT}
           previewClassName="p-0 items-stretch"
         >
-          <div className="h-[480px] w-full overflow-hidden rounded-xl border border-taupe-100">
+          <div className="h-[480px] w-full overflow-hidden rounded-xl border border-ground-100">
             <SidebarProvider>
               <Sidebar collapsible="icon">
                 <DefaultSidebarContent />
               </Sidebar>
               <SidebarInset>
-                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-taupe-100 px-4">
+                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-ground-100 px-4">
                   <SidebarTrigger />
-                  <div className="h-4 w-px bg-taupe-100" />
-                  <span className="body font-medium text-taupe-900">Dashboard</span>
+                  <div className="h-4 w-px bg-ground-100" />
+                  <span className="body font-medium text-ground-900">Dashboard</span>
                 </header>
                 <div className="flex flex-1 flex-col gap-4 p-6">
                   {/* Placeholder content */}
@@ -366,15 +366,15 @@ export default function SidebarPage() {
                     ].map((stat) => (
                       <div
                         key={stat.label}
-                        className="rounded-lg border border-taupe-100 bg-white p-4"
+                        className="rounded-lg border border-ground-100 bg-white p-4"
                       >
-                        <p className="caption text-taupe-400">{stat.label}</p>
-                        <p className="subheading mt-1 text-taupe-900">{stat.value}</p>
+                        <p className="caption text-ground-400">{stat.label}</p>
+                        <p className="subheading mt-1 text-ground-900">{stat.value}</p>
                         <p className="caption mt-1 text-brand-primary font-medium">{stat.delta}</p>
                       </div>
                     ))}
                   </div>
-                  <div className="flex-1 rounded-lg border border-taupe-100 bg-taupe-50" />
+                  <div className="flex-1 rounded-lg border border-ground-100 bg-ground-50" />
                 </div>
               </SidebarInset>
             </SidebarProvider>
@@ -388,15 +388,15 @@ export default function SidebarPage() {
           code={CODE_SUBMENUS}
           previewClassName="p-0 items-stretch"
         >
-          <div className="h-[480px] w-full overflow-hidden rounded-xl border border-taupe-100">
+          <div className="h-[480px] w-full overflow-hidden rounded-xl border border-ground-100">
             <SidebarProvider>
               <Sidebar collapsible="icon">
                 <SidebarHeader>
                   <div className="flex items-center gap-2.5 px-1 group-data-[state=collapsed]/sidebar-wrapper:justify-center group-data-[state=collapsed]/sidebar-wrapper:px-0">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-taupe-900">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-ground-900">
                       <span className="caption font-bold text-white">D</span>
                     </div>
-                    <span className="body font-semibold text-taupe-900 group-data-[state=collapsed]/sidebar-wrapper:hidden">
+                    <span className="body font-semibold text-ground-900 group-data-[state=collapsed]/sidebar-wrapper:hidden">
                       Design Co.
                     </span>
                   </div>
@@ -478,12 +478,12 @@ export default function SidebarPage() {
 
                 <SidebarFooter>
                   <div className="flex items-center gap-2.5 px-1 group-data-[state=collapsed]/sidebar-wrapper:justify-center group-data-[state=collapsed]/sidebar-wrapper:px-0">
-                    <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-taupe-200 caption font-semibold text-taupe-600">
+                    <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-ground-200 caption font-semibold text-ground-600">
                       W
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col group-data-[state=collapsed]/sidebar-wrapper:hidden">
-                      <span className="body font-medium text-taupe-900 truncate">William Chen</span>
-                      <span className="caption text-taupe-400 truncate">w@designco.com</span>
+                      <span className="body font-medium text-ground-900 truncate">William Chen</span>
+                      <span className="caption text-ground-400 truncate">w@designco.com</span>
                     </div>
                   </div>
                 </SidebarFooter>
@@ -492,21 +492,21 @@ export default function SidebarPage() {
               </Sidebar>
 
               <SidebarInset>
-                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-taupe-100 px-4">
+                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-ground-100 px-4">
                   <SidebarTrigger />
-                  <div className="h-4 w-px bg-taupe-100" />
-                  <span className="body font-medium text-taupe-900">Projects</span>
-                  <span className="caption text-taupe-400 ml-1">/ Mobile App</span>
+                  <div className="h-4 w-px bg-ground-100" />
+                  <span className="body font-medium text-ground-900">Projects</span>
+                  <span className="caption text-ground-400 ml-1">/ Mobile App</span>
                 </header>
                 <div className="flex flex-1 flex-col gap-3 p-6">
-                  <div className="rounded-lg border border-taupe-100 bg-white p-4">
-                    <p className="body font-medium text-taupe-900 mb-1">Mobile App</p>
-                    <p className="caption text-taupe-400">
+                  <div className="rounded-lg border border-ground-100 bg-white p-4">
+                    <p className="body font-medium text-ground-900 mb-1">Mobile App</p>
+                    <p className="caption text-ground-400">
                       Sub-navigation is visible when expanded and hidden when collapsed to
                       icon-only mode.
                     </p>
                   </div>
-                  <div className="flex-1 rounded-lg border border-taupe-100 bg-taupe-50" />
+                  <div className="flex-1 rounded-lg border border-ground-100 bg-ground-50" />
                 </div>
               </SidebarInset>
             </SidebarProvider>
@@ -520,30 +520,30 @@ export default function SidebarPage() {
           code={CODE_COLLAPSED}
           previewClassName="p-0 items-stretch"
         >
-          <div className="h-[480px] w-full overflow-hidden rounded-xl border border-taupe-100">
+          <div className="h-[480px] w-full overflow-hidden rounded-xl border border-ground-100">
             <SidebarProvider defaultOpen={false}>
               <Sidebar collapsible="icon">
                 <DefaultSidebarContent />
               </Sidebar>
               <SidebarInset>
-                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-taupe-100 px-4">
+                <header className="flex h-12 shrink-0 items-center gap-2 border-b border-ground-100 px-4">
                   <SidebarTrigger />
-                  <div className="h-4 w-px bg-taupe-100" />
-                  <span className="body font-medium text-taupe-900">Dashboard</span>
+                  <div className="h-4 w-px bg-ground-100" />
+                  <span className="body font-medium text-ground-900">Dashboard</span>
                 </header>
                 <div className="flex flex-1 flex-col gap-4 p-6">
-                  <p className="caption text-taupe-400">
+                  <p className="caption text-ground-400">
                     Hover over the icons to see tooltips. Click the toggle to expand.
                   </p>
                   <div className="grid grid-cols-2 gap-3">
                     {Array.from({ length: 4 }).map((_, i) => (
                       <div
                         key={i}
-                        className="h-28 rounded-lg border border-taupe-100 bg-taupe-50"
+                        className="h-28 rounded-lg border border-ground-100 bg-ground-50"
                       />
                     ))}
                   </div>
-                  <div className="flex-1 rounded-lg border border-taupe-100 bg-taupe-50" />
+                  <div className="flex-1 rounded-lg border border-ground-100 bg-ground-50" />
                 </div>
               </SidebarInset>
             </SidebarProvider>

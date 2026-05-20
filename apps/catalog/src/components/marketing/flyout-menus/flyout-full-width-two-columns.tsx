@@ -74,19 +74,19 @@ function FlyoutLink({
   return (
     <a
       href={item.href}
-      className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-taupe-50"
+      className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-ground-50"
     >
       <div
         className={cn(
-          "flex size-10 shrink-0 items-center justify-center rounded-lg bg-taupe-100 text-taupe-700",
+          "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
           iconClassName
         )}
       >
         <Icon size={18} />
       </div>
       <div>
-        <p className="body font-medium text-taupe-900">{item.name}</p>
-        <p className="caption mt-1 text-taupe-500">{item.description}</p>
+        <p className="body font-medium text-ground-900">{item.name}</p>
+        <p className="caption mt-1 text-ground-500">{item.description}</p>
       </div>
     </a>
   );
@@ -97,14 +97,14 @@ export default function FlyoutFullWidthTwoColumns() {
 
   return (
     <div className="relative min-h-[24rem] bg-white">
-      <div className="flex items-center justify-between border-b border-taupe-100 px-6 py-4">
+      <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
         <div className="flex items-center gap-10">
-          <span className="subheading text-taupe-900">Acme</span>
+          <span className="subheading text-ground-900">Acme</span>
           <div className="relative">
             <button
               type="button"
               onClick={() => setOpen(!open)}
-              className="inline-flex items-center gap-1 body font-medium text-taupe-700 transition-colors hover:text-taupe-900"
+              className="inline-flex items-center gap-1 body font-medium text-ground-700 transition-colors hover:text-ground-900"
             >
               Solutions
               <ChevronDown
@@ -118,12 +118,12 @@ export default function FlyoutFullWidthTwoColumns() {
       </div>
 
       {open ? (
-        <div className="absolute left-0 top-[4.5rem] z-10 w-full border-t border-taupe-100 bg-white shadow-elevated">
+        <div className="absolute left-0 top-[4.5rem] z-10 w-full border-t border-ground-100 bg-white shadow-elevated">
           <div className="grid gap-0 md:grid-cols-2">
             <div className="px-6 py-6">
               <div className="mb-4 flex items-center gap-3">
-                <h3 className="label text-taupe-400">Products</h3>
-                <div className="h-px flex-1 bg-taupe-100" />
+                <h3 className="label text-ground-400">Products</h3>
+                <div className="h-px flex-1 bg-ground-100" />
               </div>
               <div className="space-y-2">
                 {PRODUCT_LINKS.map((item) => (
@@ -131,10 +131,10 @@ export default function FlyoutFullWidthTwoColumns() {
                 ))}
               </div>
             </div>
-            <div className="border-t border-taupe-100 px-6 py-6 md:border-l md:border-t-0">
+            <div className="border-t border-ground-100 px-6 py-6 md:border-l md:border-t-0">
               <div className="mb-4 flex items-center gap-3">
-                <h3 className="label text-taupe-400">Resources</h3>
-                <div className="h-px flex-1 bg-taupe-100" />
+                <h3 className="label text-ground-400">Resources</h3>
+                <div className="h-px flex-1 bg-ground-100" />
               </div>
               <div className="space-y-2">
                 {RESOURCE_LINKS.map((item) => (
@@ -147,8 +147,8 @@ export default function FlyoutFullWidthTwoColumns() {
       ) : null}
 
       <div className="px-6 py-12">
-        <div className="rounded-2xl border border-dashed border-taupe-200 bg-taupe-50 p-6">
-          <p className="body max-w-2xl text-taupe-500">
+        <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
+          <p className="body max-w-2xl text-ground-500">
             Split layouts separate primary product discovery from educational and support resources without overcrowding either side.
           </p>
         </div>

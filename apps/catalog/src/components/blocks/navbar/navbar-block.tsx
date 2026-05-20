@@ -17,12 +17,12 @@ export default function NavbarBlock() {
   const [active, setActive] = useState("Dashboard");
 
   return (
-    <nav className="border-b border-taupe-100 bg-white">
+    <nav className="border-b border-ground-100 bg-white">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-14 items-center justify-between">
           {/* Logo + nav */}
           <div className="flex items-center gap-6">
-            <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-taupe-900">
+            <div className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-ground-900">
               <span className="caption font-bold text-white">D</span>
             </div>
             <div className="hidden gap-0.5 sm:flex">
@@ -34,7 +34,7 @@ export default function NavbarBlock() {
                   className={`rounded-md px-3 py-1.5 body font-medium transition-colors ${
                     active === link
                       ? "bg-brand-primary/10 text-brand-primary"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   }`}
                 >
                   {link}
@@ -45,19 +45,19 @@ export default function NavbarBlock() {
 
           {/* Right */}
           <div className="flex items-center gap-1.5">
-            <Button variant="ghost" size="sm" className="relative size-8 p-0 text-taupe-500">
+            <Button variant="ghost" size="sm" className="relative size-8 p-0 text-ground-500">
               <Bell size={15} />
               <span className="absolute top-1.5 right-1.5 size-1.5 rounded-full bg-brand-primary" />
             </Button>
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 rounded-lg px-1.5 py-1 hover:bg-taupe-50 transition-colors">
+                <button className="flex items-center gap-2 rounded-lg px-1.5 py-1 hover:bg-ground-50 transition-colors">
                   <Avatar size="sm">
                     <AvatarFallback className="bg-brand-primary text-white">SP</AvatarFallback>
                   </Avatar>
-                  <span className="hidden caption font-medium text-taupe-700 sm:block">Sofia P.</span>
-                  <ChevronDown size={12} className="hidden text-taupe-400 sm:block" />
+                  <span className="hidden caption font-medium text-ground-700 sm:block">Sofia P.</span>
+                  <ChevronDown size={12} className="hidden text-ground-400 sm:block" />
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-44">
@@ -70,7 +70,7 @@ export default function NavbarBlock() {
 
             {/* Mobile toggle */}
             <button
-              className="rounded-md p-1.5 text-taupe-500 hover:bg-taupe-50 sm:hidden"
+              className="rounded-md p-1.5 text-ground-500 hover:bg-ground-50 sm:hidden"
               onClick={() => setMobileOpen(!mobileOpen)}
             >
               {mobileOpen ? <X size={18} /> : <Menu size={18} />}
@@ -80,12 +80,12 @@ export default function NavbarBlock() {
 
         {/* Mobile menu */}
         {mobileOpen && (
-          <div className="border-t border-taupe-100 py-3 sm:hidden">
+          <div className="border-t border-ground-100 py-3 sm:hidden">
             {NAV_LINKS.map((link) => (
               <a
                 key={link}
                 href="#"
-                className="block rounded-md px-3 py-2 body font-medium text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                className="block rounded-md px-3 py-2 body font-medium text-ground-500 hover:bg-ground-50 hover:text-ground-900"
               >
                 {link}
               </a>

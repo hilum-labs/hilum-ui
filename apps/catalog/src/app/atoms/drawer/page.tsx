@@ -31,15 +31,15 @@ import { Button } from "@hilum/ui"
     </DrawerHeader>
     <div className="flex flex-col gap-4 px-6 pb-2">
       <div>
-        <p className="label text-taupe-500 mb-1.5">Name</p>
-        <div className="h-10 rounded-md border border-taupe-200 bg-white px-3 flex items-center">
-          <span className="body text-taupe-300">Your full name</span>
+        <p className="label text-ground-500 mb-1.5">Name</p>
+        <div className="h-10 rounded-md border border-ground-200 bg-white px-3 flex items-center">
+          <span className="body text-ground-300">Your full name</span>
         </div>
       </div>
       <div>
-        <p className="label text-taupe-500 mb-1.5">Bio</p>
-        <div className="h-20 rounded-md border border-taupe-200 bg-white px-3 py-2">
-          <span className="body text-taupe-300">Tell us about yourself</span>
+        <p className="label text-ground-500 mb-1.5">Bio</p>
+        <div className="h-20 rounded-md border border-ground-200 bg-white px-3 py-2">
+          <span className="body text-ground-300">Tell us about yourself</span>
         </div>
       </div>
     </div>
@@ -107,19 +107,19 @@ const cartItems = [
     </DrawerHeader>
     <div className="flex flex-col px-6">
       {cartItems.map((item) => (
-        <div key={item.name} className="flex items-center justify-between border-b border-taupe-100 py-3">
+        <div key={item.name} className="flex items-center justify-between border-b border-ground-100 py-3">
           <div>
-            <p className="body font-medium text-taupe-900">{item.name}</p>
-            <p className="caption text-taupe-400">Qty: {item.qty}</p>
+            <p className="body font-medium text-ground-900">{item.name}</p>
+            <p className="caption text-ground-400">Qty: {item.qty}</p>
           </div>
-          <p className="body font-medium text-taupe-900">{item.price}</p>
+          <p className="body font-medium text-ground-900">{item.price}</p>
         </div>
       ))}
     </div>
     <DrawerFooter>
       <div className="flex items-center justify-between mb-3">
-        <p className="body text-taupe-500">Subtotal</p>
-        <p className="body font-semibold text-taupe-900">$374.00</p>
+        <p className="body text-ground-500">Subtotal</p>
+        <p className="body font-semibold text-ground-900">$374.00</p>
       </div>
       <button className="w-full bg-brand-primary text-white rounded-md px-4 py-2.5 body font-medium hover:bg-brand-primary/90 transition-colors">
         Checkout
@@ -138,8 +138,8 @@ const cartItems = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -148,15 +148,15 @@ export default function DrawerPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Drawer</span>
+          <span className="font-semibold text-ground-900">Drawer</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Drawer</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Drawer</h1>
+        <p className="body max-w-lg text-ground-500">
           Bottom sheet panel that slides up from the screen edge — ideal for
           mobile-first interactions and contextual actions.
         </p>
@@ -181,15 +181,15 @@ export default function DrawerPage() {
               </DrawerHeader>
               <div className="flex flex-col gap-4 px-6 pb-2">
                 <div>
-                  <p className="label text-taupe-500 mb-1.5">Name</p>
-                  <div className="h-10 rounded-md border border-taupe-200 bg-white px-3 flex items-center">
-                    <span className="body text-taupe-300">Your full name</span>
+                  <p className="label text-ground-500 mb-1.5">Name</p>
+                  <div className="h-10 rounded-md border border-ground-200 bg-white px-3 flex items-center">
+                    <span className="body text-ground-300">Your full name</span>
                   </div>
                 </div>
                 <div>
-                  <p className="label text-taupe-500 mb-1.5">Bio</p>
-                  <div className="h-20 rounded-md border border-taupe-200 bg-white px-3 py-2">
-                    <span className="body text-taupe-300">Tell us about yourself</span>
+                  <p className="label text-ground-500 mb-1.5">Bio</p>
+                  <div className="h-20 rounded-md border border-ground-200 bg-white px-3 py-2">
+                    <span className="body text-ground-300">Tell us about yourself</span>
                   </div>
                 </div>
               </div>
@@ -252,20 +252,20 @@ export default function DrawerPage() {
                 {cartItems.map((item) => (
                   <div
                     key={item.name}
-                    className="flex items-center justify-between border-b border-taupe-100 py-3"
+                    className="flex items-center justify-between border-b border-ground-100 py-3"
                   >
                     <div>
-                      <p className="body font-medium text-taupe-900">{item.name}</p>
-                      <p className="caption text-taupe-400">Qty: {item.qty}</p>
+                      <p className="body font-medium text-ground-900">{item.name}</p>
+                      <p className="caption text-ground-400">Qty: {item.qty}</p>
                     </div>
-                    <p className="body font-medium text-taupe-900">{item.price}</p>
+                    <p className="body font-medium text-ground-900">{item.price}</p>
                   </div>
                 ))}
               </div>
               <DrawerFooter>
                 <div className="flex items-center justify-between mb-3">
-                  <p className="body text-taupe-500">Subtotal</p>
-                  <p className="body font-semibold text-taupe-900">$374.00</p>
+                  <p className="body text-ground-500">Subtotal</p>
+                  <p className="body font-semibold text-ground-900">$374.00</p>
                 </div>
                 <button className="w-full bg-brand-primary text-white rounded-md px-4 py-2.5 body font-medium hover:bg-brand-primary/90 transition-colors">
                   Checkout

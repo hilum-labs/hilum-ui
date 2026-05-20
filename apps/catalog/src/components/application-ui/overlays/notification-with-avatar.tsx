@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui";
 
 function ToastShell({ children }: { children: React.ReactNode }) {
   return (
-    <div className="mx-auto w-full max-w-sm rounded-xl border border-taupe-100 bg-white p-4 shadow-elevated">
+    <div className="mx-auto w-full max-w-sm rounded-xl border border-ground-100 bg-white p-4 shadow-elevated">
       {children}
     </div>
   );
@@ -34,11 +34,11 @@ export default function NotificationWithAvatar() {
       <div className="flex items-start gap-3">
         <PersonAvatar initials="CH" />
         <div className="min-w-0 flex-1">
-          <p className="body text-taupe-500">
-            <span className="font-medium text-taupe-900">Courtney Henry</span> left feedback on the hero treatment.
+          <p className="body text-ground-500">
+            <span className="font-medium text-ground-900">Courtney Henry</span> left feedback on the hero treatment.
           </p>
         </div>
-        <button className="text-taupe-400 hover:text-taupe-700" type="button">
+        <button className="text-ground-400 hover:text-ground-700" type="button">
           <X size={16} />
         </button>
       </div>

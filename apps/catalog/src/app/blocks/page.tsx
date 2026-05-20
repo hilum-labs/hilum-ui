@@ -65,19 +65,19 @@ export default function BlocksPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Blocks</span>
+          <span className="font-semibold text-ground-900">Blocks</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Blocks</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Blocks</h1>
+        <p className="body max-w-md text-ground-400">
           Full page sections assembled from atoms and molecules. Copy the code and drop it directly into any layout.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">{BLOCKS.length} blocks</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Built on Molecules + Atoms</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">{BLOCKS.length} blocks</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Built on Molecules + Atoms</p>
         </div>
       </div>
 
@@ -93,8 +93,8 @@ export default function BlocksPage() {
                   {block.category}
                 </Badge>
               </div>
-              <CardTitle className="subheading text-taupe-900">{block.name}</CardTitle>
-              <CardDescription className="caption leading-relaxed text-taupe-400">
+              <CardTitle className="subheading text-ground-900">{block.name}</CardTitle>
+              <CardDescription className="caption leading-relaxed text-ground-400">
                 {block.description}
               </CardDescription>
             </CardHeader>
@@ -103,7 +103,7 @@ export default function BlocksPage() {
                 asChild
                 variant="ghost"
                 size="sm"
-                className="h-auto px-0 py-0 text-taupe-500 hover:text-taupe-900 hover:bg-transparent"
+                className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
               >
                 <Link to={`/blocks/${block.slug}`}>View block →</Link>
               </Button>

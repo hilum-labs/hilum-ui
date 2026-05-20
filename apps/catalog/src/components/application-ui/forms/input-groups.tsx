@@ -14,8 +14,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -36,7 +36,7 @@ export default function InputGroups() {
           <div className="space-y-2">
             <Label htmlFor="workspace-url">Workspace URL</Label>
             <Input id="workspace-url" placeholder="acme-team" />
-            <p className="caption text-taupe-400">
+            <p className="caption text-ground-400">
               Used for your public workspace link and internal invites.
             </p>
           </div>
@@ -46,7 +46,7 @@ export default function InputGroups() {
           <div className="space-y-2">
             <Label htmlFor="team-email">Team email</Label>
             <div className="relative">
-              <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-taupe-400" />
+              <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ground-400" />
               <Input
                 id="team-email"
                 type="email"
@@ -61,7 +61,7 @@ export default function InputGroups() {
           <div className="space-y-2">
             <Label htmlFor="site-address">Website</Label>
             <div className="flex">
-              <span className="flex items-center rounded-l-md border border-r-0 border-taupe-200 bg-taupe-50 px-3 caption text-taupe-500">
+              <span className="flex items-center rounded-l-md border border-r-0 border-ground-200 bg-ground-50 px-3 caption text-ground-500">
                 https://
               </span>
               <Input
@@ -111,8 +111,8 @@ export default function InputGroups() {
                 placeholder="Search settings, users, and invoices"
                 className="pr-16"
               />
-              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-taupe-200 bg-taupe-50 px-2 py-1">
-                <kbd className="caption font-sans text-taupe-500">⌘K</kbd>
+              <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 rounded-md border border-ground-200 bg-ground-50 px-2 py-1">
+                <kbd className="caption font-sans text-ground-500">⌘K</kbd>
               </span>
             </div>
           </div>
@@ -121,14 +121,14 @@ export default function InputGroups() {
         <VariantCard title="8. With inline leading and trailing add-ons">
           <div className="space-y-2">
             <Label htmlFor="budget">Budget</Label>
-            <div className="flex items-center overflow-hidden rounded-md border border-taupe-200 bg-white">
-              <span className="px-3 caption text-taupe-500">$</span>
+            <div className="flex items-center overflow-hidden rounded-md border border-ground-200 bg-white">
+              <span className="px-3 caption text-ground-500">$</span>
               <input
                 id="budget"
                 defaultValue="12,500"
-                className="h-9 flex-1 bg-transparent px-1 body text-taupe-900 outline-none"
+                className="h-9 flex-1 bg-transparent px-1 body text-ground-900 outline-none"
               />
-              <span className="px-3 caption text-taupe-500">.00</span>
+              <span className="px-3 caption text-ground-500">.00</span>
             </div>
           </div>
         </VariantCard>

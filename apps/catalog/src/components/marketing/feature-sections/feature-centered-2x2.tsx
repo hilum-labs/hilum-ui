@@ -26,12 +26,12 @@ export default function FeatureCentered2x2() {
   ];
 
   return (
-    <section className="w-full bg-taupe-50 px-8 py-16 md:px-12">
+    <section className="w-full bg-ground-50 px-8 py-16 md:px-12">
       <div className="mx-auto max-w-4xl">
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="secondary" className="mb-4">Growth teams</Badge>
-          <h3 className="heading text-taupe-900">A cleaner way to scale your go-to-market engine</h3>
-          <p className="body mt-3 text-taupe-500">
+          <h3 className="heading text-ground-900">A cleaner way to scale your go-to-market engine</h3>
+          <p className="body mt-3 text-ground-500">
             Standardize the work behind every launch so teams can focus on better campaigns instead of repetitive coordination.
           </p>
         </div>
@@ -40,11 +40,11 @@ export default function FeatureCentered2x2() {
             const Icon = feature.icon;
             return (
               <article key={feature.name} className="rounded-3xl bg-white p-7 text-center shadow-natural">
-                <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-brand-secondary/20 text-taupe-700">
+                <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-brand-secondary/20 text-ground-700">
                   <Icon className="size-6" />
                 </div>
-                <h4 className="subheading text-taupe-900">{feature.name}</h4>
-                <p className="body mt-2 text-taupe-500">{feature.description}</p>
+                <h4 className="subheading text-ground-900">{feature.name}</h4>
+                <p className="body mt-2 text-ground-500">{feature.description}</p>
               </article>
             );
           })}

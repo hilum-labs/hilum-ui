@@ -8,7 +8,7 @@ const SETTINGS_SECTIONS = ["Account", "Password", "Notifications", "Billing", "I
 
 function ExampleFrame({ children }: { children: any }) {
   return (
-    <div className="min-h-[600px] overflow-hidden rounded-xl border border-taupe-100 bg-white">
+    <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}
     </div>
   );
@@ -20,8 +20,8 @@ export default function SettingsSidebarScreen() {
   return (
     <ExampleFrame>
       <div className="grid min-h-[600px] lg:grid-cols-[240px_1fr]">
-        <aside className="border-b border-taupe-100 bg-white p-5 lg:border-b-0 lg:border-r">
-          <p className="label mb-4 text-taupe-400">Settings</p>
+        <aside className="border-b border-ground-100 bg-white p-5 lg:border-b-0 lg:border-r">
+          <p className="label mb-4 text-ground-400">Settings</p>
           <div className="space-y-2">
             {SETTINGS_SECTIONS.map((section) => (
               <button
@@ -31,7 +31,7 @@ export default function SettingsSidebarScreen() {
                 className={`flex w-full items-center justify-between rounded-xl px-4 py-3 text-left body transition-colors ${
                   activeSection === section
                     ? "bg-brand-primary/10 text-brand-primary font-medium"
-                    : "text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900"
+                    : "text-ground-600 hover:bg-ground-50 hover:text-ground-900"
                 }`}
               >
                 {section}
@@ -41,12 +41,12 @@ export default function SettingsSidebarScreen() {
           </div>
         </aside>
 
-        <main className="bg-taupe-50 p-6">
-          <div className="rounded-2xl border border-taupe-100 bg-white p-6">
+        <main className="bg-ground-50 p-6">
+          <div className="rounded-2xl border border-ground-100 bg-white p-6">
             <div className="mb-6 flex items-center justify-between gap-4">
               <div>
-                <p className="caption text-taupe-400">Settings / {activeSection}</p>
-                <h3 className="heading mt-1 text-taupe-900">
+                <p className="caption text-ground-400">Settings / {activeSection}</p>
+                <h3 className="heading mt-1 text-ground-900">
                   {activeSection === "Account" ? "Profile" : activeSection}
                 </h3>
               </div>
@@ -62,7 +62,7 @@ export default function SettingsSidebarScreen() {
                       <input
                         type="text"
                         defaultValue="Tom Cook"
-                        className="h-10 w-full rounded-xl border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none"
+                        className="h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                       />
                     ),
                   },
@@ -72,7 +72,7 @@ export default function SettingsSidebarScreen() {
                       <input
                         type="email"
                         defaultValue="tom@example.com"
-                        className="h-10 w-full rounded-xl border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none"
+                        className="h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                       />
                     ),
                   },
@@ -94,14 +94,14 @@ export default function SettingsSidebarScreen() {
                     field: (
                       <textarea
                         defaultValue="Product leader focused on customer onboarding, internal tooling, and team operations."
-                        className="min-h-28 w-full rounded-xl border border-taupe-200 bg-white px-3 py-2 body text-taupe-900 outline-none"
+                        className="min-h-28 w-full rounded-xl border border-ground-200 bg-white px-3 py-2 body text-ground-900 outline-none"
                       />
                     ),
                   },
                 ].map((row) => (
-                  <div key={row.label} className="grid gap-3 border-b border-taupe-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
+                  <div key={row.label} className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
                     <div>
-                      <p className="body font-medium text-taupe-900">{row.label}</p>
+                      <p className="body font-medium text-ground-900">{row.label}</p>
                     </div>
                     <div>{row.field}</div>
                   </div>
@@ -112,12 +112,12 @@ export default function SettingsSidebarScreen() {
             {activeSection === "Password" && (
               <div className="space-y-6">
                 {["Current password", "New password", "Confirm password"].map((label) => (
-                  <div key={label} className="grid gap-3 border-b border-taupe-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
-                    <p className="body font-medium text-taupe-900">{label}</p>
+                  <div key={label} className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
+                    <p className="body font-medium text-ground-900">{label}</p>
                     <input
                       type="password"
                       defaultValue="password"
-                      className="h-10 w-full rounded-xl border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none"
+                      className="h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                     />
                   </div>
                 ))}
@@ -131,9 +131,9 @@ export default function SettingsSidebarScreen() {
                   "Comment mentions",
                   "Project reminder alerts",
                 ].map((label) => (
-                  <div key={label} className="grid gap-3 border-b border-taupe-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
-                    <p className="body font-medium text-taupe-900">{label}</p>
-                    <div className="rounded-xl bg-taupe-50 px-4 py-3 body text-taupe-600">Enabled for your account</div>
+                  <div key={label} className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
+                    <p className="body font-medium text-ground-900">{label}</p>
+                    <div className="rounded-xl bg-ground-50 px-4 py-3 body text-ground-600">Enabled for your account</div>
                   </div>
                 ))}
               </div>
@@ -142,14 +142,14 @@ export default function SettingsSidebarScreen() {
             {activeSection === "Billing" && (
               <div className="space-y-4">
                 <div className="grid gap-3 md:grid-cols-[160px_1fr]">
-                  <p className="body font-medium text-taupe-900">Plan</p>
-                  <div className="rounded-xl bg-taupe-50 px-4 py-3 body text-taupe-900">Growth plan · billed monthly</div>
+                  <p className="body font-medium text-ground-900">Plan</p>
+                  <div className="rounded-xl bg-ground-50 px-4 py-3 body text-ground-900">Growth plan · billed monthly</div>
                 </div>
                 <div className="grid gap-3 md:grid-cols-[160px_1fr]">
-                  <p className="body font-medium text-taupe-900">Payment method</p>
-                  <div className="flex items-center gap-3 rounded-xl bg-taupe-50 px-4 py-3">
-                    <CreditCard className="size-4 text-taupe-500" />
-                    <span className="body text-taupe-900">Visa ending in 4242</span>
+                  <p className="body font-medium text-ground-900">Payment method</p>
+                  <div className="flex items-center gap-3 rounded-xl bg-ground-50 px-4 py-3">
+                    <CreditCard className="size-4 text-ground-500" />
+                    <span className="body text-ground-900">Visa ending in 4242</span>
                   </div>
                 </div>
               </div>
@@ -158,10 +158,10 @@ export default function SettingsSidebarScreen() {
             {activeSection === "Integrations" && (
               <div className="space-y-3">
                 {["Slack workspace", "Google Calendar", "Analytics export"].map((item) => (
-                  <div key={item} className="flex items-center justify-between rounded-xl bg-taupe-50 px-4 py-4">
+                  <div key={item} className="flex items-center justify-between rounded-xl bg-ground-50 px-4 py-4">
                     <div>
-                      <p className="body font-medium text-taupe-900">{item}</p>
-                      <p className="caption text-taupe-400">Connected and syncing successfully</p>
+                      <p className="body font-medium text-ground-900">{item}</p>
+                      <p className="caption text-ground-400">Connected and syncing successfully</p>
                     </div>
                     <Badge variant="secondary">Connected</Badge>
                   </div>

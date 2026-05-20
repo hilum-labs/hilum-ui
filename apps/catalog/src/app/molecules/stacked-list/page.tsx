@@ -9,12 +9,12 @@ const CODE = {
 
 <StackedList>
   <StackedListItem href="#">
-    <p className="body font-medium text-taupe-900">Ricardo Cooper</p>
-    <p className="caption text-taupe-400">Backend Developer</p>
+    <p className="body font-medium text-ground-900">Ricardo Cooper</p>
+    <p className="caption text-ground-400">Backend Developer</p>
   </StackedListItem>
   <StackedListItem href="#">
-    <p className="body font-medium text-taupe-900">Kristen Ramos</p>
-    <p className="caption text-taupe-400">Product Manager</p>
+    <p className="body font-medium text-ground-900">Kristen Ramos</p>
+    <p className="caption text-ground-400">Product Manager</p>
   </StackedListItem>
 </StackedList>`,
 
@@ -28,10 +28,10 @@ const CODE = {
           {person.initials}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="body font-semibold text-taupe-900 truncate">{person.name}</p>
-          <p className="caption text-taupe-400 truncate">{person.email}</p>
+          <p className="body font-semibold text-ground-900 truncate">{person.name}</p>
+          <p className="caption text-ground-400 truncate">{person.email}</p>
         </div>
-        <ChevronRight size={14} className="shrink-0 text-taupe-300" />
+        <ChevronRight size={14} className="shrink-0 text-ground-300" />
       </div>
     </StackedListItem>
   ))}
@@ -44,12 +44,12 @@ const CODE = {
     <StackedListItem key={app.id} href="#">
       <div className="flex items-center justify-between gap-4">
         <div>
-          <p className="body font-semibold text-taupe-900">{app.name}</p>
-          <p className="caption text-taupe-400">{app.stage}</p>
+          <p className="body font-semibold text-ground-900">{app.name}</p>
+          <p className="caption text-ground-400">{app.stage}</p>
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="secondary">{app.date}</Badge>
-          <ChevronRight size={14} className="text-taupe-300" />
+          <ChevronRight size={14} className="text-ground-300" />
         </div>
       </div>
     </StackedListItem>
@@ -66,8 +66,8 @@ const PEOPLE = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -76,21 +76,21 @@ export default function StackedListPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-taupe-700">Molecules</a>
+          <a href="/molecules" className="hover:text-ground-700">Molecules</a>
           <span>/</span>
-          <span className="body font-semibold text-taupe-900">Stacked List</span>
+          <span className="body font-semibold text-ground-900">Stacked List</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Stacked List</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Stacked List</h1>
+        <p className="body max-w-md text-ground-400">
           A vertically stacked list of rows, each with consistent padding and optional hover/link behavior. The composition of StackedList and StackedListItem.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">Molecule</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Badge · Avatar</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">Molecule</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Badge · Avatar</p>
         </div>
       </div>
 
@@ -103,8 +103,8 @@ export default function StackedListPage() {
               <StackedList>
                 {PEOPLE.map((p) => (
                   <StackedListItem key={p.email} href="#">
-                    <p className="body font-medium text-taupe-900">{p.name}</p>
-                    <p className="caption text-taupe-400">{p.email}</p>
+                    <p className="body font-medium text-ground-900">{p.name}</p>
+                    <p className="caption text-ground-400">{p.email}</p>
                   </StackedListItem>
                 ))}
               </StackedList>
@@ -124,10 +124,10 @@ export default function StackedListPage() {
                         {p.initials}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <p className="body font-semibold text-taupe-900 truncate">{p.name}</p>
-                        <p className="caption text-taupe-400 truncate">{p.email}</p>
+                        <p className="body font-semibold text-ground-900 truncate">{p.name}</p>
+                        <p className="caption text-ground-400 truncate">{p.email}</p>
                       </div>
-                      <ChevronRight size={14} className="shrink-0 text-taupe-300" />
+                      <ChevronRight size={14} className="shrink-0 text-ground-300" />
                     </div>
                   </StackedListItem>
                 ))}
@@ -145,12 +145,12 @@ export default function StackedListPage() {
                   <StackedListItem key={p.email} href="#">
                     <div className="flex items-center justify-between gap-4">
                       <div className="min-w-0">
-                        <p className="body font-semibold text-taupe-900 truncate">{p.name}</p>
-                        <p className="caption text-taupe-400">{p.stage}</p>
+                        <p className="body font-semibold text-ground-900 truncate">{p.name}</p>
+                        <p className="caption text-ground-400">{p.stage}</p>
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
                         <Badge variant="secondary">{p.date}</Badge>
-                        <ChevronRight size={14} className="text-taupe-300" />
+                        <ChevronRight size={14} className="text-ground-300" />
                       </div>
                     </div>
                   </StackedListItem>

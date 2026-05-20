@@ -8,7 +8,7 @@ const stats = [
 ] as const;
 
 function changeClass(up: boolean) {
-  return up ? "caption font-medium text-brand-primary" : "caption font-medium text-taupe-500";
+  return up ? "caption font-medium text-brand-primary" : "caption font-medium text-ground-500";
 }
 
 export default function StatsIcons() {
@@ -17,10 +17,10 @@ export default function StatsIcons() {
       {stats.map((stat, index) => (
         <div
           key={stat.label}
-          className="rounded-xl border border-taupe-100 bg-white px-6 py-5"
+          className="rounded-xl border border-ground-100 bg-white px-6 py-5"
         >
           <div className="mb-3 flex items-start justify-between gap-4">
-            <dt className="caption text-taupe-500">{stat.label}</dt>
+            <dt className="caption text-ground-500">{stat.label}</dt>
             <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-brand-primary/10">
               {index === 0 && <Users className="size-5 text-brand-primary" />}
               {index === 1 && (
@@ -32,7 +32,7 @@ export default function StatsIcons() {
             </div>
           </div>
           <dd className="flex items-end justify-between gap-4">
-            <span className="heading font-semibold text-taupe-900">
+            <span className="heading font-semibold text-ground-900">
               {stat.value}
             </span>
             <span className={changeClass(stat.up)}>{stat.change}</span>

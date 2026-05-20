@@ -60,7 +60,7 @@ const pages = ["Company", "Stores"];
 
 function CartButton() {
   return (
-    <button className="relative flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700 transition-colors hover:bg-taupe-50">
+    <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
       <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
         2
@@ -71,7 +71,7 @@ function CartButton() {
 
 function PageContent() {
   return (
-    <div className="flex items-center justify-center bg-taupe-50 body text-taupe-400 h-32">
+    <div className="flex items-center justify-center bg-ground-50 body text-ground-400 h-32">
       Page content
     </div>
   );
@@ -79,24 +79,24 @@ function PageContent() {
 
 function FeaturedColumnsMenu({ category }: { category: NavCategory }) {
   return (
-    <div className="grid gap-6 border-t border-taupe-100 bg-white px-5 py-5 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.6fr]">
+    <div className="grid gap-6 border-t border-ground-100 bg-white px-5 py-5 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.6fr]">
       <div className="grid gap-4 md:grid-cols-2">
         {category.featured.map((item) => (
-          <div key={item.title} className="overflow-hidden rounded-2xl border border-taupe-100 bg-taupe-50">
+          <div key={item.title} className="overflow-hidden rounded-2xl border border-ground-100 bg-ground-50">
             <img src={item.image} alt={item.title} className="h-32 w-full object-cover" />
             <div className="space-y-1 p-4">
-              <p className="body font-semibold text-taupe-900">{item.title}</p>
-              <p className="caption leading-relaxed text-taupe-400">{item.subtitle}</p>
+              <p className="body font-semibold text-ground-900">{item.title}</p>
+              <p className="caption leading-relaxed text-ground-400">{item.subtitle}</p>
             </div>
           </div>
         ))}
       </div>
       {category.sections.map((section) => (
         <div key={section.label}>
-          <p className="label mb-3 text-taupe-400">{section.label}</p>
+          <p className="label mb-3 text-ground-400">{section.label}</p>
           <div className="space-y-2">
             {section.links.map((link) => (
-              <a key={link} href="#" className="block body text-taupe-600 transition-colors hover:text-taupe-900">
+              <a key={link} href="#" className="block body text-ground-600 transition-colors hover:text-ground-900">
                 {link}
               </a>
             ))}
@@ -104,10 +104,10 @@ function FeaturedColumnsMenu({ category }: { category: NavCategory }) {
         </div>
       ))}
       <div>
-        <p className="label mb-3 text-taupe-400">Pages</p>
+        <p className="label mb-3 text-ground-400">Pages</p>
         <div className="space-y-2">
           {pages.map((page) => (
-            <a key={page} href="#" className="block body text-taupe-600 transition-colors hover:text-taupe-900">
+            <a key={page} href="#" className="block body text-ground-600 transition-colors hover:text-ground-900">
               {page}
             </a>
           ))}
@@ -123,9 +123,9 @@ export default function CenteredLogoNav() {
   const centeredCategory = categories.find((category) => category.name === centeredMenu) ?? categories[0];
 
   return (
-    <div className="w-full rounded-xl border border-taupe-100 overflow-hidden bg-white">
+    <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">
       <div className="h-[360px]">
-        <div className="border-b border-taupe-100 px-5 py-4">
+        <div className="border-b border-ground-100 px-5 py-4">
           <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4">
             <div className="flex items-center gap-2">
               {categories.map((category) => (
@@ -134,22 +134,22 @@ export default function CenteredLogoNav() {
                   onClick={() => setCenteredMenu(category.name)}
                   className={`rounded-full px-4 py-2 body transition-colors ${
                     centeredMenu === category.name
-                      ? "bg-taupe-900 text-white"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      ? "bg-ground-900 text-white"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   }`}
                 >
                   {category.name}
                 </button>
               ))}
-              <a href="#" className="px-3 py-2 body text-taupe-500 hover:text-taupe-900">Company</a>
+              <a href="#" className="px-3 py-2 body text-ground-500 hover:text-ground-900">Company</a>
             </div>
             <div className="justify-self-center">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-taupe-900 heading text-white">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-ground-900 heading text-white">
                 D
               </div>
             </div>
             <div className="flex items-center justify-end gap-2">
-              <button className="flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700">
+              <button className="flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700">
                 <Search size={17} />
               </button>
               <CartButton />

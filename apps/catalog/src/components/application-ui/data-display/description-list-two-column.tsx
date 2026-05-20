@@ -19,15 +19,15 @@ const detailFields = [
 
 export default function DescriptionListTwoColumn() {
   return (
-    <div className="w-full overflow-hidden rounded-xl border border-taupe-100 bg-white">
-      <div className="border-b border-taupe-100 px-6 py-4">
-        <h3 className="subheading text-taupe-900">Employee Details</h3>
+    <div className="w-full overflow-hidden rounded-xl border border-ground-100 bg-white">
+      <div className="border-b border-ground-100 px-6 py-4">
+        <h3 className="subheading text-ground-900">Employee Details</h3>
       </div>
       <dl className="grid grid-cols-1 gap-x-8 gap-y-4 px-6 py-4 md:grid-cols-2">
         {detailFields.map(([term, definition]) => (
           <div key={term}>
-            <dt className="caption font-medium text-taupe-500">{term}</dt>
-            <dd className="mt-0.5 body text-taupe-900">{definition}</dd>
+            <dt className="caption font-medium text-ground-500">{term}</dt>
+            <dd className="mt-0.5 body text-ground-900">{definition}</dd>
           </div>
         ))}
       </dl>

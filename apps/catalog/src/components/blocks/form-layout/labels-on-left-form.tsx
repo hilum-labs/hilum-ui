@@ -7,11 +7,11 @@ import { Label } from "@hilum/ui";
 
 export default function LabelsOnLeftForm() {
   return (
-    <form className="flex flex-col divide-y divide-taupe-100" onSubmit={(e) => e.preventDefault()}>
+    <form className="flex flex-col divide-y divide-ground-100" onSubmit={(e) => e.preventDefault()}>
       <div className="grid grid-cols-3 gap-8 py-8">
         <div>
-          <p className="body font-semibold text-taupe-900">Profile</p>
-          <p className="mt-1 caption text-taupe-400">
+          <p className="body font-semibold text-ground-900">Profile</p>
+          <p className="mt-1 caption text-ground-400">
             This information will be displayed publicly.
           </p>
         </div>
@@ -34,8 +34,8 @@ export default function LabelsOnLeftForm() {
 
       <div className="grid grid-cols-3 gap-8 py-8">
         <div>
-          <p className="body font-semibold text-taupe-900">Notifications</p>
-          <p className="mt-1 caption text-taupe-400">Choose how you want to be notified.</p>
+          <p className="body font-semibold text-ground-900">Notifications</p>
+          <p className="mt-1 caption text-ground-400">Choose how you want to be notified.</p>
         </div>
         <div className="col-span-2 flex flex-col gap-5">
           {[
@@ -45,8 +45,8 @@ export default function LabelsOnLeftForm() {
           ].map((item) => (
             <div key={item.id} className="flex items-center justify-between gap-4">
               <div>
-                <Label htmlFor={item.id} className="body font-medium text-taupe-900">{item.label}</Label>
-                <p className="caption text-taupe-400">{item.desc}</p>
+                <Label htmlFor={item.id} className="body font-medium text-ground-900">{item.label}</Label>
+                <p className="caption text-ground-400">{item.desc}</p>
               </div>
               <Switch id={item.id} />
             </div>
@@ -56,8 +56,8 @@ export default function LabelsOnLeftForm() {
 
       <div className="grid grid-cols-3 gap-8 py-8">
         <div>
-          <p className="body font-semibold text-taupe-900">Password</p>
-          <p className="mt-1 caption text-taupe-400">Update your account password.</p>
+          <p className="body font-semibold text-ground-900">Password</p>
+          <p className="mt-1 caption text-ground-400">Update your account password.</p>
         </div>
         <div className="col-span-2 flex flex-col gap-4">
           <Field label="Current password" htmlFor="lol-cpw">

@@ -38,7 +38,7 @@ const butterScale = [
   { name: "950", hex: "#221600", lightText: true },
 ];
 
-const taupeScale = [
+const groundScale = [
   { name: "50",  hex: "#f9f7f5", usage: "muted surface", lightText: false },
   { name: "100", hex: "#f2eeea", usage: "borders, skeleton", lightText: false },
   { name: "200", hex: "#e3dcd4", usage: "hover borders", lightText: false },
@@ -58,13 +58,13 @@ const semanticColors = [
 
 const semanticTokens = [
   { token: "background",         value: "white",        hex: "#ffffff",  usage: "Page background" },
-  { token: "foreground",         value: "taupe-900",    hex: "#26181a",  usage: "Primary text and headings" },
-  { token: "border",             value: "taupe-100",    hex: "#f2eeea",  usage: "Default borders and dividers" },
-  { token: "muted",              value: "taupe-50",     hex: "#f9f7f5",  usage: "Sidebar, muted surface areas" },
-  { token: "muted-foreground",   value: "taupe-500",    hex: "#7d6960",  usage: "Body text, descriptions", lightText: true },
+  { token: "foreground",         value: "ground-900",    hex: "#26181a",  usage: "Primary text and headings" },
+  { token: "border",             value: "ground-100",    hex: "#f2eeea",  usage: "Default borders and dividers" },
+  { token: "muted",              value: "ground-50",     hex: "#f9f7f5",  usage: "Sidebar, muted surface areas" },
+  { token: "muted-foreground",   value: "ground-500",    hex: "#7d6960",  usage: "Body text, descriptions", lightText: true },
   { token: "primary",            value: "brand-primary", hex: "#c100f1",  usage: "Primary buttons, focus rings", lightText: true },
   { token: "primary-foreground", value: "white",        hex: "#ffffff",  usage: "Text on primary backgrounds" },
-  { token: "secondary",          value: "taupe-50",     hex: "#f9f7f5",  usage: "Secondary buttons, tag backgrounds" },
+  { token: "secondary",          value: "ground-50",     hex: "#f9f7f5",  usage: "Secondary buttons, tag backgrounds" },
   { token: "accent",             value: "purple-50",    hex: "#fdf0ff",  usage: "Subtle hover and accent surfaces" },
   { token: "accent-foreground",  value: "purple-700",   hex: "#740092",  usage: "Text on accent surfaces", lightText: true },
   { token: "warning",            value: "brand-secondary", hex: "#fff5bf",  usage: "Warning banners and callouts" },
@@ -240,20 +240,20 @@ export default function FoundationsPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
           <span>Design System</span>
           <span>/</span>
-          <span className="body font-semibold text-taupe-900">Foundations</span>
+          <span className="body font-semibold text-ground-900">Foundations</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Foundations</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Foundations</h1>
+        <p className="body max-w-md text-ground-400">
           The raw design decisions that every component is built on. Understand
           these and the whole system becomes predictable.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">5 categories</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Colors · Typography · Spacing · Radius · Shadows</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">5 categories</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Colors · Typography · Spacing · Radius · Shadows</p>
         </div>
       </div>
 
@@ -273,14 +273,14 @@ export default function FoundationsPage() {
               {brandHeroes.map((c) => (
                 <div key={c.token} className="flex flex-col gap-2">
                   <div
-                    className="h-24 w-full rounded-xl border border-taupe-100"
+                    className="h-24 w-full rounded-xl border border-ground-100"
                     style={{ backgroundColor: c.hex }}
                   />
                   <div>
-                    <p className="subheading text-taupe-900">{c.name}</p>
-                    <p className="font-mono caption font-semibold text-taupe-500">{c.hex}</p>
-                    <p className="caption text-taupe-400">{c.token}</p>
-                    <p className="caption-xs mt-0.5 text-taupe-300">{c.role}</p>
+                    <p className="subheading text-ground-900">{c.name}</p>
+                    <p className="font-mono caption font-semibold text-ground-500">{c.hex}</p>
+                    <p className="caption text-ground-400">{c.token}</p>
+                    <p className="caption-xs mt-0.5 text-ground-300">{c.role}</p>
                   </div>
                 </div>
               ))}
@@ -332,10 +332,10 @@ export default function FoundationsPage() {
               description="The neutral spine. Every text, border, and structural surface in the system draws from here."
             />
             <div className="mt-4 grid grid-cols-11 gap-2">
-              {taupeScale.map((s) => (
+              {groundScale.map((s) => (
                 <ColorSwatch
                   key={s.name}
-                  name={`taupe-${s.name}`}
+                  name={`ground-${s.name}`}
                   hex={s.hex}
                   usage={s.usage}
                   lightText={s.lightText}
@@ -369,17 +369,17 @@ export default function FoundationsPage() {
               name="Semantic tokens"
               description="CSS variables that map intent to palette values. Use these in components, never raw hex."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-taupe-100">
-              <div className="grid grid-cols-3 border-b border-taupe-100 bg-taupe-50 px-4 py-2">
-                <p className="label text-taupe-400">Token</p>
-                <p className="label text-taupe-400">Value</p>
-                <p className="label text-taupe-400">Usage</p>
+            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+              <div className="grid grid-cols-3 border-b border-ground-100 bg-ground-50 px-4 py-2">
+                <p className="label text-ground-400">Token</p>
+                <p className="label text-ground-400">Value</p>
+                <p className="label text-ground-400">Usage</p>
               </div>
               {semanticTokens.map((t, i) => (
                 <div
                   key={t.token}
                   className={cn(
-                    i !== semanticTokens.length - 1 && "border-b border-taupe-100"
+                    i !== semanticTokens.length - 1 && "border-b border-ground-100"
                   )}
                 >
                   <TokenRow
@@ -406,19 +406,19 @@ export default function FoundationsPage() {
               description="Instrument Serif for titles and display text. Inter for all UI and body copy."
             />
             <div className="mt-4 grid grid-cols-2 gap-3">
-              <div className="rounded-xl border border-taupe-100 p-5">
-                <p className="caption mb-3 text-taupe-400">Instrument Serif · Titles</p>
-                <p className="heading-xl text-taupe-900">
+              <div className="rounded-xl border border-ground-100 p-5">
+                <p className="caption mb-3 text-ground-400">Instrument Serif · Titles</p>
+                <p className="heading-xl text-ground-900">
                   The quick brown fox jumps over the lazy dog.
                 </p>
-                <p className="caption mt-3 text-taupe-300">display-xl · display · heading-xl · heading</p>
+                <p className="caption mt-3 text-ground-300">display-xl · display · heading-xl · heading</p>
               </div>
-              <div className="rounded-xl border border-taupe-100 p-5">
-                <p className="caption mb-3 text-taupe-400">Inter · UI &amp; Body</p>
-                <p className="body-lg text-taupe-900">
+              <div className="rounded-xl border border-ground-100 p-5">
+                <p className="caption mb-3 text-ground-400">Inter · UI &amp; Body</p>
+                <p className="body-lg text-ground-900">
                   The quick brown fox jumps over the lazy dog. Consistent, accessible, and beautifully crafted.
                 </p>
-                <p className="caption mt-3 text-taupe-300">subheading · body-lg · body · caption · label</p>
+                <p className="caption mt-3 text-ground-300">subheading · body-lg · body · caption · label</p>
               </div>
             </div>
           </div>
@@ -429,35 +429,35 @@ export default function FoundationsPage() {
               name="Type scale"
               description="Nine steps from display to label. Use only these — never arbitrary font sizes."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-taupe-100">
-              <div className="hidden grid-cols-[120px_1fr_200px] border-b border-taupe-100 bg-taupe-50 px-5 py-2 md:grid">
-                <p className="label text-taupe-400">Step</p>
-                <p className="label text-taupe-400">Sample</p>
-                <p className="label text-taupe-400">Spec</p>
+            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+              <div className="hidden grid-cols-[120px_1fr_200px] border-b border-ground-100 bg-ground-50 px-5 py-2 md:grid">
+                <p className="label text-ground-400">Step</p>
+                <p className="label text-ground-400">Sample</p>
+                <p className="label text-ground-400">Spec</p>
               </div>
               {typeScale.map((step, i) => (
                 <div
                   key={step.label}
                   className={cn(
                     "grid items-center gap-4 px-5 py-4 md:grid-cols-[120px_1fr_200px]",
-                    i !== typeScale.length - 1 && "border-b border-taupe-100"
+                    i !== typeScale.length - 1 && "border-b border-ground-100"
                   )}
                 >
                   <div>
-                    <p className="font-mono text-[11px] font-semibold text-taupe-500">
+                    <p className="font-mono text-[11px] font-semibold text-ground-500">
                       {step.label}
                     </p>
-                    <p className="font-mono caption-xs text-taupe-300">{step.tailwind}</p>
+                    <p className="font-mono caption-xs text-ground-300">{step.tailwind}</p>
                   </div>
-                  <p className={cn("text-taupe-900 leading-tight truncate", step.className)}>
+                  <p className={cn("text-ground-900 leading-tight truncate", step.className)}>
                     {step.sample}
                   </p>
                   <div className="hidden md:block">
-                    <p className="font-mono caption-xs text-taupe-400">{step.size}</p>
-                    <p className="font-mono caption-xs text-taupe-300">
+                    <p className="font-mono caption-xs text-ground-400">{step.size}</p>
+                    <p className="font-mono caption-xs text-ground-300">
                       weight {step.weight} · {step.font}
                     </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-taupe-300">
+                    <p className="mt-0.5 caption-xs leading-tight text-ground-300">
                       {step.usage}
                     </p>
                   </div>
@@ -472,7 +472,7 @@ export default function FoundationsPage() {
               name="Weights"
               description="Inter uses regular, medium, and semibold. Instrument Serif is always regular (400)."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-taupe-100">
+            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
               {[
                 { weight: "400", name: "Regular", tailwind: "font-normal", usage: "Body copy, serif headings, captions" },
                 { weight: "500", name: "Medium", tailwind: "font-medium", usage: "UI labels, nav links, metadata" },
@@ -482,20 +482,20 @@ export default function FoundationsPage() {
                   key={w.weight}
                   className={cn(
                     "flex items-center gap-6 px-5 py-4",
-                    i !== 2 && "border-b border-taupe-100"
+                    i !== 2 && "border-b border-ground-100"
                   )}
                 >
                   <div className="w-24 shrink-0">
-                    <p className="font-mono text-[11px] font-semibold text-taupe-500">{w.tailwind}</p>
-                    <p className="font-mono caption-xs text-taupe-300">{w.weight}</p>
+                    <p className="font-mono text-[11px] font-semibold text-ground-500">{w.tailwind}</p>
+                    <p className="font-mono caption-xs text-ground-300">{w.weight}</p>
                   </div>
                   <p
-                    className={cn("flex-1 body-lg text-taupe-900", w.tailwind)}
+                    className={cn("flex-1 body-lg text-ground-900", w.tailwind)}
                     style={{ fontWeight: w.weight }}
                   >
                     {w.name} — The quick brown fox jumps over the lazy dog
                   </p>
-                  <p className="hidden shrink-0 caption-xs text-taupe-300 md:block">{w.usage}</p>
+                  <p className="hidden shrink-0 caption-xs text-ground-300 md:block">{w.usage}</p>
                 </div>
               ))}
             </div>
@@ -507,7 +507,7 @@ export default function FoundationsPage() {
               name="Letter spacing"
               description="Four tracking values. Tighter for large display type, widest for uppercase labels only."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-taupe-100">
+            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
               {[
                 { name: "tracking-tighter", value: "-0.05em", sample: "Bringing education to life", usage: "H1, display headings" },
                 { name: "tracking-tight", value: "-0.025em", sample: "Create, manage and organize", usage: "H2, H3 headings" },
@@ -518,19 +518,19 @@ export default function FoundationsPage() {
                   key={t.name}
                   className={cn(
                     "flex items-center gap-6 px-5 py-4",
-                    i !== 3 && "border-b border-taupe-100"
+                    i !== 3 && "border-b border-ground-100"
                   )}
                 >
                   <div className="w-36 shrink-0">
-                    <p className="font-mono text-[11px] font-semibold text-taupe-500">{t.name}</p>
-                    <p className="font-mono caption-xs text-taupe-300">{t.value}</p>
+                    <p className="font-mono text-[11px] font-semibold text-ground-500">{t.name}</p>
+                    <p className="font-mono caption-xs text-ground-300">{t.value}</p>
                   </div>
                   <p
-                    className={cn("flex-1 body font-semibold text-taupe-900 truncate", t.name)}
+                    className={cn("flex-1 body font-semibold text-ground-900 truncate", t.name)}
                   >
                     {t.sample}
                   </p>
-                  <p className="hidden shrink-0 caption-xs text-taupe-300 md:block">{t.usage}</p>
+                  <p className="hidden shrink-0 caption-xs text-ground-300 md:block">{t.usage}</p>
                 </div>
               ))}
             </div>
@@ -544,30 +544,30 @@ export default function FoundationsPage() {
             name="Scale"
             description="Tailwind's 4px base unit. Stick to these steps — consistency comes from constraint."
           />
-          <div className="mt-4 overflow-hidden rounded-xl border border-taupe-100">
-            <div className="grid grid-cols-[60px_60px_1fr_160px] border-b border-taupe-100 bg-taupe-50 px-5 py-2">
-              <p className="label text-taupe-400">Token</p>
-              <p className="label text-taupe-400">px</p>
-              <p className="label text-taupe-400">Visual</p>
-              <p className="label text-taupe-400">Used for</p>
+          <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+            <div className="grid grid-cols-[60px_60px_1fr_160px] border-b border-ground-100 bg-ground-50 px-5 py-2">
+              <p className="label text-ground-400">Token</p>
+              <p className="label text-ground-400">px</p>
+              <p className="label text-ground-400">Visual</p>
+              <p className="label text-ground-400">Used for</p>
             </div>
             {spacingScale.map((s, i) => (
               <div
                 key={s.token}
                 className={cn(
                   "grid grid-cols-[60px_60px_1fr_160px] items-center px-5 py-2.5",
-                  i !== spacingScale.length - 1 && "border-b border-taupe-100"
+                  i !== spacingScale.length - 1 && "border-b border-ground-100"
                 )}
               >
-                <p className="font-mono caption font-semibold text-taupe-700">{s.token}</p>
-                <p className="font-mono caption text-taupe-400">{s.px}</p>
+                <p className="font-mono caption font-semibold text-ground-700">{s.token}</p>
+                <p className="font-mono caption text-ground-400">{s.px}</p>
                 <div className="flex items-center">
                   <div
-                    className="h-3 rounded-sm bg-taupe-900"
+                    className="h-3 rounded-sm bg-ground-900"
                     style={{ width: s.px }}
                   />
                 </div>
-                <p className="caption-xs text-taupe-300">{s.usage}</p>
+                <p className="caption-xs text-ground-300">{s.usage}</p>
               </div>
             ))}
           </div>
@@ -585,14 +585,14 @@ export default function FoundationsPage() {
               <div key={r.name} className="flex flex-col items-center gap-3">
                 <div
                   className={cn(
-                    "size-14 border-2 border-taupe-900 bg-taupe-50",
+                    "size-14 border-2 border-ground-900 bg-ground-50",
                     r.className
                   )}
                 />
                 <div className="text-center">
-                  <p className="font-mono text-[11px] font-semibold text-taupe-700">{r.name}</p>
-                  <p className="font-mono caption-xs text-taupe-400">{r.value}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-taupe-300">{r.usage}</p>
+                  <p className="font-mono text-[11px] font-semibold text-ground-700">{r.name}</p>
+                  <p className="font-mono caption-xs text-ground-400">{r.value}</p>
+                  <p className="mt-0.5 caption-xs leading-tight text-ground-300">{r.usage}</p>
                 </div>
               </div>
             ))}
@@ -615,12 +615,12 @@ export default function FoundationsPage() {
                     s.className
                   )}
                 >
-                  <div className="h-8 w-12 rounded-md bg-taupe-100" />
+                  <div className="h-8 w-12 rounded-md bg-ground-100" />
                 </div>
                 <div>
-                  <p className="font-mono text-[11px] font-semibold text-taupe-700">{s.name}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-taupe-400">{s.usage}</p>
-                  <p className="mt-1 font-mono text-[9px] leading-tight text-taupe-300">{s.css}</p>
+                  <p className="font-mono text-[11px] font-semibold text-ground-700">{s.name}</p>
+                  <p className="mt-0.5 caption-xs leading-tight text-ground-400">{s.usage}</p>
+                  <p className="mt-1 font-mono text-[9px] leading-tight text-ground-300">{s.css}</p>
                 </div>
               </div>
             ))}
@@ -641,8 +641,8 @@ export default function FoundationsPage() {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-6 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -656,8 +656,8 @@ function PaletteLabel({
 }) {
   return (
     <div>
-      <p className="subheading text-taupe-900">{name}</p>
-      <p className="caption mt-0.5 text-taupe-400">{description}</p>
+      <p className="subheading text-ground-900">{name}</p>
+      <p className="caption mt-0.5 text-ground-400">{description}</p>
     </div>
   );
 }

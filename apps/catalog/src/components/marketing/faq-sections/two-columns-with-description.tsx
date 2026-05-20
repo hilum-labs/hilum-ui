@@ -29,8 +29,8 @@ export default function TwoColumnsWithDescription() {
   return (
     <section className="w-full bg-white px-8 py-16">
       <div className="mx-auto max-w-5xl text-center">
-        <h2 className="heading text-taupe-900">Frequently asked questions</h2>
-        <p className="body mx-auto mt-3 max-w-2xl text-taupe-500">
+        <h2 className="heading text-ground-900">Frequently asked questions</h2>
+        <p className="body mx-auto mt-3 max-w-2xl text-ground-500">
           Straightforward answers about plans, payments, and account
           management for prospective and current customers.
         </p>
@@ -38,8 +38,8 @@ export default function TwoColumnsWithDescription() {
         <dl className="mt-10 grid gap-x-8 gap-y-8 text-left md:grid-cols-2">
           {FAQS.map((item) => (
             <div key={item.q}>
-              <dt className="body font-semibold text-taupe-900">{item.q}</dt>
-              <dd className="body mt-2 text-taupe-500">{item.a}</dd>
+              <dt className="body font-semibold text-ground-900">{item.q}</dt>
+              <dd className="body mt-2 text-ground-500">{item.a}</dd>
             </div>
           ))}
         </dl>

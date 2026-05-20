@@ -123,8 +123,8 @@ function PersonAvatar({
 export default function StackedLists() {
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      <div className="w-full rounded-xl border border-taupe-100 bg-white">
-        <ul className="divide-y divide-taupe-100">
+      <div className="w-full rounded-xl border border-ground-100 bg-white">
+        <ul className="divide-y divide-ground-100">
           {PEOPLE.map((person) => (
             <li
               key={person.email}
@@ -133,12 +133,12 @@ export default function StackedLists() {
               <div className="flex items-center gap-3">
                 <PersonAvatar person={person} />
                 <div>
-                  <p className="body font-medium text-taupe-900">{person.name}</p>
-                  <p className="caption text-taupe-400">{person.title}</p>
+                  <p className="body font-medium text-ground-900">{person.name}</p>
+                  <p className="caption text-ground-400">{person.title}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="caption text-taupe-500">{person.email}</p>
+                <p className="caption text-ground-500">{person.email}</p>
                 <Badge variant="secondary" className="mt-2">
                   {person.dept}
                 </Badge>
@@ -148,35 +148,35 @@ export default function StackedLists() {
         </ul>
       </div>
 
-      <div className="w-full rounded-xl border border-taupe-100 bg-white">
-        <ul className="divide-y divide-taupe-100">
+      <div className="w-full rounded-xl border border-ground-100 bg-white">
+        <ul className="divide-y divide-ground-100">
           {STORIES.map((story) => (
             <li key={`${story.person.email}-${story.date}`} className="flex gap-4 px-6 py-4">
               <PersonAvatar person={story.person} />
               <div className="min-w-0 flex-1">
-                <p className="body font-medium text-taupe-900">{story.person.name}</p>
-                <p className="body line-clamp-2 text-taupe-500">{story.preview}</p>
+                <p className="body font-medium text-ground-900">{story.person.name}</p>
+                <p className="body line-clamp-2 text-ground-500">{story.preview}</p>
               </div>
-              <p className="caption whitespace-nowrap text-taupe-400">{story.date}</p>
+              <p className="caption whitespace-nowrap text-ground-400">{story.date}</p>
             </li>
           ))}
         </ul>
       </div>
 
-      <div className="w-full rounded-xl border border-taupe-100 bg-white">
+      <div className="w-full rounded-xl border border-ground-100 bg-white">
         <div className="max-h-[280px] overflow-auto px-6 py-3">
           {GROUPED_LISTS.map((group) => (
             <div key={group.heading}>
-              <div className="sticky top-0 bg-white py-1 caption font-semibold text-taupe-400">
+              <div className="sticky top-0 bg-white py-1 caption font-semibold text-ground-400">
                 {group.heading}
               </div>
-              <ul className="divide-y divide-taupe-100">
+              <ul className="divide-y divide-ground-100">
                 {group.people.map((person) => (
                   <li key={`${group.heading}-${person.email}`} className="flex items-center gap-3 py-3">
                     <PersonAvatar person={person} size="sm" />
                     <div>
-                      <p className="body font-medium text-taupe-900">{person.name}</p>
-                      <p className="caption text-taupe-400">
+                      <p className="body font-medium text-ground-900">{person.name}</p>
+                      <p className="caption text-ground-400">
                         {person.title} · {person.dept}
                       </p>
                     </div>
@@ -188,8 +188,8 @@ export default function StackedLists() {
         </div>
       </div>
 
-      <div className="w-full rounded-xl border border-taupe-100 bg-white">
-        <ul className="divide-y divide-taupe-100">
+      <div className="w-full rounded-xl border border-ground-100 bg-white">
+        <ul className="divide-y divide-ground-100">
           {COLLABORATOR_ROWS.map((item) => (
             <li
               key={item.name}
@@ -198,8 +198,8 @@ export default function StackedLists() {
               <div className="flex items-center gap-3">
                 <PersonAvatar person={item.owner} size="md" className="size-8" />
                 <div>
-                  <p className="body font-medium text-taupe-900">{item.name}</p>
-                  <p className="caption text-taupe-400">{item.owner.name}</p>
+                  <p className="body font-medium text-ground-900">{item.name}</p>
+                  <p className="caption text-ground-400">{item.owner.name}</p>
                 </div>
               </div>
               <div className="flex -space-x-1">

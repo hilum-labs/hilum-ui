@@ -70,12 +70,12 @@ const CODE = {
   title="Payment method"
   description="Manage your billing information."
 >
-  <div className="rounded-lg bg-taupe-50 border border-taupe-100 px-4 py-3 flex items-center justify-between">
+  <div className="rounded-lg bg-ground-50 border border-ground-100 px-4 py-3 flex items-center justify-between">
     <div className="flex items-center gap-3">
-      <div className="size-8 rounded bg-taupe-200 flex items-center justify-center caption font-bold text-taupe-600">VI</div>
+      <div className="size-8 rounded bg-ground-200 flex items-center justify-center caption font-bold text-ground-600">VI</div>
       <div>
-        <p className="caption font-medium text-taupe-900">Visa ending in 4242</p>
-        <p className="caption-xs text-taupe-400">Expires 12/2026</p>
+        <p className="caption font-medium text-ground-900">Visa ending in 4242</p>
+        <p className="caption-xs text-ground-400">Expires 12/2026</p>
       </div>
     </div>
     <Button variant="ghost" size="sm">Edit</Button>
@@ -86,8 +86,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -99,21 +99,21 @@ export default function ActionPanelPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-taupe-700">Molecules</a>
+          <a href="/molecules" className="hover:text-ground-700">Molecules</a>
           <span>/</span>
-          <span className="body font-semibold text-taupe-900">Action Panel</span>
+          <span className="body font-semibold text-ground-900">Action Panel</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Action Panel</h1>
-        <p className="body max-w-md text-taupe-400">
+        <h1 className="display mb-2 text-ground-900">Action Panel</h1>
+        <p className="body max-w-md text-ground-400">
           A bordered card that communicates a single, focused action. Variants for toggle, input, link, well, and button placement.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">Molecule</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Button · Card · Switch · Input</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">Molecule</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Button · Card · Switch · Input</p>
         </div>
       </div>
 
@@ -235,12 +235,12 @@ export default function ActionPanelPage() {
                 title="Payment method"
                 description="Manage the card used for billing."
               >
-                <div className="rounded-lg bg-taupe-50 border border-taupe-100 px-4 py-3 flex items-center justify-between">
+                <div className="rounded-lg bg-ground-50 border border-ground-100 px-4 py-3 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex size-8 items-center justify-center rounded bg-taupe-200 caption font-bold text-taupe-600">VI</div>
+                    <div className="flex size-8 items-center justify-center rounded bg-ground-200 caption font-bold text-ground-600">VI</div>
                     <div>
-                      <p className="caption font-medium text-taupe-900">Visa ending in 4242</p>
-                      <p className="caption-xs text-taupe-400">Expires 12/2026</p>
+                      <p className="caption font-medium text-ground-900">Visa ending in 4242</p>
+                      <p className="caption-xs text-ground-400">Expires 12/2026</p>
                     </div>
                   </div>
                   <Button variant="ghost" size="sm">Edit</Button>

@@ -14,7 +14,7 @@ export default function CTASimpleCenterBranded() {
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button
             size="lg"
-            className="w-full bg-white text-taupe-900 hover:bg-taupe-100 sm:w-auto"
+            className="w-full bg-white text-ground-900 hover:bg-ground-100 sm:w-auto"
           >
             Start free
           </Button>

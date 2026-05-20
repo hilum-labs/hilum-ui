@@ -40,8 +40,8 @@ export default function FeatureGridOffsetIcons() {
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
           <Badge variant="outline" className="mb-4">Launch operations</Badge>
-          <h3 className="heading text-taupe-900">Operational clarity for every launch</h3>
-          <p className="body mt-3 text-taupe-500">
+          <h3 className="heading text-ground-900">Operational clarity for every launch</h3>
+          <p className="body mt-3 text-ground-500">
             Turn scattered checklists and one-off spreadsheets into a reliable operating system for your entire launch calendar.
           </p>
         </div>
@@ -49,12 +49,12 @@ export default function FeatureGridOffsetIcons() {
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <article key={feature.name} className="relative rounded-3xl bg-taupe-50 p-6 pt-10">
+              <article key={feature.name} className="relative rounded-3xl bg-ground-50 p-6 pt-10">
                 <div className="absolute -top-4 left-6 flex size-12 items-center justify-center rounded-2xl bg-white text-brand-primary shadow-natural">
                   <Icon className="size-5" />
                 </div>
-                <h4 className="subheading text-taupe-900">{feature.name}</h4>
-                <p className="body mt-2 text-taupe-500">{feature.description}</p>
+                <h4 className="subheading text-ground-900">{feature.name}</h4>
+                <p className="body mt-2 text-ground-500">{feature.description}</p>
               </article>
             );
           })}

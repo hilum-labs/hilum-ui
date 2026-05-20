@@ -36,7 +36,7 @@ function Stars({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5 text-sm">
       {Array.from({ length: 5 }).map((_, index) => (
-        <span key={index} className={index < rating ? "text-brand-secondary" : "text-taupe-200"}>
+        <span key={index} className={index < rating ? "text-brand-secondary" : "text-ground-200"}>
           {index < rating ? "★" : "☆"}
         </span>
       ))}
@@ -46,10 +46,10 @@ function Stars({ rating }: { rating: number }) {
 
 export default function AvatarReviewCards() {
   return (
-    <section className="w-full rounded-xl border border-taupe-100 bg-white p-6">
+    <section className="w-full rounded-xl border border-ground-100 bg-white p-6">
       <div className="grid gap-5 md:grid-cols-2">
         {reviews.map((review) => (
-          <article key={review.author} className="rounded-[24px] border border-taupe-100 bg-taupe-50 p-6">
+          <article key={review.author} className="rounded-[24px] border border-ground-100 bg-ground-50 p-6">
             <div className="flex items-start gap-4">
               <Avatar size="lg">
                 <AvatarFallback className="bg-brand-primary/10 text-brand-primary">
@@ -59,12 +59,12 @@ export default function AvatarReviewCards() {
               <div className="flex-1">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="body font-semibold text-taupe-900">{review.author}</p>
-                    <p className="caption mt-0.5 text-taupe-400">{review.title}</p>
+                    <p className="body font-semibold text-ground-900">{review.author}</p>
+                    <p className="caption mt-0.5 text-ground-400">{review.title}</p>
                   </div>
                   <Stars rating={review.rating} />
                 </div>
-                <p className="body mt-4 leading-relaxed text-taupe-500">{review.body}</p>
+                <p className="body mt-4 leading-relaxed text-ground-500">{review.body}</p>
               </div>
             </div>
           </article>

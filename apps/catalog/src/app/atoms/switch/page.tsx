@@ -22,8 +22,8 @@ import { Label } from "@hilum/ui"
   withLeftDescription: `{settings.map((s) => (
   <div key={s.id} className="flex items-center justify-between gap-4">
     <div>
-      <Label htmlFor={s.id} className="body font-medium text-taupe-900">{s.label}</Label>
-      <p className="caption text-taupe-400 mt-0.5">{s.description}</p>
+      <Label htmlFor={s.id} className="body font-medium text-ground-900">{s.label}</Label>
+      <p className="caption text-ground-400 mt-0.5">{s.description}</p>
     </div>
     <Switch id={s.id} />
   </div>
@@ -32,8 +32,8 @@ import { Label } from "@hilum/ui"
   withRightLabel: `<div className="flex items-start gap-3">
   <Switch id="annual" defaultChecked className="mt-0.5" />
   <div>
-    <Label htmlFor="annual" className="body font-medium text-taupe-900">Annual billing</Label>
-    <p className="caption text-taupe-400 mt-0.5">Save 20% compared to monthly pricing.</p>
+    <Label htmlFor="annual" className="body font-medium text-ground-900">Annual billing</Label>
+    <p className="caption text-ground-400 mt-0.5">Save 20% compared to monthly pricing.</p>
   </div>
 </div>`,
 
@@ -50,8 +50,8 @@ import { Label } from "@hilum/ui"
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -66,15 +66,15 @@ export default function SwitchPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Switch</span>
+          <span className="font-semibold text-ground-900">Switch</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Switch</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Switch</h1>
+        <p className="body max-w-lg text-ground-500">
           Toggle between two states — on and off. Multiple label and description layout variants.
         </p>
       </div>
@@ -99,7 +99,7 @@ export default function SwitchPage() {
               </div>
               <div className="flex items-center gap-3">
                 <Switch id="sw-disabled" disabled />
-                <Label htmlFor="sw-disabled" className="text-taupe-400">Disabled option</Label>
+                <Label htmlFor="sw-disabled" className="text-ground-400">Disabled option</Label>
               </div>
             </div>
           </PreviewBlock>
@@ -112,10 +112,10 @@ export default function SwitchPage() {
               {NOTIFICATION_SETTINGS.map((s) => (
                 <div key={s.id} className="flex items-center justify-between gap-4">
                   <div>
-                    <Label htmlFor={s.id} className="body font-medium text-taupe-900 cursor-pointer">
+                    <Label htmlFor={s.id} className="body font-medium text-ground-900 cursor-pointer">
                       {s.label}
                     </Label>
-                    <p className="caption text-taupe-400 mt-0.5">{s.description}</p>
+                    <p className="caption text-ground-400 mt-0.5">{s.description}</p>
                   </div>
                   <Switch
                     id={s.id}
@@ -135,28 +135,28 @@ export default function SwitchPage() {
               <div className="flex items-start gap-3">
                 <Switch id="annual-billing" defaultChecked className="mt-0.5" />
                 <div>
-                  <Label htmlFor="annual-billing" className="body font-medium text-taupe-900 cursor-pointer">
+                  <Label htmlFor="annual-billing" className="body font-medium text-ground-900 cursor-pointer">
                     Annual billing
                   </Label>
-                  <p className="caption text-taupe-400 mt-0.5">Save 20% compared to monthly pricing.</p>
+                  <p className="caption text-ground-400 mt-0.5">Save 20% compared to monthly pricing.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Switch id="marketing-emails" className="mt-0.5" />
                 <div>
-                  <Label htmlFor="marketing-emails" className="body font-medium text-taupe-900 cursor-pointer">
+                  <Label htmlFor="marketing-emails" className="body font-medium text-ground-900 cursor-pointer">
                     Marketing emails
                   </Label>
-                  <p className="caption text-taupe-400 mt-0.5">Receive product updates, announcements, and offers.</p>
+                  <p className="caption text-ground-400 mt-0.5">Receive product updates, announcements, and offers.</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Switch id="two-factor" defaultChecked className="mt-0.5" />
                 <div>
-                  <Label htmlFor="two-factor" className="body font-medium text-taupe-900 cursor-pointer">
+                  <Label htmlFor="two-factor" className="body font-medium text-ground-900 cursor-pointer">
                     Two-factor authentication
                   </Label>
-                  <p className="caption text-taupe-400 mt-0.5">Add an extra layer of security to your account.</p>
+                  <p className="caption text-ground-400 mt-0.5">Add an extra layer of security to your account.</p>
                 </div>
               </div>
             </div>
@@ -166,7 +166,7 @@ export default function SwitchPage() {
         <div>
           <Heading label="Switch · List in a settings section" />
           <PreviewBlock title="Composed settings panel" description="Switches in a bordered card with dividers" code={CODE.simpleList} previewClassName="flex-col items-start">
-            <div className="w-full max-w-md rounded-xl border border-taupe-100 bg-white shadow-natural divide-y divide-taupe-100">
+            <div className="w-full max-w-md rounded-xl border border-ground-100 bg-white shadow-natural divide-y divide-ground-100">
               {[
                 { id: "sw-2fa", label: "Two-factor auth", on: true },
                 { id: "sw-sess", label: "Session alerts", on: true },
@@ -174,7 +174,7 @@ export default function SwitchPage() {
                 { id: "sw-pub", label: "Public profile", on: false },
               ].map((item) => (
                 <div key={item.id} className="flex items-center justify-between gap-4 px-5 py-4">
-                  <Label htmlFor={item.id} className="body text-taupe-700 cursor-pointer">{item.label}</Label>
+                  <Label htmlFor={item.id} className="body text-ground-700 cursor-pointer">{item.label}</Label>
                   <Switch id={item.id} defaultChecked={item.on} />
                 </div>
               ))}

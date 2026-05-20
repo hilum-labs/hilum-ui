@@ -23,7 +23,7 @@ export default function SidebarSimple() {
 
   return (
     <div className="p-8">
-      <div className="rounded-xl border border-taupe-100 overflow-hidden w-56 bg-white p-2">
+      <div className="rounded-xl border border-ground-100 overflow-hidden w-56 bg-white p-2">
         <div className="space-y-1">
           {sidebarItems.map((item) => (
             <button
@@ -33,7 +33,7 @@ export default function SidebarSimple() {
               className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors ${
                 activeItem === item.label
                   ? "bg-brand-primary/10 text-brand-primary"
-                  : "text-taupe-600 hover:bg-taupe-50 hover:text-taupe-900"
+                  : "text-ground-600 hover:bg-ground-50 hover:text-ground-900"
               }`}
             >
               <item.icon size={16} />

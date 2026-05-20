@@ -20,7 +20,7 @@ const CONTENT_ROWS = [
 
 function ShellFrame({ children }: { children: any }) {
   return (
-    <div className="flex min-h-[480px] overflow-hidden rounded-xl border border-taupe-100">
+    <div className="flex min-h-[480px] overflow-hidden rounded-xl border border-ground-100">
       {children}
     </div>
   );
@@ -29,18 +29,18 @@ function ShellFrame({ children }: { children: any }) {
 function HorizontalNav({ tone }: { tone: "light" | "dark" | "brand" }) {
   const wrapperClass =
     tone === "light"
-      ? "border-b border-taupe-200 bg-white"
+      ? "border-b border-ground-200 bg-white"
       : tone === "dark"
-        ? "bg-taupe-900"
+        ? "bg-ground-900"
         : "bg-brand-primary";
   const brandClass = tone === "light" ? "bg-brand-primary text-white" : "bg-white/15 text-white";
-  const textClass = tone === "light" ? "text-taupe-500" : "text-white/70";
-  const hoverTextClass = tone === "light" ? "hover:text-taupe-900" : "hover:text-white";
+  const textClass = tone === "light" ? "text-ground-500" : "text-white/70";
+  const hoverTextClass = tone === "light" ? "hover:text-ground-900" : "hover:text-white";
   const activeClass =
     tone === "light"
       ? "bg-brand-primary/10 text-brand-primary font-medium"
       : "bg-white/10 text-white font-medium";
-  const avatarClass = tone === "light" ? "bg-taupe-900 text-white" : "bg-white text-taupe-900";
+  const avatarClass = tone === "light" ? "bg-ground-900 text-white" : "bg-white text-ground-900";
 
   return (
     <div className={`flex items-center justify-between px-6 py-4 ${wrapperClass}`}>
@@ -49,7 +49,7 @@ function HorizontalNav({ tone }: { tone: "light" | "dark" | "brand" }) {
           <div className={`flex size-8 items-center justify-center rounded-xl ${brandClass}`}>
             <span className="body font-medium">D</span>
           </div>
-          <span className={tone === "light" ? "body font-medium text-taupe-900" : "body font-medium text-white"}>
+          <span className={tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"}>
             Design Co.
           </span>
         </div>
@@ -68,7 +68,7 @@ function HorizontalNav({ tone }: { tone: "light" | "dark" | "brand" }) {
       <div className="flex items-center gap-3">
         <button
           type="button"
-          className={tone === "light" ? "caption text-taupe-400 hover:text-taupe-700" : "caption text-white/70 hover:text-white"}
+          className={tone === "light" ? "caption text-ground-400 hover:text-ground-700" : "caption text-white/70 hover:text-white"}
         >
           Help
         </button>
@@ -83,14 +83,14 @@ function HorizontalNav({ tone }: { tone: "light" | "dark" | "brand" }) {
 export default function BrandOverlapShell() {
   return (
     <ShellFrame>
-      <div className="flex flex-1 flex-col bg-taupe-50">
+      <div className="flex flex-1 flex-col bg-ground-50">
         <HorizontalNav tone="brand" />
-        <div className="flex-1 bg-taupe-50 px-6 pb-6">
-          <div className="-mt-8 rounded-2xl border border-taupe-100 bg-white p-6 shadow-natural">
+        <div className="flex-1 bg-ground-50 px-6 pb-6">
+          <div className="-mt-8 rounded-2xl border border-ground-100 bg-white p-6 shadow-natural">
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
-                <h3 className="heading text-taupe-900">Launch planning</h3>
-                <p className="caption mt-1 text-taupe-400">
+                <h3 className="heading text-ground-900">Launch planning</h3>
+                <p className="caption mt-1 text-ground-400">
                   A branded header can overlap the content area without overwhelming the page.
                 </p>
               </div>
@@ -98,9 +98,9 @@ export default function BrandOverlapShell() {
             </div>
             <div className="grid gap-4 lg:grid-cols-3">
               {CONTENT_ROWS.map((row) => (
-                <div key={row.title} className="rounded-xl border border-taupe-100 bg-taupe-50 p-4">
-                  <p className="body font-medium text-taupe-900">{row.title}</p>
-                  <p className="caption mt-1 text-taupe-400">{row.meta}</p>
+                <div key={row.title} className="rounded-xl border border-ground-100 bg-ground-50 p-4">
+                  <p className="body font-medium text-ground-900">{row.title}</p>
+                  <p className="caption mt-1 text-ground-400">{row.meta}</p>
                   <div className="mt-4 space-y-2">
                     <div className="h-2 w-full rounded-full bg-white" />
                     <div className="h-2 w-9/12 rounded-full bg-white" />

@@ -5,7 +5,7 @@ import { Button } from "@hilum/ui";
 
 function ExampleFrame({ children }: { children: any }) {
   return (
-    <div className="min-h-[600px] overflow-hidden rounded-xl border border-taupe-100 bg-white">
+    <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}
     </div>
   );
@@ -25,15 +25,15 @@ function ToggleRow({
   return (
     <div className="flex items-center justify-between gap-4">
       <div>
-        <p className="body font-medium text-taupe-900">{label}</p>
-        <p className="caption mt-1 text-taupe-400">{detail}</p>
+        <p className="body font-medium text-ground-900">{label}</p>
+        <p className="caption mt-1 text-ground-400">{detail}</p>
       </div>
       <button
         type="button"
         aria-pressed={enabled}
         onClick={onToggle}
         className={`flex h-7 w-12 items-center rounded-full p-1 transition-colors ${
-          enabled ? "bg-brand-primary" : "bg-taupe-200"
+          enabled ? "bg-brand-primary" : "bg-ground-200"
         }`}
       >
         <span
@@ -55,51 +55,51 @@ export default function CenteredSettingsScreen() {
 
   return (
     <ExampleFrame>
-      <div className="min-h-[600px] bg-taupe-50 px-6 py-8">
+      <div className="min-h-[600px] bg-ground-50 px-6 py-8">
         <div className="mx-auto w-full max-w-3xl">
-          <div className="caption mb-3 flex items-center gap-1.5 text-taupe-400">
+          <div className="caption mb-3 flex items-center gap-1.5 text-ground-400">
             <span>Design System</span>
             <span>/</span>
             <span>Application UI</span>
             <span>/</span>
-            <span className="text-taupe-900">Account Settings</span>
+            <span className="text-ground-900">Account Settings</span>
           </div>
-          <h3 className="heading text-taupe-900">Account Settings</h3>
-          <p className="caption mt-1 text-taupe-400">A centered settings form with clear section separation.</p>
+          <h3 className="heading text-ground-900">Account Settings</h3>
+          <p className="caption mt-1 text-ground-400">A centered settings form with clear section separation.</p>
 
-          <div className="mt-6 rounded-2xl border border-taupe-100 bg-white p-6">
-            <div className="border-b border-taupe-100 pb-6">
-              <p className="subheading text-taupe-900">Personal Info</p>
+          <div className="mt-6 rounded-2xl border border-ground-100 bg-white p-6">
+            <div className="border-b border-ground-100 pb-6">
+              <p className="subheading text-ground-900">Personal Info</p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="label text-taupe-400">First name</label>
+                  <label className="label text-ground-400">First name</label>
                   <input
                     type="text"
                     defaultValue="Tom"
-                    className="mt-2 h-10 w-full rounded-xl border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none"
+                    className="mt-2 h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="label text-taupe-400">Last name</label>
+                  <label className="label text-ground-400">Last name</label>
                   <input
                     type="text"
                     defaultValue="Cook"
-                    className="mt-2 h-10 w-full rounded-xl border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none"
+                    className="mt-2 h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="label text-taupe-400">Email</label>
+                  <label className="label text-ground-400">Email</label>
                   <input
                     type="email"
                     defaultValue="tom@example.com"
-                    className="mt-2 h-10 w-full rounded-xl border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none"
+                    className="mt-2 h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="border-b border-taupe-100 py-6">
-              <p className="subheading text-taupe-900">Notifications</p>
+            <div className="border-b border-ground-100 py-6">
+              <p className="subheading text-ground-900">Notifications</p>
               <div className="mt-4 space-y-4">
                 <ToggleRow
                   label="Email updates"
@@ -129,7 +129,7 @@ export default function CenteredSettingsScreen() {
             </div>
 
             <div className="pt-6">
-              <p className="subheading text-taupe-900">Danger Zone</p>
+              <p className="subheading text-ground-900">Danger Zone</p>
               <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 p-4">
                 <div className="flex items-start justify-between gap-4">
                   <div>

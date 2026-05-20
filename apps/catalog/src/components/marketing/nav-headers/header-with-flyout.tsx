@@ -47,12 +47,12 @@ function Logo({ dark = false }: { dark?: boolean }) {
       <div
         className={cn(
           "flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold",
-          dark ? "bg-brand-secondary text-taupe-900" : "bg-brand-primary text-white"
+          dark ? "bg-brand-secondary text-ground-900" : "bg-brand-primary text-white"
         )}
       >
         D
       </div>
-      <span className={cn("subheading", dark ? "text-white" : "text-taupe-900")}>Acme</span>
+      <span className={cn("subheading", dark ? "text-white" : "text-ground-900")}>Acme</span>
     </div>
   );
 }
@@ -71,8 +71,8 @@ function MobileMenuButton({
       className={cn(
         "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors md:hidden",
         dark
-          ? "text-taupe-300 hover:bg-taupe-800 hover:text-white"
-          : "text-taupe-600 hover:bg-taupe-100 hover:text-taupe-900"
+          ? "text-ground-300 hover:bg-ground-800 hover:text-white"
+          : "text-ground-600 hover:bg-ground-100 hover:text-ground-900"
       )}
     >
       <Menu size={18} />
@@ -99,7 +99,7 @@ function MobileDrawer({
     <div
       className={cn(
         "absolute inset-x-0 top-0 z-50 rounded-xl border p-4 shadow-elevated",
-        dark ? "border-taupe-700 bg-taupe-900" : "border-taupe-100 bg-white"
+        dark ? "border-ground-700 bg-ground-900" : "border-ground-100 bg-white"
       )}
     >
       <div className="mb-4 flex items-center justify-between">
@@ -110,8 +110,8 @@ function MobileDrawer({
           className={cn(
             "inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
             dark
-              ? "text-taupe-300 hover:bg-taupe-800 hover:text-white"
-              : "text-taupe-500 hover:bg-taupe-100 hover:text-taupe-900"
+              ? "text-ground-300 hover:bg-ground-800 hover:text-white"
+              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900"
           )}
         >
           <X size={18} />
@@ -129,14 +129,14 @@ export default function HeaderWithFlyout() {
 
   return (
     <div className="relative min-h-[24rem] w-full bg-white">
-      <header className="relative border-b border-taupe-100 bg-white px-6 py-4">
+      <header className="relative border-b border-ground-100 bg-white px-6 py-4">
         <div className="flex items-center justify-between gap-6">
           <Logo />
           <nav className="hidden items-center gap-6 md:flex">
             <button
               type="button"
               onClick={() => setFlyoutOpen(!flyoutOpen)}
-              className="inline-flex items-center gap-1 body text-taupe-600 transition-colors hover:text-taupe-900"
+              className="inline-flex items-center gap-1 body text-ground-600 transition-colors hover:text-ground-900"
             >
               Solutions
               <ChevronDown
@@ -148,7 +148,7 @@ export default function HeaderWithFlyout() {
               <a
                 key={link}
                 href={`#${link.toLowerCase()}`}
-                className="body text-taupe-600 transition-colors hover:text-taupe-900"
+                className="body text-ground-600 transition-colors hover:text-ground-900"
               >
                 {link}
               </a>
@@ -164,12 +164,12 @@ export default function HeaderWithFlyout() {
         </div>
 
         {flyoutOpen ? (
-          <div className="absolute inset-x-0 top-full z-10 hidden border-t border-taupe-100 bg-white shadow-elevated md:block">
+          <div className="absolute inset-x-0 top-full z-10 hidden border-t border-ground-100 bg-white shadow-elevated md:block">
             <div className="grid gap-8 px-6 py-6 md:grid-cols-[1.2fr_0.8fr]">
               <div>
                 <div className="mb-4 flex items-center gap-3">
-                  <h3 className="label text-taupe-400">Solutions</h3>
-                  <div className="h-px flex-1 bg-taupe-100" />
+                  <h3 className="label text-ground-400">Solutions</h3>
+                  <div className="h-px flex-1 bg-ground-100" />
                 </div>
                 <div className="space-y-2">
                   {SOLUTION_LINKS.map((link) => {
@@ -179,24 +179,24 @@ export default function HeaderWithFlyout() {
                       <a
                         key={link.name}
                         href={link.href}
-                        className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-taupe-50"
+                        className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-ground-50"
                       >
-                        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-taupe-100 text-taupe-700">
+                        <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700">
                           <Icon size={18} />
                         </div>
                         <div>
-                          <p className="body font-medium text-taupe-900">{link.name}</p>
-                          <p className="caption mt-1 text-taupe-500">{link.description}</p>
+                          <p className="body font-medium text-ground-900">{link.name}</p>
+                          <p className="caption mt-1 text-ground-500">{link.description}</p>
                         </div>
                       </a>
                     );
                   })}
                 </div>
               </div>
-              <div className="rounded-xl bg-taupe-50 p-4">
+              <div className="rounded-xl bg-ground-50 p-4">
                 <Badge variant="secondary">Featured</Badge>
-                <h3 className="subheading mt-3 text-taupe-900">Build a launch system your whole org can use</h3>
-                <p className="body mt-2 text-taupe-500">
+                <h3 className="subheading mt-3 text-ground-900">Build a launch system your whole org can use</h3>
+                <p className="body mt-2 text-ground-500">
                   Package analytics, rollout controls, and modular UI into one shared operating model for product teams.
                 </p>
                 <Button variant="secondary" size="sm" className="mt-4">
@@ -219,7 +219,7 @@ export default function HeaderWithFlyout() {
           <button
             type="button"
             onClick={() => setFlyoutOpen(!flyoutOpen)}
-            className="flex w-full items-center justify-between rounded-lg px-3 py-3 body text-taupe-700 transition-colors hover:bg-taupe-50 hover:text-taupe-900"
+            className="flex w-full items-center justify-between rounded-lg px-3 py-3 body text-ground-700 transition-colors hover:bg-ground-50 hover:text-ground-900"
           >
             Solutions
             <ChevronDown
@@ -233,10 +233,10 @@ export default function HeaderWithFlyout() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="block rounded-lg border border-taupe-100 bg-taupe-50 px-3 py-3"
+                  className="block rounded-lg border border-ground-100 bg-ground-50 px-3 py-3"
                 >
-                  <p className="body font-medium text-taupe-900">{link.name}</p>
-                  <p className="caption mt-1 text-taupe-500">{link.description}</p>
+                  <p className="body font-medium text-ground-900">{link.name}</p>
+                  <p className="caption mt-1 text-ground-500">{link.description}</p>
                 </a>
               ))}
             </div>
@@ -245,7 +245,7 @@ export default function HeaderWithFlyout() {
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="block rounded-lg px-3 py-3 body text-taupe-700 transition-colors hover:bg-taupe-50 hover:text-taupe-900"
+              className="block rounded-lg px-3 py-3 body text-ground-700 transition-colors hover:bg-ground-50 hover:text-ground-900"
             >
               {link}
             </a>
@@ -262,8 +262,8 @@ export default function HeaderWithFlyout() {
       </MobileDrawer>
 
       <div className="px-6 py-10">
-        <div className="rounded-2xl border border-dashed border-taupe-200 bg-taupe-50 p-6">
-          <p className="body max-w-2xl text-taupe-500">
+        <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
+          <p className="body max-w-2xl text-ground-500">
             A full-width flyout turns the primary navigation into a richer discovery layer without changing the header footprint.
           </p>
         </div>

@@ -45,8 +45,8 @@ function PortraitPlaceholder({
   className: string;
 }) {
   return (
-    <div className={`${className} flex items-center justify-center bg-taupe-100`}>
-      <div className="rounded-full border border-taupe-200 bg-white px-4 py-2 subheading text-taupe-500">
+    <div className={`${className} flex items-center justify-center bg-ground-100`}>
+      <div className="rounded-full border border-ground-200 bg-white px-4 py-2 subheading text-ground-500">
         {initials}
       </div>
     </div>
@@ -60,15 +60,15 @@ export default function WithImageAndShortParagraph() {
         {TEAM.slice(0, 4).map((member, index) => (
           <article
             key={member.name}
-            className={`grid items-center gap-6 rounded-3xl border border-taupe-100 p-6 lg:grid-cols-2 ${
+            className={`grid items-center gap-6 rounded-3xl border border-ground-100 p-6 lg:grid-cols-2 ${
               index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
             }`}
           >
             <PortraitPlaceholder initials={member.initials} className="min-h-[320px] rounded-2xl" />
             <div className="max-w-xl">
               <p className="caption text-brand-primary">{member.role}</p>
-              <h3 className="display mt-3 text-taupe-900">{member.name}</h3>
-              <p className="body mt-5 text-taupe-600">{member.bio}</p>
+              <h3 className="display mt-3 text-ground-900">{member.name}</h3>
+              <p className="body mt-5 text-ground-600">{member.bio}</p>
             </div>
           </article>
         ))}

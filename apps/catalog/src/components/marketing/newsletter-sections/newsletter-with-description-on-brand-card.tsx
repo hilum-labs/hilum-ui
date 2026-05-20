@@ -1,7 +1,7 @@
 import { Button } from "@hilum/ui";
 
 const EMAIL_INPUT_CLASS =
-  "h-9 w-full rounded-lg border border-taupe-200 bg-white px-3 body text-taupe-900 placeholder:text-taupe-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
+  "h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 placeholder:text-ground-400 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 focus:border-brand-primary";
 
 function EmailInput({ className = "" }: { className?: string }) {
   return (
@@ -35,7 +35,7 @@ export default function NewsletterWithDescriptionOnBrandCard() {
             <EmailInput className="sm:flex-1" />
             <Button
               type="submit"
-              className="bg-white text-brand-primary hover:bg-taupe-50"
+              className="bg-white text-brand-primary hover:bg-ground-50"
             >
               Sign up
             </Button>

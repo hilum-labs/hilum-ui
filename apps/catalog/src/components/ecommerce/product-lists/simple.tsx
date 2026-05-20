@@ -28,7 +28,7 @@ export default function Simple() {
       <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
         {PRODUCTS.map((product) => (
           <article key={product.name}>
-            <div className="overflow-hidden rounded-3xl bg-taupe-100">
+            <div className="overflow-hidden rounded-3xl bg-ground-100">
               <img
                 src={product.image}
                 alt={product.name}
@@ -36,8 +36,8 @@ export default function Simple() {
               />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
-              <h3 className="body font-medium text-taupe-900">{product.name}</h3>
-              <p className="body text-taupe-500">{product.price}</p>
+              <h3 className="body font-medium text-ground-900">{product.name}</h3>
+              <p className="body text-ground-500">{product.price}</p>
             </div>
           </article>
         ))}

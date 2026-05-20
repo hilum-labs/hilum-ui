@@ -4,44 +4,44 @@ import { Button } from "@hilum/ui";
 export default function HeroSplitWithNavbar() {
   return (
     <section className="w-full bg-white">
-      <div className="border-b border-taupe-100 px-6 sm:px-10 lg:px-14">
+      <div className="border-b border-ground-100 px-6 sm:px-10 lg:px-14">
         <div className="mx-auto flex max-w-6xl items-center justify-between py-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-xl bg-taupe-900 text-white">
+            <div className="flex size-9 items-center justify-center rounded-xl bg-ground-900 text-white">
               <span className="subheading text-white">L</span>
             </div>
-            <span className="subheading text-taupe-900">Lattice OS</span>
+            <span className="subheading text-ground-900">Lattice OS</span>
           </div>
-          <div className="hidden items-center gap-6 body text-taupe-500 md:flex">
-            <a href="#" className="transition-colors hover:text-taupe-900">
+          <div className="hidden items-center gap-6 body text-ground-500 md:flex">
+            <a href="#" className="transition-colors hover:text-ground-900">
               Platform
             </a>
-            <a href="#" className="transition-colors hover:text-taupe-900">
+            <a href="#" className="transition-colors hover:text-ground-900">
               Customers
             </a>
-            <a href="#" className="transition-colors hover:text-taupe-900">
+            <a href="#" className="transition-colors hover:text-ground-900">
               Pricing
             </a>
-            <a href="#" className="transition-colors hover:text-taupe-900">
+            <a href="#" className="transition-colors hover:text-ground-900">
               Resources
             </a>
           </div>
-          <Button variant="outline" className="border-taupe-200">
+          <Button variant="outline" className="border-ground-200">
             Sign in
           </Button>
         </div>
       </div>
 
       <div className="px-6 py-12 sm:px-10 lg:px-14 lg:py-14">
-        <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] border border-taupe-100 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] border border-ground-100 lg:grid-cols-2">
           <div className="bg-white px-8 py-12 sm:px-10 lg:px-12 lg:py-16">
-            <p className="label uppercase tracking-[0.24em] text-taupe-400">
+            <p className="label uppercase tracking-[0.24em] text-ground-400">
               Workflow infrastructure
             </p>
-            <h1 className="display mt-5 text-taupe-900">
+            <h1 className="display mt-5 text-ground-900">
               Own the handoff from strategy to launch.
             </h1>
-            <p className="body mt-5 max-w-lg text-taupe-500">
+            <p className="body mt-5 max-w-lg text-ground-500">
               Keep briefs, deliverables, dependencies, and final sign-off in one
               system so nothing falls out of sight when a date gets tight.
             </p>

@@ -90,22 +90,22 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "sticky top-0 flex h-screen flex-col border-r border-taupe-100 bg-taupe-50 transition-all duration-200",
+        "sticky top-0 flex h-screen flex-col border-r border-ground-100 bg-ground-50 transition-all duration-200",
         collapsed ? "w-14" : "w-[220px]"
       )}
     >
       {/* Logo mark */}
       <div
         className={cn(
-          "flex h-12 items-center border-b border-taupe-100",
+          "flex h-12 items-center border-b border-ground-100",
           collapsed ? "justify-center" : "gap-2.5 px-4"
         )}
       >
-        <div className="flex size-6 shrink-0 items-center justify-center rounded-md bg-taupe-900">
+        <div className="flex size-6 shrink-0 items-center justify-center rounded-md bg-ground-900">
           <span className="text-[11px] font-bold leading-none text-white">D</span>
         </div>
         {!collapsed && (
-          <span className="body font-semibold text-taupe-900">
+          <span className="body font-semibold text-ground-900">
             Design System
           </span>
         )}
@@ -114,7 +114,7 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto py-3">
         {!collapsed && (
-          <p className="mb-1.5 px-4 label text-taupe-400">
+          <p className="mb-1.5 px-4 label text-ground-400">
             Navigation
           </p>
         )}
@@ -137,10 +137,10 @@ export function Sidebar() {
                     ? "size-9 justify-center"
                     : "gap-2.5 px-2.5 py-2",
                   isActive
-                    ? "bg-taupe-900 text-white"
+                    ? "bg-ground-900 text-white"
                     : item.comingSoon
-                      ? "cursor-default text-taupe-300"
-                      : "text-taupe-500 hover:bg-taupe-100 hover:text-taupe-900"
+                      ? "cursor-default text-ground-300"
+                      : "text-ground-500 hover:bg-ground-100 hover:text-ground-900"
                 )}
               >
                 <item.icon size={15} strokeWidth={1.75} className="shrink-0" />
@@ -148,7 +148,7 @@ export function Sidebar() {
                   <>
                     <span className="flex-1 body font-medium">{item.label}</span>
                     {item.comingSoon && (
-                      <span className="caption-xs font-medium text-taupe-300">
+                      <span className="caption-xs font-medium text-ground-300">
                         Soon
                       </span>
                     )}
@@ -161,11 +161,11 @@ export function Sidebar() {
       </nav>
 
       {/* Collapse toggle */}
-      <div className="border-t border-taupe-100 p-2">
+      <div className="border-t border-ground-100 p-2">
         <button
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
-            "flex items-center rounded-md text-taupe-400 transition-colors hover:bg-taupe-100 hover:text-taupe-600",
+            "flex items-center rounded-md text-ground-400 transition-colors hover:bg-ground-100 hover:text-ground-600",
             collapsed
               ? "size-9 justify-center"
               : "h-8 w-full gap-2 px-2.5"

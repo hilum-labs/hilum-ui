@@ -18,8 +18,8 @@ import footerFourColumnDarkSource from "@/components/marketing/footers/footer-fo
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -28,15 +28,15 @@ export default function FootersPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 max-w-2xl">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/marketing" className="hover:text-taupe-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/marketing" className="hover:text-ground-700">
             Marketing
           </a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Footers</span>
+          <span className="font-semibold text-ground-900">Footers</span>
         </div>
-        <h1 className="display text-taupe-900">Footers</h1>
-        <p className="body mt-3 text-taupe-500">
+        <h1 className="display text-ground-900">Footers</h1>
+        <p className="body mt-3 text-ground-500">
           Footer patterns for brand presence, structured navigation, email capture, and dark-site layouts.
         </p>
       </div>

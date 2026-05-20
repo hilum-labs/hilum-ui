@@ -58,8 +58,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-taupe-400">{label}</h2>
-      <div className="h-px flex-1 bg-taupe-100" />
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
     </div>
   );
 }
@@ -68,21 +68,21 @@ export default function NativeSelectPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-taupe-400">
-          <a href="/" className="hover:text-taupe-700">Design System</a>
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-taupe-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
           <span>/</span>
-          <span className="font-semibold text-taupe-900">Native Select</span>
+          <span className="font-semibold text-ground-900">Native Select</span>
         </div>
-        <h1 className="display mb-2 text-taupe-900">Native Select</h1>
-        <p className="body max-w-lg text-taupe-500">
+        <h1 className="display mb-2 text-ground-900">Native Select</h1>
+        <p className="body max-w-lg text-ground-500">
           Styled native HTML select. No JavaScript overhead — uses the browser's built-in dropdown. Best for mobile forms and performance-sensitive contexts.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-taupe-100 pt-5">
-          <p className="caption text-taupe-400">Atom</p>
-          <div className="h-3 w-px bg-taupe-100" />
-          <p className="caption text-taupe-400">Form · Input</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+          <p className="caption text-ground-400">Atom</p>
+          <div className="h-3 w-px bg-ground-100" />
+          <p className="caption text-ground-400">Form · Input</p>
         </div>
       </div>
 
@@ -150,7 +150,7 @@ export default function NativeSelectPage() {
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                   <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
                 </NativeSelect>
-                <p className="caption mt-1 text-taupe-400">Default</p>
+                <p className="caption mt-1 text-ground-400">Default</p>
               </div>
               <div>
                 <NativeSelect defaultValue="us" disabled>
@@ -158,7 +158,7 @@ export default function NativeSelectPage() {
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                   <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
                 </NativeSelect>
-                <p className="caption mt-1 text-taupe-400">Disabled</p>
+                <p className="caption mt-1 text-ground-400">Disabled</p>
               </div>
               <div>
                 <NativeSelect aria-invalid="true" defaultValue="">
@@ -166,7 +166,7 @@ export default function NativeSelectPage() {
                   <NativeSelectOption value="us">United States</NativeSelectOption>
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                 </NativeSelect>
-                <p className="caption mt-1 text-taupe-400">Invalid</p>
+                <p className="caption mt-1 text-ground-400">Invalid</p>
               </div>
             </div>
           </PreviewBlock>

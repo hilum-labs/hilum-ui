@@ -58,15 +58,15 @@ function Demo() {
       <DesignerHeader
         left={
           <>
-            <div className="flex size-6 items-center justify-center rounded-md bg-taupe-900">
+            <div className="flex size-6 items-center justify-center rounded-md bg-ground-900">
               <span className="caption-xs font-bold text-white">H</span>
             </div>
-            <span className="caption font-semibold text-taupe-900">Untitled design</span>
-            <span className="caption-xs text-taupe-300">/</span>
-            <span className="caption text-taupe-500">Demo workspace</span>
+            <span className="caption font-semibold text-ground-900">Untitled design</span>
+            <span className="caption-xs text-ground-300">/</span>
+            <span className="caption text-ground-500">Demo workspace</span>
           </>
         }
-        center={<span className="caption text-taupe-400">Edited just now</span>}
+        center={<span className="caption text-ground-400">Edited just now</span>}
         right={
           <>
             <Button variant="ghost" size="sm">Share</Button>
@@ -86,9 +86,9 @@ function Demo() {
           }))}
         />
 
-        <main className="flex-1 bg-taupe-100 flex items-center justify-center">
+        <main className="flex-1 bg-ground-100 flex items-center justify-center">
           <div className="size-[420px] bg-white shadow-elevated rounded-md flex items-center justify-center">
-            <span className="caption text-taupe-400">Canvas surface</span>
+            <span className="caption text-ground-400">Canvas surface</span>
           </div>
           <DesignerToolbar>
             <DesignerToolbarGroup>
@@ -118,7 +118,7 @@ function Demo() {
           <DesignerPane>
             <DesignerPaneTitle>Layer</DesignerPaneTitle>
             <DesignerPaneContent>
-              <Label htmlFor="layer-name" className="caption text-taupe-500">Name</Label>
+              <Label htmlFor="layer-name" className="caption text-ground-500">Name</Label>
               <Input id="layer-name" defaultValue="Hero text" />
             </DesignerPaneContent>
           </DesignerPane>
@@ -142,7 +142,7 @@ function Demo() {
           </DesignerPane>
 
           <DesignerPane collapsible showFor={["text"]}>
-            <DesignerPaneTitle action={<ChevronsUpDown size={12} className="text-taupe-300" />}>
+            <DesignerPaneTitle action={<ChevronsUpDown size={12} className="text-ground-300" />}>
               Appearance
             </DesignerPaneTitle>
             <DesignerPaneContent>
@@ -157,7 +157,7 @@ function Demo() {
                   step={1}
                   onValueChange={(v) => setOpacity(v[0] ?? 0)}
                 />
-                <span className="caption-xs tabular-nums text-taupe-400 w-9 text-right">{opacity}%</span>
+                <span className="caption-xs tabular-nums text-ground-400 w-9 text-right">{opacity}%</span>
               </PropertyRow>
             </DesignerPaneContent>
           </DesignerPane>

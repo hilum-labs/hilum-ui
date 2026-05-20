@@ -66,12 +66,12 @@ const pages = ["Company", "Stores"];
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-lg bg-taupe-900 text-sm font-semibold text-white">
+      <div className="flex size-9 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
         D
       </div>
       <div>
-        <p className="body font-semibold text-taupe-900">Drift</p>
-        <p className="caption text-taupe-400">Modern store</p>
+        <p className="body font-semibold text-ground-900">Drift</p>
+        <p className="caption text-ground-400">Modern store</p>
       </div>
     </div>
   );
@@ -79,7 +79,7 @@ function LogoMark() {
 
 function CartButton() {
   return (
-    <button className="relative flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700 transition-colors hover:bg-taupe-50">
+    <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
       <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
         2
@@ -90,7 +90,7 @@ function CartButton() {
 
 function PageContent({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center justify-center bg-taupe-50 body text-taupe-400 ${compact ? "h-[200px]" : "h-32"}`}>
+    <div className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}>
       Page content
     </div>
   );
@@ -101,27 +101,27 @@ function PromoPanel({ category }: { category: NavCategory }) {
   const feature = category.featured[0];
 
   return (
-    <div className="grid gap-5 border-t border-taupe-100 bg-white px-5 py-5 md:grid-cols-[1.2fr_0.8fr]">
+    <div className="grid gap-5 border-t border-ground-100 bg-white px-5 py-5 md:grid-cols-[1.2fr_0.8fr]">
       <div className="relative overflow-hidden rounded-[28px]">
         <img src={feature.image} alt={feature.title} className="h-48 w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-taupe-950/80 via-taupe-900/35 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ground-950/80 via-ground-900/35 to-transparent" />
         <div className="absolute inset-y-0 left-0 flex max-w-sm flex-col justify-center p-6">
           <Badge variant="warning" className="w-fit">Editor&apos;s pick</Badge>
           <h3 className="heading mt-4 text-white">{feature.title}</h3>
-          <p className="body mt-2 text-taupe-100">{feature.subtitle}</p>
+          <p className="body mt-2 text-ground-100">{feature.subtitle}</p>
           <div className="mt-5">
             <Button size="sm">Shop the story</Button>
           </div>
         </div>
       </div>
-      <div className="rounded-[28px] bg-taupe-50 p-5">
-        <p className="label mb-4 text-taupe-400">{category.name} essentials</p>
+      <div className="rounded-[28px] bg-ground-50 p-5">
+        <p className="label mb-4 text-ground-400">{category.name} essentials</p>
         <div className="grid grid-cols-2 gap-3">
           {links.map((link) => (
             <a
               key={link}
               href="#"
-              className="rounded-2xl border border-taupe-100 bg-white px-4 py-3 body text-taupe-700 transition-colors hover:border-taupe-200 hover:text-taupe-900"
+              className="rounded-2xl border border-ground-100 bg-white px-4 py-3 body text-ground-700 transition-colors hover:border-ground-200 hover:text-ground-900"
             >
               {link}
             </a>
@@ -138,9 +138,9 @@ export default function SimpleNavWithPromoPanel() {
   const promoCategory = categories.find((category) => category.name === promoMenu) ?? categories[0];
 
   return (
-    <div className="w-full rounded-xl border border-taupe-100 overflow-hidden bg-white">
+    <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">
       <div className="h-[360px]">
-        <div className="border-b border-taupe-100 px-5 py-4">
+        <div className="border-b border-ground-100 px-5 py-4">
           <div className="flex items-center justify-between">
             <LogoMark />
             <div className="flex items-center gap-1">
@@ -150,21 +150,21 @@ export default function SimpleNavWithPromoPanel() {
                   onClick={() => setPromoMenu(category.name)}
                   className={`rounded-full px-4 py-2 body transition-colors ${
                     promoMenu === category.name
-                      ? "bg-brand-secondary text-taupe-900"
-                      : "text-taupe-500 hover:bg-taupe-50 hover:text-taupe-900"
+                      ? "bg-brand-secondary text-ground-900"
+                      : "text-ground-500 hover:bg-ground-50 hover:text-ground-900"
                   }`}
                 >
                   {category.name}
                 </button>
               ))}
               {pages.map((page) => (
-                <a key={page} href="#" className="px-3 py-2 body text-taupe-500 transition-colors hover:text-taupe-900">
+                <a key={page} href="#" className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900">
                   {page}
                 </a>
               ))}
             </div>
             <div className="flex items-center gap-2">
-              <button className="flex size-10 items-center justify-center rounded-full border border-taupe-100 text-taupe-700">
+              <button className="flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700">
                 <Search size={17} />
               </button>
               <CartButton />

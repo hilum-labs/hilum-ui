@@ -47,10 +47,10 @@ function SpecList({ specs }: { specs: Spec[] }) {
       {specs.map((spec) => (
         <div
           key={spec.label}
-          className="rounded-2xl border border-taupe-100 bg-taupe-50 p-4"
+          className="rounded-2xl border border-ground-100 bg-ground-50 p-4"
         >
-          <dt className="label text-taupe-400">{spec.label}</dt>
-          <dd className="body mt-2 text-taupe-900">{spec.value}</dd>
+          <dt className="label text-ground-400">{spec.label}</dt>
+          <dd className="body mt-2 text-ground-900">{spec.value}</dd>
         </div>
       ))}
     </dl>
@@ -82,7 +82,7 @@ export default function AlternatingSections() {
         {ALTERNATING_FEATURES.map((feature, index) => (
           <div
             key={feature.heading}
-            className="grid gap-8 border-b border-taupe-100 pb-10 last:border-b-0 last:pb-0 lg:grid-cols-2 lg:items-center"
+            className="grid gap-8 border-b border-ground-100 pb-10 last:border-b-0 last:pb-0 lg:grid-cols-2 lg:items-center"
           >
             <div
               className={`overflow-hidden rounded-[28px] ${
@@ -97,8 +97,8 @@ export default function AlternatingSections() {
             </div>
             <div className={index % 2 === 1 ? "lg:order-1" : ""}>
               <p className="label mb-3 text-brand-primary">{feature.eyebrow}</p>
-              <h3 className="heading text-taupe-900">{feature.heading}</h3>
-              <p className="body mt-4 max-w-xl text-taupe-600">
+              <h3 className="heading text-ground-900">{feature.heading}</h3>
+              <p className="body mt-4 max-w-xl text-ground-600">
                 {feature.description}
               </p>
               <div className="mt-6">

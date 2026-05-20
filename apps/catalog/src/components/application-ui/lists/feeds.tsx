@@ -60,7 +60,7 @@ export default function Feeds() {
         {FEED.map((item, index) => (
           <li key={item.id} className="relative pl-14">
             {index < FEED.length - 1 && (
-              <span className="absolute left-4 top-10 h-[calc(100%+1.5rem)] w-px bg-taupe-100" />
+              <span className="absolute left-4 top-10 h-[calc(100%+1.5rem)] w-px bg-ground-100" />
             )}
             <div className="absolute left-0 top-0">
               <Avatar size="md">
@@ -69,12 +69,12 @@ export default function Feeds() {
                 </AvatarFallback>
               </Avatar>
             </div>
-            <div className="rounded-xl border border-taupe-100 bg-white p-4 shadow-natural">
+            <div className="rounded-xl border border-ground-100 bg-white p-4 shadow-natural">
               <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="body font-medium text-taupe-900">{item.user}</p>
-                <p className="caption text-taupe-400">{item.time}</p>
+                <p className="body font-medium text-ground-900">{item.user}</p>
+                <p className="caption text-ground-400">{item.time}</p>
               </div>
-              <p className="body text-taupe-500">{item.text}</p>
+              <p className="body text-ground-500">{item.text}</p>
             </div>
           </li>
         ))}
@@ -84,18 +84,18 @@ export default function Feeds() {
         {FEED.map((item, index) => (
           <li key={item.id} className="relative pl-14">
             {index < FEED.length - 1 && (
-              <span className="absolute left-5 top-10 h-[calc(100%+1rem)] w-px bg-taupe-100" />
+              <span className="absolute left-5 top-10 h-[calc(100%+1rem)] w-px bg-ground-100" />
             )}
-            <div className="absolute left-0 top-0 flex size-10 items-center justify-center rounded-full bg-taupe-100">
+            <div className="absolute left-0 top-0 flex size-10 items-center justify-center rounded-full bg-ground-100">
               <FeedMarker type={item.type} />
             </div>
             <div className="pt-1">
               <div className="flex items-center gap-2">
-                <p className="body font-medium text-taupe-900">{item.user}</p>
-                <span className="caption text-taupe-300">•</span>
-                <p className="caption text-taupe-400">{item.time}</p>
+                <p className="body font-medium text-ground-900">{item.user}</p>
+                <span className="caption text-ground-300">•</span>
+                <p className="caption text-ground-400">{item.time}</p>
               </div>
-              <p className="body mt-1 text-taupe-500">{item.text}</p>
+              <p className="body mt-1 text-ground-500">{item.text}</p>
             </div>
           </li>
         ))}

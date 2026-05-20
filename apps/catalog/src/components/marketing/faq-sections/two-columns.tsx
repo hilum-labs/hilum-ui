@@ -29,12 +29,12 @@ export default function TwoColumns() {
   return (
     <section className="w-full bg-white px-8 py-16">
       <div className="mx-auto max-w-5xl">
-        <h2 className="heading text-taupe-900">Frequently asked questions</h2>
+        <h2 className="heading text-ground-900">Frequently asked questions</h2>
         <dl className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
           {FAQS.map((item) => (
             <div key={item.q}>
-              <dt className="body font-semibold text-taupe-900">{item.q}</dt>
-              <dd className="body mt-2 text-taupe-500">{item.a}</dd>
+              <dt className="body font-semibold text-ground-900">{item.q}</dt>
+              <dd className="body mt-2 text-ground-500">{item.a}</dd>
             </div>
           ))}
         </dl>

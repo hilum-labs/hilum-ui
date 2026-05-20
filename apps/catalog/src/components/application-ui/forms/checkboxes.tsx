@@ -15,8 +15,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -48,8 +48,8 @@ export default function Checkboxes() {
         <VariantCard title="1. Simple list with heading">
           <div className="space-y-4">
             <div>
-              <h3 className="subheading text-taupe-900">Notifications</h3>
-              <p className="caption text-taupe-400">
+              <h3 className="subheading text-ground-900">Notifications</h3>
+              <p className="caption text-ground-400">
                 Choose which updates should arrive in your inbox.
               </p>
             </div>
@@ -64,7 +64,7 @@ export default function Checkboxes() {
                     checked={notifications[item.key]}
                     onCheckedChange={() => toggleNotification(item.key)}
                   />
-                  <span className="body text-taupe-700">{item.label}</span>
+                  <span className="body text-ground-700">{item.label}</span>
                 </label>
               ))}
             </div>
@@ -92,7 +92,7 @@ export default function Checkboxes() {
             ].map((item) => (
               <label
                 key={item.key}
-                className="flex items-start gap-3 rounded-xl border border-taupe-100 bg-white p-3"
+                className="flex items-start gap-3 rounded-xl border border-ground-100 bg-white p-3"
               >
                 <Checkbox
                   checked={preferences[item.key]}
@@ -100,8 +100,8 @@ export default function Checkboxes() {
                   className="mt-1"
                 />
                 <div>
-                  <p className="body font-medium text-taupe-900">{item.title}</p>
-                  <p className="caption text-taupe-400">{item.description}</p>
+                  <p className="body font-medium text-ground-900">{item.title}</p>
+                  <p className="caption text-ground-400">{item.description}</p>
                 </div>
               </label>
             ))}

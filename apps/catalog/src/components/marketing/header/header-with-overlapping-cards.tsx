@@ -11,23 +11,23 @@ function MetricCard({
   label: string;
 }) {
   return (
-    <article className="rounded-2xl border border-taupe-800 bg-taupe-950 p-6 text-left shadow-lg">
+    <article className="rounded-2xl border border-ground-800 bg-ground-950 p-6 text-left shadow-lg">
       <div className="flex size-10 items-center justify-center rounded-xl bg-white/5 text-brand-secondary">
         <Icon className="size-5" />
       </div>
       <p className="heading mt-5 text-white">{value}</p>
-      <p className="body mt-2 text-taupe-400">{label}</p>
+      <p className="body mt-2 text-ground-400">{label}</p>
     </article>
   );
 }
 
 export default function HeaderWithOverlappingCards() {
   return (
-    <section className="w-full bg-taupe-900 px-8 py-16 text-white">
+    <section className="w-full bg-ground-900 px-8 py-16 text-white">
       <div className="mx-auto max-w-5xl text-center">
-        <p className="caption text-taupe-400">System performance</p>
+        <p className="caption text-ground-400">System performance</p>
         <h2 className="display mt-4 text-white">Measure the impact of a unified interface layer</h2>
-        <p className="body mx-auto mt-5 max-w-2xl text-taupe-300">
+        <p className="body mx-auto mt-5 max-w-2xl text-ground-300">
           Show the business case for better design system coverage with a banner that transitions directly into the proof points below.
         </p>
         <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:translate-y-12">

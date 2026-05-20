@@ -28,8 +28,8 @@ function VariantCard({
   className?: string;
 }) {
   return (
-    <div className={`rounded-2xl border border-taupe-100 bg-taupe-50/60 p-5 ${className}`}>
-      <p className="label mb-3 text-taupe-400">{title}</p>
+    <div className={`rounded-2xl border border-ground-100 bg-ground-50/60 p-5 ${className}`}>
+      <p className="label mb-3 text-ground-400">{title}</p>
       {children}
     </div>
   );
@@ -140,8 +140,8 @@ export default function Dropdowns() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <div className="px-2.5 py-2">
-                <p className="caption text-taupe-400">Signed in as</p>
-                <p className="body font-medium text-taupe-900 truncate">
+                <p className="caption text-ground-400">Signed in as</p>
+                <p className="body font-medium text-ground-900 truncate">
                   tom@example.com
                 </p>
               </div>

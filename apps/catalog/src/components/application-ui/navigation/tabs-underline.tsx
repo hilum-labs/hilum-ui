@@ -8,7 +8,7 @@ export default function TabsUnderline() {
 
   return (
     <div className="w-full bg-white px-6 py-5">
-      <nav className="flex gap-6 border-b border-taupe-200">
+      <nav className="flex gap-6 border-b border-ground-200">
         {tabItems.map((tab) => (
           <button
             key={tab}
@@ -17,7 +17,7 @@ export default function TabsUnderline() {
             className={`border-b-2 pb-2 px-1 text-sm transition-colors ${
               activeTab === tab
                 ? "border-brand-primary text-brand-primary font-medium"
-                : "border-transparent text-taupe-500 hover:text-taupe-700"
+                : "border-transparent text-ground-500 hover:text-ground-700"
             }`}
           >
             {tab}

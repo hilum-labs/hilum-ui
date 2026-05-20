@@ -4,12 +4,12 @@ import { Button } from "@hilum/ui";
 function MockupWindow({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`aspect-video w-full rounded-2xl bg-taupe-900 shadow-elevated ring-1 ring-taupe-800 ${className}`.trim()}
+      className={`aspect-video w-full rounded-2xl bg-ground-900 shadow-elevated ring-1 ring-ground-800 ${className}`.trim()}
     >
       <div className="flex gap-1.5 p-4">
-        <div className="size-2.5 rounded-full bg-taupe-700" />
-        <div className="size-2.5 rounded-full bg-taupe-700" />
-        <div className="size-2.5 rounded-full bg-taupe-700" />
+        <div className="size-2.5 rounded-full bg-ground-700" />
+        <div className="size-2.5 rounded-full bg-ground-700" />
+        <div className="size-2.5 rounded-full bg-ground-700" />
       </div>
     </div>
   );
@@ -23,10 +23,10 @@ export default function HeroSplitWithScreenshot() {
           <p className="label uppercase tracking-[0.24em] text-brand-primary">
             Product launches, unified
           </p>
-          <h1 className="display mt-5 text-taupe-900">
+          <h1 className="display mt-5 text-ground-900">
             The planning layer for every product launch.
           </h1>
-          <p className="body mt-5 text-taupe-500">
+          <p className="body mt-5 text-ground-500">
             Align go-to-market owners, track readiness across workstreams, and
             keep every stakeholder working from the same launch plan.
           </p>
@@ -35,14 +35,14 @@ export default function HeroSplitWithScreenshot() {
             <input
               type="email"
               placeholder="Enter your work email"
-              className="h-11 flex-1 rounded-md border border-taupe-200 bg-white px-3 body text-taupe-900 outline-none placeholder:text-taupe-400 focus:border-taupe-300"
+              className="h-11 flex-1 rounded-md border border-ground-200 bg-white px-3 body text-ground-900 outline-none placeholder:text-ground-400 focus:border-ground-300"
             />
             <Button size="lg" className="sm:px-5">
               Get access
             </Button>
           </form>
 
-          <div className="mt-6 flex flex-col gap-3 text-taupe-500 sm:flex-row sm:items-center">
+          <div className="mt-6 flex flex-col gap-3 text-ground-500 sm:flex-row sm:items-center">
             <div className="flex items-center gap-1 text-brand-primary">
               {Array.from({ length: 5 }).map((_, index) => (
                 <Star key={index} className="size-4 fill-current" />
