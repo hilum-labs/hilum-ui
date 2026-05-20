@@ -13,7 +13,7 @@
 //   brand.primary   #C100F1 — vivid purple — purple-500 on the scale below
 //   brand.secondary #FFF5BF — pale lemon   — butter-200 on the scale below
 //
-// taupe — neutral spine for text, borders, and structure (unchanged)
+// taupe — neutral spine for text, borders, and structure (values: Tailwind neutral)
 
 export const tokens = {
   /* ============================================================== *
@@ -21,17 +21,17 @@ export const tokens = {
    * ============================================================== */
 
   taupe: {
-    50: "#f9f7f5",
-    100: "#f2eeea",
-    200: "#e3dcd4",
-    300: "#c9beb3",
-    400: "#a8978a",
-    500: "#7d6960",
-    600: "#5d4e47",
-    700: "#4a3d38",
-    800: "#332924",
-    900: "#26181a",
-    950: "#160e0a",
+    50: "#fafafa",
+    100: "#f5f5f5",
+    200: "#e5e5e5",
+    300: "#d4d4d4",
+    400: "#a3a3a3",
+    500: "#737373",
+    600: "#525252",
+    700: "#404040",
+    800: "#262626",
+    900: "#171717",
+    950: "#0a0a0a",
   },
 
   // Pale lemon — anchor: butter-200 = #FFF5BF
@@ -79,50 +79,50 @@ export const tokens = {
   semantic: {
     light: {
       background: "#ffffff",
-      foreground: "#26181a", // taupe-900
+      foreground: "#171717", // taupe-900
       card: "#ffffff",
-      cardForeground: "#26181a",
-      surface: "#f9f7f5", // taupe-50
-      surfaceForeground: "#332924", // taupe-800
-      border: "#f2eeea", // taupe-100
-      input: "#f2eeea",
-      muted: "#f9f7f5",
-      mutedForeground: "#7d6960", // taupe-500
+      cardForeground: "#171717",
+      surface: "#fafafa", // taupe-50
+      surfaceForeground: "#262626", // taupe-800
+      border: "#f5f5f5", // taupe-100
+      input: "#f5f5f5",
+      muted: "#fafafa",
+      mutedForeground: "#737373", // taupe-500
       accent: "#fdf0ff", // purple-50
       accentForeground: "#740092", // purple-700
       primary: "#c100f1", // purple-500 = brand.primary
       primaryForeground: "#ffffff",
-      secondary: "#f9f7f5", // taupe-50
-      secondaryForeground: "#4a3d38", // taupe-700
+      secondary: "#fafafa", // taupe-50
+      secondaryForeground: "#404040", // taupe-700
       destructive: "#dc2626",
       destructiveForeground: "#ffffff",
       success: "#CDEA19", // lime — functional semantic only
-      successForeground: "#26181a",
+      successForeground: "#171717",
       warning: "#fff5bf", // butter-200 = brand.secondary
-      warningForeground: "#26181a", // taupe-900
+      warningForeground: "#171717", // taupe-900
       ring: "#c100f1", // purple-500 = brand.primary
     },
     dark: {
-      background: "#160e0a", // taupe-950
-      foreground: "#f9f7f5", // taupe-50
-      card: "#26181a", // taupe-900
-      cardForeground: "#f9f7f5",
-      surface: "#26181a",
-      surfaceForeground: "#f2eeea",
-      border: "#332924", // taupe-800
-      input: "#332924",
-      muted: "#26181a",
-      mutedForeground: "#a8978a", // taupe-400
+      background: "#0a0a0a", // taupe-950
+      foreground: "#fafafa", // taupe-50
+      card: "#171717", // taupe-900
+      cardForeground: "#fafafa",
+      surface: "#171717",
+      surfaceForeground: "#f5f5f5",
+      border: "#262626", // taupe-800
+      input: "#262626",
+      muted: "#171717",
+      mutedForeground: "#a3a3a3", // taupe-400
       accent: "#330040", // purple-900
       accentForeground: "#f5d6ff", // purple-100
       primary: "#c100f1", // purple-500 — brand stays consistent (D8)
       primaryForeground: "#ffffff",
-      secondary: "#26181a",
-      secondaryForeground: "#f2eeea",
+      secondary: "#171717",
+      secondaryForeground: "#f5f5f5",
       destructive: "#ef4444", // red-500 (slightly lighter for dark)
       destructiveForeground: "#ffffff",
       success: "#CDEA19", // lime — functional semantic only
-      successForeground: "#160e0a",
+      successForeground: "#0a0a0a",
       warning: "#221600", // butter-950 surface
       warningForeground: "#fffad0", // butter-100
       ring: "#c100f1", // purple-500 = brand.primary
