@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { CardHeading } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -66,7 +68,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function CardHeadingPage() {
+function CardHeadingPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -164,3 +166,8 @@ export default function CardHeadingPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/card-heading/")({
+  head: () => createCatalogPageHead("/molecules/card-heading/"),
+  component: CardHeadingPage,
+});

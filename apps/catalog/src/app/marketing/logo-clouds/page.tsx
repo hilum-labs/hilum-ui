@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -21,7 +23,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function LogoCloudsPage() {
+function LogoCloudsPage() {
   return (
     <div className="h-full overflow-y-auto bg-white">
       <div className="mx-auto max-w-7xl px-8 py-10">
@@ -97,3 +99,8 @@ export default function LogoCloudsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/logo-clouds/")({
+  head: () => createCatalogPageHead("/marketing/logo-clouds/"),
+  component: LogoCloudsPage,
+});

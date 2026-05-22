@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { Switch } from "@hilum/ui";
@@ -56,7 +58,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function SwitchPage() {
+function SwitchPage() {
   const [leftDesc, setLeftDesc] = useState<Record<string, boolean>>({
     "sw-comments": true,
     "sw-candidates": false,
@@ -187,3 +189,8 @@ export default function SwitchPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/switch/")({
+  head: () => createCatalogPageHead("/atoms/switch/"),
+  component: SwitchPage,
+});

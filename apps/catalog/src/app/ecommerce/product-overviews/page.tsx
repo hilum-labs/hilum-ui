@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -26,7 +28,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ProductOverviewsPage() {
+function ProductOverviewsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 flex flex-col gap-5 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
@@ -112,3 +114,8 @@ export default function ProductOverviewsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/ecommerce/product-overviews/")({
+  head: () => createCatalogPageHead("/ecommerce/product-overviews/"),
+  component: ProductOverviewsPage,
+});

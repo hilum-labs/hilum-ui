@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { ColorSwatch, TokenRow } from "@/components/catalog/color-swatch";
 import { cn } from "@hilum/ui";
 
@@ -235,7 +237,7 @@ const shadows = [
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function FoundationsPage() {
+function FoundationsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
@@ -661,3 +663,8 @@ function PaletteLabel({
     </div>
   );
 }
+
+export const Route = createFileRoute("/foundations/")({
+  head: () => createCatalogPageHead("/foundations/"),
+  component: FoundationsPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import SettingsPreview from "@/components/blocks/settings-screen/settings-preview";
@@ -12,7 +14,7 @@ function HeadingDivider({ label }: { label: string }) {
   );
 }
 
-export default function SettingsScreenPage() {
+function SettingsScreenPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -52,3 +54,8 @@ export default function SettingsScreenPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/settings-screen/")({
+  head: () => createCatalogPageHead("/blocks/settings-screen/"),
+  component: SettingsScreenPage,
+});

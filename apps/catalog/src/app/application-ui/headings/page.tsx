@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { Badge } from "@hilum/ui";
 
 import CardHeadingSimple from "@/components/application-ui/headings/card-heading-simple";
@@ -48,7 +50,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function HeadingsPage() {
+function HeadingsPage() {
   return (
     <div className="min-h-screen bg-ground-50">
       <div className="mx-auto max-w-7xl px-8 py-10">
@@ -139,3 +141,8 @@ export default function HeadingsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/headings/")({
+  head: () => createCatalogPageHead("/application-ui/headings/"),
+  component: HeadingsPage,
+});

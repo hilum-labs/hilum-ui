@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-
-function usePathname() {
-  return useLocation().pathname;
-}
+import { Link, useRouterState } from "@tanstack/react-router";
 import {
   Atom,
   Blocks,
@@ -84,7 +80,9 @@ const navItems = [
 ];
 
 export function Sidebar() {
-  const pathname = usePathname();
+  const pathname = useRouterState({
+    select: (state) => state.location.pathname,
+  });
   const [collapsed, setCollapsed] = useState(false);
 
   return (

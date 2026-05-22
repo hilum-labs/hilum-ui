@@ -1,5 +1,7 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import React, { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@tanstack/react-router";
 import { Badge, Button, Input, Separator } from "@hilum/ui";
 import { createTheme } from "@hilum/ui/create-theme";
 
@@ -309,7 +311,7 @@ function SectionHeading({ label }: { label: string }) {
  *  Page                                                               *
  * ------------------------------------------------------------------ */
 
-export default function ThemingPage() {
+function ThemingPage() {
   const [pkgManager, setPkgManager] = useState<"pnpm" | "npm" | "yarn">("pnpm");
   const installCode = pkgManager === "pnpm" ? INSTALL_PNPM : pkgManager === "npm" ? INSTALL_NPM : INSTALL_YARN;
 
@@ -584,3 +586,8 @@ export default function ThemingPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/theming/")({
+  head: () => createCatalogPageHead("/theming/"),
+  component: ThemingPage,
+});

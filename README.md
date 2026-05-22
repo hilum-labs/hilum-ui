@@ -19,7 +19,7 @@ Design system and component platform for Hilum apps.
 
 | App | Description |
 |---|---|
-| `apps/catalog` | The Hilum UI documentation site (Next.js) |
+| `apps/catalog` | The Hilum UI documentation site (TanStack Start + TanStack Router) |
 
 ## Local development
 

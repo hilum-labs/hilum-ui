@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@hilum/ui";
@@ -173,7 +175,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function RadioGroupPage() {
+function RadioGroupPage() {
   const [inPanel, setInPanel] = useState("freelancer");
   const [smallCard, setSmallCard] = useState("8gb");
   const [tableVal, setTableVal] = useState("pro");
@@ -395,3 +397,8 @@ export default function RadioGroupPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/radio-group/")({
+  head: () => createCatalogPageHead("/atoms/radio-group/"),
+  component: RadioGroupPage,
+});

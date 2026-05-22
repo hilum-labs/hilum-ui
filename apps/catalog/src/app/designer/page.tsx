@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom"
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
+import { Link } from "@tanstack/react-router"
 import { ArrowRight, Frame, MousePointer2, Image, Layers } from "lucide-react"
 import {
   Badge,
@@ -45,7 +47,7 @@ const SUBSECTIONS = [
   },
 ]
 
-export default function DesignerIndex() {
+function DesignerIndex() {
   return (
     <div className="mx-auto max-w-5xl px-8 py-12">
       <div className="mb-10">
@@ -93,3 +95,8 @@ export default function DesignerIndex() {
     </div>
   )
 }
+
+export const Route = createFileRoute("/designer/")({
+  head: () => createCatalogPageHead("/designer/"),
+  component: DesignerIndex,
+});

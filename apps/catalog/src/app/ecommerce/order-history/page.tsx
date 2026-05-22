@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { Search, Settings2 } from "lucide-react";
@@ -31,7 +33,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function OrderHistoryPage() {
+function OrderHistoryPage() {
   const [statusFilter, setStatusFilter] = useState("Delivered");
   const [rangeFilter, setRangeFilter] = useState("Last 12 months");
   const [searchTerm, setSearchTerm] = useState("WU88191111");
@@ -163,3 +165,8 @@ export default function OrderHistoryPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/ecommerce/order-history/")({
+  head: () => createCatalogPageHead("/ecommerce/order-history/"),
+  component: OrderHistoryPage,
+});

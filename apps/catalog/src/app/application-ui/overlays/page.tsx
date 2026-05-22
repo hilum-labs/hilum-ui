@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -40,7 +42,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function OverlaysPage() {
+function OverlaysPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 flex flex-col gap-6 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
@@ -213,3 +215,8 @@ export default function OverlaysPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/overlays/")({
+  head: () => createCatalogPageHead("/application-ui/overlays/"),
+  component: OverlaysPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import {
   Briefcase,
@@ -224,7 +226,7 @@ const CODE = {
 /*  Page                                                                */
 /* ------------------------------------------------------------------ */
 
-export default function CarouselPage() {
+function CarouselPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
@@ -372,3 +374,8 @@ export default function CarouselPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/carousel/")({
+  head: () => createCatalogPageHead("/atoms/carousel/"),
+  component: CarouselPage,
+});

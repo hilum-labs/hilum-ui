@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -29,7 +31,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ProductFeaturesPage() {
+function ProductFeaturesPage() {
   return (
     <div className="h-full overflow-y-auto bg-white">
       <div className="mx-auto max-w-7xl px-8 py-10">
@@ -150,3 +152,8 @@ export default function ProductFeaturesPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/ecommerce/product-features/")({
+  head: () => createCatalogPageHead("/ecommerce/product-features/"),
+  component: ProductFeaturesPage,
+});

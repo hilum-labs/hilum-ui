@@ -1,8 +1,9 @@
 // @hilum/ui — Hilum design system primitives.
 // All components, utilities, and re-exports.
 //
-// Hilum apps are plain React (Vite / Electron / React Native via future
-// @hilum/ui-native). No Next.js, no "use client" directives — D11.
+// Hilum targets React apps across browser, prerendered docs, Electron, and a
+// future React Native package. Keep exports framework-agnostic and avoid
+// framework-specific entrypoint directives here.
 
 // Utilities
 export { cn } from "./lib/utils";

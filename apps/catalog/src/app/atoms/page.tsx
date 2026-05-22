@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
+import { Link } from "@tanstack/react-router";
 import {
   Card,
   CardContent,
@@ -126,7 +128,7 @@ const CATEGORY_LABEL: Record<ComponentEntry["category"], string> = {
 /*  Page                                                                */
 /* ------------------------------------------------------------------ */
 
-export default function AtomsPage() {
+function AtomsPage() {
   const totalComponents = GROUPS.reduce((acc, g) => acc + g.components.length, 0);
 
   return (
@@ -187,9 +189,7 @@ export default function AtomsPage() {
                       size="sm"
                       className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
                     >
-                      <Link to={`/atoms/${component.slug}`}>
-                        View component →
-                      </Link>
+                      <a href={`/atoms/${component.slug}`}>View component →</a>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -204,3 +204,8 @@ export default function AtomsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/")({
+  head: () => createCatalogPageHead("/atoms/"),
+  component: AtomsPage,
+});

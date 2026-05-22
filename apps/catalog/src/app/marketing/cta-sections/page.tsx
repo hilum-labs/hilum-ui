@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -34,7 +36,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function CTASectionsPage() {
+function CTASectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -162,3 +164,8 @@ export default function CTASectionsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/cta-sections/")({
+  head: () => createCatalogPageHead("/marketing/cta-sections/"),
+  component: CTASectionsPage,
+});

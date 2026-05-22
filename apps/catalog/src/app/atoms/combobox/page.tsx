@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { Combobox } from "@hilum/ui";
@@ -97,7 +99,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function ComboboxPage() {
+function ComboboxPage() {
   const [v1, setV1] = useState("");
   const [v2, setV2] = useState("");
   const [v3, setV3] = useState("");
@@ -179,3 +181,8 @@ export default function ComboboxPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/combobox/")({
+  head: () => createCatalogPageHead("/atoms/combobox/"),
+  component: ComboboxPage,
+});

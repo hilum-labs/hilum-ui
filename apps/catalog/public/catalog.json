@@ -1,0 +1,2511 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Hilum UI documentation index",
+  "description": "Hilum UI design system documentation, component catalog, and theming reference.",
+  "url": "https://ui.hilum.dev/catalog.json",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Hilum UI",
+    "url": "https://ui.hilum.dev"
+  },
+  "codeRepository": "https://github.com/hilum-labs/hilum-ui",
+  "dateModified": "2026-05-22T04:16:42.585Z",
+  "numberOfItems": 135,
+  "sections": [
+    {
+      "name": "Application UI",
+      "path": "/application-ui",
+      "url": "https://ui.hilum.dev/application-ui/",
+      "count": 12
+    },
+    {
+      "name": "Atoms",
+      "path": "/atoms",
+      "url": "https://ui.hilum.dev/atoms/",
+      "count": 55
+    },
+    {
+      "name": "Blocks",
+      "path": "/blocks",
+      "url": "https://ui.hilum.dev/blocks/",
+      "count": 8
+    },
+    {
+      "name": "Designer",
+      "path": "/designer",
+      "url": "https://ui.hilum.dev/designer/",
+      "count": 5
+    },
+    {
+      "name": "Ecommerce",
+      "path": "/ecommerce",
+      "url": "https://ui.hilum.dev/ecommerce/",
+      "count": 15
+    },
+    {
+      "name": "Foundations",
+      "path": "/foundations",
+      "url": "https://ui.hilum.dev/foundations/",
+      "count": 1
+    },
+    {
+      "name": "Home",
+      "path": "/",
+      "url": "https://ui.hilum.dev",
+      "count": 1
+    },
+    {
+      "name": "Marketing",
+      "path": "/marketing",
+      "url": "https://ui.hilum.dev/marketing/",
+      "count": 20
+    },
+    {
+      "name": "Molecules",
+      "path": "/molecules",
+      "url": "https://ui.hilum.dev/molecules/",
+      "count": 17
+    },
+    {
+      "name": "Theming",
+      "path": "/theming",
+      "url": "https://ui.hilum.dev/theming/",
+      "count": 1
+    }
+  ],
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "WebPage",
+        "name": "Design System Overview",
+        "url": "https://ui.hilum.dev/",
+        "description": "Hilum UI design system documentation, component catalog, and theming reference."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "WebPage",
+        "name": "Application UI",
+        "url": "https://ui.hilum.dev/application-ui/",
+        "description": "Application UI documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "WebPage",
+        "name": "Application Shells",
+        "url": "https://ui.hilum.dev/application-ui/application-shells/",
+        "description": "Application Shells reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "WebPage",
+        "name": "Data Display",
+        "url": "https://ui.hilum.dev/application-ui/data-display/",
+        "description": "Data Display reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "WebPage",
+        "name": "Elements",
+        "url": "https://ui.hilum.dev/application-ui/elements/",
+        "description": "Elements reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "WebPage",
+        "name": "Feedback",
+        "url": "https://ui.hilum.dev/application-ui/feedback/",
+        "description": "Feedback reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "WebPage",
+        "name": "Forms",
+        "url": "https://ui.hilum.dev/application-ui/forms/",
+        "description": "Forms reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "WebPage",
+        "name": "Headings",
+        "url": "https://ui.hilum.dev/application-ui/headings/",
+        "description": "Headings reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "WebPage",
+        "name": "Layout",
+        "url": "https://ui.hilum.dev/application-ui/layout/",
+        "description": "Layout reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "WebPage",
+        "name": "Lists",
+        "url": "https://ui.hilum.dev/application-ui/lists/",
+        "description": "Lists reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "WebPage",
+        "name": "Navigation",
+        "url": "https://ui.hilum.dev/application-ui/navigation/",
+        "description": "Navigation reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "WebPage",
+        "name": "Overlays",
+        "url": "https://ui.hilum.dev/application-ui/overlays/",
+        "description": "Overlays reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "WebPage",
+        "name": "Page Examples",
+        "url": "https://ui.hilum.dev/application-ui/page-examples/",
+        "description": "Page Examples reference in the Application UI section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "WebPage",
+        "name": "Atoms",
+        "url": "https://ui.hilum.dev/atoms/",
+        "description": "Atoms documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "item": {
+        "@type": "WebPage",
+        "name": "Accordion",
+        "url": "https://ui.hilum.dev/atoms/accordion/",
+        "description": "Accordion reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "item": {
+        "@type": "WebPage",
+        "name": "Alert",
+        "url": "https://ui.hilum.dev/atoms/alert/",
+        "description": "Alert reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "item": {
+        "@type": "WebPage",
+        "name": "Alert Dialog",
+        "url": "https://ui.hilum.dev/atoms/alert-dialog/",
+        "description": "Alert Dialog reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "item": {
+        "@type": "WebPage",
+        "name": "Aspect Ratio",
+        "url": "https://ui.hilum.dev/atoms/aspect-ratio/",
+        "description": "Aspect Ratio reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "item": {
+        "@type": "WebPage",
+        "name": "Avatar",
+        "url": "https://ui.hilum.dev/atoms/avatar/",
+        "description": "Avatar reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "item": {
+        "@type": "WebPage",
+        "name": "Avatar Stack",
+        "url": "https://ui.hilum.dev/atoms/avatar-stack/",
+        "description": "Avatar Stack reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 21,
+      "item": {
+        "@type": "WebPage",
+        "name": "Badge",
+        "url": "https://ui.hilum.dev/atoms/badge/",
+        "description": "Badge reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 22,
+      "item": {
+        "@type": "WebPage",
+        "name": "Breadcrumb",
+        "url": "https://ui.hilum.dev/atoms/breadcrumb/",
+        "description": "Breadcrumb reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 23,
+      "item": {
+        "@type": "WebPage",
+        "name": "Button",
+        "url": "https://ui.hilum.dev/atoms/button/",
+        "description": "Button reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 24,
+      "item": {
+        "@type": "WebPage",
+        "name": "Button Group",
+        "url": "https://ui.hilum.dev/atoms/button-group/",
+        "description": "Button Group reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 25,
+      "item": {
+        "@type": "WebPage",
+        "name": "Calendar",
+        "url": "https://ui.hilum.dev/atoms/calendar/",
+        "description": "Calendar reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 26,
+      "item": {
+        "@type": "WebPage",
+        "name": "Card",
+        "url": "https://ui.hilum.dev/atoms/card/",
+        "description": "Card reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 27,
+      "item": {
+        "@type": "WebPage",
+        "name": "Carousel",
+        "url": "https://ui.hilum.dev/atoms/carousel/",
+        "description": "Carousel reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 28,
+      "item": {
+        "@type": "WebPage",
+        "name": "Chart",
+        "url": "https://ui.hilum.dev/atoms/chart/",
+        "description": "Chart reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 29,
+      "item": {
+        "@type": "WebPage",
+        "name": "Checkbox",
+        "url": "https://ui.hilum.dev/atoms/checkbox/",
+        "description": "Checkbox reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 30,
+      "item": {
+        "@type": "WebPage",
+        "name": "Collapsible",
+        "url": "https://ui.hilum.dev/atoms/collapsible/",
+        "description": "Collapsible reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 31,
+      "item": {
+        "@type": "WebPage",
+        "name": "Combobox",
+        "url": "https://ui.hilum.dev/atoms/combobox/",
+        "description": "Combobox reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 32,
+      "item": {
+        "@type": "WebPage",
+        "name": "Command",
+        "url": "https://ui.hilum.dev/atoms/command/",
+        "description": "Command reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 33,
+      "item": {
+        "@type": "WebPage",
+        "name": "Context Menu",
+        "url": "https://ui.hilum.dev/atoms/context-menu/",
+        "description": "Context Menu reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 34,
+      "item": {
+        "@type": "WebPage",
+        "name": "Data Table",
+        "url": "https://ui.hilum.dev/atoms/data-table/",
+        "description": "Data Table reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 35,
+      "item": {
+        "@type": "WebPage",
+        "name": "Date Picker",
+        "url": "https://ui.hilum.dev/atoms/date-picker/",
+        "description": "Date Picker reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 36,
+      "item": {
+        "@type": "WebPage",
+        "name": "Dialog",
+        "url": "https://ui.hilum.dev/atoms/dialog/",
+        "description": "Dialog reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 37,
+      "item": {
+        "@type": "WebPage",
+        "name": "Drawer",
+        "url": "https://ui.hilum.dev/atoms/drawer/",
+        "description": "Drawer reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 38,
+      "item": {
+        "@type": "WebPage",
+        "name": "Dropdown Menu",
+        "url": "https://ui.hilum.dev/atoms/dropdown-menu/",
+        "description": "Dropdown Menu reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 39,
+      "item": {
+        "@type": "WebPage",
+        "name": "Hover Card",
+        "url": "https://ui.hilum.dev/atoms/hover-card/",
+        "description": "Hover Card reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 40,
+      "item": {
+        "@type": "WebPage",
+        "name": "Input",
+        "url": "https://ui.hilum.dev/atoms/input/",
+        "description": "Input reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 41,
+      "item": {
+        "@type": "WebPage",
+        "name": "Input Otp",
+        "url": "https://ui.hilum.dev/atoms/input-otp/",
+        "description": "Input Otp reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 42,
+      "item": {
+        "@type": "WebPage",
+        "name": "Kbd",
+        "url": "https://ui.hilum.dev/atoms/kbd/",
+        "description": "Kbd reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 43,
+      "item": {
+        "@type": "WebPage",
+        "name": "Label",
+        "url": "https://ui.hilum.dev/atoms/label/",
+        "description": "Label reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 44,
+      "item": {
+        "@type": "WebPage",
+        "name": "Menubar",
+        "url": "https://ui.hilum.dev/atoms/menubar/",
+        "description": "Menubar reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 45,
+      "item": {
+        "@type": "WebPage",
+        "name": "Native Select",
+        "url": "https://ui.hilum.dev/atoms/native-select/",
+        "description": "Native Select reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 46,
+      "item": {
+        "@type": "WebPage",
+        "name": "Navigation Menu",
+        "url": "https://ui.hilum.dev/atoms/navigation-menu/",
+        "description": "Navigation Menu reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 47,
+      "item": {
+        "@type": "WebPage",
+        "name": "Pagination",
+        "url": "https://ui.hilum.dev/atoms/pagination/",
+        "description": "Pagination reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 48,
+      "item": {
+        "@type": "WebPage",
+        "name": "Popover",
+        "url": "https://ui.hilum.dev/atoms/popover/",
+        "description": "Popover reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 49,
+      "item": {
+        "@type": "WebPage",
+        "name": "Progress",
+        "url": "https://ui.hilum.dev/atoms/progress/",
+        "description": "Progress reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 50,
+      "item": {
+        "@type": "WebPage",
+        "name": "Radio Group",
+        "url": "https://ui.hilum.dev/atoms/radio-group/",
+        "description": "Radio Group reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 51,
+      "item": {
+        "@type": "WebPage",
+        "name": "Resizable",
+        "url": "https://ui.hilum.dev/atoms/resizable/",
+        "description": "Resizable reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 52,
+      "item": {
+        "@type": "WebPage",
+        "name": "Scroll Area",
+        "url": "https://ui.hilum.dev/atoms/scroll-area/",
+        "description": "Scroll Area reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 53,
+      "item": {
+        "@type": "WebPage",
+        "name": "Select",
+        "url": "https://ui.hilum.dev/atoms/select/",
+        "description": "Select reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 54,
+      "item": {
+        "@type": "WebPage",
+        "name": "Separator",
+        "url": "https://ui.hilum.dev/atoms/separator/",
+        "description": "Separator reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 55,
+      "item": {
+        "@type": "WebPage",
+        "name": "Sheet",
+        "url": "https://ui.hilum.dev/atoms/sheet/",
+        "description": "Sheet reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 56,
+      "item": {
+        "@type": "WebPage",
+        "name": "Sidebar",
+        "url": "https://ui.hilum.dev/atoms/sidebar/",
+        "description": "Sidebar reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 57,
+      "item": {
+        "@type": "WebPage",
+        "name": "Skeleton",
+        "url": "https://ui.hilum.dev/atoms/skeleton/",
+        "description": "Skeleton reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 58,
+      "item": {
+        "@type": "WebPage",
+        "name": "Slider",
+        "url": "https://ui.hilum.dev/atoms/slider/",
+        "description": "Slider reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 59,
+      "item": {
+        "@type": "WebPage",
+        "name": "Sonner",
+        "url": "https://ui.hilum.dev/atoms/sonner/",
+        "description": "Sonner reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 60,
+      "item": {
+        "@type": "WebPage",
+        "name": "Spinner",
+        "url": "https://ui.hilum.dev/atoms/spinner/",
+        "description": "Spinner reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 61,
+      "item": {
+        "@type": "WebPage",
+        "name": "Steps",
+        "url": "https://ui.hilum.dev/atoms/steps/",
+        "description": "Steps reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 62,
+      "item": {
+        "@type": "WebPage",
+        "name": "Switch",
+        "url": "https://ui.hilum.dev/atoms/switch/",
+        "description": "Switch reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 63,
+      "item": {
+        "@type": "WebPage",
+        "name": "Table",
+        "url": "https://ui.hilum.dev/atoms/table/",
+        "description": "Table reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 64,
+      "item": {
+        "@type": "WebPage",
+        "name": "Tabs",
+        "url": "https://ui.hilum.dev/atoms/tabs/",
+        "description": "Tabs reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 65,
+      "item": {
+        "@type": "WebPage",
+        "name": "Textarea",
+        "url": "https://ui.hilum.dev/atoms/textarea/",
+        "description": "Textarea reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 66,
+      "item": {
+        "@type": "WebPage",
+        "name": "Toggle",
+        "url": "https://ui.hilum.dev/atoms/toggle/",
+        "description": "Toggle reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 67,
+      "item": {
+        "@type": "WebPage",
+        "name": "Toggle Group",
+        "url": "https://ui.hilum.dev/atoms/toggle-group/",
+        "description": "Toggle Group reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 68,
+      "item": {
+        "@type": "WebPage",
+        "name": "Tooltip",
+        "url": "https://ui.hilum.dev/atoms/tooltip/",
+        "description": "Tooltip reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 69,
+      "item": {
+        "@type": "WebPage",
+        "name": "Blocks",
+        "url": "https://ui.hilum.dev/blocks/",
+        "description": "Blocks documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 70,
+      "item": {
+        "@type": "WebPage",
+        "name": "App Shell Sidebar",
+        "url": "https://ui.hilum.dev/blocks/app-shell-sidebar/",
+        "description": "App Shell Sidebar reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 71,
+      "item": {
+        "@type": "WebPage",
+        "name": "App Shell Stacked",
+        "url": "https://ui.hilum.dev/blocks/app-shell-stacked/",
+        "description": "App Shell Stacked reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 72,
+      "item": {
+        "@type": "WebPage",
+        "name": "Detail Screen",
+        "url": "https://ui.hilum.dev/blocks/detail-screen/",
+        "description": "Detail Screen reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 73,
+      "item": {
+        "@type": "WebPage",
+        "name": "Form Layout",
+        "url": "https://ui.hilum.dev/blocks/form-layout/",
+        "description": "Form Layout reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 74,
+      "item": {
+        "@type": "WebPage",
+        "name": "Navbar",
+        "url": "https://ui.hilum.dev/blocks/navbar/",
+        "description": "Navbar reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 75,
+      "item": {
+        "@type": "WebPage",
+        "name": "Settings Screen",
+        "url": "https://ui.hilum.dev/blocks/settings-screen/",
+        "description": "Settings Screen reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 76,
+      "item": {
+        "@type": "WebPage",
+        "name": "Sign In",
+        "url": "https://ui.hilum.dev/blocks/sign-in/",
+        "description": "Sign In reference in the Blocks section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 77,
+      "item": {
+        "@type": "WebPage",
+        "name": "Designer",
+        "url": "https://ui.hilum.dev/designer/",
+        "description": "Designer documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 78,
+      "item": {
+        "@type": "WebPage",
+        "name": "Canvas",
+        "url": "https://ui.hilum.dev/designer/canvas/",
+        "description": "Canvas reference in the Designer section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 79,
+      "item": {
+        "@type": "WebPage",
+        "name": "Pane Visibility",
+        "url": "https://ui.hilum.dev/designer/pane-visibility/",
+        "description": "Pane Visibility reference in the Designer section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 80,
+      "item": {
+        "@type": "WebPage",
+        "name": "Shell",
+        "url": "https://ui.hilum.dev/designer/shell/",
+        "description": "Shell reference in the Designer section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 81,
+      "item": {
+        "@type": "WebPage",
+        "name": "Static Frame",
+        "url": "https://ui.hilum.dev/designer/static-frame/",
+        "description": "Static Frame reference in the Designer section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 82,
+      "item": {
+        "@type": "WebPage",
+        "name": "Ecommerce",
+        "url": "https://ui.hilum.dev/ecommerce/",
+        "description": "Ecommerce documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 83,
+      "item": {
+        "@type": "WebPage",
+        "name": "Category Filters",
+        "url": "https://ui.hilum.dev/ecommerce/category-filters/",
+        "description": "Category Filters reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 84,
+      "item": {
+        "@type": "WebPage",
+        "name": "Category Previews",
+        "url": "https://ui.hilum.dev/ecommerce/category-previews/",
+        "description": "Category Previews reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 85,
+      "item": {
+        "@type": "WebPage",
+        "name": "Checkout Forms",
+        "url": "https://ui.hilum.dev/ecommerce/checkout-forms/",
+        "description": "Checkout Forms reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 86,
+      "item": {
+        "@type": "WebPage",
+        "name": "Incentives",
+        "url": "https://ui.hilum.dev/ecommerce/incentives/",
+        "description": "Incentives reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 87,
+      "item": {
+        "@type": "WebPage",
+        "name": "Order History",
+        "url": "https://ui.hilum.dev/ecommerce/order-history/",
+        "description": "Order History reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 88,
+      "item": {
+        "@type": "WebPage",
+        "name": "Order Summaries",
+        "url": "https://ui.hilum.dev/ecommerce/order-summaries/",
+        "description": "Order Summaries reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 89,
+      "item": {
+        "@type": "WebPage",
+        "name": "Product Features",
+        "url": "https://ui.hilum.dev/ecommerce/product-features/",
+        "description": "Product Features reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 90,
+      "item": {
+        "@type": "WebPage",
+        "name": "Product Lists",
+        "url": "https://ui.hilum.dev/ecommerce/product-lists/",
+        "description": "Product Lists reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 91,
+      "item": {
+        "@type": "WebPage",
+        "name": "Product Overviews",
+        "url": "https://ui.hilum.dev/ecommerce/product-overviews/",
+        "description": "Product Overviews reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 92,
+      "item": {
+        "@type": "WebPage",
+        "name": "Product Quickviews",
+        "url": "https://ui.hilum.dev/ecommerce/product-quickviews/",
+        "description": "Product Quickviews reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 93,
+      "item": {
+        "@type": "WebPage",
+        "name": "Promo Sections",
+        "url": "https://ui.hilum.dev/ecommerce/promo-sections/",
+        "description": "Promo Sections reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 94,
+      "item": {
+        "@type": "WebPage",
+        "name": "Reviews",
+        "url": "https://ui.hilum.dev/ecommerce/reviews/",
+        "description": "Reviews reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 95,
+      "item": {
+        "@type": "WebPage",
+        "name": "Shopping Carts",
+        "url": "https://ui.hilum.dev/ecommerce/shopping-carts/",
+        "description": "Shopping Carts reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 96,
+      "item": {
+        "@type": "WebPage",
+        "name": "Store Navigation",
+        "url": "https://ui.hilum.dev/ecommerce/store-navigation/",
+        "description": "Store Navigation reference in the Ecommerce section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 97,
+      "item": {
+        "@type": "WebPage",
+        "name": "Foundations",
+        "url": "https://ui.hilum.dev/foundations/",
+        "description": "Foundations documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 98,
+      "item": {
+        "@type": "WebPage",
+        "name": "Marketing",
+        "url": "https://ui.hilum.dev/marketing/",
+        "description": "Marketing documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 99,
+      "item": {
+        "@type": "WebPage",
+        "name": "404 Pages",
+        "url": "https://ui.hilum.dev/marketing/404-pages/",
+        "description": "404 Pages reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 100,
+      "item": {
+        "@type": "WebPage",
+        "name": "Banners",
+        "url": "https://ui.hilum.dev/marketing/banners/",
+        "description": "Banners reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 101,
+      "item": {
+        "@type": "WebPage",
+        "name": "Blog Sections",
+        "url": "https://ui.hilum.dev/marketing/blog-sections/",
+        "description": "Blog Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 102,
+      "item": {
+        "@type": "WebPage",
+        "name": "Contact Sections",
+        "url": "https://ui.hilum.dev/marketing/contact-sections/",
+        "description": "Contact Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 103,
+      "item": {
+        "@type": "WebPage",
+        "name": "Content Sections",
+        "url": "https://ui.hilum.dev/marketing/content-sections/",
+        "description": "Content Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 104,
+      "item": {
+        "@type": "WebPage",
+        "name": "Cta Sections",
+        "url": "https://ui.hilum.dev/marketing/cta-sections/",
+        "description": "Cta Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 105,
+      "item": {
+        "@type": "WebPage",
+        "name": "Faq Sections",
+        "url": "https://ui.hilum.dev/marketing/faq-sections/",
+        "description": "Faq Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 106,
+      "item": {
+        "@type": "WebPage",
+        "name": "Feature Sections",
+        "url": "https://ui.hilum.dev/marketing/feature-sections/",
+        "description": "Feature Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 107,
+      "item": {
+        "@type": "WebPage",
+        "name": "Flyout Menus",
+        "url": "https://ui.hilum.dev/marketing/flyout-menus/",
+        "description": "Flyout Menus reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 108,
+      "item": {
+        "@type": "WebPage",
+        "name": "Footers",
+        "url": "https://ui.hilum.dev/marketing/footers/",
+        "description": "Footers reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 109,
+      "item": {
+        "@type": "WebPage",
+        "name": "Header",
+        "url": "https://ui.hilum.dev/marketing/header/",
+        "description": "Header reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 110,
+      "item": {
+        "@type": "WebPage",
+        "name": "Heroes",
+        "url": "https://ui.hilum.dev/marketing/heroes/",
+        "description": "Heroes reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 111,
+      "item": {
+        "@type": "WebPage",
+        "name": "Logo Clouds",
+        "url": "https://ui.hilum.dev/marketing/logo-clouds/",
+        "description": "Logo Clouds reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 112,
+      "item": {
+        "@type": "WebPage",
+        "name": "Nav Headers",
+        "url": "https://ui.hilum.dev/marketing/nav-headers/",
+        "description": "Nav Headers reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 113,
+      "item": {
+        "@type": "WebPage",
+        "name": "Newsletter Sections",
+        "url": "https://ui.hilum.dev/marketing/newsletter-sections/",
+        "description": "Newsletter Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 114,
+      "item": {
+        "@type": "WebPage",
+        "name": "Pricing",
+        "url": "https://ui.hilum.dev/marketing/pricing/",
+        "description": "Pricing reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 115,
+      "item": {
+        "@type": "WebPage",
+        "name": "Stats Sections",
+        "url": "https://ui.hilum.dev/marketing/stats-sections/",
+        "description": "Stats Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 116,
+      "item": {
+        "@type": "WebPage",
+        "name": "Team Sections",
+        "url": "https://ui.hilum.dev/marketing/team-sections/",
+        "description": "Team Sections reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 117,
+      "item": {
+        "@type": "WebPage",
+        "name": "Testimonials",
+        "url": "https://ui.hilum.dev/marketing/testimonials/",
+        "description": "Testimonials reference in the Marketing section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 118,
+      "item": {
+        "@type": "WebPage",
+        "name": "Molecules",
+        "url": "https://ui.hilum.dev/molecules/",
+        "description": "Molecules documentation for Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 119,
+      "item": {
+        "@type": "WebPage",
+        "name": "Action Panel",
+        "url": "https://ui.hilum.dev/molecules/action-panel/",
+        "description": "Action Panel reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 120,
+      "item": {
+        "@type": "WebPage",
+        "name": "Activity Feed",
+        "url": "https://ui.hilum.dev/molecules/activity-feed/",
+        "description": "Activity Feed reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 121,
+      "item": {
+        "@type": "WebPage",
+        "name": "Card Heading",
+        "url": "https://ui.hilum.dev/molecules/card-heading/",
+        "description": "Card Heading reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 122,
+      "item": {
+        "@type": "WebPage",
+        "name": "Command Palette",
+        "url": "https://ui.hilum.dev/molecules/command-palette/",
+        "description": "Command Palette reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 123,
+      "item": {
+        "@type": "WebPage",
+        "name": "Description List",
+        "url": "https://ui.hilum.dev/molecules/description-list/",
+        "description": "Description List reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 124,
+      "item": {
+        "@type": "WebPage",
+        "name": "Empty State",
+        "url": "https://ui.hilum.dev/molecules/empty-state/",
+        "description": "Empty State reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 125,
+      "item": {
+        "@type": "WebPage",
+        "name": "Field",
+        "url": "https://ui.hilum.dev/molecules/field/",
+        "description": "Field reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 126,
+      "item": {
+        "@type": "WebPage",
+        "name": "Grid List",
+        "url": "https://ui.hilum.dev/molecules/grid-list/",
+        "description": "Grid List reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 127,
+      "item": {
+        "@type": "WebPage",
+        "name": "Input Group",
+        "url": "https://ui.hilum.dev/molecules/input-group/",
+        "description": "Input Group reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 128,
+      "item": {
+        "@type": "WebPage",
+        "name": "Media Object",
+        "url": "https://ui.hilum.dev/molecules/media-object/",
+        "description": "Media Object reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 129,
+      "item": {
+        "@type": "WebPage",
+        "name": "Notification",
+        "url": "https://ui.hilum.dev/molecules/notification/",
+        "description": "Notification reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 130,
+      "item": {
+        "@type": "WebPage",
+        "name": "Page Heading",
+        "url": "https://ui.hilum.dev/molecules/page-heading/",
+        "description": "Page Heading reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 131,
+      "item": {
+        "@type": "WebPage",
+        "name": "Radio Card",
+        "url": "https://ui.hilum.dev/molecules/radio-card/",
+        "description": "Radio Card reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 132,
+      "item": {
+        "@type": "WebPage",
+        "name": "Section Heading",
+        "url": "https://ui.hilum.dev/molecules/section-heading/",
+        "description": "Section Heading reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 133,
+      "item": {
+        "@type": "WebPage",
+        "name": "Stacked List",
+        "url": "https://ui.hilum.dev/molecules/stacked-list/",
+        "description": "Stacked List reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 134,
+      "item": {
+        "@type": "WebPage",
+        "name": "Stat Card",
+        "url": "https://ui.hilum.dev/molecules/stat-card/",
+        "description": "Stat Card reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 135,
+      "item": {
+        "@type": "WebPage",
+        "name": "Theming",
+        "url": "https://ui.hilum.dev/theming/",
+        "description": "Theming documentation for Hilum UI."
+      }
+    }
+  ],
+  "routes": [
+    {
+      "path": "/",
+      "url": "https://ui.hilum.dev/",
+      "title": "Design System Overview",
+      "description": "Hilum UI design system documentation, component catalog, and theming reference.",
+      "section": "Home",
+      "sourcePath": "src/app/page.tsx"
+    },
+    {
+      "path": "/application-ui",
+      "url": "https://ui.hilum.dev/application-ui/",
+      "title": "Application UI",
+      "description": "Application UI documentation for Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/page.tsx"
+    },
+    {
+      "path": "/application-ui/application-shells",
+      "url": "https://ui.hilum.dev/application-ui/application-shells/",
+      "title": "Application Shells",
+      "description": "Application Shells reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/application-shells/page.tsx"
+    },
+    {
+      "path": "/application-ui/data-display",
+      "url": "https://ui.hilum.dev/application-ui/data-display/",
+      "title": "Data Display",
+      "description": "Data Display reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/data-display/page.tsx"
+    },
+    {
+      "path": "/application-ui/elements",
+      "url": "https://ui.hilum.dev/application-ui/elements/",
+      "title": "Elements",
+      "description": "Elements reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/elements/page.tsx"
+    },
+    {
+      "path": "/application-ui/feedback",
+      "url": "https://ui.hilum.dev/application-ui/feedback/",
+      "title": "Feedback",
+      "description": "Feedback reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/feedback/page.tsx"
+    },
+    {
+      "path": "/application-ui/forms",
+      "url": "https://ui.hilum.dev/application-ui/forms/",
+      "title": "Forms",
+      "description": "Forms reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/forms/page.tsx"
+    },
+    {
+      "path": "/application-ui/headings",
+      "url": "https://ui.hilum.dev/application-ui/headings/",
+      "title": "Headings",
+      "description": "Headings reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/headings/page.tsx"
+    },
+    {
+      "path": "/application-ui/layout",
+      "url": "https://ui.hilum.dev/application-ui/layout/",
+      "title": "Layout",
+      "description": "Layout reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/layout/page.tsx"
+    },
+    {
+      "path": "/application-ui/lists",
+      "url": "https://ui.hilum.dev/application-ui/lists/",
+      "title": "Lists",
+      "description": "Lists reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/lists/page.tsx"
+    },
+    {
+      "path": "/application-ui/navigation",
+      "url": "https://ui.hilum.dev/application-ui/navigation/",
+      "title": "Navigation",
+      "description": "Navigation reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/navigation/page.tsx"
+    },
+    {
+      "path": "/application-ui/overlays",
+      "url": "https://ui.hilum.dev/application-ui/overlays/",
+      "title": "Overlays",
+      "description": "Overlays reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/overlays/page.tsx"
+    },
+    {
+      "path": "/application-ui/page-examples",
+      "url": "https://ui.hilum.dev/application-ui/page-examples/",
+      "title": "Page Examples",
+      "description": "Page Examples reference in the Application UI section of Hilum UI.",
+      "section": "Application UI",
+      "sourcePath": "src/app/application-ui/page-examples/page.tsx"
+    },
+    {
+      "path": "/atoms",
+      "url": "https://ui.hilum.dev/atoms/",
+      "title": "Atoms",
+      "description": "Atoms documentation for Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/page.tsx"
+    },
+    {
+      "path": "/atoms/accordion",
+      "url": "https://ui.hilum.dev/atoms/accordion/",
+      "title": "Accordion",
+      "description": "Accordion reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/accordion/page.tsx"
+    },
+    {
+      "path": "/atoms/alert",
+      "url": "https://ui.hilum.dev/atoms/alert/",
+      "title": "Alert",
+      "description": "Alert reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/alert/page.tsx"
+    },
+    {
+      "path": "/atoms/alert-dialog",
+      "url": "https://ui.hilum.dev/atoms/alert-dialog/",
+      "title": "Alert Dialog",
+      "description": "Alert Dialog reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/alert-dialog/page.tsx"
+    },
+    {
+      "path": "/atoms/aspect-ratio",
+      "url": "https://ui.hilum.dev/atoms/aspect-ratio/",
+      "title": "Aspect Ratio",
+      "description": "Aspect Ratio reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/aspect-ratio/page.tsx"
+    },
+    {
+      "path": "/atoms/avatar",
+      "url": "https://ui.hilum.dev/atoms/avatar/",
+      "title": "Avatar",
+      "description": "Avatar reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/avatar/page.tsx"
+    },
+    {
+      "path": "/atoms/avatar-stack",
+      "url": "https://ui.hilum.dev/atoms/avatar-stack/",
+      "title": "Avatar Stack",
+      "description": "Avatar Stack reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/avatar-stack/page.tsx"
+    },
+    {
+      "path": "/atoms/badge",
+      "url": "https://ui.hilum.dev/atoms/badge/",
+      "title": "Badge",
+      "description": "Badge reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/badge/page.tsx"
+    },
+    {
+      "path": "/atoms/breadcrumb",
+      "url": "https://ui.hilum.dev/atoms/breadcrumb/",
+      "title": "Breadcrumb",
+      "description": "Breadcrumb reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/breadcrumb/page.tsx"
+    },
+    {
+      "path": "/atoms/button",
+      "url": "https://ui.hilum.dev/atoms/button/",
+      "title": "Button",
+      "description": "Button reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/button/page.tsx"
+    },
+    {
+      "path": "/atoms/button-group",
+      "url": "https://ui.hilum.dev/atoms/button-group/",
+      "title": "Button Group",
+      "description": "Button Group reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/button-group/page.tsx"
+    },
+    {
+      "path": "/atoms/calendar",
+      "url": "https://ui.hilum.dev/atoms/calendar/",
+      "title": "Calendar",
+      "description": "Calendar reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/calendar/page.tsx"
+    },
+    {
+      "path": "/atoms/card",
+      "url": "https://ui.hilum.dev/atoms/card/",
+      "title": "Card",
+      "description": "Card reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/card/page.tsx"
+    },
+    {
+      "path": "/atoms/carousel",
+      "url": "https://ui.hilum.dev/atoms/carousel/",
+      "title": "Carousel",
+      "description": "Carousel reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/carousel/page.tsx"
+    },
+    {
+      "path": "/atoms/chart",
+      "url": "https://ui.hilum.dev/atoms/chart/",
+      "title": "Chart",
+      "description": "Chart reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/chart/page.tsx"
+    },
+    {
+      "path": "/atoms/checkbox",
+      "url": "https://ui.hilum.dev/atoms/checkbox/",
+      "title": "Checkbox",
+      "description": "Checkbox reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/checkbox/page.tsx"
+    },
+    {
+      "path": "/atoms/collapsible",
+      "url": "https://ui.hilum.dev/atoms/collapsible/",
+      "title": "Collapsible",
+      "description": "Collapsible reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/collapsible/page.tsx"
+    },
+    {
+      "path": "/atoms/combobox",
+      "url": "https://ui.hilum.dev/atoms/combobox/",
+      "title": "Combobox",
+      "description": "Combobox reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/combobox/page.tsx"
+    },
+    {
+      "path": "/atoms/command",
+      "url": "https://ui.hilum.dev/atoms/command/",
+      "title": "Command",
+      "description": "Command reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/command/page.tsx"
+    },
+    {
+      "path": "/atoms/context-menu",
+      "url": "https://ui.hilum.dev/atoms/context-menu/",
+      "title": "Context Menu",
+      "description": "Context Menu reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/context-menu/page.tsx"
+    },
+    {
+      "path": "/atoms/data-table",
+      "url": "https://ui.hilum.dev/atoms/data-table/",
+      "title": "Data Table",
+      "description": "Data Table reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/data-table/page.tsx"
+    },
+    {
+      "path": "/atoms/date-picker",
+      "url": "https://ui.hilum.dev/atoms/date-picker/",
+      "title": "Date Picker",
+      "description": "Date Picker reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/date-picker/page.tsx"
+    },
+    {
+      "path": "/atoms/dialog",
+      "url": "https://ui.hilum.dev/atoms/dialog/",
+      "title": "Dialog",
+      "description": "Dialog reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/dialog/page.tsx"
+    },
+    {
+      "path": "/atoms/drawer",
+      "url": "https://ui.hilum.dev/atoms/drawer/",
+      "title": "Drawer",
+      "description": "Drawer reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/drawer/page.tsx"
+    },
+    {
+      "path": "/atoms/dropdown-menu",
+      "url": "https://ui.hilum.dev/atoms/dropdown-menu/",
+      "title": "Dropdown Menu",
+      "description": "Dropdown Menu reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/dropdown-menu/page.tsx"
+    },
+    {
+      "path": "/atoms/hover-card",
+      "url": "https://ui.hilum.dev/atoms/hover-card/",
+      "title": "Hover Card",
+      "description": "Hover Card reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/hover-card/page.tsx"
+    },
+    {
+      "path": "/atoms/input",
+      "url": "https://ui.hilum.dev/atoms/input/",
+      "title": "Input",
+      "description": "Input reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/input/page.tsx"
+    },
+    {
+      "path": "/atoms/input-otp",
+      "url": "https://ui.hilum.dev/atoms/input-otp/",
+      "title": "Input Otp",
+      "description": "Input Otp reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/input-otp/page.tsx"
+    },
+    {
+      "path": "/atoms/kbd",
+      "url": "https://ui.hilum.dev/atoms/kbd/",
+      "title": "Kbd",
+      "description": "Kbd reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/kbd/page.tsx"
+    },
+    {
+      "path": "/atoms/label",
+      "url": "https://ui.hilum.dev/atoms/label/",
+      "title": "Label",
+      "description": "Label reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/label/page.tsx"
+    },
+    {
+      "path": "/atoms/menubar",
+      "url": "https://ui.hilum.dev/atoms/menubar/",
+      "title": "Menubar",
+      "description": "Menubar reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/menubar/page.tsx"
+    },
+    {
+      "path": "/atoms/native-select",
+      "url": "https://ui.hilum.dev/atoms/native-select/",
+      "title": "Native Select",
+      "description": "Native Select reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/native-select/page.tsx"
+    },
+    {
+      "path": "/atoms/navigation-menu",
+      "url": "https://ui.hilum.dev/atoms/navigation-menu/",
+      "title": "Navigation Menu",
+      "description": "Navigation Menu reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/navigation-menu/page.tsx"
+    },
+    {
+      "path": "/atoms/pagination",
+      "url": "https://ui.hilum.dev/atoms/pagination/",
+      "title": "Pagination",
+      "description": "Pagination reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/pagination/page.tsx"
+    },
+    {
+      "path": "/atoms/popover",
+      "url": "https://ui.hilum.dev/atoms/popover/",
+      "title": "Popover",
+      "description": "Popover reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/popover/page.tsx"
+    },
+    {
+      "path": "/atoms/progress",
+      "url": "https://ui.hilum.dev/atoms/progress/",
+      "title": "Progress",
+      "description": "Progress reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/progress/page.tsx"
+    },
+    {
+      "path": "/atoms/radio-group",
+      "url": "https://ui.hilum.dev/atoms/radio-group/",
+      "title": "Radio Group",
+      "description": "Radio Group reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/radio-group/page.tsx"
+    },
+    {
+      "path": "/atoms/resizable",
+      "url": "https://ui.hilum.dev/atoms/resizable/",
+      "title": "Resizable",
+      "description": "Resizable reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/resizable/page.tsx"
+    },
+    {
+      "path": "/atoms/scroll-area",
+      "url": "https://ui.hilum.dev/atoms/scroll-area/",
+      "title": "Scroll Area",
+      "description": "Scroll Area reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/scroll-area/page.tsx"
+    },
+    {
+      "path": "/atoms/select",
+      "url": "https://ui.hilum.dev/atoms/select/",
+      "title": "Select",
+      "description": "Select reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/select/page.tsx"
+    },
+    {
+      "path": "/atoms/separator",
+      "url": "https://ui.hilum.dev/atoms/separator/",
+      "title": "Separator",
+      "description": "Separator reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/separator/page.tsx"
+    },
+    {
+      "path": "/atoms/sheet",
+      "url": "https://ui.hilum.dev/atoms/sheet/",
+      "title": "Sheet",
+      "description": "Sheet reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/sheet/page.tsx"
+    },
+    {
+      "path": "/atoms/sidebar",
+      "url": "https://ui.hilum.dev/atoms/sidebar/",
+      "title": "Sidebar",
+      "description": "Sidebar reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/sidebar/page.tsx"
+    },
+    {
+      "path": "/atoms/skeleton",
+      "url": "https://ui.hilum.dev/atoms/skeleton/",
+      "title": "Skeleton",
+      "description": "Skeleton reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/skeleton/page.tsx"
+    },
+    {
+      "path": "/atoms/slider",
+      "url": "https://ui.hilum.dev/atoms/slider/",
+      "title": "Slider",
+      "description": "Slider reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/slider/page.tsx"
+    },
+    {
+      "path": "/atoms/sonner",
+      "url": "https://ui.hilum.dev/atoms/sonner/",
+      "title": "Sonner",
+      "description": "Sonner reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/sonner/page.tsx"
+    },
+    {
+      "path": "/atoms/spinner",
+      "url": "https://ui.hilum.dev/atoms/spinner/",
+      "title": "Spinner",
+      "description": "Spinner reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/spinner/page.tsx"
+    },
+    {
+      "path": "/atoms/steps",
+      "url": "https://ui.hilum.dev/atoms/steps/",
+      "title": "Steps",
+      "description": "Steps reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/steps/page.tsx"
+    },
+    {
+      "path": "/atoms/switch",
+      "url": "https://ui.hilum.dev/atoms/switch/",
+      "title": "Switch",
+      "description": "Switch reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/switch/page.tsx"
+    },
+    {
+      "path": "/atoms/table",
+      "url": "https://ui.hilum.dev/atoms/table/",
+      "title": "Table",
+      "description": "Table reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/table/page.tsx"
+    },
+    {
+      "path": "/atoms/tabs",
+      "url": "https://ui.hilum.dev/atoms/tabs/",
+      "title": "Tabs",
+      "description": "Tabs reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/tabs/page.tsx"
+    },
+    {
+      "path": "/atoms/textarea",
+      "url": "https://ui.hilum.dev/atoms/textarea/",
+      "title": "Textarea",
+      "description": "Textarea reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/textarea/page.tsx"
+    },
+    {
+      "path": "/atoms/toggle",
+      "url": "https://ui.hilum.dev/atoms/toggle/",
+      "title": "Toggle",
+      "description": "Toggle reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/toggle/page.tsx"
+    },
+    {
+      "path": "/atoms/toggle-group",
+      "url": "https://ui.hilum.dev/atoms/toggle-group/",
+      "title": "Toggle Group",
+      "description": "Toggle Group reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/toggle-group/page.tsx"
+    },
+    {
+      "path": "/atoms/tooltip",
+      "url": "https://ui.hilum.dev/atoms/tooltip/",
+      "title": "Tooltip",
+      "description": "Tooltip reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/tooltip/page.tsx"
+    },
+    {
+      "path": "/blocks",
+      "url": "https://ui.hilum.dev/blocks/",
+      "title": "Blocks",
+      "description": "Blocks documentation for Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/page.tsx"
+    },
+    {
+      "path": "/blocks/app-shell-sidebar",
+      "url": "https://ui.hilum.dev/blocks/app-shell-sidebar/",
+      "title": "App Shell Sidebar",
+      "description": "App Shell Sidebar reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/app-shell-sidebar/page.tsx"
+    },
+    {
+      "path": "/blocks/app-shell-stacked",
+      "url": "https://ui.hilum.dev/blocks/app-shell-stacked/",
+      "title": "App Shell Stacked",
+      "description": "App Shell Stacked reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/app-shell-stacked/page.tsx"
+    },
+    {
+      "path": "/blocks/detail-screen",
+      "url": "https://ui.hilum.dev/blocks/detail-screen/",
+      "title": "Detail Screen",
+      "description": "Detail Screen reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/detail-screen/page.tsx"
+    },
+    {
+      "path": "/blocks/form-layout",
+      "url": "https://ui.hilum.dev/blocks/form-layout/",
+      "title": "Form Layout",
+      "description": "Form Layout reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/form-layout/page.tsx"
+    },
+    {
+      "path": "/blocks/navbar",
+      "url": "https://ui.hilum.dev/blocks/navbar/",
+      "title": "Navbar",
+      "description": "Navbar reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/navbar/page.tsx"
+    },
+    {
+      "path": "/blocks/settings-screen",
+      "url": "https://ui.hilum.dev/blocks/settings-screen/",
+      "title": "Settings Screen",
+      "description": "Settings Screen reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/settings-screen/page.tsx"
+    },
+    {
+      "path": "/blocks/sign-in",
+      "url": "https://ui.hilum.dev/blocks/sign-in/",
+      "title": "Sign In",
+      "description": "Sign In reference in the Blocks section of Hilum UI.",
+      "section": "Blocks",
+      "sourcePath": "src/app/blocks/sign-in/page.tsx"
+    },
+    {
+      "path": "/designer",
+      "url": "https://ui.hilum.dev/designer/",
+      "title": "Designer",
+      "description": "Designer documentation for Hilum UI.",
+      "section": "Designer",
+      "sourcePath": "src/app/designer/page.tsx"
+    },
+    {
+      "path": "/designer/canvas",
+      "url": "https://ui.hilum.dev/designer/canvas/",
+      "title": "Canvas",
+      "description": "Canvas reference in the Designer section of Hilum UI.",
+      "section": "Designer",
+      "sourcePath": "src/app/designer/canvas/page.tsx"
+    },
+    {
+      "path": "/designer/pane-visibility",
+      "url": "https://ui.hilum.dev/designer/pane-visibility/",
+      "title": "Pane Visibility",
+      "description": "Pane Visibility reference in the Designer section of Hilum UI.",
+      "section": "Designer",
+      "sourcePath": "src/app/designer/pane-visibility/page.tsx"
+    },
+    {
+      "path": "/designer/shell",
+      "url": "https://ui.hilum.dev/designer/shell/",
+      "title": "Shell",
+      "description": "Shell reference in the Designer section of Hilum UI.",
+      "section": "Designer",
+      "sourcePath": "src/app/designer/shell/page.tsx"
+    },
+    {
+      "path": "/designer/static-frame",
+      "url": "https://ui.hilum.dev/designer/static-frame/",
+      "title": "Static Frame",
+      "description": "Static Frame reference in the Designer section of Hilum UI.",
+      "section": "Designer",
+      "sourcePath": "src/app/designer/static-frame/page.tsx"
+    },
+    {
+      "path": "/ecommerce",
+      "url": "https://ui.hilum.dev/ecommerce/",
+      "title": "Ecommerce",
+      "description": "Ecommerce documentation for Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/page.tsx"
+    },
+    {
+      "path": "/ecommerce/category-filters",
+      "url": "https://ui.hilum.dev/ecommerce/category-filters/",
+      "title": "Category Filters",
+      "description": "Category Filters reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/category-filters/page.tsx"
+    },
+    {
+      "path": "/ecommerce/category-previews",
+      "url": "https://ui.hilum.dev/ecommerce/category-previews/",
+      "title": "Category Previews",
+      "description": "Category Previews reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/category-previews/page.tsx"
+    },
+    {
+      "path": "/ecommerce/checkout-forms",
+      "url": "https://ui.hilum.dev/ecommerce/checkout-forms/",
+      "title": "Checkout Forms",
+      "description": "Checkout Forms reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/checkout-forms/page.tsx"
+    },
+    {
+      "path": "/ecommerce/incentives",
+      "url": "https://ui.hilum.dev/ecommerce/incentives/",
+      "title": "Incentives",
+      "description": "Incentives reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/incentives/page.tsx"
+    },
+    {
+      "path": "/ecommerce/order-history",
+      "url": "https://ui.hilum.dev/ecommerce/order-history/",
+      "title": "Order History",
+      "description": "Order History reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/order-history/page.tsx"
+    },
+    {
+      "path": "/ecommerce/order-summaries",
+      "url": "https://ui.hilum.dev/ecommerce/order-summaries/",
+      "title": "Order Summaries",
+      "description": "Order Summaries reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/order-summaries/page.tsx"
+    },
+    {
+      "path": "/ecommerce/product-features",
+      "url": "https://ui.hilum.dev/ecommerce/product-features/",
+      "title": "Product Features",
+      "description": "Product Features reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/product-features/page.tsx"
+    },
+    {
+      "path": "/ecommerce/product-lists",
+      "url": "https://ui.hilum.dev/ecommerce/product-lists/",
+      "title": "Product Lists",
+      "description": "Product Lists reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/product-lists/page.tsx"
+    },
+    {
+      "path": "/ecommerce/product-overviews",
+      "url": "https://ui.hilum.dev/ecommerce/product-overviews/",
+      "title": "Product Overviews",
+      "description": "Product Overviews reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/product-overviews/page.tsx"
+    },
+    {
+      "path": "/ecommerce/product-quickviews",
+      "url": "https://ui.hilum.dev/ecommerce/product-quickviews/",
+      "title": "Product Quickviews",
+      "description": "Product Quickviews reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/product-quickviews/page.tsx"
+    },
+    {
+      "path": "/ecommerce/promo-sections",
+      "url": "https://ui.hilum.dev/ecommerce/promo-sections/",
+      "title": "Promo Sections",
+      "description": "Promo Sections reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/promo-sections/page.tsx"
+    },
+    {
+      "path": "/ecommerce/reviews",
+      "url": "https://ui.hilum.dev/ecommerce/reviews/",
+      "title": "Reviews",
+      "description": "Reviews reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/reviews/page.tsx"
+    },
+    {
+      "path": "/ecommerce/shopping-carts",
+      "url": "https://ui.hilum.dev/ecommerce/shopping-carts/",
+      "title": "Shopping Carts",
+      "description": "Shopping Carts reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/shopping-carts/page.tsx"
+    },
+    {
+      "path": "/ecommerce/store-navigation",
+      "url": "https://ui.hilum.dev/ecommerce/store-navigation/",
+      "title": "Store Navigation",
+      "description": "Store Navigation reference in the Ecommerce section of Hilum UI.",
+      "section": "Ecommerce",
+      "sourcePath": "src/app/ecommerce/store-navigation/page.tsx"
+    },
+    {
+      "path": "/foundations",
+      "url": "https://ui.hilum.dev/foundations/",
+      "title": "Foundations",
+      "description": "Foundations documentation for Hilum UI.",
+      "section": "Foundations",
+      "sourcePath": "src/app/foundations/page.tsx"
+    },
+    {
+      "path": "/marketing",
+      "url": "https://ui.hilum.dev/marketing/",
+      "title": "Marketing",
+      "description": "Marketing documentation for Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/page.tsx"
+    },
+    {
+      "path": "/marketing/404-pages",
+      "url": "https://ui.hilum.dev/marketing/404-pages/",
+      "title": "404 Pages",
+      "description": "404 Pages reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/404-pages/page.tsx"
+    },
+    {
+      "path": "/marketing/banners",
+      "url": "https://ui.hilum.dev/marketing/banners/",
+      "title": "Banners",
+      "description": "Banners reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/banners/page.tsx"
+    },
+    {
+      "path": "/marketing/blog-sections",
+      "url": "https://ui.hilum.dev/marketing/blog-sections/",
+      "title": "Blog Sections",
+      "description": "Blog Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/blog-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/contact-sections",
+      "url": "https://ui.hilum.dev/marketing/contact-sections/",
+      "title": "Contact Sections",
+      "description": "Contact Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/contact-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/content-sections",
+      "url": "https://ui.hilum.dev/marketing/content-sections/",
+      "title": "Content Sections",
+      "description": "Content Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/content-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/cta-sections",
+      "url": "https://ui.hilum.dev/marketing/cta-sections/",
+      "title": "Cta Sections",
+      "description": "Cta Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/cta-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/faq-sections",
+      "url": "https://ui.hilum.dev/marketing/faq-sections/",
+      "title": "Faq Sections",
+      "description": "Faq Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/faq-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/feature-sections",
+      "url": "https://ui.hilum.dev/marketing/feature-sections/",
+      "title": "Feature Sections",
+      "description": "Feature Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/feature-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/flyout-menus",
+      "url": "https://ui.hilum.dev/marketing/flyout-menus/",
+      "title": "Flyout Menus",
+      "description": "Flyout Menus reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/flyout-menus/page.tsx"
+    },
+    {
+      "path": "/marketing/footers",
+      "url": "https://ui.hilum.dev/marketing/footers/",
+      "title": "Footers",
+      "description": "Footers reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/footers/page.tsx"
+    },
+    {
+      "path": "/marketing/header",
+      "url": "https://ui.hilum.dev/marketing/header/",
+      "title": "Header",
+      "description": "Header reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/header/page.tsx"
+    },
+    {
+      "path": "/marketing/heroes",
+      "url": "https://ui.hilum.dev/marketing/heroes/",
+      "title": "Heroes",
+      "description": "Heroes reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/heroes/page.tsx"
+    },
+    {
+      "path": "/marketing/logo-clouds",
+      "url": "https://ui.hilum.dev/marketing/logo-clouds/",
+      "title": "Logo Clouds",
+      "description": "Logo Clouds reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/logo-clouds/page.tsx"
+    },
+    {
+      "path": "/marketing/nav-headers",
+      "url": "https://ui.hilum.dev/marketing/nav-headers/",
+      "title": "Nav Headers",
+      "description": "Nav Headers reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/nav-headers/page.tsx"
+    },
+    {
+      "path": "/marketing/newsletter-sections",
+      "url": "https://ui.hilum.dev/marketing/newsletter-sections/",
+      "title": "Newsletter Sections",
+      "description": "Newsletter Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/newsletter-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/pricing",
+      "url": "https://ui.hilum.dev/marketing/pricing/",
+      "title": "Pricing",
+      "description": "Pricing reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/pricing/page.tsx"
+    },
+    {
+      "path": "/marketing/stats-sections",
+      "url": "https://ui.hilum.dev/marketing/stats-sections/",
+      "title": "Stats Sections",
+      "description": "Stats Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/stats-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/team-sections",
+      "url": "https://ui.hilum.dev/marketing/team-sections/",
+      "title": "Team Sections",
+      "description": "Team Sections reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/team-sections/page.tsx"
+    },
+    {
+      "path": "/marketing/testimonials",
+      "url": "https://ui.hilum.dev/marketing/testimonials/",
+      "title": "Testimonials",
+      "description": "Testimonials reference in the Marketing section of Hilum UI.",
+      "section": "Marketing",
+      "sourcePath": "src/app/marketing/testimonials/page.tsx"
+    },
+    {
+      "path": "/molecules",
+      "url": "https://ui.hilum.dev/molecules/",
+      "title": "Molecules",
+      "description": "Molecules documentation for Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/page.tsx"
+    },
+    {
+      "path": "/molecules/action-panel",
+      "url": "https://ui.hilum.dev/molecules/action-panel/",
+      "title": "Action Panel",
+      "description": "Action Panel reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/action-panel/page.tsx"
+    },
+    {
+      "path": "/molecules/activity-feed",
+      "url": "https://ui.hilum.dev/molecules/activity-feed/",
+      "title": "Activity Feed",
+      "description": "Activity Feed reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/activity-feed/page.tsx"
+    },
+    {
+      "path": "/molecules/card-heading",
+      "url": "https://ui.hilum.dev/molecules/card-heading/",
+      "title": "Card Heading",
+      "description": "Card Heading reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/card-heading/page.tsx"
+    },
+    {
+      "path": "/molecules/command-palette",
+      "url": "https://ui.hilum.dev/molecules/command-palette/",
+      "title": "Command Palette",
+      "description": "Command Palette reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/command-palette/page.tsx"
+    },
+    {
+      "path": "/molecules/description-list",
+      "url": "https://ui.hilum.dev/molecules/description-list/",
+      "title": "Description List",
+      "description": "Description List reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/description-list/page.tsx"
+    },
+    {
+      "path": "/molecules/empty-state",
+      "url": "https://ui.hilum.dev/molecules/empty-state/",
+      "title": "Empty State",
+      "description": "Empty State reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/empty-state/page.tsx"
+    },
+    {
+      "path": "/molecules/field",
+      "url": "https://ui.hilum.dev/molecules/field/",
+      "title": "Field",
+      "description": "Field reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/field/page.tsx"
+    },
+    {
+      "path": "/molecules/grid-list",
+      "url": "https://ui.hilum.dev/molecules/grid-list/",
+      "title": "Grid List",
+      "description": "Grid List reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/grid-list/page.tsx"
+    },
+    {
+      "path": "/molecules/input-group",
+      "url": "https://ui.hilum.dev/molecules/input-group/",
+      "title": "Input Group",
+      "description": "Input Group reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/input-group/page.tsx"
+    },
+    {
+      "path": "/molecules/media-object",
+      "url": "https://ui.hilum.dev/molecules/media-object/",
+      "title": "Media Object",
+      "description": "Media Object reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/media-object/page.tsx"
+    },
+    {
+      "path": "/molecules/notification",
+      "url": "https://ui.hilum.dev/molecules/notification/",
+      "title": "Notification",
+      "description": "Notification reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/notification/page.tsx"
+    },
+    {
+      "path": "/molecules/page-heading",
+      "url": "https://ui.hilum.dev/molecules/page-heading/",
+      "title": "Page Heading",
+      "description": "Page Heading reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/page-heading/page.tsx"
+    },
+    {
+      "path": "/molecules/radio-card",
+      "url": "https://ui.hilum.dev/molecules/radio-card/",
+      "title": "Radio Card",
+      "description": "Radio Card reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/radio-card/page.tsx"
+    },
+    {
+      "path": "/molecules/section-heading",
+      "url": "https://ui.hilum.dev/molecules/section-heading/",
+      "title": "Section Heading",
+      "description": "Section Heading reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/section-heading/page.tsx"
+    },
+    {
+      "path": "/molecules/stacked-list",
+      "url": "https://ui.hilum.dev/molecules/stacked-list/",
+      "title": "Stacked List",
+      "description": "Stacked List reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/stacked-list/page.tsx"
+    },
+    {
+      "path": "/molecules/stat-card",
+      "url": "https://ui.hilum.dev/molecules/stat-card/",
+      "title": "Stat Card",
+      "description": "Stat Card reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/stat-card/page.tsx"
+    },
+    {
+      "path": "/theming",
+      "url": "https://ui.hilum.dev/theming/",
+      "title": "Theming",
+      "description": "Theming documentation for Hilum UI.",
+      "section": "Theming",
+      "sourcePath": "src/app/theming/page.tsx"
+    }
+  ]
+}

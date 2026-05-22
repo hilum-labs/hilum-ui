@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { SectionHeading } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -42,7 +44,7 @@ function SectionHdg({ label }: { label: string }) {
   );
 }
 
-export default function SectionHeadingPage() {
+function SectionHeadingPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -121,3 +123,8 @@ export default function SectionHeadingPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/section-heading/")({
+  head: () => createCatalogPageHead("/molecules/section-heading/"),
+  component: SectionHeadingPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { useState } from "react"
 import {
   DesignerPane,
@@ -15,7 +17,7 @@ const KINDS = [
   { id: "group-1", kind: "group", label: "Group" },
 ]
 
-export default function PaneVisibilityDemo() {
+function PaneVisibilityDemo() {
   const [selectedIds, setSelectedIds] = useState<string[]>([])
 
   // Build a kind resolver from the local KINDS table.
@@ -120,3 +122,8 @@ export default function PaneVisibilityDemo() {
     </div>
   )
 }
+
+export const Route = createFileRoute("/designer/pane-visibility/")({
+  head: () => createCatalogPageHead("/designer/pane-visibility/"),
+  component: PaneVisibilityDemo,
+});

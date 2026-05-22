@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -29,7 +31,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function DataDisplayPage() {
+function DataDisplayPage() {
   return (
     <div className="min-h-screen bg-ground-50">
       <div className="mx-auto max-w-7xl px-8 py-10">
@@ -146,3 +148,8 @@ export default function DataDisplayPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/data-display/")({
+  head: () => createCatalogPageHead("/application-ui/data-display/"),
+  component: DataDisplayPage,
+});

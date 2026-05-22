@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
+import { Link } from "@tanstack/react-router";
 import {
   Card,
   CardDescription,
@@ -61,7 +63,7 @@ const BLOCKS: BlockEntry[] = [
   },
 ];
 
-export default function BlocksPage() {
+function BlocksPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -105,7 +107,7 @@ export default function BlocksPage() {
                 size="sm"
                 className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
               >
-                <Link to={`/blocks/${block.slug}`}>View block →</Link>
+                <a href={`/blocks/${block.slug}`}>View block →</a>
               </Button>
             </CardFooter>
           </Card>
@@ -116,3 +118,8 @@ export default function BlocksPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/")({
+  head: () => createCatalogPageHead("/blocks/"),
+  component: BlocksPage,
+});

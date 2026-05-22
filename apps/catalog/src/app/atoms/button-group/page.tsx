@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { List, LayoutGrid, AlignLeft, AlignCenter, AlignRight, Bookmark, Star, Heart } from "lucide-react";
 import { ButtonGroup, ButtonGroupItem } from "@hilum/ui";
@@ -61,7 +63,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ButtonGroupPage() {
+function ButtonGroupPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -162,3 +164,8 @@ export default function ButtonGroupPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/button-group/")({
+  head: () => createCatalogPageHead("/atoms/button-group/"),
+  component: ButtonGroupPage,
+});

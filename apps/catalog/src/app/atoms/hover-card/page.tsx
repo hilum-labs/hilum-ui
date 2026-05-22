@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import {
   HoverCard,
@@ -107,7 +109,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function HoverCardPage() {
+function HoverCardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -227,3 +229,8 @@ export default function HoverCardPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/hover-card/")({
+  head: () => createCatalogPageHead("/atoms/hover-card/"),
+  component: HoverCardPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 import HeroSimpleCentered from "@/components/marketing/heroes/hero-simple-centered";
@@ -36,7 +38,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function HeroesPage() {
+function HeroesPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -177,3 +179,8 @@ export default function HeroesPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/heroes/")({
+  head: () => createCatalogPageHead("/marketing/heroes/"),
+  component: HeroesPage,
+});

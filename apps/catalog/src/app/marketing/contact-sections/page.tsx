@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -31,7 +33,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ContactSectionsPage() {
+function ContactSectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 max-w-2xl">
@@ -132,3 +134,8 @@ export default function ContactSectionsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/contact-sections/")({
+  head: () => createCatalogPageHead("/marketing/contact-sections/"),
+  component: ContactSectionsPage,
+});

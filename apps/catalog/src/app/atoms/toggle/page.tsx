@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Bold, Italic, Underline } from "lucide-react";
 import { Toggle } from "@hilum/ui";
@@ -47,7 +49,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function TogglePage() {
+function TogglePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -132,3 +134,8 @@ export default function TogglePage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/toggle/")({
+  head: () => createCatalogPageHead("/atoms/toggle/"),
+  component: TogglePage,
+});

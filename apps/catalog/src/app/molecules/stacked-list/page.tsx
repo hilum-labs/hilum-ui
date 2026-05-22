@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { ChevronRight, Mail, CheckCircle } from "lucide-react";
 import { StackedList, StackedListItem } from "@hilum/ui";
@@ -72,7 +74,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function StackedListPage() {
+function StackedListPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -165,3 +167,8 @@ export default function StackedListPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/stacked-list/")({
+  head: () => createCatalogPageHead("/molecules/stacked-list/"),
+  component: StackedListPage,
+});

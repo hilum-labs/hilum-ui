@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import PricingThreeTiers from "@/components/marketing/pricing/pricing-three-tiers";
@@ -28,7 +30,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function PricingPage() {
+function PricingPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -127,3 +129,8 @@ export default function PricingPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/pricing/")({
+  head: () => createCatalogPageHead("/marketing/pricing/"),
+  component: PricingPage,
+});

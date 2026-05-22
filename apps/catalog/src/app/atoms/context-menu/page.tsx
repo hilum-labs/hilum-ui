@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Copy, Edit2, FileText, FolderOpen, Share2, Trash2, ExternalLink, Link2, Mail } from "lucide-react";
 import {
@@ -86,7 +88,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ContextMenuPage() {
+function ContextMenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -210,3 +212,8 @@ export default function ContextMenuPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/context-menu/")({
+  head: () => createCatalogPageHead("/atoms/context-menu/"),
+  component: ContextMenuPage,
+});

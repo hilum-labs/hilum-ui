@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import StackedShell from "@/components/blocks/app-shell-stacked/stacked-shell";
@@ -12,7 +14,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function AppShellStackedPage() {
+function AppShellStackedPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -52,3 +54,8 @@ export default function AppShellStackedPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/app-shell-stacked/")({
+  head: () => createCatalogPageHead("/blocks/app-shell-stacked/"),
+  component: AppShellStackedPage,
+});

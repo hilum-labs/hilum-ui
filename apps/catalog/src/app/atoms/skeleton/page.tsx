@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Skeleton } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -26,7 +28,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function SkeletonPage() {
+function SkeletonPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -76,3 +78,8 @@ export default function SkeletonPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/skeleton/")({
+  head: () => createCatalogPageHead("/atoms/skeleton/"),
+  component: SkeletonPage,
+});

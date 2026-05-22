@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { AvatarStack } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -56,7 +58,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function AvatarStackPage() {
+function AvatarStackPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -126,3 +128,8 @@ export default function AvatarStackPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/avatar-stack/")({
+  head: () => createCatalogPageHead("/atoms/avatar-stack/"),
+  component: AvatarStackPage,
+});

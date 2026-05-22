@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Input } from "@hilum/ui";
 import { Label } from "@hilum/ui";
@@ -29,7 +31,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function InputPage() {
+function InputPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -82,3 +84,8 @@ export default function InputPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/input/")({
+  head: () => createCatalogPageHead("/atoms/input/"),
+  component: InputPage,
+});

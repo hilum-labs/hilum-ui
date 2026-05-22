@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { FileX, Inbox, Search, Users, FolderOpen } from "lucide-react";
 import { EmptyState } from "@hilum/ui";
@@ -63,7 +65,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function EmptyStatePage() {
+function EmptyStatePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -159,3 +161,8 @@ export default function EmptyStatePage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/empty-state/")({
+  head: () => createCatalogPageHead("/molecules/empty-state/"),
+  component: EmptyStatePage,
+});

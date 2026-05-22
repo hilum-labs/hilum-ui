@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { FileText, Image as ImageIcon } from "lucide-react";
 import { MediaObject } from "@hilum/ui";
@@ -70,7 +72,7 @@ const COMMENTS = [
   { id: 3, author: "Martha Gardner", time: "10 minutes ago", text: "Shipped to staging! Let me know if there are any issues.", initials: "MG", color: "bg-ground-900 text-white" },
 ];
 
-export default function MediaObjectPage() {
+function MediaObjectPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -174,3 +176,8 @@ export default function MediaObjectPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/media-object/")({
+  head: () => createCatalogPageHead("/molecules/media-object/"),
+  component: MediaObjectPage,
+});

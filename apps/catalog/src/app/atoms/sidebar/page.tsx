@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import {
   LayoutDashboard,
@@ -316,7 +318,7 @@ function DefaultSidebarContent() {
 /*  Page                                                                */
 /* ------------------------------------------------------------------ */
 
-export default function SidebarPage() {
+function SidebarPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Page header */}
@@ -553,3 +555,8 @@ export default function SidebarPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/sidebar/")({
+  head: () => createCatalogPageHead("/atoms/sidebar/"),
+  component: SidebarPage,
+});

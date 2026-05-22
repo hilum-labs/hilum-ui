@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -39,7 +41,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function FaqSectionsPage() {
+function FaqSectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -158,3 +160,8 @@ export default function FaqSectionsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/faq-sections/")({
+  head: () => createCatalogPageHead("/marketing/faq-sections/"),
+  component: FaqSectionsPage,
+});

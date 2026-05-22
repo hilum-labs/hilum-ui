@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import NavbarBlock from "@/components/blocks/navbar/navbar-block";
@@ -12,7 +14,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function NavbarPage() {
+function NavbarPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -48,3 +50,8 @@ export default function NavbarPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/navbar/")({
+  head: () => createCatalogPageHead("/blocks/navbar/"),
+  component: NavbarPage,
+});

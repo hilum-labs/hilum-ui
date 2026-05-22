@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Field } from "@hilum/ui";
 import { Input } from "@hilum/ui";
@@ -70,7 +72,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function FieldPage() {
+function FieldPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -175,3 +177,8 @@ export default function FieldPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/field/")({
+  head: () => createCatalogPageHead("/molecules/field/"),
+  component: FieldPage,
+});

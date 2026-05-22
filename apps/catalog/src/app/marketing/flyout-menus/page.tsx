@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import FlyoutSimple from "@/components/marketing/flyout-menus/flyout-simple";
@@ -22,7 +24,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function FlyoutMenusPage() {
+function FlyoutMenusPage() {
   return (
     <div className="space-y-10 p-8">
       <div className="space-y-3">
@@ -106,3 +108,8 @@ export default function FlyoutMenusPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/flyout-menus/")({
+  head: () => createCatalogPageHead("/marketing/flyout-menus/"),
+  component: FlyoutMenusPage,
+});

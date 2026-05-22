@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import {
   Search, Mail, AtSign, Globe, Lock, AlertCircle,
@@ -75,7 +77,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function InputGroupPage() {
+function InputGroupPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -240,3 +242,8 @@ export default function InputGroupPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/input-group/")({
+  head: () => createCatalogPageHead("/molecules/input-group/"),
+  component: InputGroupPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import * as React from "react";
 import { DatePicker, formatDate } from "@hilum/ui";
@@ -41,7 +43,7 @@ const [to, setTo] = React.useState<Date | undefined>()
 <DatePicker disabled={true} placeholder="Pick a date" />`,
 };
 
-export default function DatePickerPage() {
+function DatePickerPage() {
   const [date, setDate] = React.useState<Date | undefined>();
   const [from, setFrom] = React.useState<Date | undefined>();
   const [to, setTo] = React.useState<Date | undefined>();
@@ -147,3 +149,8 @@ export default function DatePickerPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/date-picker/")({
+  head: () => createCatalogPageHead("/atoms/date-picker/"),
+  component: DatePickerPage,
+});

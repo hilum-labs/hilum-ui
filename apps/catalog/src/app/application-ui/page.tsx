@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
+import { Link } from "@tanstack/react-router";
 import {
   Card,
   CardDescription,
@@ -99,7 +101,7 @@ const SECTIONS: SectionEntry[] = [
 
 const TOTAL_VARIANTS = SECTIONS.reduce((acc, s) => acc + s.variants, 0);
 
-export default function ApplicationUIPage() {
+function ApplicationUIPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -144,7 +146,7 @@ export default function ApplicationUIPage() {
                 size="sm"
                 className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
               >
-                <Link to={`/application-ui/${section.slug}`}>View section →</Link>
+                <a href={`/application-ui/${section.slug}`}>View section →</a>
               </Button>
             </CardFooter>
           </Card>
@@ -155,3 +157,8 @@ export default function ApplicationUIPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/")({
+  head: () => createCatalogPageHead("/application-ui/"),
+  component: ApplicationUIPage,
+});

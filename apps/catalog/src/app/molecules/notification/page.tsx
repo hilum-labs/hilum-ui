@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { Notification } from "@hilum/ui";
@@ -59,7 +61,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function NotificationPage() {
+function NotificationPage() {
   const [show, setShow] = useState(true);
 
   return (
@@ -155,3 +157,8 @@ export default function NotificationPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/notification/")({
+  head: () => createCatalogPageHead("/molecules/notification/"),
+  component: NotificationPage,
+});

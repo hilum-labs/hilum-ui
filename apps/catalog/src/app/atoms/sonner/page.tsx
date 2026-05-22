@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { toast } from "sonner";
 import { Button } from "@hilum/ui";
@@ -46,7 +48,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ToastPage() {
+function ToastPage() {
   const handlePromise = () => {
     const promise = new Promise((resolve) => setTimeout(resolve, 2000));
     toast.promise(promise, {
@@ -163,3 +165,8 @@ export default function ToastPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/sonner/")({
+  head: () => createCatalogPageHead("/atoms/sonner/"),
+  component: ToastPage,
+});

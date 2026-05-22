@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -20,7 +22,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function StatsSectionsPage() {
+function StatsSectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -94,3 +96,8 @@ export default function StatsSectionsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/stats-sections/")({
+  head: () => createCatalogPageHead("/marketing/stats-sections/"),
+  component: StatsSectionsPage,
+});

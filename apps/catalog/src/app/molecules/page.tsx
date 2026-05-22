@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
+import { Link } from "@tanstack/react-router";
 import {
   Card,
   CardDescription,
@@ -123,7 +125,7 @@ const MOLECULES: MoleculeEntry[] = [
 /*  Page                                                                */
 /* ------------------------------------------------------------------ */
 
-export default function MoleculesPage() {
+function MoleculesPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
@@ -175,9 +177,7 @@ export default function MoleculesPage() {
                 size="sm"
                 className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
               >
-                <Link to={`/molecules/${molecule.slug}`}>
-                  View component →
-                </Link>
+                <a href={`/molecules/${molecule.slug}`}>View component →</a>
               </Button>
             </CardFooter>
           </Card>
@@ -188,3 +188,8 @@ export default function MoleculesPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/")({
+  head: () => createCatalogPageHead("/molecules/"),
+  component: MoleculesPage,
+});

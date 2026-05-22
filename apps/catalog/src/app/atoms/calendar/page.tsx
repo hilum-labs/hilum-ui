@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import * as React from "react";
 import { Calendar } from "@hilum/ui";
@@ -65,7 +67,7 @@ const [date, setDate] = React.useState<Date | undefined>()
 />`,
 };
 
-export default function CalendarPage() {
+function CalendarPage() {
   const [singleDate, setSingleDate] = React.useState<Date | undefined>();
   const [range, setRange] = React.useState<DateRange | undefined>();
   const [multiDate, setMultiDate] = React.useState<Date | undefined>();
@@ -201,3 +203,8 @@ export default function CalendarPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/calendar/")({
+  head: () => createCatalogPageHead("/atoms/calendar/"),
+  component: CalendarPage,
+});

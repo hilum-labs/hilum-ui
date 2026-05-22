@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { ChevronDown } from "lucide-react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@hilum/ui";
@@ -29,7 +31,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function CollapsiblePage() {
+function CollapsiblePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -75,3 +77,8 @@ export default function CollapsiblePage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/collapsible/")({
+  head: () => createCatalogPageHead("/atoms/collapsible/"),
+  component: CollapsiblePage,
+});

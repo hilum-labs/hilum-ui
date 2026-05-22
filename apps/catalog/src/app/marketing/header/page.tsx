@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import HeaderSimpleCentered from "@/components/marketing/header/header-simple-centered";
@@ -20,7 +22,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function HeaderPage() {
+function HeaderPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 max-w-2xl">
@@ -97,3 +99,8 @@ export default function HeaderPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/header/")({
+  head: () => createCatalogPageHead("/marketing/header/"),
+  component: HeaderPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import {
   Bold,
@@ -105,7 +107,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ToggleGroupPage() {
+function ToggleGroupPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -246,3 +248,8 @@ export default function ToggleGroupPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/toggle-group/")({
+  head: () => createCatalogPageHead("/atoms/toggle-group/"),
+  component: ToggleGroupPage,
+});

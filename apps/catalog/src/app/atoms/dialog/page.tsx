@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import {
   Dialog,
@@ -47,7 +49,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function DialogPage() {
+function DialogPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -95,3 +97,8 @@ export default function DialogPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/dialog/")({
+  head: () => createCatalogPageHead("/atoms/dialog/"),
+  component: DialogPage,
+});

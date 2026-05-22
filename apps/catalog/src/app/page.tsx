@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight, Atom, Blocks, LayoutDashboard, Layers, Megaphone, Palette, ShoppingBag } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -107,7 +109,7 @@ const categories: Category[] = [
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
-export default function HomePage() {
+function HomePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
 
@@ -319,3 +321,8 @@ function Stat({ label, value, active }: { label: string; value: string; active: 
     </div>
   );
 }
+
+export const Route = createFileRoute("/")({
+  head: () => createCatalogPageHead("/"),
+  component: HomePage,
+});

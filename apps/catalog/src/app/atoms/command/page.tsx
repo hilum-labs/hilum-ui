@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import React, { useState, useEffect } from "react";
 import {
@@ -154,7 +156,7 @@ function CommandDialogDemo() {
   );
 }
 
-export default function CommandPage() {
+function CommandPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -335,3 +337,8 @@ export default function CommandPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/command/")({
+  head: () => createCatalogPageHead("/atoms/command/"),
+  component: CommandPage,
+});

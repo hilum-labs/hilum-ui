@@ -1,6 +1,6 @@
 # @hilum/ui — Design System
 
-> Production-ready React design system with 74 components, OKLCH-based per-product theming, and CSS-variable-backed design tokens. Built for browser + Electron apps (no SSR / no Next.js). Tailwind v4 + Radix UI primitives.
+> Production-ready React design system with 74 components, OKLCH-based per-product theming, and CSS-variable-backed design tokens. Works in client-rendered and prerendered React apps, plus Electron. Tailwind v4 + Radix UI primitives.
 
 ## Installation
 
@@ -1507,7 +1507,7 @@ import { PlusIcon, SearchIcon, SettingsIcon } from "@hilum/ui/icons"
 
 ## Design decisions
 
-- **No SSR / no Next.js** — all apps are plain React (Vite + Electron)
+- **Framework-agnostic React** — works in client-rendered apps, TanStack Start prerendered docs, and Electron
 - **Tailwind v4** — CSS-variable-backed utilities, runtime-overridable via `createTheme`
 - **Radix UI primitives** — all interactive components are WAI-ARIA compliant
 - **Lockstep versioning** — all packages release together

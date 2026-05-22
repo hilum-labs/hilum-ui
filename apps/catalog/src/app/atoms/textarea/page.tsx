@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import {
@@ -104,7 +106,7 @@ const PILL_ACTIONS = [
   { label: "Due date", icon: CalendarDays },
 ];
 
-export default function TextareaPage() {
+function TextareaPage() {
   const [previewContent, setPreviewContent] = useState("");
 
   return (
@@ -270,3 +272,8 @@ export default function TextareaPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/textarea/")({
+  head: () => createCatalogPageHead("/atoms/textarea/"),
+  component: TextareaPage,
+});

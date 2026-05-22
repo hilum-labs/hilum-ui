@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import {
   Designer,
   DesignerCanvas,
@@ -92,7 +94,7 @@ const layerTypes = [
 
 /* ---------------- Page ---------------- */
 
-export default function CanvasDemo() {
+function CanvasDemo() {
   return (
     <div className="h-screen flex flex-col bg-ground-50">
       <header className="flex items-center justify-between px-6 py-4 border-b border-ground-100">
@@ -142,3 +144,8 @@ export default function CanvasDemo() {
     </div>
   )
 }
+
+export const Route = createFileRoute("/designer/canvas/")({
+  head: () => createCatalogPageHead("/designer/canvas/"),
+  component: CanvasDemo,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import {
   Designer,
   DesignerStaticFrame,
@@ -61,7 +63,7 @@ const SAMPLES = [
   },
 ]
 
-export default function StaticFrameDemo() {
+function StaticFrameDemo() {
   return (
     <div className="mx-auto max-w-5xl px-8 py-12">
       <div className="mb-10">
@@ -105,3 +107,8 @@ export default function StaticFrameDemo() {
     </div>
   )
 }
+
+export const Route = createFileRoute("/designer/static-frame/")({
+  head: () => createCatalogPageHead("/designer/static-frame/"),
+  component: StaticFrameDemo,
+});

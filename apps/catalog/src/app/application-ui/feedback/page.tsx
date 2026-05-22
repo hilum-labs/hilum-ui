@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import AlertWithDescription from "@/components/application-ui/feedback/alert-with-description";
@@ -34,7 +36,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function FeedbackPage() {
+function FeedbackPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -124,3 +126,8 @@ export default function FeedbackPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/feedback/")({
+  head: () => createCatalogPageHead("/application-ui/feedback/"),
+  component: FeedbackPage,
+});

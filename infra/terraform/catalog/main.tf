@@ -92,6 +92,32 @@ resource "aws_cloudfront_origin_access_control" "catalog" {
   signing_protocol                  = "sigv4"
 }
 
+resource "aws_cloudfront_function" "catalog_static_routes" {
+  count = var.create_cloudfront_distribution ? 1 : 0
+
+  name    = "${var.project_name}-${var.environment}-catalog-static-routes"
+  runtime = "cloudfront-js-1.0"
+  comment = "Rewrite route requests to prerendered index.html files"
+  publish = true
+  code    = <<-EOF
+function handler(event) {
+  var request = event.request;
+  var uri = request.uri;
+
+  if (uri.endsWith("/")) {
+    request.uri = uri + "index.html";
+    return request;
+  }
+
+  if (!uri.includes(".")) {
+    request.uri = uri + "/index.html";
+  }
+
+  return request;
+}
+EOF
+}
+
 resource "aws_cloudfront_distribution" "catalog" {
   count = var.create_cloudfront_distribution ? 1 : 0
 
@@ -116,21 +142,11 @@ resource "aws_cloudfront_distribution" "catalog" {
 
     viewer_protocol_policy = "redirect-to-https"
     cache_policy_id        = "658327ea-f89d-4fab-a63d-7e88639e58f6" # Managed-CachingOptimized
-  }
 
-  # SPA fallback: return index.html for any unknown path so React Router handles routing
-  custom_error_response {
-    error_code            = 403
-    response_code         = 200
-    response_page_path    = "/index.html"
-    error_caching_min_ttl = 0
-  }
-
-  custom_error_response {
-    error_code            = 404
-    response_code         = 200
-    response_page_path    = "/index.html"
-    error_caching_min_ttl = 0
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.catalog_static_routes[0].arn
+    }
   }
 
   restrictions {

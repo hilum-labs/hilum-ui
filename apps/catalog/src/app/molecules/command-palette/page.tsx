@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { LayoutDashboard, Users, FolderOpen, Settings, FileText, Search } from "lucide-react";
@@ -62,7 +64,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function CommandPalettePage() {
+function CommandPalettePage() {
   const [open, setOpen] = useState(false);
 
   return (
@@ -113,3 +115,8 @@ export default function CommandPalettePage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/command-palette/")({
+  head: () => createCatalogPageHead("/molecules/command-palette/"),
+  component: CommandPalettePage,
+});

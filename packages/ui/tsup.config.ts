@@ -18,6 +18,6 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   splitting: true,
-  // No "use client" banner — Hilum apps are plain React (Vite / Electron /
-  // React Native). No Next.js consumers. See PLATFORM_PLAN.md D11.
+  // Keep the package entry framework-agnostic. Do not inject framework-
+  // specific entrypoint directives into the published bundle.
 })

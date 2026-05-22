@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -55,7 +57,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function LayoutPage() {
+function LayoutPage() {
   return (
     <div className="min-h-screen bg-ground-50">
       <div className="mx-auto max-w-7xl px-8 py-10">
@@ -166,3 +168,8 @@ export default function LayoutPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/layout/")({
+  head: () => createCatalogPageHead("/application-ui/layout/"),
+  component: LayoutPage,
+});

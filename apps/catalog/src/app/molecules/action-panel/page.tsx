@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { ActionPanel } from "@hilum/ui";
@@ -92,7 +94,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function ActionPanelPage() {
+function ActionPanelPage() {
   const [twoFactor, setTwoFactor] = useState(true);
   const [marketing, setMarketing] = useState(false);
 
@@ -281,3 +283,8 @@ export default function ActionPanelPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/action-panel/")({
+  head: () => createCatalogPageHead("/molecules/action-panel/"),
+  component: ActionPanelPage,
+});

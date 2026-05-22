@@ -1,0 +1,8 @@
+{
+  "routesDirectory": "./src/app",
+  "generatedRouteTree": "./src/routeTree.gen.ts",
+  "indexToken": "page",
+  "quoteStyle": "double",
+  "semicolons": true,
+  "disableLogging": true
+}

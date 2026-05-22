@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -34,7 +36,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function TeamSectionsPage() {
+function TeamSectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 max-w-2xl">
@@ -147,3 +149,8 @@ export default function TeamSectionsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/team-sections/")({
+  head: () => createCatalogPageHead("/marketing/team-sections/"),
+  component: TeamSectionsPage,
+});

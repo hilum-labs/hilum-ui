@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 import NotFound404Simple from "@/components/marketing/404-pages/not-found-404-simple";
@@ -27,7 +29,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function NotFoundPagesPage() {
+function NotFoundPagesPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -97,3 +99,8 @@ export default function NotFoundPagesPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/404-pages/")({
+  head: () => createCatalogPageHead("/marketing/404-pages/"),
+  component: NotFoundPagesPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import LabelsOnLeftForm from "@/components/blocks/form-layout/labels-on-left-form";
@@ -18,7 +20,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function FormLayoutPage() {
+function FormLayoutPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -97,3 +99,8 @@ export default function FormLayoutPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/form-layout/")({
+  head: () => createCatalogPageHead("/blocks/form-layout/"),
+  component: FormLayoutPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import {
@@ -188,7 +190,7 @@ function SectionHeading({ label }: { label: string }) {
 /*  Page                                                                 */
 /* ------------------------------------------------------------------ */
 
-export default function ChartPage() {
+function ChartPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
@@ -378,3 +380,8 @@ export default function ChartPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/chart/")({
+  head: () => createCatalogPageHead("/atoms/chart/"),
+  component: ChartPage,
+});

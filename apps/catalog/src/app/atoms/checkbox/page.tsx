@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { Checkbox } from "@hilum/ui";
@@ -96,7 +98,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function CheckboxPage() {
+function CheckboxPage() {
   const [rightSide, setRightSide] = useState<Record<string, boolean>>({
     newsletter: false, offers: true, trial: false,
   });
@@ -243,3 +245,8 @@ export default function CheckboxPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/checkbox/")({
+  head: () => createCatalogPageHead("/atoms/checkbox/"),
+  component: CheckboxPage,
+});

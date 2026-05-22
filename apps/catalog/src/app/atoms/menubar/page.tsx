@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import * as React from "react";
 import {
@@ -300,7 +302,7 @@ function TextEditorMenubarDemo() {
   );
 }
 
-export default function MenubarPage() {
+function MenubarPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -344,3 +346,8 @@ export default function MenubarPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/menubar/")({
+  head: () => createCatalogPageHead("/atoms/menubar/"),
+  component: MenubarPage,
+});

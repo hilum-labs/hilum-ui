@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { useState } from "react";
 import { Zap, Shield, Globe } from "lucide-react";
@@ -53,7 +55,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function RadioCardPage() {
+function RadioCardPage() {
   const [v1, setV1] = useState("newsletter");
   const [v2, setV2] = useState("pro");
   const [v3, setV3] = useState("customers");
@@ -111,3 +113,8 @@ export default function RadioCardPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/radio-card/")({
+  head: () => createCatalogPageHead("/molecules/radio-card/"),
+  component: RadioCardPage,
+});

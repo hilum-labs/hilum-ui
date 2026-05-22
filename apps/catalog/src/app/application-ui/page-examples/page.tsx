@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import HomeScreenSidebar from "@/components/application-ui/page-examples/home-screen-sidebar";
@@ -22,7 +24,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function PageExamplesPage() {
+function PageExamplesPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -116,3 +118,8 @@ export default function PageExamplesPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/application-ui/page-examples/")({
+  head: () => createCatalogPageHead("/application-ui/page-examples/"),
+  component: PageExamplesPage,
+});

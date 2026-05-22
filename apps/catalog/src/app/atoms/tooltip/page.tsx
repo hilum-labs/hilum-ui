@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Copy, Download, Volume2 } from "lucide-react";
 import {
@@ -34,7 +36,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function TooltipPage() {
+function TooltipPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -92,3 +94,8 @@ export default function TooltipPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/tooltip/")({
+  head: () => createCatalogPageHead("/atoms/tooltip/"),
+  component: TooltipPage,
+});

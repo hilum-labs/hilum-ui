@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import SidebarShell from "@/components/blocks/app-shell-sidebar/sidebar-shell";
@@ -12,7 +14,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function AppShellSidebarPage() {
+function AppShellSidebarPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -52,3 +54,8 @@ export default function AppShellSidebarPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/app-shell-sidebar/")({
+  head: () => createCatalogPageHead("/blocks/app-shell-sidebar/"),
+  component: AppShellSidebarPage,
+});

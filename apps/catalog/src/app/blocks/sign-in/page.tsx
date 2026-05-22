@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import SignInCard from "@/components/blocks/sign-in/sign-in-card";
@@ -16,7 +18,7 @@ function Heading({ label }: { label: string }) {
   );
 }
 
-export default function SignInPage() {
+function SignInPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -66,3 +68,8 @@ export default function SignInPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/blocks/sign-in/")({
+  head: () => createCatalogPageHead("/blocks/sign-in/"),
+  component: SignInPage,
+});

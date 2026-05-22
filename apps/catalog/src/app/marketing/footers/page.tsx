@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import FooterSimpleCentered from "@/components/marketing/footers/footer-simple-centered";
@@ -24,7 +26,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function FootersPage() {
+function FootersPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 max-w-2xl">
@@ -125,3 +127,8 @@ export default function FootersPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/footers/")({
+  head: () => createCatalogPageHead("/marketing/footers/"),
+  component: FootersPage,
+});

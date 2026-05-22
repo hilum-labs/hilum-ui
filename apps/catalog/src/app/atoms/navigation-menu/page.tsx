@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import * as React from "react";
 import { Box, Code2, FileText, Globe, LayoutDashboard, Layers, Zap } from "lucide-react";
@@ -363,7 +365,7 @@ function WithViewportDemo() {
 /*  Page                                                                */
 /* ------------------------------------------------------------------ */
 
-export default function NavigationMenuPage() {
+function NavigationMenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -409,3 +411,8 @@ export default function NavigationMenuPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/atoms/navigation-menu/")({
+  head: () => createCatalogPageHead("/atoms/navigation-menu/"),
+  component: NavigationMenuPage,
+});

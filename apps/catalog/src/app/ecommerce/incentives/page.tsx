@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -30,7 +32,7 @@ function SectionHeading({ label }: { label: string }) {
   return <div className="mb-4 flex items-center gap-3"><h2 className="label text-ground-400">{label}</h2><div className="h-px flex-1 bg-ground-100" /></div>;
 }
 
-export default function IncentivesPage() {
+function IncentivesPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -152,3 +154,8 @@ export default function IncentivesPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/ecommerce/incentives/")({
+  head: () => createCatalogPageHead("/ecommerce/incentives/"),
+  component: IncentivesPage,
+});

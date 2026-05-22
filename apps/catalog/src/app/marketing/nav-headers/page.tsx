@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import HeaderSimpleLeft from "@/components/marketing/nav-headers/header-simple-left";
@@ -20,7 +22,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function NavHeadersPage() {
+function NavHeadersPage() {
   return (
     <div className="space-y-10 p-8">
       <div className="space-y-3">
@@ -92,3 +94,8 @@ export default function NavHeadersPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/nav-headers/")({
+  head: () => createCatalogPageHead("/marketing/nav-headers/"),
+  component: NavHeadersPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import BannerHeader from "@/components/marketing/banners/banner-header";
@@ -18,7 +20,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function BannersPage() {
+function BannersPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -94,3 +96,8 @@ export default function BannersPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/marketing/banners/")({
+  head: () => createCatalogPageHead("/marketing/banners/"),
+  component: BannersPage,
+});

@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { User, ThumbsUp, Check, MessageSquare, FileText, Tag } from "lucide-react";
 import { ActivityFeed } from "@hilum/ui";
@@ -101,7 +103,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ActivityFeedPage() {
+function ActivityFeedPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -152,3 +154,8 @@ export default function ActivityFeedPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/molecules/activity-feed/")({
+  head: () => createCatalogPageHead("/molecules/activity-feed/"),
+  component: ActivityFeedPage,
+});

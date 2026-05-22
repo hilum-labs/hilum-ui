@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 import { useState } from "react"
 import {
   MousePointer2,
@@ -34,7 +36,7 @@ const TOOLS = [
   { id: "ellipse", label: "Ellipse", icon: Circle },
 ]
 
-export default function DesignerShellDemo() {
+function DesignerShellDemo() {
   return (
     <div className="h-screen">
       <ShellProvider initialSelectedIds={["demo-1"]} initialTool="select" resolveKind={() => "text"}>
@@ -166,3 +168,8 @@ function Demo() {
     </DesignerShell>
   )
 }
+
+export const Route = createFileRoute("/designer/shell/")({
+  head: () => createCatalogPageHead("/designer/shell/"),
+  component: DesignerShellDemo,
+});

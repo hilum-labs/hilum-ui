@@ -1,3 +1,5 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { createCatalogPageHead } from "@/lib/seo";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -29,7 +31,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-export default function ShoppingCartsPage() {
+function ShoppingCartsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -131,3 +133,8 @@ export default function ShoppingCartsPage() {
     </div>
   );
 }
+
+export const Route = createFileRoute("/ecommerce/shopping-carts/")({
+  head: () => createCatalogPageHead("/ecommerce/shopping-carts/"),
+  component: ShoppingCartsPage,
+});
