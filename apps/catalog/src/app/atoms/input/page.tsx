@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Input } from "@hilum/ui";
 import { Label } from "@hilum/ui";
@@ -47,6 +48,8 @@ function InputPage() {
           Single-line text field for user input.
         </p>
       </div>
+
+      <PageDocs path="/atoms/input/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Input" />

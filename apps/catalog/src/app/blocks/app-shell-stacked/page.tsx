@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import StackedShell from "@/components/blocks/app-shell-stacked/stacked-shell";
@@ -35,6 +36,8 @@ function AppShellStackedPage() {
           <p className="caption text-ground-400">Avatar · Badge · Dropdown Menu · Button</p>
         </div>
       </div>
+
+      <PageDocs path="/blocks/app-shell-stacked/" />
 
       <div className="flex flex-col gap-10">
         <div>

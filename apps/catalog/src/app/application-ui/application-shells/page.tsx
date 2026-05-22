@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import LightSidebarShell from "@/components/application-ui/application-shells/light-sidebar-shell";
@@ -53,6 +54,8 @@ function ApplicationShellsPage() {
           <p className="caption text-ground-400">24 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/application-ui/application-shells/" />
 
       <section className="mb-10">
         <SectionHeading label="Sidebar shells" />

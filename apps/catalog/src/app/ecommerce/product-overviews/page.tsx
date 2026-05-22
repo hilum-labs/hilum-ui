@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -53,6 +54,8 @@ function ProductOverviewsPage() {
           Product · 5 variants
         </Badge>
       </div>
+
+      <PageDocs path="/ecommerce/product-overviews/" />
 
       <SectionHeading label="Variant 1" />
       <PreviewBlock

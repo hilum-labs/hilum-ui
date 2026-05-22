@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import SignInCard from "@/components/blocks/sign-in/sign-in-card";
@@ -39,6 +40,8 @@ function SignInPage() {
           <p className="caption text-ground-400">Field · Input · Button · Checkbox · Separator</p>
         </div>
       </div>
+
+      <PageDocs path="/blocks/sign-in/" />
 
       <div className="flex flex-col gap-10">
 

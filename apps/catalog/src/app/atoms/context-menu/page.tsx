@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Copy, Edit2, FileText, FolderOpen, Share2, Trash2, ExternalLink, Link2, Mail } from "lucide-react";
 import {
@@ -104,6 +105,8 @@ function ContextMenuPage() {
           Contextual menu revealed on right-click, offering actions relevant to the target element.
         </p>
       </div>
+
+      <PageDocs path="/atoms/context-menu/" />
 
       <div className="flex flex-col gap-12">
         <section>

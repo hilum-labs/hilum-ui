@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { Badge } from "@hilum/ui";
 
 import CardHeadingSimple from "@/components/application-ui/headings/card-heading-simple";
@@ -65,6 +66,8 @@ function HeadingsPage() {
           </p>
           <Badge variant="outline">Layout · 17 variants</Badge>
         </div>
+
+      <PageDocs path="/application-ui/headings/" />
         <div className="mb-10 h-px bg-ground-100" />
 
         <div className="space-y-10">

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -61,6 +62,8 @@ function CTASectionsPage() {
           <p className="caption text-ground-400">8 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/marketing/cta-sections/" />
 
       <div className="flex flex-col gap-10">
         <div>

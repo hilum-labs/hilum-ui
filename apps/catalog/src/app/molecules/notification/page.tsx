@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Notification } from "@hilum/ui";
@@ -84,6 +85,8 @@ function NotificationPage() {
           <p className="caption text-ground-400">Icon · Button</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/notification/" />
 
       <div className="flex flex-col gap-10">
 

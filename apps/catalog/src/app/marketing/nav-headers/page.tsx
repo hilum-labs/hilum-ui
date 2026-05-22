@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import HeaderSimpleLeft from "@/components/marketing/nav-headers/header-simple-left";
@@ -31,6 +32,8 @@ function NavHeadersPage() {
           Marketing navigation patterns with responsive drawers, centered link layouts, and a full-width flyout.
         </p>
       </div>
+
+      <PageDocs path="/marketing/nav-headers/" />
 
       <div>
         <SectionHeading label="Simple Links on Left" />

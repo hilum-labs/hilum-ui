@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 
 import { Badge } from "@hilum/ui";
@@ -57,6 +58,8 @@ function CategoryPreviewsPage() {
             layouts.
           </p>
         </div>
+
+      <PageDocs path="/ecommerce/category-previews/" />
 
         <div className="space-y-8">
           <SectionHeading label="Three Column" />

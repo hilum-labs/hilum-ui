@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Checkbox } from "@hilum/ui";
@@ -118,6 +119,8 @@ function CheckboxPage() {
           Binary selection control with label, description, and group layout variants.
         </p>
       </div>
+
+      <PageDocs path="/atoms/checkbox/" />
 
       <div className="flex flex-col gap-10">
         <div>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -46,6 +47,8 @@ function OrderSummariesPage() {
           <Badge variant="outline">Account · 4 variants</Badge>
         </div>
       </div>
+
+      <PageDocs path="/ecommerce/order-summaries/" />
 
       <div className="flex flex-col gap-10">
         <div>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Combobox } from "@hilum/ui";
@@ -126,6 +127,8 @@ function ComboboxPage() {
           <p className="caption text-ground-400">Input · Select</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/combobox/" />
 
       <div className="flex flex-col gap-10">
 

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Bold,
@@ -123,6 +124,8 @@ function ToggleGroupPage() {
           A set of two-state buttons where one or multiple can be active simultaneously — used for text formatting and view switching.
         </p>
       </div>
+
+      <PageDocs path="/atoms/toggle-group/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Variants" />

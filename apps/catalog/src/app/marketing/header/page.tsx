@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import HeaderSimpleCentered from "@/components/marketing/header/header-simple-centered";
@@ -38,6 +39,8 @@ function HeaderPage() {
           Page-banner patterns for category pages, campaign launches, and product sections with layered visual treatments.
         </p>
       </div>
+
+      <PageDocs path="/marketing/header/" />
 
       <SectionHeading label="Variant 1" />
       <PreviewBlock

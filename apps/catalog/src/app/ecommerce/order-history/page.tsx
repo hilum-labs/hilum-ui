@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Search, Settings2 } from "lucide-react";
@@ -62,6 +63,8 @@ function OrderHistoryPage() {
           <Badge variant="outline">Account · 4 variants</Badge>
         </div>
       </div>
+
+      <PageDocs path="/ecommerce/order-history/" />
 
       <div className="mb-10 rounded-[28px] border border-ground-200 bg-ground-50 p-5">
         <div className="grid gap-4 lg:grid-cols-[1.2fr_220px_220px_auto]">

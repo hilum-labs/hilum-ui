@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { useState } from "react"
 import {
   DesignerPane,
@@ -35,6 +36,8 @@ function PaneVisibilityDemo() {
           <code className="font-mono caption">ShellContext</code>.
         </p>
       </div>
+
+      <PageDocs path="/designer/pane-visibility/" />
 
       <div className="grid grid-cols-3 gap-6">
         <div className="col-span-2 flex flex-col gap-3">

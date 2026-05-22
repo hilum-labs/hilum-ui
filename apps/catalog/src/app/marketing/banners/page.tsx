@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import BannerHeader from "@/components/marketing/banners/banner-header";
@@ -41,6 +42,8 @@ function BannersPage() {
           <p className="caption text-ground-400">4 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/marketing/banners/" />
 
       <div className="flex flex-col gap-10">
         <div>

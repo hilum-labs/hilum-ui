@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -52,6 +53,8 @@ function TeamSectionsPage() {
           Team presentation patterns ranging from compact grids to full-width editorial layouts and dark-profile treatments.
         </p>
       </div>
+
+      <PageDocs path="/marketing/team-sections/" />
 
       <SectionHeading label="Variant 1" />
       <PreviewBlock

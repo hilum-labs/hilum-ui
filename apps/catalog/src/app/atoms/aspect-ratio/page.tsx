@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { AspectRatio } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -58,6 +59,8 @@ function AspectRatioPage() {
           Constrains content to a fixed width-to-height ratio — useful for images, videos, and media embeds.
         </p>
       </div>
+
+      <PageDocs path="/atoms/aspect-ratio/" />
 
       <div className="flex flex-col gap-12">
         <section>

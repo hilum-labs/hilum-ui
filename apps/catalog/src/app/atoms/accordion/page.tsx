@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Accordion,
@@ -64,6 +65,8 @@ function AccordionPage() {
           Vertically stacked sections that expand and collapse.
         </p>
       </div>
+
+      <PageDocs path="/atoms/accordion/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Accordion" />

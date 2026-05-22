@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "node scripts/build-registry.mjs && vite build",
+    "build": "node scripts/build-registry.mjs && node scripts/build-docs-content.mjs && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"

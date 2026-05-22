@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { toast } from "sonner";
 import { Button } from "@hilum/ui";
@@ -73,6 +74,8 @@ function ToastPage() {
           Non-blocking notification messages that appear briefly and dismiss automatically.
         </p>
       </div>
+
+      <PageDocs path="/atoms/sonner/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Toast" />

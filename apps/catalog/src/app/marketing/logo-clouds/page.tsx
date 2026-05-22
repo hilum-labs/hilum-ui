@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -49,6 +50,8 @@ function LogoCloudsPage() {
             white sections to stronger brand-backed treatments.
           </p>
         </div>
+
+      <PageDocs path="/marketing/logo-clouds/" />
 
         <SectionHeading label="Variants" />
 

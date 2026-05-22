@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import React, { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Badge, Button, Input, Separator } from "@hilum/ui";
@@ -336,6 +337,8 @@ function ThemingPage() {
           <span className="caption text-ground-300">No external dependencies · Works in Node + browser</span>
         </div>
       </div>
+
+      <PageDocs path="/theming/" />
 
       <div className="flex flex-col gap-14">
 

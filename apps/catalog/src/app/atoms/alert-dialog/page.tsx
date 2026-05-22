@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   AlertDialog,
@@ -88,6 +89,8 @@ function AlertDialogPage() {
           A modal dialog that requires user acknowledgment before a critical or irreversible action proceeds.
         </p>
       </div>
+
+      <PageDocs path="/atoms/alert-dialog/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Alert Dialog" />

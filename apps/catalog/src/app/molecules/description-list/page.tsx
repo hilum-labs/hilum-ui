@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { DescriptionList } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -70,6 +71,8 @@ function DescriptionListPage() {
           <p className="caption text-ground-400">Badge · Button</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/description-list/" />
 
       <div className="flex flex-col gap-10">
 

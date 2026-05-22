@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { AudioLines, Shield } from "lucide-react";
 import {
@@ -170,6 +171,8 @@ function CardPage() {
           Contained surface for grouping related content. Supports media, stats, and article layouts.
         </p>
       </div>
+
+      <PageDocs path="/atoms/card/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Card" />

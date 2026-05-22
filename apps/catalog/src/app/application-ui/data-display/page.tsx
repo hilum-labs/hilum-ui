@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -45,6 +46,8 @@ function DataDisplayPage() {
           </p>
           <Badge variant="outline">Data · 16 variants</Badge>
         </div>
+
+      <PageDocs path="/application-ui/data-display/" />
         <div className="mb-10 h-px bg-ground-100" />
 
         <div className="space-y-10">

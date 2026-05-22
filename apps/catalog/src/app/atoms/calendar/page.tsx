@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import * as React from "react";
 import { Calendar } from "@hilum/ui";
@@ -89,6 +90,8 @@ function CalendarPage() {
           single dates, ranges, multiple months, and custom disabled states.
         </p>
       </div>
+
+      <PageDocs path="/atoms/calendar/" />
 
       <div className="flex flex-col gap-10">
 

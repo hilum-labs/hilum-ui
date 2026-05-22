@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import DetailScreenPreview from "@/components/blocks/detail-screen/detail-screen-preview";
@@ -35,6 +36,8 @@ function DetailScreenPage() {
           <p className="caption text-ground-400">Page Heading · Description List · Activity Feed · Avatar</p>
         </div>
       </div>
+
+      <PageDocs path="/blocks/detail-screen/" />
 
       <div className="flex flex-col gap-10">
         <div>

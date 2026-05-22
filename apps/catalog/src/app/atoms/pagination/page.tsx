@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Pagination,
@@ -56,6 +57,8 @@ function PaginationPage() {
           Navigation control for multi-page content.
         </p>
       </div>
+
+      <PageDocs path="/atoms/pagination/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Pagination" />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
 import {
   Card,
@@ -146,6 +147,8 @@ function MoleculesPage() {
           <p className="caption text-ground-400">Built on Atoms</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/" />
 
       {/* Grid */}
       <div className="grid grid-cols-3 gap-4">

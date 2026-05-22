@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 import FeatureSimpleThreeColumn from "@/components/marketing/feature-sections/feature-simple-three-column";
@@ -57,6 +58,8 @@ function FeatureSectionsPage() {
           Ten marketing-ready feature section patterns spanning icon grids, split layouts, screenshots, and proof-led product storytelling.
         </p>
       </div>
+
+      <PageDocs path="/marketing/feature-sections/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Feature Sections · Icon Grids" />

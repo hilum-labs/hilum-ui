@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router"
 import { ArrowRight, Frame, MousePointer2, Image, Layers } from "lucide-react"
 import {
@@ -63,6 +64,8 @@ function DesignerIndex() {
           (generic free-positioned canvas with a pluggable renderer registry).
         </p>
       </div>
+
+      <PageDocs path="/designer/" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {SUBSECTIONS.map((s) => {

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Copy, Download, Volume2 } from "lucide-react";
 import {
@@ -52,6 +53,8 @@ function TooltipPage() {
           Brief label that appears on hover to clarify an element.
         </p>
       </div>
+
+      <PageDocs path="/atoms/tooltip/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Tooltip" />

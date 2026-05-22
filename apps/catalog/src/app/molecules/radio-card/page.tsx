@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Zap, Shield, Globe } from "lucide-react";
@@ -80,6 +81,8 @@ function RadioCardPage() {
           <p className="caption text-ground-400">Radio Group · Card</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/radio-card/" />
 
       <div className="flex flex-col gap-10">
         <div>

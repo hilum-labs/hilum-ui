@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import * as React from "react";
 import {
@@ -323,6 +324,8 @@ function MenubarPage() {
           with support for submenus, checkboxes, and radio groups.
         </p>
       </div>
+
+      <PageDocs path="/atoms/menubar/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Menubar · Variants" />

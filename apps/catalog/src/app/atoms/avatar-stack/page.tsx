@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { AvatarStack } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -79,6 +80,8 @@ function AvatarStackPage() {
           <p className="caption text-ground-400">Avatar</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/avatar-stack/" />
 
       <div className="flex flex-col gap-10">
 

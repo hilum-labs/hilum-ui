@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   ResizablePanelGroup,
@@ -140,6 +141,8 @@ function ResizablePage() {
           Draggable panel layouts for building resizable split-view interfaces.
         </p>
       </div>
+
+      <PageDocs path="/atoms/resizable/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Horizontal" />

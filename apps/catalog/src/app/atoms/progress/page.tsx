@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Progress } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -35,6 +36,8 @@ function ProgressPage() {
           Visual indicator of completion or loading progress.
         </p>
       </div>
+
+      <PageDocs path="/atoms/progress/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Progress" />

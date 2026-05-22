@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import SettingsPreview from "@/components/blocks/settings-screen/settings-preview";
@@ -35,6 +36,8 @@ function SettingsScreenPage() {
           <p className="caption text-ground-400">Page Heading · Section Heading · Field · Action Panel · Switch</p>
         </div>
       </div>
+
+      <PageDocs path="/blocks/settings-screen/" />
 
       <div className="flex flex-col gap-10">
         <div>

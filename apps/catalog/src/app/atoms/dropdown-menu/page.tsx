@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Archive,
@@ -180,6 +181,8 @@ function DropdownMenuPage() {
           Contextual menu revealed on trigger interaction.
         </p>
       </div>
+
+      <PageDocs path="/atoms/dropdown-menu/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Dropdown Menu · Variants" />

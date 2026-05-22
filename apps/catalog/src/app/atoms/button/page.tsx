@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   ArrowRight,
@@ -84,6 +85,8 @@ function ButtonPage() {
           Triggers actions. Supports multiple variants, sizes, and icon compositions.
         </p>
       </div>
+
+      <PageDocs path="/atoms/button/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Button" />

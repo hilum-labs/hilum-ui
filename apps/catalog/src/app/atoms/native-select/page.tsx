@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { NativeSelect, NativeSelectOption, NativeSelectOptGroup } from "@hilum/ui";
 import { Field } from "@hilum/ui";
@@ -87,6 +88,8 @@ function NativeSelectPage() {
           <p className="caption text-ground-400">Form · Input</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/native-select/" />
 
       <div className="flex flex-col gap-10">
 

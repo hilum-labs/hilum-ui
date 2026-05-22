@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import PricingThreeTiers from "@/components/marketing/pricing/pricing-three-tiers";
@@ -46,6 +47,8 @@ function PricingPage() {
           Nine pricing section patterns covering straightforward tiers, single-plan layouts, split panels, and full comparison tables.
         </p>
       </div>
+
+      <PageDocs path="/marketing/pricing/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Pricing · Tiered Layouts" />

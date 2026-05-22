@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Switch } from "@hilum/ui";
@@ -80,6 +81,8 @@ function SwitchPage() {
           Toggle between two states — on and off. Multiple label and description layout variants.
         </p>
       </div>
+
+      <PageDocs path="/atoms/switch/" />
 
       <div className="flex flex-col gap-10">
 

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Steps } from "@hilum/ui";
 import type { Step } from "@hilum/ui";
@@ -82,6 +83,8 @@ function StepsPage() {
           <p className="caption text-ground-400">Progress</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/steps/" />
 
       <div className="flex flex-col gap-10">
 

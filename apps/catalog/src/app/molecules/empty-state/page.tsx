@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { FileX, Inbox, Search, Users, FolderOpen } from "lucide-react";
 import { EmptyState } from "@hilum/ui";
@@ -86,6 +87,8 @@ function EmptyStatePage() {
           <p className="caption text-ground-400">Button · Icon</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/empty-state/" />
 
       <div className="flex flex-col gap-10">
 

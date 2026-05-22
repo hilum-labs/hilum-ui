@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import {
   Designer,
   DesignerStaticFrame,
@@ -75,6 +76,8 @@ function StaticFrameDemo() {
           drive both interactive and static modes.
         </p>
       </div>
+
+      <PageDocs path="/designer/static-frame/" />
 
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
         {SAMPLES.map((s, i) => (

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { DataTable, createColumnHelper, type ColumnDef } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -228,6 +229,8 @@ function DataTablePage() {
           @tanstack/react-table v8. Define typed columns once and pass any data.
         </p>
       </div>
+
+      <PageDocs path="/atoms/data-table/" />
 
       <div className="flex flex-col gap-12">
 

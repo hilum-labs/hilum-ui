@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Check, Code2, Copy } from "lucide-react";
 import { cn } from "@hilum/ui";
+import { slugifyDocAnchor } from "@/lib/catalog-docs";
 
 interface PreviewBlockProps {
   title: string;
@@ -22,6 +23,7 @@ export function PreviewBlock({
 }: PreviewBlockProps) {
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
+  const anchorId = slugifyDocAnchor(title);
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(code);
@@ -32,7 +34,7 @@ export function PreviewBlock({
   return (
     <div className={cn("overflow-hidden rounded-xl border border-ground-100", className)}>
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-ground-100 bg-white px-5 py-3">
+      <div id={anchorId} className="flex items-center justify-between border-b border-ground-100 bg-white px-5 py-3 scroll-mt-6">
         <div>
           <p className="subheading text-ground-900">{title}</p>
           {description && (

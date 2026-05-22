@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Button } from "@hilum/ui";
 import { Spinner } from "@hilum/ui";
@@ -71,6 +72,8 @@ function SpinnerPage() {
           Animated loading indicator for async operations and pending states.
         </p>
       </div>
+
+      <PageDocs path="/atoms/spinner/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Spinner" />

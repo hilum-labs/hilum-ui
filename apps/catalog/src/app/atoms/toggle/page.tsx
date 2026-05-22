@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Bold, Italic, Underline } from "lucide-react";
 import { Toggle } from "@hilum/ui";
@@ -65,6 +66,8 @@ function TogglePage() {
           A two-state button that switches between pressed and unpressed — used in toolbars and filter controls.
         </p>
       </div>
+
+      <PageDocs path="/atoms/toggle/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Toggle" />

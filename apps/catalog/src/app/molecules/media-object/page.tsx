@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { FileText, Image as ImageIcon } from "lucide-react";
 import { MediaObject } from "@hilum/ui";
@@ -93,6 +94,8 @@ function MediaObjectPage() {
           <p className="caption text-ground-400">Avatar · Icon</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/media-object/" />
 
       <div className="flex flex-col gap-10">
         <div>

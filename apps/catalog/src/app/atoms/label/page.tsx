@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Label } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -39,6 +40,8 @@ function LabelPage() {
           Accessible form label that associates with its control.
         </p>
       </div>
+
+      <PageDocs path="/atoms/label/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Label" />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { ChevronUp, ChevronDown, ChevronsUpDown, Trash2 } from "lucide-react";
@@ -387,6 +388,8 @@ function TablePage() {
           Structured data display with rows and columns. Supports striped rows, avatars, checkboxes, sorting, sticky headers, grouped rows, and summary footers.
         </p>
       </div>
+
+      <PageDocs path="/atoms/table/" />
 
       <div className="flex flex-col gap-12">
 

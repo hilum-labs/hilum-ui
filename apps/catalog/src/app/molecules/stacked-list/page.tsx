@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { ChevronRight, Mail, CheckCircle } from "lucide-react";
 import { StackedList, StackedListItem } from "@hilum/ui";
@@ -95,6 +96,8 @@ function StackedListPage() {
           <p className="caption text-ground-400">Badge · Avatar</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/stacked-list/" />
 
       <div className="flex flex-col gap-10">
 

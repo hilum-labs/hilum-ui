@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { ColorSwatch, TokenRow } from "@/components/catalog/color-swatch";
 import { cn } from "@hilum/ui";
 
@@ -258,6 +259,8 @@ function FoundationsPage() {
           <p className="caption text-ground-400">Colors · Typography · Spacing · Radius · Shadows</p>
         </div>
       </div>
+
+      <PageDocs path="/foundations/" />
 
       <div className="flex flex-col gap-14">
 

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -50,6 +51,8 @@ function ListsPage() {
           <Button size="sm">Add person</Button>
         </div>
       </div>
+
+      <PageDocs path="/application-ui/lists/" />
 
       <section className="mb-12">
         <SectionHeading label="Tables" />

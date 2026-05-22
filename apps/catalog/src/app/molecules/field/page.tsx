@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Field } from "@hilum/ui";
 import { Input } from "@hilum/ui";
@@ -93,6 +94,8 @@ function FieldPage() {
           <p className="caption text-ground-400">Label · Input · Textarea</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/field/" />
 
       <div className="flex flex-col gap-10">
 

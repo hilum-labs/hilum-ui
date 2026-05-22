@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Sheet,
@@ -61,6 +62,8 @@ function SheetPage() {
           Slide-in panel anchored to a screen edge.
         </p>
       </div>
+
+      <PageDocs path="/atoms/sheet/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Sheet" />

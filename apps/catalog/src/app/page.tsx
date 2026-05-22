@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Atom, Blocks, LayoutDashboard, Layers, Megaphone, Palette, ShoppingBag } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -127,6 +128,8 @@ function HomePage() {
           accessible, and beautifully crafted components for every team.
         </p>
       </div>
+
+      <PageDocs path="/" />
 
       {/* Stats bar */}
       <div className="mb-10 flex items-center gap-6 border-y border-ground-100 py-4">

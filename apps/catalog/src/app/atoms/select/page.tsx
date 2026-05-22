@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Select,
@@ -99,6 +100,8 @@ function SelectPage() {
           Dropdown list for choosing a single option. Custom Radix-based component with grouped and native variants.
         </p>
       </div>
+
+      <PageDocs path="/atoms/select/" />
 
       <div className="flex flex-col gap-10">
 

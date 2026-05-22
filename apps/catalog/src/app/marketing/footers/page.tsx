@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import FooterSimpleCentered from "@/components/marketing/footers/footer-simple-centered";
@@ -42,6 +43,8 @@ function FootersPage() {
           Footer patterns for brand presence, structured navigation, email capture, and dark-site layouts.
         </p>
       </div>
+
+      <PageDocs path="/marketing/footers/" />
 
       <SectionHeading label="Variant 1" />
       <PreviewBlock

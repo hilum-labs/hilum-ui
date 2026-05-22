@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import HomeScreenSidebar from "@/components/application-ui/page-examples/home-screen-sidebar";
@@ -49,6 +50,8 @@ function PageExamplesPage() {
           <p className="caption text-ground-400">16 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/application-ui/page-examples/" />
 
       <section className="mb-10">
         <SectionHeading label="Home screens" />

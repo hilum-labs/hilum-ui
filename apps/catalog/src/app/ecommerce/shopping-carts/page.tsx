@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -56,6 +57,8 @@ function ShoppingCartsPage() {
           <Badge variant="outline">Checkout · 6 variants</Badge>
         </div>
       </div>
+
+      <PageDocs path="/ecommerce/shopping-carts/" />
 
       <div className="flex flex-col gap-10">
         <div>

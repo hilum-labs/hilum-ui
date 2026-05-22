@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import LabelsOnLeftForm from "@/components/blocks/form-layout/labels-on-left-form";
@@ -41,6 +42,8 @@ function FormLayoutPage() {
           <p className="caption text-ground-400">Field · Input · Textarea · Select · Switch · Button</p>
         </div>
       </div>
+
+      <PageDocs path="/blocks/form-layout/" />
 
       <div className="flex flex-col gap-10">
 

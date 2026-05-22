@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Drawer,
@@ -163,6 +164,8 @@ function DrawerPage() {
           mobile-first interactions and contextual actions.
         </p>
       </div>
+
+      <PageDocs path="/atoms/drawer/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Variants" />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import {
@@ -124,6 +125,8 @@ function TextareaPage() {
           Multi-line text input. Multiple composition variants for comment boxes, editors, and note fields.
         </p>
       </div>
+
+      <PageDocs path="/atoms/textarea/" />
 
       <div className="flex flex-col gap-10">
 

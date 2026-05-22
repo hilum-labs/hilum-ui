@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import * as React from "react";
 import { DatePicker, formatDate } from "@hilum/ui";
@@ -64,6 +65,8 @@ function DatePickerPage() {
           Supports single dates, date ranges, and disabled states.
         </p>
       </div>
+
+      <PageDocs path="/atoms/date-picker/" />
 
       <div className="flex flex-col gap-10">
 

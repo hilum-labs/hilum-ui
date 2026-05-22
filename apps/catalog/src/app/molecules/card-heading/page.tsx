@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { CardHeading } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -89,6 +90,8 @@ function CardHeadingPage() {
           <p className="caption text-ground-400">Card · Avatar · Button · Dropdown Menu</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/card-heading/" />
 
       <div className="flex flex-col gap-10">
         <div>

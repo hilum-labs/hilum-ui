@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Users, ShoppingCart, TrendingUp, DollarSign, Activity } from "lucide-react";
 import { StatCard } from "@hilum/ui";
@@ -84,6 +85,8 @@ function StatCardPage() {
           <p className="caption text-ground-400">Card · Badge · Icon</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/stat-card/" />
 
       <div className="flex flex-col gap-10">
 

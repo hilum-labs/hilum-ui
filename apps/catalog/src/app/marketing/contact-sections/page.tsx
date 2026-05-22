@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -49,6 +50,8 @@ function ContactSectionsPage() {
           Contact layouts spanning compact forms, split-screen inquiries, and multi-channel support patterns.
         </p>
       </div>
+
+      <PageDocs path="/marketing/contact-sections/" />
 
       <SectionHeading label="Variant 1" />
       <PreviewBlock

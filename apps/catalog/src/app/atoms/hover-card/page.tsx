@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   HoverCard,
@@ -125,6 +126,8 @@ function HoverCardPage() {
           Rich floating card revealed on hover, for previewing user profiles, links, and contextual details.
         </p>
       </div>
+
+      <PageDocs path="/atoms/hover-card/" />
 
       <div className="flex flex-col gap-12">
         <section>

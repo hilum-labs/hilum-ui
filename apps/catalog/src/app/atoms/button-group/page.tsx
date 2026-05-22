@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { List, LayoutGrid, AlignLeft, AlignCenter, AlignRight, Bookmark, Star, Heart } from "lucide-react";
 import { ButtonGroup, ButtonGroupItem } from "@hilum/ui";
@@ -84,6 +85,8 @@ function ButtonGroupPage() {
           <p className="caption text-ground-400">Button</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/button-group/" />
 
       <div className="flex flex-col gap-10">
 

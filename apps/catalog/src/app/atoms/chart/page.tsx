@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import {
@@ -207,6 +208,8 @@ function ChartPage() {
           Brand-styled chart components built on Recharts. Includes bar, line, area, and pie variants with a consistent design language.
         </p>
       </div>
+
+      <PageDocs path="/atoms/chart/" />
 
       <div className="flex flex-col gap-6">
         <SectionHeading label="Chart" />

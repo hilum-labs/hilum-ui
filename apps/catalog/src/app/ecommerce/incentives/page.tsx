@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -51,6 +52,8 @@ function IncentivesPage() {
           <Badge variant="secondary">Marketing · 8 variants</Badge>
         </div>
       </div>
+
+      <PageDocs path="/ecommerce/incentives/" />
 
       <div className="space-y-10">
         <div>

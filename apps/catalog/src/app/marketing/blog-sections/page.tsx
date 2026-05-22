@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import BlogSectionCards from "@/components/marketing/blog-sections/blog-section-cards";
@@ -34,6 +35,8 @@ function BlogSectionsPage() {
           Editorial layouts for article indexes, compact story lists, and newsletter-led content pages.
         </p>
       </div>
+
+      <PageDocs path="/marketing/blog-sections/" />
 
       <SectionHeading label="Variant 1" />
       <PreviewBlock

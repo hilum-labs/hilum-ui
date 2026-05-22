@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { ScrollArea } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -41,6 +42,8 @@ function ScrollAreaPage() {
           Scrollable container with a styled custom scrollbar.
         </p>
       </div>
+
+      <PageDocs path="/atoms/scroll-area/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Scroll Area" />

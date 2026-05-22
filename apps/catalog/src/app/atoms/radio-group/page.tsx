@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { RadioGroup, RadioGroupItem } from "@hilum/ui";
@@ -196,6 +197,8 @@ function RadioGroupPage() {
           Single selection from a set of mutually exclusive options. Multiple layout and visual variants.
         </p>
       </div>
+
+      <PageDocs path="/atoms/radio-group/" />
 
       <div className="flex flex-col gap-10">
 

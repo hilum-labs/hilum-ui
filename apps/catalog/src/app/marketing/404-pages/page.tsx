@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 import NotFound404Simple from "@/components/marketing/404-pages/not-found-404-simple";
@@ -50,6 +51,8 @@ function NotFoundPagesPage() {
           <p className="caption text-ground-400">6 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/marketing/404-pages/" />
 
       <div className="flex flex-col gap-10">
         <div>

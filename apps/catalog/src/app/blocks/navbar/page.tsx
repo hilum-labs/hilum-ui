@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import NavbarBlock from "@/components/blocks/navbar/navbar-block";
@@ -35,6 +36,8 @@ function NavbarPage() {
           <p className="caption text-ground-400">Button · Avatar · Dropdown Menu</p>
         </div>
       </div>
+
+      <PageDocs path="/blocks/navbar/" />
 
       <div className="flex flex-col gap-10">
         <div>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -69,6 +70,8 @@ function OverlaysPage() {
           <Button size="sm">Create overlay</Button>
         </div>
       </div>
+
+      <PageDocs path="/application-ui/overlays/" />
 
       <section className="mb-12">
         <SectionHeading label="Modals" />

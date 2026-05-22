@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { MoreHorizontal, Mail, Phone } from "lucide-react";
 import { GridList, GridListCard, GridListAccentCard } from "@hilum/ui";
@@ -100,6 +101,8 @@ function GridListPage() {
           <p className="caption text-ground-400">Card · Badge · Avatar</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/grid-list/" />
 
       <div className="flex flex-col gap-10">
         <div>

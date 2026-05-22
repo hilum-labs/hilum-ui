@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { ChevronDown } from "lucide-react";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@hilum/ui";
@@ -47,6 +48,8 @@ function CollapsiblePage() {
           Toggleable content region, building block for nav groups.
         </p>
       </div>
+
+      <PageDocs path="/atoms/collapsible/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Collapsible" />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Avatar, AvatarFallback, AvatarWithStatus } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -73,6 +74,8 @@ function AvatarPage() {
           User representations with image, fallback, and optional status indicator.
         </p>
       </div>
+
+      <PageDocs path="/atoms/avatar/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Avatar" />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { LayoutDashboard, Users, FolderOpen, Settings, FileText, Search } from "lucide-react";
@@ -87,6 +88,8 @@ function CommandPalettePage() {
           <p className="caption text-ground-400">Dialog · Input · Icon · Kbd</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/command-palette/" />
 
       <div className="flex flex-col gap-10">
         <div>

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { ActionPanel } from "@hilum/ui";
@@ -118,6 +119,8 @@ function ActionPanelPage() {
           <p className="caption text-ground-400">Button · Card · Switch · Input</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/action-panel/" />
 
       <div className="flex flex-col gap-10">
 

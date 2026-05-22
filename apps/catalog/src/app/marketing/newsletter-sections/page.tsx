@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -57,6 +58,8 @@ function NewsletterSectionsPage() {
             moments, all styled with the system input and button primitives.
           </p>
         </div>
+
+      <PageDocs path="/marketing/newsletter-sections/" />
 
         <SectionHeading label="Variants" />
 

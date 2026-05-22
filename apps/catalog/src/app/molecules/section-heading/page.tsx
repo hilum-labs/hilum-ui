@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { SectionHeading } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -65,6 +66,8 @@ function SectionHeadingPage() {
           <p className="caption text-ground-400">Button</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/section-heading/" />
 
       <div className="flex flex-col gap-10">
 

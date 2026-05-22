@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
 import {
   Card,
@@ -151,6 +152,8 @@ function AtomsPage() {
           <p className="caption text-ground-400">Based on shadcn/ui · Radix UI</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/" />
 
       {/* Groups */}
       <div className="flex flex-col gap-12">

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Calendar, MapPin, Briefcase } from "lucide-react";
 import { PageHeading } from "@hilum/ui";
@@ -75,6 +76,8 @@ function PageHeadingPage() {
           <p className="caption text-ground-400">Button · Badge · Breadcrumb</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/page-heading/" />
 
       <div className="flex flex-col gap-10">
 

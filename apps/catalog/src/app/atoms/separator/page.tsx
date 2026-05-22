@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Separator } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -39,6 +40,8 @@ function SeparatorPage() {
           Visual divider between sections, horizontal or vertical.
         </p>
       </div>
+
+      <PageDocs path="/atoms/separator/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Separator" />

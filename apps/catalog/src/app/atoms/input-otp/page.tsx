@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import {
@@ -137,6 +138,8 @@ function InputOTPPage() {
           verification codes, PINs, and two-factor authentication.
         </p>
       </div>
+
+      <PageDocs path="/atoms/input-otp/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Variants" />

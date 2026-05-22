@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -41,6 +42,8 @@ function BadgePage() {
           Compact labels for status, categories, and metadata.
         </p>
       </div>
+
+      <PageDocs path="/atoms/badge/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Badge" />

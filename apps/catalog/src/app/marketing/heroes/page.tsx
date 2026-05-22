@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 import HeroSimpleCentered from "@/components/marketing/heroes/hero-simple-centered";
@@ -64,6 +65,8 @@ function HeroesPage() {
           <p className="caption text-ground-400">9 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/marketing/heroes/" />
 
       <div className="flex flex-col gap-10">
         <div>

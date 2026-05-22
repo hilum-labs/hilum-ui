@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { User, ThumbsUp, Check, MessageSquare, FileText, Tag } from "lucide-react";
 import { ActivityFeed } from "@hilum/ui";
@@ -124,6 +125,8 @@ function ActivityFeedPage() {
           <p className="caption text-ground-400">Icon</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/activity-feed/" />
 
       <div className="flex flex-col gap-10">
 

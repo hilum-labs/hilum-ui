@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import AlertWithDescription from "@/components/application-ui/feedback/alert-with-description";
@@ -59,6 +60,8 @@ function FeedbackPage() {
           <p className="caption text-ground-400">Feedback · 12 variants</p>
         </div>
       </div>
+
+      <PageDocs path="/application-ui/feedback/" />
 
       <div className="space-y-10">
         <section>

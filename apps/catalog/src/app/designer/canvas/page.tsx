@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import {
   Designer,
   DesignerCanvas,
@@ -96,51 +97,69 @@ const layerTypes = [
 
 function CanvasDemo() {
   return (
-    <div className="h-screen flex flex-col bg-ground-50">
-      <header className="flex items-center justify-between px-6 py-4 border-b border-ground-100">
-        <div>
-          <h1 className="heading text-ground-900">Canvas demo</h1>
-          <p className="caption text-ground-500 mt-0.5">
-            Live <code className="font-mono">@hilum/designer-canvas</code> — drag layers, marquee-select, zoom with Cmd+wheel.
-          </p>
+    <div className="mx-auto max-w-7xl px-8 py-10">
+      <div className="mb-10">
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
+          <span>/</span>
+          <a href="/designer" className="hover:text-ground-700">Designer</a>
+          <span>/</span>
+          <span className="font-semibold text-ground-900">Canvas demo</span>
         </div>
-      </header>
-
-      <div className="flex-1 min-h-0 relative">
-        <Designer
-          initial={{
-            layers: initialLayers,
-            frameSize: { width: 600, height: 440 },
-            layerTypes,
-          }}
-          renderers={renderers}
-        >
-          <DesignerCanvas>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <DesignerFrame />
-            </div>
-          </DesignerCanvas>
-
-          <DesignerToolbar>
-            <ActionTool />
-            <DesignerToolbarSeparator />
-            <ActionAddLayer />
-            <DesignerToolbarSeparator />
-            <ActionUndoRedo />
-            <DesignerToolbarSeparator />
-            <ActionAlign />
-            <DesignerToolbarSeparator />
-            <ActionArrange />
-            <DesignerToolbarSeparator />
-            <ActionTransform />
-            <DesignerToolbarSeparator />
-            <ActionDuplicate />
-            <ActionDelete />
-            <DesignerToolbarSeparator />
-            <ActionZoom />
-          </DesignerToolbar>
-        </Designer>
+        <h1 className="display mb-2 text-ground-900">Canvas demo</h1>
+        <p className="body max-w-2xl text-ground-500">
+          Live <code className="font-mono">@hilum/designer-canvas</code> surface with draggable layers, selection, and toolbar actions.
+        </p>
       </div>
+
+      <PageDocs path="/designer/canvas/" />
+
+      <section className="overflow-hidden rounded-2xl border border-ground-100 bg-ground-50 shadow-natural">
+        <div className="flex items-center justify-between border-b border-ground-100 bg-white px-6 py-4">
+          <div>
+            <p className="subheading text-ground-900">Live canvas preview</p>
+            <p className="caption mt-0.5 text-ground-500">
+              Drag layers, marquee-select, and zoom with Cmd+wheel.
+            </p>
+          </div>
+        </div>
+
+        <div className="relative h-[720px]">
+          <Designer
+            initial={{
+              layers: initialLayers,
+              frameSize: { width: 600, height: 440 },
+              layerTypes,
+            }}
+            renderers={renderers}
+          >
+            <DesignerCanvas>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <DesignerFrame />
+              </div>
+            </DesignerCanvas>
+
+            <DesignerToolbar>
+              <ActionTool />
+              <DesignerToolbarSeparator />
+              <ActionAddLayer />
+              <DesignerToolbarSeparator />
+              <ActionUndoRedo />
+              <DesignerToolbarSeparator />
+              <ActionAlign />
+              <DesignerToolbarSeparator />
+              <ActionArrange />
+              <DesignerToolbarSeparator />
+              <ActionTransform />
+              <DesignerToolbarSeparator />
+              <ActionDuplicate />
+              <ActionDelete />
+              <DesignerToolbarSeparator />
+              <ActionZoom />
+            </DesignerToolbar>
+          </Designer>
+        </div>
+      </section>
     </div>
   )
 }

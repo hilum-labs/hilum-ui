@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Popover,
@@ -60,6 +61,8 @@ function PopoverPage() {
           Floating panel anchored to a trigger, for richer content.
         </p>
       </div>
+
+      <PageDocs path="/atoms/popover/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Popover" />

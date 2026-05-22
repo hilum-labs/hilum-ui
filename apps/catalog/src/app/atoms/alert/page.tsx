@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Info, AlertTriangle, CheckCircle2, XCircle } from "lucide-react";
 import { Alert, AlertTitle, AlertDescription } from "@hilum/ui";
@@ -60,6 +61,8 @@ function AlertPage() {
           Inline message communicating status or feedback.
         </p>
       </div>
+
+      <PageDocs path="/atoms/alert/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Alert" />

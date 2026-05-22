@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Slider } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -41,6 +42,8 @@ function SliderPage() {
           Range input for selecting a numeric value.
         </p>
       </div>
+
+      <PageDocs path="/atoms/slider/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Slider" />

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Search, Mail, AtSign, Globe, Lock, AlertCircle,
@@ -98,6 +99,8 @@ function InputGroupPage() {
           <p className="caption text-ground-400">Input · Field · Button · Kbd</p>
         </div>
       </div>
+
+      <PageDocs path="/molecules/input-group/" />
 
       <div className="flex flex-col gap-10">
 

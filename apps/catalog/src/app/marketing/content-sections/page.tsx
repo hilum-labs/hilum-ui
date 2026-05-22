@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -57,6 +58,8 @@ function ContentSectionsPage() {
             editorial layouts, testimonials, and supporting stats.
           </p>
         </div>
+
+      <PageDocs path="/marketing/content-sections/" />
 
         <SectionHeading label="Variants" />
 

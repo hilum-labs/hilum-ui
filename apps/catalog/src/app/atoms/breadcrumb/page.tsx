@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   Breadcrumb,
@@ -66,6 +67,8 @@ function BreadcrumbPage() {
           Navigation trail showing the current page location.
         </p>
       </div>
+
+      <PageDocs path="/atoms/breadcrumb/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Breadcrumb" />

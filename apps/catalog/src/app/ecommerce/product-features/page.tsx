@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -56,6 +57,8 @@ function ProductFeaturesPage() {
             layouts.
           </p>
         </div>
+
+      <PageDocs path="/ecommerce/product-features/" />
 
         <div className="space-y-8">
           <SectionHeading label="Alternating Sections" />

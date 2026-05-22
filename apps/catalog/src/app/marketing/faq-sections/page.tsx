@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Badge } from "@hilum/ui";
@@ -72,6 +73,8 @@ function FaqSectionsPage() {
           and an interactive accordion.
         </p>
       </div>
+
+      <PageDocs path="/marketing/faq-sections/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="FAQ Sections" />

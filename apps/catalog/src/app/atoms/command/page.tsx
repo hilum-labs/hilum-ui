@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import React, { useState, useEffect } from "react";
 import {
@@ -177,6 +178,8 @@ function CommandPage() {
           <p className="caption text-ground-400">Overlay · Command</p>
         </div>
       </div>
+
+      <PageDocs path="/atoms/command/" />
 
       <div className="flex flex-col gap-10">
         <div>

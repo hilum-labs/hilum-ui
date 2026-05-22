@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 import { useState } from "react"
 import {
   MousePointer2,
@@ -38,10 +39,30 @@ const TOOLS = [
 
 function DesignerShellDemo() {
   return (
-    <div className="h-screen">
-      <ShellProvider initialSelectedIds={["demo-1"]} initialTool="select" resolveKind={() => "text"}>
-        <Demo />
-      </ShellProvider>
+    <div className="mx-auto max-w-7xl px-8 py-10">
+      <div className="mb-10">
+        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+          <a href="/" className="hover:text-ground-700">Design System</a>
+          <span>/</span>
+          <a href="/designer" className="hover:text-ground-700">Designer</a>
+          <span>/</span>
+          <span className="font-semibold text-ground-900">Shell</span>
+        </div>
+        <h1 className="display mb-2 text-ground-900">Shell</h1>
+        <p className="body max-w-2xl text-ground-500">
+          Engine-agnostic editor chrome with header, sidebar, toolbars, and contextual panels for authoring workflows.
+        </p>
+      </div>
+
+      <PageDocs path="/designer/shell/" />
+
+      <section className="overflow-hidden rounded-2xl border border-ground-100 shadow-natural">
+        <div className="h-[720px] bg-white">
+          <ShellProvider initialSelectedIds={["demo-1"]} initialTool="select" resolveKind={() => "text"}>
+            <Demo />
+          </ShellProvider>
+        </div>
+      </section>
     </div>
   )
 }

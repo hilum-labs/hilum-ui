@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
   LayoutDashboard,
@@ -336,6 +337,8 @@ function SidebarPage() {
           collapse, sub-menus, badges, and flexible layout composition.
         </p>
       </div>
+
+      <PageDocs path="/atoms/sidebar/" />
 
       <div className="flex flex-col gap-6">
         <SectionHeading label="Sidebar" />

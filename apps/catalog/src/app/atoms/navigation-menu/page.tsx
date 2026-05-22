@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
+import { PageDocs } from "@/components/catalog/page-docs";
 
 import * as React from "react";
 import { Box, Code2, FileText, Globe, LayoutDashboard, Layers, Zap } from "lucide-react";
@@ -386,6 +387,8 @@ function NavigationMenuPage() {
           content dropdowns and animated viewport transitions.
         </p>
       </div>
+
+      <PageDocs path="/atoms/navigation-menu/" />
 
       <div className="flex flex-col gap-3">
         <SectionHeading label="Navigation Menu · Variants" />
