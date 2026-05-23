@@ -1,6 +1,6 @@
 {
   "name": "@hilum/designer-canvas",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "description": "Generic free-positioned canvas engine — Layer model, pan/zoom, drag/resize, snap guides, marquee, 49 generic actions, pluggable renderers and services",
   "license": "MIT",
