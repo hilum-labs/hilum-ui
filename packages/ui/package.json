@@ -30,6 +30,8 @@
       "types": "./dist/tokens.d.ts"
     },
     "./tokens.css": "./dist/tokens.css",
+    "./fonts.css": "./dist/fonts.css",
+    "./fonts/*": "./dist/fonts/*",
     "./create-theme": {
       "import": "./dist/create-theme.js",
       "types": "./dist/create-theme.d.ts"
@@ -47,7 +49,7 @@
     "llms.txt"
   ],
   "scripts": {
-    "build": "tsup && node ./scripts/build-tokens.mjs",
+    "build": "tsup && node ./scripts/build-tokens.mjs && node ./scripts/build-fonts.mjs",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
@@ -75,6 +77,8 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@fontsource/instrument-serif": "^5.2.8",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "tailwindcss": "^4.2.0",
