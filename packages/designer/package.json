@@ -1,6 +1,6 @@
 {
   "name": "@hilum/designer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "description": "Engine-agnostic canvas-editor chrome — DesignerShell, Toolbar, Panel, Pane + generic useHistory and useKeybindings hooks",
   "license": "MIT",
