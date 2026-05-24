@@ -150,6 +150,45 @@ export const tokens = {
     body: { family: "sans", size: "0.875rem", weight: 400, lineHeight: "1.625" },
     caption: { family: "sans", size: "0.75rem", weight: 400, lineHeight: "1.625" },
     "caption-xs": { family: "sans", size: "0.625rem", weight: 400, lineHeight: "1.625" },
+
+    /* --- "Eyebrow" family — uppercase tracked label used above headlines, --- *
+     *   on badges, and on section markers. `eyebrow` is the canonical name;   *
+     *   `overline` (Material parlance), `kicker` (editorial parlance) and     *
+     *   `label` (legacy) are aliases of the same scale so consumers can pick  *
+     *   whichever vocabulary reads best in their context. `eyebrow-sm` is    *
+     *   the compact variant for badge-sized chips and tiny status pills.      */
+    eyebrow: {
+      family: "sans",
+      size: "0.75rem",
+      weight: 600,
+      lineHeight: "1",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase" as const,
+    },
+    "eyebrow-sm": {
+      family: "sans",
+      size: "0.625rem",
+      weight: 600,
+      lineHeight: "1",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase" as const,
+    },
+    overline: {
+      family: "sans",
+      size: "0.75rem",
+      weight: 600,
+      lineHeight: "1",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase" as const,
+    },
+    kicker: {
+      family: "sans",
+      size: "0.75rem",
+      weight: 600,
+      lineHeight: "1",
+      letterSpacing: "0.1em",
+      textTransform: "uppercase" as const,
+    },
     label: {
       family: "sans",
       size: "0.75rem",

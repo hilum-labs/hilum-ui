@@ -160,16 +160,6 @@ const typeScale = [
     className: "caption",
   },
   {
-    label: "label",
-    tailwind: "text-xs",
-    size: "0.75rem / 12px",
-    weight: "600",
-    font: "Inter",
-    sample: "STUDENT PROFILES",
-    usage: "Section labels, category tags (always uppercase)",
-    className: "label",
-  },
-  {
     label: "caption-xs",
     tailwind: "text-[10px]",
     size: "0.625rem / 10px",
@@ -178,6 +168,63 @@ const typeScale = [
     sample: "Soon · v0.1.0 · 2px",
     usage: "Tiny metadata, badges, sidebar chips",
     className: "caption-xs",
+  },
+];
+
+/* ------------------------------------------------------------------ */
+/*  Eyebrow / overline / kicker — uppercase tracked labels             */
+/* ------------------------------------------------------------------ */
+
+const eyebrowScale = [
+  {
+    label: "eyebrow",
+    tailwind: "—",
+    size: "0.75rem / 12px",
+    weight: "600",
+    font: "Inter",
+    sample: "STUDENT PROFILES",
+    usage: "Canonical name. Use above a heading, on section markers, in cards.",
+    className: "eyebrow",
+  },
+  {
+    label: "eyebrow-sm",
+    tailwind: "—",
+    size: "0.625rem / 10px",
+    weight: "600",
+    font: "Inter",
+    sample: "PRO · BETA · NEW",
+    usage: "Compact variant for badge-sized chips and tiny status pills.",
+    className: "eyebrow-sm",
+  },
+  {
+    label: "overline",
+    tailwind: "—",
+    size: "0.75rem / 12px",
+    weight: "600",
+    font: "Inter",
+    sample: "STUDENT PROFILES",
+    usage: "Alias of eyebrow. Use when the design language is Material.",
+    className: "overline",
+  },
+  {
+    label: "kicker",
+    tailwind: "—",
+    size: "0.75rem / 12px",
+    weight: "600",
+    font: "Inter",
+    sample: "STUDENT PROFILES",
+    usage: "Alias of eyebrow. Use in editorial / magazine layouts.",
+    className: "kicker",
+  },
+  {
+    label: "label",
+    tailwind: "—",
+    size: "0.75rem / 12px",
+    weight: "600",
+    font: "Inter",
+    sample: "STUDENT PROFILES",
+    usage: "Alias of eyebrow kept for backwards compatibility.",
+    className: "label",
   },
 ];
 
@@ -432,7 +479,7 @@ function FoundationsPage() {
           <div className="mb-8">
             <PaletteLabel
               name="Type scale"
-              description="Nine steps from display to label. Use only these — never arbitrary font sizes."
+              description="Nine steps from display to caption. Use only these — never arbitrary font sizes."
             />
             <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
               <div className="hidden grid-cols-[120px_1fr_200px] border-b border-ground-100 bg-ground-50 px-5 py-2 md:grid">
@@ -461,6 +508,43 @@ function FoundationsPage() {
                     <p className="font-mono caption-xs text-ground-400">{step.size}</p>
                     <p className="font-mono caption-xs text-ground-300">
                       weight {step.weight} · {step.font}
+                    </p>
+                    <p className="mt-0.5 caption-xs leading-tight text-ground-300">
+                      {step.usage}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Eyebrow family */}
+          <div className="mb-8">
+            <PaletteLabel
+              name="Eyebrow / overline / kicker"
+              description="Uppercase tracked labels used above headlines, on section markers, and in badges. All five names share the same CSS — pick the one that reads best in context. eyebrow is canonical."
+            />
+            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+              {eyebrowScale.map((step, i) => (
+                <div
+                  key={step.label}
+                  className={cn(
+                    "grid items-center gap-4 px-5 py-4 md:grid-cols-[120px_1fr_200px]",
+                    i !== eyebrowScale.length - 1 && "border-b border-ground-100"
+                  )}
+                >
+                  <div>
+                    <p className="font-mono text-[11px] font-semibold text-ground-500">
+                      {step.label}
+                    </p>
+                  </div>
+                  <p className={cn("text-ground-900 leading-tight truncate", step.className)}>
+                    {step.sample}
+                  </p>
+                  <div className="hidden md:block">
+                    <p className="font-mono caption-xs text-ground-400">{step.size}</p>
+                    <p className="font-mono caption-xs text-ground-300">
+                      weight {step.weight} · uppercase · 0.1em tracking
                     </p>
                     <p className="mt-0.5 caption-xs leading-tight text-ground-300">
                       {step.usage}

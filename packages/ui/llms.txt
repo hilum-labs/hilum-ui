@@ -111,8 +111,17 @@ Use as Tailwind utilities (e.g. `className="display"`):
 | `body-lg` | Inter | 1rem | 400 | Large body text |
 | `body` | Inter | 0.875rem | 400 | Default body |
 | `caption` | Inter | 0.75rem | 400 | Metadata, helper text |
-| `label` | Inter | 0.75rem | 600 | Section labels (uppercase) |
 | `caption-xs` | Inter | 0.625rem | 400 | Tiny metadata |
+
+**Eyebrow family** — uppercase, tracked label above headlines / in badges / on section markers. All five names share the same CSS (12px Inter 600, uppercase, 0.1em tracking). Pick the one that reads best in your context; `eyebrow` is canonical.
+
+| Class | Size | Notes |
+|---|---|---|
+| `eyebrow` | 0.75rem | Canonical name |
+| `eyebrow-sm` | 0.625rem | Compact variant for badges and tiny status pills |
+| `overline` | 0.75rem | Alias of eyebrow (Material parlance) |
+| `kicker` | 0.75rem | Alias of eyebrow (editorial parlance) |
+| `label` | 0.75rem | Alias of eyebrow (kept for backwards compat) |
 
 ### Shadows
 
