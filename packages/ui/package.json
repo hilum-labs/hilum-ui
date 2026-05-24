@@ -79,7 +79,7 @@
   "devDependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/instrument-serif": "^5.2.8",
-    "@types/react": "^19.0.0",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.0.0",
     "tailwindcss": "^4.2.0",
     "tsup": "^8.3.0",
