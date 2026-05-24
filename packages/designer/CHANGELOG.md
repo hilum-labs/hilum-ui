@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [a35d39b]
+  - @hilum/ui@1.0.0
+
 ## 0.1.5
 
 ### Patch Changes
