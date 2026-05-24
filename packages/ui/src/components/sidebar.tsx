@@ -132,7 +132,7 @@ function Sidebar({
         data-variant={variant}
         data-collapsible="none"
         className={cn(
-          "flex flex-col h-svh bg-white border-r border-ground-100 w-[--sidebar-width]",
+          "flex flex-col h-svh bg-white border-r border-ground-100 w-(--sidebar-width)",
           side === "right" && "border-r-0 border-l",
           className,
         )}
@@ -153,7 +153,7 @@ function Sidebar({
         className={cn(
           "group peer flex flex-col h-svh bg-white border-r border-ground-100",
           "transition-[width,transform] duration-200 ease-linear",
-          "data-[state=expanded]:w-[--sidebar-width] data-[state=collapsed]:w-0 data-[state=collapsed]:-translate-x-full",
+          "data-[state=expanded]:w-(--sidebar-width) data-[state=collapsed]:w-0 data-[state=collapsed]:-translate-x-full",
           side === "right" && "border-r-0 border-l data-[state=collapsed]:translate-x-full",
           className,
         )}
@@ -174,7 +174,7 @@ function Sidebar({
       className={cn(
         "group peer hidden md:flex flex-col h-svh bg-white border-r border-ground-100",
         "transition-[width] duration-200 ease-linear overflow-hidden",
-        "data-[state=expanded]:w-[--sidebar-width] data-[state=collapsed]:w-[--sidebar-width-icon]",
+        "data-[state=expanded]:w-(--sidebar-width) data-[state=collapsed]:w-(--sidebar-width-icon)",
         side === "right" && "border-r-0 border-l",
         variant === "floating" && "m-2 h-[calc(100svh-1rem)] rounded-xl border shadow-natural",
         variant === "inset" && "border-r-0",
@@ -537,7 +537,7 @@ function SidebarMenuSkeleton({
     >
       {showIcon && <div className="size-4 shrink-0 rounded-md bg-ground-200 animate-pulse" />}
       <div
-        className="h-4 max-w-[--skeleton-width] flex-1 rounded-md bg-ground-200 animate-pulse"
+        className="h-4 max-w-(--skeleton-width) flex-1 rounded-md bg-ground-200 animate-pulse"
         style={{ "--skeleton-width": width } as React.CSSProperties}
       />
     </div>
