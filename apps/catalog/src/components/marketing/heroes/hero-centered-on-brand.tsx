@@ -100,7 +100,7 @@ export default function HeroCenteredOnBrand() {
             <Button
               variant="outline"
               size="lg"
-              className="w-full rounded-full border-white/70 bg-white/72 px-7 text-ground-900 backdrop-blur-md hover:bg-white sm:w-auto"
+              className="w-full rounded-full border-transparent bg-white/72 px-7 text-ground-900 ring-1 ring-inset ring-white/[0.035] backdrop-blur-md hover:bg-white sm:w-auto"
             >
               Join as a creator
             </Button>
@@ -109,7 +109,7 @@ export default function HeroCenteredOnBrand() {
 
         {GRADIENT_NODES.map((node) => (
           <div key={node.label} className={`absolute ${node.className}`}>
-            <div className="rounded-[1.25rem] border border-white/65 bg-white/68 p-2.5 shadow-natural backdrop-blur-md">
+            <div className="rounded-[1.25rem] bg-white/68 p-2.5 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur-md">
               <div className="flex items-center gap-3 rounded-2xl bg-white/65 px-3 py-3">
                 <div
                   className={`flex size-11 items-center justify-center rounded-2xl label tracking-[0.08em] ${node.badgeClassName}`}
@@ -126,15 +126,15 @@ export default function HeroCenteredOnBrand() {
           </div>
         ))}
 
-        <div className="relative mt-10 rounded-[2rem] border border-white/60 bg-white/74 p-4 shadow-natural backdrop-blur-md sm:p-5">
+        <div className="relative mt-10 rounded-[2rem] bg-white/74 p-4 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur-md sm:p-5">
           <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
             {GRADIENT_STATS.map(([title, copy]) => (
               <div
                 key={title}
-                className="rounded-[1.25rem] border border-white/60 bg-white/50 px-4 py-4"
+                className="rounded-[1.25rem] bg-white/50 px-4 py-4 ring-1 ring-inset ring-white/[0.035]"
               >
                 <div className="mb-3 flex items-center gap-3">
-                  <div className="size-10 rounded-2xl border border-white/70 bg-white/80 shadow-natural" />
+                  <div className="size-10 rounded-2xl bg-white/80 shadow-natural ring-1 ring-inset ring-white/[0.035]" />
                   <div>
                     <p className="body font-medium text-ground-900">{title}</p>
                     <p className="caption text-ground-400">{copy}</p>

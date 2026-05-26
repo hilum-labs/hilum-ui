@@ -148,6 +148,7 @@ export const tokens = {
     subheading: { family: "serif", size: "1.25rem", weight: 400, lineHeight: "1.4" },
     "body-lg": { family: "sans", size: "1rem", weight: 400, lineHeight: "1.625" },
     body: { family: "sans", size: "0.875rem", weight: 400, lineHeight: "1.625" },
+    "body-sm": { family: "sans", size: "0.75rem", weight: 500, lineHeight: "1.625" },
     caption: { family: "sans", size: "0.75rem", weight: 400, lineHeight: "1.625" },
     "caption-xs": { family: "sans", size: "0.625rem", weight: 400, lineHeight: "1.625" },
 

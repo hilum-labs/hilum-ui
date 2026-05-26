@@ -26,7 +26,7 @@ export default function HeaderBrandedWithBackground() {
           </Button>
           <Button
             variant="ghost"
-            className="border border-white/70 text-white hover:bg-white/10 hover:text-white"
+            className="border-transparent text-white ring-1 ring-inset ring-white/[0.035] hover:bg-white/10 hover:text-white"
           >
             View examples
           </Button>

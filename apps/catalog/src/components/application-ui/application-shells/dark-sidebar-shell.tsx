@@ -64,7 +64,7 @@ function UserCard({ tone }: { tone: "light" | "dark" | "brand" }) {
       ? "border-ground-100"
       : tone === "dark"
         ? "border-ground-800"
-        : "border-white/15";
+        : "border-[rgba(255,255,255,0.035)]";
   const nameClass = tone === "light" ? "text-ground-900" : "text-white";
   const emailClass = tone === "light" ? "text-ground-400" : "text-white/60";
 

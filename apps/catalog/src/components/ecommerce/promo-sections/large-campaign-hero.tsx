@@ -19,7 +19,7 @@ export default function LargeCampaignHero() {
         </p>
         <div className="mt-7 flex flex-wrap justify-center gap-3">
           <Button>Shop now</Button>
-          <Button variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+          <Button variant="outline" className="border-transparent bg-white/10 text-white ring-1 ring-inset ring-white/[0.035] hover:bg-white/20">
             Browse categories
           </Button>
         </div>

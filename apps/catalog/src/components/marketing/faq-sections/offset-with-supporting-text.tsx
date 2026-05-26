@@ -48,7 +48,7 @@ export default function OffsetWithSupportingText() {
           {FAQS.map((item) => (
             <div
               key={item.q}
-              className="rounded-2xl border border-white bg-white px-6 py-5 shadow-natural"
+              className="rounded-2xl bg-white px-6 py-5 shadow-natural ring-1 ring-inset ring-white/[0.035]"
             >
               <p className="body font-semibold text-ground-900">{item.q}</p>
               <p className="body mt-2 text-ground-500">{item.a}</p>

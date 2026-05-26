@@ -32,7 +32,7 @@ export default function FeatureAlternatingWithTestimonial() {
           >
             {item.imageFirst && (
               <div className={`aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br ${item.imageTheme} p-6`}>
-                <div className="flex h-full flex-col justify-between rounded-[1.25rem] border border-white/70 bg-white/70 p-6 shadow-natural backdrop-blur">
+                <div className="flex h-full flex-col justify-between rounded-[1.25rem] bg-white/70 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
                   <div>
                     <p className="label text-ground-400">Launch board</p>
                     <p className="subheading mt-3 text-ground-900">12 programs shipping this quarter</p>
@@ -62,7 +62,7 @@ export default function FeatureAlternatingWithTestimonial() {
             </div>
             {!item.imageFirst && (
               <div className={`aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br ${item.imageTheme} p-6`}>
-                <div className="flex h-full flex-col gap-4 rounded-[1.25rem] border border-white/70 bg-white/70 p-6 shadow-natural backdrop-blur">
+                <div className="flex h-full flex-col gap-4 rounded-[1.25rem] bg-white/70 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
                   <div className="rounded-2xl bg-ground-900 p-5 text-white">
                     <p className="caption text-ground-300">Live release score</p>
                     <p className="heading mt-2 text-white">94</p>

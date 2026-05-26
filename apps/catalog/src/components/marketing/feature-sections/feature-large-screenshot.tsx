@@ -27,7 +27,7 @@ export default function FeatureLargeScreenshot() {
           </p>
         </div>
         <div className="mt-10 aspect-video w-full overflow-hidden rounded-[2rem] bg-ground-900 p-5 shadow-elevated">
-          <div className="flex h-full flex-col rounded-[1.5rem] border border-white/10 bg-ground-950/70 p-5">
+          <div className="flex h-full flex-col rounded-[1.5rem] bg-ground-950/70 p-5 ring-1 ring-inset ring-white/[0.035]">
             <div className="flex items-center justify-between">
               <div>
                 <p className="label text-ground-500">Q2 launch cockpit</p>
@@ -36,7 +36,7 @@ export default function FeatureLargeScreenshot() {
               <Badge variant="brand">Live data</Badge>
             </div>
             <div className="mt-6 grid flex-1 gap-4 lg:grid-cols-[1.3fr_0.7fr]">
-              <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+              <div className="rounded-[1.25rem] bg-white/5 p-4 ring-1 ring-inset ring-white/[0.035]">
                 <div className="grid h-full grid-cols-12 gap-2">
                   {[48, 64, 54, 74, 68, 82, 78, 92, 88, 100, 94, 108].map((height, index) => (
                     <div key={height + index} className="flex items-end">
@@ -49,15 +49,15 @@ export default function FeatureLargeScreenshot() {
                 </div>
               </div>
               <div className="grid gap-4">
-                <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                <div className="rounded-[1.25rem] bg-white/5 p-4 ring-1 ring-inset ring-white/[0.035]">
                   <p className="caption text-ground-400">Launch readiness</p>
                   <p className="heading mt-2 text-white">96%</p>
                 </div>
-                <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                <div className="rounded-[1.25rem] bg-white/5 p-4 ring-1 ring-inset ring-white/[0.035]">
                   <p className="caption text-ground-400">Open blockers</p>
                   <p className="heading mt-2 text-white">4</p>
                 </div>
-                <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-4">
+                <div className="rounded-[1.25rem] bg-white/5 p-4 ring-1 ring-inset ring-white/[0.035]">
                   <p className="caption text-ground-400">Campaigns live</p>
                   <p className="heading mt-2 text-white">18</p>
                 </div>

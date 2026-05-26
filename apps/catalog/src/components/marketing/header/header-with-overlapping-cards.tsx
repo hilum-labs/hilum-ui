@@ -36,7 +36,7 @@ export default function HeaderWithOverlappingCards() {
           <MetricCard icon={Users} value="24 teams" label="Shipping from one shared set of foundations" />
         </div>
         <div className="mt-16 flex justify-center">
-          <div className="flex size-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-brand-secondary">
+          <div className="flex size-12 items-center justify-center rounded-full bg-white/5 text-brand-secondary ring-1 ring-inset ring-white/[0.035]">
             <Zap className="size-5" />
           </div>
         </div>

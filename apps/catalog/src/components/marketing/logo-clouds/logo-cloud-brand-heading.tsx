@@ -33,7 +33,7 @@ export default function LogoCloudBrandHeading() {
         {COMPANIES.slice(0, 6).map((company) => (
           <div
             key={company}
-            className="flex min-h-20 items-center rounded-2xl border border-white/20 bg-white/5 px-5"
+            className="flex min-h-20 items-center rounded-2xl bg-white/5 px-5 ring-1 ring-inset ring-white/[0.035]"
           >
             <LogoWordmark name={company} className="text-white" />
           </div>

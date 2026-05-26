@@ -44,7 +44,7 @@ export default function FeatureGridList() {
           <p className="body mt-3 text-ground-300">
             Manage content, approval flow, and performance signals in one operating layer designed for high-velocity teams.
           </p>
-          <div className="mt-10 rounded-[1.5rem] border border-white/10 bg-white/5 p-6">
+          <div className="mt-10 rounded-[1.5rem] bg-white/5 p-6 ring-1 ring-inset ring-white/[0.035]">
             <p className="caption text-ground-400">Average launch prep time</p>
             <p className="mt-3 text-6xl font-semibold tracking-tight text-brand-secondary">3.2x</p>
             <p className="body mt-3 text-ground-300">faster than teams managing work across docs, tickets, and ad hoc review threads.</p>

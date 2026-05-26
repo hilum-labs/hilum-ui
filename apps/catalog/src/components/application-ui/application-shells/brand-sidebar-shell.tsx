@@ -64,7 +64,7 @@ function UserCard({ tone }: { tone: "light" | "dark" | "brand" }) {
       ? "border-ground-100"
       : tone === "dark"
         ? "border-ground-800"
-        : "border-white/15";
+        : "border-[rgba(255,255,255,0.035)]";
   const nameClass = tone === "light" ? "text-ground-900" : "text-white";
   const emailClass = tone === "light" ? "text-ground-400" : "text-white/60";
 
@@ -171,7 +171,7 @@ export default function BrandSidebarShell() {
   return (
     <ShellFrame>
       <aside className="flex w-56 flex-col bg-brand-primary">
-        <div className="border-b border-white/15 p-4">
+        <div className="border-b border-[rgba(255,255,255,0.035)] p-4">
           <LogoMark tone="brand" />
         </div>
         <SidebarNav tone="brand" />

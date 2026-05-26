@@ -80,7 +80,7 @@ export default function HeroSplitWithNavbar() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded-2xl border border-white/15 bg-white/10 px-4 py-3"
+                  className="rounded-2xl bg-white/10 px-4 py-3 ring-1 ring-inset ring-white/[0.035]"
                 >
                   <p className="body text-white">{item}</p>
                 </div>

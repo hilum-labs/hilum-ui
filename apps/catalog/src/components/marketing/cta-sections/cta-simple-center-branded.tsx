@@ -21,7 +21,7 @@ export default function CTASimpleCenterBranded() {
           <Button
             variant="outline"
             size="lg"
-            className="w-full border-white/30 bg-transparent text-white shadow-none hover:bg-white/10 sm:w-auto"
+            className="w-full border-transparent bg-transparent text-white shadow-none ring-1 ring-inset ring-white/[0.035] hover:bg-white/10 sm:w-auto"
           >
             Talk to sales
           </Button>

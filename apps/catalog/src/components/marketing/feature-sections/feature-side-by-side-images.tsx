@@ -30,7 +30,7 @@ export default function FeatureSideBySideImages() {
             className="overflow-hidden rounded-[2rem] border border-ground-100 bg-white shadow-natural"
           >
             <div className={`aspect-[4/3] bg-gradient-to-br ${card.accent} p-6`}>
-              <div className="flex h-full flex-col justify-between rounded-[1.5rem] border border-white/70 bg-white/70 p-6 shadow-natural backdrop-blur">
+              <div className="flex h-full flex-col justify-between rounded-[1.5rem] bg-white/70 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
                 <div className="flex items-center justify-between">
                   <p className="label text-ground-400">{index === 0 ? "Attribution view" : "Asset control"}</p>
                   <Badge variant={index === 0 ? "warning" : "success"}>

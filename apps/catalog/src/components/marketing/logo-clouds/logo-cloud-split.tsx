@@ -37,7 +37,7 @@ export default function LogoCloudSplit() {
           {COMPANIES.map((company) => (
             <div
               key={company}
-              className="flex aspect-square items-center justify-center rounded-2xl border border-white bg-white/80"
+              className="flex aspect-square items-center justify-center rounded-2xl bg-white/80 ring-1 ring-inset ring-white/[0.035]"
             >
               <LogoWordmark name={company} />
             </div>

@@ -14,7 +14,7 @@ export default function FeatureWithFeatureList() {
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center">
         <div className="relative h-96 overflow-hidden rounded-[2rem] bg-ground-100 p-8">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,77,1,0.12),_transparent_40%),linear-gradient(180deg,_rgba(255,255,255,0.65),_rgba(245,241,235,0.9))]" />
-          <div className="relative flex h-full flex-col justify-between rounded-[1.5rem] border border-white/60 bg-white/60 p-6 shadow-natural backdrop-blur">
+          <div className="relative flex h-full flex-col justify-between rounded-[1.5rem] bg-white/60 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
             <div>
               <p className="label text-ground-400">Customer workspace</p>
               <div className="mt-4 grid gap-3">
@@ -34,7 +34,7 @@ export default function FeatureWithFeatureList() {
                 </div>
               </div>
             </div>
-            <div className="rounded-2xl border border-white/70 bg-white/70 px-4 py-3">
+            <div className="rounded-2xl bg-white/70 px-4 py-3 ring-1 ring-inset ring-white/[0.035]">
               <p className="caption text-ground-400">Latest update</p>
               <p className="body mt-1 text-ground-700">Implementation completed ahead of schedule for APAC rollout.</p>
             </div>

@@ -20,7 +20,7 @@ export default function WorkspaceCollectionHero() {
           </p>
           <div className="mt-6 flex gap-3">
             <Button>Shop collection</Button>
-            <Button variant="outline" className="border-white/40 bg-white/10 text-white hover:bg-white/20">
+            <Button variant="outline" className="border-transparent bg-white/10 text-white ring-1 ring-inset ring-white/[0.035] hover:bg-white/20">
               Explore lookbook
             </Button>
           </div>

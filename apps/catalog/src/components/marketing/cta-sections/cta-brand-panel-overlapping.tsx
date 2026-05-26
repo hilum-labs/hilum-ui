@@ -40,7 +40,7 @@ export default function CTABrandPanelOverlapping() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white/15 bg-transparent text-white shadow-none hover:bg-white/10"
+              className="border-transparent bg-transparent text-white shadow-none ring-1 ring-inset ring-white/[0.035] hover:bg-white/10"
             >
               View pricing
             </Button>

@@ -113,7 +113,7 @@ export default function NavbarSimpleDark() {
           </button>
         </div>
         {mobileOpen && (
-          <div className="absolute inset-x-0 top-full z-10 border-t border-white/10 bg-ground-900 p-3 shadow-lg md:hidden">
+          <div className="absolute inset-x-0 top-full z-10 border-t border-[rgba(255,255,255,0.035)] bg-ground-900 p-3 shadow-lg md:hidden">
             <div className="space-y-1">
               {navItems.map((item) => (
                 <a
@@ -129,7 +129,7 @@ export default function NavbarSimpleDark() {
                 </a>
               ))}
             </div>
-            <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+            <div className="mt-3 flex items-center justify-between border-t border-[rgba(255,255,255,0.035)] pt-3">
               <ProfileButton dark />
               <IconButton dark>
                 <Bell size={16} />

@@ -25,7 +25,7 @@ export default function FeatureGridOnBrand() {
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {features.map((feature, index) => (
-            <article key={feature} className="rounded-3xl border border-ground-700 p-6">
+            <article key={feature} className="rounded-3xl p-6 ring-1 ring-inset ring-white/[0.035]">
               <div className="mb-4 flex size-10 items-center justify-center rounded-2xl bg-white/10 text-brand-secondary">
                 {index % 4 === 0 && <Zap className="size-5" />}
                 {index % 4 === 1 && <Shield className="size-5" />}

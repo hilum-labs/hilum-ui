@@ -412,7 +412,7 @@ function SidebarMenuButton({
       data-size={size}
       className={cn(
         // Base
-        "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 body text-left",
+        "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 body-sm text-left",
         "outline-none ring-ground-900",
         "transition-[width,height,padding] duration-150",
         "hover:bg-ground-100 hover:text-ground-900",
