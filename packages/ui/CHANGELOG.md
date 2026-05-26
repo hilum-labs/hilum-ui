@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 1.0.1
+
+### Patch Changes
+
+- 842ee65: Add `body-sm` type token (12px / weight 500) and make it the `SidebarMenuButton` default, so all sidebars render nav items at the smaller, slightly heavier scale.
+
 ## 1.0.0
 
 ### Minor Changes
