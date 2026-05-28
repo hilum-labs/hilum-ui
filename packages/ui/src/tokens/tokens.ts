@@ -102,22 +102,49 @@ export const tokens = {
       warningForeground: "#171717", // ground-900
       ring: "#c100f1", // purple-500 = brand.primary
     },
-    dark: {
-      background: "#0a0a0a", // ground-950
+    // Mid — a neutral medium-gray theme (from the Pappery designer "mid" palette,
+    // mapped onto the ground scale). Sits between light and dark.
+    mid: {
+      background: "#737373", // ground-500 — main surface (designer panel)
       foreground: "#fafafa", // ground-50
-      card: "#171717", // ground-900
+      card: "#525252", // ground-600 — elevated items (designer item-bg)
       cardForeground: "#fafafa",
-      surface: "#171717",
+      surface: "#525252", // ground-600 (designer canvas/pane)
+      surfaceForeground: "#fafafa",
+      border: "#a3a3a3", // ground-400 (designer border — lighter so it reads on the gray)
+      input: "#404040", // ground-700 (designer input-bg)
+      muted: "#525252", // ground-600
+      mutedForeground: "#e5e5e5", // ground-200 (designer text-secondary)
+      accent: "#404040", // ground-700 (designer item-hover-bg)
+      accentForeground: "#fafafa",
+      primary: "#c100f1", // brand stays consistent across themes
+      primaryForeground: "#ffffff",
+      secondary: "#525252", // ground-600
+      secondaryForeground: "#fafafa",
+      destructive: "#ef4444", // red-500
+      destructiveForeground: "#ffffff",
+      success: "#CDEA19", // lime — functional semantic only
+      successForeground: "#171717",
+      warning: "#fff5bf", // butter-200
+      warningForeground: "#171717",
+      ring: "#c100f1",
+    },
+    dark: {
+      background: "#171717", // ground-900 — designer canvas (deepest)
+      foreground: "#fafafa", // ground-50
+      card: "#262626", // ground-800 — designer panel-bg (elevated over bg)
+      cardForeground: "#fafafa",
+      surface: "#1a1a1a", // designer item-hover depth
       surfaceForeground: "#f5f5f5",
-      border: "#262626", // ground-800
-      input: "#262626",
-      muted: "#171717",
+      border: "#404040", // ground-700 — designer border (reads on the dark)
+      input: "#262626", // ground-800
+      muted: "#262626", // ground-800
       mutedForeground: "#a3a3a3", // ground-400
-      accent: "#330040", // purple-900
-      accentForeground: "#f5d6ff", // purple-100
+      accent: "#404040", // ground-700 — neutral elevated/hover (designer item-hover)
+      accentForeground: "#fafafa",
       primary: "#c100f1", // purple-500 — brand stays consistent (D8)
       primaryForeground: "#ffffff",
-      secondary: "#171717",
+      secondary: "#262626", // ground-800
       secondaryForeground: "#f5f5f5",
       destructive: "#ef4444", // red-500 (slightly lighter for dark)
       destructiveForeground: "#ffffff",

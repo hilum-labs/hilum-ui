@@ -99,6 +99,16 @@ lines.push('')
 // Explicit: data-theme="dark".
 darkBlock('[data-theme="dark"]')
 
+// Mid theme — explicit opt-in only (no prefers-color-scheme auto).
+if (tokens.semantic.mid) {
+  lines.push('[data-theme="mid"] {')
+  for (const [k, v] of Object.entries(tokens.semantic.mid)) {
+    lines.push(`  --${kebab(k)}: ${v};`)
+  }
+  lines.push('}')
+  lines.push('')
+}
+
 /* ---------------- @custom-variant dark ---------------- */
 lines.push('@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *));')
 lines.push('')
