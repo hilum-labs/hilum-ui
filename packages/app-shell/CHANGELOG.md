@@ -1,5 +1,12 @@
 # @hilum/app-shell
 
+## 2.0.0
+
+### Patch Changes
+
+- Updated dependencies [eb7a2bb]
+  - @hilum/ui@2.0.0
+
 ## 1.0.1
 
 ### Patch Changes
