@@ -6,7 +6,7 @@ const Kbd = React.forwardRef<HTMLElement, React.ComponentProps<"kbd">>(
     <kbd
       ref={ref}
       className={cn(
-        "inline-flex h-5 min-w-5 items-center justify-center rounded border border-ground-200 bg-ground-50 px-1.5 font-mono caption-xs font-medium text-ground-500",
+        "inline-flex h-5 min-w-5 items-center justify-center rounded border border-border bg-muted px-1.5 font-mono caption-xs font-medium text-muted-foreground",
         className,
       )}
       {...props}

@@ -268,16 +268,16 @@ describe("MediaObject", () => {
 /* ------------------------------------------------------------------ */
 
 describe("CHART_COLORS", () => {
-  it("primary matches current brand token (vivid purple)", () => {
-    expect(CHART_COLORS.primary).toBe(tokens.brand.primary);
+  it("primary matches current semantic primary token", () => {
+    expect(CHART_COLORS.primary).toBe(tokens.semantic.light.primary);
   });
 
   it("secondary matches success token (lime)", () => {
     expect(CHART_COLORS.secondary).toBe(tokens.semantic.light.success);
   });
 
-  it("tertiary matches brand secondary token (pale lemon)", () => {
-    expect(CHART_COLORS.tertiary).toBe(tokens.brand.secondary);
+  it("tertiary matches current semantic warning token", () => {
+    expect(CHART_COLORS.tertiary).toBe(tokens.semantic.light.warning);
   });
 
   it("does not contain legacy orange brand color", () => {

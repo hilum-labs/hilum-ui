@@ -1,6 +1,6 @@
 import { Button } from "@hilum/ui";
 
-export default function PanelWithTaupeBody() {
+export default function PanelWithGroundBody() {
   return (
     <div className="w-full rounded-xl border border-ground-100 bg-white overflow-hidden">
       <div className="border-b border-ground-100 px-6 py-4">

@@ -33,7 +33,7 @@ function AvatarStack({ avatars, max, size = "md", className }: AvatarStackProps)
           key={i}
           title={avatar.name}
           className={cn(
-            "relative inline-flex shrink-0 overflow-hidden rounded-full ring-white",
+            "relative inline-flex shrink-0 overflow-hidden rounded-full ring-background",
             s.wrapper,
           )}
         >
@@ -44,7 +44,7 @@ function AvatarStack({ avatars, max, size = "md", className }: AvatarStackProps)
               className={cn(
                 "flex size-full items-center justify-center font-medium",
                 s.text,
-                avatar.colorClass ?? "bg-ground-200 text-ground-700",
+                avatar.colorClass ?? "bg-muted text-muted-foreground",
               )}
             >
               {avatar.fallback ?? avatar.name.slice(0, 2).toUpperCase()}
@@ -55,7 +55,7 @@ function AvatarStack({ avatars, max, size = "md", className }: AvatarStackProps)
       {overflow > 0 && (
         <span
           className={cn(
-            "relative inline-flex shrink-0 items-center justify-center rounded-full ring-white bg-ground-100 font-medium text-ground-600",
+            "relative inline-flex shrink-0 items-center justify-center rounded-full ring-background bg-muted font-medium text-muted-foreground",
             s.wrapper,
             s.text,
           )}

@@ -3,230 +3,127 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { ColorSwatch, TokenRow } from "@/components/catalog/color-swatch";
 import { cn } from "@hilum/ui";
+import { tokens } from "@hilum/ui/tokens";
 
 /* ------------------------------------------------------------------ */
 /*  Color data                                                         */
 /* ------------------------------------------------------------------ */
 
 const brandHeroes = [
-  { name: "Primary",   token: "brand-primary",   hex: "#C100F1", role: "Primary actions, CTAs, focus rings", lightText: true  },
-  { name: "Secondary", token: "brand-secondary",  hex: "#FFF5BF", role: "Brand secondary, warning surfaces",  lightText: false },
+  { name: "Primary", token: "brand-primary", hex: tokens.brand.primary, role: "Primary actions, CTAs, focus rings", lightText: true },
+  { name: "Secondary", token: "brand-secondary", hex: tokens.brand.secondary, role: "Brand secondary, warning surfaces", lightText: false },
 ];
 
-const purpleScale = [
-  { name: "50",  hex: "#fdf0ff", lightText: false },
-  { name: "100", hex: "#f5d6ff", lightText: false },
-  { name: "200", hex: "#e8a8ff", lightText: false },
-  { name: "300", hex: "#d870f9", lightText: false },
-  { name: "400", hex: "#c840f6", lightText: true  },
-  { name: "500", hex: "#c100f1", usage: "brand primary", lightText: true },
-  { name: "600", hex: "#9c00c0", lightText: true  },
-  { name: "700", hex: "#740092", lightText: true  },
-  { name: "800", hex: "#4e0062", lightText: true  },
-  { name: "900", hex: "#330040", lightText: true  },
-  { name: "950", hex: "#200028", lightText: true  },
-];
-
-const butterScale = [
-  { name: "50",  hex: "#ffffe8", lightText: false },
-  { name: "100", hex: "#fffad0", lightText: false },
-  { name: "200", hex: "#fff5bf", usage: "brand secondary", lightText: false },
-  { name: "300", hex: "#fde870", lightText: false },
-  { name: "400", hex: "#f6d42a", lightText: false },
-  { name: "500", hex: "#dab010", lightText: false },
-  { name: "600", hex: "#a88008", lightText: true },
-  { name: "700", hex: "#7c5c04", lightText: true },
-  { name: "800", hex: "#543e02", lightText: true },
-  { name: "900", hex: "#382801", lightText: true },
-  { name: "950", hex: "#221600", lightText: true },
-];
-
-const groundScale = [
-  { name: "50",  hex: "#f9f7f5", usage: "muted surface", lightText: false },
-  { name: "100", hex: "#f2eeea", usage: "borders, skeleton", lightText: false },
-  { name: "200", hex: "#e3dcd4", usage: "hover borders", lightText: false },
-  { name: "300", hex: "#c9beb3", usage: "muted elements", lightText: false },
-  { name: "400", hex: "#a8978a", usage: "muted icons", lightText: false },
-  { name: "500", hex: "#7d6960", usage: "body text", lightText: true },
-  { name: "600", hex: "#5d4e47", usage: "secondary text", lightText: true },
-  { name: "700", hex: "#4a3d38", lightText: true },
-  { name: "800", hex: "#332924", usage: "hover states", lightText: true },
-  { name: "900", hex: "#26181a", usage: "headings", lightText: true },
-  { name: "950", hex: "#160e0a", usage: "code bg", lightText: true },
-];
+const shadeUsage: Record<string, Record<string, string>> = {
+  purple: { 500: "brand primary" },
+  butter: { 200: "brand secondary" },
+  ground: {
+    50: "muted surface",
+    100: "borders, skeleton",
+    200: "hover borders",
+    300: "muted elements",
+    400: "muted icons",
+    500: "body text",
+    700: "secondary text",
+    800: "hover states",
+    900: "headings",
+    950: "code bg",
+  },
+};
 
 const semanticColors = [
-  { name: "red-600", hex: "#dc2626", usage: "destructive, error", lightText: true },
+  { name: "destructive", hex: tokens.destructive, usage: "destructive, error", lightText: true },
 ];
 
-const semanticTokens = [
-  { token: "background",         value: "white",        hex: "#ffffff",  usage: "Page background" },
-  { token: "foreground",         value: "ground-900",    hex: "#26181a",  usage: "Primary text and headings" },
-  { token: "border",             value: "ground-100",    hex: "#f2eeea",  usage: "Default borders and dividers" },
-  { token: "muted",              value: "ground-50",     hex: "#f9f7f5",  usage: "Sidebar, muted surface areas" },
-  { token: "muted-foreground",   value: "ground-500",    hex: "#7d6960",  usage: "Body text, descriptions", lightText: true },
-  { token: "primary",            value: "brand-primary", hex: "#c100f1",  usage: "Primary buttons, focus rings", lightText: true },
-  { token: "primary-foreground", value: "white",        hex: "#ffffff",  usage: "Text on primary backgrounds" },
-  { token: "secondary",          value: "ground-50",     hex: "#f9f7f5",  usage: "Secondary buttons, tag backgrounds" },
-  { token: "accent",             value: "purple-50",    hex: "#fdf0ff",  usage: "Subtle hover and accent surfaces" },
-  { token: "accent-foreground",  value: "purple-700",   hex: "#740092",  usage: "Text on accent surfaces", lightText: true },
-  { token: "warning",            value: "brand-secondary", hex: "#fff5bf",  usage: "Warning banners and callouts" },
-  { token: "ring",               value: "brand-primary", hex: "#c100f1",  usage: "Focus ring color", lightText: true },
-];
+const semanticUsage: Record<string, string> = {
+  background: "Page background",
+  foreground: "Primary text and headings",
+  card: "Card and elevated surface backgrounds",
+  cardForeground: "Text on card backgrounds",
+  surface: "Subtle product surfaces",
+  surfaceForeground: "Text on subtle product surfaces",
+  border: "Default borders and dividers",
+  input: "Input borders and controls",
+  muted: "Sidebar and muted surface areas",
+  mutedForeground: "Body text and descriptions",
+  accent: "Subtle hover and accent surfaces",
+  accentForeground: "Text on accent surfaces",
+  primary: "Primary buttons, CTAs, focus rings",
+  primaryForeground: "Text on primary backgrounds",
+  secondary: "Secondary buttons and tag backgrounds",
+  secondaryForeground: "Text on secondary backgrounds",
+  destructive: "Destructive and error states",
+  destructiveForeground: "Text on destructive backgrounds",
+  success: "Success states and positive charts",
+  successForeground: "Text on success backgrounds",
+  warning: "Warning banners and callouts",
+  warningForeground: "Text on warning backgrounds",
+  ring: "Focus ring color",
+};
+
+function scale(name: "purple" | "butter" | "ground") {
+  return Object.entries(tokens[name]).map(([shade, hex]) => ({
+    name: shade,
+    hex,
+    usage: shadeUsage[name]?.[shade],
+    lightText: shade === "400" ? name === "purple" : Number(shade) >= 500,
+  }));
+}
+
+const purpleScale = scale("purple");
+const butterScale = scale("butter");
+const groundScale = scale("ground");
+
+const semanticModes = Object.entries(tokens.semantic).map(([mode, values]) => ({
+  mode,
+  rows: Object.entries(values).map(([token, hex]) => ({
+    token,
+    value: hex,
+    hex,
+    usage: semanticUsage[token] ?? "Semantic color",
+    lightText: !["background", "card", "surface", "muted", "accent", "primaryForeground", "destructiveForeground", "warning", "success"].includes(token),
+  })),
+}));
+
+const fontFamilies = Object.entries(tokens.fontFamily).map(([name, value]) => ({
+  name,
+  value,
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Type scale data                                                    */
 /* ------------------------------------------------------------------ */
 
-const typeScale = [
-  {
-    label: "display-xl",
-    tailwind: "text-5xl",
-    size: "3rem / 48px",
-    weight: "400",
-    font: "Instrument Serif",
-    sample: "Bringing design to life",
-    usage: "Hero H1 on landing pages",
-    className: "display text-5xl",
-  },
-  {
-    label: "display",
-    tailwind: "text-4xl",
-    size: "2.25rem / 36px",
-    weight: "400",
-    font: "Instrument Serif",
-    sample: "Design System",
-    usage: "Page H1, section hero titles",
-    className: "display",
-  },
-  {
-    label: "heading-xl",
-    tailwind: "text-3xl",
-    size: "1.875rem / 30px",
-    weight: "400",
-    font: "Instrument Serif",
-    sample: "Create, manage and organize",
-    usage: "Section headings",
-    className: "heading-xl",
-  },
-  {
-    label: "heading",
-    tailwind: "text-2xl",
-    size: "1.5rem / 24px",
-    weight: "400",
-    font: "Instrument Serif",
-    sample: "Two platforms, one foundation",
-    usage: "Card titles, modal headings",
-    className: "heading",
-  },
-  {
-    label: "subheading",
-    tailwind: "text-xl",
-    size: "1.25rem / 20px",
-    weight: "500",
-    font: "Inter",
-    sample: "Student Profiles",
-    usage: "Subheadings, sidebar titles",
-    className: "subheading",
-  },
-  {
-    label: "body-lg",
-    tailwind: "text-base",
-    size: "1rem / 16px",
-    weight: "400",
-    font: "Inter",
-    sample: "Powering the best teams, educators, and builders.",
-    usage: "Large body text, feature descriptions",
-    className: "body-lg",
-  },
-  {
-    label: "body",
-    tailwind: "text-sm",
-    size: "0.875rem / 14px",
-    weight: "400",
-    font: "Inter",
-    sample: "Turn complex operations into streamlined workflows—and they'll feel truly effortless.",
-    usage: "Default body, nav links, descriptions",
-    className: "body",
-  },
-  {
-    label: "caption",
-    tailwind: "text-xs",
-    size: "0.75rem / 12px",
-    weight: "400",
-    font: "Inter",
-    sample: "Enroll: 8,000+ classes",
-    usage: "Captions, metadata, helper text",
-    className: "caption",
-  },
-  {
-    label: "caption-xs",
-    tailwind: "text-[10px]",
-    size: "0.625rem / 10px",
-    weight: "400",
-    font: "Inter",
-    sample: "Soon · v0.1.0 · 2px",
-    usage: "Tiny metadata, badges, sidebar chips",
-    className: "caption-xs",
-  },
-];
+const typeSamples: Record<string, { sample: string; usage: string }> = {
+  "display-xl": { sample: "Bringing design to life", usage: "Hero H1 on landing pages" },
+  display: { sample: "Design System", usage: "Page H1, section hero titles" },
+  "heading-xl": { sample: "Create, manage and organize", usage: "Section headings" },
+  heading: { sample: "Two platforms, one foundation", usage: "Card titles, modal headings" },
+  subheading: { sample: "Student Profiles", usage: "Subheadings, sidebar titles" },
+  "body-lg": { sample: "Powering the best teams, educators, and builders.", usage: "Large body text, feature descriptions" },
+  body: { sample: "Turn complex operations into streamlined workflows.", usage: "Default body, nav links, descriptions" },
+  "body-sm": { sample: "Compact inspector controls and dense metadata.", usage: "Dense UI and designer panels" },
+  caption: { sample: "Enroll: 8,000+ classes", usage: "Captions, metadata, helper text" },
+  "caption-xs": { sample: "Soon · v2.0.0 · 2px", usage: "Tiny metadata, badges, sidebar chips" },
+  eyebrow: { sample: "STUDENT PROFILES", usage: "Canonical uppercase label" },
+  "eyebrow-sm": { sample: "PRO · BETA · NEW", usage: "Compact uppercase label" },
+  overline: { sample: "STUDENT PROFILES", usage: "Alias of eyebrow" },
+  kicker: { sample: "STUDENT PROFILES", usage: "Alias of eyebrow" },
+  label: { sample: "STUDENT PROFILES", usage: "Legacy alias of eyebrow" },
+};
 
-/* ------------------------------------------------------------------ */
-/*  Eyebrow / overline / kicker — uppercase tracked labels             */
-/* ------------------------------------------------------------------ */
-
-const eyebrowScale = [
-  {
-    label: "eyebrow",
-    tailwind: "—",
-    size: "0.75rem / 12px",
-    weight: "600",
-    font: "Inter",
-    sample: "STUDENT PROFILES",
-    usage: "Canonical name. Use above a heading, on section markers, in cards.",
-    className: "eyebrow",
-  },
-  {
-    label: "eyebrow-sm",
-    tailwind: "—",
-    size: "0.625rem / 10px",
-    weight: "600",
-    font: "Inter",
-    sample: "PRO · BETA · NEW",
-    usage: "Compact variant for badge-sized chips and tiny status pills.",
-    className: "eyebrow-sm",
-  },
-  {
-    label: "overline",
-    tailwind: "—",
-    size: "0.75rem / 12px",
-    weight: "600",
-    font: "Inter",
-    sample: "STUDENT PROFILES",
-    usage: "Alias of eyebrow. Use when the design language is Material.",
-    className: "overline",
-  },
-  {
-    label: "kicker",
-    tailwind: "—",
-    size: "0.75rem / 12px",
-    weight: "600",
-    font: "Inter",
-    sample: "STUDENT PROFILES",
-    usage: "Alias of eyebrow. Use in editorial / magazine layouts.",
-    className: "kicker",
-  },
-  {
-    label: "label",
-    tailwind: "—",
-    size: "0.75rem / 12px",
-    weight: "600",
-    font: "Inter",
-    sample: "STUDENT PROFILES",
-    usage: "Alias of eyebrow kept for backwards compatibility.",
-    className: "label",
-  },
-];
+const typeScale = Object.entries(tokens.typeScale).map(([label, def]) => ({
+  label,
+  size: def.size,
+  weight: String(def.weight),
+  lineHeight: def.lineHeight,
+  font: def.family,
+  letterSpacing: "letterSpacing" in def ? def.letterSpacing : "0",
+  transform: "textTransform" in def ? def.textTransform : "none",
+  sample: typeSamples[label]?.sample ?? "The quick brown fox jumps over the lazy dog.",
+  usage: typeSamples[label]?.usage ?? "Type utility",
+  className: label,
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Spacing data                                                       */
@@ -252,34 +149,32 @@ const spacingScale = [
 /*  Radius data                                                        */
 /* ------------------------------------------------------------------ */
 
-const radii = [
-  { name: "none", value: "0px", className: "rounded-none", usage: "—" },
-  { name: "sm", value: "2px", className: "rounded-sm", usage: "Small chips" },
-  { name: "md", value: "6px", className: "rounded-md", usage: "Buttons, inputs, tags" },
-  { name: "lg", value: "8px", className: "rounded-lg", usage: "Inner panels (--radius)" },
-  { name: "xl", value: "12px", className: "rounded-xl", usage: "Cards, preview areas" },
-  { name: "2xl", value: "16px", className: "rounded-2xl", usage: "Large containers" },
-  { name: "full", value: "9999px", className: "rounded-full", usage: "Pills, avatars, badges" },
-];
+const radii = Object.entries(tokens.radius).map(([name, value]) => ({
+  name,
+  value,
+  usage: name === "base" ? "Base --radius" : name === "full" ? "Pills, avatars, badges" : "Derived radius token",
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Shadow data                                                        */
 /* ------------------------------------------------------------------ */
 
-const shadows = [
-  {
-    name: "shadow-natural",
-    className: "shadow-natural",
-    css: "0 0px 0px 1px rgba(0,0,0,.06), 0 1px 1px -.5px rgba(0,0,0,.06), 0 3px 3px -1.5px rgba(0,0,0,.06)",
-    usage: "Cards, default elevation",
-  },
-  {
-    name: "shadow-elevated",
-    className: "shadow-elevated",
-    css: "0 0px 0px 1px rgba(0,0,0,.06), 0 1px 1px -.5px rgba(0,0,0,.06), 0 3px 3px -1.5px rgba(0,0,0,.06), 0 6px 6px -3px rgba(0,0,0,.06), 0 12px 12px -6px rgba(0,0,0,.04), 0 24px 24px -12px rgba(0,0,0,.04), 0 24px 24px 2px rgba(0,0,0,.1)",
-    usage: "Modals, floating panels",
-  },
-];
+const shadows = Object.entries(tokens.shadow).map(([name, css]) => ({
+  name: `shadow-${name}`,
+  className: `shadow-${name}`,
+  css,
+  usage: name === "natural" ? "Cards, default elevation" : "Modals, floating panels",
+}));
+
+const zIndexTokens = Object.entries(tokens.zIndex).map(([name, value]) => ({
+  name,
+  value,
+}));
+
+const animationTokens = Object.entries(tokens.animation).map(([name, value]) => ({
+  name,
+  value,
+}));
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
@@ -301,9 +196,9 @@ function FoundationsPage() {
           these and the whole system becomes predictable.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">5 categories</p>
+          <p className="caption text-ground-400">8 token groups</p>
           <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Colors · Typography · Spacing · Radius · Shadows</p>
+          <p className="caption text-ground-400">Colors · Typography · Spacing · Radius · Shadows · Z-index · Animation · Fonts</p>
         </div>
       </div>
 
@@ -319,7 +214,7 @@ function FoundationsPage() {
           <div className="mb-10">
             <PaletteLabel
               name="Brand colors"
-              description="The four core brand colors. These exact values define the visual identity — every tonal scale is derived from them."
+              description="The core brand colors. These exact values define the visual identity and anchor the brand scales."
             />
             <div className="mt-5 grid grid-cols-4 gap-3">
               {brandHeroes.map((c) => (
@@ -377,11 +272,11 @@ function FoundationsPage() {
             </div>
           </div>
 
-          {/* Taupe scale */}
+          {/* Ground scale */}
           <div className="mb-8">
             <PaletteLabel
-              name="Taupe"
-              description="The neutral spine. Every text, border, and structural surface in the system draws from here."
+              name="Ground"
+              description="The neutral spine. Text, borders, muted surfaces, and structural UI draw from this token family."
             />
             <div className="mt-4 grid grid-cols-11 gap-2">
               {groundScale.map((s) => (
@@ -419,28 +314,30 @@ function FoundationsPage() {
           <div>
             <PaletteLabel
               name="Semantic tokens"
-              description="CSS variables that map intent to palette values. Use these in components, never raw hex."
+              description="CSS variables that map intent to palette values across light, mid, and dark themes. Components should use these instead of raw hex."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
-              <div className="grid grid-cols-3 border-b border-ground-100 bg-ground-50 px-4 py-2">
-                <p className="label text-ground-400">Token</p>
-                <p className="label text-ground-400">Value</p>
-                <p className="label text-ground-400">Usage</p>
-              </div>
-              {semanticTokens.map((t, i) => (
-                <div
-                  key={t.token}
-                  className={cn(
-                    i !== semanticTokens.length - 1 && "border-b border-ground-100"
-                  )}
-                >
-                  <TokenRow
-                    token={t.token}
-                    value={t.value}
-                    hex={t.hex}
-                    usage={t.usage}
-                    lightText={t.lightText}
-                  />
+            <div className="mt-4 grid gap-4 lg:grid-cols-3">
+              {semanticModes.map(({ mode, rows }) => (
+                <div key={mode} className="overflow-hidden rounded-xl border border-ground-100">
+                  <div className="border-b border-ground-100 bg-ground-50 px-4 py-2">
+                    <p className="label text-ground-500">{mode}</p>
+                  </div>
+                  {rows.map((t, i) => (
+                    <div
+                      key={t.token}
+                      className={cn(
+                        i !== rows.length - 1 && "border-b border-ground-100"
+                      )}
+                    >
+                      <TokenRow
+                        token={t.token}
+                        value={t.value}
+                        hex={t.hex}
+                        usage={t.usage}
+                        lightText={t.lightText}
+                      />
+                    </div>
+                  ))}
                 </div>
               ))}
             </div>
@@ -454,24 +351,19 @@ function FoundationsPage() {
           {/* Font pairing */}
           <div className="mb-8">
             <PaletteLabel
-              name="Font pairing"
-              description="Instrument Serif for titles and display text. Inter for all UI and body copy."
+              name="Font families"
+              description="The exact font-family token values emitted by tokens.css."
             />
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              <div className="rounded-xl border border-ground-100 p-5">
-                <p className="caption mb-3 text-ground-400">Instrument Serif · Titles</p>
-                <p className="heading-xl text-ground-900">
-                  The quick brown fox jumps over the lazy dog.
-                </p>
-                <p className="caption mt-3 text-ground-300">display-xl · display · heading-xl · heading</p>
-              </div>
-              <div className="rounded-xl border border-ground-100 p-5">
-                <p className="caption mb-3 text-ground-400">Inter · UI &amp; Body</p>
-                <p className="body-lg text-ground-900">
-                  The quick brown fox jumps over the lazy dog. Consistent, accessible, and beautifully crafted.
-                </p>
-                <p className="caption mt-3 text-ground-300">subheading · body-lg · body · caption · label</p>
-              </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              {fontFamilies.map((f) => (
+                <div key={f.name} className="rounded-xl border border-ground-100 p-5">
+                  <p className="label mb-3 text-ground-400">{f.name}</p>
+                  <p className="body-lg text-ground-900" style={{ fontFamily: f.value }}>
+                    The quick brown fox jumps over the lazy dog.
+                  </p>
+                  <p className="mt-3 break-words font-mono caption-xs text-ground-400">{f.value}</p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -479,10 +371,10 @@ function FoundationsPage() {
           <div className="mb-8">
             <PaletteLabel
               name="Type scale"
-              description="Nine steps from display to caption. Use only these — never arbitrary font sizes."
+              description="Every type utility emitted by tokens.css. Use only these steps for catalog and product UI."
             />
             <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
-              <div className="hidden grid-cols-[120px_1fr_200px] border-b border-ground-100 bg-ground-50 px-5 py-2 md:grid">
+              <div className="hidden grid-cols-[140px_1fr_260px] border-b border-ground-100 bg-ground-50 px-5 py-2 md:grid">
                 <p className="label text-ground-400">Step</p>
                 <p className="label text-ground-400">Sample</p>
                 <p className="label text-ground-400">Spec</p>
@@ -491,7 +383,7 @@ function FoundationsPage() {
                 <div
                   key={step.label}
                   className={cn(
-                    "grid items-center gap-4 px-5 py-4 md:grid-cols-[120px_1fr_200px]",
+                    "grid items-center gap-4 px-5 py-4 md:grid-cols-[140px_1fr_260px]",
                     i !== typeScale.length - 1 && "border-b border-ground-100"
                   )}
                 >
@@ -499,7 +391,6 @@ function FoundationsPage() {
                     <p className="font-mono text-[11px] font-semibold text-ground-500">
                       {step.label}
                     </p>
-                    <p className="font-mono caption-xs text-ground-300">{step.tailwind}</p>
                   </div>
                   <p className={cn("text-ground-900 leading-tight truncate", step.className)}>
                     {step.sample}
@@ -507,48 +398,12 @@ function FoundationsPage() {
                   <div className="hidden md:block">
                     <p className="font-mono caption-xs text-ground-400">{step.size}</p>
                     <p className="font-mono caption-xs text-ground-300">
-                      weight {step.weight} · {step.font}
+                      weight {step.weight} · {step.font} · line {step.lineHeight}
                     </p>
                     <p className="mt-0.5 caption-xs leading-tight text-ground-300">
-                      {step.usage}
+                      tracking {step.letterSpacing} · transform {step.transform}
                     </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Eyebrow family */}
-          <div className="mb-8">
-            <PaletteLabel
-              name="Eyebrow / overline / kicker"
-              description="Uppercase tracked labels used above headlines, on section markers, and in badges. All five names share the same CSS — pick the one that reads best in context. eyebrow is canonical."
-            />
-            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
-              {eyebrowScale.map((step, i) => (
-                <div
-                  key={step.label}
-                  className={cn(
-                    "grid items-center gap-4 px-5 py-4 md:grid-cols-[120px_1fr_200px]",
-                    i !== eyebrowScale.length - 1 && "border-b border-ground-100"
-                  )}
-                >
-                  <div>
-                    <p className="font-mono text-[11px] font-semibold text-ground-500">
-                      {step.label}
-                    </p>
-                  </div>
-                  <p className={cn("text-ground-900 leading-tight truncate", step.className)}>
-                    {step.sample}
-                  </p>
-                  <div className="hidden md:block">
-                    <p className="font-mono caption-xs text-ground-400">{step.size}</p>
-                    <p className="font-mono caption-xs text-ground-300">
-                      weight {step.weight} · uppercase · 0.1em tracking
-                    </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-ground-300">
-                      {step.usage}
-                    </p>
+                    <p className="mt-0.5 caption-xs leading-tight text-ground-300">{step.usage}</p>
                   </div>
                 </div>
               ))}
@@ -594,28 +449,25 @@ function FoundationsPage() {
           <div>
             <PaletteLabel
               name="Letter spacing"
-              description="Four tracking values. Tighter for large display type, widest for uppercase labels only."
+              description="Tokenized letter spacing appears only inside the type utilities above. Body and heading utilities use normal tracking."
             />
             <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
-              {[
-                { name: "tracking-tighter", value: "-0.05em", sample: "Bringing education to life", usage: "H1, display headings" },
-                { name: "tracking-tight", value: "-0.025em", sample: "Create, manage and organize", usage: "H2, H3 headings" },
-                { name: "tracking-normal", value: "0em", sample: "Turn complex operations into simple workflows", usage: "Body, UI labels" },
-                { name: "tracking-widest", value: "0.1em", sample: "STUDENT PROFILES", usage: "Section labels (uppercase only)" },
-              ].map((t, i) => (
+              {typeScale
+                .filter((t) => t.letterSpacing !== "0")
+                .map((t, i, rows) => (
                 <div
-                  key={t.name}
+                  key={t.label}
                   className={cn(
                     "flex items-center gap-6 px-5 py-4",
-                    i !== 3 && "border-b border-ground-100"
+                    i !== rows.length - 1 && "border-b border-ground-100"
                   )}
                 >
                   <div className="w-36 shrink-0">
-                    <p className="font-mono text-[11px] font-semibold text-ground-500">{t.name}</p>
-                    <p className="font-mono caption-xs text-ground-300">{t.value}</p>
+                    <p className="font-mono text-[11px] font-semibold text-ground-500">{t.label}</p>
+                    <p className="font-mono caption-xs text-ground-300">{t.letterSpacing}</p>
                   </div>
                   <p
-                    className={cn("flex-1 body font-semibold text-ground-900 truncate", t.name)}
+                    className={cn("flex-1 text-ground-900 truncate", t.className)}
                   >
                     {t.sample}
                   </p>
@@ -673,10 +525,8 @@ function FoundationsPage() {
             {radii.map((r) => (
               <div key={r.name} className="flex flex-col items-center gap-3">
                 <div
-                  className={cn(
-                    "size-14 border-2 border-ground-900 bg-ground-50",
-                    r.className
-                  )}
+                  className="size-14 border-2 border-ground-900 bg-ground-50"
+                  style={{ borderRadius: r.value }}
                 />
                 <div className="text-center">
                   <p className="font-mono text-[11px] font-semibold text-ground-700">{r.name}</p>
@@ -711,6 +561,52 @@ function FoundationsPage() {
                   <p className="mt-0.5 caption-xs leading-tight text-ground-400">{s.usage}</p>
                   <p className="mt-1 font-mono text-[9px] leading-tight text-ground-300">{s.css}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Z-index ─────────────────────────────────────────────── */}
+        <section id="z-index">
+          <SectionHeading label="Z-index" />
+          <PaletteLabel
+            name="Layering"
+            description="Semantic layering tokens for overlays, sticky UI, popovers, and tooltips."
+          />
+          <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+            {zIndexTokens.map((z, i) => (
+              <div
+                key={z.name}
+                className={cn(
+                  "grid grid-cols-[140px_1fr] items-center px-5 py-3",
+                  i !== zIndexTokens.length - 1 && "border-b border-ground-100"
+                )}
+              >
+                <p className="font-mono caption font-semibold text-ground-700">z-{z.name}</p>
+                <p className="font-mono caption text-ground-400">{z.value}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Animation ───────────────────────────────────────────── */}
+        <section id="animation">
+          <SectionHeading label="Animation" />
+          <PaletteLabel
+            name="Motion"
+            description="Named animation tokens emitted as Tailwind utility values."
+          />
+          <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+            {animationTokens.map((a, i) => (
+              <div
+                key={a.name}
+                className={cn(
+                  "grid gap-3 px-5 py-3 md:grid-cols-[180px_1fr]",
+                  i !== animationTokens.length - 1 && "border-b border-ground-100"
+                )}
+              >
+                <p className="font-mono caption font-semibold text-ground-700">animate-{a.name}</p>
+                <p className="break-words font-mono caption text-ground-400">{a.value}</p>
               </div>
             ))}
           </div>

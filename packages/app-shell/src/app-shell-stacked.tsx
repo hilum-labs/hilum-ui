@@ -28,7 +28,7 @@ function AppShellStacked({
     <Wrapper {...(wrapperProps as { value: LinkComponent })}>
       <div
         className={cn(
-          "flex flex-col h-screen overflow-hidden bg-ground-50 text-ground-900",
+          "flex flex-col h-screen overflow-hidden bg-muted text-foreground",
           className,
         )}
       >

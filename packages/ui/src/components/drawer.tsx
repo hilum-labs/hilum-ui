@@ -15,7 +15,7 @@ const DrawerOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
     ref={ref}
-    className={cn("fixed inset-0 z-50 bg-ground-950/40 backdrop-blur-[1px]", className)}
+    className={cn("fixed inset-0 z-50 bg-foreground/40 backdrop-blur-[1px]", className)}
     {...props}
   />
 ));
@@ -30,12 +30,12 @@ const DrawerContent = React.forwardRef<
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed inset-x-0 bottom-0 z-50 flex flex-col rounded-t-2xl border border-ground-100 bg-white",
+        "fixed inset-x-0 bottom-0 z-50 flex flex-col rounded-t-2xl border border-border bg-card",
         className,
       )}
       {...props}
     >
-      <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-ground-200" />
+      <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-muted" />
       {children}
     </DrawerPrimitive.Content>
   </DrawerPortal>
@@ -58,7 +58,7 @@ const DrawerTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Title
     ref={ref}
-    className={cn("subheading text-ground-900", className)}
+    className={cn("subheading text-foreground", className)}
     {...props}
   />
 ));
@@ -70,7 +70,7 @@ const DrawerDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
-    className={cn("body text-ground-500", className)}
+    className={cn("body text-muted-foreground", className)}
     {...props}
   />
 ));

@@ -36,13 +36,13 @@ function Field({
           {label}
           {required && <span className="ml-0.5 text-destructive" aria-hidden="true">*</span>}
         </Label>
-        {cornerHint && <span className="caption text-ground-400">{cornerHint}</span>}
+        {cornerHint && <span className="caption text-muted-foreground">{cornerHint}</span>}
       </div>
       {children}
       {error ? (
         <p id={descriptionId} role="alert" className="caption text-destructive">{error}</p>
       ) : hint ? (
-        <p id={descriptionId} className="caption text-ground-400">{hint}</p>
+        <p id={descriptionId} className="caption text-muted-foreground">{hint}</p>
       ) : null}
     </div>
   );

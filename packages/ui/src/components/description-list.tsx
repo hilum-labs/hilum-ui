@@ -28,12 +28,12 @@ function DescriptionList({
     <div className={className}>
       {(title || description) && (
         <div className="mb-4">
-          {title && <p className="body font-semibold text-ground-900">{title}</p>}
-          {description && <p className="mt-1 caption text-ground-400">{description}</p>}
+          {title && <p className="body font-semibold text-foreground">{title}</p>}
+          {description && <p className="mt-1 caption text-muted-foreground">{description}</p>}
         </div>
       )}
 
-      <dl className={cn("border-t border-ground-100", columns === 2 && "sm:grid sm:grid-cols-2")}>
+      <dl className={cn("border-t border-border", columns === 2 && "sm:grid sm:grid-cols-2")}>
         {items.map((item, i) => (
           <div
             key={i}
@@ -41,15 +41,15 @@ function DescriptionList({
               "py-3.5",
               columns === 1
                 ? "grid grid-cols-3 gap-4 items-baseline"
-                : "flex flex-col gap-1 border-b border-ground-100",
-              columns === 1 && i !== items.length - 1 && "border-b border-ground-100",
-              striped && i % 2 === 0 && "bg-ground-50 -mx-4 px-4 rounded",
+                : "flex flex-col gap-1 border-b border-border",
+              columns === 1 && i !== items.length - 1 && "border-b border-border",
+              striped && i % 2 === 0 && "bg-muted -mx-4 px-4 rounded",
             )}
           >
-            <dt className="caption font-semibold text-ground-500 uppercase tracking-wide">
+            <dt className="caption font-semibold text-muted-foreground uppercase tracking-wide">
               {item.term}
             </dt>
-            <dd className={cn("body text-ground-900", columns === 1 ? "col-span-2" : "")}>
+            <dd className={cn("body text-foreground", columns === 1 ? "col-span-2" : "")}>
               {item.action ? (
                 <div className="flex items-center justify-between gap-4">
                   <span>{item.details}</span>

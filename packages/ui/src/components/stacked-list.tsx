@@ -13,9 +13,9 @@ function StackedList({ children, divided = true, bordered = true, className }: S
     <ul
       role="list"
       className={cn(
-        "overflow-hidden rounded-xl bg-white",
-        bordered && "border border-ground-100 shadow-natural",
-        divided && "divide-y divide-ground-100",
+        "overflow-hidden rounded-xl bg-card",
+        bordered && "border border-border shadow-natural",
+        divided && "divide-y divide-border",
         className,
       )}
     >
@@ -37,7 +37,7 @@ function StackedListItem({ children, href, onClick, className }: StackedListItem
   if (href) {
     return (
       <li>
-        <a href={href} className="block hover:bg-ground-50 transition-colors">
+        <a href={href} className="block hover:bg-muted transition-colors">
           {inner}
         </a>
       </li>
@@ -49,7 +49,7 @@ function StackedListItem({ children, href, onClick, className }: StackedListItem
       <li>
         <button
           type="button"
-          className="w-full text-left hover:bg-ground-50 transition-colors"
+          className="w-full text-left hover:bg-muted transition-colors"
           onClick={onClick}
         >
           {inner}

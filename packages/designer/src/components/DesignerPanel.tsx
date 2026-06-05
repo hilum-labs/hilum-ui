@@ -26,9 +26,9 @@ function DesignerPanel({
   return (
     <aside
       className={cn(
-        "flex flex-col bg-white shrink-0 overflow-hidden",
+        "flex flex-col bg-card shrink-0 overflow-hidden",
         bordered && (side === "left" ? "border-r" : "border-l"),
-        bordered && "border-ground-100",
+        bordered && "border-border",
         className,
       )}
       style={{ width }}

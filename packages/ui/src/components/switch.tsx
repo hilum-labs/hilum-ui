@@ -15,14 +15,14 @@ const SwitchRoot = React.forwardRef<
       "border-2 border-transparent transition-colors",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
       "disabled:cursor-not-allowed disabled:opacity-50",
-      "data-[state=unchecked]:bg-ground-200 data-[state=checked]:bg-brand-primary",
+      "data-[state=unchecked]:bg-muted data-[state=checked]:bg-brand-primary",
       className,
     )}
     {...props}
   >
     <Switch.Thumb
       className={cn(
-        "pointer-events-none block size-4 rounded-full bg-white shadow-natural",
+        "pointer-events-none block size-4 rounded-full bg-card shadow-natural",
         "transition-transform data-[state=unchecked]:translate-x-0 data-[state=checked]:translate-x-4",
       )}
     />

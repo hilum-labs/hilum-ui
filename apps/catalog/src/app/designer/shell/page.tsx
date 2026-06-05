@@ -10,6 +10,10 @@ import {
   Square,
   Circle,
   ChevronsUpDown,
+  Undo2,
+  Redo2,
+  ZoomIn,
+  ZoomOut,
 } from "lucide-react"
 import {
   DesignerShell,
@@ -26,7 +30,7 @@ import {
   ShellProvider,
   useShellContext,
 } from "@hilum/designer"
-import { Button, Input, Label, PropertyRow, InputNumber, ColorInput, Slider } from "@hilum/ui"
+import { Button, Input, Label, PropertyRow, InputNumber, ColorInput, Slider, cn } from "@hilum/ui"
 
 const TOOLS = [
   { id: "select", label: "Select", icon: MousePointer2 },
@@ -68,16 +72,21 @@ function DesignerShellDemo() {
 }
 
 function Demo() {
-  const { activeTool, setActiveTool } = useShellContext()
+  const { activeTool, setActiveTool, selectedIds, setSelectedIds } = useShellContext()
   const [opacity, setOpacity] = useState(80)
   const [x, setX] = useState(120)
   const [y, setY] = useState(80)
   const [width, setWidth] = useState(320)
   const [height, setHeight] = useState(180)
-  const [fill, setFill] = useState("#FFE9D6")
+  const [fill, setFill] = useState("#c100f1")
+  const [name, setName] = useState("Hero text")
+  const [zoom, setZoom] = useState(100)
+  const selected = selectedIds.includes("demo-1")
+
+  const zoomScale = zoom / 100
 
   return (
-    <DesignerShell>
+    <DesignerShell className="h-full w-full">
       <DesignerHeader
         left={
           <>
@@ -109,29 +118,77 @@ function Demo() {
           }))}
         />
 
-        <main className="flex-1 bg-ground-100 flex items-center justify-center">
-          <div className="size-[420px] bg-white shadow-elevated rounded-md flex items-center justify-center">
-            <span className="caption text-ground-400">Canvas surface</span>
+        <main className="relative flex-1 overflow-hidden bg-ground-100">
+          <div className="absolute left-4 top-4 rounded-md border border-ground-200 bg-white px-2.5 py-1 shadow-natural">
+            <span className="caption-xs font-mono text-ground-500">{activeTool} · {zoom}%</span>
           </div>
-          <DesignerToolbar>
+
+          <div className="absolute inset-0 flex items-center justify-center p-8">
+            <button
+              type="button"
+              aria-label="Select demo layer"
+              aria-pressed={selected}
+              onClick={() => setSelectedIds(["demo-1"])}
+              className="relative h-[520px] w-[620px] rounded-md bg-white shadow-elevated outline-none"
+              style={{ transform: `scale(${zoomScale})` }}
+            >
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:24px_24px]" />
+              <div
+                className={cn(
+                  "absolute flex items-center justify-center rounded-lg border-2 text-center transition-shadow",
+                  selected ? "border-brand-primary shadow-natural" : "border-ground-200",
+                  activeTool === "hand" ? "cursor-grab" : "cursor-pointer",
+                )}
+                style={{
+                  left: x,
+                  top: y,
+                  width,
+                  height,
+                  backgroundColor: fill,
+                  opacity: opacity / 100,
+                }}
+              >
+                <div className={cn("px-4", opacity < 35 ? "text-ground-900" : "text-white")}>
+                  <p className="heading">{name}</p>
+                  <p className="caption mt-1">Move, resize, recolor, and fade this layer.</p>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <DesignerToolbar variant="inline" className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2">
             <DesignerToolbarGroup>
-              <DesignerToolbarButton label="Undo" shortcut="⌘Z" onClick={() => {}}>
-                <span className="caption-xs">↶</span>
+              <DesignerToolbarButton label="Undo" shortcut="⌘Z" onClick={() => {
+                setX(120)
+                setY(80)
+                setWidth(320)
+                setHeight(180)
+                setOpacity(80)
+                setFill("#c100f1")
+              }}>
+                <Undo2 size={16} />
               </DesignerToolbarButton>
-              <DesignerToolbarButton label="Redo" shortcut="⇧⌘Z" onClick={() => {}}>
-                <span className="caption-xs">↷</span>
+              <DesignerToolbarButton label="Redo" shortcut="⇧⌘Z" onClick={() => {
+                setX(180)
+                setY(130)
+                setWidth(280)
+                setHeight(150)
+                setOpacity(64)
+                setFill("#740092")
+              }}>
+                <Redo2 size={16} />
               </DesignerToolbarButton>
             </DesignerToolbarGroup>
             <DesignerToolbarSeparator />
             <DesignerToolbarGroup>
-              <DesignerToolbarButton label="Zoom out" onClick={() => {}}>
-                <span className="caption-xs">−</span>
+              <DesignerToolbarButton label="Zoom out" onClick={() => setZoom((z) => Math.max(50, z - 10))}>
+                <ZoomOut size={16} />
               </DesignerToolbarButton>
-              <DesignerToolbarButton label="Reset zoom" onClick={() => {}}>
-                <span className="caption-xs tabular-nums">100%</span>
+              <DesignerToolbarButton label="Reset zoom" onClick={() => setZoom(100)}>
+                <span className="caption-xs tabular-nums">{zoom}%</span>
               </DesignerToolbarButton>
-              <DesignerToolbarButton label="Zoom in" onClick={() => {}}>
-                <span className="caption-xs">+</span>
+              <DesignerToolbarButton label="Zoom in" onClick={() => setZoom((z) => Math.min(150, z + 10))}>
+                <ZoomIn size={16} />
               </DesignerToolbarButton>
             </DesignerToolbarGroup>
           </DesignerToolbar>
@@ -142,7 +199,7 @@ function Demo() {
             <DesignerPaneTitle>Layer</DesignerPaneTitle>
             <DesignerPaneContent>
               <Label htmlFor="layer-name" className="caption text-ground-500">Name</Label>
-              <Input id="layer-name" defaultValue="Hero text" />
+              <Input id="layer-name" value={name} onChange={(e) => setName(e.target.value)} />
             </DesignerPaneContent>
           </DesignerPane>
 

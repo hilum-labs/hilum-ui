@@ -7,10 +7,10 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-ground-50 text-ground-800 [&>svg]:text-ground-500",
-        info: "bg-brand-secondary/40 text-ground-700 [&>svg]:text-ground-500",
-        success: "bg-brand-secondary/15 text-ground-800 [&>svg]:text-ground-600",
-        warning: "bg-brand-secondary/70 text-ground-800 [&>svg]:text-ground-600",
+        default: "bg-muted text-muted-foreground [&>svg]:text-muted-foreground",
+        info: "bg-brand-secondary/40 text-muted-foreground [&>svg]:text-muted-foreground",
+        success: "bg-brand-secondary/15 text-muted-foreground [&>svg]:text-muted-foreground",
+        warning: "bg-brand-secondary/70 text-muted-foreground [&>svg]:text-muted-foreground",
         destructive: "bg-destructive/10 text-destructive [&>svg]:text-destructive/70",
       },
     },

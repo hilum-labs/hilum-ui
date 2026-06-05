@@ -18,19 +18,19 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default: [
-          "bg-transparent text-ground-600",
-          "hover:bg-ground-100 hover:text-ground-900",
-          "data-[state=on]:bg-ground-100 data-[state=on]:text-ground-900",
+          "bg-transparent text-muted-foreground",
+          "hover:bg-muted hover:text-foreground",
+          "data-[state=on]:bg-muted data-[state=on]:text-foreground",
         ],
         outline: [
-          "border border-ground-200 bg-white text-ground-600 shadow-natural",
-          "hover:bg-ground-50 hover:text-ground-900",
-          "data-[state=on]:bg-ground-100 data-[state=on]:text-ground-900 data-[state=on]:border-ground-300",
+          "border border-border bg-card text-muted-foreground shadow-natural",
+          "hover:bg-muted hover:text-foreground",
+          "data-[state=on]:bg-muted data-[state=on]:text-foreground data-[state=on]:border-border",
         ],
         brand: [
-          "bg-transparent text-ground-600",
-          "hover:bg-ground-100 hover:text-ground-900",
-          "data-[state=on]:bg-brand-primary data-[state=on]:text-white",
+          "bg-transparent text-muted-foreground",
+          "hover:bg-muted hover:text-foreground",
+          "data-[state=on]:bg-brand-primary data-[state=on]:text-background",
         ],
       },
       size: {

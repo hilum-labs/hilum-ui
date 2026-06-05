@@ -19,17 +19,17 @@ interface NotificationProps {
 }
 
 const variantConfig = {
-  default: { icon: null, iconClass: "text-ground-400" },
+  default: { icon: null, iconClass: "text-muted-foreground" },
   success: {
     icon: CheckCircle,
-    iconClass: "bg-brand-secondary/25 text-ground-700 rounded-full p-1",
+    iconClass: "bg-brand-secondary/25 text-muted-foreground rounded-full p-1",
   },
   error: { icon: AlertCircle, iconClass: "text-destructive" },
   warning: {
     icon: AlertTriangle,
-    iconClass: "bg-brand-secondary/80 text-ground-700 rounded-full p-1",
+    iconClass: "bg-brand-secondary/80 text-muted-foreground rounded-full p-1",
   },
-  info: { icon: Info, iconClass: "text-ground-400" },
+  info: { icon: Info, iconClass: "text-muted-foreground" },
 };
 
 function Notification({
@@ -49,7 +49,7 @@ function Notification({
   return (
     <div
       className={cn(
-        "pointer-events-auto w-full max-w-sm overflow-hidden rounded-xl border border-ground-100 bg-white shadow-elevated",
+        "pointer-events-auto w-full max-w-sm overflow-hidden rounded-xl border border-border bg-card shadow-elevated",
         className,
       )}
     >
@@ -62,8 +62,8 @@ function Notification({
 
           {/* Body */}
           <div className="min-w-0 flex-1">
-            <p className="body font-semibold text-ground-900">{title}</p>
-            {description && <p className="mt-0.5 body text-ground-500">{description}</p>}
+            <p className="body font-semibold text-foreground">{title}</p>
+            {description && <p className="mt-0.5 body text-muted-foreground">{description}</p>}
 
             {/* Actions */}
             {actions && actions.length > 0 && (
@@ -76,8 +76,8 @@ function Notification({
                     className={cn(
                       "body font-semibold transition-colors",
                       action.variant === "ghost"
-                        ? "text-ground-400 hover:text-ground-700"
-                        : "text-ground-900 hover:text-ground-600",
+                        ? "text-muted-foreground hover:text-muted-foreground"
+                        : "text-foreground hover:text-muted-foreground",
                     )}
                   >
                     {action.label}
@@ -93,7 +93,7 @@ function Notification({
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md text-ground-400 hover:text-ground-600 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ground-400/40"
+                className="rounded-md text-muted-foreground hover:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
               >
                 <span className="sr-only">Close</span>
                 <X size={16} />

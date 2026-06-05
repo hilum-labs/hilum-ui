@@ -45,8 +45,8 @@ function ColorPicker({
           disabled={disabled}
           aria-label={ariaLabel}
           className={cn(
-            "inline-flex h-8 w-8 items-center justify-center rounded-md border border-ground-200 bg-white",
-            "transition-colors hover:border-ground-300",
+            "inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card",
+            "transition-colors hover:border-border",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
             "disabled:cursor-not-allowed disabled:opacity-50",
             className,
@@ -63,7 +63,7 @@ function ColorPicker({
         <Popover.Content
           align="start"
           sideOffset={6}
-          className="z-50 w-56 rounded-xl bg-white p-3 shadow-natural outline-none"
+          className="z-50 w-56 rounded-xl bg-card p-3 shadow-natural outline-none"
         >
           <input
             type="color"
@@ -72,10 +72,10 @@ function ColorPicker({
               setHex(e.target.value);
               onChange(e.target.value);
             }}
-            className="h-10 w-full cursor-pointer rounded-md border border-ground-200 bg-white p-0.5"
+            className="h-10 w-full cursor-pointer rounded-md border border-border bg-card p-0.5"
           />
           <div className="mt-2 flex items-center gap-2">
-            <span className="caption text-ground-500">Hex</span>
+            <span className="caption text-muted-foreground">Hex</span>
             <input
               type="text"
               value={hex}
@@ -84,7 +84,7 @@ function ColorPicker({
               onKeyDown={(e) => {
                 if (e.key === "Enter") commit((e.target as HTMLInputElement).value);
               }}
-              className="flex-1 h-7 rounded-md border border-ground-200 bg-white px-2 caption text-ground-900 focus:outline-none focus:border-brand-primary"
+              className="flex-1 h-7 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
             />
           </div>
           {presets && presets.length > 0 && (

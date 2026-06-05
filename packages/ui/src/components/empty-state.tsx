@@ -18,13 +18,13 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
   return (
     <div className={cn("flex flex-col items-center gap-4 px-6 py-14 text-center", className)}>
       {icon && (
-        <div className="flex size-12 items-center justify-center rounded-xl bg-brand-secondary/20 text-ground-700">
+        <div className="flex size-12 items-center justify-center rounded-xl bg-brand-secondary/20 text-muted-foreground">
           {icon}
         </div>
       )}
       <div className="flex flex-col gap-1.5">
-        <p className="body font-semibold text-ground-900">{title}</p>
-        {description && <p className="body max-w-xs text-ground-400">{description}</p>}
+        <p className="body font-semibold text-foreground">{title}</p>
+        {description && <p className="body max-w-xs text-muted-foreground">{description}</p>}
       </div>
       {action &&
         (action.href ? (

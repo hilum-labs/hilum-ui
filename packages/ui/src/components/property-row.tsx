@@ -41,7 +41,7 @@ function PropertyRow({
     >
       {label !== undefined && (
         <div
-          className="caption text-ground-500 shrink-0 select-none"
+          className="caption text-muted-foreground shrink-0 select-none"
           style={{ width: typeof labelWidth === "number" ? `${labelWidth}px` : labelWidth }}
         >
           {label}

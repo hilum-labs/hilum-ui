@@ -9,7 +9,7 @@ const AccordionRoot = React.forwardRef<
   React.ComponentRef<typeof Accordion.Root>,
   React.ComponentPropsWithoutRef<typeof Accordion.Root>
 >(({ className, ...props }, ref) => (
-  <Accordion.Root ref={ref} className={cn("divide-y divide-ground-100", className)} {...props} />
+  <Accordion.Root ref={ref} className={cn("divide-y divide-border", className)} {...props} />
 ));
 AccordionRoot.displayName = "Accordion";
 
@@ -30,9 +30,9 @@ const AccordionTrigger = React.forwardRef<
       ref={ref}
       className={cn(
         "flex w-full items-center justify-between py-4",
-        "body font-medium text-ground-900 transition-colors hover:text-ground-700",
+        "body font-medium text-foreground transition-colors hover:text-muted-foreground",
         "[&[data-state=open]>svg]:rotate-180",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ground-900/15",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/20",
         className,
       )}
       {...props}
@@ -40,7 +40,7 @@ const AccordionTrigger = React.forwardRef<
       {children}
       <ChevronDown
         size={16}
-        className="text-ground-400 transition-transform duration-200 shrink-0"
+        className="text-muted-foreground transition-transform duration-200 shrink-0"
       />
     </Accordion.Trigger>
   </Accordion.Header>
@@ -54,7 +54,7 @@ const AccordionContent = React.forwardRef<
   <Accordion.Content
     ref={ref}
     className={cn(
-      "overflow-hidden body text-ground-500",
+      "overflow-hidden body text-muted-foreground",
       "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
       className,
     )}

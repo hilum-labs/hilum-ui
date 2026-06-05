@@ -37,9 +37,9 @@ function DesignerSidebar({
   return (
     <aside
       className={cn(
-        "flex flex-col w-12 bg-white shrink-0",
+        "flex flex-col w-12 bg-card shrink-0",
         side === "left" ? "border-r" : "border-l",
-        "border-ground-100",
+        "border-border",
         className,
       )}
     >
@@ -78,8 +78,8 @@ function SidebarButton({ item }: { item: SidebarItem }) {
           className={cn(
             "relative flex size-9 items-center justify-center rounded-md transition-colors",
             item.active
-              ? "bg-ground-900 text-white"
-              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900",
+              ? "bg-foreground text-background"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground",
             item.disabled && "opacity-50 cursor-not-allowed",
           )}
         >

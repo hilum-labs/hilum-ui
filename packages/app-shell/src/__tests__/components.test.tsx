@@ -206,7 +206,7 @@ describe("SettingsScreen", () => {
       </SettingsScreen>,
     );
     const billingLink = screen.getByText("Billing").closest("a");
-    expect(billingLink).toHaveClass("bg-ground-900");
+    expect(billingLink).toHaveClass("bg-foreground");
   });
 });
 

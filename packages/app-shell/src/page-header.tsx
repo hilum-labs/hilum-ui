@@ -28,28 +28,28 @@ function PageHeader({
   return (
     <div
       className={cn(
-        "flex items-start justify-between gap-6 pb-6 border-b border-ground-100",
+        "flex items-start justify-between gap-6 pb-6 border-b border-border",
         className,
       )}
     >
       <div className="min-w-0">
         {eyebrow && (
-          <div className="caption-xs uppercase tracking-wider font-semibold text-ground-400 mb-1.5">
+          <div className="caption-xs uppercase tracking-wider font-semibold text-muted-foreground mb-1.5">
             {eyebrow}
           </div>
         )}
         <Tag
           className={cn(
             level === 1
-              ? "heading-xl text-ground-900"
+              ? "heading-xl text-foreground"
               : level === 2
-                ? "heading text-ground-900"
-                : "subheading text-ground-900",
+                ? "heading text-foreground"
+                : "subheading text-foreground",
           )}
         >
           {title}
         </Tag>
-        {description && <p className="body text-ground-500 mt-2 max-w-2xl">{description}</p>}
+        {description && <p className="body text-muted-foreground mt-2 max-w-2xl">{description}</p>}
       </div>
       {actions && <div className="flex items-center gap-2 shrink-0">{actions}</div>}
     </div>

@@ -21,7 +21,7 @@ function AppHeader({ breadcrumbs, actions, center, className, children }: AppHea
   return (
     <header
       className={cn(
-        "flex h-14 items-center gap-3 border-b border-ground-100 bg-white px-4 shrink-0",
+        "flex h-14 items-center gap-3 border-b border-border bg-card px-4 shrink-0",
         className,
       )}
     >
@@ -34,16 +34,16 @@ function AppHeader({ breadcrumbs, actions, center, className, children }: AppHea
                 {crumb.href && !isLast ? (
                   <Link
                     href={crumb.href}
-                    className="text-ground-500 hover:text-ground-900 transition-colors"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
                   >
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className={isLast ? "text-ground-900 font-medium" : "text-ground-500"}>
+                  <span className={isLast ? "text-foreground font-medium" : "text-muted-foreground"}>
                     {crumb.label}
                   </span>
                 )}
-                {!isLast && <ChevronRight size={12} className="text-ground-300" />}
+                {!isLast && <ChevronRight size={12} className="text-muted-foreground" />}
               </Fragment>
             );
           })}

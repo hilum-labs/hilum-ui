@@ -16,11 +16,11 @@ const SelectTrigger = React.forwardRef<
   <Select.Trigger
     ref={ref}
     className={cn(
-      "flex h-9 w-full items-center justify-between rounded-xl bg-white px-3 py-2",
-      "body text-ground-900 shadow-natural",
-      "focus:outline-none focus:ring-2 focus:ring-ground-900/15",
+      "flex h-9 w-full items-center justify-between rounded-xl bg-card px-3 py-2",
+      "body text-foreground shadow-natural",
+      "focus:outline-none focus:ring-2 focus:ring-ring/20",
       "disabled:opacity-50 disabled:cursor-not-allowed",
-      "data-[placeholder]:text-ground-400",
+      "data-[placeholder]:text-muted-foreground",
       "[&>span]:line-clamp-1",
       className,
     )}
@@ -28,7 +28,7 @@ const SelectTrigger = React.forwardRef<
   >
     {children}
     <Select.Icon asChild>
-      <ChevronDown size={15} className="text-ground-400 shrink-0" />
+      <ChevronDown size={15} className="text-muted-foreground shrink-0" />
     </Select.Icon>
   </Select.Trigger>
 ));
@@ -43,7 +43,7 @@ const SelectContent = React.forwardRef<
       ref={ref}
       className={cn(
         "relative z-50 max-h-96 min-w-[8rem] overflow-hidden",
-        "bg-white rounded-xl shadow-natural p-1",
+        "bg-card rounded-xl shadow-natural p-1",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -55,7 +55,7 @@ const SelectContent = React.forwardRef<
       {...props}
     >
       <Select.ScrollUpButton className="flex cursor-default items-center justify-center py-1">
-        <ChevronUp size={14} className="text-ground-400" />
+        <ChevronUp size={14} className="text-muted-foreground" />
       </Select.ScrollUpButton>
       <Select.Viewport
         className={cn(
@@ -66,7 +66,7 @@ const SelectContent = React.forwardRef<
         {children}
       </Select.Viewport>
       <Select.ScrollDownButton className="flex cursor-default items-center justify-center py-1">
-        <ChevronDown size={14} className="text-ground-400" />
+        <ChevronDown size={14} className="text-muted-foreground" />
       </Select.ScrollDownButton>
     </Select.Content>
   </Select.Portal>
@@ -81,8 +81,8 @@ const SelectItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex w-full cursor-default select-none items-center rounded-md px-2.5 py-1.5",
-      "body text-ground-700 outline-none",
-      "focus:bg-ground-50 focus:text-ground-900",
+      "body text-muted-foreground outline-none",
+      "focus:bg-muted focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -90,7 +90,7 @@ const SelectItem = React.forwardRef<
   >
     <span className="absolute right-2 flex size-3.5 items-center justify-center">
       <Select.ItemIndicator>
-        <Check size={13} className="text-ground-900" />
+        <Check size={13} className="text-foreground" />
       </Select.ItemIndicator>
     </span>
     <Select.ItemText>{children}</Select.ItemText>
@@ -104,7 +104,7 @@ const SelectLabel = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Select.Label
     ref={ref}
-    className={cn("px-2.5 py-1 label text-ground-400", className)}
+    className={cn("px-2.5 py-1 label text-muted-foreground", className)}
     {...props}
   />
 ));
@@ -114,7 +114,7 @@ const SelectSeparator = React.forwardRef<
   React.ComponentRef<typeof Select.Separator>,
   React.ComponentPropsWithoutRef<typeof Select.Separator>
 >(({ className, ...props }, ref) => (
-  <Select.Separator ref={ref} className={cn("mx-1 my-1 h-px bg-ground-100", className)} {...props} />
+  <Select.Separator ref={ref} className={cn("mx-1 my-1 h-px bg-muted", className)} {...props} />
 ));
 SelectSeparator.displayName = "SelectSeparator";
 

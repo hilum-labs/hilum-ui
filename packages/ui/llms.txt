@@ -19,7 +19,7 @@ Peer dependencies: `react@^19`, `react-dom@^19`, `tailwindcss@^4`
 @import "@hilum/ui/tokens.css";
 ```
 
-That single import registers all design tokens as CSS custom properties and Tailwind v4 utilities (`bg-brand-primary`, `text-taupe-900`, `shadow-natural`, etc.).
+That single import registers all design tokens as CSS custom properties and Tailwind v4 utilities (`bg-brand-primary`, `text-ground-900`, `shadow-natural`, etc.).
 
 ---
 
@@ -84,7 +84,7 @@ export function App() {
 
 **Purple scale** (`bg-purple-{50..950}`): built from `#C100F1` anchor at 500
 **Butter scale** (`bg-butter-{50..950}`): built from `#FFF5BF` anchor at 200
-**Taupe scale** (`bg-taupe-{50..950}`): neutral spine for text, borders, structure
+**Ground scale** (`bg-ground-{50..950}`): neutral spine for text, borders, structure
 
 **Semantic CSS vars** (use in custom CSS, never raw hex):
 - `--background`, `--foreground` — page bg/text
@@ -194,7 +194,7 @@ Props: `variant`.
 
 ### Input
 
-Text input field. Styled with taupe palette and brand focus ring.
+Text input field. Styled with the ground palette and brand focus ring.
 
 ```tsx
 import { Input } from "@hilum/ui"
@@ -467,7 +467,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
     <CardDescription className="body">Supporting text.</CardDescription>
   </CardHeader>
   <CardContent>
-    <p className="body text-taupe-500">Content goes here.</p>
+    <p className="body text-ground-500">Content goes here.</p>
   </CardContent>
   <CardFooter>
     <Button>Action</Button>
@@ -475,7 +475,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 </Card>
 ```
 
-Variants: `default` (white with natural shadow), `muted` (taupe-50).
+Variants: `default` (white with natural shadow), `muted` (ground-50).
 
 ---
 
@@ -924,7 +924,7 @@ const config = {
 
 <ChartContainer config={config} className="h-64">
   <LineChart data={data}>
-    <CartesianGrid strokeDasharray="3 3" stroke="var(--color-taupe-100)" />
+    <CartesianGrid strokeDasharray="3 3" stroke="var(--color-ground-100)" />
     <XAxis dataKey="month" />
     <YAxis />
     <ChartTooltip content={<ChartTooltipContent />} />
@@ -968,7 +968,7 @@ import { HoverCard, HoverCardTrigger, HoverCardContent } from "@hilum/ui"
   </HoverCardTrigger>
   <HoverCardContent>
     <p className="body font-medium">Hilum Labs</p>
-    <p className="caption text-taupe-400">Building the future of education.</p>
+    <p className="caption text-ground-400">Building the future of education.</p>
   </HoverCardContent>
 </HoverCard>
 ```
@@ -1182,7 +1182,7 @@ Maintains a fixed aspect ratio for any child.
 ```tsx
 import { AspectRatio } from "@hilum/ui"
 
-<AspectRatio ratio={16 / 9} className="bg-taupe-100 rounded-xl overflow-hidden">
+<AspectRatio ratio={16 / 9} className="bg-ground-100 rounded-xl overflow-hidden">
   <img src="..." className="w-full h-full object-cover" />
 </AspectRatio>
 ```
@@ -1241,7 +1241,7 @@ Input with leading/trailing addons (icons, buttons, text).
 import { InputGroup, InputGroupAddon } from "@hilum/ui"
 
 <InputGroup>
-  <InputGroupAddon><Mail size={14} className="text-taupe-400" /></InputGroupAddon>
+  <InputGroupAddon><Mail size={14} className="text-ground-400" /></InputGroupAddon>
   <Input placeholder="Email address" />
 </InputGroup>
 

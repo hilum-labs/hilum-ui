@@ -15,9 +15,9 @@ interface StatCardProps {
 
 function StatCard({ label, value, trend, icon, className }: StatCardProps) {
   const trendColor = {
-    up: "text-ground-800 bg-brand-secondary/30 rounded-full px-2 py-0.5 w-fit",
+    up: "text-muted-foreground bg-brand-secondary/30 rounded-full px-2 py-0.5 w-fit",
     down: "text-destructive",
-    neutral: "text-ground-400",
+    neutral: "text-muted-foreground",
   };
 
   const TrendIcon = {
@@ -27,16 +27,16 @@ function StatCard({ label, value, trend, icon, className }: StatCardProps) {
   };
 
   return (
-    <div className={cn("rounded-xl border border-ground-100 bg-white p-5", className)}>
+    <div className={cn("rounded-xl border border-border bg-card p-5", className)}>
       <div className="flex items-start justify-between gap-3">
-        <p className="label text-ground-400">{label}</p>
+        <p className="label text-muted-foreground">{label}</p>
         {icon && (
-          <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-ground-50 text-ground-400">
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
             {icon}
           </div>
         )}
       </div>
-      <p className="heading-xl mt-2 text-ground-900">{value}</p>
+      <p className="heading-xl mt-2 text-foreground">{value}</p>
       {trend &&
         (() => {
           const Icon = TrendIcon[trend.direction];

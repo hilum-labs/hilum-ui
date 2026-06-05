@@ -35,7 +35,7 @@ const AlertDialogContent = React.forwardRef<
       ref={ref}
       className={cn(
         "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
-        "w-full max-w-md bg-white rounded-2xl shadow-elevated p-6",
+        "w-full max-w-md bg-card rounded-2xl shadow-elevated p-6",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
@@ -65,7 +65,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialog.Title
     ref={ref}
-    className={cn("body-lg font-semibold text-ground-900", className)}
+    className={cn("body-lg font-semibold text-foreground", className)}
     {...props}
   />
 ));
@@ -75,7 +75,7 @@ const AlertDialogDescription = React.forwardRef<
   React.ComponentRef<typeof AlertDialog.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialog.Description>
 >(({ className, ...props }, ref) => (
-  <AlertDialog.Description ref={ref} className={cn("body text-ground-500", className)} {...props} />
+  <AlertDialog.Description ref={ref} className={cn("body text-muted-foreground", className)} {...props} />
 ));
 AlertDialogDescription.displayName = "AlertDialogDescription";
 
@@ -88,7 +88,7 @@ const AlertDialogAction = React.forwardRef<
     className={cn(
       "inline-flex h-9 items-center justify-center rounded-md px-4",
       "body font-medium whitespace-nowrap transition-all duration-150",
-      "bg-brand-primary text-white hover:bg-brand-primary/90 active:bg-brand-primary/80",
+      "bg-brand-primary text-background hover:bg-brand-primary/90 active:bg-brand-primary/80",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       className,
@@ -107,7 +107,7 @@ const AlertDialogCancel = React.forwardRef<
     className={cn(
       "inline-flex h-9 items-center justify-center rounded-md px-4",
       "body font-medium whitespace-nowrap transition-all duration-150",
-      "bg-white text-ground-700 shadow-natural hover:bg-ground-50 rounded-xl",
+      "bg-card text-muted-foreground shadow-natural hover:bg-muted rounded-xl",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
       className,

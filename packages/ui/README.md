@@ -33,7 +33,7 @@ See the live catalog at [ui.hilum.dev](https://ui.hilum.dev) for component docs,
 
 ## Brand
 
-Hilum UI ships a fully-fixed brand: vivid purple `#C100F1` primary, pale lemon `#FFF5BF` secondary, lime `#CDEA19` success, taupe scale neutrals. No per-app overrides — apps pass through this identity unchanged. See `PLATFORM_PLAN.md` §2.1 D8.
+Hilum UI ships a fully-fixed brand: vivid purple `#C100F1` primary, pale lemon `#FFF5BF` secondary, lime `#CDEA19` success, and `ground` scale neutrals. No per-app overrides — apps pass through this identity unchanged. See `PLATFORM_PLAN.md` §2.1 D8.
 
 ## Design Tokens
 
@@ -44,7 +44,7 @@ import { tokens } from "@hilum/ui/tokens"
 
 tokens.brand.primary     // "#C100F1"
 tokens.brand.secondary   // "#FFF5BF"
-tokens.taupe[500]        // "#7d6960"
+tokens.ground[500]       // "#737373"
 ```
 
 ## Theming

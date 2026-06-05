@@ -29,7 +29,7 @@ SheetOverlay.displayName = "SheetOverlay";
 
 const sheetContentVariants = cva(
   [
-    "fixed z-50 bg-white shadow-elevated p-6",
+    "fixed z-50 bg-card shadow-elevated p-6",
     "data-[state=open]:animate-in data-[state=closed]:animate-out",
     "transition ease-in-out duration-300",
   ],
@@ -65,7 +65,7 @@ const SheetContent = React.forwardRef<React.ComponentRef<typeof Dialog.Content>,
         {...props}
       >
         {children}
-        <Dialog.Close className="absolute right-4 top-4 rounded-md p-1 text-ground-400 opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ground-900/20">
+        <Dialog.Close className="absolute right-4 top-4 rounded-md p-1 text-muted-foreground opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring/20">
           <X size={16} />
           <span className="sr-only">Close</span>
         </Dialog.Close>
@@ -91,7 +91,7 @@ const SheetTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <Dialog.Title
     ref={ref}
-    className={cn("body-lg font-semibold text-ground-900", className)}
+    className={cn("body-lg font-semibold text-foreground", className)}
     {...props}
   />
 ));
@@ -101,7 +101,7 @@ const SheetDescription = React.forwardRef<
   React.ComponentRef<typeof Dialog.Description>,
   React.ComponentPropsWithoutRef<typeof Dialog.Description>
 >(({ className, ...props }, ref) => (
-  <Dialog.Description ref={ref} className={cn("body text-ground-500", className)} {...props} />
+  <Dialog.Description ref={ref} className={cn("body text-muted-foreground", className)} {...props} />
 ));
 SheetDescription.displayName = "SheetDescription";
 

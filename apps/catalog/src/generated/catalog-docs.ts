@@ -471,8 +471,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "A concise information modal with a direct exit affordance."
       },
       {
-        "label": "With Taupe Footer",
-        "href": "#with-taupe-footer",
+        "label": "With Ground Footer",
+        "href": "#with-ground-footer",
         "description": "A conventional modal body with actions anchored in a separated footer."
       },
       {

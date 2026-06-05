@@ -36,12 +36,12 @@ function DatePicker({
           variant="outline"
           className={cn(
             "w-[240px] justify-start gap-2 text-left font-normal",
-            !value && "text-ground-400",
+            !value && "text-muted-foreground",
             className,
           )}
           disabled={disabled}
         >
-          <CalendarIcon size={14} className="text-ground-400 shrink-0" />
+          <CalendarIcon size={14} className="text-muted-foreground shrink-0" />
           {value ? formatDate(value) : <span>{placeholder}</span>}
         </Button>
       </PopoverTrigger>

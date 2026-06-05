@@ -52,7 +52,7 @@ const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-ground-100 body font-semibold text-ground-600",
+      "flex h-full w-full items-center justify-center rounded-full bg-muted body font-semibold text-muted-foreground",
       className,
     )}
     {...props}
@@ -62,7 +62,7 @@ AvatarFallback.displayName = "AvatarFallback";
 
 const statusColorMap = {
   online: "bg-brand-secondary",
-  offline: "bg-ground-300",
+  offline: "bg-muted",
   busy: "bg-destructive",
   away: "bg-brand-secondary",
 };
@@ -90,7 +90,7 @@ const AvatarWithStatus = React.forwardRef<
     {status && (
       <span
         className={cn(
-          "absolute bottom-0 right-0 rounded-full ring-white",
+          "absolute bottom-0 right-0 rounded-full ring-background",
           statusColorMap[status],
           statusSizeMap[size],
         )}

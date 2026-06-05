@@ -42,7 +42,7 @@ function ColorInput({
   return (
     <div
       className={cn(
-        "inline-flex h-8 items-stretch gap-0 rounded-md border border-ground-200 bg-white overflow-hidden",
+        "inline-flex h-8 items-stretch gap-0 rounded-md border border-border bg-card overflow-hidden",
         "focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
         disabled && "opacity-50 pointer-events-none",
         className,
@@ -65,19 +65,19 @@ function ColorInput({
             commitHex("#" + (e.target as HTMLInputElement).value.replace(/^#/, ""));
         }}
         spellCheck={false}
-        className="w-[5.5rem] caption text-ground-900 px-2 bg-transparent border-l border-ground-100 focus:outline-none uppercase"
+        className="w-[5.5rem] caption text-foreground px-2 bg-transparent border-l border-border focus:outline-none uppercase"
       />
       {typeof opacity === "number" && onOpacityChange && (
-        <div className="relative flex items-center border-l border-ground-100">
+        <div className="relative flex items-center border-l border-border">
           <input
             type="number"
             min={0}
             max={100}
             value={Math.round(opacity)}
             onChange={(e) => onOpacityChange(Number(e.target.value))}
-            className="w-12 caption text-ground-900 px-2 bg-transparent focus:outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="w-12 caption text-foreground px-2 bg-transparent focus:outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
-          <span aria-hidden className="caption-xs text-ground-400 pr-2">
+          <span aria-hidden className="caption-xs text-muted-foreground pr-2">
             %
           </span>
         </div>

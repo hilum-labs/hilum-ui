@@ -104,7 +104,7 @@ function Combobox({
       {/* Trigger */}
       <div className="relative flex items-center">
         {selectedOption?.avatar && !open && (
-          <div className="pointer-events-none absolute left-2.5 flex size-5 items-center justify-center rounded-full bg-ground-200 caption-xs font-semibold text-ground-700 shrink-0">
+          <div className="pointer-events-none absolute left-2.5 flex size-5 items-center justify-center rounded-full bg-muted caption-xs font-semibold text-muted-foreground shrink-0">
             {selectedOption.avatar}
           </div>
         )}
@@ -124,9 +124,9 @@ function Combobox({
           aria-activedescendant={open && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined}
           aria-autocomplete="list"
           className={cn(
-            "flex h-9 w-full rounded-lg border border-ground-200 bg-white pr-8 body text-ground-900",
-            "placeholder:text-ground-400",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ground-400/30 focus-visible:border-ground-400",
+            "flex h-9 w-full rounded-lg border border-border bg-card pr-8 body text-foreground",
+            "placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:border-border",
             "disabled:cursor-not-allowed disabled:opacity-50",
             selectedOption?.avatar && !open
               ? "pl-8"
@@ -150,7 +150,7 @@ function Combobox({
           type="button"
           tabIndex={-1}
           aria-label={open ? "Close" : "Open"}
-          className="absolute inset-y-0 right-0 flex items-center px-2 text-ground-400 hover:text-ground-700 transition-colors"
+          className="absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground hover:text-muted-foreground transition-colors"
           onClick={() => {
             if (open) {
               closeDropdown();
@@ -166,10 +166,10 @@ function Combobox({
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-ground-200 bg-white shadow-elevated">
+        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-border bg-card shadow-elevated">
           <ul id={listboxId} role="listbox" className="max-h-60 overflow-auto py-1">
             {filtered.length === 0 ? (
-              <li className="px-3 py-2 body text-ground-400">{emptyText}</li>
+              <li className="px-3 py-2 body text-muted-foreground">{emptyText}</li>
             ) : (
               filtered.map((option, idx) => {
                 const isSelected = option.value === value;
@@ -183,10 +183,10 @@ function Combobox({
                     className={cn(
                       "flex cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
                       isSelected
-                        ? "bg-brand-primary text-white"
+                        ? "bg-brand-primary text-background"
                         : isActive
-                          ? "bg-ground-100 text-ground-900"
-                          : "text-ground-900 hover:bg-ground-50",
+                          ? "bg-muted text-foreground"
+                          : "text-foreground hover:bg-muted",
                     )}
                     onMouseDown={(e) => e.preventDefault()}
                     onMouseEnter={() => setActiveIndex(idx)}
@@ -197,7 +197,7 @@ function Combobox({
                       <div
                         className={cn(
                           "flex size-6 shrink-0 items-center justify-center rounded-full caption-xs font-semibold",
-                          isSelected ? "bg-white/20 text-white" : "bg-ground-200 text-ground-700",
+                          isSelected ? "bg-card/20 text-background" : "bg-muted text-muted-foreground",
                         )}
                       >
                         {option.avatar}
@@ -218,7 +218,7 @@ function Combobox({
                         <p
                           className={cn(
                             "caption truncate",
-                            isSelected ? "text-white/70" : "text-ground-400",
+                            isSelected ? "text-background/70" : "text-muted-foreground",
                           )}
                         >
                           {option.description}

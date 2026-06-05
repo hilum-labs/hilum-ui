@@ -81,7 +81,7 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
     return (
       <div
         className={cn(
-          "inline-flex h-8 items-stretch rounded-md border border-ground-200 bg-white overflow-hidden",
+          "inline-flex h-8 items-stretch rounded-md border border-border bg-card overflow-hidden",
           "focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
           disabled && "opacity-50 pointer-events-none",
           className,
@@ -97,34 +97,34 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           onBlur={(e) => commit(e.target.value)}
           onKeyDown={onKeyDown}
           disabled={disabled}
-          className="w-full caption text-ground-900 px-2 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-right"
+          className="w-full caption text-foreground px-2 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-right"
           {...rest}
         />
         {unit && (
-          <span aria-hidden className="caption-xs text-ground-400 self-center pr-1.5 select-none">
+          <span aria-hidden className="caption-xs text-muted-foreground self-center pr-1.5 select-none">
             {unit}
           </span>
         )}
         {!hideSteppers && (
-          <div className="flex flex-col border-l border-ground-100">
+          <div className="flex flex-col border-l border-border">
             <button
               type="button"
               tabIndex={-1}
               onClick={() => bump(step)}
               aria-label="Increment"
-              className="flex-1 px-1 hover:bg-ground-50 active:bg-ground-100 transition-colors text-ground-500"
+              className="flex-1 px-1 hover:bg-muted active:bg-muted transition-colors text-muted-foreground"
             >
               <svg viewBox="0 0 8 5" width="8" height="5" fill="currentColor">
                 <path d="M0 5 L4 0 L8 5 Z" />
               </svg>
             </button>
-            <div className="border-t border-ground-100" />
+            <div className="border-t border-border" />
             <button
               type="button"
               tabIndex={-1}
               onClick={() => bump(-step)}
               aria-label="Decrement"
-              className="flex-1 px-1 hover:bg-ground-50 active:bg-ground-100 transition-colors text-ground-500"
+              className="flex-1 px-1 hover:bg-muted active:bg-muted transition-colors text-muted-foreground"
             >
               <svg viewBox="0 0 8 5" width="8" height="5" fill="currentColor">
                 <path d="M0 0 L4 5 L8 0 Z" />

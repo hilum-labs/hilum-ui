@@ -95,7 +95,7 @@ function OverlaysPage() {
           </PreviewBlock>
 
           <PreviewBlock
-            title="With Taupe Footer"
+            title="With Ground Footer"
             description="A conventional modal body with actions anchored in a separated footer."
             code={modalWithGroundFooterSource}
             previewClassName="p-6"

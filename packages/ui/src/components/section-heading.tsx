@@ -28,13 +28,13 @@ function SectionHeading({
     <div
       className={cn(
         "flex flex-col gap-1 pb-4 sm:flex-row sm:items-start sm:justify-between",
-        border && "border-b border-ground-100",
+        border && "border-b border-border",
         className,
       )}
     >
       <div className="min-w-0 flex-1">
-        <h2 className="heading text-ground-900 truncate">{title}</h2>
-        {description && <p className="mt-1 body text-ground-400">{description}</p>}
+        <h2 className="heading text-foreground truncate">{title}</h2>
+        {description && <p className="mt-1 body text-muted-foreground">{description}</p>}
       </div>
 
       {actions && actions.length > 0 && (

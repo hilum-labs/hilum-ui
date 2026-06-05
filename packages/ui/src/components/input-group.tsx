@@ -34,11 +34,11 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
     const hasTrailing = trailingAddon || trailingIcon || trailingButton || error;
 
     const baseInput = cn(
-      "flex h-9 w-full border bg-white body text-ground-900 placeholder:text-ground-400",
+      "flex h-9 w-full border bg-card body text-foreground placeholder:text-muted-foreground",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:disabled:cursor-not-allowed disabled:opacity-50",
       error
         ? "border-destructive focus-visible:ring-destructive/20 focus-visible:border-destructive"
-        : "border-ground-200 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
+        : "border-border focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
     );
 
     if (!hasLeading && !hasTrailing) {
@@ -51,8 +51,8 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
         {leadingAddon && (
           <span
             className={cn(
-              "inline-flex items-center border border-r-0 bg-ground-50 px-3 body text-ground-500 select-none",
-              error ? "border-destructive" : "border-ground-200",
+              "inline-flex items-center border border-r-0 bg-muted px-3 body text-muted-foreground select-none",
+              error ? "border-destructive" : "border-border",
               pill ? "rounded-l-full" : "rounded-l-lg",
             )}
           >
@@ -63,7 +63,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
         {/* Relative wrapper for icon-only inputs */}
         <div className="relative flex-1">
           {leadingIcon && (
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-ground-400">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
               {leadingIcon}
             </div>
           )}
@@ -104,7 +104,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
               {error ? (
                 <AlertCircle size={15} className="text-destructive" />
               ) : (
-                <span className="text-ground-400">{trailingIcon}</span>
+                <span className="text-muted-foreground">{trailingIcon}</span>
               )}
             </div>
           )}
@@ -114,8 +114,8 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
         {trailingAddon && (
           <span
             className={cn(
-              "inline-flex items-center border border-l-0 bg-ground-50 px-3 body text-ground-500 select-none",
-              error ? "border-destructive" : "border-ground-200",
+              "inline-flex items-center border border-l-0 bg-muted px-3 body text-muted-foreground select-none",
+              error ? "border-destructive" : "border-border",
               pill ? "rounded-r-full" : "rounded-r-lg",
             )}
           >

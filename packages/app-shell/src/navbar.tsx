@@ -23,7 +23,7 @@ function Navbar({ logo, items = [], actions, className }: NavbarProps) {
   return (
     <nav
       className={cn(
-        "flex h-16 items-center gap-6 border-b border-ground-100 bg-white px-6",
+        "flex h-16 items-center gap-6 border-b border-border bg-card px-6",
         className,
       )}
     >
@@ -38,8 +38,8 @@ function Navbar({ logo, items = [], actions, className }: NavbarProps) {
               className={cn(
                 "flex items-center gap-2 rounded-md px-3 py-1.5 caption transition-colors",
                 item.active
-                  ? "text-ground-900 bg-ground-50 font-medium"
-                  : "text-ground-500 hover:text-ground-900 hover:bg-ground-50",
+                  ? "text-foreground bg-muted font-medium"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted",
               )}
             >
               {item.icon && <item.icon size={14} />}

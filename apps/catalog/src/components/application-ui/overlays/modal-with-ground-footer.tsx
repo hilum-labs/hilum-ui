@@ -9,7 +9,7 @@ function ModalShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function ModalWithTaupeFooter() {
+export default function ModalWithGroundFooter() {
   return (
     <ModalShell>
       <div className="p-6">
