@@ -37,7 +37,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
       "flex h-9 w-full border bg-white body text-ground-900 placeholder:text-ground-400",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:disabled:cursor-not-allowed disabled:opacity-50",
       error
-        ? "border-red-400 focus-visible:ring-red-200 focus-visible:border-red-500"
+        ? "border-destructive focus-visible:ring-destructive/20 focus-visible:border-destructive"
         : "border-ground-200 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
     );
 
@@ -52,7 +52,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
           <span
             className={cn(
               "inline-flex items-center border border-r-0 bg-ground-50 px-3 body text-ground-500 select-none",
-              error ? "border-red-400" : "border-ground-200",
+              error ? "border-destructive" : "border-ground-200",
               pill ? "rounded-l-full" : "rounded-l-lg",
             )}
           >
@@ -102,7 +102,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
           {(trailingIcon || error) && (
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
               {error ? (
-                <AlertCircle size={15} className="text-red-500" />
+                <AlertCircle size={15} className="text-destructive" />
               ) : (
                 <span className="text-ground-400">{trailingIcon}</span>
               )}
@@ -115,7 +115,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
           <span
             className={cn(
               "inline-flex items-center border border-l-0 bg-ground-50 px-3 body text-ground-500 select-none",
-              error ? "border-red-400" : "border-ground-200",
+              error ? "border-destructive" : "border-ground-200",
               pill ? "rounded-r-full" : "rounded-r-lg",
             )}
           >

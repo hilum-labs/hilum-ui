@@ -86,5 +86,7 @@ function ColorInput({
   );
 }
 
+ColorInput.displayName = "ColorInput";
+
 export { ColorInput };
 export type { ColorInputProps };

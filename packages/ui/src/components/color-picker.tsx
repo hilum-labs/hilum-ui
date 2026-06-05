@@ -107,5 +107,7 @@ function ColorPicker({
   );
 }
 
+ColorPicker.displayName = "ColorPicker";
+
 export { ColorPicker };
 export type { ColorPickerProps };

@@ -33,8 +33,10 @@ function Combobox({
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
+  const [activeIndex, setActiveIndex] = React.useState(-1);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const listboxId = React.useId();
 
   const selectedOption = options.find((o) => o.value === value);
 
@@ -46,6 +48,11 @@ function Combobox({
             o.label.toLowerCase().includes(query.toLowerCase()) ||
             o.description?.toLowerCase().includes(query.toLowerCase()),
         );
+
+  // Reset active index when the filtered list changes
+  React.useEffect(() => {
+    setActiveIndex(-1);
+  }, [filtered.length, open]);
 
   // Close on outside click
   React.useEffect(() => {
@@ -59,18 +66,38 @@ function Combobox({
     return () => document.removeEventListener("mousedown", onMouseDown);
   }, []);
 
-  // Close on Escape
-  React.useEffect(() => {
-    if (!open) return;
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") {
-        setOpen(false);
-        setQuery("");
-      }
+  function closeDropdown() {
+    setOpen(false);
+    setQuery("");
+    setActiveIndex(-1);
+  }
+
+  function selectOption(opt: ComboboxOption) {
+    onValueChange?.(opt.value);
+    closeDropdown();
+  }
+
+  function handleInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Escape") {
+      closeDropdown();
+      return;
     }
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [open]);
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (!open) { setOpen(true); return; }
+      setActiveIndex((i) => Math.min(i + 1, filtered.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (!open) { setOpen(true); return; }
+      const target = activeIndex >= 0 ? filtered[activeIndex] : filtered[0];
+      if (target) selectOption(target);
+    } else if (e.key === "Tab") {
+      closeDropdown();
+    }
+  }
 
   return (
     <div ref={containerRef} className={cn("relative", className)}>
@@ -92,6 +119,10 @@ function Combobox({
           type="text"
           role="combobox"
           aria-expanded={open}
+          aria-haspopup="listbox"
+          aria-controls={open ? listboxId : undefined}
+          aria-activedescendant={open && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined}
+          aria-autocomplete="list"
           className={cn(
             "flex h-9 w-full rounded-lg border border-ground-200 bg-white pr-8 body text-ground-900",
             "placeholder:text-ground-400",
@@ -113,15 +144,16 @@ function Combobox({
             setOpen(true);
             setQuery("");
           }}
+          onKeyDown={handleInputKeyDown}
         />
         <button
           type="button"
           tabIndex={-1}
+          aria-label={open ? "Close" : "Open"}
           className="absolute inset-y-0 right-0 flex items-center px-2 text-ground-400 hover:text-ground-700 transition-colors"
           onClick={() => {
             if (open) {
-              setOpen(false);
-              setQuery("");
+              closeDropdown();
             } else {
               setOpen(true);
               inputRef.current?.focus();
@@ -135,29 +167,30 @@ function Combobox({
       {/* Dropdown */}
       {open && (
         <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-ground-200 bg-white shadow-elevated">
-          <ul role="listbox" className="max-h-60 overflow-auto py-1">
+          <ul id={listboxId} role="listbox" className="max-h-60 overflow-auto py-1">
             {filtered.length === 0 ? (
               <li className="px-3 py-2 body text-ground-400">{emptyText}</li>
             ) : (
-              filtered.map((option) => {
+              filtered.map((option, idx) => {
                 const isSelected = option.value === value;
+                const isActive = idx === activeIndex;
                 return (
                   <li
                     key={option.value}
+                    id={`${listboxId}-option-${idx}`}
                     role="option"
                     aria-selected={isSelected}
                     className={cn(
                       "flex cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
                       isSelected
                         ? "bg-brand-primary text-white"
-                        : "text-ground-900 hover:bg-ground-50",
+                        : isActive
+                          ? "bg-ground-100 text-ground-900"
+                          : "text-ground-900 hover:bg-ground-50",
                     )}
                     onMouseDown={(e) => e.preventDefault()}
-                    onClick={() => {
-                      onValueChange?.(option.value);
-                      setQuery("");
-                      setOpen(false);
-                    }}
+                    onMouseEnter={() => setActiveIndex(idx)}
+                    onClick={() => selectOption(option)}
                   >
                     {/* Avatar */}
                     {option.avatar && (
@@ -203,5 +236,7 @@ function Combobox({
     </div>
   );
 }
+
+Combobox.displayName = "Combobox";
 
 export { Combobox };

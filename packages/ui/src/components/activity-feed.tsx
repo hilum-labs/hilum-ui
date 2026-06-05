@@ -65,5 +65,7 @@ function ActivityFeed({ events, className }: ActivityFeedProps) {
   );
 }
 
+ActivityFeed.displayName = "ActivityFeed";
+
 export { ActivityFeed };
 export type { FeedEvent };

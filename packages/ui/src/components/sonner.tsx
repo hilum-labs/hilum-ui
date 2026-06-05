@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { Toaster as SonnerToaster } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof SonnerToaster>;
@@ -20,9 +21,9 @@ function Toaster({ ...props }: ToasterProps) {
             "group-[.toast]:bg-ground-100 group-[.toast]:text-ground-600 group-[.toast]:rounded-md group-[.toast]:text-xs group-[.toast]:font-medium",
           success: "group-[.toaster]:border-brand-secondary/40 group-[.toaster]:text-ground-900",
           error:
-            "group-[.toaster]:bg-red-50 group-[.toaster]:text-red-700 group-[.toaster]:border-red-200",
+            "group-[.toaster]:bg-destructive/10 group-[.toaster]:text-destructive group-[.toaster]:border-destructive/20",
           warning:
-            "group-[.toaster]:bg-yellow-50 group-[.toaster]:text-yellow-800 group-[.toaster]:border-yellow-200",
+            "group-[.toaster]:bg-warning group-[.toaster]:text-warning-foreground group-[.toaster]:border-warning/40",
           info: "group-[.toaster]:border-ground-200",
         },
       }}

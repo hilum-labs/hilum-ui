@@ -42,4 +42,7 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
   );
 }
 
+ButtonGroup.displayName = "ButtonGroup";
+ButtonGroupItem.displayName = "ButtonGroupItem";
+
 export { ButtonGroup, ButtonGroupItem };

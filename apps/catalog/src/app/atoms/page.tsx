@@ -114,6 +114,14 @@ const GROUPS: { label: string; components: ComponentEntry[] }[] = [
       { name: "Toast", slug: "sonner", description: "Non-blocking notifications that appear briefly and dismiss automatically.", category: "feedback" },
     ],
   },
+  {
+    label: "Designer Tools",
+    components: [
+      { name: "Color Picker", slug: "color-picker", description: "Popover color selector with native color wheel, hex input, and optional preset palette.", category: "form" },
+      { name: "Color Input", slug: "color-input", description: "Compact inline color input combining swatch, hex field, and optional opacity control.", category: "form" },
+      { name: "Input Number", slug: "input-number", description: "Numeric input with steppers, unit suffix, and arrow-key stepping. Designed for inspector panels.", category: "form" },
+    ],
+  },
 ];
 
 const CATEGORY_LABEL: Record<ComponentEntry["category"], string> = {

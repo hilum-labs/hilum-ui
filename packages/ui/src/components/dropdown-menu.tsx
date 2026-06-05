@@ -48,7 +48,7 @@ const DropdownMenuItem = React.forwardRef<
       "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
       "body outline-none transition-colors",
       destructive
-        ? "text-red-600 focus:bg-red-50 focus:text-red-700"
+        ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
         : "text-ground-700 focus:bg-ground-50 focus:text-ground-900",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",

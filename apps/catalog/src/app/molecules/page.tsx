@@ -120,6 +120,12 @@ const MOLECULES: MoleculeEntry[] = [
     description: "A modal search dialog for navigating and executing commands quickly. Grouped by category.",
     atoms: "Dialog · Input · Icon · Kbd",
   },
+  {
+    name: "Property Row",
+    slug: "property-row",
+    description: "Horizontal label + control row for designer inspector panels. Left-aligned label, right-aligned controls.",
+    atoms: "InputNumber · ColorInput · Slider",
+  },
 ];
 
 /* ------------------------------------------------------------------ */

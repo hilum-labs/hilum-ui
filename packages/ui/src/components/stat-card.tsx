@@ -16,7 +16,7 @@ interface StatCardProps {
 function StatCard({ label, value, trend, icon, className }: StatCardProps) {
   const trendColor = {
     up: "text-ground-800 bg-brand-secondary/30 rounded-full px-2 py-0.5 w-fit",
-    down: "text-red-600",
+    down: "text-destructive",
     neutral: "text-ground-400",
   };
 
@@ -50,5 +50,7 @@ function StatCard({ label, value, trend, icon, className }: StatCardProps) {
     </div>
   );
 }
+
+StatCard.displayName = "StatCard";
 
 export { StatCard };

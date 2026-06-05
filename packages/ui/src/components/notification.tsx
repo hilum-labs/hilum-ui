@@ -24,7 +24,7 @@ const variantConfig = {
     icon: CheckCircle,
     iconClass: "bg-brand-secondary/25 text-ground-700 rounded-full p-1",
   },
-  error: { icon: AlertCircle, iconClass: "text-red-500" },
+  error: { icon: AlertCircle, iconClass: "text-destructive" },
   warning: {
     icon: AlertTriangle,
     iconClass: "bg-brand-secondary/80 text-ground-700 rounded-full p-1",
@@ -105,5 +105,7 @@ function Notification({
     </div>
   );
 }
+
+Notification.displayName = "Notification";
 
 export { Notification };

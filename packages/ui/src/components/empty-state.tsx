@@ -40,4 +40,6 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
   );
 }
 
+EmptyState.displayName = "EmptyState";
+
 export { EmptyState };

@@ -1072,6 +1072,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
+  "/atoms/color-input/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, onChange, opacity, onOpacityChange, className, disabled"
+      }
+    ],
+    "exampleCode": "import { ColorInput } from \"@hilum/ui\"\n\nconst [color, setColor] = React.useState(\"#c100f1\")\n\n<ColorInput value={color} onChange={setColor} />",
+    "kind": "component",
+    "path": "/atoms/color-input/",
+    "summary": "Compact inline color input combining a swatch trigger, hex text field, and optional opacity control. Designed for designer property panels.",
+    "title": "Color Input",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Color Input when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/color-picker/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, onChange, className, disabled, presets, ariaLabel"
+      }
+    ],
+    "exampleCode": "import { ColorPicker } from \"@hilum/ui\"\n\nconst [color, setColor] = React.useState(\"#c100f1\")\n\n<ColorPicker value={color} onChange={setColor} />",
+    "kind": "component",
+    "path": "/atoms/color-picker/",
+    "summary": "Popover-based color selector with a native color wheel, hex input, and optional preset palette. Designed for designer property panels.",
+    "title": "Color Picker",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Color Picker when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/atoms/combobox/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -1346,6 +1400,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Input when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/input-number/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, onChange, min, max, step, unit"
+      }
+    ],
+    "exampleCode": "import { InputNumber } from \"@hilum/ui\"\n\nconst [value, setValue] = React.useState(0)\n\n<InputNumber value={value} onChange={setValue} />",
+    "kind": "component",
+    "path": "/atoms/input-number/",
+    "summary": "Numeric input with up/down steppers, optional unit suffix, and arrow-key stepping (Shift = 10×). Designed for designer property panels.",
+    "title": "Input Number",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Input Number when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
@@ -4568,6 +4649,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "path": "/molecules/",
     "summary": "Composed components built from atoms. Each molecule combines primitives into a reusable, purpose-built pattern.",
     "title": "Molecules"
+  },
+  "/molecules/property-row/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "label, labelWidth, labelAlign"
+      }
+    ],
+    "exampleCode": "import { PropertyRow, InputNumber } from \"@hilum/ui\"\n\n<PropertyRow label=\"Width\">\n  <InputNumber value={width} onChange={setWidth} unit=\"px\" />\n</PropertyRow>\n\n<PropertyRow label=\"Opacity\">\n  <Slider value={[opacity]} onValueChange={([v]) => setOpacity(v)} min={0} max={100} />\n  <InputNumber value={opacity} onChange={setOpacity} unit=\"%\" min={0} max={100} className=\"w-16 shrink-0\" />\n</PropertyRow>",
+    "kind": "component",
+    "path": "/molecules/property-row/",
+    "summary": "Horizontal label + control row for designer inspector panels. Left-aligned label, right-aligned controls, single visual row. Differs from Field, which is a vertical form field with hint/error text.",
+    "title": "Property Row",
+    "whenNotToUse": [
+      "Do not use Property Row just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Property Row when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
   },
   "/molecules/radio-card/": {
     "accessibility": [

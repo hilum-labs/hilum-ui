@@ -102,4 +102,6 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
   );
 }
 
+RadioCards.displayName = "RadioCards";
+
 export { RadioCards };

@@ -109,4 +109,6 @@ function ActionPanel({
   );
 }
 
+ActionPanel.displayName = "ActionPanel";
+
 export { ActionPanel };

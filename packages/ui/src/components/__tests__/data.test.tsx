@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { DataTable, createColumnHelper } from "../data-table";
 import {
   Table,
   TableBody,
@@ -21,6 +22,70 @@ import {
 } from "../pagination";
 import { ScrollArea } from "../scroll-area";
 import { AspectRatio } from "../aspect-ratio";
+
+/* ------------------------------------------------------------------ */
+/* DataTable                                                            */
+/* ------------------------------------------------------------------ */
+
+interface Person { name: string; email: string }
+
+const colHelper = createColumnHelper<Person>();
+const dtColumns = [
+  colHelper.accessor("name", { header: "Name" }),
+  colHelper.accessor("email", { header: "Email", enableSorting: false }),
+];
+const dtData: Person[] = [
+  { name: "Alice", email: "alice@example.com" },
+  { name: "Bob", email: "bob@example.com" },
+];
+
+describe("DataTable", () => {
+  it("renders column headers", () => {
+    render(<DataTable columns={dtColumns} data={dtData} showPagination={false} />);
+    expect(screen.getByRole("columnheader", { name: "Name" })).toBeInTheDocument();
+    expect(screen.getByRole("columnheader", { name: "Email" })).toBeInTheDocument();
+  });
+
+  it("renders data rows", () => {
+    render(<DataTable columns={dtColumns} data={dtData} showPagination={false} />);
+    expect(screen.getByRole("cell", { name: "Alice" })).toBeInTheDocument();
+    expect(screen.getByRole("cell", { name: "Bob" })).toBeInTheDocument();
+  });
+
+  it("sortable column header has aria-sort='none' initially", () => {
+    render(<DataTable columns={dtColumns} data={dtData} showPagination={false} />);
+    expect(screen.getByRole("columnheader", { name: "Name" })).toHaveAttribute("aria-sort", "none");
+  });
+
+  it("non-sortable column has no aria-sort attribute", () => {
+    render(<DataTable columns={dtColumns} data={dtData} showPagination={false} />);
+    expect(screen.getByRole("columnheader", { name: "Email" })).not.toHaveAttribute("aria-sort");
+  });
+
+  it("shows no-results row when data is empty", () => {
+    render(<DataTable columns={dtColumns} data={[]} showPagination={false} />);
+    expect(screen.getByText("No results.")).toBeInTheDocument();
+  });
+
+  it("renders search input when searchKey is provided", () => {
+    render(
+      <DataTable
+        columns={dtColumns}
+        data={dtData}
+        searchKey="name"
+        searchPlaceholder="Search people..."
+        showPagination={false}
+      />,
+    );
+    expect(screen.getByPlaceholderText("Search people...")).toBeInTheDocument();
+  });
+
+  it("renders pagination buttons by default", () => {
+    render(<DataTable columns={dtColumns} data={dtData} />);
+    expect(screen.getByRole("button", { name: /previous/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /next/i })).toBeInTheDocument();
+  });
+});
 
 /* ------------------------------------------------------------------ */
 /* Table                                                                */

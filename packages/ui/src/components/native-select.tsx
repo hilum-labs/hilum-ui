@@ -14,7 +14,7 @@ const NativeSelect = React.forwardRef<
         "body text-ground-900",
         "focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400",
         "disabled:cursor-not-allowed disabled:opacity-50",
-        "aria-[invalid=true]:border-red-500 aria-[invalid=true]:focus:ring-red-500/20",
+        "aria-[invalid=true]:border-destructive aria-[invalid=true]:focus:ring-destructive/20",
         className,
       )}
       {...props}

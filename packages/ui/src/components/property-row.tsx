@@ -52,5 +52,7 @@ function PropertyRow({
   );
 }
 
+PropertyRow.displayName = "PropertyRow";
+
 export { PropertyRow };
 export type { PropertyRowProps };

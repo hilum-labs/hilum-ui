@@ -63,7 +63,7 @@ AvatarFallback.displayName = "AvatarFallback";
 const statusColorMap = {
   online: "bg-brand-secondary",
   offline: "bg-ground-300",
-  busy: "bg-red-500",
+  busy: "bg-destructive",
   away: "bg-brand-secondary",
 };
 

@@ -46,4 +46,6 @@ function MediaObject({
   );
 }
 
+MediaObject.displayName = "MediaObject";
+
 export { MediaObject };

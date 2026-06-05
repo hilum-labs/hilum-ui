@@ -107,21 +107,21 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
               {step.status === "complete" ? (
                 <span
                   className="block size-2.5 rounded-full bg-brand-primary hover:bg-brand-primary/80 transition-colors"
-                  title={step.name}
+                  aria-label={`${step.name}: completed`}
                 />
               ) : step.status === "current" ? (
                 <span
                   className="relative flex size-4 items-center justify-center"
                   aria-current="step"
+                  aria-label={`${step.name}: current step`}
                 >
                   <span className="absolute size-4 rounded-full bg-brand-primary/20" />
                   <span className="relative size-2.5 rounded-full bg-brand-primary" />
-                  <span className="sr-only">{step.name}</span>
                 </span>
               ) : (
                 <span
                   className="block size-2.5 rounded-full bg-ground-200 hover:bg-ground-300 transition-colors"
-                  title={step.name}
+                  aria-label={`${step.name}: upcoming`}
                 />
               )}
             </a>
@@ -176,5 +176,7 @@ function Steps({ steps, variant = "circles", className }: StepsProps) {
   if (variant === "progress") return <ProgressSteps steps={steps} {...classNameProp} />;
   return <CirclesSteps steps={steps} {...classNameProp} />;
 }
+
+Steps.displayName = "Steps";
 
 export { Steps };

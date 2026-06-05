@@ -11,7 +11,7 @@ const alertVariants = cva(
         info: "bg-brand-secondary/40 text-ground-700 [&>svg]:text-ground-500",
         success: "bg-brand-secondary/15 text-ground-800 [&>svg]:text-ground-600",
         warning: "bg-brand-secondary/70 text-ground-800 [&>svg]:text-ground-600",
-        destructive: "bg-red-50 text-red-800 [&>svg]:text-red-500",
+        destructive: "bg-destructive/10 text-destructive [&>svg]:text-destructive/70",
       },
     },
     defaultVariants: { variant: "default" },

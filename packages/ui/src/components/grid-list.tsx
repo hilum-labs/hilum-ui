@@ -156,4 +156,8 @@ function GridListAccentCard({
   );
 }
 
+GridList.displayName = "GridList";
+GridListCard.displayName = "GridListCard";
+GridListAccentCard.displayName = "GridListAccentCard";
+
 export { GridList, GridListCard, GridListAccentCard };

@@ -134,4 +134,6 @@ function CommandPalette({
   );
 }
 
+CommandPalette.displayName = "CommandPalette";
+
 export { CommandPalette };

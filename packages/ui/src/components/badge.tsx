@@ -13,7 +13,7 @@ const badgeVariants = cva(
         brand: "bg-brand-primary text-white",
         success: "bg-brand-secondary/20 text-ground-800 border border-brand-secondary/50",
         warning: "bg-brand-secondary/70 text-ground-700 border border-brand-secondary",
-        destructive: "bg-red-50 text-red-700 border border-red-200",
+        destructive: "bg-destructive/10 text-destructive border border-destructive/20",
       },
     },
     defaultVariants: {

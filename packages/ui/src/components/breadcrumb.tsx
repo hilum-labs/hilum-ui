@@ -37,7 +37,6 @@ const BreadcrumbPage = React.forwardRef<HTMLSpanElement, React.ComponentProps<"s
   ({ className, ...props }, ref) => (
     <span
       ref={ref}
-      role="link"
       aria-current="page"
       className={cn("body font-medium text-ground-900", className)}
       {...props}

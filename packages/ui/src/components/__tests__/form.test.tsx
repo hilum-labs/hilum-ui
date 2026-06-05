@@ -10,6 +10,13 @@ import { InputGroup } from "../input-group";
 import { Field } from "../field";
 import { NativeSelect, NativeSelectOption } from "../native-select";
 import { RadioCards } from "../radio-card";
+import { Combobox } from "../combobox";
+
+const FRUITS = [
+  { value: "apple", label: "Apple" },
+  { value: "banana", label: "Banana" },
+  { value: "cherry", label: "Cherry" },
+];
 
 /* ------------------------------------------------------------------ */
 /* Checkbox                                                             */
@@ -322,5 +329,81 @@ describe("RadioCards", () => {
     render(<RadioCards options={opts} onValueChange={onValueChange} />);
     fireEvent.click(screen.getByRole("radio", { name: "Disabled" }));
     expect(onValueChange).not.toHaveBeenCalled();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Combobox                                                             */
+/* ------------------------------------------------------------------ */
+
+describe("Combobox", () => {
+  it("renders a combobox input", () => {
+    render(<Combobox options={FRUITS} />);
+    expect(screen.getByRole("combobox")).toBeInTheDocument();
+  });
+
+  it("shows placeholder when no value selected", () => {
+    render(<Combobox options={FRUITS} placeholder="Pick a fruit" />);
+    expect(screen.getByPlaceholderText("Pick a fruit")).toBeInTheDocument();
+  });
+
+  it("opens listbox on focus", async () => {
+    const user = userEvent.setup();
+    render(<Combobox options={FRUITS} />);
+    await user.click(screen.getByRole("combobox"));
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expect(screen.getAllByRole("option")).toHaveLength(3);
+  });
+
+  it("filters options by query", async () => {
+    const user = userEvent.setup();
+    render(<Combobox options={FRUITS} />);
+    await user.click(screen.getByRole("combobox"));
+    await user.keyboard("ban");
+    expect(screen.getAllByRole("option")).toHaveLength(1);
+    expect(screen.getByRole("option", { name: /banana/i })).toBeInTheDocument();
+  });
+
+  it("calls onValueChange when option is clicked", async () => {
+    const user = userEvent.setup();
+    const onValueChange = vi.fn();
+    render(<Combobox options={FRUITS} onValueChange={onValueChange} />);
+    await user.click(screen.getByRole("combobox"));
+    await user.click(screen.getByRole("option", { name: "Apple" }));
+    expect(onValueChange).toHaveBeenCalledWith("apple");
+  });
+
+  it("navigates with arrow keys and selects on Enter", async () => {
+    const user = userEvent.setup();
+    const onValueChange = vi.fn();
+    render(<Combobox options={FRUITS} onValueChange={onValueChange} />);
+    const input = screen.getByRole("combobox");
+    await user.click(input);
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{ArrowDown}");
+    await user.keyboard("{Enter}");
+    expect(onValueChange).toHaveBeenCalledWith("banana");
+  });
+
+  it("closes on Escape", async () => {
+    const user = userEvent.setup();
+    render(<Combobox options={FRUITS} />);
+    await user.click(screen.getByRole("combobox"));
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    await user.keyboard("{Escape}");
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+
+  it("shows empty text when no options match", async () => {
+    const user = userEvent.setup();
+    render(<Combobox options={FRUITS} emptyText="Nothing found." />);
+    await user.click(screen.getByRole("combobox"));
+    await user.keyboard("zzz");
+    expect(screen.getByText("Nothing found.")).toBeInTheDocument();
+  });
+
+  it("toggle button has an accessible label", () => {
+    render(<Combobox options={FRUITS} />);
+    expect(screen.getByRole("button", { name: "Open" })).toBeInTheDocument();
   });
 });

@@ -23,6 +23,7 @@ import { Route as MoleculesStatCardPageRouteImport } from './app/molecules/stat-
 import { Route as MoleculesStackedListPageRouteImport } from './app/molecules/stacked-list/page'
 import { Route as MoleculesSectionHeadingPageRouteImport } from './app/molecules/section-heading/page'
 import { Route as MoleculesRadioCardPageRouteImport } from './app/molecules/radio-card/page'
+import { Route as MoleculesPropertyRowPageRouteImport } from './app/molecules/property-row/page'
 import { Route as MoleculesPageHeadingPageRouteImport } from './app/molecules/page-heading/page'
 import { Route as MoleculesNotificationPageRouteImport } from './app/molecules/notification/page'
 import { Route as MoleculesMediaObjectPageRouteImport } from './app/molecules/media-object/page'
@@ -108,6 +109,7 @@ import { Route as AtomsLabelPageRouteImport } from './app/atoms/label/page'
 import { Route as AtomsKbdPageRouteImport } from './app/atoms/kbd/page'
 import { Route as AtomsInputPageRouteImport } from './app/atoms/input/page'
 import { Route as AtomsInputOtpPageRouteImport } from './app/atoms/input-otp/page'
+import { Route as AtomsInputNumberPageRouteImport } from './app/atoms/input-number/page'
 import { Route as AtomsHoverCardPageRouteImport } from './app/atoms/hover-card/page'
 import { Route as AtomsDropdownMenuPageRouteImport } from './app/atoms/dropdown-menu/page'
 import { Route as AtomsDrawerPageRouteImport } from './app/atoms/drawer/page'
@@ -117,6 +119,8 @@ import { Route as AtomsDataTablePageRouteImport } from './app/atoms/data-table/p
 import { Route as AtomsContextMenuPageRouteImport } from './app/atoms/context-menu/page'
 import { Route as AtomsCommandPageRouteImport } from './app/atoms/command/page'
 import { Route as AtomsComboboxPageRouteImport } from './app/atoms/combobox/page'
+import { Route as AtomsColorPickerPageRouteImport } from './app/atoms/color-picker/page'
+import { Route as AtomsColorInputPageRouteImport } from './app/atoms/color-input/page'
 import { Route as AtomsCollapsiblePageRouteImport } from './app/atoms/collapsible/page'
 import { Route as AtomsCheckboxPageRouteImport } from './app/atoms/checkbox/page'
 import { Route as AtomsChartPageRouteImport } from './app/atoms/chart/page'
@@ -217,6 +221,12 @@ const MoleculesRadioCardPageRoute = MoleculesRadioCardPageRouteImport.update({
   path: '/molecules/radio-card/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoleculesPropertyRowPageRoute =
+  MoleculesPropertyRowPageRouteImport.update({
+    id: '/molecules/property-row/',
+    path: '/molecules/property-row/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MoleculesPageHeadingPageRoute =
   MoleculesPageHeadingPageRouteImport.update({
     id: '/molecules/page-heading/',
@@ -677,6 +687,11 @@ const AtomsInputOtpPageRoute = AtomsInputOtpPageRouteImport.update({
   path: '/atoms/input-otp/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsInputNumberPageRoute = AtomsInputNumberPageRouteImport.update({
+  id: '/atoms/input-number/',
+  path: '/atoms/input-number/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsHoverCardPageRoute = AtomsHoverCardPageRouteImport.update({
   id: '/atoms/hover-card/',
   path: '/atoms/hover-card/',
@@ -720,6 +735,16 @@ const AtomsCommandPageRoute = AtomsCommandPageRouteImport.update({
 const AtomsComboboxPageRoute = AtomsComboboxPageRouteImport.update({
   id: '/atoms/combobox/',
   path: '/atoms/combobox/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsColorPickerPageRoute = AtomsColorPickerPageRouteImport.update({
+  id: '/atoms/color-picker/',
+  path: '/atoms/color-picker/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsColorInputPageRoute = AtomsColorInputPageRouteImport.update({
+  id: '/atoms/color-input/',
+  path: '/atoms/color-input/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsCollapsiblePageRoute = AtomsCollapsiblePageRouteImport.update({
@@ -904,6 +929,8 @@ export interface FileRoutesByFullPath {
   '/atoms/chart/': typeof AtomsChartPageRoute
   '/atoms/checkbox/': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible/': typeof AtomsCollapsiblePageRoute
+  '/atoms/color-input/': typeof AtomsColorInputPageRoute
+  '/atoms/color-picker/': typeof AtomsColorPickerPageRoute
   '/atoms/combobox/': typeof AtomsComboboxPageRoute
   '/atoms/command/': typeof AtomsCommandPageRoute
   '/atoms/context-menu/': typeof AtomsContextMenuPageRoute
@@ -913,6 +940,7 @@ export interface FileRoutesByFullPath {
   '/atoms/drawer/': typeof AtomsDrawerPageRoute
   '/atoms/dropdown-menu/': typeof AtomsDropdownMenuPageRoute
   '/atoms/hover-card/': typeof AtomsHoverCardPageRoute
+  '/atoms/input-number/': typeof AtomsInputNumberPageRoute
   '/atoms/input-otp/': typeof AtomsInputOtpPageRoute
   '/atoms/input/': typeof AtomsInputPageRoute
   '/atoms/kbd/': typeof AtomsKbdPageRoute
@@ -998,6 +1026,7 @@ export interface FileRoutesByFullPath {
   '/molecules/media-object/': typeof MoleculesMediaObjectPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
+  '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/stacked-list/': typeof MoleculesStackedListPageRoute
@@ -1041,6 +1070,8 @@ export interface FileRoutesByTo {
   '/atoms/chart': typeof AtomsChartPageRoute
   '/atoms/checkbox': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible': typeof AtomsCollapsiblePageRoute
+  '/atoms/color-input': typeof AtomsColorInputPageRoute
+  '/atoms/color-picker': typeof AtomsColorPickerPageRoute
   '/atoms/combobox': typeof AtomsComboboxPageRoute
   '/atoms/command': typeof AtomsCommandPageRoute
   '/atoms/context-menu': typeof AtomsContextMenuPageRoute
@@ -1050,6 +1081,7 @@ export interface FileRoutesByTo {
   '/atoms/drawer': typeof AtomsDrawerPageRoute
   '/atoms/dropdown-menu': typeof AtomsDropdownMenuPageRoute
   '/atoms/hover-card': typeof AtomsHoverCardPageRoute
+  '/atoms/input-number': typeof AtomsInputNumberPageRoute
   '/atoms/input-otp': typeof AtomsInputOtpPageRoute
   '/atoms/input': typeof AtomsInputPageRoute
   '/atoms/kbd': typeof AtomsKbdPageRoute
@@ -1135,6 +1167,7 @@ export interface FileRoutesByTo {
   '/molecules/media-object': typeof MoleculesMediaObjectPageRoute
   '/molecules/notification': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading': typeof MoleculesPageHeadingPageRoute
+  '/molecules/property-row': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card': typeof MoleculesRadioCardPageRoute
   '/molecules/section-heading': typeof MoleculesSectionHeadingPageRoute
   '/molecules/stacked-list': typeof MoleculesStackedListPageRoute
@@ -1179,6 +1212,8 @@ export interface FileRoutesById {
   '/atoms/chart/': typeof AtomsChartPageRoute
   '/atoms/checkbox/': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible/': typeof AtomsCollapsiblePageRoute
+  '/atoms/color-input/': typeof AtomsColorInputPageRoute
+  '/atoms/color-picker/': typeof AtomsColorPickerPageRoute
   '/atoms/combobox/': typeof AtomsComboboxPageRoute
   '/atoms/command/': typeof AtomsCommandPageRoute
   '/atoms/context-menu/': typeof AtomsContextMenuPageRoute
@@ -1188,6 +1223,7 @@ export interface FileRoutesById {
   '/atoms/drawer/': typeof AtomsDrawerPageRoute
   '/atoms/dropdown-menu/': typeof AtomsDropdownMenuPageRoute
   '/atoms/hover-card/': typeof AtomsHoverCardPageRoute
+  '/atoms/input-number/': typeof AtomsInputNumberPageRoute
   '/atoms/input-otp/': typeof AtomsInputOtpPageRoute
   '/atoms/input/': typeof AtomsInputPageRoute
   '/atoms/kbd/': typeof AtomsKbdPageRoute
@@ -1273,6 +1309,7 @@ export interface FileRoutesById {
   '/molecules/media-object/': typeof MoleculesMediaObjectPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
+  '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/stacked-list/': typeof MoleculesStackedListPageRoute
@@ -1318,6 +1355,8 @@ export interface FileRouteTypes {
     | '/atoms/chart/'
     | '/atoms/checkbox/'
     | '/atoms/collapsible/'
+    | '/atoms/color-input/'
+    | '/atoms/color-picker/'
     | '/atoms/combobox/'
     | '/atoms/command/'
     | '/atoms/context-menu/'
@@ -1327,6 +1366,7 @@ export interface FileRouteTypes {
     | '/atoms/drawer/'
     | '/atoms/dropdown-menu/'
     | '/atoms/hover-card/'
+    | '/atoms/input-number/'
     | '/atoms/input-otp/'
     | '/atoms/input/'
     | '/atoms/kbd/'
@@ -1412,6 +1452,7 @@ export interface FileRouteTypes {
     | '/molecules/media-object/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
+    | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/section-heading/'
     | '/molecules/stacked-list/'
@@ -1455,6 +1496,8 @@ export interface FileRouteTypes {
     | '/atoms/chart'
     | '/atoms/checkbox'
     | '/atoms/collapsible'
+    | '/atoms/color-input'
+    | '/atoms/color-picker'
     | '/atoms/combobox'
     | '/atoms/command'
     | '/atoms/context-menu'
@@ -1464,6 +1507,7 @@ export interface FileRouteTypes {
     | '/atoms/drawer'
     | '/atoms/dropdown-menu'
     | '/atoms/hover-card'
+    | '/atoms/input-number'
     | '/atoms/input-otp'
     | '/atoms/input'
     | '/atoms/kbd'
@@ -1549,6 +1593,7 @@ export interface FileRouteTypes {
     | '/molecules/media-object'
     | '/molecules/notification'
     | '/molecules/page-heading'
+    | '/molecules/property-row'
     | '/molecules/radio-card'
     | '/molecules/section-heading'
     | '/molecules/stacked-list'
@@ -1592,6 +1637,8 @@ export interface FileRouteTypes {
     | '/atoms/chart/'
     | '/atoms/checkbox/'
     | '/atoms/collapsible/'
+    | '/atoms/color-input/'
+    | '/atoms/color-picker/'
     | '/atoms/combobox/'
     | '/atoms/command/'
     | '/atoms/context-menu/'
@@ -1601,6 +1648,7 @@ export interface FileRouteTypes {
     | '/atoms/drawer/'
     | '/atoms/dropdown-menu/'
     | '/atoms/hover-card/'
+    | '/atoms/input-number/'
     | '/atoms/input-otp/'
     | '/atoms/input/'
     | '/atoms/kbd/'
@@ -1686,6 +1734,7 @@ export interface FileRouteTypes {
     | '/molecules/media-object/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
+    | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/section-heading/'
     | '/molecules/stacked-list/'
@@ -1730,6 +1779,8 @@ export interface RootRouteChildren {
   AtomsChartPageRoute: typeof AtomsChartPageRoute
   AtomsCheckboxPageRoute: typeof AtomsCheckboxPageRoute
   AtomsCollapsiblePageRoute: typeof AtomsCollapsiblePageRoute
+  AtomsColorInputPageRoute: typeof AtomsColorInputPageRoute
+  AtomsColorPickerPageRoute: typeof AtomsColorPickerPageRoute
   AtomsComboboxPageRoute: typeof AtomsComboboxPageRoute
   AtomsCommandPageRoute: typeof AtomsCommandPageRoute
   AtomsContextMenuPageRoute: typeof AtomsContextMenuPageRoute
@@ -1739,6 +1790,7 @@ export interface RootRouteChildren {
   AtomsDrawerPageRoute: typeof AtomsDrawerPageRoute
   AtomsDropdownMenuPageRoute: typeof AtomsDropdownMenuPageRoute
   AtomsHoverCardPageRoute: typeof AtomsHoverCardPageRoute
+  AtomsInputNumberPageRoute: typeof AtomsInputNumberPageRoute
   AtomsInputOtpPageRoute: typeof AtomsInputOtpPageRoute
   AtomsInputPageRoute: typeof AtomsInputPageRoute
   AtomsKbdPageRoute: typeof AtomsKbdPageRoute
@@ -1824,6 +1876,7 @@ export interface RootRouteChildren {
   MoleculesMediaObjectPageRoute: typeof MoleculesMediaObjectPageRoute
   MoleculesNotificationPageRoute: typeof MoleculesNotificationPageRoute
   MoleculesPageHeadingPageRoute: typeof MoleculesPageHeadingPageRoute
+  MoleculesPropertyRowPageRoute: typeof MoleculesPropertyRowPageRoute
   MoleculesRadioCardPageRoute: typeof MoleculesRadioCardPageRoute
   MoleculesSectionHeadingPageRoute: typeof MoleculesSectionHeadingPageRoute
   MoleculesStackedListPageRoute: typeof MoleculesStackedListPageRoute
@@ -1928,6 +1981,13 @@ declare module '@tanstack/react-router' {
       path: '/molecules/radio-card'
       fullPath: '/molecules/radio-card/'
       preLoaderRoute: typeof MoleculesRadioCardPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/property-row/': {
+      id: '/molecules/property-row/'
+      path: '/molecules/property-row'
+      fullPath: '/molecules/property-row/'
+      preLoaderRoute: typeof MoleculesPropertyRowPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/page-heading/': {
@@ -2525,6 +2585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsInputOtpPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/input-number/': {
+      id: '/atoms/input-number/'
+      path: '/atoms/input-number'
+      fullPath: '/atoms/input-number/'
+      preLoaderRoute: typeof AtomsInputNumberPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/hover-card/': {
       id: '/atoms/hover-card/'
       path: '/atoms/hover-card'
@@ -2586,6 +2653,20 @@ declare module '@tanstack/react-router' {
       path: '/atoms/combobox'
       fullPath: '/atoms/combobox/'
       preLoaderRoute: typeof AtomsComboboxPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/color-picker/': {
+      id: '/atoms/color-picker/'
+      path: '/atoms/color-picker'
+      fullPath: '/atoms/color-picker/'
+      preLoaderRoute: typeof AtomsColorPickerPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/color-input/': {
+      id: '/atoms/color-input/'
+      path: '/atoms/color-input'
+      fullPath: '/atoms/color-input/'
+      preLoaderRoute: typeof AtomsColorInputPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/collapsible/': {
@@ -2819,6 +2900,8 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsChartPageRoute: AtomsChartPageRoute,
   AtomsCheckboxPageRoute: AtomsCheckboxPageRoute,
   AtomsCollapsiblePageRoute: AtomsCollapsiblePageRoute,
+  AtomsColorInputPageRoute: AtomsColorInputPageRoute,
+  AtomsColorPickerPageRoute: AtomsColorPickerPageRoute,
   AtomsComboboxPageRoute: AtomsComboboxPageRoute,
   AtomsCommandPageRoute: AtomsCommandPageRoute,
   AtomsContextMenuPageRoute: AtomsContextMenuPageRoute,
@@ -2828,6 +2911,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsDrawerPageRoute: AtomsDrawerPageRoute,
   AtomsDropdownMenuPageRoute: AtomsDropdownMenuPageRoute,
   AtomsHoverCardPageRoute: AtomsHoverCardPageRoute,
+  AtomsInputNumberPageRoute: AtomsInputNumberPageRoute,
   AtomsInputOtpPageRoute: AtomsInputOtpPageRoute,
   AtomsInputPageRoute: AtomsInputPageRoute,
   AtomsKbdPageRoute: AtomsKbdPageRoute,
@@ -2913,6 +2997,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesMediaObjectPageRoute: MoleculesMediaObjectPageRoute,
   MoleculesNotificationPageRoute: MoleculesNotificationPageRoute,
   MoleculesPageHeadingPageRoute: MoleculesPageHeadingPageRoute,
+  MoleculesPropertyRowPageRoute: MoleculesPropertyRowPageRoute,
   MoleculesRadioCardPageRoute: MoleculesRadioCardPageRoute,
   MoleculesSectionHeadingPageRoute: MoleculesSectionHeadingPageRoute,
   MoleculesStackedListPageRoute: MoleculesStackedListPageRoute,

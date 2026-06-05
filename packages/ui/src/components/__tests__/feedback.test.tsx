@@ -96,6 +96,13 @@ describe("Steps", () => {
     expect(screen.getByText(/Step 2 of 3/i)).toBeInTheDocument();
   });
 
+  it("bullets variant: dots carry aria-labels describing status", () => {
+    render(<Steps steps={STEPS} variant="bullets" />);
+    expect(screen.getByLabelText(/Cart: completed/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Shipping: current step/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Payment: upcoming/i)).toBeInTheDocument();
+  });
+
   it("renders with descriptions in circles variant", () => {
     const stepsWithDesc: Step[] = [
       { name: "Step 1", description: "First step", status: "complete" },

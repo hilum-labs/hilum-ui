@@ -66,5 +66,7 @@ function DescriptionList({
   );
 }
 
+DescriptionList.displayName = "DescriptionList";
+
 export { DescriptionList };
 export type { DescriptionItem };
