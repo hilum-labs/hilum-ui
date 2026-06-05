@@ -1,5 +1,13 @@
 # @hilum/designer
 
+## 2.0.1
+
+### Patch Changes
+
+- 8a8961c: Migrate component styling to semantic token utilities and refresh catalog coverage for foundations and designer exports.
+- Updated dependencies [8a8961c]
+  - @hilum/ui@2.0.1
+
 ## 2.0.0
 
 ### Patch Changes

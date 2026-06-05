@@ -1,6 +1,6 @@
 {
   "name": "@hilum/app-shell",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "Composed product-app layouts — AppShell, AppSidebar, AppHeader, PageHeader, DetailScreen, SettingsScreen, SignInScreen",
   "license": "MIT",
