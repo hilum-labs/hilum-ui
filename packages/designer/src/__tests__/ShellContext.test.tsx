@@ -227,6 +227,13 @@ describe("DesignerPanel", () => {
     expect(screen.getByText("Panel content")).toBeInTheDocument();
   });
 
+  it("clips horizontal overflow by default", () => {
+    render(<DesignerPanel side="right">Panel content</DesignerPanel>);
+    const panel = screen.getByText("Panel content").closest("aside");
+    expect(panel).toHaveClass("overflow-hidden");
+    expect(panel?.firstElementChild).toHaveClass("overflow-x-hidden");
+  });
+
   it("renders left side panel", () => {
     render(
       <DesignerPanel side="left">

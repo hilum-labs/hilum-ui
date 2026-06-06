@@ -26,14 +26,16 @@ function DesignerPanel({
   return (
     <aside
       className={cn(
-        "flex flex-col bg-card shrink-0 overflow-hidden",
+        "flex min-w-0 max-w-full shrink-0 flex-col overflow-hidden bg-card",
         bordered && (side === "left" ? "border-r" : "border-l"),
         bordered && "border-border",
         className,
       )}
-      style={{ width }}
+      style={{ width, maxWidth: "100%" }}
     >
-      <div className="flex flex-col flex-1 overflow-y-auto">{children}</div>
+      <div className="flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
+        {children}
+      </div>
     </aside>
   );
 }

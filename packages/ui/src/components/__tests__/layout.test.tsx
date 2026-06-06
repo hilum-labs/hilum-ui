@@ -176,6 +176,25 @@ describe("PropertyRow", () => {
     expect(screen.getByLabelText("width-input")).toBeInTheDocument();
   });
 
+  it("places labels above controls by default", () => {
+    render(
+      <PropertyRow label="Width">
+        <input type="number" aria-label="width-input" />
+      </PropertyRow>,
+    );
+    expect(screen.getByText("Width").parentElement).toHaveClass("flex-col");
+  });
+
+  it("supports inline labels for dense rows", () => {
+    render(
+      <PropertyRow label="Width" layout="inline">
+        <input type="number" aria-label="width-input" />
+      </PropertyRow>,
+    );
+    expect(screen.getByText("Width").parentElement).not.toHaveClass("flex-col");
+    expect(screen.getByText("Width")).toHaveStyle({ width: "96px" });
+  });
+
   it("renders without label", () => {
     render(
       <PropertyRow>
