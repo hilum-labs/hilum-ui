@@ -1,5 +1,13 @@
 # @hilum/designer
 
+## 2.0.2
+
+### Patch Changes
+
+- 51cd5e0: Fix designer panel horizontal overflow and make property row labels stack above controls by default.
+- Updated dependencies [51cd5e0]
+  - @hilum/ui@2.0.2
+
 ## 2.0.1
 
 ### Patch Changes
