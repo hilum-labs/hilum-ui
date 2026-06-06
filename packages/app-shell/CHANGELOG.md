@@ -1,5 +1,11 @@
 # @hilum/app-shell
 
+## 2.0.3
+
+### Patch Changes
+
+- @hilum/ui@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes
