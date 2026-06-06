@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 2.0.3
+
+### Patch Changes
+
+- af5108e: Add designer property row primitives and clamp pane content horizontal overflow.
+  - @hilum/ui@2.0.3
+
 ## 2.0.2
 
 ### Patch Changes
