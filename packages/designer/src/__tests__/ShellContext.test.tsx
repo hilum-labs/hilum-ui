@@ -8,6 +8,12 @@ import { DesignerToolbar } from "../components/DesignerToolbar";
 import { DesignerSidebar } from "../components/DesignerSidebar";
 import { DesignerPanel } from "../components/DesignerPanel";
 import { DesignerPane } from "../components/DesignerPane";
+import {
+  DesignerPropertyControls,
+  DesignerPropertyGroup,
+  DesignerPropertyLabel,
+  DesignerPropertyRow,
+} from "../components/DesignerPropertyRow";
 
 /* ------------------------------------------------------------------ */
 /* ShellProvider + useShellContext                                      */
@@ -258,6 +264,18 @@ describe("DesignerPane", () => {
     expect(screen.getByText("Pane content")).toBeInTheDocument();
   });
 
+  it("clips horizontal pane overflow by default", () => {
+    render(
+      <ShellProvider initialSelectedIds={["layer-1"]}>
+        <DesignerPane>
+          <span>Pane content</span>
+        </DesignerPane>
+      </ShellProvider>,
+    );
+    const pane = screen.getByText("Pane content").closest("section");
+    expect(pane).toHaveClass("min-w-0", "overflow-x-hidden");
+  });
+
   it("renders children when showFor matches selected kind", () => {
     const resolver = (id: string) => (id === "txt-1" ? "text" : undefined);
     render(
@@ -285,5 +303,51 @@ describe("DesignerPane", () => {
       </ShellProvider>,
     );
     expect(screen.getByText("Multi-select pane")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* DesignerPropertyRow                                                  */
+/* ------------------------------------------------------------------ */
+
+describe("DesignerPropertyRow", () => {
+  it("renders a generated label and controls", () => {
+    render(
+      <DesignerPropertyRow label="Color" labelFor="color-input">
+        <input id="color-input" />
+      </DesignerPropertyRow>,
+    );
+
+    expect(screen.getByText("Color")).toBeInTheDocument();
+    expect(screen.getByLabelText("Color")).toBeInTheDocument();
+  });
+
+  it("applies the inspector row overflow contract", () => {
+    render(
+      <DesignerPropertyRow>
+        <DesignerPropertyLabel>Border</DesignerPropertyLabel>
+        <DesignerPropertyControls>
+          <span>Controls</span>
+        </DesignerPropertyControls>
+      </DesignerPropertyRow>,
+    );
+
+    const row = screen.getByText("Border").parentElement;
+    const controls = screen.getByText("Controls").parentElement;
+    expect(row).toHaveClass("min-w-0", "max-w-full", "overflow-x-hidden");
+    expect(controls).toHaveClass("min-w-0", "max-w-full", "overflow-x-hidden");
+  });
+
+  it("renders grouped rows", () => {
+    render(
+      <DesignerPropertyGroup title="Effects">
+        <DesignerPropertyRow label="Opacity">
+          <input />
+        </DesignerPropertyRow>
+      </DesignerPropertyGroup>,
+    );
+
+    expect(screen.getByText("Effects")).toBeInTheDocument();
+    expect(screen.getByText("Opacity")).toBeInTheDocument();
   });
 });

@@ -68,7 +68,12 @@ function DesignerPane({
 
   return (
     <PaneContext.Provider value={{ open, toggle: () => setOpen((v) => !v), collapsible }}>
-      <section className={cn("flex flex-col border-b border-border last:border-b-0", className)}>
+      <section
+        className={cn(
+          "flex min-w-0 max-w-full flex-col overflow-x-hidden border-b border-border last:border-b-0",
+          className,
+        )}
+      >
         {children}
       </section>
     </PaneContext.Provider>
@@ -107,7 +112,16 @@ function DesignerPaneTitle({ className, children, action }: DesignerPaneTitlePro
 function DesignerPaneContent({ className, children }: DesignerPaneContentProps) {
   const { open } = usePaneContext();
   if (!open) return null;
-  return <div className={cn("flex flex-col gap-2 px-3 pb-3", className)}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        "flex min-w-0 max-w-full flex-col gap-2 overflow-x-hidden px-3 pb-3",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
 }
 
 // --- internal pane context (so title and content stay in sync) ---
