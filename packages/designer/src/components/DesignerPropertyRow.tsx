@@ -35,7 +35,7 @@ function DesignerPropertyRow({
   return (
     <div
       className={cn(
-        "flex w-full min-w-0 max-w-full flex-col items-stretch gap-1.5 overflow-x-hidden py-1.5",
+        "flex w-full min-w-0 max-w-full flex-col items-stretch gap-1.5 py-1.5",
         className,
       )}
       {...rest}
@@ -78,7 +78,7 @@ function DesignerPropertyControls({
   return (
     <div
       className={cn(
-        "flex w-full min-w-0 max-w-full flex-1 items-center gap-2 overflow-x-hidden",
+        "flex w-full min-w-0 max-w-full flex-1 items-center gap-2 overflow-visible",
         className,
       )}
       {...rest}
@@ -96,7 +96,7 @@ function DesignerPropertyGroup({
 }: DesignerPropertyGroupProps) {
   return (
     <div
-      className={cn("flex min-w-0 max-w-full flex-col gap-3 overflow-x-hidden", className)}
+      className={cn("flex min-w-0 max-w-full flex-col gap-3", className)}
       {...rest}
     >
       {title && (

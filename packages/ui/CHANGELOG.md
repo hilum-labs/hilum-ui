@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 2.0.4
+
+### Patch Changes
+
+- Add an opaque bordered elevated surface to context menu content so menus remain readable above dense editor canvases.
+
 ## 2.0.3
 
 ## 2.0.2

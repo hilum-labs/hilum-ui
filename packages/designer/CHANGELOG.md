@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 2.0.4
+
+### Patch Changes
+
+- Allow designer property row controls to paint focus rings without clipping while preserving width constraints.
+  - @hilum/ui@2.0.4
+
 ## 2.0.3
 
 ### Patch Changes

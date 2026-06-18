@@ -322,7 +322,7 @@ describe("DesignerPropertyRow", () => {
     expect(screen.getByLabelText("Color")).toBeInTheDocument();
   });
 
-  it("applies the inspector row overflow contract", () => {
+  it("constrains inspector rows without clipping focused controls", () => {
     render(
       <DesignerPropertyRow>
         <DesignerPropertyLabel>Border</DesignerPropertyLabel>
@@ -334,8 +334,9 @@ describe("DesignerPropertyRow", () => {
 
     const row = screen.getByText("Border").parentElement;
     const controls = screen.getByText("Controls").parentElement;
-    expect(row).toHaveClass("min-w-0", "max-w-full", "overflow-x-hidden");
-    expect(controls).toHaveClass("min-w-0", "max-w-full", "overflow-x-hidden");
+    expect(row).toHaveClass("min-w-0", "max-w-full");
+    expect(row).not.toHaveClass("overflow-x-hidden", "overflow-hidden");
+    expect(controls).toHaveClass("min-w-0", "max-w-full", "overflow-visible");
   });
 
   it("renders grouped rows", () => {

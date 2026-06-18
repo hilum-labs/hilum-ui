@@ -1,8 +1,9 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "../tooltip";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "../dialog";
+import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "../context-menu";
 import { Progress } from "../progress";
 import { Switch } from "../switch";
 import { Slider } from "../slider";
@@ -64,6 +65,32 @@ describe("Dialog", () => {
     );
     await user.click(screen.getByRole("button", { name: "Open" }));
     expect(await screen.findByRole("button", { name: /close/i })).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Context menu                                                        */
+/* ------------------------------------------------------------------ */
+
+describe("ContextMenu", () => {
+  it("renders an opaque elevated menu surface", () => {
+    render(
+      <ContextMenu>
+        <ContextMenuTrigger>Canvas</ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem>Copy</ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByText("Canvas"));
+
+    expect(screen.getByRole("menu")).toHaveClass(
+      "bg-card",
+      "border",
+      "border-border",
+      "shadow-elevated",
+    );
   });
 });
 
