@@ -414,11 +414,11 @@ function FoundationsPage() {
           <div className="mb-8">
             <PaletteLabel
               name="Weights"
-              description="Inter uses regular, medium, and semibold. Instrument Serif is always regular (400)."
+              description="Inter is variable across 100-900. Gabarito ships regular through black for display use."
             />
             <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
               {[
-                { weight: "400", name: "Regular", tailwind: "font-normal", usage: "Body copy, serif headings, captions" },
+                { weight: "400", name: "Regular", tailwind: "font-normal", usage: "Body copy, display headings, captions" },
                 { weight: "500", name: "Medium", tailwind: "font-medium", usage: "UI labels, nav links, metadata" },
                 { weight: "600", name: "Semibold", tailwind: "font-semibold", usage: "Emphasis, button text" },
               ].map((w, i) => (

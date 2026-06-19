@@ -103,11 +103,11 @@ Use as Tailwind utilities (e.g. `className="display"`):
 
 | Class | Font | Size | Weight | Usage |
 |---|---|---|---|---|
-| `display-xl` | Instrument Serif | 3rem | 400 | Hero H1 |
-| `display` | Instrument Serif | 2.25rem | 400 | Page H1 |
-| `heading-xl` | Instrument Serif | 1.875rem | 400 | Section headings |
-| `heading` | Instrument Serif | 1.5rem | 400 | Card titles |
-| `subheading` | Inter | 1.25rem | 400 | Subheadings |
+| `display-xl` | Gabarito | 3rem | 400 | Hero H1 |
+| `display` | Gabarito | 2.25rem | 400 | Page H1 |
+| `heading-xl` | Gabarito | 1.875rem | 400 | Section headings |
+| `heading` | Gabarito | 1.5rem | 400 | Card titles |
+| `subheading` | Gabarito | 1.25rem | 400 | Subheadings |
 | `body-lg` | Inter | 1rem | 400 | Large body text |
 | `body` | Inter | 0.875rem | 400 | Default body |
 | `caption` | Inter | 0.75rem | 400 | Metadata, helper text |

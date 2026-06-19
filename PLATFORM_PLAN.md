@@ -70,7 +70,7 @@ Two distinct kinds of consumer:
 | D6 | Token strategy | **Tokens live inside `@hilum/ui`.** Authored JS-first in `packages/ui/src/tokens/tokens.ts`; build step generates `packages/ui/dist/tokens.css` and `packages/ui/dist/tokens.js`. Consumers `@import "@hilum/ui/tokens.css"` in their globals. JS-first authoring keeps a future `@hilum/tokens` extraction painless when native (Option 1, see D11) arrives. |
 | D7 | Color modes | **Light + dark, both modes.** Default behavior auto-respects `prefers-color-scheme`; consumers can force a mode by setting `<html data-theme="light">` or `<html data-theme="dark">`. Components reference semantic CSS variables only (e.g. `var(--surface)`, not `var(--taupe-50)`); both modes redefine those semantics in the same `tokens.css`. |
 | D8 | Brand model | **Model A — fully fixed brand.** Every Hilum app uses `--brand-orange` (#FF4D01) as primary, `--brand-lime` (#CDEA19) as success, `--brand-yellow` (#FDE086) as warning, taupe scale as neutrals. **No per-app accent overrides.** Marketing pages may decoratively use brand-yellow / brand-lime tints in heroes/illustrations, but UI accents stay fixed across all apps. Goal: maximum brand recognition (Linear/Stripe/Notion/Apple model, not Google/Adobe). |
-| D9 | Typography ownership | **Fonts ship with `@hilum/ui`.** Inter (UI/body) + Instrument Serif 400 (display/heading) bundled via `@fontsource` + `@font-face` declarations inside `tokens.css`. Apps don't load fonts separately. Single source of font truth. |
+| D9 | Typography ownership | **Fonts ship with `@hilum/ui`.** Inter (UI/body) + Gabarito (display/heading) bundled via `@fontsource` + `@font-face` declarations inside `fonts.css`. Apps don't load fonts separately. Single source of font truth. |
 | D10 | Icon ownership | **Icons ship with `@hilum/ui`.** Curated subset of lucide-react re-exported from `@hilum/ui/icons` (sub-export). Apps `import { ChevronDown } from "@hilum/ui/icons"`; they do not install lucide-react directly. Stops drift between two apps using slightly different icon sets. |
 | D11 | Platform scope | **Web-first now (Option 1).** `@hilum/*` v1 targets React in the browser and Electron (Chromium). Expo / React Native consumers are deferred to a future `@hilum/ui-native` sister package that will share `@hilum/tokens` (extracted from D6 at that time). To make that future split painless, tokens are authored JS-first today (see D6). |
 | D12 | Performance target | **60fps target on canvas interactions** (drag, resize, marquee, pan/zoom) with 100 layers on M-series Mac. **30fps minimum** on 5-year-old hardware. Implementation: RAF-driven, transform-only updates (no layout reflow), `contain: layout paint`, memoized layer renderers. |
@@ -519,12 +519,12 @@ export const tokens = {
 } as const
 ```
 
-A build step (`packages/ui/scripts/build-tokens.ts`) generates two artifacts:
+A build step generates these artifacts:
 
 - `dist/tokens.css` — the file consumers import. Contains:
-  - `@font-face` declarations for Inter + Instrument Serif (D9)
   - `:root` CSS variables for every token
   - Light defaults + dark overrides via `@media (prefers-color-scheme: dark)` AND `[data-theme="dark"]` (D7)
+- `dist/fonts.css` — optional self-hosted `@font-face` declarations for Inter + Gabarito (D9).
 - `dist/tokens.js` + `dist/tokens.d.ts` — the same values as a JS object, exported for non-CSS consumers (component utilities, future native package).
 
 ### 6.2 Package `package.json` exports

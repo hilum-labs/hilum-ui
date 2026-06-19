@@ -290,7 +290,7 @@ importers:
       '@fontsource-variable/inter':
         specifier: ^5.2.8
         version: 5.2.8
-      '@fontsource/instrument-serif':
+      '@fontsource/gabarito':
         specifier: ^5.2.8
         version: 5.2.8
       '@types/react':
@@ -822,8 +822,8 @@ packages:
   '@fontsource-variable/inter@5.2.8':
     resolution: {integrity: sha512-kOfP2D+ykbcX/P3IFnokOhVRNoTozo5/JxhAIVYLpea/UBmCQ/YWPBfWIDuBImXX/15KH+eKh4xpEUyS2sQQGQ==}
 
-  '@fontsource/instrument-serif@5.2.8':
-    resolution: {integrity: sha512-s+bkz+syj2rO00Rmq9g0P+PwuLig33DR1xDR8pTWmovH1pUjwnncrFk++q9mmOex8fUQ7oW80gPpPDaw7V1MMw==}
+  '@fontsource/gabarito@5.2.8':
+    resolution: {integrity: sha512-tBuGZMAWcV0GRuA3I62TQTnvJVUvNNVuJZ6x/iilGudrY4VgOpAhSsWyFCnbJ9e3zEy1tNPXMPcbZjQwzX0S/g==}
 
   '@humanfs/core@0.19.2':
     resolution: {integrity: sha512-UhXNm+CFMWcbChXywFwkmhqjs3PRCmcSa/hfBgLIb7oQ5HNb1wS0icWsGtSAUNgefHeI+eBrA8I1fxmbHsGdvA==}
@@ -5074,7 +5074,7 @@ snapshots:
 
   '@fontsource-variable/inter@5.2.8': {}
 
-  '@fontsource/instrument-serif@5.2.8': {}
+  '@fontsource/gabarito@5.2.8': {}
 
   '@humanfs/core@0.19.2':
     dependencies:

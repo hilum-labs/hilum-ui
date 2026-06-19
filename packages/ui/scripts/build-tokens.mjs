@@ -11,7 +11,7 @@
 //   1. @source "../src" — tells Tailwind to scan this package's source for class names.
 //   2. Tailwind v4 `@theme` block — palette + brand + fonts + radius + shadow + animations
 //      + z-index semantic scale. These become Tailwind utility prefixes (bg-ground-50,
-//      font-serif, shadow-natural, z-modal, etc.).
+//      font-display, shadow-natural, z-modal, etc.).
 //   3. `@theme inline` — semantic mappings that reference the dynamic :root vars.
 //   4. `:root` — light-mode defaults for all semantic tokens.
 //   5. `@media (prefers-color-scheme: dark)` AND `[data-theme="dark"]` — dark overrides (D7).
@@ -48,7 +48,7 @@ for (const [k, v] of Object.entries(tokens.butter)) lines.push(`  --color-butter
 lines.push(`  --color-destructive: ${tokens.destructive};`)
 lines.push('')
 lines.push(`  --font-sans: ${tokens.fontFamily.sans};`)
-lines.push(`  --font-serif: ${tokens.fontFamily.serif};`)
+lines.push(`  --font-display: ${tokens.fontFamily.display};`)
 lines.push(`  --font-mono: ${tokens.fontFamily.mono};`)
 lines.push('')
 for (const [k, v] of Object.entries(tokens.radius)) lines.push(`  --radius-${k}: ${v};`)

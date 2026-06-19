@@ -162,17 +162,17 @@ export const tokens = {
 
   fontFamily: {
     sans: 'Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    serif: '"Instrument Serif", ui-serif, Georgia, serif',
+    display: 'Gabarito, Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     mono: 'ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace',
   },
 
   /** Type scale utilities — emitted as Tailwind v4 `@utility` blocks. */
   typeScale: {
-    "display-xl": { family: "serif", size: "3rem", weight: 400, lineHeight: "1.15" },
-    display: { family: "serif", size: "2.25rem", weight: 400, lineHeight: "1.15" },
-    "heading-xl": { family: "serif", size: "1.875rem", weight: 400, lineHeight: "1.2" },
-    heading: { family: "serif", size: "1.5rem", weight: 400, lineHeight: "1.2" },
-    subheading: { family: "serif", size: "1.25rem", weight: 400, lineHeight: "1.4" },
+    "display-xl": { family: "display", size: "3rem", weight: 400, lineHeight: "1.15" },
+    display: { family: "display", size: "2.25rem", weight: 400, lineHeight: "1.15" },
+    "heading-xl": { family: "display", size: "1.875rem", weight: 400, lineHeight: "1.2" },
+    heading: { family: "display", size: "1.5rem", weight: 400, lineHeight: "1.2" },
+    subheading: { family: "display", size: "1.25rem", weight: 400, lineHeight: "1.4" },
     "body-lg": { family: "sans", size: "1rem", weight: 400, lineHeight: "1.625" },
     body: { family: "sans", size: "0.875rem", weight: 400, lineHeight: "1.625" },
     "body-sm": { family: "sans", size: "0.75rem", weight: 500, lineHeight: "1.625" },

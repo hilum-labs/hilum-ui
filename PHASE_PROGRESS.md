@@ -90,7 +90,7 @@ pnpm build        → 5 / 5 successful (4 packages + Vite-built catalog)
 
 ### Phase 2 follow-ups deferred to later iterations
 
-- Bundle Inter + Instrument Serif via `@fontsource/*` inside the package (currently loaded via Google Fonts CDN at the catalog level).
+- Bundle Inter + Gabarito via `@fontsource/*` inside the package (currently loaded via Google Fonts CDN at the catalog level).
 - Catalog atom pages for the 4 new components (color-picker, color-input, input-number, property-row).
 - Expand the icon re-export list as the catalog needs more.
 
