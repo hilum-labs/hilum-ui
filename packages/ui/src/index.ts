@@ -9,6 +9,7 @@
 export { cn } from "./lib/utils";
 
 // Components (alphabetical)
+export * from "./components/account-menu";
 export * from "./components/accordion";
 export * from "./components/action-panel";
 export * from "./components/activity-feed";

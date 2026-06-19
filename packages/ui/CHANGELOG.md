@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 2.1.0
+
+### Minor Changes
+
+- Add reusable account menu primitives for profile dropdowns.
+
 ## 2.0.4
 
 ### Patch Changes

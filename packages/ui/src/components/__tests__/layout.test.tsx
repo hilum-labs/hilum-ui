@@ -19,6 +19,14 @@ import { ActivityFeed } from "../activity-feed";
 import { CardHeading } from "../card-heading";
 import { ActionPanel } from "../action-panel";
 import { ButtonGroup, ButtonGroupItem } from "../button-group";
+import {
+  AccountMenuContent,
+  AccountMenuHeader,
+  AccountMenuItem,
+  AccountMenuSection,
+  AccountMenuSeparator,
+} from "../account-menu";
+import { DropdownMenu } from "../dropdown-menu";
 
 /* ------------------------------------------------------------------ */
 /* Breadcrumb                                                           */
@@ -51,6 +59,30 @@ describe("Breadcrumb", () => {
   it("renders BreadcrumbEllipsis", () => {
     const { container } = render(<BreadcrumbEllipsis />);
     expect(container.querySelector('[role="presentation"]')).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AccountMenu                                                         */
+/* ------------------------------------------------------------------ */
+
+describe("AccountMenu", () => {
+  it("renders account header and action rows", () => {
+    render(
+      <DropdownMenu open>
+        <AccountMenuContent>
+          <AccountMenuHeader name="Ada Lovelace" email="ada@example.com" fallback="A" />
+          <AccountMenuSeparator />
+          <AccountMenuSection>
+            <AccountMenuItem description="ada@example.com">Create profile</AccountMenuItem>
+          </AccountMenuSection>
+        </AccountMenuContent>
+      </DropdownMenu>,
+    );
+
+    expect(screen.getByText("Ada Lovelace")).toBeInTheDocument();
+    expect(screen.getAllByText("ada@example.com")).toHaveLength(2);
+    expect(screen.getByText("Create profile")).toBeInTheDocument();
   });
 });
 

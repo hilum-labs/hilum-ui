@@ -1,5 +1,17 @@
 # @hilum/designer-canvas
 
+## 2.1.0
+
+### Minor Changes
+
+- Add reusable account menu primitives for profile dropdowns.
+
+### Patch Changes
+
+- Updated dependencies
+  - @hilum/ui@2.1.0
+  - @hilum/designer@2.1.0
+
 ## 2.0.4
 
 ### Patch Changes
