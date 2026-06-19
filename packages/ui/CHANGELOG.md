@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.0.0
+
+### Minor Changes
+
+- e1b6340: Replace the display font from Instrument Serif to Gabarito for a friendlier, rounder product voice.
+
 ## 2.1.2
 
 ### Patch Changes
