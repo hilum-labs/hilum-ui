@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "@hilum/ui/tokens.css";
+@import "@hilum/ui/fonts.css";
 
 /*
  * Source paths for Tailwind v4 class scanning.

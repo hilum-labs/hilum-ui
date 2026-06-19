@@ -140,8 +140,8 @@ const packages: PackageDoc[] = [
     description:
       "Core design system primitives: buttons, inputs, dialogs, comboboxes, data display, tokens, fonts, and Hilum icons.",
     install: "pnpm add @hilum/ui",
-    setup: "Import the token stylesheet once in your app's global CSS.",
-    setupCode: '@import "tailwindcss";\n@import "@hilum/ui/tokens.css";',
+    setup: "Import the token and font stylesheets once in your app's global CSS.",
+    setupCode: '@import "tailwindcss";\n@import "@hilum/ui/tokens.css";\n@import "@hilum/ui/fonts.css";',
     usage: 'import { Button, Dialog, Input } from "@hilum/ui";\nimport { Plus } from "@hilum/ui/icons";\n\n<Button>\n  <Plus size={14} />\n  New project\n</Button>',
     bestFor: ["Product UI primitives", "Brand tokens", "Light/dark theming", "Shared icon exports"],
     dependencies: "Peer dependencies: react and react-dom.",
@@ -291,6 +291,9 @@ function HomePage() {
                     {"\n"}
                     <span className="text-brand-secondary">@import</span>
                     <span className="text-ground-300"> "@hilum/ui/tokens.css";</span>
+                    {"\n"}
+                    <span className="text-brand-secondary">@import</span>
+                    <span className="text-ground-300"> "@hilum/ui/fonts.css";</span>
                   </code>
                 </pre>
               </div>

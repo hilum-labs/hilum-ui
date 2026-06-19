@@ -77,7 +77,7 @@ Catalog builds with all existing routes (atoms, molecules, blocks, marketing, fo
 - `scripts/build-tokens.mjs` — generates `dist/tokens.css` (6430 bytes) with `@theme`, `@theme inline`, `:root` light, `@media (prefers-color-scheme: dark)`, `[data-theme="dark"]`, `@custom-variant dark`, type-scale `@utility` blocks, keyframes, base styles.
 - `tsup.config.ts` — `dts: { resolve: ['vaul', '@radix-ui/react-dialog', '@radix-ui/react-context'] }` to bundle transitive types.
 - `.npmrc` set to `node-linker=hoisted` to fix TS2742 portable-types issues with vaul/radix transitives.
-- Catalog migrated **Next.js → Vite + React Router + vite-plugin-pages** (locked in D20). All `next/link` → `react-router-dom Link`, `next/font` removed (Google Fonts CDN in `index.html`), `usePathname` → `useLocation`, `app/layout.tsx` replaced by `src/App.tsx` + `src/main.tsx`. All `"use client"` directives stripped. 129 page.tsx files preserved as-is — vite-plugin-pages auto-discovers them.
+- Catalog migrated **Next.js → Vite + React Router + vite-plugin-pages** (locked in D20). All `next/link` → `react-router-dom Link`, `next/font` removed, `usePathname` → `useLocation`, `app/layout.tsx` replaced by `src/App.tsx` + `src/main.tsx`. All `"use client"` directives stripped. 129 page.tsx files preserved as-is — vite-plugin-pages auto-discovers them.
 - All `@/components/ui/X` and `@/lib/utils` imports across catalog rewritten to `@hilum/ui` (133 files).
 
 ### Verified
@@ -90,7 +90,7 @@ pnpm build        → 5 / 5 successful (4 packages + Vite-built catalog)
 
 ### Phase 2 follow-ups deferred to later iterations
 
-- Bundle Inter + Gabarito via `@fontsource/*` inside the package (currently loaded via Google Fonts CDN at the catalog level).
+- Catalog loads Inter + Gabarito through `@hilum/ui/fonts.css` so it exercises the same self-hosted package path as consumers.
 - Catalog atom pages for the 4 new components (color-picker, color-input, input-number, property-row).
 - Expand the icon re-export list as the catalog needs more.
 

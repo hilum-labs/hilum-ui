@@ -491,7 +491,7 @@ useKeybindings([...defaultBindings, ...bindings, ...customBindings])
 
 **Hybrid distribution model** (per D5, D6):
 - **Components:** TSX source distribution. Consumers run Tailwind over the package source at their own build time.
-- **Tokens, fonts, base styles:** compiled CSS distribution. Consumers `@import "@hilum/ui/tokens.css"` once and get the entire Hilum visual identity (colors, typography, fonts, light/dark themes).
+- **Tokens, fonts, base styles:** compiled CSS distribution. Consumers import `@hilum/ui/tokens.css` and `@hilum/ui/fonts.css` once to get the Hilum visual identity (colors, typography, fonts, light/dark themes).
 
 ### 6.1 Token authoring (JS-first, see D6 / D11)
 
@@ -535,13 +535,14 @@ A build step generates these artifacts:
     ".":            { "import": "./dist/index.js",    "types": "./dist/index.d.ts" },
     "./icons":      { "import": "./dist/icons.js",    "types": "./dist/icons.d.ts" },
     "./tokens":     { "import": "./dist/tokens.js",   "types": "./dist/tokens.d.ts" },
-    "./tokens.css": "./dist/tokens.css"
+    "./tokens.css": "./dist/tokens.css",
+    "./fonts.css":  "./dist/fonts.css"
   },
   "files": ["dist", "src"]
 }
 ```
 
-Both `dist/` (compiled JS + types + tokens.css) and `src/` (TSX source for Tailwind scanning) are published.
+Both `dist/` (compiled JS + types + CSS assets) and `src/` (TSX source for Tailwind scanning) are published.
 
 ### 6.3 Consumer setup (one-time per app)
 
@@ -549,6 +550,7 @@ Both `dist/` (compiled JS + types + tokens.css) and `src/` (TSX source for Tailw
 /* app's globals.css — three lines, that's the whole setup */
 @import "tailwindcss";
 @import "@hilum/ui/tokens.css";
+@import "@hilum/ui/fonts.css";
 
 @source "../../node_modules/@hilum/ui/src";
 @source "../../node_modules/@hilum/app-shell/src";

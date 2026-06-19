@@ -16,7 +16,8 @@ const INSTALL_YARN = `yarn add @hilum/ui`;
 
 const SETUP_CSS = `/* globals.css */
 @import "tailwindcss";
-@import "@hilum/ui/tokens.css";`;
+@import "@hilum/ui/tokens.css";
+@import "@hilum/ui/fonts.css";`;
 
 const USAGE_PROVIDER = `import { ThemeProvider } from "@hilum/ui/create-theme"
 

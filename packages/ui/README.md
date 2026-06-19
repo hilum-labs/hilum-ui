@@ -15,9 +15,10 @@ In your app's `globals.css`:
 ```css
 @import "tailwindcss";
 @import "@hilum/ui/tokens.css";
+@import "@hilum/ui/fonts.css";
 ```
 
-That's the whole setup — palette, typography, fonts, light/dark theming, and Tailwind class scanning are all handled by those two lines.
+That's the whole setup — palette, typography, fonts, light/dark theming, and Tailwind class scanning are handled by these imports.
 
 ## Usage
 
