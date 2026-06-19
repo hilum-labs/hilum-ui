@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 2.1.2
+
+### Patch Changes
+
+- Reduce AccountMenu sizing so it reads as a dropdown instead of a large account panel.
+
 ## 2.1.1
 
 ### Patch Changes

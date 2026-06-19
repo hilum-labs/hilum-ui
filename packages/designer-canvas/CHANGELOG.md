@@ -1,5 +1,14 @@
 # @hilum/designer-canvas
 
+## 2.1.2
+
+### Patch Changes
+
+- Reduce AccountMenu sizing so it reads as a dropdown instead of a large account panel.
+- Updated dependencies
+  - @hilum/ui@2.1.2
+  - @hilum/designer@2.1.2
+
 ## 2.1.1
 
 ### Patch Changes

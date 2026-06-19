@@ -103,6 +103,22 @@ describe("AccountMenu", () => {
       "text-foreground",
     );
   });
+
+  it("uses compact dropdown sizing", () => {
+    render(
+      <DropdownMenu open>
+        <AccountMenuContent>
+          <AccountMenuHeader name="Ada Lovelace" email="ada@example.com" fallback="A" />
+          <AccountMenuSection>
+            <AccountMenuItem>Settings</AccountMenuItem>
+          </AccountMenuSection>
+        </AccountMenuContent>
+      </DropdownMenu>,
+    );
+
+    expect(screen.getByRole("menu")).toHaveClass("w-72", "rounded-xl");
+    expect(screen.getByText("Settings")).toHaveClass("body");
+  });
 });
 
 /* ------------------------------------------------------------------ */
