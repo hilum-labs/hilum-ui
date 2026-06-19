@@ -1,5 +1,14 @@
 # @hilum/designer-canvas
 
+## 2.1.1
+
+### Patch Changes
+
+- Restyle AccountMenu to use the standard light dropdown/card surface and foreground tokens.
+- Updated dependencies
+  - @hilum/ui@2.1.1
+  - @hilum/designer@2.1.1
+
 ## 2.1.0
 
 ### Minor Changes

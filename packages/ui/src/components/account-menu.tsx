@@ -17,8 +17,7 @@ const AccountMenuContent = React.forwardRef<
     ref={ref}
     sideOffset={sideOffset}
     className={cn(
-      "w-80 overflow-hidden rounded-3xl bg-ground-900 p-0 text-ground-50 shadow-elevated",
-      "ring-1 ring-ground-800",
+      "w-80 overflow-hidden rounded-2xl border border-border bg-card p-0 text-foreground shadow-elevated",
       className,
     )}
     {...props}
@@ -38,17 +37,17 @@ const AccountMenuHeader = React.forwardRef<HTMLDivElement, AccountMenuHeaderProp
   ({ name, email, avatarSrc, avatarAlt, fallback, className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn("flex flex-col items-center px-6 py-8 text-center", className)}
+      className={cn("flex flex-col items-center px-6 py-7 text-center", className)}
       {...props}
     >
-      <Avatar size="xl" className="mb-4 size-16">
+      <Avatar size="xl" className="mb-4 size-14">
         {avatarSrc && <AvatarImage src={avatarSrc} alt={avatarAlt ?? ""} />}
-        <AvatarFallback className="bg-brand-primary text-2xl text-primary-foreground">
+        <AvatarFallback className="bg-brand-primary text-xl text-primary-foreground">
           {fallback}
         </AvatarFallback>
       </Avatar>
-      <p className="body-lg font-medium leading-tight text-ground-50">{name}</p>
-      {email && <p className="body text-ground-400">{email}</p>}
+      <p className="body-lg font-medium leading-tight text-foreground">{name}</p>
+      {email && <p className="body text-muted-foreground">{email}</p>}
     </div>
   ),
 );
@@ -71,13 +70,15 @@ interface AccountMenuItemProps
 const AccountMenuItem = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuItem>,
   AccountMenuItemProps
->(({ icon, trailing, description, children, className, ...props }, ref) => (
+>(({ icon, trailing, description, destructive, children, className, ...props }, ref) => (
   <DropdownMenuItem
     ref={ref}
     className={cn(
-      "min-h-11 rounded-lg px-3 py-2.5 text-ground-50",
+      "min-h-11 rounded-lg px-3 py-2.5",
       "group",
-      "focus:bg-primary focus:text-primary-foreground",
+      destructive
+        ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
+        : "text-foreground focus:bg-muted focus:text-foreground",
       "data-[disabled]:opacity-40",
       "[&_svg:not([class*='size-'])]:size-5",
       className,
@@ -88,12 +89,12 @@ const AccountMenuItem = React.forwardRef<
     <span className="flex min-w-0 flex-1 flex-col">
       <span className="body-lg truncate font-medium leading-tight">{children}</span>
       {description && (
-        <span className="body truncate font-normal text-ground-400 group-focus:text-primary-foreground/80">
+        <span className="body truncate font-normal text-muted-foreground group-focus:text-muted-foreground">
           {description}
         </span>
       )}
     </span>
-    {trailing && <span className="ml-3 shrink-0 text-ground-400">{trailing}</span>}
+    {trailing && <span className="caption ml-3 shrink-0 text-muted-foreground">{trailing}</span>}
   </DropdownMenuItem>
 ));
 AccountMenuItem.displayName = "AccountMenuItem";
@@ -102,7 +103,7 @@ const AccountMenuSeparator = React.forwardRef<
   React.ComponentRef<typeof DropdownMenuSeparator>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuSeparator>
 >(({ className, ...props }, ref) => (
-  <DropdownMenuSeparator ref={ref} className={cn("m-0 bg-ground-800", className)} {...props} />
+  <DropdownMenuSeparator ref={ref} className={cn("m-0 bg-border", className)} {...props} />
 ));
 AccountMenuSeparator.displayName = "AccountMenuSeparator";
 

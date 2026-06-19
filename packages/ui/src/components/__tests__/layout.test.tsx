@@ -84,6 +84,25 @@ describe("AccountMenu", () => {
     expect(screen.getAllByText("ada@example.com")).toHaveLength(2);
     expect(screen.getByText("Create profile")).toBeInTheDocument();
   });
+
+  it("uses the light dropdown surface tokens", () => {
+    render(
+      <DropdownMenu open>
+        <AccountMenuContent>
+          <AccountMenuHeader name="Ada Lovelace" email="ada@example.com" fallback="A" />
+          <AccountMenuSeparator />
+          <AccountMenuSection>
+            <AccountMenuItem>Settings</AccountMenuItem>
+          </AccountMenuSection>
+        </AccountMenuContent>
+      </DropdownMenu>,
+    );
+
+    expect(screen.getByRole("menu")).toHaveClass("bg-card", "text-foreground", "border-border");
+    expect(screen.getByText("Settings").closest('[role="menuitem"]')).toHaveClass(
+      "text-foreground",
+    );
+  });
 });
 
 /* ------------------------------------------------------------------ */

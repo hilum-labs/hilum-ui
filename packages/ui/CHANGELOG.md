@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 2.1.1
+
+### Patch Changes
+
+- Restyle AccountMenu to use the standard light dropdown/card surface and foreground tokens.
+
 ## 2.1.0
 
 ### Minor Changes
