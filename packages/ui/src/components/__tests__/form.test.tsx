@@ -177,6 +177,11 @@ describe("InputGroup", () => {
     expect(screen.getByText(".com")).toBeInTheDocument();
   });
 
+  it("renders inset trailing actions", () => {
+    render(<InputGroup trailingAction={<button type="button">Submit</button>} />);
+    expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+  });
+
   it("renders error state", () => {
     const { container } = render(<InputGroup error />);
     // Error icon is rendered inside
