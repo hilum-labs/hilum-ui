@@ -1,6 +1,6 @@
 {
   "name": "@hilum/ui",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": false,
   "description": "Hilum UI — design system primitives (Button, Input, Dialog, Combobox, …) + tokens + fonts + icons",
   "license": "MIT",

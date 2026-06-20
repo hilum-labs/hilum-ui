@@ -1,6 +1,6 @@
 {
   "name": "@hilum/blocks",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "private": false,
   "description": "Hilum UI CLI — add marketing blocks to your project",
   "license": "MIT",
