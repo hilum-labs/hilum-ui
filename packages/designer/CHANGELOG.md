@@ -1,5 +1,13 @@
 # @hilum/designer
 
+## 3.1.1
+
+### Patch Changes
+
+- f04ade5: Widen lucide-react peer compatibility to support dashboard apps using newer 0.x releases such as 0.542.x.
+- Updated dependencies [f04ade5]
+  - @hilum/ui@3.1.1
+
 ## 3.1.0
 
 ### Patch Changes
