@@ -178,8 +178,14 @@ describe("InputGroup", () => {
   });
 
   it("renders inset trailing actions", () => {
-    render(<InputGroup trailingAction={<button type="button">Submit</button>} />);
+    const { container } = render(<InputGroup trailingAction={<button type="button">Submit</button>} />);
+
     expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
+    expect(container.querySelector("input")).toHaveClass("pr-16");
+    expect(screen.getByRole("button", { name: "Submit" }).parentElement).toHaveClass(
+      "top-1/2",
+      "-translate-y-1/2",
+    );
   });
 
   it("renders error state", () => {

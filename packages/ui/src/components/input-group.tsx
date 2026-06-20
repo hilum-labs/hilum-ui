@@ -99,7 +99,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
                     : hasInsetTrailing
                       ? cn(radius, "pl-3 pr-9")
                       : cn(radius, "px-3"),
-              trailingAction && "pr-14",
+              trailingAction && "pr-16",
               className,
             )}
             {...props}
@@ -118,7 +118,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
           {trailingAction && (
             <div
               className={cn(
-                "absolute inset-y-0 right-2 flex items-center",
+                "absolute right-2 top-1/2 flex -translate-y-1/2 items-center",
                 trailingActionClassName,
               )}
             >
