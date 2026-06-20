@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.1.0
+
+### Minor Changes
+
+- 784078f: Add `trailingAction` support to `InputGroup` for inset buttons and controls inside the input boundary.
+
 ## 3.0.0
 
 ### Minor Changes
