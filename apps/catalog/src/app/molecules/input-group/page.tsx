@@ -3,7 +3,7 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
 import {
-  Search, Mail, AtSign, Globe, Lock, AlertCircle,
+  Search, Mail, AtSign, Globe, Lock, AlertCircle, ArrowUp,
   SlidersHorizontal, Command, Keyboard,
 } from "lucide-react";
 import { InputGroup } from "@hilum/ui";
@@ -47,6 +47,17 @@ const CODE = {
   trailingButton={
     <Button size="sm" className="rounded-l-none -ml-px h-9">
       Search
+    </Button>
+  }
+/>`,
+
+  trailingAction: `<InputGroup
+  leadingIcon={<Search size={15} />}
+  placeholder="Describe a planner, calendar, notepad..."
+  className="h-14"
+  trailingAction={
+    <Button size="icon-lg" aria-label="Create">
+      <ArrowUp size={18} />
     </Button>
   }
 />`,
@@ -220,6 +231,20 @@ function InputGroupPage() {
                 trailingButton={
                   <Button size="sm" className="rounded-l-none h-9 -ml-px border-l-0">
                     Search
+                  </Button>
+                }
+              />
+            </div>
+          </PreviewBlock>
+          <PreviewBlock title="Prompt with inset action" description="Button sits inside the input boundary" code={CODE.trailingAction}>
+            <div className="w-[32rem] max-w-full">
+              <InputGroup
+                leadingIcon={<Search size={15} />}
+                placeholder="Describe a planner, calendar, notepad..."
+                className="h-14"
+                trailingAction={
+                  <Button size="icon-lg" aria-label="Create">
+                    <ArrowUp size={18} />
                   </Button>
                 }
               />

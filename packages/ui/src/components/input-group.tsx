@@ -7,6 +7,8 @@ interface InputGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
   trailingAddon?: React.ReactNode;
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
+  trailingAction?: React.ReactNode;
+  trailingActionClassName?: string;
   trailingButton?: React.ReactNode;
   error?: boolean;
   pill?: boolean;
@@ -20,6 +22,8 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
       trailingAddon,
       leadingIcon,
       trailingIcon,
+      trailingAction,
+      trailingActionClassName,
       trailingButton,
       error,
       pill,
@@ -31,7 +35,8 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
   ) => {
     const radius = pill ? "rounded-full" : "rounded-lg";
     const hasLeading = leadingAddon || leadingIcon;
-    const hasTrailing = trailingAddon || trailingIcon || trailingButton || error;
+    const hasInsetTrailing = trailingIcon || trailingAction || error;
+    const hasTrailing = trailingAddon || hasInsetTrailing || trailingButton;
 
     const baseInput = cn(
       "flex h-9 w-full border bg-card body text-foreground placeholder:text-muted-foreground",
@@ -84,16 +89,17 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
                     ? pill
                       ? "rounded-l-full rounded-r-none pl-9 pr-3"
                       : "rounded-l-lg rounded-r-none pl-9 pr-3"
-                    : trailingIcon || error
+                    : hasInsetTrailing
                       ? cn(radius, "pl-9 pr-9")
                       : cn(radius, "pl-9 pr-3")
                   : trailingAddon
                     ? pill
                       ? "rounded-l-full rounded-r-none px-3"
                       : "rounded-l-lg rounded-r-none px-3"
-                    : trailingIcon || error || trailingButton
+                    : hasInsetTrailing
                       ? cn(radius, "pl-3 pr-9")
                       : cn(radius, "px-3"),
+              trailingAction && "pr-14",
               className,
             )}
             {...props}
@@ -106,6 +112,17 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
               ) : (
                 <span className="text-muted-foreground">{trailingIcon}</span>
               )}
+            </div>
+          )}
+
+          {trailingAction && (
+            <div
+              className={cn(
+                "absolute inset-y-0 right-2 flex items-center",
+                trailingActionClassName,
+              )}
+            >
+              {trailingAction}
             </div>
           )}
         </div>
