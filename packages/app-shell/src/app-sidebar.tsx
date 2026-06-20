@@ -91,10 +91,10 @@ function AppSidebar({
                     "flex items-center rounded-lg transition-colors caption",
                     collapsed ? "size-9 justify-center" : "gap-2.5 px-2.5 py-2",
                     item.active
-                      ? "bg-brand-primary/10 text-brand-primary font-medium"
+                      ? "bg-ground-900 text-background font-medium shadow-natural"
                       : item.disabled
                         ? "cursor-default text-muted-foreground"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                        : "text-muted-foreground hover:bg-card hover:text-foreground",
                   )}
                 >
                   {Icon && <Icon size={14} className="shrink-0" />}
