@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.1.2
+
+### Patch Changes
+
+- 421a631: Improve InputGroup inset action alignment and spacing for icon buttons.
+
 ## 3.1.1
 
 ### Patch Changes
