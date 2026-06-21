@@ -26,7 +26,7 @@ function AppHeader({ breadcrumbs, actions, center, className, children }: AppHea
       )}
     >
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 caption">
+        <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 overflow-hidden caption">
           {breadcrumbs.map((crumb, idx) => {
             const isLast = idx === breadcrumbs.length - 1;
             return (
@@ -34,16 +34,19 @@ function AppHeader({ breadcrumbs, actions, center, className, children }: AppHea
                 {crumb.href && !isLast ? (
                   <Link
                     href={crumb.href}
-                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    className="min-w-0 shrink truncate text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span className={isLast ? "text-foreground font-medium" : "text-muted-foreground"}>
+                  <span className={cn(
+                    "min-w-0 shrink truncate",
+                    isLast ? "text-foreground font-medium" : "text-muted-foreground",
+                  )}>
                     {crumb.label}
                   </span>
                 )}
-                {!isLast && <ChevronRight size={12} className="text-muted-foreground" />}
+                {!isLast && <ChevronRight size={12} className="shrink-0 text-muted-foreground" />}
               </Fragment>
             );
           })}
