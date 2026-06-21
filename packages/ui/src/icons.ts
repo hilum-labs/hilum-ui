@@ -26,8 +26,10 @@ export {
   ArrowDownRight,
   MoreHorizontal,
   MoreVertical,
+  GripVertical,
   // Status
   Check,
+  BadgeCheck,
   AlertCircle,
   AlertTriangle,
   Info,
@@ -83,6 +85,7 @@ export {
   Clock,
   File,
   FileText,
+  Database,
   Folder,
   FolderOpen,
   Image,
@@ -118,6 +121,7 @@ export {
   ShieldCheck,
   // Money / commerce
   CreditCard,
+  Package,
   ShoppingCart,
   ShoppingBag,
   Wallet,
