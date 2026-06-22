@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.2
+
+### Patch Changes
+
+- 6610a27: Tighten ButtonGroup sizing so the iOS-style segmented control renders smaller and less chunky by default.
+
 ## 3.2.1
 
 ### Patch Changes
