@@ -168,6 +168,17 @@ describe("DesignerToolbar", () => {
     expect(screen.getByRole("toolbar")).toBeInTheDocument();
   });
 
+  it("uses the native shadow surface without an extra border", () => {
+    render(
+      <DesignerToolbar>
+        <span>Tool</span>
+      </DesignerToolbar>,
+    );
+
+    expect(screen.getByRole("toolbar")).toHaveClass("bg-card", "shadow-natural");
+    expect(screen.getByRole("toolbar")).not.toHaveClass("border", "border-border");
+  });
+
   it("renders floating and inline variants without error", () => {
     const variants = ["floating", "inline"] as const;
     for (const variant of variants) {

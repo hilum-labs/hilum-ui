@@ -18,7 +18,7 @@ function DesignerToolbar({ className, variant = "floating", children }: Designer
       <div
         role="toolbar"
         className={cn(
-          "flex items-center gap-0.5 rounded-lg bg-card shadow-natural border border-border p-1",
+          "flex items-center gap-0.5 rounded-lg bg-card p-1 shadow-natural",
           variant === "floating" && "fixed bottom-4 left-1/2 -translate-x-1/2 z-30",
           className,
         )}
