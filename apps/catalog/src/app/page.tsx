@@ -53,13 +53,15 @@ interface PackageDoc {
   icon: LucideIcon;
 }
 
+const HILUM_PACKAGE_VERSION = "3.2.0";
+
 const categories: Category[] = [
   {
     id: "atoms",
     label: "Atoms",
     description: "The smallest functional units — buttons, badges, inputs, and more.",
     icon: Atom,
-    count: 41,
+    count: 58,
     href: "/atoms",
     comingSoon: false,
     items: [
@@ -119,7 +121,7 @@ const categories: Category[] = [
     label: "Blocks",
     description: "Full page sections ready to drop into any layout.",
     icon: Blocks,
-    count: 7,
+    count: 8,
     href: "/blocks",
     comingSoon: false,
     items: [
@@ -188,7 +190,7 @@ const categories: Category[] = [
     description:
       "App interface patterns — shells, forms, navigation, lists, overlays, and page layouts.",
     icon: LayoutDashboard,
-    count: 11,
+    count: 12,
     href: "/application-ui",
     comingSoon: false,
     items: [
@@ -210,7 +212,7 @@ const categories: Category[] = [
 const packages: PackageDoc[] = [
   {
     name: "@hilum/ui",
-    version: "2.0.1",
+    version: HILUM_PACKAGE_VERSION,
     description:
       "Core design system primitives: buttons, inputs, dialogs, comboboxes, data display, tokens, fonts, and Hilum icons.",
     install: "pnpm add @hilum/ui",
@@ -225,7 +227,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/app-shell",
-    version: "2.0.1",
+    version: HILUM_PACKAGE_VERSION,
     description:
       "Composed product-app layouts built from Hilum primitives: sidebars, top bars, page headers, detail screens, and settings screens.",
     install: "pnpm add @hilum/app-shell @hilum/ui",
@@ -244,7 +246,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/designer",
-    version: "2.0.1",
+    version: HILUM_PACKAGE_VERSION,
     description:
       "Engine-agnostic editor chrome for authoring surfaces: shell, toolbar, side panels, collapsible panes, history, and keybindings.",
     install: "pnpm add @hilum/designer @hilum/ui",
@@ -263,7 +265,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/designer-canvas",
-    version: "2.0.1",
+    version: HILUM_PACKAGE_VERSION,
     description:
       "Generic free-positioned canvas engine with typed layers, pan/zoom, drag and resize, marquee selection, snap guides, actions, and pluggable renderers.",
     install: "pnpm add @hilum/designer-canvas @hilum/designer @hilum/ui",
@@ -283,7 +285,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/blocks",
-    version: "2.0.1",
+    version: HILUM_PACKAGE_VERSION,
     description:
       "CLI for installing Hilum marketing blocks into an application from the catalog registry.",
     install: "pnpm add -D @hilum/blocks",
@@ -307,7 +309,7 @@ function HomePage() {
       {/* Header */}
       <div className="mb-10 -mx-8 px-8 py-8 rounded-2xl bg-brand-secondary/30">
         <div className="mb-4 flex items-center gap-2">
-          <Badge variant="secondary">packages v2.0.1</Badge>
+          <Badge variant="secondary">packages v{HILUM_PACKAGE_VERSION}</Badge>
           <Badge variant="outline">catalog v0.1.1</Badge>
         </div>
         <h1 className="display mb-3 text-ground-900">Design System</h1>
