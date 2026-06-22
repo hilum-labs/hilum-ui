@@ -472,9 +472,16 @@ describe("ButtonGroup", () => {
     const group = container.firstElementChild;
     const activeItem = screen.getByRole("button", { name: "Missed" });
 
-    expect(group).toHaveClass("rounded-2xl", "bg-muted", "p-1");
+    expect(group).toHaveClass("rounded-xl", "bg-muted", "p-0.5");
     expect(group).not.toHaveClass("divide-x", "border", "shadow-natural");
-    expect(activeItem).toHaveClass("rounded-xl", "bg-card", "text-foreground", "shadow-natural");
+    expect(activeItem).toHaveClass(
+      "min-h-8",
+      "rounded-[10px]",
+      "body-sm",
+      "bg-card",
+      "text-foreground",
+      "shadow-natural",
+    );
   });
 
   it("calls onClick on item click", () => {

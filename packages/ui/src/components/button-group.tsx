@@ -10,7 +10,7 @@ function ButtonGroup({ children, className }: ButtonGroupProps) {
   return (
     <div
       className={cn(
-        "inline-flex items-center gap-0.5 rounded-2xl bg-muted p-1",
+        "inline-flex items-center gap-0.5 rounded-xl bg-muted p-0.5",
         className,
       )}
     >
@@ -28,7 +28,7 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
     <button
       type="button"
       className={cn(
-        "relative inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl px-3.5 py-2 body font-medium",
+        "relative inline-flex min-h-8 items-center justify-center gap-1 rounded-[10px] px-3 py-1 body-sm font-medium",
         "transition-[background-color,box-shadow,color,opacity,scale] active:scale-[0.96]",
         "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30",
         active
