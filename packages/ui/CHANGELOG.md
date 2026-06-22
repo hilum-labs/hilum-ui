@@ -1,5 +1,15 @@
 # @hilum/ui
 
+## 3.2.0
+
+### Minor Changes
+
+- 147ef45: Apply interface polish across component primitives: explicit transitions, tactile press states, balanced text wrapping, tabular metrics, and image outlines.
+
+### Patch Changes
+
+- b020e15: Add shared icon facade exports used by Hilum dashboard surfaces.
+
 ## 3.1.2
 
 ### Patch Changes

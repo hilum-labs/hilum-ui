@@ -1,5 +1,14 @@
 # @hilum/app-shell
 
+## 3.2.0
+
+### Patch Changes
+
+- 9844039: Constrain AppHeader breadcrumbs so long labels truncate instead of wrapping in compact headers.
+- Updated dependencies [b020e15]
+- Updated dependencies [147ef45]
+  - @hilum/ui@3.2.0
+
 ## 3.1.2
 
 ### Patch Changes
