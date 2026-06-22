@@ -1,4 +1,3 @@
-
 import { Info } from "lucide-react";
 
 export default function AlertWithLink() {

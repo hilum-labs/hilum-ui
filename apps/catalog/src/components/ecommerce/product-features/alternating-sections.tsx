@@ -1,6 +1,7 @@
-
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
 
 type Spec = {
   label: string;
@@ -45,10 +46,7 @@ function SpecList({ specs }: { specs: Spec[] }) {
   return (
     <dl className="grid gap-4 sm:grid-cols-2">
       {specs.map((spec) => (
-        <div
-          key={spec.label}
-          className="rounded-2xl border border-ground-100 bg-ground-50 p-4"
-        >
+        <div key={spec.label} className="rounded-2xl border border-ground-100 bg-ground-50 p-4">
           <dt className="label text-ground-400">{spec.label}</dt>
           <dd className="body mt-2 text-ground-900">{spec.value}</dd>
         </div>
@@ -57,22 +55,8 @@ function SpecList({ specs }: { specs: Spec[] }) {
   );
 }
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function AlternatingSections() {
@@ -85,9 +69,7 @@ export default function AlternatingSections() {
             className="grid gap-8 border-b border-ground-100 pb-10 last:border-b-0 last:pb-0 lg:grid-cols-2 lg:items-center"
           >
             <div
-              className={`overflow-hidden rounded-[28px] ${
-                index % 2 === 1 ? "lg:order-2" : ""
-              }`}
+              className={`overflow-hidden rounded-[28px] ${index % 2 === 1 ? "lg:order-2" : ""}`}
             >
               <ProductImage
                 src={index === 1 ? DETAIL_IMAGE_ONE : PRODUCT_IMAGE}
@@ -98,9 +80,7 @@ export default function AlternatingSections() {
             <div className={index % 2 === 1 ? "lg:order-1" : ""}>
               <p className="label mb-3 text-brand-primary">{feature.eyebrow}</p>
               <h3 className="heading text-ground-900">{feature.heading}</h3>
-              <p className="body mt-4 max-w-xl text-ground-600">
-                {feature.description}
-              </p>
+              <p className="body mt-4 max-w-xl text-ground-600">{feature.description}</p>
               <div className="mt-6">
                 <SpecList specs={PRODUCT_SPECS} />
               </div>

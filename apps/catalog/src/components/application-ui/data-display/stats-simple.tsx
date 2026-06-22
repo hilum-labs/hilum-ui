@@ -1,4 +1,3 @@
-
 import { Users, TrendingUp, MousePointerClick } from "lucide-react";
 
 const stats = [
@@ -15,15 +14,10 @@ export default function StatsSimple() {
   return (
     <dl className="grid w-full grid-cols-1 gap-4 md:grid-cols-3">
       {stats.map((stat) => (
-        <div
-          key={stat.label}
-          className="rounded-xl border border-ground-100 bg-white px-6 py-5"
-        >
+        <div key={stat.label} className="rounded-xl border border-ground-100 bg-white px-6 py-5">
           <dt className="mb-1 caption text-ground-500">{stat.label}</dt>
           <dd className="flex items-end justify-between gap-4">
-            <span className="heading font-semibold text-ground-900">
-              {stat.value}
-            </span>
+            <span className="heading font-semibold text-ground-900">{stat.value}</span>
             <span className={changeClass(stat.up)}>{stat.change}</span>
           </dd>
         </div>

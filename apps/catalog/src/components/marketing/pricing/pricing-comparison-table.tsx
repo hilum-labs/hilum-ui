@@ -1,4 +1,3 @@
-
 import { Fragment } from "react";
 import { Check, Minus, X } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -48,10 +47,15 @@ export default function PricingComparisonTable() {
       <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-ground-100 bg-white shadow-natural">
         <div className="grid border-b border-ground-100 md:grid-cols-[1.2fr_0.6fr_0.6fr_0.6fr]">
           <div className="px-6 py-6">
-            <Badge variant="secondary" className="mb-4">Comparison table</Badge>
-            <h3 className="heading text-ground-900">A large table for teams that compare every detail</h3>
+            <Badge variant="secondary" className="mb-4">
+              Comparison table
+            </Badge>
+            <h3 className="heading text-ground-900">
+              A large table for teams that compare every detail
+            </h3>
             <p className="body mt-3 max-w-xl text-ground-500">
-              Use structured categories and clear icon states to make deeper plan differences easy to scan.
+              Use structured categories and clear icon states to make deeper plan differences easy
+              to scan.
             </p>
           </div>
           <div className="border-t border-ground-100 px-6 py-6 md:border-l md:border-t-0">
@@ -91,9 +95,15 @@ export default function PricingComparisonTable() {
                 {category.rows.map((row) => (
                   <tr key={row.feature} className="border-b border-ground-100 last:border-b-0">
                     <td className="px-6 py-4 body text-ground-700">{row.feature}</td>
-                    <td className="px-6 py-4 text-center"><PricingStatus value={row.starter} /></td>
-                    <td className="px-6 py-4 text-center"><PricingStatus value={row.growth} /></td>
-                    <td className="px-6 py-4 text-center"><PricingStatus value={row.enterprise} /></td>
+                    <td className="px-6 py-4 text-center">
+                      <PricingStatus value={row.starter} />
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <PricingStatus value={row.growth} />
+                    </td>
+                    <td className="px-6 py-4 text-center">
+                      <PricingStatus value={row.enterprise} />
+                    </td>
                   </tr>
                 ))}
               </Fragment>

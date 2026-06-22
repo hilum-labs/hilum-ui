@@ -17,7 +17,9 @@ function Field({
 }
 
 function MessageField({ rows = 5 }: { rows?: number }) {
-  return <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />;
+  return (
+    <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />
+  );
 }
 
 function InfoRow({
@@ -56,7 +58,8 @@ export default function ContactSimpleTwoColumn() {
           <p className="label text-brand-primary">Talk with us</p>
           <h2 className="heading mt-4 text-ground-900">Tell us what you are building</h2>
           <p className="body mt-4 text-ground-500">
-            Whether you need a design system audit, implementation support, or a fast consultation, the team can help you map the right next step.
+            Whether you need a design system audit, implementation support, or a fast consultation,
+            the team can help you map the right next step.
           </p>
           <div className="mt-8 space-y-5">
             <InfoRow icon={Mail} label="Email" value="hello@northstar.so" />

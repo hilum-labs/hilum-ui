@@ -1,22 +1,8 @@
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
 
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function FadingImage() {

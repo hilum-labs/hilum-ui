@@ -1,7 +1,9 @@
-
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
 type Spec = {
   label: string;
@@ -15,22 +17,8 @@ const PRODUCT_SPECS: Spec[] = [
   { label: "Warranty", value: "Lifetime" },
 ];
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function ImageGrid() {
@@ -50,11 +38,7 @@ export default function ImageGrid() {
         </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="overflow-hidden rounded-3xl">
-            <ProductImage
-              src={PRODUCT_IMAGE}
-              alt="Full bag image"
-              className="aspect-square"
-            />
+            <ProductImage src={PRODUCT_IMAGE} alt="Full bag image" className="aspect-square" />
           </div>
           <div className="overflow-hidden rounded-3xl">
             <ProductImage

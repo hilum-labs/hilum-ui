@@ -34,13 +34,19 @@ export default function WithSidebarForm() {
       <form className="flex-1 flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
         <div>
           <h2 className="subheading text-ground-900 mb-1">Profile</h2>
-          <p className="caption text-ground-400">This information will be displayed on your public profile.</p>
+          <p className="caption text-ground-400">
+            This information will be displayed on your public profile.
+          </p>
         </div>
         <Separator />
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-3">
-            <Field label="First name" htmlFor="wsb-fn"><Input id="wsb-fn" placeholder="Jane" /></Field>
-            <Field label="Last name" htmlFor="wsb-ln"><Input id="wsb-ln" placeholder="Smith" /></Field>
+            <Field label="First name" htmlFor="wsb-fn">
+              <Input id="wsb-fn" placeholder="Jane" />
+            </Field>
+            <Field label="Last name" htmlFor="wsb-ln">
+              <Input id="wsb-ln" placeholder="Smith" />
+            </Field>
           </div>
           <Field label="Email" htmlFor="wsb-email">
             <Input id="wsb-email" type="email" placeholder="jane@example.com" />
@@ -54,7 +60,9 @@ export default function WithSidebarForm() {
         </div>
         <Separator />
         <div className="flex gap-3 justify-end">
-          <Button variant="outline" type="button">Cancel</Button>
+          <Button variant="outline" type="button">
+            Cancel
+          </Button>
           <Button type="submit">Save changes</Button>
         </div>
       </form>

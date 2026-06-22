@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -56,7 +55,10 @@ export default function InvoicePanels() {
     <div className="w-full bg-white p-6">
       <div className="grid gap-6 lg:grid-cols-2">
         {ORDERS.map((order) => (
-          <div key={order.id} className="rounded-[32px] border border-ground-200 bg-white p-6 shadow-natural">
+          <div
+            key={order.id}
+            className="rounded-[32px] border border-ground-200 bg-white p-6 shadow-natural"
+          >
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="label text-ground-400">Order number</p>
@@ -68,7 +70,11 @@ export default function InvoicePanels() {
             <div className="mt-6 space-y-4 border-y border-ground-100 py-6">
               {order.products.map((product) => (
                 <div key={product.name} className="flex items-center gap-4">
-                  <img src={product.img} alt={product.name} className="size-16 rounded-2xl object-cover" />
+                  <img
+                    src={product.img}
+                    alt={product.name}
+                    className="size-16 rounded-2xl object-cover"
+                  />
                   <div className="flex-1">
                     <p className="body font-medium text-ground-900">{product.name}</p>
                     <p className="caption text-ground-500">{formatCurrency(product.price)}</p>

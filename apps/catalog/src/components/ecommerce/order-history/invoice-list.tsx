@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 
 const ORDERS = [
@@ -66,8 +65,15 @@ export default function InvoiceList() {
               </div>
               <div className="mt-4 flex flex-wrap gap-4">
                 {order.products.map((product) => (
-                  <div key={product.name} className="flex items-center gap-3 rounded-2xl bg-ground-50 p-3">
-                    <img src={product.img} alt={product.name} className="size-14 rounded-xl object-cover" />
+                  <div
+                    key={product.name}
+                    className="flex items-center gap-3 rounded-2xl bg-ground-50 p-3"
+                  >
+                    <img
+                      src={product.img}
+                      alt={product.name}
+                      className="size-14 rounded-xl object-cover"
+                    />
                     <div>
                       <p className="caption font-semibold text-ground-900">{product.name}</p>
                       <p className="caption text-ground-500">{formatCurrency(product.price)}</p>
@@ -83,7 +89,10 @@ export default function InvoiceList() {
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <StatusBadge status={order.status} />
-                <a href="#" className="caption font-medium text-brand-primary transition hover:text-brand-primary/80">
+                <a
+                  href="#"
+                  className="caption font-medium text-brand-primary transition-colors hover:text-brand-primary/80"
+                >
                   View invoice
                 </a>
               </div>

@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Bold,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Italic,
-  Underline,
-} from "lucide-react";
+import { Bold, ChevronDown, ChevronLeft, ChevronRight, Italic, Underline } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Checkbox } from "@hilum/ui";
 import {
@@ -58,11 +51,7 @@ export default function ButtonGroups() {
             <div className="inline-flex">
               <Button className="rounded-r-none">Create</Button>
               <DropdownMenuTrigger asChild>
-                <Button
-                  variant="default"
-                  size="icon"
-                  className="-ml-px rounded-l-none"
-                >
+                <Button variant="default" size="icon" className="-ml-px rounded-l-none">
                   <ChevronDown size={14} />
                 </Button>
               </DropdownMenuTrigger>
@@ -88,7 +77,7 @@ export default function ButtonGroups() {
               <DropdownMenuTrigger asChild>
                 <button
                   type="button"
-                  className="border-l border-ground-200 px-3 py-2 text-ground-500 transition hover:bg-ground-50 hover:text-ground-700"
+                  className="border-l border-ground-200 px-3 py-2 text-ground-500 transition-colors hover:bg-ground-50 hover:text-ground-700"
                 >
                   <ChevronDown size={14} />
                 </button>
@@ -108,11 +97,7 @@ export default function ButtonGroups() {
               <Button variant="outline" size="icon-sm" className="rounded-r-none">
                 <ChevronLeft size={14} />
               </Button>
-              <Button
-                variant="outline"
-                size="icon-sm"
-                className="-ml-px rounded-l-none"
-              >
+              <Button variant="outline" size="icon-sm" className="-ml-px rounded-l-none">
                 <ChevronRight size={14} />
               </Button>
             </div>
@@ -123,11 +108,7 @@ export default function ButtonGroups() {
               <Button variant="outline" size="icon-sm" className="-ml-px rounded-none">
                 <Italic size={14} />
               </Button>
-              <Button
-                variant="outline"
-                size="icon-sm"
-                className="-ml-px rounded-l-none"
-              >
+              <Button variant="outline" size="icon-sm" className="-ml-px rounded-l-none">
                 <Underline size={14} />
               </Button>
             </div>

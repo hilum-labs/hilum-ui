@@ -3,7 +3,12 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "../tooltip";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "../dialog";
-import { ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem } from "../context-menu";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+} from "../context-menu";
 import { Progress } from "../progress";
 import { Switch } from "../switch";
 import { Slider } from "../slider";

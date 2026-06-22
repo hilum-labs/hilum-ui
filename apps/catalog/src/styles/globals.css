@@ -12,3 +12,12 @@
 @source "../../../../packages/app-shell/src";
 @source "../../../../packages/designer/src";
 @source "../../../../packages/designer-canvas/src";
+
+img:not([data-no-outline]) {
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
+}
+
+:where([data-theme="dark"], [data-theme="dark"] *, .dark, .dark *) img:not([data-no-outline]) {
+  outline-color: rgba(255, 255, 255, 0.1);
+}

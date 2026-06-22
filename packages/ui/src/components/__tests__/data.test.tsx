@@ -27,7 +27,10 @@ import { AspectRatio } from "../aspect-ratio";
 /* DataTable                                                            */
 /* ------------------------------------------------------------------ */
 
-interface Person { name: string; email: string }
+interface Person {
+  name: string;
+  email: string;
+}
 
 const colHelper = createColumnHelper<Person>();
 const dtColumns = [

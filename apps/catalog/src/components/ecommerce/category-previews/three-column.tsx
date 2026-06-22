@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 
 type CategoryCard = {
@@ -10,7 +9,8 @@ type CategoryCard = {
 
 const COLLECTION_ONE = "https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg";
 const COLLECTION_TWO = "https://tailwindui.com/img/ecommerce-images/home-page-01-collection-02.jpg";
-const COLLECTION_THREE = "https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg";
+const COLLECTION_THREE =
+  "https://tailwindui.com/img/ecommerce-images/home-page-01-collection-03.jpg";
 
 const THREE_COLUMN_CATEGORIES: CategoryCard[] = [
   {
@@ -33,22 +33,8 @@ const THREE_COLUMN_CATEGORIES: CategoryCard[] = [
   },
 ];
 
-function CategoryImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function CategoryImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function ThreeColumn() {
@@ -71,7 +57,7 @@ export default function ThreeColumn() {
               <p className="subheading text-ground-900">{category.name}</p>
               <a
                 href="#"
-                className="body mt-3 inline-flex items-center gap-2 text-brand-primary"
+                className="body mt-3 inline-flex min-h-10 items-center gap-2 text-brand-primary"
               >
                 Shop now <ArrowRight className="size-4" />
               </a>

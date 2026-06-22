@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { RotateCcw, ShieldCheck, Star, Truck } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -66,7 +65,7 @@ function ColorSelector({
               type="button"
               onClick={() => onChange(color.name)}
               aria-label={`Select ${color.name}`}
-              className={`flex size-9 items-center justify-center rounded-full border transition ${
+              className={`flex size-10 items-center justify-center rounded-full border transition-colors ${
                 active ? "border-ground-900" : "border-transparent hover:border-ground-200"
               }`}
             >
@@ -96,7 +95,11 @@ function SizeSelector({
           Size guide
         </a>
       </div>
-      <div className={large ? "mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3" : "mt-3 flex flex-wrap gap-2"}>
+      <div
+        className={
+          large ? "mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3" : "mt-3 flex flex-wrap gap-2"
+        }
+      >
         {SIZES.map((size) => {
           const active = selectedSize === size;
 
@@ -105,7 +108,7 @@ function SizeSelector({
               key={size}
               type="button"
               onClick={() => onChange(size)}
-              className={`rounded-full border px-4 py-2 transition ${
+              className={`rounded-full border px-4 py-2 transition-colors ${
                 large
                   ? active
                     ? "border-ground-900 bg-ground-900 text-white"
@@ -150,7 +153,11 @@ export default function TabsVariant() {
     <section className="w-full bg-white px-6 py-8 md:px-8">
       <div className="grid gap-8 lg:grid-cols-2">
         <div className="rounded-[2rem] bg-ground-50 p-8">
-          <img src={PRODUCT_IMAGES[0]} alt={PRODUCT_NAME} className="aspect-square w-full object-cover" />
+          <img
+            src={PRODUCT_IMAGES[0]}
+            alt={PRODUCT_NAME}
+            className="aspect-square w-full object-cover"
+          />
         </div>
         <div>
           <ProductHeader />
@@ -164,8 +171,10 @@ export default function TabsVariant() {
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-full px-4 py-2 caption font-medium transition ${
-                  activeTab === tab ? "bg-brand-primary text-white" : "text-ground-600 hover:text-ground-900"
+                className={`rounded-full px-4 py-2 caption font-medium transition-colors ${
+                  activeTab === tab
+                    ? "bg-brand-primary text-white"
+                    : "text-ground-600 hover:text-ground-900"
                 }`}
               >
                 {tab}
@@ -182,7 +191,10 @@ export default function TabsVariant() {
             {activeTab === "Reviews" ? (
               <div className="space-y-5">
                 {REVIEWS.map((review) => (
-                  <article key={review.name} className="border-b border-ground-100 pb-5 last:border-b-0 last:pb-0">
+                  <article
+                    key={review.name}
+                    className="border-b border-ground-100 pb-5 last:border-b-0 last:pb-0"
+                  >
                     <div className="flex items-center gap-1 text-brand-secondary">
                       {Array.from({ length: 5 }, (_, index) => (
                         <Star key={index} className="size-4 fill-current" />
@@ -207,14 +219,18 @@ export default function TabsVariant() {
                   <RotateCcw className="mt-0.5 size-5 text-brand-primary" />
                   <div>
                     <p className="body font-medium text-ground-900">Easy returns</p>
-                    <p className="caption mt-1 text-ground-400">Return any unworn pack within 30 days.</p>
+                    <p className="caption mt-1 text-ground-400">
+                      Return any unworn pack within 30 days.
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="mt-0.5 size-5 text-brand-primary" />
                   <div>
                     <p className="body font-medium text-ground-900">Quality guarantee</p>
-                    <p className="caption mt-1 text-ground-400">Backed by our lifetime stitching warranty.</p>
+                    <p className="caption mt-1 text-ground-400">
+                      Backed by our lifetime stitching warranty.
+                    </p>
                   </div>
                 </div>
               </div>

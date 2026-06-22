@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { AlertCircle, Mail } from "lucide-react";
 import { Input } from "@hilum/ui";
@@ -47,12 +46,7 @@ export default function InputGroups() {
             <Label htmlFor="team-email">Team email</Label>
             <div className="relative">
               <Mail className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-ground-400" />
-              <Input
-                id="team-email"
-                type="email"
-                className="pl-9"
-                placeholder="team@acme.com"
-              />
+              <Input id="team-email" type="email" className="pl-9" placeholder="team@acme.com" />
             </div>
           </div>
         </VariantCard>
@@ -64,11 +58,7 @@ export default function InputGroups() {
               <span className="flex items-center rounded-l-md border border-r-0 border-ground-200 bg-ground-50 px-3 caption text-ground-500">
                 https://
               </span>
-              <Input
-                id="site-address"
-                className="rounded-l-none"
-                defaultValue="studio.acme.com"
-              />
+              <Input id="site-address" className="rounded-l-none" defaultValue="studio.acme.com" />
             </div>
           </div>
         </VariantCard>
@@ -77,12 +67,7 @@ export default function InputGroups() {
           <div className="space-y-2">
             <Label htmlFor="billing-email">Billing email</Label>
             <div className="relative">
-              <Input
-                id="billing-email"
-                type="email"
-                defaultValue="finance@acme"
-                className="pr-9"
-              />
+              <Input id="billing-email" type="email" defaultValue="finance@acme" className="pr-9" />
               <AlertCircle className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-red-500" />
             </div>
           </div>

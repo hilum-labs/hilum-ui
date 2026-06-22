@@ -66,8 +66,7 @@ export default function CenteredAccordion() {
         <div className="mb-8 text-center">
           <h2 className="heading text-ground-900">Frequently asked questions</h2>
           <p className="body mt-3 text-ground-500">
-            Concise answers for the details customers usually ask before
-            signing off on a purchase.
+            Concise answers for the details customers usually ask before signing off on a purchase.
           </p>
         </div>
 
@@ -82,15 +81,13 @@ export default function CenteredAccordion() {
                   onClick={() => toggleItem(index)}
                   className="flex w-full items-center justify-between gap-4 px-1 py-5 text-left"
                 >
-                  <span className="body font-semibold text-ground-900">
-                    {item.q}
-                  </span>
+                  <span className="body font-semibold text-ground-900">{item.q}</span>
                   <ChevronDownIcon
                     className={`size-5 shrink-0 text-ground-400 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
                   />
                 </button>
                 <div
-                  className={`grid overflow-hidden transition-all duration-300 ease-out ${isOpen ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]"}`}
+                  className={`grid overflow-hidden transition-[grid-template-rows,padding-bottom] duration-300 ease-out ${isOpen ? "grid-rows-[1fr] pb-5" : "grid-rows-[0fr]"}`}
                 >
                   <div className="overflow-hidden">
                     <p className="body pr-10 text-ground-500">{item.a}</p>

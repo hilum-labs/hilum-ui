@@ -37,16 +37,18 @@ function InputPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Input</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Input</h1>
-        <p className="body max-w-lg text-ground-500">
-          Single-line text field for user input.
-        </p>
+        <p className="body max-w-lg text-ground-500">Single-line text field for user input.</p>
       </div>
 
       <PageDocs path="/atoms/input/" />
@@ -76,11 +78,7 @@ function InputPage() {
         >
           <div className="flex w-full max-w-xs flex-col gap-1.5">
             <Label htmlFor="demo-email">Email address</Label>
-            <Input
-              id="demo-email"
-              type="email"
-              placeholder="you@example.com"
-            />
+            <Input id="demo-email" type="email" placeholder="you@example.com" />
           </div>
         </PreviewBlock>
       </div>

@@ -62,8 +62,10 @@ function Notification({
 
           {/* Body */}
           <div className="min-w-0 flex-1">
-            <p className="body font-semibold text-foreground">{title}</p>
-            {description && <p className="mt-0.5 body text-muted-foreground">{description}</p>}
+            <p className="body font-semibold text-foreground text-balance">{title}</p>
+            {description && (
+              <p className="mt-0.5 body text-muted-foreground text-pretty">{description}</p>
+            )}
 
             {/* Actions */}
             {actions && actions.length > 0 && (
@@ -74,7 +76,7 @@ function Notification({
                     type="button"
                     onClick={action.onClick}
                     className={cn(
-                      "body font-semibold transition-colors",
+                      "min-h-10 body font-semibold transition-colors",
                       action.variant === "ghost"
                         ? "text-muted-foreground hover:text-muted-foreground"
                         : "text-foreground hover:text-muted-foreground",
@@ -93,7 +95,7 @@ function Notification({
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-md text-muted-foreground hover:text-muted-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                className="flex size-10 items-center justify-center rounded-md text-muted-foreground transition-[color,scale] hover:text-muted-foreground active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
               >
                 <span className="sr-only">Close</span>
                 <X size={16} />

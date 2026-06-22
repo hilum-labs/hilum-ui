@@ -21,20 +21,14 @@ export default function NewsletterWithParagraphOnDarkFullWidth() {
           <p className="label mb-4 text-brand-secondary">Newsletter</p>
           <h3 className="heading text-white">Signal, not noise</h3>
           <p className="body mt-4 text-ground-300">
-            A weekly edit of roadmap lessons, GTM ideas, and reusable design
-            patterns for teams building products with ambition.
+            A weekly edit of roadmap lessons, GTM ideas, and reusable design patterns for teams
+            building products with ambition.
           </p>
         </div>
-        <form
-          className="mt-8 space-y-3 lg:mt-0"
-          onSubmit={(event) => event.preventDefault()}
-        >
+        <form className="mt-8 space-y-3 lg:mt-0" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-3 md:flex-row">
             <EmailInput className="bg-white text-ground-900 md:flex-1" />
-            <Button
-              type="submit"
-              className="bg-brand-primary text-white hover:bg-brand-primary/90"
-            >
+            <Button type="submit" className="bg-brand-primary text-white hover:bg-brand-primary/90">
               Subscribe
             </Button>
           </div>

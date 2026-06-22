@@ -208,16 +208,10 @@ function AppMenubarDemo() {
       <MenubarMenu>
         <MenubarTrigger>View</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem
-            checked={showToolbar}
-            onCheckedChange={setShowToolbar}
-          >
+          <MenubarCheckboxItem checked={showToolbar} onCheckedChange={setShowToolbar}>
             Show Toolbar
           </MenubarCheckboxItem>
-          <MenubarCheckboxItem
-            checked={showSidebar}
-            onCheckedChange={setShowSidebar}
-          >
+          <MenubarCheckboxItem checked={showSidebar} onCheckedChange={setShowSidebar}>
             Show Sidebar
           </MenubarCheckboxItem>
           <MenubarSeparator />
@@ -291,10 +285,7 @@ function TextEditorMenubarDemo() {
           <MenubarCheckboxItem checked={darkMode} onCheckedChange={setDarkMode}>
             Dark Mode
           </MenubarCheckboxItem>
-          <MenubarCheckboxItem
-            checked={focusMode}
-            onCheckedChange={setFocusMode}
-          >
+          <MenubarCheckboxItem checked={focusMode} onCheckedChange={setFocusMode}>
             Focus Mode
           </MenubarCheckboxItem>
         </MenubarContent>
@@ -320,8 +311,8 @@ function MenubarPage() {
         </div>
         <h1 className="display mb-2 text-ground-900">Menubar</h1>
         <p className="body max-w-lg text-ground-500">
-          Horizontal menu bar for application-level navigation and commands,
-          with support for submenus, checkboxes, and radio groups.
+          Horizontal menu bar for application-level navigation and commands, with support for
+          submenus, checkboxes, and radio groups.
         </p>
       </div>
 

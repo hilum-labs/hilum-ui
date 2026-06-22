@@ -1,14 +1,5 @@
-
 import { useState } from "react";
-import {
-  Calendar,
-  ChevronRight,
-  FolderKanban,
-  Mail,
-  Phone,
-  Search,
-  Settings,
-} from "lucide-react";
+import { Calendar, ChevronRight, FolderKanban, Mail, Phone, Search, Settings } from "lucide-react";
 
 const PEOPLE = [
   {
@@ -112,7 +103,7 @@ export default function DirectoryScreen() {
                           : "bg-ground-50 text-ground-700 hover:bg-ground-100"
                       }`}
                     >
-                      <div className="flex size-9 items-center justify-center rounded-full bg-ground-900 text-white">
+                      <div className="flex size-10 items-center justify-center rounded-full bg-ground-900 text-white">
                         <span className="caption font-medium">{person.initials}</span>
                       </div>
                       <div className="min-w-0">
@@ -180,7 +171,7 @@ export default function DirectoryScreen() {
                   className="flex w-full items-center justify-between rounded-xl border border-ground-100 px-4 py-3 text-left transition-colors hover:border-brand-primary/30 hover:bg-ground-50"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="flex size-9 items-center justify-center rounded-full bg-ground-50 text-ground-700">
+                    <div className="flex size-10 items-center justify-center rounded-full bg-ground-50 text-ground-700">
                       <Icon className="size-4" />
                     </div>
                     <span className="body font-medium text-ground-900">{item.label}</span>
@@ -193,7 +184,9 @@ export default function DirectoryScreen() {
           <div className="mt-6 rounded-2xl bg-ground-50 p-4">
             <p className="label text-ground-400">Upcoming</p>
             <p className="body mt-3 font-medium text-ground-900">Quarterly staffing review</p>
-            <p className="caption mt-1 text-ground-400">Tuesday at 2:30 PM with leadership and finance.</p>
+            <p className="caption mt-1 text-ground-400">
+              Tuesday at 2:30 PM with leadership and finance.
+            </p>
           </div>
         </aside>
       </div>

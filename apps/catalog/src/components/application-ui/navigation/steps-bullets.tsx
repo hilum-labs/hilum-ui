@@ -1,4 +1,3 @@
-
 const stepItems = ["Shipping", "Payment", "Confirmation"] as const;
 
 export default function StepsBullets() {
@@ -18,7 +17,9 @@ export default function StepsBullets() {
                     : "h-3 w-3 bg-ground-200"
               }`}
             />
-            <span className={`body ${index === currentStep ? "font-medium text-ground-900" : "text-ground-500"}`}>
+            <span
+              className={`body ${index === currentStep ? "font-medium text-ground-900" : "text-ground-500"}`}
+            >
               {step}
             </span>
           </li>

@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { Check, X } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -30,7 +29,11 @@ function QuickViewFrame({ children }: { children: ReactNode }) {
 function QuickViewImage() {
   return (
     <div className="flex items-center justify-center bg-ground-100 p-6">
-      <img src={PRODUCT_IMAGE} alt={PRODUCT_NAME} className="aspect-square w-full max-w-md object-cover" />
+      <img
+        src={PRODUCT_IMAGE}
+        alt={PRODUCT_NAME}
+        className="aspect-square w-full max-w-md object-cover"
+      />
     </div>
   );
 }
@@ -46,7 +49,7 @@ function QuickViewHeader() {
       <button
         type="button"
         aria-label="Close preview"
-        className="rounded-full border border-ground-200 p-2 text-ground-500 transition hover:border-ground-300 hover:text-ground-900"
+        className="rounded-full border border-ground-200 p-2 text-ground-500 transition-colors hover:border-ground-300 hover:text-ground-900"
       >
         <X className="size-4" />
       </button>
@@ -77,7 +80,7 @@ function ColorSelector({
               type="button"
               onClick={() => onChange(color.name)}
               aria-label={`Select ${color.name}`}
-              className={`flex size-9 items-center justify-center rounded-full border transition ${
+              className={`flex size-10 items-center justify-center rounded-full border transition-colors ${
                 active ? "border-ground-900" : "border-transparent hover:border-ground-200"
               }`}
             >

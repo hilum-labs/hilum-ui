@@ -16,7 +16,9 @@ function Field({
 }
 
 function MessageField({ rows = 5 }: { rows?: number }) {
-  return <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />;
+  return (
+    <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />
+  );
 }
 
 function ContactForm({ compact = false }: { compact?: boolean }) {
@@ -45,7 +47,9 @@ export default function ContactSplitWithImage() {
         <div className="absolute bottom-8 left-8 rounded-2xl bg-white/80 p-5 backdrop-blur">
           <p className="label text-ground-400">Studio visit</p>
           <p className="subheading mt-2 text-ground-900">New York HQ</p>
-          <p className="body mt-2 text-ground-500">Meet the product, design, and engineering leads in one place.</p>
+          <p className="body mt-2 text-ground-500">
+            Meet the product, design, and engineering leads in one place.
+          </p>
         </div>
       </div>
       <div className="bg-white px-8 py-14">
@@ -53,7 +57,8 @@ export default function ContactSplitWithImage() {
           <p className="label text-brand-primary">Book a consultation</p>
           <h2 className="heading mt-4 text-ground-900">Tell us where your team is stuck</h2>
           <p className="body mt-4 text-ground-500">
-            We help teams diagnose adoption problems, rebuild component architecture, and create implementation plans that can ship.
+            We help teams diagnose adoption problems, rebuild component architecture, and create
+            implementation plans that can ship.
           </p>
           <div className="mt-8">
             <ContactForm />

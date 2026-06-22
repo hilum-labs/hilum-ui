@@ -13,8 +13,8 @@ export default function HeroWithSignIn() {
             Bring every launch brief, file, and approval into focus.
           </h1>
           <p className="body mt-5 text-ground-500">
-            Beacon gives marketers, PMs, and creative leads one place to plan
-            the work and see what still needs attention before go-live.
+            Beacon gives marketers, PMs, and creative leads one place to plan the work and see what
+            still needs attention before go-live.
           </p>
           <div className="mt-8 flex items-center gap-3 text-ground-500">
             <div className="flex size-10 items-center justify-center rounded-full bg-white shadow-natural">
@@ -33,9 +33,7 @@ export default function HeroWithSignIn() {
           </div>
           <form className="space-y-4">
             <div className="space-y-2">
-              <label className="label uppercase tracking-[0.18em] text-ground-400">
-                Email
-              </label>
+              <label className="label uppercase tracking-[0.18em] text-ground-400">Email</label>
               <input
                 type="email"
                 placeholder="team@beacon.so"
@@ -43,9 +41,7 @@ export default function HeroWithSignIn() {
               />
             </div>
             <div className="space-y-2">
-              <label className="label uppercase tracking-[0.18em] text-ground-400">
-                Password
-              </label>
+              <label className="label uppercase tracking-[0.18em] text-ground-400">Password</label>
               <input
                 type="password"
                 placeholder="Enter your password"

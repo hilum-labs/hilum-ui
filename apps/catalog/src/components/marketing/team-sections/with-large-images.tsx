@@ -39,13 +39,7 @@ const TEAM = [
   },
 ] as const;
 
-function PortraitPlaceholder({
-  initials,
-  className,
-}: {
-  initials: string;
-  className: string;
-}) {
+function PortraitPlaceholder({ initials, className }: { initials: string; className: string }) {
   return (
     <div className={`${className} flex items-center justify-center bg-ground-100`}>
       <div className="rounded-full border border-ground-200 bg-white px-4 py-2 subheading text-ground-500">
@@ -69,7 +63,10 @@ export default function WithLargeImages() {
               key={member.name}
               className="rounded-2xl border border-ground-100 bg-white p-5"
             >
-              <PortraitPlaceholder initials={member.initials} className="w-full aspect-[3/4] rounded-2xl" />
+              <PortraitPlaceholder
+                initials={member.initials}
+                className="w-full aspect-[3/4] rounded-2xl"
+              />
               <h3 className="subheading mt-5 text-ground-900">{member.name}</h3>
               <p className="body mt-2 text-ground-500">{member.role}</p>
             </article>

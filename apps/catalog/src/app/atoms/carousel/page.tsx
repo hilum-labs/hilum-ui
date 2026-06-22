@@ -2,23 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import {
-  Briefcase,
-  ImageIcon,
-  Lightbulb,
-  Rocket,
-  Shield,
-  Star,
-  Zap,
-} from "lucide-react";
+import { Briefcase, ImageIcon, Lightbulb, Rocket, Shield, Star, Zap } from "lucide-react";
 import { PreviewBlock } from "@/components/catalog/preview-block";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@hilum/ui";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@hilum/ui";
 
 /* ------------------------------------------------------------------ */
 /*  Section heading                                                     */
@@ -164,7 +150,7 @@ const CODE = {
       {cards.map((card, i) => (
         <CarouselItem key={i} className="basis-1/3">
           <div className="bg-white rounded-xl border border-ground-100 p-5 shadow-natural">
-            <div className="mb-3 flex size-9 items-center justify-center rounded-full bg-brand-primary/10">
+            <div className="mb-3 flex size-10 items-center justify-center rounded-full bg-brand-primary/10">
               <card.Icon className="size-4 text-brand-primary" />
             </div>
             <p className="subheading text-ground-900 mb-1">{card.title}</p>
@@ -233,16 +219,20 @@ function CarouselPage() {
       {/* Header */}
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Carousel</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Carousel</h1>
         <p className="body max-w-lg text-ground-500">
-          A scrollable slide container built on Embla Carousel. Supports looping,
-          multi-item views, and vertical orientation.
+          A scrollable slide container built on Embla Carousel. Supports looping, multi-item views,
+          and vertical orientation.
         </p>
       </div>
 
@@ -291,7 +281,7 @@ function CarouselPage() {
                 {CARD_SLIDES.map((card, i) => (
                   <CarouselItem key={i} className="basis-1/3">
                     <div className="h-full rounded-xl border border-ground-100 bg-white p-5 shadow-natural">
-                      <div className="mb-3 flex size-9 items-center justify-center rounded-full bg-brand-primary/10">
+                      <div className="mb-3 flex size-10 items-center justify-center rounded-full bg-brand-primary/10">
                         <card.Icon className="size-4 text-brand-primary" />
                       </div>
                       <p className="subheading mb-1 text-ground-900">{card.title}</p>
@@ -323,9 +313,7 @@ function CarouselPage() {
                 {TESTIMONIALS.map((t, i) => (
                   <CarouselItem key={i}>
                     <div className="rounded-2xl bg-ground-50 p-8">
-                      <p className="body mb-4 italic text-ground-700">
-                        &ldquo;{t.quote}&rdquo;
-                      </p>
+                      <p className="body mb-4 italic text-ground-700">&ldquo;{t.quote}&rdquo;</p>
                       <p className="subheading text-ground-900">{t.name}</p>
                       <p className="caption text-ground-400">{t.role}</p>
                     </div>
@@ -355,9 +343,7 @@ function CarouselPage() {
                         <div
                           className={`flex size-9 shrink-0 items-center justify-center rounded-full ${person.bg}`}
                         >
-                          <span className={`label ${person.color}`}>
-                            {person.initials}
-                          </span>
+                          <span className={`label ${person.color}`}>{person.initials}</span>
                         </div>
                         <div>
                           <p className="subheading text-ground-900">{person.name}</p>

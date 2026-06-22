@@ -64,8 +64,8 @@ function GridListCard({
       )}
     >
       {accent && <div className="mb-2">{accent}</div>}
-      <p className="body font-semibold text-foreground">{title}</p>
-      {description && <p className="caption text-muted-foreground">{description}</p>}
+      <p className="body font-semibold text-foreground text-balance">{title}</p>
+      {description && <p className="caption text-muted-foreground text-pretty">{description}</p>}
       {(meta || trailing) && (
         <div className="mt-auto flex items-center justify-between pt-3">
           {meta && <span className="caption text-muted-foreground">{meta}</span>}
@@ -132,7 +132,7 @@ function GridListAccentCard({
       </div>
       <div className="flex flex-1 items-center justify-between truncate border-l border-border px-4 py-3">
         <div className="min-w-0">
-          <p className="body font-semibold text-foreground truncate">{title}</p>
+          <p className="body font-semibold text-foreground truncate text-balance">{title}</p>
           {meta && <p className="caption text-muted-foreground">{meta}</p>}
         </div>
         {trailing && <div className="shrink-0 pl-2">{trailing}</div>}

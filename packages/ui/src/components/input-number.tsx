@@ -101,7 +101,10 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           {...rest}
         />
         {unit && (
-          <span aria-hidden className="caption-xs text-muted-foreground self-center pr-1.5 select-none">
+          <span
+            aria-hidden
+            className="caption-xs text-muted-foreground self-center pr-1.5 select-none"
+          >
             {unit}
           </span>
         )}

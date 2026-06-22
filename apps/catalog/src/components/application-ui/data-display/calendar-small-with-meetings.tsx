@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -59,16 +58,12 @@ export default function CalendarSmallWithMeetings() {
                 <span
                   className={cn(
                     "flex size-7 items-center justify-center rounded-full caption font-medium transition-colors",
-                    isToday
-                      ? "bg-brand-primary text-white"
-                      : "text-ground-700"
+                    isToday ? "bg-brand-primary text-white" : "text-ground-700",
                   )}
                 >
                   {day}
                 </span>
-                {hasEvent && (
-                  <span className="mt-0.5 size-1 rounded-full bg-brand-primary" />
-                )}
+                {hasEvent && <span className="mt-0.5 size-1 rounded-full bg-brand-primary" />}
               </div>
             );
           })}

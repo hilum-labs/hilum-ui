@@ -1,4 +1,3 @@
-
 const STATS = [
   { label: "Customers worldwide", value: "8,000+" },
   { label: "Revenue generated", value: "M+" },
@@ -31,8 +30,7 @@ export default function StatsSectionBrand() {
       <div className="mx-auto max-w-6xl">
         <h2 className="heading text-white">Trusted by teams worldwide</h2>
         <p className="subheading mt-3 max-w-2xl text-white/80">
-          Strong numbers, minimal framing, and enough space to let the
-          brand color do the work.
+          Strong numbers, minimal framing, and enough space to let the brand color do the work.
         </p>
 
         <dl className="mt-10 grid gap-8 md:grid-cols-4">

@@ -290,10 +290,10 @@ function DesignerIndex() {
             const Icon = s.icon;
             return (
               <Link key={s.href} to={s.href} className="group">
-                <Card className="h-full transition-all hover:shadow-natural">
+                <Card className="h-full transition-[box-shadow] hover:shadow-natural">
                   <CardHeader>
                     <div className="flex items-start justify-between">
-                      <div className="flex size-9 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
+                      <div className="flex size-10 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
                         <Icon size={18} />
                       </div>
                       <Badge variant="secondary" className="caption-xs font-mono">
@@ -304,7 +304,7 @@ function DesignerIndex() {
                     <CardDescription>{s.description}</CardDescription>
                   </CardHeader>
                   <CardFooter>
-                    <span className="caption text-brand-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <span className="caption flex items-center gap-1 text-brand-primary transition-[gap] group-hover:gap-2">
                       Open <ArrowRight size={12} />
                     </span>
                   </CardFooter>
@@ -331,7 +331,7 @@ function DesignerIndex() {
               <CardHeader>
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-center gap-3">
-                    <div className="flex size-9 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
+                    <div className="flex size-10 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
                       <Package size={18} />
                     </div>
                     <div>
@@ -373,10 +373,10 @@ function DesignerIndex() {
         <div className="grid gap-4 md:grid-cols-2">
           {API_NOTES.map((note) => (
             <Link key={note.name} to={note.href} className="group">
-              <Card className="h-full transition-all hover:shadow-natural">
+              <Card className="h-full transition-[box-shadow] hover:shadow-natural">
                 <CardHeader>
                   <div className="flex items-start justify-between gap-3">
-                    <div className="flex size-9 items-center justify-center rounded-md bg-muted text-muted-foreground">
+                    <div className="flex size-10 items-center justify-center rounded-md bg-muted text-muted-foreground">
                       <Code2 size={18} />
                     </div>
                     <ArrowRight

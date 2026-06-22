@@ -90,7 +90,7 @@ function DesignerToolbarButton({
           aria-label={label}
           aria-pressed={active}
           className={cn(
-            "flex h-8 min-w-8 items-center justify-center gap-1 rounded-md px-1.5 transition-colors caption",
+            "flex h-10 min-w-10 items-center justify-center gap-1 rounded-md px-2 caption transition-[background-color,color,opacity,scale] active:scale-[0.96]",
             active
               ? "bg-foreground text-background"
               : "text-muted-foreground hover:bg-muted hover:text-foreground",

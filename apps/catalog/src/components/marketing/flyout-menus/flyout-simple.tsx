@@ -1,13 +1,5 @@
-
 import { useState } from "react";
-import {
-  type LucideIcon,
-  BarChart2,
-  ChevronDown,
-  Layers,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { type LucideIcon, BarChart2, ChevronDown, Layers, Shield, Zap } from "lucide-react";
 import { cn } from "@hilum/ui";
 
 type FlyoutItem = {
@@ -44,13 +36,7 @@ const SIMPLE_ITEMS: FlyoutItem[] = [
   },
 ];
 
-function FlyoutLink({
-  item,
-  iconClassName,
-}: {
-  item: FlyoutItem;
-  iconClassName?: string;
-}) {
+function FlyoutLink({ item, iconClassName }: { item: FlyoutItem; iconClassName?: string }) {
   const Icon = item.icon;
 
   return (
@@ -61,7 +47,7 @@ function FlyoutLink({
       <div
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
-          iconClassName
+          iconClassName,
         )}
       >
         <Icon size={18} />
@@ -81,7 +67,7 @@ export default function FlyoutSimple() {
     <div className="relative min-h-[19rem] bg-white">
       <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-brand-primary text-sm font-semibold text-white">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-brand-primary text-sm font-semibold text-white">
             D
           </div>
           <div>
@@ -96,10 +82,7 @@ export default function FlyoutSimple() {
             className="inline-flex items-center gap-1 body font-medium text-ground-700 transition-colors hover:text-ground-900"
           >
             Products
-            <ChevronDown
-              size={14}
-              className={cn("transition-transform", open && "rotate-180")}
-            />
+            <ChevronDown size={14} className={cn("transition-transform", open && "rotate-180")} />
           </button>
           {open ? (
             <div className="absolute left-1/2 z-10 mt-3 w-72 -translate-x-1/2 rounded-xl border border-ground-100 bg-white p-2 shadow-elevated ring-1 ring-ground-100/50">
@@ -114,7 +97,8 @@ export default function FlyoutSimple() {
         <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
           <p className="label text-ground-400">Mock page content</p>
           <p className="body mt-2 max-w-xl text-ground-500">
-            Use a compact flyout for a short product list with fast scan labels and concise supporting detail.
+            Use a compact flyout for a short product list with fast scan labels and concise
+            supporting detail.
           </p>
         </div>
       </div>

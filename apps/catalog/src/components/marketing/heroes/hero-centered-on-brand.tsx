@@ -86,9 +86,8 @@ export default function HeroCenteredOnBrand() {
             The fastest way to run creator marketing.
           </h1>
           <p className="body-lg mt-5 max-w-xl text-ground-500">
-            Connect brands, creators, and agency partners through verified
-            campaigns, transparent payouts, and one operating view that keeps
-            every launch moving.
+            Connect brands, creators, and agency partners through verified campaigns, transparent
+            payouts, and one operating view that keeps every launch moving.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button

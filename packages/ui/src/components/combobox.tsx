@@ -84,14 +84,20 @@ function Combobox({
     }
     if (e.key === "ArrowDown") {
       e.preventDefault();
-      if (!open) { setOpen(true); return; }
+      if (!open) {
+        setOpen(true);
+        return;
+      }
       setActiveIndex((i) => Math.min(i + 1, filtered.length - 1));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setActiveIndex((i) => Math.max(i - 1, 0));
     } else if (e.key === "Enter") {
       e.preventDefault();
-      if (!open) { setOpen(true); return; }
+      if (!open) {
+        setOpen(true);
+        return;
+      }
       const target = activeIndex >= 0 ? filtered[activeIndex] : filtered[0];
       if (target) selectOption(target);
     } else if (e.key === "Tab") {
@@ -121,10 +127,12 @@ function Combobox({
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-controls={open ? listboxId : undefined}
-          aria-activedescendant={open && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined}
+          aria-activedescendant={
+            open && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
+          }
           aria-autocomplete="list"
           className={cn(
-            "flex h-9 w-full rounded-lg border border-border bg-card pr-8 body text-foreground",
+            "flex h-10 w-full rounded-lg border border-border bg-card pr-10 body text-foreground",
             "placeholder:text-muted-foreground",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:border-border",
             "disabled:cursor-not-allowed disabled:opacity-50",
@@ -150,7 +158,7 @@ function Combobox({
           type="button"
           tabIndex={-1}
           aria-label={open ? "Close" : "Open"}
-          className="absolute inset-y-0 right-0 flex items-center px-2 text-muted-foreground hover:text-muted-foreground transition-colors"
+          className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-muted-foreground hover:text-muted-foreground transition-colors"
           onClick={() => {
             if (open) {
               closeDropdown();
@@ -181,7 +189,7 @@ function Combobox({
                     role="option"
                     aria-selected={isSelected}
                     className={cn(
-                      "flex cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
+                      "flex min-h-10 cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
                       isSelected
                         ? "bg-brand-primary text-background"
                         : isActive
@@ -197,7 +205,9 @@ function Combobox({
                       <div
                         className={cn(
                           "flex size-6 shrink-0 items-center justify-center rounded-full caption-xs font-semibold",
-                          isSelected ? "bg-card/20 text-background" : "bg-muted text-muted-foreground",
+                          isSelected
+                            ? "bg-card/20 text-background"
+                            : "bg-muted text-muted-foreground",
                         )}
                       >
                         {option.avatar}

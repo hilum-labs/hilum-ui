@@ -46,17 +46,21 @@ function PropertyRowPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">Molecules</a>
+          <a href="/molecules" className="hover:text-ground-700">
+            Molecules
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Property Row</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Property Row</h1>
         <p className="body max-w-lg text-ground-500">
           Horizontal label + control row for designer inspector panels. Left-aligned label,
-          right-aligned controls, single visual row. Differs from Field, which is a vertical
-          form field with hint/error text.
+          right-aligned controls, single visual row. Differs from Field, which is a vertical form
+          field with hint/error text.
         </p>
       </div>
 

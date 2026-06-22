@@ -10,8 +10,7 @@ export default function CTASplitWithImage() {
             <div className="rounded-[1.75rem] bg-white/75 p-6 shadow-natural backdrop-blur">
               <p className="caption text-ground-500">Field note</p>
               <p className="subheading mt-2 text-ground-900">
-                Teams that standardize launch reviews reduce approval time by
-                41%.
+                Teams that standardize launch reviews reduce approval time by 41%.
               </p>
             </div>
           </div>
@@ -25,8 +24,8 @@ export default function CTASplitWithImage() {
               Move from launch guesswork to launch confidence.
             </h2>
             <p className="body mt-4 text-ground-500">
-              Standardize the playbook, keep execution visible, and give every
-              team a place to resolve issues before they hit customers.
+              Standardize the playbook, keep execution visible, and give every team a place to
+              resolve issues before they hit customers.
             </p>
             <Button size="lg" className="mt-8">
               Get started

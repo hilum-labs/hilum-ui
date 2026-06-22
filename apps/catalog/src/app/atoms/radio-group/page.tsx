@@ -19,9 +19,21 @@ const MEMORY_OPTIONS = [
 
 const PLAN_OPTIONS = [
   { value: "hobby", label: "Hobby", description: "For personal projects and experiments." },
-  { value: "freelancer", label: "Freelancer", description: "For client work and solo professionals." },
-  { value: "startup", label: "Startup", description: "For early-stage companies with growing teams." },
-  { value: "enterprise", label: "Enterprise", description: "Custom contracts and dedicated support." },
+  {
+    value: "freelancer",
+    label: "Freelancer",
+    description: "For client work and solo professionals.",
+  },
+  {
+    value: "startup",
+    label: "Startup",
+    description: "For early-stage companies with growing teams.",
+  },
+  {
+    value: "enterprise",
+    label: "Enterprise",
+    description: "Custom contracts and dedicated support.",
+  },
 ];
 
 const TRANSFER_OPTIONS = [
@@ -41,8 +53,20 @@ const COLORS = [
 
 const PRICING_ROWS = [
   { value: "starter", label: "Starter", users: "Up to 5 users", storage: "10 GB", price: "$9/mo" },
-  { value: "pro", label: "Professional", users: "Up to 25 users", storage: "50 GB", price: "$29/mo" },
-  { value: "business", label: "Business", users: "Up to 100 users", storage: "250 GB", price: "$79/mo" },
+  {
+    value: "pro",
+    label: "Professional",
+    users: "Up to 25 users",
+    storage: "50 GB",
+    price: "$29/mo",
+  },
+  {
+    value: "business",
+    label: "Business",
+    users: "Up to 100 users",
+    storage: "250 GB",
+    price: "$79/mo",
+  },
 ];
 
 const CODE = {
@@ -94,7 +118,7 @@ const CODE = {
     type="button"
     aria-label={c.label}
     className={cn(
-      "relative size-8 rounded-full ring-offset-2 transition-all",
+      "relative size-8 rounded-full ring-offset-2 transition-[box-shadow]",
       selected === c.value && "ring-2 ring-ground-900"
     )}
     style={{ backgroundColor: c.hex }}
@@ -186,25 +210,34 @@ function RadioGroupPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Radio Group</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Radio Group</h1>
         <p className="body max-w-lg text-ground-500">
-          Single selection from a set of mutually exclusive options. Multiple layout and visual variants.
+          Single selection from a set of mutually exclusive options. Multiple layout and visual
+          variants.
         </p>
       </div>
 
       <PageDocs path="/atoms/radio-group/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Radio Group · Basic" />
-          <PreviewBlock title="Stacked list" description="Vertical list of radio options" code={CODE.basic} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Stacked list"
+            description="Vertical list of radio options"
+            code={CODE.basic}
+            previewClassName="flex-col items-start"
+          >
             <RadioGroup defaultValue="mp3">
               <div className="flex items-center gap-2">
                 <RadioGroupItem value="mp3" id="fmt-mp3" />
@@ -224,7 +257,12 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · Inline" />
-          <PreviewBlock title="Horizontal list" description="Options side by side" code={CODE.inline} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Horizontal list"
+            description="Options side by side"
+            code={CODE.inline}
+            previewClassName="flex-col items-start"
+          >
             <RadioGroup defaultValue="monthly" className="flex gap-6">
               {["Monthly", "Quarterly", "Annual (save 20%)"].map((label, i) => {
                 const value = ["monthly", "quarterly", "annual"][i];
@@ -241,13 +279,22 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · With description" />
-          <PreviewBlock title="Description below label" description="Each option includes supporting text" code={CODE.withDescription} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Description below label"
+            description="Each option includes supporting text"
+            code={CODE.withDescription}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-md">
               <RadioGroup defaultValue="freelancer">
                 <div className="flex flex-col gap-4">
                   {PLAN_OPTIONS.map((plan) => (
                     <div key={plan.value} className="flex gap-3">
-                      <RadioGroupItem value={plan.value} id={`plan-${plan.value}`} className="mt-0.5" />
+                      <RadioGroupItem
+                        value={plan.value}
+                        id={`plan-${plan.value}`}
+                        className="mt-0.5"
+                      />
                       <div>
                         <Label htmlFor={`plan-${plan.value}`}>{plan.label}</Label>
                         <p className="caption text-ground-400 mt-0.5">{plan.description}</p>
@@ -262,7 +309,12 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · Radio on right" />
-          <PreviewBlock title="Label left, radio right" description="Common for payment method selection" code={CODE.rightSide} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Label left, radio right"
+            description="Common for payment method selection"
+            code={CODE.rightSide}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-md">
               <RadioGroup defaultValue="bank">
                 <div className="divide-y divide-ground-100 border-y border-ground-100">
@@ -283,7 +335,12 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · Color picker" />
-          <PreviewBlock title="Color swatch selection" description="Visual circles with ring indicator on select" code={CODE.colorPicker} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Color swatch selection"
+            description="Visual circles with ring indicator on select"
+            code={CODE.colorPicker}
+            previewClassName="flex-col items-start"
+          >
             <div className="flex gap-3">
               {COLORS.map((c) => (
                 <button
@@ -291,8 +348,8 @@ function RadioGroupPage() {
                   type="button"
                   aria-label={c.label}
                   className={cn(
-                    "relative size-8 rounded-full ring-offset-2 transition-all",
-                    colorVal === c.value && "ring-2 ring-ground-900"
+                    "relative size-8 rounded-full ring-offset-2 transition-[box-shadow]",
+                    colorVal === c.value && "ring-2 ring-ground-900",
                   )}
                   style={{ backgroundColor: c.hex }}
                   onClick={() => setColorVal(c.value)}
@@ -304,7 +361,12 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · In panel cards" />
-          <PreviewBlock title="Panel with click-to-select" description="Bordered card highlights on selection" code={CODE.inPanel} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Panel with click-to-select"
+            description="Bordered card highlights on selection"
+            code={CODE.inPanel}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-md">
               <RadioGroup value={inPanel} onValueChange={setInPanel}>
                 <div className="flex flex-col gap-2">
@@ -315,13 +377,15 @@ function RadioGroupPage() {
                         "flex items-start gap-4 rounded-xl border p-4 cursor-pointer transition-colors",
                         inPanel === plan.value
                           ? "border-ground-900 bg-ground-50"
-                          : "border-ground-100 hover:bg-ground-50"
+                          : "border-ground-100 hover:bg-ground-50",
                       )}
                       onClick={() => setInPanel(plan.value)}
                     >
                       <RadioGroupItem value={plan.value} id={`panel-${plan.value}`} />
                       <div>
-                        <Label htmlFor={`panel-${plan.value}`} className="cursor-pointer">{plan.label}</Label>
+                        <Label htmlFor={`panel-${plan.value}`} className="cursor-pointer">
+                          {plan.label}
+                        </Label>
                         <p className="caption text-ground-400 mt-0.5">{plan.description}</p>
                       </div>
                     </div>
@@ -334,9 +398,18 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · Small cards" />
-          <PreviewBlock title="Compact grid cards" description="Used for memory, size, or tier selection" code={CODE.smallCards} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Compact grid cards"
+            description="Used for memory, size, or tier selection"
+            code={CODE.smallCards}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-sm">
-              <RadioGroup value={smallCard} onValueChange={setSmallCard} className="grid grid-cols-3 gap-2">
+              <RadioGroup
+                value={smallCard}
+                onValueChange={setSmallCard}
+                className="grid grid-cols-3 gap-2"
+              >
                 {MEMORY_OPTIONS.map((opt) => (
                   <label
                     key={opt.value}
@@ -344,7 +417,7 @@ function RadioGroupPage() {
                       "flex cursor-pointer items-center justify-center rounded-lg border px-3 py-2 caption font-medium transition-colors select-none",
                       smallCard === opt.value
                         ? "border-ground-900 bg-ground-900 text-white"
-                        : "border-ground-200 bg-white text-ground-700 hover:bg-ground-50"
+                        : "border-ground-200 bg-white text-ground-700 hover:bg-ground-50",
                     )}
                   >
                     <RadioGroupItem value={opt.value} className="sr-only" />
@@ -358,7 +431,12 @@ function RadioGroupPage() {
 
         <div>
           <Heading label="Radio Group · Table" />
-          <PreviewBlock title="Pricing table" description="Plan comparison with radio in first column" code={CODE.table} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Pricing table"
+            description="Plan comparison with radio in first column"
+            code={CODE.table}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-lg">
               <RadioGroup value={tableVal} onValueChange={setTableVal}>
                 <table className="w-full">
@@ -366,7 +444,9 @@ function RadioGroupPage() {
                     <tr className="border-b border-ground-100">
                       <th className="pb-3 text-left caption text-ground-500 font-medium">Plan</th>
                       <th className="pb-3 text-left caption text-ground-500 font-medium">Users</th>
-                      <th className="pb-3 text-left caption text-ground-500 font-medium">Storage</th>
+                      <th className="pb-3 text-left caption text-ground-500 font-medium">
+                        Storage
+                      </th>
                       <th className="pb-3 text-right caption text-ground-500 font-medium">Price</th>
                     </tr>
                   </thead>
@@ -380,12 +460,16 @@ function RadioGroupPage() {
                         <td className="py-3">
                           <div className="flex items-center gap-2.5">
                             <RadioGroupItem value={row.value} id={`tbl-${row.value}`} />
-                            <Label htmlFor={`tbl-${row.value}`} className="cursor-pointer">{row.label}</Label>
+                            <Label htmlFor={`tbl-${row.value}`} className="cursor-pointer">
+                              {row.label}
+                            </Label>
                           </div>
                         </td>
                         <td className="py-3 caption text-ground-500">{row.users}</td>
                         <td className="py-3 caption text-ground-500">{row.storage}</td>
-                        <td className="py-3 caption font-medium text-ground-900 text-right">{row.price}</td>
+                        <td className="py-3 caption font-medium text-ground-900 text-right">
+                          {row.price}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -394,7 +478,6 @@ function RadioGroupPage() {
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

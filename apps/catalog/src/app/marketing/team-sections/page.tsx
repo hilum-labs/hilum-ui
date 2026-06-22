@@ -50,7 +50,8 @@ function TeamSectionsPage() {
         </div>
         <h1 className="display text-ground-900">Team Sections</h1>
         <p className="body mt-3 text-ground-500">
-          Team presentation patterns ranging from compact grids to full-width editorial layouts and dark-profile treatments.
+          Team presentation patterns ranging from compact grids to full-width editorial layouts and
+          dark-profile treatments.
         </p>
       </div>
 

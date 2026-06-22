@@ -35,15 +35,20 @@ function NotFoundPagesPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/marketing" className="hover:text-ground-700">Marketing</a>
+          <a href="/marketing" className="hover:text-ground-700">
+            Marketing
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">404 Pages</span>
         </div>
         <h1 className="display mb-2 text-ground-900">404 Pages</h1>
         <p className="body max-w-md text-ground-400">
-          Not-found page layouts — from minimal centred messages to full-nav experiences with helpful links.
+          Not-found page layouts — from minimal centred messages to full-nav experiences with
+          helpful links.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Marketing · Feedback</p>
@@ -57,42 +62,72 @@ function NotFoundPagesPage() {
       <div className="flex flex-col gap-10">
         <div>
           <SectionHeading label="Simple" />
-          <PreviewBlock title="Simple centered" description="Clean error message with two action buttons" code={notFound404SimpleSource} previewClassName="p-0">
+          <PreviewBlock
+            title="Simple centered"
+            description="Clean error message with two action buttons"
+            code={notFound404SimpleSource}
+            previewClassName="p-0"
+          >
             <NotFound404Simple />
           </PreviewBlock>
         </div>
 
         <div>
           <SectionHeading label="Simple with logo" />
-          <PreviewBlock title="With brand logo" description="Logo mark above the error message with a link back home" code={notFound404WithLogoSource} previewClassName="p-0">
+          <PreviewBlock
+            title="With brand logo"
+            description="Logo mark above the error message with a link back home"
+            code={notFound404WithLogoSource}
+            previewClassName="p-0"
+          >
             <NotFound404WithLogo />
           </PreviewBlock>
         </div>
 
         <div>
           <SectionHeading label="Split with image" />
-          <PreviewBlock title="Half image, half content" description="Two-column layout with an image panel on the right" code={notFound404SplitImageSource} previewClassName="p-0">
+          <PreviewBlock
+            title="Half image, half content"
+            description="Two-column layout with an image panel on the right"
+            code={notFound404SplitImageSource}
+            previewClassName="p-0"
+          >
             <NotFound404SplitImage />
           </PreviewBlock>
         </div>
 
         <div>
           <SectionHeading label="With background image" />
-          <PreviewBlock title="Dark overlay background" description="Full-bleed dark section with a radial brand-primary glow" code={notFound404BackgroundImageSource} previewClassName="p-0">
+          <PreviewBlock
+            title="Dark overlay background"
+            description="Full-bleed dark section with a radial brand-primary glow"
+            code={notFound404BackgroundImageSource}
+            previewClassName="p-0"
+          >
             <NotFound404BackgroundImage />
           </PreviewBlock>
         </div>
 
         <div>
           <SectionHeading label="With popular pages" />
-          <PreviewBlock title="Helpful resource links" description="Error message followed by a list of popular destination pages" code={notFound404PopularPagesSource} previewClassName="p-0">
+          <PreviewBlock
+            title="Helpful resource links"
+            description="Error message followed by a list of popular destination pages"
+            code={notFound404PopularPagesSource}
+            previewClassName="p-0"
+          >
             <NotFound404PopularPages />
           </PreviewBlock>
         </div>
 
         <div>
           <SectionHeading label="With navbar and footer" />
-          <PreviewBlock title="Full page layout" description="Complete page shell with site navigation and footer" code={notFound404WithNavAndFooterSource} previewClassName="p-0">
+          <PreviewBlock
+            title="Full page layout"
+            description="Complete page shell with site navigation and footer"
+            code={notFound404WithNavAndFooterSource}
+            previewClassName="p-0"
+          >
             <NotFound404WithNavAndFooter />
           </PreviewBlock>
         </div>

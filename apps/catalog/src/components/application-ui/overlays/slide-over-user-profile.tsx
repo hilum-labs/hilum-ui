@@ -1,4 +1,3 @@
-
 import { X } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -26,9 +25,7 @@ function PersonAvatar({
 }) {
   return (
     <Avatar size={size} className={className}>
-      <AvatarFallback className="bg-brand-primary/10 text-brand-primary">
-        {initials}
-      </AvatarFallback>
+      <AvatarFallback className="bg-brand-primary/10 text-brand-primary">{initials}</AvatarFallback>
     </Avatar>
   );
 }

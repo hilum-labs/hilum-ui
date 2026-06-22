@@ -1,4 +1,3 @@
-
 const PRODUCTS = [
   {
     name: "Earthen Bottle",
@@ -30,7 +29,11 @@ export default function SupportingText() {
             className="rounded-[2rem] border border-ground-100 bg-white p-4 shadow-natural transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-elevated"
           >
             <div className="overflow-hidden rounded-2xl bg-ground-50">
-              <img src={product.image} alt={product.name} className="aspect-[4/3] w-full object-cover" />
+              <img
+                src={product.image}
+                alt={product.name}
+                className="aspect-[4/3] w-full object-cover"
+              />
             </div>
             <div className="mt-5">
               <div className="flex items-start justify-between gap-4">

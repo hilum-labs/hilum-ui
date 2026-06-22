@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 const TABS = ["Overview", "Components", "Patterns", "Resources"] as const;
@@ -12,7 +11,8 @@ export default function HeaderSimpleWithSelectMenu() {
         <p className="caption text-brand-primary">Explore the catalog</p>
         <h2 className="display mt-4 text-ground-900">Patterns for every page state</h2>
         <p className="body mt-5 text-ground-500">
-          Filter the examples by section type to jump between foundations, growth patterns, and editorial layouts.
+          Filter the examples by section type to jump between foundations, growth patterns, and
+          editorial layouts.
         </p>
         <div className="mt-8 inline-flex flex-wrap items-center justify-center gap-2 rounded-full bg-ground-100 p-1">
           {TABS.map((tab) => (

@@ -1,25 +1,11 @@
-
 const COLLECTION_ONE = "https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg";
 const EDITION_TWO = "https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg";
 const EDITION_THREE = "https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg";
-const RELATED_ONE = "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg";
+const RELATED_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg";
 
-function CategoryImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function CategoryImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function ImageBackgrounds() {

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Minus, Plus, X } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -44,19 +43,13 @@ function getInitialQuantities() {
   }, {});
 }
 
-function QuantityStepper({
-  value,
-  onChange,
-}: {
-  value: number;
-  onChange: (next: number) => void;
-}) {
+function QuantityStepper({ value, onChange }: { value: number; onChange: (next: number) => void }) {
   return (
     <div className="inline-flex items-center rounded-full border border-ground-200 bg-white">
       <button
         type="button"
         onClick={() => onChange(Math.max(1, value - 1))}
-        className="flex size-9 items-center justify-center text-ground-500 transition hover:bg-ground-50 hover:text-ground-900"
+        className="flex size-10 items-center justify-center text-ground-500 transition-colors hover:bg-ground-50 hover:text-ground-900"
         aria-label="Decrease quantity"
       >
         <Minus size={14} />
@@ -65,7 +58,7 @@ function QuantityStepper({
       <button
         type="button"
         onClick={() => onChange(Math.min(8, value + 1))}
-        className="flex size-9 items-center justify-center text-ground-500 transition hover:bg-ground-50 hover:text-ground-900"
+        className="flex size-10 items-center justify-center text-ground-500 transition-colors hover:bg-ground-50 hover:text-ground-900"
         aria-label="Increase quantity"
       >
         <Plus size={14} />
@@ -97,14 +90,19 @@ function CartRow({
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <a href={item.href} className="subheading text-ground-900 transition hover:text-brand-primary">
+            <a
+              href={item.href}
+              className="subheading text-ground-900 transition-colors hover:text-brand-primary"
+            >
               {item.name}
             </a>
             <p className="caption mt-1 text-ground-500">
               {item.color} / {item.size}
             </p>
           </div>
-          <p className="body font-medium text-ground-900">{formatCurrency(item.price * quantity)}</p>
+          <p className="body font-medium text-ground-900">
+            {formatCurrency(item.price * quantity)}
+          </p>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           {quantityControl}
@@ -148,7 +146,7 @@ export default function SlideOverCart() {
                 action={
                   <button
                     type="button"
-                    className="flex items-center gap-1 caption font-medium text-ground-500 transition hover:text-brand-primary"
+                    className="flex items-center gap-1 caption font-medium text-ground-500 transition-colors hover:text-brand-primary"
                   >
                     <X size={12} />
                     Remove
@@ -163,7 +161,9 @@ export default function SlideOverCart() {
             <p className="subheading text-ground-900">Subtotal</p>
             <p className="heading text-ground-900">{formatCurrency(subtotalFour)}</p>
           </div>
-          <p className="caption mt-2 text-ground-500">Taxes and shipping are calculated at checkout.</p>
+          <p className="caption mt-2 text-ground-500">
+            Taxes and shipping are calculated at checkout.
+          </p>
           <div className="mt-4 flex gap-3">
             <Button variant="outline" className="flex-1">
               View cart

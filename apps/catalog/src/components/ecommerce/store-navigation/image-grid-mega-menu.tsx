@@ -1,9 +1,5 @@
-
 import { useState } from "react";
-import {
-  Search,
-  ShoppingBag,
-} from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
 type CategoryName = "Women" | "Men";
@@ -65,7 +61,7 @@ const pages = ["Company", "Stores"];
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
+      <div className="flex size-10 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
         D
       </div>
       <div>
@@ -80,7 +76,10 @@ function CartButton() {
   return (
     <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
-      <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
+      <Badge
+        variant="brand"
+        className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none"
+      >
         2
       </Badge>
     </button>
@@ -89,7 +88,9 @@ function CartButton() {
 
 function PageContent({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}>
+    <div
+      className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}
+    >
       Page content
     </div>
   );
@@ -101,8 +102,16 @@ function ImageGridMenu({ category }: { category: NavCategory }) {
       <div className="grid gap-5 md:grid-cols-[1.1fr_0.9fr]">
         <div className="grid gap-4 sm:grid-cols-2">
           {category.featured.map((item) => (
-            <a key={item.title} href="#" className="group overflow-hidden rounded-[24px] border border-ground-100 bg-ground-50">
-              <img src={item.image} alt={item.title} className="h-36 w-full object-cover transition duration-300 group-hover:scale-[1.02]" />
+            <a
+              key={item.title}
+              href="#"
+              className="group overflow-hidden rounded-[24px] border border-ground-100 bg-ground-50"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="h-36 w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+              />
               <div className="space-y-1 p-4">
                 <p className="body font-semibold text-ground-900">{item.title}</p>
                 <p className="caption text-ground-400">{item.subtitle}</p>
@@ -116,7 +125,11 @@ function ImageGridMenu({ category }: { category: NavCategory }) {
               <p className="label mb-3 text-ground-400">{section.label}</p>
               <div className="space-y-2">
                 {section.links.map((link) => (
-                  <a key={link} href="#" className="block body text-ground-600 transition-colors hover:text-ground-900">
+                  <a
+                    key={link}
+                    href="#"
+                    className="block body text-ground-600 transition-colors hover:text-ground-900"
+                  >
                     {link}
                   </a>
                 ))}
@@ -156,7 +169,11 @@ export default function ImageGridMegaMenu() {
                 </button>
               ))}
               {pages.map((page) => (
-                <a key={page} href="#" className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900">
+                <a
+                  key={page}
+                  href="#"
+                  className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900"
+                >
                   {page}
                 </a>
               ))}

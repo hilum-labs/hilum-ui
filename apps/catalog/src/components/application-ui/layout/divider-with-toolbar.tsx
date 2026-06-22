@@ -17,7 +17,7 @@ export default function DividerWithToolbar() {
               "rounded p-1 transition-colors",
               activeTool === "filter"
                 ? "bg-brand-primary/10 text-brand-primary"
-                : "text-ground-500 hover:bg-ground-50"
+                : "text-ground-500 hover:bg-ground-50",
             )}
           >
             <Filter className="size-3.5" />
@@ -28,7 +28,7 @@ export default function DividerWithToolbar() {
               "rounded p-1 transition-colors",
               activeTool === "sort"
                 ? "bg-brand-primary/10 text-brand-primary"
-                : "text-ground-500 hover:bg-ground-50"
+                : "text-ground-500 hover:bg-ground-50",
             )}
           >
             <ArrowUpDown className="size-3.5" />
@@ -39,7 +39,7 @@ export default function DividerWithToolbar() {
               "rounded p-1 transition-colors",
               activeTool === "grid"
                 ? "bg-brand-primary/10 text-brand-primary"
-                : "text-ground-500 hover:bg-ground-50"
+                : "text-ground-500 hover:bg-ground-50",
             )}
           >
             <Grid3x3 className="size-3.5" />

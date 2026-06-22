@@ -1,33 +1,37 @@
-
 import { useState, type ReactNode } from "react";
 import { Gift, Leaf, RefreshCw, Shield, Truck } from "lucide-react";
 
 const incentives = [
   {
     title: "Free shipping",
-    description: "It's not actually free we just price it into the products. Someone's paying for it, and it's not us.",
+    description:
+      "It's not actually free we just price it into the products. Someone's paying for it, and it's not us.",
     icon: Truck,
   },
   {
     title: "10-year warranty",
-    description: "If it breaks in the first 10 years we'll replace it. After that you're on your own though.",
+    description:
+      "If it breaks in the first 10 years we'll replace it. After that you're on your own though.",
     icon: Shield,
   },
   {
     title: "Exchanges",
-    description: "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
+    description:
+      "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
     icon: RefreshCw,
   },
   {
     title: "For the love of planet",
-    description: "We've pledged 1% of sales to the preservation and restoration of the natural environment.",
+    description:
+      "We've pledged 1% of sales to the preservation and restoration of the natural environment.",
     icon: Leaf,
   },
 ];
 
 const wrappedGift = {
   title: "Gift wrapping",
-  description: "Premium wrap, handwritten note cards, and clean packaging ready to send directly to someone else.",
+  description:
+    "Premium wrap, handwritten note cards, and clean packaging ready to send directly to someone else.",
   icon: Gift,
 };
 
@@ -52,7 +56,7 @@ export default function FourUpIconRow() {
             key={item.title}
             onMouseEnter={() => setHighlighted(item.title)}
             onClick={() => setHighlighted(item.title)}
-            className={`rounded-[24px] border p-5 text-left transition ${
+            className={`rounded-[24px] border p-5 text-left transition-colors ${
               highlighted === item.title
                 ? "border-brand-primary/40 bg-brand-primary/5"
                 : "border-ground-100 bg-ground-50 hover:border-ground-200"

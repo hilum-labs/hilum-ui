@@ -13,7 +13,7 @@ const ProgressRoot = React.forwardRef<
     {...props}
   >
     <Progress.Indicator
-      className="h-full w-full flex-1 bg-brand-primary transition-all"
+      className="h-full w-full flex-1 bg-brand-primary transition-transform"
       style={{ transform: `translateX(-${100 - (value ?? 0)}%)` }}
     />
   </Progress.Root>

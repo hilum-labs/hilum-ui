@@ -34,15 +34,23 @@ function Field({
       <div className="flex items-center justify-between gap-2">
         <Label htmlFor={htmlFor} aria-required={required}>
           {label}
-          {required && <span className="ml-0.5 text-destructive" aria-hidden="true">*</span>}
+          {required && (
+            <span className="ml-0.5 text-destructive" aria-hidden="true">
+              *
+            </span>
+          )}
         </Label>
         {cornerHint && <span className="caption text-muted-foreground">{cornerHint}</span>}
       </div>
       {children}
       {error ? (
-        <p id={descriptionId} role="alert" className="caption text-destructive">{error}</p>
+        <p id={descriptionId} role="alert" className="caption text-destructive">
+          {error}
+        </p>
       ) : hint ? (
-        <p id={descriptionId} className="caption text-muted-foreground">{hint}</p>
+        <p id={descriptionId} className="caption text-muted-foreground">
+          {hint}
+        </p>
       ) : null}
     </div>
   );

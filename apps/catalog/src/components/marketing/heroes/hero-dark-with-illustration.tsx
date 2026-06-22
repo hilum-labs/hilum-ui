@@ -9,12 +9,10 @@ export default function HeroDarkWithIllustration() {
           <p className="label uppercase tracking-[0.24em] text-brand-secondary">
             Operating cadence for ambitious teams
           </p>
-          <h1 className="display mt-5 text-white">
-            A calmer way to run work across every team.
-          </h1>
+          <h1 className="display mt-5 text-white">A calmer way to run work across every team.</h1>
           <p className="body mt-5 text-ground-400">
-            Balance priorities, share updates automatically, and keep delivery
-            moving even when plans shift mid-quarter.
+            Balance priorities, share updates automatically, and keep delivery moving even when
+            plans shift mid-quarter.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button size="lg">

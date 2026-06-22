@@ -8,11 +8,13 @@ export default function FeatureLargeScreenshot() {
     },
     {
       title: "Campaign-level drilldowns",
-      description: "Move from a portfolio overview into channel, segment, and asset performance without switching tools.",
+      description:
+        "Move from a portfolio overview into channel, segment, and asset performance without switching tools.",
     },
     {
       title: "Shared decision history",
-      description: "Keep commentary, approvals, and metric changes attached to the work they influenced.",
+      description:
+        "Keep commentary, approvals, and metric changes attached to the work they influenced.",
     },
   ];
 
@@ -20,10 +22,15 @@ export default function FeatureLargeScreenshot() {
     <section className="w-full bg-white px-8 py-16 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="secondary" className="mb-4">Analytics workspace</Badge>
-          <h3 className="heading text-ground-900">See performance, approvals, and launch momentum in one view</h3>
+          <Badge variant="secondary" className="mb-4">
+            Analytics workspace
+          </Badge>
+          <h3 className="heading text-ground-900">
+            See performance, approvals, and launch momentum in one view
+          </h3>
           <p className="body mt-3 text-ground-500">
-            Replace fragmented reporting with a shared operating dashboard built for launch teams and revenue leaders alike.
+            Replace fragmented reporting with a shared operating dashboard built for launch teams
+            and revenue leaders alike.
           </p>
         </div>
         <div className="mt-10 aspect-video w-full overflow-hidden rounded-[2rem] bg-ground-900 p-5 shadow-elevated">
@@ -31,7 +38,9 @@ export default function FeatureLargeScreenshot() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="label text-ground-500">Q2 launch cockpit</p>
-                <p className="subheading mt-2 text-white">Pipeline creation up 31% quarter over quarter</p>
+                <p className="subheading mt-2 text-white">
+                  Pipeline creation up 31% quarter over quarter
+                </p>
               </div>
               <Badge variant="brand">Live data</Badge>
             </div>

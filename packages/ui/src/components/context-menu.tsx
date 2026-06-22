@@ -44,7 +44,7 @@ const ContextMenuItem = React.forwardRef<
   <ContextMenu.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
       "body outline-none transition-colors",
       destructive
         ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
@@ -65,7 +65,7 @@ const ContextMenuCheckboxItem = React.forwardRef<
   <ContextMenu.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md pl-8 pr-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -90,7 +90,7 @@ const ContextMenuRadioItem = React.forwardRef<
   <ContextMenu.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md pl-8 pr-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -143,7 +143,7 @@ const ContextMenuSubTrigger = React.forwardRef<
   <ContextMenu.SubTrigger
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground data-[state=open]:bg-muted",
       inset && "pl-8",

@@ -1,4 +1,3 @@
-
 const PRODUCTS = [
   {
     name: "Earthen Bottle",
@@ -41,7 +40,11 @@ export default function InlinePrice() {
             key={product.name}
             className="grid gap-4 border-b border-ground-100 px-5 py-4 last:border-b-0 sm:grid-cols-[96px_1fr]"
           >
-            <img src={product.image} alt={product.name} className="aspect-square w-24 rounded-2xl object-cover" />
+            <img
+              src={product.image}
+              alt={product.name}
+              className="aspect-square w-24 rounded-2xl object-cover"
+            />
             <div className="flex items-center justify-between gap-4">
               <h3 className="body font-medium text-ground-900">{product.name}</h3>
               <p className="body text-ground-500">{product.price}</p>

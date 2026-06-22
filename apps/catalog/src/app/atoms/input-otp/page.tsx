@@ -3,12 +3,7 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSlot,
-  InputOTPSeparator,
-} from "@hilum/ui";
+import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@hilum/ui";
@@ -126,16 +121,20 @@ function InputOTPPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Input OTP</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Input OTP</h1>
         <p className="body max-w-lg text-ground-500">
-          One-time password input with individual character slots — used for
-          verification codes, PINs, and two-factor authentication.
+          One-time password input with individual character slots — used for verification codes,
+          PINs, and two-factor authentication.
         </p>
       </div>
 
@@ -182,11 +181,7 @@ function InputOTPPage() {
             <InputOTP maxLength={4}>
               <InputOTPGroup>
                 {[0, 1, 2, 3].map((i) => (
-                  <InputOTPSlot
-                    key={i}
-                    index={i}
-                    className="h-14 w-13"
-                  />
+                  <InputOTPSlot key={i} index={i} className="h-14 w-13" />
                 ))}
               </InputOTPGroup>
             </InputOTP>
@@ -207,7 +202,7 @@ function InputOTPPage() {
                     index={i}
                     className={cn(
                       "border-green-400 text-green-700",
-                      "first:rounded-l-xl last:rounded-r-xl"
+                      "first:rounded-l-xl last:rounded-r-xl",
                     )}
                   />
                 ))}

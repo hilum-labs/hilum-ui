@@ -45,16 +45,20 @@ function ColorInputPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Color Input</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Color Input</h1>
         <p className="body max-w-lg text-ground-500">
-          Compact inline color input combining a swatch trigger, hex text field, and optional opacity
-          control. Designed for designer property panels.
+          Compact inline color input combining a swatch trigger, hex text field, and optional
+          opacity control. Designed for designer property panels.
         </p>
       </div>
 
@@ -67,7 +71,11 @@ function ColorInputPage() {
           <ColorInput value={color} onChange={setColor} />
         </PreviewBlock>
 
-        <PreviewBlock title="With opacity" description="Adds an opacity percentage field" code={CODE.withOpacity}>
+        <PreviewBlock
+          title="With opacity"
+          description="Adds an opacity percentage field"
+          code={CODE.withOpacity}
+        >
           <ColorInput
             value={colorWithOpacity}
             onChange={setColorWithOpacity}

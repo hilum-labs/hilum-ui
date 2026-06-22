@@ -11,21 +11,39 @@ import { Button } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 
 const NOTIFICATIONS = [
-  { id: "notif-comments", label: "Comments", description: "Get notified when someone comments.", defaultChecked: true },
-  { id: "notif-mentions", label: "Mentions", description: "Get notified when you are mentioned.", defaultChecked: true },
-  { id: "notif-updates", label: "Product updates", description: "News and announcements.", defaultChecked: false },
-  { id: "notif-security", label: "Security alerts", description: "Login and account security events.", defaultChecked: true },
+  {
+    id: "notif-comments",
+    label: "Comments",
+    description: "Get notified when someone comments.",
+    defaultChecked: true,
+  },
+  {
+    id: "notif-mentions",
+    label: "Mentions",
+    description: "Get notified when you are mentioned.",
+    defaultChecked: true,
+  },
+  {
+    id: "notif-updates",
+    label: "Product updates",
+    description: "News and announcements.",
+    defaultChecked: false,
+  },
+  {
+    id: "notif-security",
+    label: "Security alerts",
+    description: "Login and account security events.",
+    defaultChecked: true,
+  },
 ];
 
 export default function SettingsPreview() {
   const [notifications, setNotifications] = useState(
-    NOTIFICATIONS.map((n) => ({ id: n.id, checked: n.defaultChecked }))
+    NOTIFICATIONS.map((n) => ({ id: n.id, checked: n.defaultChecked })),
   );
 
   function toggle(id: string) {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, checked: !n.checked } : n))
-    );
+    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, checked: !n.checked } : n)));
   }
 
   return (
@@ -35,17 +53,18 @@ export default function SettingsPreview() {
       {/* Profile */}
       <div className="grid grid-cols-3 gap-6 border-b border-ground-100 pb-8">
         <div>
-          <SectionHeadingComponent
-            title="Profile"
-            description="Update your public profile."
-          />
+          <SectionHeadingComponent title="Profile" description="Update your public profile." />
         </div>
         <div className="col-span-2 flex flex-col gap-4">
           <div className="flex items-center gap-4">
             <Avatar size="lg">
-              <AvatarFallback className="bg-brand-primary text-white heading font-semibold">TC</AvatarFallback>
+              <AvatarFallback className="bg-brand-primary text-white heading font-semibold">
+                TC
+              </AvatarFallback>
             </Avatar>
-            <Button variant="outline" size="sm">Change photo</Button>
+            <Button variant="outline" size="sm">
+              Change photo
+            </Button>
           </div>
           <Field label="Display name" htmlFor="settings-name">
             <Input id="settings-name" defaultValue="Tom Cook" />
@@ -76,7 +95,9 @@ export default function SettingsPreview() {
             return (
               <div key={n.id} className="flex items-center justify-between gap-4">
                 <div>
-                  <Label htmlFor={n.id} className="body font-medium text-ground-900">{n.label}</Label>
+                  <Label htmlFor={n.id} className="body font-medium text-ground-900">
+                    {n.label}
+                  </Label>
                   <p className="caption text-ground-400 mt-0.5">{n.description}</p>
                 </div>
                 <Switch

@@ -111,15 +111,20 @@ function ComboboxPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Combobox</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Combobox</h1>
         <p className="body max-w-md text-ground-400">
-          A searchable select input. Users can type to filter the option list. Supports descriptions, avatars, status indicators, and composing inside a Field.
+          A searchable select input. Users can type to filter the option list. Supports
+          descriptions, avatars, status indicators, and composing inside a Field.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Atom</p>
@@ -131,54 +136,97 @@ function ComboboxPage() {
       <PageDocs path="/atoms/combobox/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Combobox · Basic" />
           <PreviewBlock title="Simple" description="Select from a filtered list" code={CODE.basic}>
             <div className="w-72">
-              <Combobox options={FRAMEWORKS} value={v1} onValueChange={setV1} placeholder="Select framework..." />
+              <Combobox
+                options={FRAMEWORKS}
+                value={v1}
+                onValueChange={setV1}
+                placeholder="Select framework..."
+              />
             </div>
           </PreviewBlock>
         </div>
 
         <div>
           <Heading label="Combobox · With descriptions" />
-          <PreviewBlock title="Options with sub-labels" description="Each item has a secondary description" code={CODE.withDescription}>
+          <PreviewBlock
+            title="Options with sub-labels"
+            description="Each item has a secondary description"
+            code={CODE.withDescription}
+          >
             <div className="w-72">
-              <Combobox options={PEOPLE} value={v2} onValueChange={setV2} placeholder="Assign to..." />
+              <Combobox
+                options={PEOPLE}
+                value={v2}
+                onValueChange={setV2}
+                placeholder="Assign to..."
+              />
             </div>
           </PreviewBlock>
         </div>
 
         <div>
           <Heading label="Combobox · With avatars" />
-          <PreviewBlock title="Person picker with initials" description="Avatar initials shown in trigger and dropdown" code={CODE.withAvatar}>
+          <PreviewBlock
+            title="Person picker with initials"
+            description="Avatar initials shown in trigger and dropdown"
+            code={CODE.withAvatar}
+          >
             <div className="w-72">
-              <Combobox options={PEOPLE_WITH_AVATARS} value={v3} onValueChange={setV3} placeholder="Select person..." />
+              <Combobox
+                options={PEOPLE_WITH_AVATARS}
+                value={v3}
+                onValueChange={setV3}
+                placeholder="Select person..."
+              />
             </div>
           </PreviewBlock>
         </div>
 
         <div>
           <Heading label="Combobox · With status indicator" />
-          <PreviewBlock title="Status dot per option" description="Colored dot shows online/busy/away/offline" code={CODE.withStatus}>
+          <PreviewBlock
+            title="Status dot per option"
+            description="Colored dot shows online/busy/away/offline"
+            code={CODE.withStatus}
+          >
             <div className="w-72">
-              <Combobox options={PEOPLE_WITH_STATUS} value={v4} onValueChange={setV4} placeholder="Select user..." />
+              <Combobox
+                options={PEOPLE_WITH_STATUS}
+                value={v4}
+                onValueChange={setV4}
+                placeholder="Select user..."
+              />
             </div>
           </PreviewBlock>
         </div>
 
         <div>
           <Heading label="Combobox · In a Field" />
-          <PreviewBlock title="Composed with Field" description="Works with label, hint, and error" code={CODE.inField}>
+          <PreviewBlock
+            title="Composed with Field"
+            description="Works with label, hint, and error"
+            code={CODE.inField}
+          >
             <div className="w-72">
-              <Field label="Assigned to" htmlFor="combobox-field" hint="Type to filter team members.">
-                <Combobox options={PEOPLE} value={v5} onValueChange={setV5} placeholder="Select person..." />
+              <Field
+                label="Assigned to"
+                htmlFor="combobox-field"
+                hint="Type to filter team members."
+              >
+                <Combobox
+                  options={PEOPLE}
+                  value={v5}
+                  onValueChange={setV5}
+                  placeholder="Select person..."
+                />
               </Field>
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -58,10 +57,16 @@ function ProgressTracker({ activeStep }: { activeStep: number }) {
               {isCompleted ? <CheckCircle size={14} /> : index + 1}
             </div>
             <div>
-              <p className={`label ${isCompleted ? "text-brand-primary" : isActive ? "text-brand-primary" : "text-ground-400"}`}>
+              <p
+                className={`label ${isCompleted ? "text-brand-primary" : isActive ? "text-brand-primary" : "text-ground-400"}`}
+              >
                 Step {index + 1}
               </p>
-              <p className={`body font-medium ${isCompleted || isActive ? "text-ground-900" : "text-ground-500"}`}>{step}</p>
+              <p
+                className={`body font-medium ${isCompleted || isActive ? "text-ground-900" : "text-ground-500"}`}
+              >
+                {step}
+              </p>
             </div>
           </div>
         );
@@ -86,15 +91,26 @@ export default function OrderSummaryLargeImages() {
         <ProgressTracker activeStep={activeStep} />
         <div className="grid gap-6 lg:grid-cols-2">
           {ORDER.products.map((product) => (
-            <div key={product.name} className="overflow-hidden rounded-[28px] border border-ground-200 bg-ground-50">
-              <img src={product.img} alt={product.name} className="aspect-square w-full object-cover" />
+            <div
+              key={product.name}
+              className="overflow-hidden rounded-[28px] border border-ground-200 bg-ground-50"
+            >
+              <img
+                src={product.img}
+                alt={product.name}
+                className="aspect-square w-full object-cover"
+              />
               <div className="space-y-3 p-5">
                 <div className="flex items-center justify-between gap-4">
                   <p className="subheading text-ground-900">{product.name}</p>
-                  <p className="body font-medium text-ground-900">{formatCurrency(product.price)}</p>
+                  <p className="body font-medium text-ground-900">
+                    {formatCurrency(product.price)}
+                  </p>
                 </div>
                 <p className="caption text-ground-500">
-                  {activeStep >= 3 ? "Delivered successfully on schedule." : `Expected arrival remains ${ORDER.arriving}.`}
+                  {activeStep >= 3
+                    ? "Delivered successfully on schedule."
+                    : `Expected arrival remains ${ORDER.arriving}.`}
                 </p>
               </div>
             </div>

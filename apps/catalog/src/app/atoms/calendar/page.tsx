@@ -78,23 +78,26 @@ function CalendarPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Calendar</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Calendar</h1>
         <p className="body max-w-lg text-ground-500">
-          A date selection component built on react-day-picker v9. Supports
-          single dates, ranges, multiple months, and custom disabled states.
+          A date selection component built on react-day-picker v9. Supports single dates, ranges,
+          multiple months, and custom disabled states.
         </p>
       </div>
 
       <PageDocs path="/atoms/calendar/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Calendar · Single" />
           <PreviewBlock
@@ -104,16 +107,10 @@ function CalendarPage() {
           >
             <div className="flex flex-col items-center gap-3">
               <div className="inline-block rounded-xl border border-ground-100 bg-white shadow-natural">
-                <Calendar
-                  mode="single"
-                  selected={singleDate}
-                  onSelect={setSingleDate}
-                />
+                <Calendar mode="single" selected={singleDate} onSelect={setSingleDate} />
               </div>
               <p className="caption text-ground-400">
-                {singleDate
-                  ? `Selected: ${formatDate(singleDate)}`
-                  : "No date selected"}
+                {singleDate ? `Selected: ${formatDate(singleDate)}` : "No date selected"}
               </p>
             </div>
           </PreviewBlock>
@@ -128,11 +125,7 @@ function CalendarPage() {
           >
             <div className="flex flex-col items-center gap-3">
               <div className="inline-block rounded-xl border border-ground-100 bg-white shadow-natural">
-                <Calendar
-                  mode="range"
-                  selected={range}
-                  onSelect={setRange}
-                />
+                <Calendar mode="range" selected={range} onSelect={setRange} />
               </div>
               <p className="caption text-ground-400">
                 From:{" "}
@@ -141,9 +134,7 @@ function CalendarPage() {
                 </span>
                 {"  ·  "}
                 To:{" "}
-                <span className="text-ground-700">
-                  {range?.to ? formatDate(range.to) : "—"}
-                </span>
+                <span className="text-ground-700">{range?.to ? formatDate(range.to) : "—"}</span>
               </p>
             </div>
           </PreviewBlock>
@@ -166,9 +157,7 @@ function CalendarPage() {
                 />
               </div>
               <p className="caption text-ground-400">
-                {multiDate
-                  ? `Selected: ${formatDate(multiDate)}`
-                  : "No date selected"}
+                {multiDate ? `Selected: ${formatDate(multiDate)}` : "No date selected"}
               </p>
             </div>
           </PreviewBlock>
@@ -187,9 +176,7 @@ function CalendarPage() {
                   mode="single"
                   selected={disabledDate}
                   onSelect={setDisabledDate}
-                  disabled={(date) =>
-                    date.getDay() === 0 || date.getDay() === 6
-                  }
+                  disabled={(date) => date.getDay() === 0 || date.getDay() === 6}
                 />
               </div>
               <p className="caption text-ground-400">
@@ -200,7 +187,6 @@ function CalendarPage() {
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

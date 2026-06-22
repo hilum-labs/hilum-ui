@@ -20,15 +20,20 @@ function AppShellSidebarPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/blocks" className="hover:text-ground-700">Blocks</a>
+          <a href="/blocks" className="hover:text-ground-700">
+            Blocks
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">App Shell · Sidebar</span>
         </div>
         <h1 className="display mb-2 text-ground-900">App Shell · Sidebar</h1>
         <p className="body max-w-md text-ground-400">
-          A sidebar navigation shell with logo, nav links, and a user menu at the bottom. Responsive — sidebar collapses off-canvas on mobile.
+          A sidebar navigation shell with logo, nav links, and a user menu at the bottom. Responsive
+          — sidebar collapses off-canvas on mobile.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Block</p>

@@ -1,9 +1,5 @@
-
 import { useState } from "react";
-import {
-  Search,
-  ShoppingBag,
-} from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 
@@ -66,7 +62,7 @@ const pages = ["Company", "Stores"];
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
+      <div className="flex size-10 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
         D
       </div>
       <div>
@@ -81,7 +77,10 @@ function CartButton() {
   return (
     <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
-      <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
+      <Badge
+        variant="brand"
+        className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none"
+      >
         2
       </Badge>
     </button>
@@ -90,7 +89,9 @@ function CartButton() {
 
 function PageContent({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}>
+    <div
+      className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}
+    >
       Page content
     </div>
   );
@@ -106,7 +107,9 @@ function PromoPanel({ category }: { category: NavCategory }) {
         <img src={feature.image} alt={feature.title} className="h-48 w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-ground-950/80 via-ground-900/35 to-transparent" />
         <div className="absolute inset-y-0 left-0 flex max-w-sm flex-col justify-center p-6">
-          <Badge variant="warning" className="w-fit">Editor&apos;s pick</Badge>
+          <Badge variant="warning" className="w-fit">
+            Editor&apos;s pick
+          </Badge>
           <h3 className="heading mt-4 text-white">{feature.title}</h3>
           <p className="body mt-2 text-ground-100">{feature.subtitle}</p>
           <div className="mt-5">
@@ -158,7 +161,11 @@ export default function SimpleNavWithPromoPanel() {
                 </button>
               ))}
               {pages.map((page) => (
-                <a key={page} href="#" className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900">
+                <a
+                  key={page}
+                  href="#"
+                  className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900"
+                >
                   {page}
                 </a>
               ))}

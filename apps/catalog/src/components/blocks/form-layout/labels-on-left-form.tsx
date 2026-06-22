@@ -17,8 +17,12 @@ export default function LabelsOnLeftForm() {
         </div>
         <div className="col-span-2 flex flex-col gap-4">
           <div className="grid grid-cols-2 gap-3">
-            <Field label="First name" htmlFor="lol-fn" required><Input id="lol-fn" placeholder="Jane" /></Field>
-            <Field label="Last name" htmlFor="lol-ln" required><Input id="lol-ln" placeholder="Smith" /></Field>
+            <Field label="First name" htmlFor="lol-fn" required>
+              <Input id="lol-fn" placeholder="Jane" />
+            </Field>
+            <Field label="Last name" htmlFor="lol-ln" required>
+              <Input id="lol-ln" placeholder="Smith" />
+            </Field>
           </div>
           <Field label="Username" htmlFor="lol-user" hint="yourcompany.com/username">
             <Input id="lol-user" placeholder="janesmith" />
@@ -45,7 +49,9 @@ export default function LabelsOnLeftForm() {
           ].map((item) => (
             <div key={item.id} className="flex items-center justify-between gap-4">
               <div>
-                <Label htmlFor={item.id} className="body font-medium text-ground-900">{item.label}</Label>
+                <Label htmlFor={item.id} className="body font-medium text-ground-900">
+                  {item.label}
+                </Label>
                 <p className="caption text-ground-400">{item.desc}</p>
               </div>
               <Switch id={item.id} />
@@ -75,7 +81,9 @@ export default function LabelsOnLeftForm() {
       </div>
 
       <div className="flex justify-end gap-3 pt-6">
-        <Button variant="outline" type="button">Cancel</Button>
+        <Button variant="outline" type="button">
+          Cancel
+        </Button>
         <Button type="submit">Save changes</Button>
       </div>
     </form>

@@ -1,4 +1,3 @@
-
 const stepItems = ["Shipping", "Payment", "Confirmation"] as const;
 
 export default function StepsProgressBar() {
@@ -7,8 +6,14 @@ export default function StepsProgressBar() {
       <div className="flex items-center justify-between">
         {stepItems.map((step, index) => (
           <div key={step} className="text-center">
-            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-ground-400"}`}>Step {index + 1}</p>
-            <p className={`body mt-1 ${index === 1 ? "font-semibold text-ground-900" : "text-ground-500"}`}>{step}</p>
+            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-ground-400"}`}>
+              Step {index + 1}
+            </p>
+            <p
+              className={`body mt-1 ${index === 1 ? "font-semibold text-ground-900" : "text-ground-500"}`}
+            >
+              {step}
+            </p>
           </div>
         ))}
       </div>

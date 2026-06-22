@@ -2,13 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@hilum/ui";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -41,7 +35,8 @@ const BLOCKS: BlockEntry[] = [
   {
     name: "App Shell · Sidebar",
     slug: "app-shell-sidebar",
-    description: "A sidebar navigation shell with logo, nav links, and a user menu. Collapses on mobile.",
+    description:
+      "A sidebar navigation shell with logo, nav links, and a user menu. Collapses on mobile.",
     category: "Shell",
   },
   {
@@ -53,13 +48,15 @@ const BLOCKS: BlockEntry[] = [
   {
     name: "Detail Screen",
     slug: "detail-screen",
-    description: "A full entity detail page with page heading, description list, team roster, and activity feed.",
+    description:
+      "A full entity detail page with page heading, description list, team roster, and activity feed.",
     category: "Pages",
   },
   {
     name: "Settings Screen",
     slug: "settings-screen",
-    description: "A multi-section settings page with profile, notifications, password, and danger zone.",
+    description:
+      "A multi-section settings page with profile, notifications, password, and danger zone.",
     category: "Pages",
   },
 ];
@@ -69,13 +66,16 @@ function BlocksPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Blocks</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Blocks</h1>
         <p className="body max-w-md text-ground-400">
-          Full page sections assembled from atoms and molecules. Copy the code and drop it directly into any layout.
+          Full page sections assembled from atoms and molecules. Copy the code and drop it directly
+          into any layout.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">{BLOCKS.length} blocks</p>

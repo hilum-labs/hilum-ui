@@ -32,7 +32,8 @@ function BlogSectionsPage() {
         </div>
         <h1 className="display text-ground-900">Blog Sections</h1>
         <p className="body mt-3 text-ground-500">
-          Editorial layouts for article indexes, compact story lists, and newsletter-led content pages.
+          Editorial layouts for article indexes, compact story lists, and newsletter-led content
+          pages.
         </p>
       </div>
 

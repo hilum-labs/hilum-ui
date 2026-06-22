@@ -7,12 +7,20 @@ import {
   ChartContainer,
   ChartTooltip,
   CHART_COLORS,
-  BarChart, Bar,
-  LineChart, Line,
-  AreaChart, Area,
-  PieChart, Pie, Cell,
-  CartesianGrid, XAxis, YAxis,
-  RechartsTooltip, Legend,
+  BarChart,
+  Bar,
+  LineChart,
+  Line,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  RechartsTooltip,
+  Legend,
 } from "@hilum/ui";
 
 /* ------------------------------------------------------------------ */
@@ -197,15 +205,20 @@ function ChartPage() {
       {/* Header */}
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Chart</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Chart</h1>
         <p className="body max-w-lg text-ground-500">
-          Brand-styled chart components built on Recharts. Includes bar, line, area, and pie variants with a consistent design language.
+          Brand-styled chart components built on Recharts. Includes bar, line, area, and pie
+          variants with a consistent design language.
         </p>
       </div>
 
@@ -288,9 +301,7 @@ function ChartPage() {
                 <XAxis dataKey="day" {...axisProps} />
                 <YAxis {...axisProps} />
                 <RechartsTooltip content={<ChartTooltip />} />
-                <Legend
-                  wrapperStyle={{ fontSize: 12, color: "#a8978a", paddingTop: 8 }}
-                />
+                <Legend wrapperStyle={{ fontSize: 12, color: "#a8978a", paddingTop: 8 }} />
                 <Area
                   type="monotone"
                   dataKey="sessions"
@@ -368,9 +379,7 @@ function ChartPage() {
                 <XAxis dataKey="month" {...axisProps} />
                 <YAxis {...axisProps} />
                 <RechartsTooltip content={<ChartTooltip />} />
-                <Legend
-                  wrapperStyle={{ fontSize: 12, color: "#a8978a", paddingTop: 8 }}
-                />
+                <Legend wrapperStyle={{ fontSize: 12, color: "#a8978a", paddingTop: 8 }} />
                 <Bar dataKey="revenue" fill={CHART_COLORS.primary} radius={[4, 4, 0, 0]} />
                 <Bar dataKey="conversions" fill={CHART_COLORS.secondary} radius={[4, 4, 0, 0]} />
               </BarChart>

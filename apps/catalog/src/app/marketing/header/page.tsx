@@ -36,7 +36,8 @@ function HeaderPage() {
         </div>
         <h1 className="display text-ground-900">Headers</h1>
         <p className="body mt-3 text-ground-500">
-          Page-banner patterns for category pages, campaign launches, and product sections with layered visual treatments.
+          Page-banner patterns for category pages, campaign launches, and product sections with
+          layered visual treatments.
         </p>
       </div>
 

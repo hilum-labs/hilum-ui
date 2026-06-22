@@ -1,7 +1,11 @@
 import { ArrowRight, BookOpen, FileText, List, Rss } from "lucide-react";
 
 const POPULAR_LINKS = [
-  { title: "Documentation", description: "Learn how to integrate our tools with your app", icon: BookOpen },
+  {
+    title: "Documentation",
+    description: "Learn how to integrate our tools with your app",
+    icon: BookOpen,
+  },
   { title: "API Reference", description: "A complete reference for all API endpoints", icon: List },
   { title: "Guides", description: "Step-by-step setup guides for popular stacks", icon: FileText },
   { title: "Blog", description: "News, tutorials, and product updates", icon: Rss },
@@ -27,17 +31,26 @@ export default function NotFound404PopularPages() {
                   <link.icon size={18} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <a href="#" className="body font-semibold text-ground-900 before:absolute before:inset-0">
+                  <a
+                    href="#"
+                    className="body font-semibold text-ground-900 before:absolute before:inset-0"
+                  >
                     {link.title}
                   </a>
                   <p className="caption text-ground-500">{link.description}</p>
                 </div>
-                <ArrowRight size={16} className="mt-1 shrink-0 text-ground-300 transition-transform group-hover:translate-x-1 group-hover:text-ground-600" />
+                <ArrowRight
+                  size={16}
+                  className="mt-1 shrink-0 text-ground-300 transition-transform group-hover:translate-x-1 group-hover:text-ground-600"
+                />
               </li>
             ))}
           </ul>
           <div className="mt-6">
-            <a href="#" className="body font-semibold text-brand-primary hover:text-brand-primary/80">
+            <a
+              href="#"
+              className="body font-semibold text-brand-primary hover:text-brand-primary/80"
+            >
               Or go back home →
             </a>
           </div>

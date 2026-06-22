@@ -6,10 +6,7 @@ export default function PageHeadingDarkWithActions() {
       <p className="caption mb-2 text-ground-400">Home / Projects</p>
       <div className="flex items-center justify-between">
         <h1 className="heading text-white">Projects</h1>
-        <Button
-          variant="outline"
-          className="border-ground-700 text-white hover:bg-ground-800"
-        >
+        <Button variant="outline" className="border-ground-700 text-white hover:bg-ground-800">
           New Project
         </Button>
       </div>

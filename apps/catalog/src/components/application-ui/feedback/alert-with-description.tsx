@@ -1,4 +1,3 @@
-
 import { Info } from "lucide-react";
 
 export default function AlertWithDescription() {
@@ -9,8 +8,8 @@ export default function AlertWithDescription() {
         <div>
           <p className="body font-semibold text-ground-900">Scheduled maintenance</p>
           <p className="body mt-1 text-ground-700">
-            The platform will be unavailable on Sunday from 2:00 AM to 4:00 AM UTC while we deploy infrastructure
-            upgrades.
+            The platform will be unavailable on Sunday from 2:00 AM to 4:00 AM UTC while we deploy
+            infrastructure upgrades.
           </p>
         </div>
       </div>

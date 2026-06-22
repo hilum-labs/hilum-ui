@@ -56,8 +56,7 @@ function HeroesPage() {
         </div>
         <h1 className="display mb-2 text-ground-900">Heroes</h1>
         <p className="body max-w-lg text-ground-500">
-          Full-width hero sections with headlines, CTAs, screenshots, and
-          sign-up forms.
+          Full-width hero sections with headlines, CTAs, screenshots, and sign-up forms.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Page Intro</p>

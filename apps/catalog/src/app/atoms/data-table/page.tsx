@@ -21,18 +21,102 @@ type Transaction = {
 };
 
 const DATA: Transaction[] = [
-  { id: "TXN-8821", company: "Acme Corp",     type: "Invoice", amount: "$4,200", date: "Apr 1, 2026",  status: "Paid"    },
-  { id: "TXN-8820", company: "Globex Inc.",   type: "Invoice", amount: "$1,900", date: "Mar 28, 2026", status: "Pending" },
-  { id: "TXN-8819", company: "Initech LLC",   type: "Refund",  amount: "$320",   date: "Mar 22, 2026", status: "Paid"    },
-  { id: "TXN-8818", company: "Umbrella Corp", type: "Invoice", amount: "$8,750", date: "Mar 15, 2026", status: "Overdue" },
-  { id: "TXN-8817", company: "Soylent Corp",  type: "Invoice", amount: "$2,100", date: "Mar 10, 2026", status: "Paid"    },
-  { id: "TXN-8816", company: "Acme Corp",     type: "Credit",  amount: "$500",   date: "Mar 5, 2026",  status: "Paid"    },
-  { id: "TXN-8815", company: "Initech LLC",   type: "Invoice", amount: "$3,400", date: "Feb 28, 2026", status: "Pending" },
-  { id: "TXN-8814", company: "Umbrella Corp", type: "Invoice", amount: "$1,200", date: "Feb 20, 2026", status: "Overdue" },
-  { id: "TXN-8813", company: "Globex Inc.",   type: "Invoice", amount: "$5,600", date: "Feb 15, 2026", status: "Paid"    },
-  { id: "TXN-8812", company: "Soylent Corp",  type: "Refund",  amount: "$750",   date: "Feb 10, 2026", status: "Paid"    },
-  { id: "TXN-8811", company: "Acme Corp",     type: "Invoice", amount: "$2,900", date: "Feb 5, 2026",  status: "Pending" },
-  { id: "TXN-8810", company: "Initech LLC",   type: "Credit",  amount: "$180",   date: "Jan 31, 2026", status: "Paid"    },
+  {
+    id: "TXN-8821",
+    company: "Acme Corp",
+    type: "Invoice",
+    amount: "$4,200",
+    date: "Apr 1, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8820",
+    company: "Globex Inc.",
+    type: "Invoice",
+    amount: "$1,900",
+    date: "Mar 28, 2026",
+    status: "Pending",
+  },
+  {
+    id: "TXN-8819",
+    company: "Initech LLC",
+    type: "Refund",
+    amount: "$320",
+    date: "Mar 22, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8818",
+    company: "Umbrella Corp",
+    type: "Invoice",
+    amount: "$8,750",
+    date: "Mar 15, 2026",
+    status: "Overdue",
+  },
+  {
+    id: "TXN-8817",
+    company: "Soylent Corp",
+    type: "Invoice",
+    amount: "$2,100",
+    date: "Mar 10, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8816",
+    company: "Acme Corp",
+    type: "Credit",
+    amount: "$500",
+    date: "Mar 5, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8815",
+    company: "Initech LLC",
+    type: "Invoice",
+    amount: "$3,400",
+    date: "Feb 28, 2026",
+    status: "Pending",
+  },
+  {
+    id: "TXN-8814",
+    company: "Umbrella Corp",
+    type: "Invoice",
+    amount: "$1,200",
+    date: "Feb 20, 2026",
+    status: "Overdue",
+  },
+  {
+    id: "TXN-8813",
+    company: "Globex Inc.",
+    type: "Invoice",
+    amount: "$5,600",
+    date: "Feb 15, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8812",
+    company: "Soylent Corp",
+    type: "Refund",
+    amount: "$750",
+    date: "Feb 10, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8811",
+    company: "Acme Corp",
+    type: "Invoice",
+    amount: "$2,900",
+    date: "Feb 5, 2026",
+    status: "Pending",
+  },
+  {
+    id: "TXN-8810",
+    company: "Initech LLC",
+    type: "Credit",
+    amount: "$180",
+    date: "Jan 31, 2026",
+    status: "Paid",
+  },
 ];
 
 const statusVariant: Record<Transaction["status"], "success" | "warning" | "destructive"> = {
@@ -50,33 +134,23 @@ const helper = createColumnHelper<Transaction>();
 const ALL_COLUMNS: ColumnDef<Transaction, any>[] = [
   helper.accessor("id", {
     header: "ID",
-    cell: (info) => (
-      <span className="font-mono caption text-ground-400">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="font-mono caption text-ground-400">{info.getValue()}</span>,
   }),
   helper.accessor("company", {
     header: "Company",
-    cell: (info) => (
-      <span className="font-medium text-ground-900">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
   }),
   helper.accessor("type", {
     header: "Type",
-    cell: (info) => (
-      <span className="text-ground-500">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="text-ground-500">{info.getValue()}</span>,
   }),
   helper.accessor("amount", {
     header: "Amount",
-    cell: (info) => (
-      <span className="font-medium text-ground-900">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
   }),
   helper.accessor("date", {
     header: "Date",
-    cell: (info) => (
-      <span className="text-ground-500">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="text-ground-500">{info.getValue()}</span>,
   }),
   helper.accessor("status", {
     header: "Status",
@@ -90,15 +164,11 @@ const ALL_COLUMNS: ColumnDef<Transaction, any>[] = [
 const SIMPLE_COLUMNS: ColumnDef<Transaction, any>[] = [
   helper.accessor("company", {
     header: "Company",
-    cell: (info) => (
-      <span className="font-medium text-ground-900">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
   }),
   helper.accessor("amount", {
     header: "Amount",
-    cell: (info) => (
-      <span className="font-medium text-ground-900">{info.getValue()}</span>
-    ),
+    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
   }),
   helper.accessor("status", {
     header: "Status",
@@ -217,23 +287,26 @@ function DataTablePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Data Table</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Data Table</h1>
         <p className="body max-w-lg text-ground-500">
-          A generic, sortable, filterable, and paginated data table built on
-          @tanstack/react-table v8. Define typed columns once and pass any data.
+          A generic, sortable, filterable, and paginated data table built on @tanstack/react-table
+          v8. Define typed columns once and pass any data.
         </p>
       </div>
 
       <PageDocs path="/atoms/data-table/" />
 
       <div className="flex flex-col gap-12">
-
         {/* Default with search */}
         <section>
           <SectionHeading label="With search" />
@@ -262,11 +335,7 @@ function DataTablePage() {
             code={CODE.withoutSearch}
             previewClassName="flex-col items-stretch"
           >
-            <DataTable
-              columns={ALL_COLUMNS}
-              data={DATA}
-              pageSize={5}
-            />
+            <DataTable columns={ALL_COLUMNS} data={DATA} pageSize={5} />
           </PreviewBlock>
         </section>
 
@@ -279,14 +348,9 @@ function DataTablePage() {
             code={CODE.customColumns}
             previewClassName="flex-col items-stretch"
           >
-            <DataTable
-              columns={SIMPLE_COLUMNS}
-              data={DATA}
-              pageSize={5}
-            />
+            <DataTable columns={SIMPLE_COLUMNS} data={DATA} pageSize={5} />
           </PreviewBlock>
         </section>
-
       </div>
     </div>
   );

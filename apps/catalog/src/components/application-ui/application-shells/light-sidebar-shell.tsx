@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { FolderKanban, LayoutDashboard, Menu, Plus, Settings, Users, X } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -39,11 +38,15 @@ function LogoMark({ tone }: { tone: "light" | "dark" | "brand" }) {
 
   return (
     <div className="flex items-center gap-3">
-      <div className={`flex size-9 items-center justify-center rounded-xl ${classes}`}>
+      <div className={`flex size-10 items-center justify-center rounded-xl ${classes}`}>
         <span className="subheading font-medium">D</span>
       </div>
       <div>
-        <p className={tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"}>
+        <p
+          className={
+            tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"
+          }
+        >
           Design Co.
         </p>
         <p className={tone === "light" ? "caption text-ground-400" : "caption text-white/60"}>
@@ -222,7 +225,9 @@ export default function LightSidebarShell() {
               </button>
               <div>
                 <p className="heading text-ground-900">Dashboard</p>
-                <p className="caption text-ground-400">Overview of campaigns, team activity, and reporting.</p>
+                <p className="caption text-ground-400">
+                  Overview of campaigns, team activity, and reporting.
+                </p>
               </div>
             </div>
             <Button size="sm">

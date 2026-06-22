@@ -9,7 +9,7 @@ const toggleVariants = cva(
   [
     "inline-flex shrink-0 items-center justify-center gap-2",
     "body font-medium whitespace-nowrap rounded-md",
-    "transition-all duration-150 outline-none",
+    "transition-[background-color,border-color,box-shadow,color,opacity,scale] duration-150 outline-none active:scale-[0.96]",
     "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -35,11 +35,11 @@ const toggleVariants = cva(
       },
       size: {
         sm: "h-8 gap-1.5 px-3",
-        default: "h-9 px-3",
-        lg: "h-10 px-4",
-        icon: "size-9",
+        default: "h-10 px-3",
+        lg: "h-11 px-4",
+        icon: "size-10",
         "icon-sm": "size-8",
-        "icon-lg": "size-10",
+        "icon-lg": "size-11",
       },
     },
     defaultVariants: {

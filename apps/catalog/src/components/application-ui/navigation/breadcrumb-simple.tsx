@@ -1,4 +1,3 @@
-
 export default function BreadcrumbSimple() {
   return (
     <div className="w-full bg-white px-6 py-5">

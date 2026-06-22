@@ -1,4 +1,3 @@
-
 import { Button } from "@hilum/ui";
 
 export default function HeaderBrandedWithBackground() {
@@ -15,13 +14,11 @@ export default function HeaderBrandedWithBackground() {
         <p className="caption text-white/70">Spring release</p>
         <h2 className="display mt-4 text-white">Launch pages that feel unmistakably branded</h2>
         <p className="body mt-5 text-white/80">
-          Pair expressive color, strong messaging, and fast calls to action for product launches, pricing announcements, and campaign landers.
+          Pair expressive color, strong messaging, and fast calls to action for product launches,
+          pricing announcements, and campaign landers.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button
-            variant="secondary"
-            className="bg-white text-ground-900 hover:bg-white/90"
-          >
+          <Button variant="secondary" className="bg-white text-ground-900 hover:bg-white/90">
             Start a project
           </Button>
           <Button

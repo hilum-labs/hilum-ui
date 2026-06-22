@@ -10,8 +10,20 @@ import { tokens } from "@hilum/ui/tokens";
 /* ------------------------------------------------------------------ */
 
 const brandHeroes = [
-  { name: "Primary", token: "brand-primary", hex: tokens.brand.primary, role: "Primary actions, CTAs, focus rings", lightText: true },
-  { name: "Secondary", token: "brand-secondary", hex: tokens.brand.secondary, role: "Brand secondary, warning surfaces", lightText: false },
+  {
+    name: "Primary",
+    token: "brand-primary",
+    hex: tokens.brand.primary,
+    role: "Primary actions, CTAs, focus rings",
+    lightText: true,
+  },
+  {
+    name: "Secondary",
+    token: "brand-secondary",
+    hex: tokens.brand.secondary,
+    role: "Brand secondary, warning surfaces",
+    lightText: false,
+  },
 ];
 
 const shadeUsage: Record<string, Record<string, string>> = {
@@ -81,7 +93,17 @@ const semanticModes = Object.entries(tokens.semantic).map(([mode, values]) => ({
     value: hex,
     hex,
     usage: semanticUsage[token] ?? "Semantic color",
-    lightText: !["background", "card", "surface", "muted", "accent", "primaryForeground", "destructiveForeground", "warning", "success"].includes(token),
+    lightText: ![
+      "background",
+      "card",
+      "surface",
+      "muted",
+      "accent",
+      "primaryForeground",
+      "destructiveForeground",
+      "warning",
+      "success",
+    ].includes(token),
   })),
 }));
 
@@ -100,9 +122,18 @@ const typeSamples: Record<string, { sample: string; usage: string }> = {
   "heading-xl": { sample: "Create, manage and organize", usage: "Section headings" },
   heading: { sample: "Two platforms, one foundation", usage: "Card titles, modal headings" },
   subheading: { sample: "Student Profiles", usage: "Subheadings, sidebar titles" },
-  "body-lg": { sample: "Powering the best teams, educators, and builders.", usage: "Large body text, feature descriptions" },
-  body: { sample: "Turn complex operations into streamlined workflows.", usage: "Default body, nav links, descriptions" },
-  "body-sm": { sample: "Compact inspector controls and dense metadata.", usage: "Dense UI and designer panels" },
+  "body-lg": {
+    sample: "Powering the best teams, educators, and builders.",
+    usage: "Large body text, feature descriptions",
+  },
+  body: {
+    sample: "Turn complex operations into streamlined workflows.",
+    usage: "Default body, nav links, descriptions",
+  },
+  "body-sm": {
+    sample: "Compact inspector controls and dense metadata.",
+    usage: "Dense UI and designer panels",
+  },
   caption: { sample: "Enroll: 8,000+ classes", usage: "Captions, metadata, helper text" },
   "caption-xs": { sample: "Soon · v2.0.0 · 2px", usage: "Tiny metadata, badges, sidebar chips" },
   eyebrow: { sample: "STUDENT PROFILES", usage: "Canonical uppercase label" },
@@ -152,7 +183,12 @@ const spacingScale = [
 const radii = Object.entries(tokens.radius).map(([name, value]) => ({
   name,
   value,
-  usage: name === "base" ? "Base --radius" : name === "full" ? "Pills, avatars, badges" : "Derived radius token",
+  usage:
+    name === "base"
+      ? "Base --radius"
+      : name === "full"
+        ? "Pills, avatars, badges"
+        : "Derived radius token",
 }));
 
 /* ------------------------------------------------------------------ */
@@ -192,20 +228,21 @@ function FoundationsPage() {
         </div>
         <h1 className="display mb-2 text-ground-900">Foundations</h1>
         <p className="body max-w-md text-ground-400">
-          The raw design decisions that every component is built on. Understand
-          these and the whole system becomes predictable.
+          The raw design decisions that every component is built on. Understand these and the whole
+          system becomes predictable.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">8 token groups</p>
           <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Colors · Typography · Spacing · Radius · Shadows · Z-index · Animation · Fonts</p>
+          <p className="caption text-ground-400">
+            Colors · Typography · Spacing · Radius · Shadows · Z-index · Animation · Fonts
+          </p>
         </div>
       </div>
 
       <PageDocs path="/foundations/" />
 
       <div className="flex flex-col gap-14">
-
         {/* ── Colors ──────────────────────────────────────────────── */}
         <section id="colors">
           <SectionHeading label="Colors" />
@@ -325,9 +362,7 @@ function FoundationsPage() {
                   {rows.map((t, i) => (
                     <div
                       key={t.token}
-                      className={cn(
-                        i !== rows.length - 1 && "border-b border-ground-100"
-                      )}
+                      className={cn(i !== rows.length - 1 && "border-b border-ground-100")}
                     >
                       <TokenRow
                         token={t.token}
@@ -384,7 +419,7 @@ function FoundationsPage() {
                   key={step.label}
                   className={cn(
                     "grid items-center gap-4 px-5 py-4 md:grid-cols-[140px_1fr_260px]",
-                    i !== typeScale.length - 1 && "border-b border-ground-100"
+                    i !== typeScale.length - 1 && "border-b border-ground-100",
                   )}
                 >
                   <div>
@@ -418,19 +453,36 @@ function FoundationsPage() {
             />
             <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
               {[
-                { weight: "400", name: "Regular", tailwind: "font-normal", usage: "Body copy, display headings, captions" },
-                { weight: "500", name: "Medium", tailwind: "font-medium", usage: "UI labels, nav links, metadata" },
-                { weight: "600", name: "Semibold", tailwind: "font-semibold", usage: "Emphasis, button text" },
+                {
+                  weight: "400",
+                  name: "Regular",
+                  tailwind: "font-normal",
+                  usage: "Body copy, display headings, captions",
+                },
+                {
+                  weight: "500",
+                  name: "Medium",
+                  tailwind: "font-medium",
+                  usage: "UI labels, nav links, metadata",
+                },
+                {
+                  weight: "600",
+                  name: "Semibold",
+                  tailwind: "font-semibold",
+                  usage: "Emphasis, button text",
+                },
               ].map((w, i) => (
                 <div
                   key={w.weight}
                   className={cn(
                     "flex items-center gap-6 px-5 py-4",
-                    i !== 2 && "border-b border-ground-100"
+                    i !== 2 && "border-b border-ground-100",
                   )}
                 >
                   <div className="w-24 shrink-0">
-                    <p className="font-mono text-[11px] font-semibold text-ground-500">{w.tailwind}</p>
+                    <p className="font-mono text-[11px] font-semibold text-ground-500">
+                      {w.tailwind}
+                    </p>
                     <p className="font-mono caption-xs text-ground-300">{w.weight}</p>
                   </div>
                   <p
@@ -455,25 +507,23 @@ function FoundationsPage() {
               {typeScale
                 .filter((t) => t.letterSpacing !== "0")
                 .map((t, i, rows) => (
-                <div
-                  key={t.label}
-                  className={cn(
-                    "flex items-center gap-6 px-5 py-4",
-                    i !== rows.length - 1 && "border-b border-ground-100"
-                  )}
-                >
-                  <div className="w-36 shrink-0">
-                    <p className="font-mono text-[11px] font-semibold text-ground-500">{t.label}</p>
-                    <p className="font-mono caption-xs text-ground-300">{t.letterSpacing}</p>
-                  </div>
-                  <p
-                    className={cn("flex-1 text-ground-900 truncate", t.className)}
+                  <div
+                    key={t.label}
+                    className={cn(
+                      "flex items-center gap-6 px-5 py-4",
+                      i !== rows.length - 1 && "border-b border-ground-100",
+                    )}
                   >
-                    {t.sample}
-                  </p>
-                  <p className="hidden shrink-0 caption-xs text-ground-300 md:block">{t.usage}</p>
-                </div>
-              ))}
+                    <div className="w-36 shrink-0">
+                      <p className="font-mono text-[11px] font-semibold text-ground-500">
+                        {t.label}
+                      </p>
+                      <p className="font-mono caption-xs text-ground-300">{t.letterSpacing}</p>
+                    </div>
+                    <p className={cn("flex-1 text-ground-900 truncate", t.className)}>{t.sample}</p>
+                    <p className="hidden shrink-0 caption-xs text-ground-300 md:block">{t.usage}</p>
+                  </div>
+                ))}
             </div>
           </div>
         </section>
@@ -497,16 +547,13 @@ function FoundationsPage() {
                 key={s.token}
                 className={cn(
                   "grid grid-cols-[60px_60px_1fr_160px] items-center px-5 py-2.5",
-                  i !== spacingScale.length - 1 && "border-b border-ground-100"
+                  i !== spacingScale.length - 1 && "border-b border-ground-100",
                 )}
               >
                 <p className="font-mono caption font-semibold text-ground-700">{s.token}</p>
                 <p className="font-mono caption text-ground-400">{s.px}</p>
                 <div className="flex items-center">
-                  <div
-                    className="h-3 rounded-sm bg-ground-900"
-                    style={{ width: s.px }}
-                  />
+                  <div className="h-3 rounded-sm bg-ground-900" style={{ width: s.px }} />
                 </div>
                 <p className="caption-xs text-ground-300">{s.usage}</p>
               </div>
@@ -551,7 +598,7 @@ function FoundationsPage() {
                 <div
                   className={cn(
                     "flex h-20 items-center justify-center rounded-xl bg-white",
-                    s.className
+                    s.className,
                   )}
                 >
                   <div className="h-8 w-12 rounded-md bg-ground-100" />
@@ -579,7 +626,7 @@ function FoundationsPage() {
                 key={z.name}
                 className={cn(
                   "grid grid-cols-[140px_1fr] items-center px-5 py-3",
-                  i !== zIndexTokens.length - 1 && "border-b border-ground-100"
+                  i !== zIndexTokens.length - 1 && "border-b border-ground-100",
                 )}
               >
                 <p className="font-mono caption font-semibold text-ground-700">z-{z.name}</p>
@@ -602,7 +649,7 @@ function FoundationsPage() {
                 key={a.name}
                 className={cn(
                   "grid gap-3 px-5 py-3 md:grid-cols-[180px_1fr]",
-                  i !== animationTokens.length - 1 && "border-b border-ground-100"
+                  i !== animationTokens.length - 1 && "border-b border-ground-100",
                 )}
               >
                 <p className="font-mono caption font-semibold text-ground-700">animate-{a.name}</p>
@@ -611,7 +658,6 @@ function FoundationsPage() {
             ))}
           </div>
         </section>
-
       </div>
 
       <div className="h-16" />
@@ -632,13 +678,7 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-function PaletteLabel({
-  name,
-  description,
-}: {
-  name: string;
-  description: string;
-}) {
+function PaletteLabel({ name, description }: { name: string; description: string }) {
   return (
     <div>
       <p className="subheading text-ground-900">{name}</p>

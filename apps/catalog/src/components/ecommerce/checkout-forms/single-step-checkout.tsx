@@ -1,15 +1,8 @@
-
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Input } from "@hilum/ui";
 import { Label } from "@hilum/ui";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@hilum/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@hilum/ui";
 
 const ORDER_PRODUCTS = [
   {
@@ -74,7 +67,9 @@ function OrderSummary({
   className?: string;
 }) {
   return (
-    <div className={`rounded-[28px] border border-ground-200 bg-white p-6 shadow-natural ${className}`}>
+    <div
+      className={`rounded-[28px] border border-ground-200 bg-white p-6 shadow-natural ${className}`}
+    >
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="label text-ground-400">Order summary</p>
@@ -88,12 +83,18 @@ function OrderSummary({
             <img
               src={product.img}
               alt={product.name}
-              className={compact ? "size-14 rounded-xl object-cover" : "size-16 rounded-2xl object-cover"}
+              className={
+                compact ? "size-14 rounded-xl object-cover" : "size-16 rounded-2xl object-cover"
+              }
             />
             <div className="min-w-0 flex-1">
               <p className="body font-medium text-ground-900">{product.name}</p>
               <p className="caption text-ground-500">Quantity {product.qty}</p>
-              {detailed ? <p className="caption mt-1 text-ground-400">Waxed canvas, carry-all interior, zipper pouch.</p> : null}
+              {detailed ? (
+                <p className="caption mt-1 text-ground-400">
+                  Waxed canvas, carry-all interior, zipper pouch.
+                </p>
+              ) : null}
             </div>
             <p className="body font-medium text-ground-900">{formatCurrency(product.price)}</p>
           </div>
@@ -131,7 +132,12 @@ function ContactFields({ prefix }: { prefix: string }) {
       <FormField id={`${prefix}-first-name`} label="First name" placeholder="Ava" />
       <FormField id={`${prefix}-last-name`} label="Last name" placeholder="Mitchell" />
       <div className="sm:col-span-2">
-        <FormField id={`${prefix}-email`} label="Email" type="email" placeholder="ava@example.com" />
+        <FormField
+          id={`${prefix}-email`}
+          label="Email"
+          type="email"
+          placeholder="ava@example.com"
+        />
       </div>
     </div>
   );
@@ -237,7 +243,9 @@ export default function SingleStepCheckout() {
           <OrderSummary compact className="bg-ground-50" />
         </div>
         <div className="mt-6 flex items-center justify-between gap-4">
-          <p className="caption text-ground-500">By placing the order you agree to the store terms and return policy.</p>
+          <p className="caption text-ground-500">
+            By placing the order you agree to the store terms and return policy.
+          </p>
           <Button>Submit order</Button>
         </div>
       </div>

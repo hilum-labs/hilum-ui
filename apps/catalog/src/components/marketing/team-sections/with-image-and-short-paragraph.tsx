@@ -37,13 +37,7 @@ const TEAM = [
   },
 ] as const;
 
-function PortraitPlaceholder({
-  initials,
-  className,
-}: {
-  initials: string;
-  className: string;
-}) {
+function PortraitPlaceholder({ initials, className }: { initials: string; className: string }) {
   return (
     <div className={`${className} flex items-center justify-center bg-ground-100`}>
       <div className="rounded-full border border-ground-200 bg-white px-4 py-2 subheading text-ground-500">

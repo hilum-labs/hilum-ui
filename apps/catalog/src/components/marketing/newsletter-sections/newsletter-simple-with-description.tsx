@@ -20,15 +20,12 @@ export default function NewsletterSimpleWithDescription() {
         <p className="label mb-4 text-brand-primary">Newsletter</p>
         <h3 className="heading text-ground-900">Stay close to the product</h3>
         <p className="body mt-4 text-ground-500">
-          Release notes, new templates, and practical product writing from the team
-          building Workflow.
+          Release notes, new templates, and practical product writing from the team building
+          Workflow.
         </p>
       </div>
       <div className="mt-8 lg:mt-0">
-        <form
-          className="space-y-3"
-          onSubmit={(event) => event.preventDefault()}
-        >
+        <form className="space-y-3" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-3 sm:flex-row">
             <EmailInput className="sm:flex-1" />
             <Button type="submit">Subscribe</Button>

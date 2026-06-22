@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -43,10 +42,15 @@ export default function PricingFourTiersToggle() {
     <section className="w-full bg-white px-8 py-16 md:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="flex flex-col items-center text-center">
-          <Badge variant="secondary" className="mb-4">Usage-based flexibility</Badge>
-          <h3 className="heading text-ground-900">Offer monthly or annual pricing without changing the layout</h3>
+          <Badge variant="secondary" className="mb-4">
+            Usage-based flexibility
+          </Badge>
+          <h3 className="heading text-ground-900">
+            Offer monthly or annual pricing without changing the layout
+          </h3>
           <p className="body mt-3 max-w-2xl text-ground-500">
-            Give buyers a clean toggle that rewards longer commitments while keeping every plan easy to compare.
+            Give buyers a clean toggle that rewards longer commitments while keeping every plan easy
+            to compare.
           </p>
           <div className="mt-6 inline-flex rounded-full bg-ground-100 p-1">
             <button
@@ -70,7 +74,9 @@ export default function PricingFourTiersToggle() {
               Annual
             </button>
           </div>
-          <p className="caption mt-3 text-ground-400">{annual ? "Billed yearly, save up to 20%" : "Switch to annual to save up to 20%"}</p>
+          <p className="caption mt-3 text-ground-400">
+            {annual ? "Billed yearly, save up to 20%" : "Switch to annual to save up to 20%"}
+          </p>
         </div>
 
         <div className="mt-10 grid gap-5 lg:grid-cols-4">
@@ -81,7 +87,9 @@ export default function PricingFourTiersToggle() {
                 key={tier.name}
                 className={[
                   "rounded-[1.75rem] border bg-white p-7",
-                  tier.featured ? "border-brand-primary shadow-elevated" : "border-ground-100 shadow-natural",
+                  tier.featured
+                    ? "border-brand-primary shadow-elevated"
+                    : "border-ground-100 shadow-natural",
                 ].join(" ")}
               >
                 <div className="flex items-center justify-between">
@@ -90,7 +98,9 @@ export default function PricingFourTiersToggle() {
                 </div>
                 <div className="mt-6 flex items-end gap-2">
                   <p className="text-4xl font-semibold tracking-tight text-ground-900">{price}</p>
-                  <p className="body pb-1 text-ground-400">{tier.name === "Hobby" ? "" : annual ? "/mo billed yearly" : "/mo"}</p>
+                  <p className="body pb-1 text-ground-400">
+                    {tier.name === "Hobby" ? "" : annual ? "/mo billed yearly" : "/mo"}
+                  </p>
                 </div>
                 <p className="body mt-3 min-h-12 text-ground-500">{tier.description}</p>
                 <div className="mt-6 space-y-3">

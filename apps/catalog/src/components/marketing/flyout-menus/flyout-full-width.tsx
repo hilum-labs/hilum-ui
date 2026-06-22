@@ -1,14 +1,5 @@
-
 import { useState } from "react";
-import {
-  type LucideIcon,
-  BarChart2,
-  ChevronDown,
-  Globe,
-  Layers,
-  Shield,
-  Zap,
-} from "lucide-react";
+import { type LucideIcon, BarChart2, ChevronDown, Globe, Layers, Shield, Zap } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { cn } from "@hilum/ui";
@@ -58,13 +49,7 @@ const RECENT_POSTS = [
   },
 ];
 
-function FlyoutLink({
-  item,
-  iconClassName,
-}: {
-  item: FlyoutItem;
-  iconClassName?: string;
-}) {
+function FlyoutLink({ item, iconClassName }: { item: FlyoutItem; iconClassName?: string }) {
   const Icon = item.icon;
 
   return (
@@ -75,7 +60,7 @@ function FlyoutLink({
       <div
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
-          iconClassName
+          iconClassName,
         )}
       >
         <Icon size={18} />
@@ -163,7 +148,8 @@ export default function FlyoutFullWidth() {
       <div className="px-6 py-12">
         <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
           <p className="body max-w-2xl text-ground-500">
-            Full-width panels let the menu behave like a small landing surface, combining navigation with editorial context.
+            Full-width panels let the menu behave like a small landing surface, combining navigation
+            with editorial context.
           </p>
         </div>
       </div>

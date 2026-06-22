@@ -25,23 +25,17 @@ export default function TwoColumns() {
   return (
     <section className="w-full bg-white px-6 py-16 sm:px-10 lg:grid lg:grid-cols-2 lg:gap-12">
       <div>
-        <p className="label mb-4 uppercase tracking-wide text-brand-primary">
-          Perspective
-        </p>
-        <h3 className="heading text-ground-900">
-          A practical operating system for product teams
-        </h3>
+        <p className="label mb-4 uppercase tracking-wide text-brand-primary">Perspective</p>
+        <h3 className="heading text-ground-900">A practical operating system for product teams</h3>
         <p className="body mt-4 max-w-xl text-ground-600">
-          Good systems turn recurring judgment calls into defaults that teams can
-          trust. That means less friction in planning, cleaner collaboration, and a
-          sharper product surface over time.
+          Good systems turn recurring judgment calls into defaults that teams can trust. That means
+          less friction in planning, cleaner collaboration, and a sharper product surface over time.
         </p>
       </div>
       <div className="mt-8 lg:mt-0">
         <p className="body text-ground-600">
-          The result is not just visual consistency. It is a better workflow for
-          everyone touching the product, from designers shaping the interface to
-          marketers adapting the story.
+          The result is not just visual consistency. It is a better workflow for everyone touching
+          the product, from designers shaping the interface to marketers adapting the story.
         </p>
         <div className="mt-8">
           <BulletList items={BULLETS} />

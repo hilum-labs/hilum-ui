@@ -31,8 +31,8 @@ export default function TwoColumnsOnBrand() {
       <div className="mx-auto max-w-5xl">
         <h2 className="heading text-white">Frequently asked questions</h2>
         <p className="body mt-3 max-w-2xl text-white/80">
-          A bold support section that keeps the answers readable while
-          matching the primary campaign color.
+          A bold support section that keeps the answers readable while matching the primary campaign
+          color.
         </p>
 
         <dl className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">

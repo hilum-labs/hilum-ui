@@ -1,7 +1,16 @@
 import { useState } from "react";
 import {
-  LayoutDashboard, Users, FolderOpen, BarChart2, Settings,
-  Bell, ChevronDown, Menu, X, LogOut, User
+  LayoutDashboard,
+  Users,
+  FolderOpen,
+  BarChart2,
+  Settings,
+  Bell,
+  ChevronDown,
+  Menu,
+  X,
+  LogOut,
+  User,
 } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -40,7 +49,7 @@ export default function SidebarShell() {
       <aside
         className={cn(
           "absolute inset-y-0 left-0 z-50 flex w-56 flex-col bg-white border-r border-ground-100 transition-transform duration-200 lg:static lg:translate-x-0",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+          sidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         {/* Logo */}
@@ -62,16 +71,13 @@ export default function SidebarShell() {
                     "flex items-center gap-2.5 rounded-lg px-2.5 py-2 caption transition-colors",
                     item.active
                       ? "bg-brand-primary/10 text-brand-primary font-medium"
-                      : "text-ground-600 hover:bg-ground-50 hover:text-ground-900"
+                      : "text-ground-600 hover:bg-ground-50 hover:text-ground-900",
                   )}
                 >
                   <item.icon size={14} />
                   <span className="flex-1">{item.label}</span>
                   {item.badge && (
-                    <Badge
-                      variant={item.active ? "outline" : "secondary"}
-                      className="caption-xs"
-                    >
+                    <Badge variant={item.active ? "outline" : "secondary"} className="caption-xs">
                       {item.badge}
                     </Badge>
                   )}
@@ -85,7 +91,7 @@ export default function SidebarShell() {
         <div className="border-t border-ground-100 p-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 caption text-ground-700 hover:bg-ground-50 transition-colors">
+              <button className="flex min-h-10 w-full items-center gap-2.5 rounded-lg px-2.5 caption text-ground-700 transition-colors hover:bg-ground-50">
                 <Avatar size="xs">
                   <AvatarFallback className="bg-brand-primary text-white">TC</AvatarFallback>
                 </Avatar>
@@ -97,10 +103,16 @@ export default function SidebarShell() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent side="top" align="start" className="w-48">
-              <DropdownMenuItem><User size={13} className="mr-2" /> Profile</DropdownMenuItem>
-              <DropdownMenuItem><Settings size={13} className="mr-2" /> Settings</DropdownMenuItem>
+              <DropdownMenuItem>
+                <User size={13} className="mr-2" /> Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Settings size={13} className="mr-2" /> Settings
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem className="text-red-600"><LogOut size={13} className="mr-2" /> Sign out</DropdownMenuItem>
+              <DropdownMenuItem className="text-red-600">
+                <LogOut size={13} className="mr-2" /> Sign out
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -131,7 +143,10 @@ export default function SidebarShell() {
           <p className="caption text-ground-400 mb-6">Welcome back, Tom.</p>
           <div className="grid grid-cols-3 gap-3">
             {["32,450", "1,230", "97.2%"].map((v, i) => (
-              <div key={i} className="rounded-xl border border-ground-100 bg-white p-4 shadow-natural">
+              <div
+                key={i}
+                className="rounded-xl border border-ground-100 bg-white p-4 shadow-natural"
+              >
                 <p className="caption text-ground-400 mb-1">{["Revenue", "Users", "Uptime"][i]}</p>
                 <p className="heading font-semibold text-ground-900">{v}</p>
               </div>

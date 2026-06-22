@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -55,7 +54,7 @@ function CategoryFiltersPage() {
           </p>
         </div>
 
-      <PageDocs path="/ecommerce/category-filters/" />
+        <PageDocs path="/ecommerce/category-filters/" />
 
         <div className="space-y-8">
           <SectionHeading label="Sidebar Filters" />

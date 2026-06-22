@@ -71,15 +71,20 @@ function EmptyStatePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">Molecules</a>
+          <a href="/molecules" className="hover:text-ground-700">
+            Molecules
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Empty State</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Empty State</h1>
         <p className="body max-w-md text-ground-400">
-          A placeholder for empty lists, zero-data views, and no-results scenarios. Composes an icon, heading, description, and optional CTA.
+          A placeholder for empty lists, zero-data views, and no-results scenarios. Composes an
+          icon, heading, description, and optional CTA.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Molecule</p>
@@ -91,10 +96,13 @@ function EmptyStatePage() {
       <PageDocs path="/molecules/empty-state/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <SectionHeading label="Empty State · Basic" />
-          <PreviewBlock title="Icon + description" description="The standard form" code={CODE.basic}>
+          <PreviewBlock
+            title="Icon + description"
+            description="The standard form"
+            code={CODE.basic}
+          >
             <div className="w-full max-w-sm">
               <EmptyState
                 icon={<Inbox size={20} />}
@@ -107,7 +115,11 @@ function EmptyStatePage() {
 
         <div>
           <SectionHeading label="Empty State · With action" />
-          <PreviewBlock title="CTA button" description="Guides users to the next step" code={CODE.action}>
+          <PreviewBlock
+            title="CTA button"
+            description="Guides users to the next step"
+            code={CODE.action}
+          >
             <div className="w-full max-w-sm">
               <EmptyState
                 icon={<Users size={20} />}
@@ -131,7 +143,11 @@ function EmptyStatePage() {
                 />
               </div>
             </PreviewBlock>
-            <PreviewBlock title="Search · no results" description="For filtered/search empty states" code={CODE.search}>
+            <PreviewBlock
+              title="Search · no results"
+              description="For filtered/search empty states"
+              code={CODE.search}
+            >
               <div className="w-full max-w-sm">
                 <EmptyState
                   icon={<Search size={20} />}
@@ -145,7 +161,11 @@ function EmptyStatePage() {
 
         <div>
           <SectionHeading label="Empty State · In context" />
-          <PreviewBlock title="Inside a container" description="Dropped into a bordered panel or table" code={CODE.inContext}>
+          <PreviewBlock
+            title="Inside a container"
+            description="Dropped into a bordered panel or table"
+            code={CODE.inContext}
+          >
             <div className="w-full max-w-sm">
               <div className="rounded-xl border border-ground-100">
                 <EmptyState
@@ -158,7 +178,6 @@ function EmptyStatePage() {
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

@@ -141,9 +141,7 @@ export default function Dropdowns() {
             <DropdownMenuContent>
               <div className="px-2.5 py-2">
                 <p className="caption text-ground-400">Signed in as</p>
-                <p className="body font-medium text-ground-900 truncate">
-                  tom@example.com
-                </p>
+                <p className="body font-medium text-ground-900 truncate">tom@example.com</p>
               </div>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Account settings</DropdownMenuItem>

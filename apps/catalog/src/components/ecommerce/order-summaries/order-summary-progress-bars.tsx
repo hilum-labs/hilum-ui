@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -58,10 +57,16 @@ function ProgressTracker({ activeStep }: { activeStep: number }) {
               {isCompleted ? <CheckCircle size={14} /> : index + 1}
             </div>
             <div>
-              <p className={`label ${isCompleted ? "text-brand-primary" : isActive ? "text-brand-primary" : "text-ground-400"}`}>
+              <p
+                className={`label ${isCompleted ? "text-brand-primary" : isActive ? "text-brand-primary" : "text-ground-400"}`}
+              >
                 Step {index + 1}
               </p>
-              <p className={`body font-medium ${isCompleted || isActive ? "text-ground-900" : "text-ground-500"}`}>{step}</p>
+              <p
+                className={`body font-medium ${isCompleted || isActive ? "text-ground-900" : "text-ground-500"}`}
+              >
+                {step}
+              </p>
             </div>
           </div>
         );
@@ -80,14 +85,21 @@ export default function OrderSummaryProgressBars() {
           <div>
             <p className="label text-ground-400">Tracking view</p>
             <h3 className="heading mt-2 text-ground-900">Order progress</h3>
-            <p className="caption mt-2 text-ground-500">Move through the delivery stages to preview the component states.</p>
+            <p className="caption mt-2 text-ground-500">
+              Move through the delivery stages to preview the component states.
+            </p>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" onClick={() => setActiveStep((step) => Math.max(0, step - 1))}>
+            <Button
+              variant="outline"
+              onClick={() => setActiveStep((step) => Math.max(0, step - 1))}
+            >
               <ChevronLeft size={16} />
               Previous
             </Button>
-            <Button onClick={() => setActiveStep((step) => Math.min(TRACKING_STEPS.length - 1, step + 1))}>
+            <Button
+              onClick={() => setActiveStep((step) => Math.min(TRACKING_STEPS.length - 1, step + 1))}
+            >
               Next
               <ChevronRight size={16} />
             </Button>
@@ -98,11 +110,17 @@ export default function OrderSummaryProgressBars() {
           {ORDER.products.map((product) => (
             <div key={product.name} className="rounded-[24px] border border-ground-100 p-4">
               <div className="flex items-center gap-4">
-                <img src={product.img} alt={product.name} className="size-20 rounded-2xl object-cover" />
+                <img
+                  src={product.img}
+                  alt={product.name}
+                  className="size-20 rounded-2xl object-cover"
+                />
                 <div className="flex-1">
                   <p className="subheading text-ground-900">{product.name}</p>
                   <p className="caption mt-1 text-ground-500">
-                    {activeStep >= 2 ? "Tracking label created and carrier confirmed." : "Preparing the shipment and packing the order."}
+                    {activeStep >= 2
+                      ? "Tracking label created and carrier confirmed."
+                      : "Preparing the shipment and packing the order."}
                   </p>
                 </div>
                 <p className="body font-medium text-ground-900">{formatCurrency(product.price)}</p>

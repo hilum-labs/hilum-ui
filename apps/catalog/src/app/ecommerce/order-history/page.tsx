@@ -8,13 +8,7 @@ import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Input } from "@hilum/ui";
 import { Label } from "@hilum/ui";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@hilum/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import InvoiceList from "@/components/ecommerce/order-history/invoice-list";
 import invoiceListSource from "@/components/ecommerce/order-history/invoice-list?raw";
@@ -71,7 +65,10 @@ function OrderHistoryPage() {
           <div className="space-y-2">
             <Label htmlFor="order-search">Search orders</Label>
             <div className="relative">
-              <Search size={14} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ground-400" />
+              <Search
+                size={14}
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ground-400"
+              />
               <Input
                 id="order-search"
                 value={searchTerm}

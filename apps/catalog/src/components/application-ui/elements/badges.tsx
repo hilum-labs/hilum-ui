@@ -2,13 +2,7 @@ import { useState } from "react";
 import { X } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
-type BadgeVariant =
-  | "default"
-  | "secondary"
-  | "outline"
-  | "brand"
-  | "success"
-  | "warning";
+type BadgeVariant = "default" | "secondary" | "outline" | "brand" | "success" | "warning";
 
 function VariantCard({
   title,
@@ -129,9 +123,7 @@ export default function Badges() {
                 <button
                   type="button"
                   onClick={() =>
-                    setRemovableBadges((current) =>
-                      current.filter((item) => item.id !== badge.id)
-                    )
+                    setRemovableBadges((current) => current.filter((item) => item.id !== badge.id))
                   }
                   className="ml-1 hover:text-current/80"
                   aria-label={`Remove ${badge.label}`}

@@ -40,6 +40,7 @@ function PageHeader({
         )}
         <Tag
           className={cn(
+            "text-balance",
             level === 1
               ? "heading-xl text-foreground"
               : level === 2
@@ -49,7 +50,9 @@ function PageHeader({
         >
           {title}
         </Tag>
-        {description && <p className="body text-muted-foreground mt-2 max-w-2xl">{description}</p>}
+        {description && (
+          <p className="body mt-2 max-w-2xl text-pretty text-muted-foreground">{description}</p>
+        )}
       </div>
       {actions && <div className="flex items-center gap-2 shrink-0">{actions}</div>}
     </div>

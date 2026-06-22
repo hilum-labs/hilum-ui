@@ -7,14 +7,13 @@ export default function Centered() {
           A point of view that helps teams ship better work
         </h3>
         <p className="body mt-6 text-ground-600">
-          Strong systems do more than standardize surfaces. They create a shared
-          language for decisions, so product, design, and marketing can move in the
-          same direction without losing speed.
+          Strong systems do more than standardize surfaces. They create a shared language for
+          decisions, so product, design, and marketing can move in the same direction without losing
+          speed.
         </p>
         <p className="body mt-4 text-ground-600">
-          That clarity compounds over time. The best teams turn interface choices
-          into operating leverage, making quality easier to repeat under real-world
-          pressure.
+          That clarity compounds over time. The best teams turn interface choices into operating
+          leverage, making quality easier to repeat under real-world pressure.
         </p>
         <hr className="my-10 border-ground-100" />
         <div className="grid gap-4 sm:grid-cols-3">

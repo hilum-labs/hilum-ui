@@ -22,7 +22,14 @@ const DL_ITEMS = [
   { term: "Phone", details: "+1 (555) 012-3456" },
   { term: "Location", details: "San Francisco, CA" },
   { term: "Department", details: "Engineering" },
-  { term: "Status", details: <Badge variant="success" className="caption-xs">Active</Badge> },
+  {
+    term: "Status",
+    details: (
+      <Badge variant="success" className="caption-xs">
+        Active
+      </Badge>
+    ),
+  },
 ];
 
 const FEED = [
@@ -32,8 +39,8 @@ const FEED = [
     iconBgClass: "bg-brand-secondary text-ground-900",
     content: (
       <p className="caption text-ground-600">
-        <span className="font-semibold text-ground-900">Sophie Chen</span> left a comment:{" "}
-        "Tom has been leading the platform migration with exceptional clarity."
+        <span className="font-semibold text-ground-900">Sophie Chen</span> left a comment: "Tom has
+        been leading the platform migration with exceptional clarity."
       </p>
     ),
     date: "2h ago",
@@ -69,10 +76,7 @@ export default function DetailScreenPreview() {
       {/* Page heading */}
       <PageHeading
         title={PERSON.name}
-        breadcrumbs={[
-          { label: "Team", href: "#" },
-          { label: PERSON.name },
-        ]}
+        breadcrumbs={[{ label: "Team", href: "#" }, { label: PERSON.name }]}
         badge={{ label: PERSON.status, variant: "outline" }}
         meta={[
           { icon: <Mail size={13} />, text: PERSON.email },
@@ -103,9 +107,24 @@ export default function DetailScreenPreview() {
             </div>
             <div className="p-5 flex flex-col gap-3">
               {[
-                { name: "Sophie Chen", role: "Senior Engineer", color: "bg-brand-secondary text-ground-900", initials: "SC" },
-                { name: "James Park", role: "Engineer", color: "bg-brand-primary text-white", initials: "JP" },
-                { name: "Mia Torres", role: "Engineer", color: "bg-ground-900 text-white", initials: "MT" },
+                {
+                  name: "Sophie Chen",
+                  role: "Senior Engineer",
+                  color: "bg-brand-secondary text-ground-900",
+                  initials: "SC",
+                },
+                {
+                  name: "James Park",
+                  role: "Engineer",
+                  color: "bg-brand-primary text-white",
+                  initials: "JP",
+                },
+                {
+                  name: "Mia Torres",
+                  role: "Engineer",
+                  color: "bg-ground-900 text-white",
+                  initials: "MT",
+                },
               ].map((m) => (
                 <div key={m.name} className="flex items-center gap-3">
                   <Avatar size="sm">
@@ -126,11 +145,17 @@ export default function DetailScreenPreview() {
               <p className="label text-ground-900">Contact</p>
             </div>
             <div className="divide-y divide-ground-50">
-              <a href={`mailto:${PERSON.email}`} className="flex items-center gap-3 px-5 py-3 caption text-ground-600 hover:bg-ground-50 transition-colors">
+              <a
+                href={`mailto:${PERSON.email}`}
+                className="flex items-center gap-3 px-5 py-3 caption text-ground-600 hover:bg-ground-50 transition-colors"
+              >
                 <Mail size={13} className="text-ground-400" />
                 {PERSON.email}
               </a>
-              <a href={`tel:${PERSON.phone}`} className="flex items-center gap-3 px-5 py-3 caption text-ground-600 hover:bg-ground-50 transition-colors">
+              <a
+                href={`tel:${PERSON.phone}`}
+                className="flex items-center gap-3 px-5 py-3 caption text-ground-600 hover:bg-ground-50 transition-colors"
+              >
                 <Phone size={13} className="text-ground-400" />
                 {PERSON.phone}
               </a>

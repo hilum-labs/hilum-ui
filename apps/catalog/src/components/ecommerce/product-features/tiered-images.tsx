@@ -1,7 +1,9 @@
-
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
 function FeatureList({ items }: { items: string[] }) {
   return (
@@ -16,22 +18,8 @@ function FeatureList({ items }: { items: string[] }) {
   );
 }
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function TieredImages() {
@@ -44,8 +32,8 @@ export default function TieredImages() {
             Lead with the overall form, then reveal the details underneath.
           </h3>
           <p className="body mt-4 text-ground-600">
-            This arrangement works when the product benefits from a single hero shot
-            followed by closer views of the material and construction.
+            This arrangement works when the product benefits from a single hero shot followed by
+            closer views of the material and construction.
           </p>
           <div className="mt-6">
             <FeatureList
@@ -67,18 +55,10 @@ export default function TieredImages() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="overflow-hidden rounded-3xl">
-              <ProductImage
-                src={DETAIL_IMAGE_ONE}
-                alt="Front detail"
-                className="aspect-[5/4]"
-              />
+              <ProductImage src={DETAIL_IMAGE_ONE} alt="Front detail" className="aspect-[5/4]" />
             </div>
             <div className="overflow-hidden rounded-3xl">
-              <ProductImage
-                src={DETAIL_IMAGE_TWO}
-                alt="Profile detail"
-                className="aspect-[5/4]"
-              />
+              <ProductImage src={DETAIL_IMAGE_TWO} alt="Profile detail" className="aspect-[5/4]" />
             </div>
           </div>
         </div>

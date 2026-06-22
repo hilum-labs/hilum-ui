@@ -77,10 +77,7 @@ function PaletteGenerator() {
   const [primary, setPrimary] = useState("#c100f1");
   const [secondary, setSecondary] = useState("#fff5bf");
 
-  const { palette } = useMemo(
-    () => createTheme({ primary, secondary }),
-    [primary, secondary],
-  );
+  const { palette } = useMemo(() => createTheme({ primary, secondary }), [primary, secondary]);
 
   const pfg = relativeLuminance(primary) > 0.179 ? "#26181a" : "#ffffff";
 
@@ -180,20 +177,12 @@ function ColorPicker({
           className="h-9 w-28 rounded-md border border-ground-200 bg-white px-3 font-mono caption text-ground-900 focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
         />
       </div>
-      <p className="caption-xs text-ground-300">
-        {label}-500 anchor · 11 shades generated
-      </p>
+      <p className="caption-xs text-ground-300">{label}-500 anchor · 11 shades generated</p>
     </div>
   );
 }
 
-function PaletteRow({
-  label,
-  shades,
-}: {
-  label: string;
-  shades: Record<string, string>;
-}) {
+function PaletteRow({ label, shades }: { label: string; shades: Record<string, string> }) {
   return (
     <div>
       <p className="caption mb-1.5 text-ground-400">{label}</p>
@@ -203,11 +192,7 @@ function PaletteRow({
           const isDark = relativeLuminance(hex) <= 0.179;
           return (
             <div key={k} className="flex flex-1 flex-col items-center gap-1">
-              <div
-                className="h-8 w-full rounded-md"
-                style={{ backgroundColor: hex }}
-                title={hex}
-              />
+              <div className="h-8 w-full rounded-md" style={{ backgroundColor: hex }} title={hex} />
               <p
                 className="caption-xs font-mono text-ground-400 hidden sm:block"
                 style={{ fontSize: "9px" }}
@@ -270,14 +255,34 @@ const apiRows = [
 ];
 
 const configRows = [
-  { prop: "primary", type: "string", desc: "Hex color. Used as the 500-level anchor for the primary palette." },
-  { prop: "secondary", type: "string", desc: "Hex color. Used as the 500-level anchor for the secondary palette." },
+  {
+    prop: "primary",
+    type: "string",
+    desc: "Hex color. Used as the 500-level anchor for the primary palette.",
+  },
+  {
+    prop: "secondary",
+    type: "string",
+    desc: "Hex color. Used as the 500-level anchor for the secondary palette.",
+  },
 ];
 
 const resultRows = [
-  { prop: "css", type: "string", desc: "Complete CSS override string. Inject via <style> or write to a .css file." },
-  { prop: "palette.primary", type: "Record<string, string>", desc: 'Generated shades: { "50": "#f2f7ff", …, "950": "#000723" }' },
-  { prop: "palette.secondary", type: "Record<string, string>", desc: "Same structure for the secondary color." },
+  {
+    prop: "css",
+    type: "string",
+    desc: "Complete CSS override string. Inject via <style> or write to a .css file.",
+  },
+  {
+    prop: "palette.primary",
+    type: "Record<string, string>",
+    desc: 'Generated shades: { "50": "#f2f7ff", …, "950": "#000723" }',
+  },
+  {
+    prop: "palette.secondary",
+    type: "Record<string, string>",
+    desc: "Same structure for the secondary color.",
+  },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -285,15 +290,40 @@ const resultRows = [
  * ------------------------------------------------------------------ */
 
 const overrideRows = [
-  { var: "--color-brand-primary", value: "primary hex", affects: "bg-brand-primary, text-brand-primary, ring-brand-primary — Button, Badge, Input focus rings" },
-  { var: "--color-brand-secondary", value: "secondary hex", affects: "bg-brand-secondary, border-brand-secondary — Badge success/warning, Button brand" },
+  {
+    var: "--color-brand-primary",
+    value: "primary hex",
+    affects:
+      "bg-brand-primary, text-brand-primary, ring-brand-primary — Button, Badge, Input focus rings",
+  },
+  {
+    var: "--color-brand-secondary",
+    value: "secondary hex",
+    affects: "bg-brand-secondary, border-brand-secondary — Badge success/warning, Button brand",
+  },
   { var: "--primary", value: "primary hex", affects: "Semantic primary token" },
   { var: "--primary-foreground", value: "auto (WCAG)", affects: "Text on primary surfaces" },
-  { var: "--accent / --accent-foreground", value: "primary-50 / primary-700", affects: "Hover tints, accent surfaces" },
+  {
+    var: "--accent / --accent-foreground",
+    value: "primary-50 / primary-700",
+    affects: "Hover tints, accent surfaces",
+  },
   { var: "--ring", value: "primary hex", affects: "Focus rings on all interactive elements" },
-  { var: "--warning / --warning-foreground", value: "secondary-200 / ground-900", affects: "Warning banners and callouts" },
-  { var: "--color-primary-{50…950}", value: "generated palette", affects: "Product CSS: var(--color-primary-100), etc." },
-  { var: "--color-secondary-{50…950}", value: "generated palette", affects: "Product CSS: var(--color-secondary-100), etc." },
+  {
+    var: "--warning / --warning-foreground",
+    value: "secondary-200 / ground-900",
+    affects: "Warning banners and callouts",
+  },
+  {
+    var: "--color-primary-{50…950}",
+    value: "generated palette",
+    affects: "Product CSS: var(--color-primary-100), etc.",
+  },
+  {
+    var: "--color-secondary-{50…950}",
+    value: "generated palette",
+    affects: "Product CSS: var(--color-secondary-100), etc.",
+  },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -315,34 +345,36 @@ function SectionHeading({ label }: { label: string }) {
 
 function ThemingPage() {
   const [pkgManager, setPkgManager] = useState<"pnpm" | "npm" | "yarn">("pnpm");
-  const installCode = pkgManager === "pnpm" ? INSTALL_PNPM : pkgManager === "npm" ? INSTALL_NPM : INSTALL_YARN;
+  const installCode =
+    pkgManager === "pnpm" ? INSTALL_PNPM : pkgManager === "npm" ? INSTALL_NPM : INSTALL_YARN;
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-
       {/* Header */}
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <Link to="/" className="hover:text-ground-700">Design System</Link>
+          <Link to="/" className="hover:text-ground-700">
+            Design System
+          </Link>
           <span>/</span>
           <span className="font-semibold text-ground-900">Theming</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Theming</h1>
         <p className="body max-w-lg text-ground-500">
-          Per-product color customization via OKLCH palette generation. Pass two
-          hex values — get a full 11-shade palette and a CSS override ready to
-          inject.
+          Per-product color customization via OKLCH palette generation. Pass two hex values — get a
+          full 11-shade palette and a CSS override ready to inject.
         </p>
         <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-ground-100 pt-5">
           <Badge variant="secondary">@hilum/ui/create-theme</Badge>
-          <span className="caption text-ground-300">No external dependencies · Works in Node + browser</span>
+          <span className="caption text-ground-300">
+            No external dependencies · Works in Node + browser
+          </span>
         </div>
       </div>
 
       <PageDocs path="/theming/" />
 
       <div className="flex flex-col gap-14">
-
         {/* ── Installation ──────────────────────────────────────────── */}
         <section id="installation">
           <SectionHeading label="Installation" />
@@ -377,7 +409,8 @@ function ThemingPage() {
             <p className="caption mt-1 text-ground-400">
               <code className="font-mono text-ground-600">react@^19</code> and{" "}
               <code className="font-mono text-ground-600">react-dom@^19</code> are required.
-              <code className="font-mono text-ground-600 ml-2">tailwindcss@^4</code> is required in any app that uses the token utilities.
+              <code className="font-mono text-ground-600 ml-2">tailwindcss@^4</code> is required in
+              any app that uses the token utilities.
             </p>
           </div>
         </section>
@@ -386,9 +419,8 @@ function ThemingPage() {
         <section id="palette-generator">
           <SectionHeading label="Palette generator" />
           <p className="body mb-6 max-w-lg text-ground-500">
-            Pick any two hex colors. The algorithm treats your input as the
-            500-level anchor and generates 11 perceptually-uniform shades via
-            OKLCH color space interpolation.
+            Pick any two hex colors. The algorithm treats your input as the 500-level anchor and
+            generates 11 perceptually-uniform shades via OKLCH color space interpolation.
           </p>
           <div className="overflow-hidden rounded-xl border border-ground-100">
             <div className="border-b border-ground-100 bg-white px-5 py-3">
@@ -408,7 +440,6 @@ function ThemingPage() {
           <SectionHeading label="Usage" />
 
           <div className="flex flex-col gap-6">
-
             {/* ThemeProvider */}
             <div>
               <p className="subheading mb-1 text-ground-900">ThemeProvider (recommended)</p>
@@ -422,7 +453,8 @@ function ThemingPage() {
             <div>
               <p className="subheading mb-1 text-ground-900">applyTheme()</p>
               <p className="caption mb-3 text-ground-400">
-                Imperative alternative. Useful for Electron apps that apply a theme at init before React mounts.
+                Imperative alternative. Useful for Electron apps that apply a theme at init before
+                React mounts.
               </p>
               <CodeBlock code={USAGE_APPLY} />
             </div>
@@ -431,7 +463,8 @@ function ThemingPage() {
             <div>
               <p className="subheading mb-1 text-ground-900">createTheme() — pure / build-time</p>
               <p className="caption mb-3 text-ground-400">
-                Returns the raw CSS string and palette. Works in Node — use it in build scripts, SSG pipelines, or to write a static CSS file per product.
+                Returns the raw CSS string and palette. Works in Node — use it in build scripts, SSG
+                pipelines, or to write a static CSS file per product.
               </p>
               <CodeBlock code={USAGE_CREATE} />
             </div>
@@ -452,10 +485,10 @@ function ThemingPage() {
         <section id="overrides">
           <SectionHeading label="What gets overridden" />
           <p className="body mb-4 max-w-lg text-ground-500">
-            The generated CSS overrides CSS custom properties that back Tailwind
-            v4 utilities. Unlayered <code className="font-mono text-ground-600">:root</code> rules beat{" "}
-            <code className="font-mono text-ground-600">@layer theme</code>, so the override
-            takes effect without rebuilding Tailwind.
+            The generated CSS overrides CSS custom properties that back Tailwind v4 utilities.
+            Unlayered <code className="font-mono text-ground-600">:root</code> rules beat{" "}
+            <code className="font-mono text-ground-600">@layer theme</code>, so the override takes
+            effect without rebuilding Tailwind.
           </p>
           <div className="overflow-hidden rounded-xl border border-ground-100">
             <div className="grid grid-cols-[200px_160px_1fr] border-b border-ground-100 bg-ground-50 px-5 py-2">
@@ -469,7 +502,9 @@ function ThemingPage() {
                 className={[
                   "grid grid-cols-[200px_160px_1fr] items-start gap-3 px-5 py-3",
                   i !== overrideRows.length - 1 && "border-b border-ground-100",
-                ].filter(Boolean).join(" ")}
+                ]
+                  .filter(Boolean)
+                  .join(" ")}
               >
                 <code className="font-mono caption text-ground-700 break-all">{row.var}</code>
                 <p className="caption text-ground-500">{row.value}</p>
@@ -498,9 +533,13 @@ function ThemingPage() {
                   className={[
                     "grid grid-cols-[200px_200px_1fr] items-start gap-3 px-5 py-3",
                     i !== apiRows.length - 1 && "border-b border-ground-100",
-                  ].filter(Boolean).join(" ")}
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
                 >
-                  <code className="font-mono caption font-semibold text-ground-700">{row.name}</code>
+                  <code className="font-mono caption font-semibold text-ground-700">
+                    {row.name}
+                  </code>
                   <code className="font-mono caption text-ground-400">{row.sig}</code>
                   <p className="caption text-ground-400">{row.desc}</p>
                 </div>
@@ -523,9 +562,13 @@ function ThemingPage() {
                   className={[
                     "grid grid-cols-[120px_120px_1fr] items-start gap-3 px-5 py-3",
                     i !== configRows.length - 1 && "border-b border-ground-100",
-                  ].filter(Boolean).join(" ")}
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
                 >
-                  <code className="font-mono caption font-semibold text-ground-700">{row.prop}</code>
+                  <code className="font-mono caption font-semibold text-ground-700">
+                    {row.prop}
+                  </code>
                   <code className="font-mono caption text-ground-400">{row.type}</code>
                   <p className="caption text-ground-400">{row.desc}</p>
                 </div>
@@ -548,9 +591,13 @@ function ThemingPage() {
                   className={[
                     "grid grid-cols-[180px_200px_1fr] items-start gap-3 px-5 py-3",
                     i !== resultRows.length - 1 && "border-b border-ground-100",
-                  ].filter(Boolean).join(" ")}
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
                 >
-                  <code className="font-mono caption font-semibold text-ground-700">{row.prop}</code>
+                  <code className="font-mono caption font-semibold text-ground-700">
+                    {row.prop}
+                  </code>
                   <code className="font-mono caption text-ground-400">{row.type}</code>
                   <p className="caption text-ground-400">{row.desc}</p>
                 </div>
@@ -564,9 +611,9 @@ function ThemingPage() {
           <SectionHeading label="How palettes are generated" />
           <div className="flex flex-col gap-4 max-w-2xl">
             <p className="body text-ground-500">
-              Palette generation uses the OKLCH color space — a perceptually
-              uniform model where equal numerical steps produce equal perceived
-              changes. No external dependency; the conversion math is inlined (~100 lines).
+              Palette generation uses the OKLCH color space — a perceptually uniform model where
+              equal numerical steps produce equal perceived changes. No external dependency; the
+              conversion math is inlined (~100 lines).
             </p>
             <ol className="flex flex-col gap-2">
               {[
@@ -576,14 +623,15 @@ function ThemingPage() {
                 "Foreground colors (primaryForeground) are chosen using WCAG relative luminance with a 0.179 threshold — the crossover point where white and black have equal contrast.",
               ].map((step, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="caption font-semibold text-ground-300 shrink-0 w-4">{i + 1}.</span>
+                  <span className="caption font-semibold text-ground-300 shrink-0 w-4">
+                    {i + 1}.
+                  </span>
                   <p className="caption text-ground-500">{step}</p>
                 </li>
               ))}
             </ol>
           </div>
         </section>
-
       </div>
 
       <div className="h-16" />

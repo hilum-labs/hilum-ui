@@ -46,12 +46,12 @@ function LogoCloudsPage() {
           </div>
           <h1 className="display mb-2 text-ground-900">Logo Clouds</h1>
           <p className="body max-w-2xl text-ground-400">
-            A compact catalog of logo cloud layouts for trust-building moments, from quiet
-            white sections to stronger brand-backed treatments.
+            A compact catalog of logo cloud layouts for trust-building moments, from quiet white
+            sections to stronger brand-backed treatments.
           </p>
         </div>
 
-      <PageDocs path="/marketing/logo-clouds/" />
+        <PageDocs path="/marketing/logo-clouds/" />
 
         <SectionHeading label="Variants" />
 

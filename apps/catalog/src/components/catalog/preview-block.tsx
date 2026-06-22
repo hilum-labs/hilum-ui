@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Check, Code2, Copy } from "lucide-react";
 import { cn } from "@hilum/ui";
@@ -34,12 +33,13 @@ export function PreviewBlock({
   return (
     <div className={cn("overflow-hidden rounded-xl border border-ground-100", className)}>
       {/* Header */}
-      <div id={anchorId} className="flex items-center justify-between border-b border-ground-100 bg-white px-5 py-3 scroll-mt-6">
+      <div
+        id={anchorId}
+        className="flex items-center justify-between border-b border-ground-100 bg-white px-5 py-3 scroll-mt-6"
+      >
         <div>
           <p className="subheading text-ground-900">{title}</p>
-          {description && (
-            <p className="caption mt-0.5 text-ground-400">{description}</p>
-          )}
+          {description && <p className="caption mt-0.5 text-ground-400">{description}</p>}
         </div>
         <button
           onClick={() => setShowCode(!showCode)}
@@ -47,7 +47,7 @@ export function PreviewBlock({
             "flex h-7 items-center gap-1.5 rounded-md px-2.5 caption font-medium transition-colors",
             showCode
               ? "bg-ground-900 text-white"
-              : "text-ground-400 hover:bg-ground-100 hover:text-ground-700"
+              : "text-ground-400 hover:bg-ground-100 hover:text-ground-700",
           )}
         >
           <Code2 size={12} />
@@ -60,7 +60,7 @@ export function PreviewBlock({
         className={cn(
           "flex min-h-32 flex-wrap items-center justify-center gap-3 p-8",
           "bg-ground-50",
-          previewClassName
+          previewClassName,
         )}
       >
         {children}

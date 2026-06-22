@@ -2,13 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@hilum/ui";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -87,14 +81,16 @@ const SECTIONS: SectionEntry[] = [
   {
     name: "Category Previews",
     slug: "category-previews",
-    description: "Category landing sections with image cards, scrolling carousels, and split layouts.",
+    description:
+      "Category landing sections with image cards, scrolling carousels, and split layouts.",
     variants: 6,
     category: "Browsing",
   },
   {
     name: "Store Navigation",
     slug: "store-navigation",
-    description: "Full storefront navigation with mega menus, featured categories, and mobile drawers.",
+    description:
+      "Full storefront navigation with mega menus, featured categories, and mobile drawers.",
     variants: 5,
     category: "Navigation",
   },
@@ -128,13 +124,16 @@ function EcommercePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Ecommerce</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Ecommerce</h1>
         <p className="body max-w-md text-ground-400">
-          Storefront UI patterns for online shops. Product grids, checkout flows, cart components, navigation, and promotional sections — all adapted to the brand.
+          Storefront UI patterns for online shops. Product grids, checkout flows, cart components,
+          navigation, and promotional sections — all adapted to the brand.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">{SECTIONS.length} section types</p>

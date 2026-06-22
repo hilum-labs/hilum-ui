@@ -42,16 +42,20 @@ function InputNumberPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Input Number</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Input Number</h1>
         <p className="body max-w-lg text-ground-500">
-          Numeric input with up/down steppers, optional unit suffix, and arrow-key stepping
-          (Shift = 10×). Designed for designer property panels.
+          Numeric input with up/down steppers, optional unit suffix, and arrow-key stepping (Shift =
+          10×). Designed for designer property panels.
         </p>
       </div>
 
@@ -64,7 +68,11 @@ function InputNumberPage() {
           <InputNumber value={basic} onChange={setBasic} />
         </PreviewBlock>
 
-        <PreviewBlock title="With units" description="px, %, and ° unit suffixes" code={CODE.withUnit}>
+        <PreviewBlock
+          title="With units"
+          description="px, %, and ° unit suffixes"
+          code={CODE.withUnit}
+        >
           <div className="flex items-center gap-3">
             <InputNumber value={px} onChange={setPx} unit="px" min={0} max={999} />
             <InputNumber value={pct} onChange={setPct} unit="%" min={0} max={100} />
@@ -72,11 +80,19 @@ function InputNumberPage() {
           </div>
         </PreviewBlock>
 
-        <PreviewBlock title="Decimal precision" description="step=0.1, precision=2" code={CODE.decimal}>
+        <PreviewBlock
+          title="Decimal precision"
+          description="step=0.1, precision=2"
+          code={CODE.decimal}
+        >
           <InputNumber value={decimal} onChange={setDecimal} step={0.1} precision={2} unit="rem" />
         </PreviewBlock>
 
-        <PreviewBlock title="No steppers" description="Text-only variant without up/down buttons" code={CODE.noSteppers}>
+        <PreviewBlock
+          title="No steppers"
+          description="Text-only variant without up/down buttons"
+          code={CODE.noSteppers}
+        >
           <InputNumber value={noSteppers} onChange={setNoSteppers} unit="px" hideSteppers />
         </PreviewBlock>
       </div>

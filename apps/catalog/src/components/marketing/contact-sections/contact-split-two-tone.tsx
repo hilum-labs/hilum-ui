@@ -17,7 +17,9 @@ function Field({
 }
 
 function MessageField({ rows = 5 }: { rows?: number }) {
-  return <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />;
+  return (
+    <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />
+  );
 }
 
 function InfoRow({
@@ -72,9 +74,12 @@ export default function ContactSplitTwoTone() {
       <div className="bg-ground-900 px-8 py-14 text-white">
         <div className="mx-auto max-w-lg">
           <p className="label text-brand-secondary">Contact</p>
-          <h2 className="heading mt-4 text-white">Work with a team that ships systems, not slides</h2>
+          <h2 className="heading mt-4 text-white">
+            Work with a team that ships systems, not slides
+          </h2>
           <p className="body mt-4 text-ground-300">
-            Strategy, implementation, and enablement support for teams that need a durable UI foundation.
+            Strategy, implementation, and enablement support for teams that need a durable UI
+            foundation.
           </p>
           <div className="mt-10 space-y-6">
             <div>
@@ -92,7 +97,8 @@ export default function ContactSplitTwoTone() {
         <div className="mx-auto max-w-xl">
           <h3 className="subheading text-ground-900">Send us a message</h3>
           <p className="body mt-3 text-ground-500">
-            We usually reply within one working day with next steps and a recommended engagement model.
+            We usually reply within one working day with next steps and a recommended engagement
+            model.
           </p>
           <div className="mt-8">
             <ContactForm />

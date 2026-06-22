@@ -8,9 +8,21 @@ import { Label } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const NOTIFICATION_SETTINGS = [
-  { id: "sw-comments", label: "Comments", description: "Get notified when someone comments on your posts." },
-  { id: "sw-candidates", label: "Candidates", description: "Get notified when candidates apply for a role." },
-  { id: "sw-offers", label: "Offers", description: "Get notified when a candidate accepts an offer." },
+  {
+    id: "sw-comments",
+    label: "Comments",
+    description: "Get notified when someone comments on your posts.",
+  },
+  {
+    id: "sw-candidates",
+    label: "Candidates",
+    description: "Get notified when candidates apply for a role.",
+  },
+  {
+    id: "sw-offers",
+    label: "Offers",
+    description: "Get notified when a candidate accepts an offer.",
+  },
 ];
 
 const CODE = {
@@ -70,9 +82,13 @@ function SwitchPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Switch</span>
         </div>
@@ -85,10 +101,14 @@ function SwitchPage() {
       <PageDocs path="/atoms/switch/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Switch · Basic" />
-          <PreviewBlock title="Simple toggle" description="Switch with a label" code={CODE.basic} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Simple toggle"
+            description="Switch with a label"
+            code={CODE.basic}
+            previewClassName="flex-col items-start"
+          >
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3">
                 <Switch id="lang-override" defaultChecked />
@@ -104,7 +124,9 @@ function SwitchPage() {
               </div>
               <div className="flex items-center gap-3">
                 <Switch id="sw-disabled" disabled />
-                <Label htmlFor="sw-disabled" className="text-ground-400">Disabled option</Label>
+                <Label htmlFor="sw-disabled" className="text-ground-400">
+                  Disabled option
+                </Label>
               </div>
             </div>
           </PreviewBlock>
@@ -112,12 +134,20 @@ function SwitchPage() {
 
         <div>
           <Heading label="Switch · Left label with description" />
-          <PreviewBlock title="Label and description on left" description="Switch anchored to right, text on left. Common for notification settings." code={CODE.withLeftDescription} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Label and description on left"
+            description="Switch anchored to right, text on left. Common for notification settings."
+            code={CODE.withLeftDescription}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-6">
               {NOTIFICATION_SETTINGS.map((s) => (
                 <div key={s.id} className="flex items-center justify-between gap-4">
                   <div>
-                    <Label htmlFor={s.id} className="body font-medium text-ground-900 cursor-pointer">
+                    <Label
+                      htmlFor={s.id}
+                      className="body font-medium text-ground-900 cursor-pointer"
+                    >
                       {s.label}
                     </Label>
                     <p className="caption text-ground-400 mt-0.5">{s.description}</p>
@@ -135,33 +165,53 @@ function SwitchPage() {
 
         <div>
           <Heading label="Switch · Right label with description" />
-          <PreviewBlock title="Switch on left, label and description on right" description="Billing and preference toggles." code={CODE.withRightLabel} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Switch on left, label and description on right"
+            description="Billing and preference toggles."
+            code={CODE.withRightLabel}
+            previewClassName="flex-col items-start"
+          >
             <div className="flex flex-col gap-5 max-w-md">
               <div className="flex items-start gap-3">
                 <Switch id="annual-billing" defaultChecked className="mt-0.5" />
                 <div>
-                  <Label htmlFor="annual-billing" className="body font-medium text-ground-900 cursor-pointer">
+                  <Label
+                    htmlFor="annual-billing"
+                    className="body font-medium text-ground-900 cursor-pointer"
+                  >
                     Annual billing
                   </Label>
-                  <p className="caption text-ground-400 mt-0.5">Save 20% compared to monthly pricing.</p>
+                  <p className="caption text-ground-400 mt-0.5">
+                    Save 20% compared to monthly pricing.
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Switch id="marketing-emails" className="mt-0.5" />
                 <div>
-                  <Label htmlFor="marketing-emails" className="body font-medium text-ground-900 cursor-pointer">
+                  <Label
+                    htmlFor="marketing-emails"
+                    className="body font-medium text-ground-900 cursor-pointer"
+                  >
                     Marketing emails
                   </Label>
-                  <p className="caption text-ground-400 mt-0.5">Receive product updates, announcements, and offers.</p>
+                  <p className="caption text-ground-400 mt-0.5">
+                    Receive product updates, announcements, and offers.
+                  </p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Switch id="two-factor" defaultChecked className="mt-0.5" />
                 <div>
-                  <Label htmlFor="two-factor" className="body font-medium text-ground-900 cursor-pointer">
+                  <Label
+                    htmlFor="two-factor"
+                    className="body font-medium text-ground-900 cursor-pointer"
+                  >
                     Two-factor authentication
                   </Label>
-                  <p className="caption text-ground-400 mt-0.5">Add an extra layer of security to your account.</p>
+                  <p className="caption text-ground-400 mt-0.5">
+                    Add an extra layer of security to your account.
+                  </p>
                 </div>
               </div>
             </div>
@@ -170,7 +220,12 @@ function SwitchPage() {
 
         <div>
           <Heading label="Switch · List in a settings section" />
-          <PreviewBlock title="Composed settings panel" description="Switches in a bordered card with dividers" code={CODE.simpleList} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Composed settings panel"
+            description="Switches in a bordered card with dividers"
+            code={CODE.simpleList}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-md rounded-xl border border-ground-100 bg-white shadow-natural divide-y divide-ground-100">
               {[
                 { id: "sw-2fa", label: "Two-factor auth", on: true },
@@ -179,14 +234,15 @@ function SwitchPage() {
                 { id: "sw-pub", label: "Public profile", on: false },
               ].map((item) => (
                 <div key={item.id} className="flex items-center justify-between gap-4 px-5 py-4">
-                  <Label htmlFor={item.id} className="body text-ground-700 cursor-pointer">{item.label}</Label>
+                  <Label htmlFor={item.id} className="body text-ground-700 cursor-pointer">
+                    {item.label}
+                  </Label>
                   <Switch id={item.id} defaultChecked={item.on} />
                 </div>
               ))}
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

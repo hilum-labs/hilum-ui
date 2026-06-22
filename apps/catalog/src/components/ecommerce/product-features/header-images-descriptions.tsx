@@ -1,6 +1,7 @@
-
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -11,22 +12,8 @@ function SectionHeading({ label }: { label: string }) {
   );
 }
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function HeaderImagesDescriptions() {
@@ -52,14 +39,14 @@ export default function HeaderImagesDescriptions() {
         </div>
         <div className="mt-6 space-y-4">
           <p className="body text-ground-600">
-            Everyday Ruck Snack is designed to feel straightforward the first time
-            you use it. Compartments sit where your hands expect them, and the
-            profile stays slim even when the load shifts through the day.
+            Everyday Ruck Snack is designed to feel straightforward the first time you use it.
+            Compartments sit where your hands expect them, and the profile stays slim even when the
+            load shifts through the day.
           </p>
           <p className="body text-ground-600">
-            That sense of ease comes from restraint. The bag focuses on the details
-            that improve routine use, then gets out of the way so the object feels
-            steady instead of overdesigned.
+            That sense of ease comes from restraint. The bag focuses on the details that improve
+            routine use, then gets out of the way so the object feels steady instead of
+            overdesigned.
           </p>
         </div>
       </div>

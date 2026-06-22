@@ -1,4 +1,3 @@
-
 import { PackageCheck, Truck } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
@@ -82,27 +81,43 @@ export default function OrderSummarySplitImage() {
             <p className="label text-ground-400">Order #{ORDER.id}</p>
             <h3 className="heading mt-2 text-ground-900">Thank you for your order.</h3>
             <p className="body mt-2 text-ground-500">
-              We received your order on {ORDER.placed}. The carrier expects delivery by {ORDER.arriving}.
+              We received your order on {ORDER.placed}. The carrier expects delivery by{" "}
+              {ORDER.arriving}.
             </p>
           </div>
           <div className="space-y-4">
             {ORDER.products.map((product) => (
-              <div key={product.name} className="flex items-center gap-4 rounded-[24px] border border-ground-100 p-4">
-                <img src={product.img} alt={product.name} className="size-16 rounded-2xl object-cover" />
+              <div
+                key={product.name}
+                className="flex items-center gap-4 rounded-[24px] border border-ground-100 p-4"
+              >
+                <img
+                  src={product.img}
+                  alt={product.name}
+                  className="size-16 rounded-2xl object-cover"
+                />
                 <div className="flex-1">
                   <p className="body font-medium text-ground-900">{product.name}</p>
-                  <p className="caption text-ground-500">Premium carry goods with tracking enabled.</p>
+                  <p className="caption text-ground-500">
+                    Premium carry goods with tracking enabled.
+                  </p>
                 </div>
-                <p className="caption font-medium text-ground-900">{formatCurrency(product.price)}</p>
+                <p className="caption font-medium text-ground-900">
+                  {formatCurrency(product.price)}
+                </p>
               </div>
             ))}
           </div>
           <div className="rounded-[24px] border border-ground-200 bg-ground-50 p-5">
             <div className="flex items-center gap-3">
               <Truck size={16} className="text-brand-primary" />
-              <p className="body font-medium text-ground-900">Shipment heading to San Francisco, California</p>
+              <p className="body font-medium text-ground-900">
+                Shipment heading to San Francisco, California
+              </p>
             </div>
-            <p className="caption mt-2 text-ground-500">You'll receive delivery updates by {updateChannel.toLowerCase()}.</p>
+            <p className="caption mt-2 text-ground-500">
+              You'll receive delivery updates by {updateChannel.toLowerCase()}.
+            </p>
           </div>
           <TotalsCard />
         </div>

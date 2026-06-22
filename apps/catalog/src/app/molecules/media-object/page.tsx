@@ -68,9 +68,30 @@ function SectionHeading({ label }: { label: string }) {
 }
 
 const COMMENTS = [
-  { id: 1, author: "Bethany Blake", time: "2 hours ago", text: "This is looking great! I especially love the updated color palette — it feels much more cohesive.", initials: "BB", color: "bg-brand-primary text-white" },
-  { id: 2, author: "Tom Cook", time: "45 minutes ago", text: "Agreed. The typography hierarchy is a big improvement. Ready to merge.", initials: "TC", color: "bg-brand-secondary text-ground-900" },
-  { id: 3, author: "Martha Gardner", time: "10 minutes ago", text: "Shipped to staging! Let me know if there are any issues.", initials: "MG", color: "bg-ground-900 text-white" },
+  {
+    id: 1,
+    author: "Bethany Blake",
+    time: "2 hours ago",
+    text: "This is looking great! I especially love the updated color palette — it feels much more cohesive.",
+    initials: "BB",
+    color: "bg-brand-primary text-white",
+  },
+  {
+    id: 2,
+    author: "Tom Cook",
+    time: "45 minutes ago",
+    text: "Agreed. The typography hierarchy is a big improvement. Ready to merge.",
+    initials: "TC",
+    color: "bg-brand-secondary text-ground-900",
+  },
+  {
+    id: 3,
+    author: "Martha Gardner",
+    time: "10 minutes ago",
+    text: "Shipped to staging! Let me know if there are any issues.",
+    initials: "MG",
+    color: "bg-ground-900 text-white",
+  },
 ];
 
 function MediaObjectPage() {
@@ -78,15 +99,20 @@ function MediaObjectPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">Molecules</a>
+          <a href="/molecules" className="hover:text-ground-700">
+            Molecules
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Media Object</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Media Object</h1>
         <p className="body max-w-md text-ground-400">
-          A layout primitive pairing a fixed media element (image, avatar, icon) with a flexible text block. The foundation of comment threads, feeds, and profile rows.
+          A layout primitive pairing a fixed media element (image, avatar, icon) with a flexible
+          text block. The foundation of comment threads, feeds, and profile rows.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Molecule</p>
@@ -100,12 +126,18 @@ function MediaObjectPage() {
       <div className="flex flex-col gap-10">
         <div>
           <SectionHeading label="Media Object · Basic" />
-          <PreviewBlock title="Left media" description="Image on the left, content on the right" code={CODE.basic} previewClassName="items-start">
+          <PreviewBlock
+            title="Left media"
+            description="Image on the left, content on the right"
+            code={CODE.basic}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg">
               <MediaObject media={IMG_PLACEHOLDER}>
                 <h4 className="heading text-ground-900">Lorem ipsum</h4>
                 <p className="mt-1 body text-ground-500">
-                  Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia omnis voluptatem.
+                  Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia
+                  omnis voluptatem.
                 </p>
               </MediaObject>
             </div>
@@ -114,7 +146,12 @@ function MediaObjectPage() {
 
         <div>
           <SectionHeading label="Media Object · Right" />
-          <PreviewBlock title="Media on right" description="mediaPosition='right'" code={CODE.right} previewClassName="items-start">
+          <PreviewBlock
+            title="Media on right"
+            description="mediaPosition='right'"
+            code={CODE.right}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg">
               <MediaObject media={IMG_PLACEHOLDER} mediaPosition="right">
                 <h4 className="heading text-ground-900">Media on the right</h4>
@@ -128,7 +165,12 @@ function MediaObjectPage() {
 
         <div>
           <SectionHeading label="Media Object · Centered" />
-          <PreviewBlock title="Center-aligned avatar" description="Avatar + name/email row" code={CODE.center} previewClassName="items-start">
+          <PreviewBlock
+            title="Center-aligned avatar"
+            description="Avatar + name/email row"
+            code={CODE.center}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-sm flex flex-col gap-3">
               {COMMENTS.map((c) => (
                 <MediaObject
@@ -151,7 +193,12 @@ function MediaObjectPage() {
 
         <div>
           <SectionHeading label="Media Object · Comment thread" />
-          <PreviewBlock title="Comment list" description="Common pattern: avatar + author + content" code={CODE.comment} previewClassName="items-start">
+          <PreviewBlock
+            title="Comment list"
+            description="Common pattern: avatar + author + content"
+            code={CODE.comment}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-5">
               {COMMENTS.map((c) => (
                 <MediaObject

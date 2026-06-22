@@ -54,12 +54,12 @@ function ContentSectionsPage() {
           </div>
           <h1 className="display mb-2 text-ground-900">Content Sections</h1>
           <p className="body max-w-2xl text-ground-400">
-            Long-form section patterns for narrative-heavy pages, including image splits,
-            editorial layouts, testimonials, and supporting stats.
+            Long-form section patterns for narrative-heavy pages, including image splits, editorial
+            layouts, testimonials, and supporting stats.
           </p>
         </div>
 
-      <PageDocs path="/marketing/content-sections/" />
+        <PageDocs path="/marketing/content-sections/" />
 
         <SectionHeading label="Variants" />
 

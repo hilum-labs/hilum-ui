@@ -82,7 +82,7 @@ function DataTable<TData>({
                   {header.isPlaceholder ? null : header.column.getCanSort() ? (
                     <button
                       className={cn(
-                        "flex items-center gap-1 transition-colors hover:text-muted-foreground",
+                        "flex min-h-10 items-center gap-1 transition-colors hover:text-muted-foreground",
                         header.column.getIsSorted() && "text-foreground",
                       )}
                       onClick={header.column.getToggleSortingHandler()}
@@ -117,7 +117,10 @@ function DataTable<TData>({
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className="h-24 text-center text-muted-foreground">
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center text-muted-foreground"
+              >
                 No results.
               </TableCell>
             </TableRow>
@@ -126,12 +129,12 @@ function DataTable<TData>({
       </Table>
       {showPagination && (
         <div className="flex items-center justify-between">
-          <p className="caption text-muted-foreground">
+          <p className="caption tabular-nums text-muted-foreground">
             {table.getFilteredRowModel().rows.length} result
             {table.getFilteredRowModel().rows.length !== 1 ? "s" : ""}
           </p>
           <div className="flex items-center gap-2">
-            <span className="caption text-muted-foreground">
+            <span className="caption tabular-nums text-muted-foreground">
               Page {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
             </span>
             <Button

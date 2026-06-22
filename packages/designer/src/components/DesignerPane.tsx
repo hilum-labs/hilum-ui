@@ -89,7 +89,7 @@ function DesignerPaneTitle({ className, children, action }: DesignerPaneTitlePro
       type={collapsible ? "button" : undefined}
       onClick={collapsible ? toggle : undefined}
       className={cn(
-        "flex w-full items-center justify-between gap-2 px-3 py-2 text-left",
+        "flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left",
         "caption-xs uppercase tracking-wider font-semibold text-muted-foreground",
         collapsible && "hover:text-foreground transition-colors",
         className,

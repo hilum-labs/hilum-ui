@@ -1,4 +1,3 @@
-
 import { Button } from "@hilum/ui";
 
 const NAV_ITEMS = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
@@ -35,11 +34,15 @@ function LogoMark({ tone }: { tone: "light" | "dark" | "brand" }) {
 
   return (
     <div className="flex items-center gap-3">
-      <div className={`flex size-9 items-center justify-center rounded-xl ${classes}`}>
+      <div className={`flex size-10 items-center justify-center rounded-xl ${classes}`}>
         <span className="subheading font-medium">D</span>
       </div>
       <div>
-        <p className={tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"}>
+        <p
+          className={
+            tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"
+          }
+        >
           Design Co.
         </p>
         <p className={tone === "light" ? "caption text-ground-400" : "caption text-white/60"}>
@@ -115,7 +118,10 @@ export default function ConstrainedThreeColumnShell() {
             </div>
             <div className="space-y-4">
               {CONTENT_ROWS.map((row) => (
-                <div key={row.title} className="rounded-xl border border-ground-100 bg-ground-50 p-4">
+                <div
+                  key={row.title}
+                  className="rounded-xl border border-ground-100 bg-ground-50 p-4"
+                >
                   <p className="body font-medium text-ground-900">{row.title}</p>
                   <p className="caption mt-1 text-ground-400">{row.meta}</p>
                   <div className="mt-4 grid gap-3 md:grid-cols-3">

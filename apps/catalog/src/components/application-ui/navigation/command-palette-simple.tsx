@@ -1,4 +1,3 @@
-
 import { Clock, FileText, Search, Terminal } from "lucide-react";
 import { Input } from "@hilum/ui";
 
@@ -7,7 +6,10 @@ export default function CommandPaletteSimple() {
     <div className="w-full px-6 py-8">
       <div className="mx-auto max-w-lg overflow-hidden rounded-xl border border-ground-200 shadow-lg">
         <div className="relative border-b border-ground-100 bg-white">
-          <Search size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ground-400" />
+          <Search
+            size={16}
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ground-400"
+          />
           <Input
             type="text"
             placeholder="Search commands..."
@@ -27,14 +29,20 @@ export default function CommandPaletteSimple() {
             </button>
           ))}
           <div className="bg-ground-50 px-4 py-2 label text-ground-400">Quick actions</div>
-          <button type="button" className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-ground-50">
+          <button
+            type="button"
+            className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-ground-50"
+          >
             <FileText size={16} className="text-ground-500" />
             <span className="body text-ground-700">New File</span>
             <span className="ml-auto rounded bg-ground-100 px-1.5 py-0.5 font-mono text-xs text-ground-500">
               ⌘N
             </span>
           </button>
-          <button type="button" className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-ground-50">
+          <button
+            type="button"
+            className="flex w-full items-center gap-3 px-4 py-2.5 text-left hover:bg-ground-50"
+          >
             <Terminal size={16} className="text-ground-500" />
             <span className="body text-ground-700">Open Terminal</span>
             <span className="ml-auto rounded bg-ground-100 px-1.5 py-0.5 font-mono text-xs text-ground-500">

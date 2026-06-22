@@ -40,7 +40,9 @@ function Command({ className, children, onSelect, ...props }: CommandProps) {
   }, []);
 
   return (
-    <CommandCtx.Provider value={{ query, setQuery, ...(onSelect !== undefined && { onSelect }), reportVisible }}>
+    <CommandCtx.Provider
+      value={{ query, setQuery, ...(onSelect !== undefined && { onSelect }), reportVisible }}
+    >
       <CommandVisibleCtx.Provider value={visibleCount}>
         <div
           className={cn(
@@ -196,7 +198,7 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
         data-cmd-item
         tabIndex={disabled ? undefined : 0}
         className={cn(
-          "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5 mx-1",
+          "relative mx-1 flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
           "body text-muted-foreground outline-none transition-colors",
           "hover:bg-muted hover:text-foreground",
           "focus:bg-muted focus:text-foreground",

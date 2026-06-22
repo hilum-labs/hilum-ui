@@ -1,4 +1,3 @@
-
 import { Github, Globe, Linkedin, Mail, Twitter } from "lucide-react";
 import { Button } from "@hilum/ui";
 
@@ -39,7 +38,7 @@ function SocialButtons() {
         <button
           key={label}
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
+          className="flex size-10 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
         >
           <Icon className="size-4" />
         </button>
@@ -92,11 +91,7 @@ function NewsletterCard() {
         Monthly notes with release updates, component launches, and product writing.
       </p>
       <div className="mt-5 space-y-3">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          className={INPUT_CLASS}
-        />
+        <input type="email" placeholder="Enter your email" className={INPUT_CLASS} />
         <Button variant="default" className="w-full">
           Subscribe
         </Button>

@@ -54,12 +54,12 @@ function NewsletterSectionsPage() {
           </div>
           <h1 className="display mb-2 text-ground-900">Newsletter Sections</h1>
           <p className="body max-w-2xl text-ground-400">
-            Email capture patterns that range from quiet inline forms to full-width brand
-            moments, all styled with the system input and button primitives.
+            Email capture patterns that range from quiet inline forms to full-width brand moments,
+            all styled with the system input and button primitives.
           </p>
         </div>
 
-      <PageDocs path="/marketing/newsletter-sections/" />
+        <PageDocs path="/marketing/newsletter-sections/" />
 
         <SectionHeading label="Variants" />
 

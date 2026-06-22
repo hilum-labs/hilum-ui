@@ -1,4 +1,3 @@
-
 import { Github, Globe, Linkedin, Twitter } from "lucide-react";
 import { Button } from "@hilum/ui";
 
@@ -30,7 +29,9 @@ function LogoMark({ dark = false }: { dark?: boolean }) {
       </div>
       <div>
         <p className="body font-medium">Northstar</p>
-        <p className={`caption ${dark ? "text-ground-400" : "text-ground-500"}`}>Design systems for product teams</p>
+        <p className={`caption ${dark ? "text-ground-400" : "text-ground-500"}`}>
+          Design systems for product teams
+        </p>
       </div>
     </div>
   );
@@ -43,7 +44,7 @@ function SocialButtons({ dark = false }: { dark?: boolean }) {
         <button
           key={label}
           aria-label={label}
-          className={`flex size-9 items-center justify-center rounded-full border transition-colors ${
+          className={`flex size-10 items-center justify-center rounded-full border transition-colors ${
             dark
               ? "border-ground-800 bg-ground-900 text-ground-300 hover:border-ground-700 hover:text-white"
               : "border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
@@ -95,7 +96,9 @@ function FooterLinks({
 function NewsletterCard({ dark = false }: { dark?: boolean }) {
   return (
     <div className={`rounded-2xl ${dark ? "bg-ground-950" : "bg-ground-50"} p-5`}>
-      <h3 className={`subheading ${dark ? "text-white" : "text-ground-900"}`}>Get product updates</h3>
+      <h3 className={`subheading ${dark ? "text-white" : "text-ground-900"}`}>
+        Get product updates
+      </h3>
       <p className={`body mt-3 ${dark ? "text-ground-400" : "text-ground-500"}`}>
         Monthly notes with release updates, component launches, and product writing.
       </p>
@@ -103,7 +106,11 @@ function NewsletterCard({ dark = false }: { dark?: boolean }) {
         <input
           type="email"
           placeholder="Enter your email"
-          className={dark ? `${INPUT_CLASS} border-ground-700 bg-ground-900 text-white placeholder:text-ground-500 focus:border-brand-primary` : INPUT_CLASS}
+          className={
+            dark
+              ? `${INPUT_CLASS} border-ground-700 bg-ground-900 text-white placeholder:text-ground-500 focus:border-brand-primary`
+              : INPUT_CLASS
+          }
         />
         <Button variant={dark ? "brand" : "default"} className="w-full">
           Subscribe
@@ -121,7 +128,8 @@ export default function FooterFourColumnNewsletterDark() {
           <div className="max-w-sm">
             <LogoMark dark />
             <p className="body mt-5 text-ground-400">
-              A darker footer variant suited to premium product pages and feature-rich editorial sites.
+              A darker footer variant suited to premium product pages and feature-rich editorial
+              sites.
             </p>
           </div>
           <FooterLinks title="Product" links={FOOTER_NAV.product} dark />

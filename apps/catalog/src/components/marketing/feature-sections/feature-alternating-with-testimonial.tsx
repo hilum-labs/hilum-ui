@@ -31,17 +31,23 @@ export default function FeatureAlternatingWithTestimonial() {
             className="grid gap-8 rounded-[2rem] bg-white p-6 shadow-natural lg:grid-cols-2 lg:p-8"
           >
             {item.imageFirst && (
-              <div className={`aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br ${item.imageTheme} p-6`}>
+              <div
+                className={`aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br ${item.imageTheme} p-6`}
+              >
                 <div className="flex h-full flex-col justify-between rounded-[1.25rem] bg-white/70 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
                   <div>
                     <p className="label text-ground-400">Launch board</p>
-                    <p className="subheading mt-3 text-ground-900">12 programs shipping this quarter</p>
+                    <p className="subheading mt-3 text-ground-900">
+                      12 programs shipping this quarter
+                    </p>
                   </div>
                   <div className="grid gap-3 sm:grid-cols-3">
                     {["Approved", "In review", "Blocked"].map((status, index) => (
                       <div key={status} className="rounded-2xl bg-white px-4 py-3 shadow-natural">
                         <p className="caption text-ground-400">{status}</p>
-                        <p className="subheading text-ground-900">{index === 0 ? "7" : index === 1 ? "3" : "2"}</p>
+                        <p className="subheading text-ground-900">
+                          {index === 0 ? "7" : index === 1 ? "3" : "2"}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -61,7 +67,9 @@ export default function FeatureAlternatingWithTestimonial() {
               </a>
             </div>
             {!item.imageFirst && (
-              <div className={`aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br ${item.imageTheme} p-6`}>
+              <div
+                className={`aspect-[4/3] rounded-[1.5rem] bg-gradient-to-br ${item.imageTheme} p-6`}
+              >
                 <div className="flex h-full flex-col gap-4 rounded-[1.25rem] bg-white/70 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
                   <div className="rounded-2xl bg-ground-900 p-5 text-white">
                     <p className="caption text-ground-300">Live release score</p>
@@ -85,7 +93,8 @@ export default function FeatureAlternatingWithTestimonial() {
 
         <div className="rounded-[2rem] border border-ground-200 bg-white px-8 py-6 shadow-natural">
           <p className="heading text-ground-900">
-            "We replaced three launch trackers, two approval threads, and a weekly status meeting with one shared workflow."
+            "We replaced three launch trackers, two approval threads, and a weekly status meeting
+            with one shared workflow."
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3 text-ground-500">
             <span className="subheading text-ground-900">Sofia Romero</span>

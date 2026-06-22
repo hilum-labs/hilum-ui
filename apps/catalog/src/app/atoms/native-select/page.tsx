@@ -72,15 +72,20 @@ function NativeSelectPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Native Select</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Native Select</h1>
         <p className="body max-w-lg text-ground-500">
-          Styled native HTML select. No JavaScript overhead — uses the browser's built-in dropdown. Best for mobile forms and performance-sensitive contexts.
+          Styled native HTML select. No JavaScript overhead — uses the browser's built-in dropdown.
+          Best for mobile forms and performance-sensitive contexts.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Atom</p>
@@ -92,7 +97,6 @@ function NativeSelectPage() {
       <PageDocs path="/atoms/native-select/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Native Select · Basic" />
           <PreviewBlock
@@ -102,7 +106,9 @@ function NativeSelectPage() {
           >
             <div className="w-64">
               <NativeSelect defaultValue="">
-                <NativeSelectOption value="" disabled>Select a country...</NativeSelectOption>
+                <NativeSelectOption value="" disabled>
+                  Select a country...
+                </NativeSelectOption>
                 <NativeSelectOption value="us">United States</NativeSelectOption>
                 <NativeSelectOption value="ca">Canada</NativeSelectOption>
                 <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
@@ -121,7 +127,9 @@ function NativeSelectPage() {
           >
             <div className="w-72">
               <NativeSelect defaultValue="">
-                <NativeSelectOption value="" disabled>Select a city...</NativeSelectOption>
+                <NativeSelectOption value="" disabled>
+                  Select a city...
+                </NativeSelectOption>
                 <NativeSelectOptGroup label="North America">
                   <NativeSelectOption value="sf">San Francisco</NativeSelectOption>
                   <NativeSelectOption value="ny">New York</NativeSelectOption>
@@ -167,7 +175,9 @@ function NativeSelectPage() {
               </div>
               <div>
                 <NativeSelect aria-invalid="true" defaultValue="">
-                  <NativeSelectOption value="" disabled>Select a country...</NativeSelectOption>
+                  <NativeSelectOption value="" disabled>
+                    Select a country...
+                  </NativeSelectOption>
                   <NativeSelectOption value="us">United States</NativeSelectOption>
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                 </NativeSelect>
@@ -188,7 +198,9 @@ function NativeSelectPage() {
             <div className="w-72">
               <Field label="Country" htmlFor="country" hint="Select your billing country.">
                 <NativeSelect id="country" defaultValue="">
-                  <NativeSelectOption value="" disabled>Select...</NativeSelectOption>
+                  <NativeSelectOption value="" disabled>
+                    Select...
+                  </NativeSelectOption>
                   <NativeSelectOption value="us">United States</NativeSelectOption>
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                   <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
@@ -210,7 +222,9 @@ function NativeSelectPage() {
             <div className="w-72">
               <Field label="Country" htmlFor="country-err" error="Please select a country.">
                 <NativeSelect id="country-err" aria-invalid="true" defaultValue="">
-                  <NativeSelectOption value="" disabled>Select...</NativeSelectOption>
+                  <NativeSelectOption value="" disabled>
+                    Select...
+                  </NativeSelectOption>
                   <NativeSelectOption value="us">United States</NativeSelectOption>
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                   <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
@@ -219,7 +233,6 @@ function NativeSelectPage() {
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

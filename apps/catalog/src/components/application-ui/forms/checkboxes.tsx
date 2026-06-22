@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { Checkbox } from "@hilum/ui";
 
@@ -82,7 +81,8 @@ export default function Checkboxes() {
               {
                 key: "summary" as const,
                 title: "Monthly summary",
-                description: "A concise overview of performance, adoption, and contributor activity.",
+                description:
+                  "A concise overview of performance, adoption, and contributor activity.",
               },
               {
                 key: "alerts" as const,

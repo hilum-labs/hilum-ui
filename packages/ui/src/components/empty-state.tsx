@@ -23,8 +23,10 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
         </div>
       )}
       <div className="flex flex-col gap-1.5">
-        <p className="body font-semibold text-foreground">{title}</p>
-        {description && <p className="body max-w-xs text-muted-foreground">{description}</p>}
+        <p className="body text-balance font-semibold text-foreground">{title}</p>
+        {description && (
+          <p className="body max-w-xs text-pretty text-muted-foreground">{description}</p>
+        )}
       </div>
       {action &&
         (action.href ? (

@@ -1,4 +1,3 @@
-
 import { MessageCircle, Tag, UserPlus } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 
@@ -37,11 +36,7 @@ const FEED = [
   },
 ] as const;
 
-function FeedMarker({
-  type,
-}: {
-  type: (typeof FEED)[number]["type"];
-}) {
+function FeedMarker({ type }: { type: (typeof FEED)[number]["type"] }) {
   if (type === "assignment") {
     return <UserPlus size={16} className="text-brand-primary" />;
   }

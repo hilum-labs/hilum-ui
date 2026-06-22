@@ -1,4 +1,3 @@
-
 import { CheckCircle } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
@@ -72,7 +71,8 @@ export default function OrderSummaryFullDetails() {
               <p className="label text-ground-400">Order #{ORDER.id}</p>
               <h3 className="heading mt-2 text-ground-900">Thank you!</h3>
               <p className="body mt-2 text-ground-500">
-                Your order was placed on {ORDER.placed} and is scheduled to arrive on {ORDER.arriving}.
+                Your order was placed on {ORDER.placed} and is scheduled to arrive on{" "}
+                {ORDER.arriving}.
               </p>
             </div>
           </div>
@@ -80,11 +80,20 @@ export default function OrderSummaryFullDetails() {
         </div>
         <div className="space-y-4">
           {ORDER.products.map((product) => (
-            <div key={product.name} className="flex items-center gap-4 rounded-[24px] border border-ground-100 p-4">
-              <img src={product.img} alt={product.name} className="h-24 w-20 rounded-2xl object-cover" />
+            <div
+              key={product.name}
+              className="flex items-center gap-4 rounded-[24px] border border-ground-100 p-4"
+            >
+              <img
+                src={product.img}
+                alt={product.name}
+                className="h-24 w-20 rounded-2xl object-cover"
+              />
               <div className="flex-1">
                 <p className="subheading text-ground-900">{product.name}</p>
-                <p className="caption mt-1 text-ground-500">Delivered to your home address with tracking included.</p>
+                <p className="caption mt-1 text-ground-500">
+                  Delivered to your home address with tracking included.
+                </p>
               </div>
               <p className="body font-medium text-ground-900">{formatCurrency(product.price)}</p>
             </div>

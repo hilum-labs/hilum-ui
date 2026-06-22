@@ -1,4 +1,3 @@
-
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { SlidersHorizontal } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -43,14 +42,9 @@ function CheckboxRow({
   );
 }
 
-function toggleArrayValue(
-  value: string,
-  setter: Dispatch<SetStateAction<string[]>>
-) {
+function toggleArrayValue(value: string, setter: Dispatch<SetStateAction<string[]>>) {
   setter((current) =>
-    current.includes(value)
-      ? current.filter((entry) => entry !== value)
-      : [...current, value]
+    current.includes(value) ? current.filter((entry) => entry !== value) : [...current, value],
   );
 }
 
@@ -78,10 +72,8 @@ export default function ExpandableFilterPanel() {
         </div>
 
         <div
-          className={`grid overflow-hidden transition-all duration-300 ${
-            panelOpen
-              ? "mt-5 grid-rows-[1fr] opacity-100"
-              : "mt-0 grid-rows-[0fr] opacity-0"
+          className={`grid overflow-hidden transition-[grid-template-rows,margin-top,opacity] duration-300 ${
+            panelOpen ? "mt-5 grid-rows-[1fr] opacity-100" : "mt-0 grid-rows-[0fr] opacity-0"
           }`}
         >
           <div className="min-h-0">

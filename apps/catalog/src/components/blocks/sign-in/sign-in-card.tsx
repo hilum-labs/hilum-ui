@@ -23,10 +23,20 @@ export default function SignInCard() {
       <div className="rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
         <form className="flex flex-col gap-4">
           <Field label="Email address" htmlFor="sign-in-email">
-            <Input id="sign-in-email" type="email" placeholder="you@example.com" autoComplete="email" />
+            <Input
+              id="sign-in-email"
+              type="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+            />
           </Field>
           <Field label="Password" htmlFor="sign-in-pw">
-            <Input id="sign-in-pw" type="password" placeholder="••••••••" autoComplete="current-password" />
+            <Input
+              id="sign-in-pw"
+              type="password"
+              placeholder="••••••••"
+              autoComplete="current-password"
+            />
           </Field>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">

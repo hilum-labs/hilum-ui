@@ -21,8 +21,12 @@ export default function SignInNoLabels() {
       </div>
       <form className="flex flex-col gap-4">
         <div>
-          <label className="sr-only" htmlFor="nolabel-email">Email address</label>
-          <label className="sr-only" htmlFor="nolabel-pw">Password</label>
+          <label className="sr-only" htmlFor="nolabel-email">
+            Email address
+          </label>
+          <label className="sr-only" htmlFor="nolabel-pw">
+            Password
+          </label>
           <Input
             id="nolabel-email"
             type="email"

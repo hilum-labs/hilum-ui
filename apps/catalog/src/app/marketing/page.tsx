@@ -2,13 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@hilum/ui";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -129,7 +123,8 @@ const SECTIONS: SectionEntry[] = [
   {
     name: "Banners",
     slug: "banners",
-    description: "Announcement banners at the top or bottom — dismissible, sticky, and floating variants.",
+    description:
+      "Announcement banners at the top or bottom — dismissible, sticky, and floating variants.",
     variants: 4,
     category: "Elements",
   },
@@ -163,13 +158,16 @@ function MarketingPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Marketing</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Marketing</h1>
         <p className="body max-w-md text-ground-400">
-          Website sections for landing pages. Drop-in heroes, feature grids, pricing tables, testimonials, and more — all adapted to the brand.
+          Website sections for landing pages. Drop-in heroes, feature grids, pricing tables,
+          testimonials, and more — all adapted to the brand.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">{SECTIONS.length} section types</p>

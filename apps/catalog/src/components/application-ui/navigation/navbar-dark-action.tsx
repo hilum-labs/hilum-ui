@@ -1,4 +1,3 @@
-
 import { type ReactNode } from "react";
 import { Bell, ChevronDown } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -12,7 +11,9 @@ function LogoMark({ dark = false }: { dark?: boolean }) {
       <div className="flex h-6 w-6 items-center justify-center rounded bg-brand-primary text-sm font-bold text-white">
         D
       </div>
-      <span className={`body font-semibold ${dark ? "text-white" : "text-ground-900"}`}>Designly</span>
+      <span className={`body font-semibold ${dark ? "text-white" : "text-ground-900"}`}>
+        Designly
+      </span>
     </div>
   );
 }
@@ -26,7 +27,9 @@ function ProfileButton({ dark = false }: { dark?: boolean }) {
       }`}
     >
       <Avatar size="sm">
-        <AvatarFallback className={dark ? "bg-white/10 text-white" : "bg-ground-100 text-ground-700"}>
+        <AvatarFallback
+          className={dark ? "bg-white/10 text-white" : "bg-ground-100 text-ground-700"}
+        >
           WK
         </AvatarFallback>
       </Avatar>
@@ -61,7 +64,9 @@ function NavItemLink({
 
 function NavbarContent({ dark = false }: { dark?: boolean }) {
   return (
-    <div className={`flex h-24 items-center justify-center ${dark ? "bg-ground-950" : "bg-ground-50"}`}>
+    <div
+      className={`flex h-24 items-center justify-center ${dark ? "bg-ground-950" : "bg-ground-50"}`}
+    >
       <span className={`body ${dark ? "text-ground-500" : "text-ground-400"}`}>Page content</span>
     </div>
   );

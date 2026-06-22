@@ -40,7 +40,7 @@ const NavigationMenuTrigger = React.forwardRef<
   <NavigationMenu.Trigger
     ref={ref}
     className={cn(
-      "group inline-flex h-9 w-max items-center justify-center gap-1 rounded-md px-3 py-2",
+      "group inline-flex h-10 w-max items-center justify-center gap-1 rounded-md px-3 py-2",
       "body font-medium text-muted-foreground",
       "hover:bg-muted hover:text-foreground",
       "data-[active]:bg-muted data-[state=open]:bg-muted",
@@ -86,7 +86,7 @@ const NavigationMenuLink = React.forwardRef<
   <NavigationMenu.Link
     ref={ref}
     className={cn(
-      "block select-none rounded-md px-3 py-2 body text-muted-foreground",
+      "block min-h-10 select-none rounded-md px-3 py-2 body text-muted-foreground",
       "hover:bg-muted hover:text-foreground",
       "outline-none transition-colors",
       className,
@@ -137,7 +137,7 @@ NavigationMenuIndicator.displayName = "NavigationMenuIndicator";
 
 function navigationMenuTriggerStyle() {
   return cn(
-    "group inline-flex h-9 w-max items-center justify-center gap-1 rounded-md px-3 py-2",
+    "group inline-flex h-10 w-max items-center justify-center gap-1 rounded-md px-3 py-2",
     "body font-medium text-muted-foreground",
     "hover:bg-muted hover:text-foreground",
     "data-[active]:bg-muted data-[state=open]:bg-muted",

@@ -1,21 +1,23 @@
-
 import { type ReactNode } from "react";
 import { RefreshCw, Shield, Truck } from "lucide-react";
 
 const incentives = [
   {
     title: "Free shipping",
-    description: "It's not actually free we just price it into the products. Someone's paying for it, and it's not us.",
+    description:
+      "It's not actually free we just price it into the products. Someone's paying for it, and it's not us.",
     icon: Truck,
   },
   {
     title: "10-year warranty",
-    description: "If it breaks in the first 10 years we'll replace it. After that you're on your own though.",
+    description:
+      "If it breaks in the first 10 years we'll replace it. After that you're on your own though.",
     icon: Shield,
   },
   {
     title: "Exchanges",
-    description: "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
+    description:
+      "If you don't like it, trade it to one of your friends for something of theirs. Don't send it here though.",
     icon: RefreshCw,
   },
 ];
@@ -47,8 +49,10 @@ function IconFeature({
 }) {
   return (
     <div
-      className={`rounded-[24px] px-5 py-6 transition ${
-        active ? "border border-brand-primary/40 bg-brand-primary/5" : "border border-transparent bg-white"
+      className={`rounded-[24px] px-5 py-6 transition-colors ${
+        active
+          ? "border border-brand-primary/40 bg-brand-primary/5"
+          : "border border-transparent bg-white"
       } ${centered ? "text-center" : ""}`}
     >
       <div className={centered ? "mx-auto mb-4 w-fit" : "mb-4"}>
@@ -57,7 +61,9 @@ function IconFeature({
         </IconContainer>
       </div>
       <p className="subheading text-ground-900">{title}</p>
-      <p className={`mt-2 ${detailed ? "body leading-relaxed text-ground-500" : "caption leading-relaxed text-ground-400"}`}>
+      <p
+        className={`mt-2 ${detailed ? "body leading-relaxed text-ground-500" : "caption leading-relaxed text-ground-400"}`}
+      >
         {description}
       </p>
     </div>

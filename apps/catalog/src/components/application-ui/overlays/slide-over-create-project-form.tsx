@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -6,7 +5,12 @@ import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
 const TEAM = [
-  { name: "Lindsay Walton", initials: "LW", role: "Front-end Developer", email: "lindsay.walton@example.com" },
+  {
+    name: "Lindsay Walton",
+    initials: "LW",
+    role: "Front-end Developer",
+    email: "lindsay.walton@example.com",
+  },
   { name: "Courtney Henry", initials: "CH", role: "Designer", email: "courtney.henry@example.com" },
   { name: "Tom Cook", initials: "TC", role: "Director of Product", email: "tom.cook@example.com" },
 ] as const;
@@ -33,9 +37,7 @@ function PersonAvatar({
 }) {
   return (
     <Avatar size={size} className={className}>
-      <AvatarFallback className="bg-brand-primary/10 text-brand-primary">
-        {initials}
-      </AvatarFallback>
+      <AvatarFallback className="bg-brand-primary/10 text-brand-primary">{initials}</AvatarFallback>
     </Avatar>
   );
 }
@@ -43,18 +45,13 @@ function PersonAvatar({
 export default function SlideOverCreateProjectForm() {
   const [projectName, setProjectName] = useState("Northstar Portal");
   const [projectDescription, setProjectDescription] = useState(
-    "A shared client workspace for onboarding, billing, and weekly performance reporting."
+    "A shared client workspace for onboarding, billing, and weekly performance reporting.",
   );
-  const [selectedMembers, setSelectedMembers] = useState<string[]>([
-    "Lindsay Walton",
-    "Tom Cook",
-  ]);
+  const [selectedMembers, setSelectedMembers] = useState<string[]>(["Lindsay Walton", "Tom Cook"]);
 
   const toggleMember = (name: string) => {
     setSelectedMembers((current) =>
-      current.includes(name)
-        ? current.filter((member) => member !== name)
-        : [...current, name]
+      current.includes(name) ? current.filter((member) => member !== name) : [...current, name],
     );
   };
 

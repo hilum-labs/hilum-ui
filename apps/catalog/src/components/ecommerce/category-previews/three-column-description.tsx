@@ -1,4 +1,3 @@
-
 type CategoryCard = {
   name: string;
   description: string;
@@ -13,15 +12,13 @@ const EDITION_THREE = "https://tailwindui.com/img/ecommerce-images/home-page-02-
 const DESCRIPTION_CATEGORIES: CategoryCard[] = [
   {
     name: "Desk and Office",
-    description:
-      "Storage, sleeves, and work-surface details that make small routines easier.",
+    description: "Storage, sleeves, and work-surface details that make small routines easier.",
     count: "12 styles",
     image: EDITION_ONE,
   },
   {
     name: "Travel",
-    description:
-      "Weekend-ready bags and organizers designed to stay efficient in motion.",
+    description: "Weekend-ready bags and organizers designed to stay efficient in motion.",
     count: "16 styles",
     image: EDITION_TWO,
   },
@@ -34,22 +31,8 @@ const DESCRIPTION_CATEGORIES: CategoryCard[] = [
   },
 ];
 
-function CategoryImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function CategoryImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function ThreeColumnDescription() {
@@ -62,11 +45,7 @@ export default function ThreeColumnDescription() {
             className="overflow-hidden rounded-[28px] border border-ground-100 bg-white"
           >
             <div className="overflow-hidden">
-              <CategoryImage
-                src={category.image}
-                alt={category.name}
-                className="aspect-[4/5]"
-              />
+              <CategoryImage src={category.image} alt={category.name} className="aspect-[4/5]" />
             </div>
             <div className="p-5">
               <p className="subheading text-ground-900">{category.name}</p>

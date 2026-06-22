@@ -24,9 +24,13 @@ function SignInPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/blocks" className="hover:text-ground-700">Blocks</a>
+          <a href="/blocks" className="hover:text-ground-700">
+            Blocks
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Sign In</span>
         </div>
@@ -44,28 +48,39 @@ function SignInPage() {
       <PageDocs path="/blocks/sign-in/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Sign In · Card" />
-          <PreviewBlock title="Card layout" description="Centered card with social login" code={signInCardSource}>
+          <PreviewBlock
+            title="Card layout"
+            description="Centered card with social login"
+            code={signInCardSource}
+          >
             <SignInCard />
           </PreviewBlock>
         </div>
 
         <div>
           <Heading label="Sign In · Compact / no labels" />
-          <PreviewBlock title="Stacked inputs, hidden labels" description="Email + password with shared border, no visible labels" code={signInNoLabelsSource}>
+          <PreviewBlock
+            title="Stacked inputs, hidden labels"
+            description="Email + password with shared border, no visible labels"
+            code={signInNoLabelsSource}
+          >
             <SignInNoLabels />
           </PreviewBlock>
         </div>
 
         <div>
           <Heading label="Sign In · Split screen" />
-          <PreviewBlock title="Form left, brand panel right" description="Two-column layout — works full-page" code={signInSplitSource} previewClassName="p-0">
+          <PreviewBlock
+            title="Form left, brand panel right"
+            description="Two-column layout — works full-page"
+            code={signInSplitSource}
+            previewClassName="p-0"
+          >
             <SignInSplit />
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

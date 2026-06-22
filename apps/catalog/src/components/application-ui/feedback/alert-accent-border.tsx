@@ -1,4 +1,3 @@
-
 import { AlertTriangle } from "lucide-react";
 
 export default function AlertAccentBorder() {
@@ -9,8 +8,8 @@ export default function AlertAccentBorder() {
         <div>
           <p className="body font-semibold text-ground-900">High memory usage</p>
           <p className="body mt-1 text-ground-700">
-            Worker nodes in the production cluster are approaching their memory limit. Review the latest process logs
-            before peak traffic begins.
+            Worker nodes in the production cluster are approaching their memory limit. Review the
+            latest process logs before peak traffic begins.
           </p>
         </div>
       </div>

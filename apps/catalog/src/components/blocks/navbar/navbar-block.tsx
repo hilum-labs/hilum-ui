@@ -30,7 +30,10 @@ export default function NavbarBlock() {
                 <a
                   key={link}
                   href="#"
-                  onClick={(e) => { e.preventDefault(); setActive(link); }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActive(link);
+                  }}
                   className={`rounded-md px-3 py-1.5 body font-medium transition-colors ${
                     active === link
                       ? "bg-brand-primary/10 text-brand-primary"
@@ -52,11 +55,13 @@ export default function NavbarBlock() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <button className="flex items-center gap-2 rounded-lg px-1.5 py-1 hover:bg-ground-50 transition-colors">
+                <button className="flex min-h-10 items-center gap-2 rounded-lg px-2 transition-colors hover:bg-ground-50">
                   <Avatar size="sm">
                     <AvatarFallback className="bg-brand-primary text-white">SP</AvatarFallback>
                   </Avatar>
-                  <span className="hidden caption font-medium text-ground-700 sm:block">Sofia P.</span>
+                  <span className="hidden caption font-medium text-ground-700 sm:block">
+                    Sofia P.
+                  </span>
                   <ChevronDown size={12} className="hidden text-ground-400 sm:block" />
                 </button>
               </DropdownMenuTrigger>

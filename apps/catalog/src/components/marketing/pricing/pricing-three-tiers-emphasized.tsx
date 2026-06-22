@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -33,10 +32,15 @@ export default function PricingThreeTiersEmphasized() {
     <section className="w-full bg-ground-50 px-8 py-16 md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="brand" className="mb-4">Recommended pricing</Badge>
-          <h3 className="heading text-ground-900">Highlight the plan you want most teams to choose</h3>
+          <Badge variant="brand" className="mb-4">
+            Recommended pricing
+          </Badge>
+          <h3 className="heading text-ground-900">
+            Highlight the plan you want most teams to choose
+          </h3>
           <p className="body mt-3 text-ground-500">
-            Use emphasis, hierarchy, and a stronger call to action to guide buyers toward the highest-fit tier.
+            Use emphasis, hierarchy, and a stronger call to action to guide buyers toward the
+            highest-fit tier.
           </p>
         </div>
         <div className="mt-10 grid gap-6 lg:grid-cols-3 lg:items-end">
@@ -55,7 +59,9 @@ export default function PricingThreeTiersEmphasized() {
                 {tier.featured && <Badge variant="brand">Most popular</Badge>}
               </div>
               <div className="mt-6 flex items-end gap-2">
-                <p className="text-5xl font-semibold tracking-tight text-ground-900">{tier.price}</p>
+                <p className="text-5xl font-semibold tracking-tight text-ground-900">
+                  {tier.price}
+                </p>
                 <p className="body pb-1 text-ground-400">/mo</p>
               </div>
               <p className="body mt-3 text-ground-500">{tier.description}</p>

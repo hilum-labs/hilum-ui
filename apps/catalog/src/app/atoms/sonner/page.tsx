@@ -63,9 +63,13 @@ function ToastPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Toast</span>
         </div>
@@ -85,9 +89,7 @@ function ToastPage() {
           description="Basic toast — Toaster is configured once in the root layout"
           code={CODE.default}
         >
-          <Button onClick={() => toast("Event has been created")}>
-            Show toast
-          </Button>
+          <Button onClick={() => toast("Event has been created")}>Show toast</Button>
         </PreviewBlock>
 
         <PreviewBlock
@@ -106,34 +108,16 @@ function ToastPage() {
           </Button>
         </PreviewBlock>
 
-        <PreviewBlock
-          title="Success"
-          description="Positive confirmation"
-          code={CODE.success}
-        >
-          <Button onClick={() => toast.success("Changes saved successfully")}>
-            Show success
-          </Button>
+        <PreviewBlock title="Success" description="Positive confirmation" code={CODE.success}>
+          <Button onClick={() => toast.success("Changes saved successfully")}>Show success</Button>
         </PreviewBlock>
 
-        <PreviewBlock
-          title="Error"
-          description="Error or failure state"
-          code={CODE.error}
-        >
-          <Button onClick={() => toast.error("Something went wrong")}>
-            Show error
-          </Button>
+        <PreviewBlock title="Error" description="Error or failure state" code={CODE.error}>
+          <Button onClick={() => toast.error("Something went wrong")}>Show error</Button>
         </PreviewBlock>
 
-        <PreviewBlock
-          title="Warning"
-          description="Cautionary message"
-          code={CODE.warning}
-        >
-          <Button
-            onClick={() => toast.warning("You are approaching the rate limit")}
-          >
+        <PreviewBlock title="Warning" description="Cautionary message" code={CODE.warning}>
+          <Button onClick={() => toast.warning("You are approaching the rate limit")}>
             Show warning
           </Button>
         </PreviewBlock>

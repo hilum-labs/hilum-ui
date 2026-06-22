@@ -14,8 +14,8 @@ export default function HeroWithAngledImage() {
               See momentum build before the quarter closes.
             </h1>
             <p className="body mt-5 text-ground-500">
-              Track campaign lift, pipeline contribution, and team capacity in
-              one view designed for leaders who need signal, not noise.
+              Track campaign lift, pipeline contribution, and team capacity in one view designed for
+              leaders who need signal, not noise.
             </p>
             <Button size="lg" className="mt-8">
               Explore dashboards
@@ -39,14 +39,8 @@ export default function HeroWithAngledImage() {
                 </div>
                 <div className="grid grid-cols-4 gap-2">
                   {[48, 68, 76, 92].map((height) => (
-                    <div
-                      key={height}
-                      className="rounded-full bg-brand-primary/15 p-2"
-                    >
-                      <div
-                        className="w-full rounded-full bg-brand-primary"
-                        style={{ height }}
-                      />
+                    <div key={height} className="rounded-full bg-brand-primary/15 p-2">
+                      <div className="w-full rounded-full bg-brand-primary" style={{ height }} />
                     </div>
                   ))}
                 </div>

@@ -1,14 +1,5 @@
-
 import { type ReactNode, useState } from "react";
-import {
-  type LucideIcon,
-  BarChart2,
-  ChevronDown,
-  Layers,
-  Menu,
-  X,
-  Zap,
-} from "lucide-react";
+import { type LucideIcon, BarChart2, ChevronDown, Layers, Menu, X, Zap } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { cn } from "@hilum/ui";
@@ -47,7 +38,7 @@ function Logo({ dark = false }: { dark?: boolean }) {
       <div
         className={cn(
           "flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold",
-          dark ? "bg-brand-secondary text-ground-900" : "bg-brand-primary text-white"
+          dark ? "bg-brand-secondary text-ground-900" : "bg-brand-primary text-white",
         )}
       >
         D
@@ -57,13 +48,7 @@ function Logo({ dark = false }: { dark?: boolean }) {
   );
 }
 
-function MobileMenuButton({
-  onClick,
-  dark = false,
-}: {
-  onClick: () => void;
-  dark?: boolean;
-}) {
+function MobileMenuButton({ onClick, dark = false }: { onClick: () => void; dark?: boolean }) {
   return (
     <button
       type="button"
@@ -72,7 +57,7 @@ function MobileMenuButton({
         "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors md:hidden",
         dark
           ? "text-ground-300 hover:bg-ground-800 hover:text-white"
-          : "text-ground-600 hover:bg-ground-100 hover:text-ground-900"
+          : "text-ground-600 hover:bg-ground-100 hover:text-ground-900",
       )}
     >
       <Menu size={18} />
@@ -99,7 +84,7 @@ function MobileDrawer({
     <div
       className={cn(
         "absolute inset-x-0 top-0 z-50 rounded-xl border p-4 shadow-elevated",
-        dark ? "border-ground-700 bg-ground-900" : "border-ground-100 bg-white"
+        dark ? "border-ground-700 bg-ground-900" : "border-ground-100 bg-white",
       )}
     >
       <div className="mb-4 flex items-center justify-between">
@@ -108,10 +93,10 @@ function MobileDrawer({
           type="button"
           onClick={onClose}
           className={cn(
-            "inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
+            "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors",
             dark
               ? "text-ground-300 hover:bg-ground-800 hover:text-white"
-              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900"
+              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900",
           )}
         >
           <X size={18} />
@@ -195,9 +180,12 @@ export default function HeaderWithFlyout() {
               </div>
               <div className="rounded-xl bg-ground-50 p-4">
                 <Badge variant="secondary">Featured</Badge>
-                <h3 className="subheading mt-3 text-ground-900">Build a launch system your whole org can use</h3>
+                <h3 className="subheading mt-3 text-ground-900">
+                  Build a launch system your whole org can use
+                </h3>
                 <p className="body mt-2 text-ground-500">
-                  Package analytics, rollout controls, and modular UI into one shared operating model for product teams.
+                  Package analytics, rollout controls, and modular UI into one shared operating
+                  model for product teams.
                 </p>
                 <Button variant="secondary" size="sm" className="mt-4">
                   Read the overview
@@ -264,7 +252,8 @@ export default function HeaderWithFlyout() {
       <div className="px-6 py-10">
         <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
           <p className="body max-w-2xl text-ground-500">
-            A full-width flyout turns the primary navigation into a richer discovery layer without changing the header footprint.
+            A full-width flyout turns the primary navigation into a richer discovery layer without
+            changing the header footprint.
           </p>
         </div>
       </div>

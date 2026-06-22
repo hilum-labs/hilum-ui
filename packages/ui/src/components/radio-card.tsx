@@ -42,7 +42,8 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
             disabled={option.disabled}
             onClick={() => !option.disabled && onValueChange?.(option.value)}
             className={cn(
-              "relative flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-left transition-all",
+              "relative flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-left transition-[background-color,border-color,box-shadow,opacity,scale]",
+              "active:scale-[0.96]",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
               "disabled:cursor-not-allowed disabled:opacity-50",
               isSelected
@@ -63,22 +64,22 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
                 {option.icon && <div className="mb-2 text-muted-foreground">{option.icon}</div>}
                 <p
                   className={cn(
-                    "body font-semibold",
+                    "body font-semibold text-pretty",
                     isSelected ? "text-foreground" : "text-muted-foreground",
                   )}
                 >
                   {option.label}
                 </p>
                 {option.description && (
-                  <p className="mt-0.5 caption text-muted-foreground">{option.description}</p>
+                  <p className="mt-0.5 caption text-pretty text-muted-foreground">
+                    {option.description}
+                  </p>
                 )}
               </div>
               <div
                 className={cn(
                   "flex size-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors",
-                  isSelected
-                    ? "border-brand-primary bg-brand-primary"
-                    : "border-border bg-card",
+                  isSelected ? "border-brand-primary bg-brand-primary" : "border-border bg-card",
                 )}
               >
                 {isSelected && <Check size={10} className="text-background" strokeWidth={3} />}

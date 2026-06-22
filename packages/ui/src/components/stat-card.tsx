@@ -36,14 +36,14 @@ function StatCard({ label, value, trend, icon, className }: StatCardProps) {
           </div>
         )}
       </div>
-      <p className="heading-xl mt-2 text-foreground">{value}</p>
+      <p className="heading-xl mt-2 tabular-nums text-foreground">{value}</p>
       {trend &&
         (() => {
           const Icon = TrendIcon[trend.direction];
           return (
             <div className={cn("mt-2 flex items-center gap-1", trendColor[trend.direction])}>
               <Icon size={12} />
-              <span className="caption font-medium">{trend.value}</span>
+              <span className="caption tabular-nums font-medium">{trend.value}</span>
             </div>
           );
         })()}

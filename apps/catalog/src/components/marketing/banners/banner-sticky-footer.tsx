@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -6,7 +5,10 @@ import { Button } from "@hilum/ui";
 export default function BannerStickyFooter() {
   const [visible, setVisible] = useState(true);
   return (
-    <div className="relative w-full overflow-hidden rounded-xl border border-ground-100 bg-white shadow-natural" style={{ height: 240 }}>
+    <div
+      className="relative w-full overflow-hidden rounded-xl border border-ground-100 bg-white shadow-natural"
+      style={{ height: 240 }}
+    >
       <div className="flex h-full items-center justify-center">
         <p className="body text-ground-400">Page content</p>
       </div>

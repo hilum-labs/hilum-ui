@@ -21,15 +21,12 @@ export default function NewsletterWithParagraphOnDark() {
           <p className="label mb-4 text-brand-secondary">Weekly signal</p>
           <h3 className="heading text-white">A sharper weekly briefing</h3>
           <p className="body mt-4 text-ground-300">
-            Each issue brings product strategy, interface decisions, launch
-            write-ups, and examples worth stealing. It is designed for teams that
-            need signal they can act on, not another bloated digest.
+            Each issue brings product strategy, interface decisions, launch write-ups, and examples
+            worth stealing. It is designed for teams that need signal they can act on, not another
+            bloated digest.
           </p>
         </div>
-        <form
-          className="mt-8 space-y-3 lg:mt-0"
-          onSubmit={(event) => event.preventDefault()}
-        >
+        <form className="mt-8 space-y-3 lg:mt-0" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-3 sm:flex-row">
             <EmailInput className="sm:flex-1" />
             <Button type="submit">Subscribe</Button>

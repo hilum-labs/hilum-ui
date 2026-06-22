@@ -1,7 +1,9 @@
-
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
 type Spec = {
   label: string;
@@ -19,10 +21,7 @@ function SpecList({ specs }: { specs: Spec[] }) {
   return (
     <dl className="grid gap-4 sm:grid-cols-2">
       {specs.map((spec) => (
-        <div
-          key={spec.label}
-          className="rounded-2xl border border-ground-100 bg-ground-50 p-4"
-        >
+        <div key={spec.label} className="rounded-2xl border border-ground-100 bg-ground-50 p-4">
           <dt className="label text-ground-400">{spec.label}</dt>
           <dd className="body mt-2 text-ground-900">{spec.value}</dd>
         </div>
@@ -31,22 +30,8 @@ function SpecList({ specs }: { specs: Spec[] }) {
   );
 }
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function SquareImages() {
@@ -59,8 +44,8 @@ export default function SquareImages() {
             Compact proportions with just enough structure.
           </h3>
           <p className="body mt-4 text-ground-600">
-            This version puts the product summary first, then lets the photography
-            handle the nuance.
+            This version puts the product summary first, then lets the photography handle the
+            nuance.
           </p>
           <div className="mt-6">
             <SpecList specs={PRODUCT_SPECS} />
@@ -76,7 +61,7 @@ export default function SquareImages() {
                   className="aspect-square"
                 />
               </div>
-            )
+            ),
           )}
         </div>
       </div>

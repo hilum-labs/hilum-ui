@@ -1,4 +1,3 @@
-
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -24,14 +23,17 @@ export default function PricingSplitBrandPanel() {
     <section className="w-full bg-white px-8 py-16 md:px-12">
       <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] shadow-elevated lg:grid-cols-[0.9fr_1.1fr]">
         <div className="bg-brand-primary px-8 py-10 text-white">
-          <Badge variant="warning" className="mb-4">Best for teams</Badge>
+          <Badge variant="warning" className="mb-4">
+            Best for teams
+          </Badge>
           <h3 className="heading text-white">Growth</h3>
           <div className="mt-6 flex items-end gap-2">
             <p className="text-6xl font-semibold tracking-tight text-white">$149</p>
             <p className="body pb-2 text-white/80">/mo</p>
           </div>
           <p className="body mt-4 text-white/80">
-            A strong default for teams scaling launch volume, approval complexity, and reporting needs.
+            A strong default for teams scaling launch volume, approval complexity, and reporting
+            needs.
           </p>
           <div className="mt-8 space-y-3">
             {leftFeatures.map((feature) => (
@@ -44,10 +46,15 @@ export default function PricingSplitBrandPanel() {
         </div>
         <div className="bg-white px-8 py-10">
           <p className="label text-ground-400">What's included</p>
-          <h4 className="heading mt-3 text-ground-900">Every capability needed to run coordinated launches</h4>
+          <h4 className="heading mt-3 text-ground-900">
+            Every capability needed to run coordinated launches
+          </h4>
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {rightFeatures.map((feature) => (
-              <div key={feature} className="flex items-start gap-3 rounded-2xl bg-ground-50 px-4 py-4">
+              <div
+                key={feature}
+                className="flex items-start gap-3 rounded-2xl bg-ground-50 px-4 py-4"
+              >
                 <Check className="mt-0.5 size-4 text-brand-primary" />
                 <p className="body text-ground-600">{feature}</p>
               </div>

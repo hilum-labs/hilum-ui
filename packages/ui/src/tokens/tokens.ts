@@ -162,21 +162,76 @@ export const tokens = {
 
   fontFamily: {
     sans: 'Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-    display: 'Gabarito, Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+    display:
+      'Gabarito, Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
     mono: 'ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace',
   },
 
   /** Type scale utilities — emitted as Tailwind v4 `@utility` blocks. */
   typeScale: {
-    "display-xl": { family: "display", size: "3rem", weight: 400, lineHeight: "1.15" },
-    display: { family: "display", size: "2.25rem", weight: 400, lineHeight: "1.15" },
-    "heading-xl": { family: "display", size: "1.875rem", weight: 400, lineHeight: "1.2" },
-    heading: { family: "display", size: "1.5rem", weight: 400, lineHeight: "1.2" },
-    subheading: { family: "display", size: "1.25rem", weight: 400, lineHeight: "1.4" },
-    "body-lg": { family: "sans", size: "1rem", weight: 400, lineHeight: "1.625" },
-    body: { family: "sans", size: "0.875rem", weight: 400, lineHeight: "1.625" },
-    "body-sm": { family: "sans", size: "0.75rem", weight: 500, lineHeight: "1.625" },
-    caption: { family: "sans", size: "0.75rem", weight: 400, lineHeight: "1.625" },
+    "display-xl": {
+      family: "display",
+      size: "3rem",
+      weight: 400,
+      lineHeight: "1.15",
+      textWrap: "balance",
+    },
+    display: {
+      family: "display",
+      size: "2.25rem",
+      weight: 400,
+      lineHeight: "1.15",
+      textWrap: "balance",
+    },
+    "heading-xl": {
+      family: "display",
+      size: "1.875rem",
+      weight: 400,
+      lineHeight: "1.2",
+      textWrap: "balance",
+    },
+    heading: {
+      family: "display",
+      size: "1.5rem",
+      weight: 400,
+      lineHeight: "1.2",
+      textWrap: "balance",
+    },
+    subheading: {
+      family: "display",
+      size: "1.25rem",
+      weight: 400,
+      lineHeight: "1.4",
+      textWrap: "balance",
+    },
+    "body-lg": {
+      family: "sans",
+      size: "1rem",
+      weight: 400,
+      lineHeight: "1.625",
+      textWrap: "pretty",
+    },
+    body: {
+      family: "sans",
+      size: "0.875rem",
+      weight: 400,
+      lineHeight: "1.625",
+      textWrap: "pretty",
+    },
+    "body-sm": {
+      family: "sans",
+      size: "0.75rem",
+      weight: 500,
+      lineHeight: "1.625",
+      textWrap: "pretty",
+    },
+    caption: {
+      family: "sans",
+      size: "0.75rem",
+      weight: 400,
+      lineHeight: "1.625",
+      textWrap: "pretty",
+    },
     "caption-xs": { family: "sans", size: "0.625rem", weight: 400, lineHeight: "1.625" },
 
     /* --- "Eyebrow" family — uppercase tracked label used above headlines, --- *

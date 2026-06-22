@@ -1,4 +1,3 @@
-
 import { Github, Globe, Linkedin, Twitter } from "lucide-react";
 
 const FOOTER_NAV = {
@@ -35,7 +34,7 @@ function SocialButtons() {
         <button
           key={label}
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
+          className="flex size-10 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
         >
           <Icon className="size-4" />
         </button>
@@ -53,7 +52,11 @@ export default function FooterSimpleCentered() {
         </div>
         <nav className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
           {[...FOOTER_NAV.product, ...FOOTER_NAV.company.slice(0, 2)].map((link) => (
-            <a key={link} href="#" className="body text-ground-500 transition-colors hover:text-ground-900">
+            <a
+              key={link}
+              href="#"
+              className="body text-ground-500 transition-colors hover:text-ground-900"
+            >
               {link}
             </a>
           ))}

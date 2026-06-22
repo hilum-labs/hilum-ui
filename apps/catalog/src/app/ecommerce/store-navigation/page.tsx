@@ -24,7 +24,12 @@ import PersistentMobileNav from "@/components/ecommerce/store-navigation/persist
 import persistentMobileNavSource from "@/components/ecommerce/store-navigation/persistent-mobile-nav?raw";
 
 function SectionHeading({ label }: { label: string }) {
-  return <div className="mb-4 flex items-center gap-3"><h2 className="label text-ground-400">{label}</h2><div className="h-px flex-1 bg-ground-100" /></div>;
+  return (
+    <div className="mb-4 flex items-center gap-3">
+      <h2 className="label text-ground-400">{label}</h2>
+      <div className="h-px flex-1 bg-ground-100" />
+    </div>
+  );
 }
 
 function StoreNavigationPage() {
@@ -32,9 +37,13 @@ function StoreNavigationPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/ecommerce" className="hover:text-ground-700">Ecommerce</a>
+          <a href="/ecommerce" className="hover:text-ground-700">
+            Ecommerce
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Store Navigation</span>
         </div>

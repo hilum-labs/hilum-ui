@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 
 const PRODUCTS = [
@@ -26,7 +25,11 @@ export default function TallImagesCta() {
         {PRODUCTS.map((product) => (
           <article key={product.name}>
             <div className="overflow-hidden rounded-[2rem] bg-ground-100">
-              <img src={product.image} alt={product.name} className="aspect-[2/3] w-full object-cover" />
+              <img
+                src={product.image}
+                alt={product.name}
+                className="aspect-[2/3] w-full object-cover"
+              />
             </div>
             <div className="mt-4 flex items-center justify-between gap-4">
               <div>

@@ -1,4 +1,3 @@
-
 import { XCircle } from "lucide-react";
 import { Button } from "@hilum/ui";
 
@@ -10,7 +9,8 @@ export default function AlertWithActions() {
         <div>
           <p className="body font-semibold text-red-900">Deployment failed</p>
           <p className="caption mt-1 text-red-700">
-            The latest release could not be completed because the build pipeline timed out during asset compilation.
+            The latest release could not be completed because the build pipeline timed out during
+            asset compilation.
           </p>
           <div className="mt-3 flex gap-2">
             <Button size="sm" variant="destructive">

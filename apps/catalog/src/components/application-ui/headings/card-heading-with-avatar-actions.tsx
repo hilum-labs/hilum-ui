@@ -7,9 +7,7 @@ export default function CardHeadingWithAvatarActions() {
       <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
         <div className="flex items-center gap-3">
           <Avatar className="size-8">
-            <AvatarFallback className="bg-brand-primary text-white">
-              TC
-            </AvatarFallback>
+            <AvatarFallback className="bg-brand-primary text-white">TC</AvatarFallback>
           </Avatar>
           <div>
             <p className="subheading text-ground-900">Tom Chen</p>

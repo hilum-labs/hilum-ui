@@ -1,4 +1,3 @@
-
 const STATS = [
   { label: "Customers worldwide", value: "8,000+" },
   { label: "Revenue generated", value: "M+" },
@@ -34,8 +33,8 @@ export default function StatsSectionGlow() {
       <div className="relative mx-auto max-w-6xl text-center">
         <h2 className="heading text-white">Trusted by teams worldwide</h2>
         <p className="body mx-auto mt-3 max-w-2xl text-ground-400">
-          A quieter, more atmospheric stat section for premium campaign
-          pages and long-form product storytelling.
+          A quieter, more atmospheric stat section for premium campaign pages and long-form product
+          storytelling.
         </p>
 
         <dl className="mt-12 grid gap-10 md:grid-cols-4">

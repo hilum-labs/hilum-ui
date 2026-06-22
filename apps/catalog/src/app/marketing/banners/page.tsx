@@ -26,15 +26,20 @@ function BannersPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/marketing" className="hover:text-ground-700">Marketing</a>
+          <a href="/marketing" className="hover:text-ground-700">
+            Marketing
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Banners</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Banners</h1>
         <p className="body max-w-md text-ground-400">
-          Announcement banners for top-of-page alerts, cookie notices, and floating notifications. All dismissible.
+          Announcement banners for top-of-page alerts, cookie notices, and floating notifications.
+          All dismissible.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Marketing · Elements</p>

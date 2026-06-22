@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -51,7 +50,7 @@ function ColorSelector({
               type="button"
               onClick={() => onChange(color.name)}
               aria-label={`Select ${color.name}`}
-              className={`flex size-9 items-center justify-center rounded-full border transition ${
+              className={`flex size-10 items-center justify-center rounded-full border transition-colors ${
                 active ? "border-ground-900" : "border-transparent hover:border-ground-200"
               }`}
             >
@@ -81,7 +80,11 @@ function SizeSelector({
           Size guide
         </a>
       </div>
-      <div className={large ? "mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3" : "mt-3 flex flex-wrap gap-2"}>
+      <div
+        className={
+          large ? "mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3" : "mt-3 flex flex-wrap gap-2"
+        }
+      >
         {SIZES.map((size) => {
           const active = selectedSize === size;
 
@@ -90,7 +93,7 @@ function SizeSelector({
               key={size}
               type="button"
               onClick={() => onChange(size)}
-              className={`rounded-full border px-4 py-2 transition ${
+              className={`rounded-full border px-4 py-2 transition-colors ${
                 large
                   ? active
                     ? "border-ground-900 bg-ground-900 text-white"
@@ -144,17 +147,25 @@ export default function GalleryVariant() {
                 key={image}
                 type="button"
                 onClick={() => setSelectedImage(image)}
-                className={`overflow-hidden rounded-2xl border transition ${
+                className={`overflow-hidden rounded-2xl border transition-colors ${
                   active ? "border-brand-primary" : "border-ground-100 hover:border-ground-300"
                 }`}
               >
-                <img src={image} alt={PRODUCT_NAME} className="aspect-square w-20 object-cover lg:w-full" />
+                <img
+                  src={image}
+                  alt={PRODUCT_NAME}
+                  className="aspect-square w-20 object-cover lg:w-full"
+                />
               </button>
             );
           })}
         </div>
         <div className="order-1 rounded-[2rem] bg-ground-50 p-6 lg:order-2">
-          <img src={selectedImage} alt={PRODUCT_NAME} className="aspect-square w-full object-cover" />
+          <img
+            src={selectedImage}
+            alt={PRODUCT_NAME}
+            className="aspect-square w-full object-cover"
+          />
         </div>
         <div className="order-3">
           <ProductHeader />

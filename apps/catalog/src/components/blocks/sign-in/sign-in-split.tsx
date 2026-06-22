@@ -10,7 +10,7 @@ export default function SignInSplit() {
       <div className="flex flex-1 flex-col justify-center px-8 py-10">
         <div className="mx-auto w-full max-w-xs">
           <div className="mb-6">
-            <div className="mb-4 flex size-9 items-center justify-center rounded-xl bg-brand-primary">
+            <div className="mb-4 flex size-10 items-center justify-center rounded-xl bg-brand-primary">
               <span className="caption font-bold text-white">D</span>
             </div>
             <h1 className="subheading font-semibold text-ground-900">Sign in to your account</h1>
@@ -28,7 +28,10 @@ export default function SignInSplit() {
             <Field label="Password" htmlFor="split-pw">
               <Input id="split-pw" type="password" placeholder="••••••••" />
             </Field>
-            <a href="#" className="caption font-medium text-ground-500 hover:text-ground-900 self-end -mt-0.5">
+            <a
+              href="#"
+              className="caption font-medium text-ground-500 hover:text-ground-900 self-end -mt-0.5"
+            >
               Forgot password?
             </a>
             <Button className="w-full mt-1">Sign in</Button>

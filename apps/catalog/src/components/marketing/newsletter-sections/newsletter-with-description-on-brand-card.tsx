@@ -19,24 +19,16 @@ export default function NewsletterWithDescriptionOnBrandCard() {
       <div className="rounded-2xl bg-brand-primary p-8 sm:p-10 lg:grid lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
         <div className="max-w-lg">
           <p className="label mb-4 text-white/70">Early access</p>
-          <h3 className="heading text-white">
-            Get the next release before everyone else
-          </h3>
+          <h3 className="heading text-white">Get the next release before everyone else</h3>
           <p className="body mt-4 text-white/80">
-            Join the preview list for launch notes, new components, and the thinking
-            behind each release.
+            Join the preview list for launch notes, new components, and the thinking behind each
+            release.
           </p>
         </div>
-        <form
-          className="mt-8 space-y-3 lg:mt-0"
-          onSubmit={(event) => event.preventDefault()}
-        >
+        <form className="mt-8 space-y-3 lg:mt-0" onSubmit={(event) => event.preventDefault()}>
           <div className="flex flex-col gap-3 sm:flex-row">
             <EmailInput className="sm:flex-1" />
-            <Button
-              type="submit"
-              className="bg-white text-brand-primary hover:bg-ground-50"
-            >
+            <Button type="submit" className="bg-white text-brand-primary hover:bg-ground-50">
               Sign up
             </Button>
           </div>

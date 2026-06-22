@@ -31,8 +31,8 @@ export default function TwoColumnsWithDescription() {
       <div className="mx-auto max-w-5xl text-center">
         <h2 className="heading text-ground-900">Frequently asked questions</h2>
         <p className="body mx-auto mt-3 max-w-2xl text-ground-500">
-          Straightforward answers about plans, payments, and account
-          management for prospective and current customers.
+          Straightforward answers about plans, payments, and account management for prospective and
+          current customers.
         </p>
 
         <dl className="mt-10 grid gap-x-8 gap-y-8 text-left md:grid-cols-2">

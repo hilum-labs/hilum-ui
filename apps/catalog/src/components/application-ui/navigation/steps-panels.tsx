@@ -1,4 +1,3 @@
-
 const stepItems = ["Shipping", "Payment", "Confirmation"] as const;
 
 export default function StepsPanels() {
@@ -18,7 +17,9 @@ export default function StepsPanels() {
               index === 1 ? "border-brand-primary" : "border-ground-100"
             }`}
           >
-            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-ground-400"}`}>Step {index + 1}</p>
+            <p className={`caption ${index === 1 ? "text-brand-primary" : "text-ground-400"}`}>
+              Step {index + 1}
+            </p>
             <p className="body mt-2 font-semibold text-ground-900">{step}</p>
             <p className="caption mt-1 text-ground-500">{descriptions[index]}</p>
           </div>

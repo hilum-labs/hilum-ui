@@ -81,8 +81,7 @@ export default function Buttons() {
         <ButtonRow
           label="Circular"
           render={(size) => {
-            const buttonSize =
-              size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon";
+            const buttonSize = size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon";
             return (
               <Button size={buttonSize} className="rounded-full">
                 <Plus size={16} />

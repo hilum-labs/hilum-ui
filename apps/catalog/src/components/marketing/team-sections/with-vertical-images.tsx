@@ -37,13 +37,7 @@ const TEAM = [
   },
 ] as const;
 
-function PortraitPlaceholder({
-  initials,
-  className,
-}: {
-  initials: string;
-  className: string;
-}) {
+function PortraitPlaceholder({ initials, className }: { initials: string; className: string }) {
   return (
     <div className={`${className} flex items-center justify-center bg-ground-100`}>
       <div className="rounded-full border border-ground-200 bg-white px-4 py-2 subheading text-ground-500">
@@ -59,7 +53,9 @@ export default function WithVerticalImages() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <p className="label text-brand-primary">Advisors and leads</p>
-          <h2 className="heading mt-4 text-ground-900">A denser roster layout for larger team presentations</h2>
+          <h2 className="heading mt-4 text-ground-900">
+            A denser roster layout for larger team presentations
+          </h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {TEAM.map((member) => (
@@ -67,7 +63,10 @@ export default function WithVerticalImages() {
               key={member.name}
               className="rounded-2xl border border-ground-100 bg-white p-4"
             >
-              <PortraitPlaceholder initials={member.initials} className="w-full aspect-[2/3] rounded-xl" />
+              <PortraitPlaceholder
+                initials={member.initials}
+                className="w-full aspect-[2/3] rounded-xl"
+              />
               <h3 className="body mt-4 font-medium text-ground-900">{member.name}</h3>
               <p className="caption mt-1 text-ground-500">{member.role}</p>
             </article>

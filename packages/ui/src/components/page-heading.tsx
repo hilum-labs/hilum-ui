@@ -68,7 +68,7 @@ function PageHeading({
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-3">
-            <h1 className="display text-foreground truncate">{title}</h1>
+            <h1 className="display text-balance text-foreground truncate">{title}</h1>
             {badge &&
               (typeof badge === "string" ? (
                 <Badge variant="secondary">{badge}</Badge>
@@ -76,7 +76,9 @@ function PageHeading({
                 <Badge variant={badge.variant ?? "secondary"}>{badge.label}</Badge>
               ))}
           </div>
-          {description && <p className="mt-1.5 body text-muted-foreground max-w-2xl">{description}</p>}
+          {description && (
+            <p className="mt-1.5 body max-w-2xl text-pretty text-muted-foreground">{description}</p>
+          )}
 
           {/* Meta */}
           {meta && meta.length > 0 && (

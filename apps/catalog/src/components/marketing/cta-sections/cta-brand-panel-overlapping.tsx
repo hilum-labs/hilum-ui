@@ -21,15 +21,11 @@ export default function CTABrandPanelOverlapping() {
       <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] shadow-elevated lg:grid-cols-2">
         <div className="flex flex-col justify-between bg-ground-900 p-8 text-white sm:p-10 lg:p-12">
           <div>
-            <p className="label uppercase tracking-[0.24em] text-ground-400">
-              Interactive demo
-            </p>
-            <h2 className="heading mt-4 text-white">
-              Ready to give your launches a home base?
-            </h2>
+            <p className="label uppercase tracking-[0.24em] text-ground-400">Interactive demo</p>
+            <h2 className="heading mt-4 text-white">Ready to give your launches a home base?</h2>
             <p className="body mt-4 text-ground-300">
-              See how high-output teams organize work, unblock reviews, and ship
-              with more confidence.
+              See how high-output teams organize work, unblock reviews, and ship with more
+              confidence.
             </p>
           </div>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">

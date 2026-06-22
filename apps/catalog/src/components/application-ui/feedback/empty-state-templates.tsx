@@ -1,4 +1,3 @@
-
 import { LayoutDashboard, FileText, BarChart2, Users } from "lucide-react";
 
 const templates = [
@@ -34,7 +33,9 @@ export default function EmptyStateTemplates() {
       <div>
         <div className="mb-6">
           <h3 className="subheading mb-2 text-ground-900">Start from a template</h3>
-          <p className="body text-ground-500">Choose a starting point and customize it to fit your team.</p>
+          <p className="body text-ground-500">
+            Choose a starting point and customize it to fit your team.
+          </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {templates.map((template) => (

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronRight, CreditCard } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -99,7 +98,10 @@ export default function SettingsSidebarScreen() {
                     ),
                   },
                 ].map((row) => (
-                  <div key={row.label} className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
+                  <div
+                    key={row.label}
+                    className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]"
+                  >
                     <div>
                       <p className="body font-medium text-ground-900">{row.label}</p>
                     </div>
@@ -112,7 +114,10 @@ export default function SettingsSidebarScreen() {
             {activeSection === "Password" && (
               <div className="space-y-6">
                 {["Current password", "New password", "Confirm password"].map((label) => (
-                  <div key={label} className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
+                  <div
+                    key={label}
+                    className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]"
+                  >
                     <p className="body font-medium text-ground-900">{label}</p>
                     <input
                       type="password"
@@ -126,16 +131,19 @@ export default function SettingsSidebarScreen() {
 
             {activeSection === "Notifications" && (
               <div className="space-y-4">
-                {[
-                  "Daily summary emails",
-                  "Comment mentions",
-                  "Project reminder alerts",
-                ].map((label) => (
-                  <div key={label} className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]">
-                    <p className="body font-medium text-ground-900">{label}</p>
-                    <div className="rounded-xl bg-ground-50 px-4 py-3 body text-ground-600">Enabled for your account</div>
-                  </div>
-                ))}
+                {["Daily summary emails", "Comment mentions", "Project reminder alerts"].map(
+                  (label) => (
+                    <div
+                      key={label}
+                      className="grid gap-3 border-b border-ground-100 pb-6 last:border-b-0 last:pb-0 md:grid-cols-[160px_1fr]"
+                    >
+                      <p className="body font-medium text-ground-900">{label}</p>
+                      <div className="rounded-xl bg-ground-50 px-4 py-3 body text-ground-600">
+                        Enabled for your account
+                      </div>
+                    </div>
+                  ),
+                )}
               </div>
             )}
 
@@ -143,7 +151,9 @@ export default function SettingsSidebarScreen() {
               <div className="space-y-4">
                 <div className="grid gap-3 md:grid-cols-[160px_1fr]">
                   <p className="body font-medium text-ground-900">Plan</p>
-                  <div className="rounded-xl bg-ground-50 px-4 py-3 body text-ground-900">Growth plan · billed monthly</div>
+                  <div className="rounded-xl bg-ground-50 px-4 py-3 body text-ground-900">
+                    Growth plan · billed monthly
+                  </div>
                 </div>
                 <div className="grid gap-3 md:grid-cols-[160px_1fr]">
                   <p className="body font-medium text-ground-900">Payment method</p>
@@ -158,7 +168,10 @@ export default function SettingsSidebarScreen() {
             {activeSection === "Integrations" && (
               <div className="space-y-3">
                 {["Slack workspace", "Google Calendar", "Analytics export"].map((item) => (
-                  <div key={item} className="flex items-center justify-between rounded-xl bg-ground-50 px-4 py-4">
+                  <div
+                    key={item}
+                    className="flex items-center justify-between rounded-xl bg-ground-50 px-4 py-4"
+                  >
                     <div>
                       <p className="body font-medium text-ground-900">{item}</p>
                       <p className="caption text-ground-400">Connected and syncing successfully</p>

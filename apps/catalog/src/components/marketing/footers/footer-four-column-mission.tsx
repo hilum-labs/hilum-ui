@@ -1,4 +1,3 @@
-
 import { Github, Globe, Linkedin, Twitter } from "lucide-react";
 
 const FOOTER_NAV = {
@@ -35,7 +34,7 @@ function SocialButtons() {
         <button
           key={label}
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
+          className="flex size-10 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
         >
           <Icon className="size-4" />
         </button>
@@ -88,7 +87,8 @@ export default function FooterFourColumnMission() {
           <div className="max-w-sm">
             <LogoMark />
             <p className="body mt-5 text-ground-500">
-              Northstar helps teams build design systems that scale across product, marketing, and internal tooling.
+              Northstar helps teams build design systems that scale across product, marketing, and
+              internal tooling.
             </p>
           </div>
           <FooterLinks title="Product" links={FOOTER_NAV.product} />

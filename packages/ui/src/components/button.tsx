@@ -7,7 +7,7 @@ const buttonVariants = cva(
   [
     "inline-flex shrink-0 items-center justify-center gap-2",
     "body font-medium whitespace-nowrap",
-    "transition-all duration-150 outline-none",
+    "transition-[background-color,border-color,box-shadow,color,opacity,scale] duration-150 outline-none active:scale-[0.96]",
     "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1",
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
@@ -15,8 +15,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand-primary text-background hover:bg-brand-primary/90 active:bg-brand-primary/80",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80",
+        default:
+          "bg-brand-primary text-background hover:bg-brand-primary/90 active:bg-brand-primary/80",
+        destructive:
+          "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80",
         outline: "bg-card text-muted-foreground shadow-natural hover:bg-muted rounded-xl",
         secondary: "bg-muted text-muted-foreground hover:bg-muted",
         brand:
@@ -25,14 +27,14 @@ const buttonVariants = cva(
         link: "text-foreground underline-offset-4 hover:underline",
       },
       size: {
-        default: "h-9 px-4 py-2 rounded-md",
+        default: "h-10 px-4 py-2 rounded-md",
         xs: "h-6 gap-1 px-2 caption rounded-md",
         sm: "h-8 gap-1.5 px-3 rounded-md",
-        lg: "h-10 px-6 rounded-md",
-        icon: "size-9 rounded-md",
+        lg: "h-11 px-6 rounded-md",
+        icon: "size-10 rounded-md",
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8 rounded-md",
-        "icon-lg": "size-10 rounded-md",
+        "icon-lg": "size-11 rounded-md",
       },
     },
     defaultVariants: {

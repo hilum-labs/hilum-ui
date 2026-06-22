@@ -88,8 +88,8 @@ function AppSidebar({
                   {...(linkOnClick !== undefined && { onClick: linkOnClick })}
                   {...(collapsed && { title: item.label })}
                   className={cn(
-                    "flex items-center rounded-lg transition-colors caption",
-                    collapsed ? "size-9 justify-center" : "gap-2.5 px-2.5 py-2",
+                    "flex min-h-10 items-center rounded-lg transition-colors caption",
+                    collapsed ? "size-10 justify-center" : "gap-2.5 px-2.5 py-2",
                     item.active
                       ? "bg-ground-900 text-background font-medium shadow-natural"
                       : item.disabled
@@ -124,8 +124,8 @@ function AppSidebar({
             <DropdownMenuTrigger asChild>
               <button
                 className={cn(
-                  "flex w-full items-center rounded-lg transition-colors caption text-muted-foreground hover:bg-muted",
-                  collapsed ? "size-9 justify-center" : "gap-2.5 px-2.5 py-2",
+                  "flex min-h-10 w-full items-center rounded-lg transition-colors caption text-muted-foreground hover:bg-muted",
+                  collapsed ? "size-10 justify-center" : "gap-2.5 px-2.5 py-2",
                 )}
               >
                 <Avatar size="xs">
@@ -137,9 +137,9 @@ function AppSidebar({
                 {!collapsed && (
                   <>
                     <div className="flex-1 min-w-0 text-left">
-                      <p className="caption font-semibold text-foreground truncate">{user.name}</p>
+                      <p className="caption truncate font-semibold text-foreground">{user.name}</p>
                       {user.email && (
-                        <p className="caption-xs text-muted-foreground truncate">{user.email}</p>
+                        <p className="caption-xs truncate text-muted-foreground">{user.email}</p>
                       )}
                     </div>
                     <ChevronDown size={12} className="text-muted-foreground" />
@@ -179,7 +179,7 @@ function AppSidebarSection({ label, collapsed, children, className }: AppSidebar
   return (
     <div className={cn("mb-3 last:mb-0", className)}>
       {label && !collapsed && (
-        <p className="caption-xs uppercase tracking-wider font-semibold text-muted-foreground px-2.5 py-1.5">
+        <p className="caption-xs px-2.5 py-1.5 font-semibold uppercase tracking-wider text-muted-foreground">
           {label}
         </p>
       )}

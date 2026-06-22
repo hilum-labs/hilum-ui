@@ -1,16 +1,9 @@
-
 import { type ReactNode } from "react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { Input } from "@hilum/ui";
 import { Label } from "@hilum/ui";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@hilum/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@hilum/ui";
 import { Textarea } from "@hilum/ui";
 
 function VariantCard({

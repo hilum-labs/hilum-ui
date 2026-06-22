@@ -38,7 +38,11 @@ function AvatarStack({ avatars, max, size = "md", className }: AvatarStackProps)
           )}
         >
           {avatar.src ? (
-            <img src={avatar.src} alt={avatar.name} className="size-full object-cover" />
+            <img
+              src={avatar.src}
+              alt={avatar.name}
+              className="size-full object-cover outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10"
+            />
           ) : (
             <span
               className={cn(
@@ -58,6 +62,7 @@ function AvatarStack({ avatars, max, size = "md", className }: AvatarStackProps)
             "relative inline-flex shrink-0 items-center justify-center rounded-full ring-background bg-muted font-medium text-muted-foreground",
             s.wrapper,
             s.text,
+            "tabular-nums",
           )}
         >
           +{overflow}

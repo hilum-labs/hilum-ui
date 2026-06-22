@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Download, MoreHorizontal } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -69,8 +68,15 @@ export default function InvoiceListQuickActions() {
                 </div>
                 <div className="mt-4 flex flex-wrap gap-3">
                   {order.products.map((product) => (
-                    <div key={product.name} className="flex items-center gap-3 rounded-2xl bg-ground-50 p-3">
-                      <img src={product.img} alt={product.name} className="size-14 rounded-xl object-cover" />
+                    <div
+                      key={product.name}
+                      className="flex items-center gap-3 rounded-2xl bg-ground-50 p-3"
+                    >
+                      <img
+                        src={product.img}
+                        alt={product.name}
+                        className="size-14 rounded-xl object-cover"
+                      />
                       <div>
                         <p className="caption font-semibold text-ground-900">{product.name}</p>
                         <p className="caption text-ground-500">{formatCurrency(product.price)}</p>
@@ -86,8 +92,10 @@ export default function InvoiceListQuickActions() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => setOpenMenuId((current) => (current === order.id ? null : order.id))}
-                  className="flex size-9 items-center justify-center rounded-full border border-ground-200 text-ground-500 transition hover:bg-ground-50 hover:text-ground-900"
+                  onClick={() =>
+                    setOpenMenuId((current) => (current === order.id ? null : order.id))
+                  }
+                  className="flex size-10 items-center justify-center rounded-full border border-ground-200 text-ground-500 transition-colors hover:bg-ground-50 hover:text-ground-900"
                   aria-label={`Open quick actions for order ${order.id}`}
                 >
                   <MoreHorizontal size={16} />
@@ -98,13 +106,13 @@ export default function InvoiceListQuickActions() {
               <div className="absolute right-5 top-16 z-20 w-48 rounded-2xl border border-ground-200 bg-white p-2 shadow-elevated">
                 <button
                   type="button"
-                  className="flex w-full items-center gap-2 rounded-xl px-3 py-2 body text-ground-700 transition hover:bg-ground-50 hover:text-ground-900"
+                  className="flex w-full items-center gap-2 rounded-xl px-3 py-2 body text-ground-700 transition-colors hover:bg-ground-50 hover:text-ground-900"
                 >
                   Manage
                 </button>
                 <button
                   type="button"
-                  className="flex w-full items-center gap-2 rounded-xl px-3 py-2 body text-ground-700 transition hover:bg-ground-50 hover:text-ground-900"
+                  className="flex w-full items-center gap-2 rounded-xl px-3 py-2 body text-ground-700 transition-colors hover:bg-ground-50 hover:text-ground-900"
                 >
                   <Download size={14} />
                   Download invoice

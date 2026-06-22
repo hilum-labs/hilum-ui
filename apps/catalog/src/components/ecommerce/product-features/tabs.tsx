@@ -1,15 +1,13 @@
-
 import { useState } from "react";
 
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
 type FeatureTab = "Design" | "Material" | "Considerations";
 
-const TAB_CONTENT: Record<
-  FeatureTab,
-  { title: string; description: string; bullets: string[] }
-> = {
+const TAB_CONTENT: Record<FeatureTab, { title: string; description: string; bullets: string[] }> = {
   Design: {
     title: "A layout tuned for quick access.",
     description:
@@ -55,22 +53,8 @@ function FeatureList({ items }: { items: string[] }) {
   );
 }
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function Tabs() {
@@ -98,12 +82,8 @@ export default function Tabs() {
         <div className="mt-6 grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <p className="label mb-3 text-brand-primary">{activeTab}</p>
-            <h3 className="heading text-ground-900">
-              {TAB_CONTENT[activeTab].title}
-            </h3>
-            <p className="body mt-4 text-ground-600">
-              {TAB_CONTENT[activeTab].description}
-            </p>
+            <h3 className="heading text-ground-900">{TAB_CONTENT[activeTab].title}</h3>
+            <p className="body mt-4 text-ground-600">{TAB_CONTENT[activeTab].description}</p>
             <div className="mt-6">
               <FeatureList items={TAB_CONTENT[activeTab].bullets} />
             </div>

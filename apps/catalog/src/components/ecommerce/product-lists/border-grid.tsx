@@ -1,4 +1,3 @@
-
 const PRODUCTS = [
   {
     name: "Earthen Bottle",
@@ -50,7 +49,11 @@ export default function BorderGrid() {
           {PRODUCTS.map((product) => (
             <article key={product.name} className="bg-white p-6">
               <div className="overflow-hidden rounded-2xl bg-ground-50">
-                <img src={product.image} alt={product.name} className="aspect-square w-full object-cover" />
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="aspect-square w-full object-cover"
+                />
               </div>
               <div className="mt-5 flex items-start justify-between gap-4">
                 <div>

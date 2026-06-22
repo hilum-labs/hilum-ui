@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 
 const STATS = [
@@ -39,8 +38,8 @@ export default function StatsSectionSplit() {
           <Badge variant="outline">Performance snapshot</Badge>
           <h2 className="heading mt-4 text-ground-900">Trusted by teams worldwide</h2>
           <p className="body mt-3 max-w-lg text-ground-500">
-            Use this split when the story needs both product imagery and a
-            few decisive proof points in the same section.
+            Use this split when the story needs both product imagery and a few decisive proof points
+            in the same section.
           </p>
 
           <dl className="mt-10 grid gap-6 sm:grid-cols-2">

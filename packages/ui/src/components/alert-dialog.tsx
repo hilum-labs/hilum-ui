@@ -65,7 +65,7 @@ const AlertDialogTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AlertDialog.Title
     ref={ref}
-    className={cn("body-lg font-semibold text-foreground", className)}
+    className={cn("body-lg font-semibold text-balance text-foreground", className)}
     {...props}
   />
 ));
@@ -75,7 +75,11 @@ const AlertDialogDescription = React.forwardRef<
   React.ComponentRef<typeof AlertDialog.Description>,
   React.ComponentPropsWithoutRef<typeof AlertDialog.Description>
 >(({ className, ...props }, ref) => (
-  <AlertDialog.Description ref={ref} className={cn("body text-muted-foreground", className)} {...props} />
+  <AlertDialog.Description
+    ref={ref}
+    className={cn("body text-pretty text-muted-foreground", className)}
+    {...props}
+  />
 ));
 AlertDialogDescription.displayName = "AlertDialogDescription";
 
@@ -86,8 +90,8 @@ const AlertDialogAction = React.forwardRef<
   <AlertDialog.Action
     ref={ref}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-md px-4",
-      "body font-medium whitespace-nowrap transition-all duration-150",
+      "inline-flex h-10 items-center justify-center rounded-md px-4",
+      "body font-medium whitespace-nowrap transition-[background-color,box-shadow,color,opacity,scale] duration-150 active:scale-[0.96]",
       "bg-brand-primary text-background hover:bg-brand-primary/90 active:bg-brand-primary/80",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",
@@ -105,8 +109,8 @@ const AlertDialogCancel = React.forwardRef<
   <AlertDialog.Cancel
     ref={ref}
     className={cn(
-      "inline-flex h-9 items-center justify-center rounded-md px-4",
-      "body font-medium whitespace-nowrap transition-all duration-150",
+      "inline-flex h-10 items-center justify-center rounded-md px-4",
+      "body font-medium whitespace-nowrap transition-[background-color,box-shadow,color,opacity,scale] duration-150 active:scale-[0.96]",
       "bg-card text-muted-foreground shadow-natural hover:bg-muted rounded-xl",
       "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
       "disabled:pointer-events-none disabled:opacity-50",

@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 
 const ORDERS = [
@@ -66,7 +65,10 @@ export default function InvoiceTable() {
           </thead>
           <tbody>
             {ORDERS.map((order, index) => (
-              <tr key={order.id} className={index !== ORDERS.length - 1 ? "border-b border-ground-100" : ""}>
+              <tr
+                key={order.id}
+                className={index !== ORDERS.length - 1 ? "border-b border-ground-100" : ""}
+              >
                 <td className="px-6 py-5">
                   <div className="flex items-center gap-4">
                     <div className="flex -space-x-2">
@@ -88,12 +90,17 @@ export default function InvoiceTable() {
                   </div>
                 </td>
                 <td className="px-6 py-5 body text-ground-600">{order.date}</td>
-                <td className="px-6 py-5 body font-medium text-ground-900">{formatCurrency(order.total)}</td>
+                <td className="px-6 py-5 body font-medium text-ground-900">
+                  {formatCurrency(order.total)}
+                </td>
                 <td className="px-6 py-5">
                   <StatusBadge status={order.status} />
                 </td>
                 <td className="px-6 py-5 text-right">
-                  <a href="#" className="caption font-medium text-brand-primary transition hover:text-brand-primary/80">
+                  <a
+                    href="#"
+                    className="caption font-medium text-brand-primary transition-colors hover:text-brand-primary/80"
+                  >
                     Manage
                   </a>
                 </td>

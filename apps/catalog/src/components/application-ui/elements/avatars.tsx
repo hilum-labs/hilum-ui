@@ -74,9 +74,7 @@ export default function Avatars() {
           <div className="flex -space-x-2">
             {["TC", "AP", "MF", "GL", "SR"].map((initials) => (
               <Avatar key={initials} className="ring-2 ring-white">
-                <AvatarFallback className="bg-brand-primary text-white">
-                  {initials}
-                </AvatarFallback>
+                <AvatarFallback className="bg-brand-primary text-white">{initials}</AvatarFallback>
               </Avatar>
             ))}
           </div>

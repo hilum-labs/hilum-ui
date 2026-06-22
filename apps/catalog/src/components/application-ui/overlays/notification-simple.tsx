@@ -1,4 +1,3 @@
-
 import { X } from "lucide-react";
 
 function ToastShell({ children }: { children: React.ReactNode }) {
@@ -13,7 +12,10 @@ export default function NotificationSimple() {
   return (
     <ToastShell>
       <div className="relative pr-8">
-        <button className="absolute right-0 top-0 text-ground-400 hover:text-ground-700" type="button">
+        <button
+          className="absolute right-0 top-0 text-ground-400 hover:text-ground-700"
+          type="button"
+        >
           <X size={16} />
         </button>
         <p className="subheading text-ground-900">Changes saved</p>

@@ -1,14 +1,7 @@
-
 import { type ReactNode, useState } from "react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Label } from "@hilum/ui";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@hilum/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@hilum/ui";
 
 type PersonId = "tom" | "ana" | "mila";
 

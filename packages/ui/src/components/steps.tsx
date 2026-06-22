@@ -29,7 +29,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
             <li key={step.id ?? i} className={cn("relative", !isLast && "flex-1")}>
               {/* Connector line */}
               {!isLast && (
-                <div className="absolute top-4 left-8 -right-px h-0.5" aria-hidden="true">
+                <div className="absolute left-10 right-0 top-5 h-0.5" aria-hidden="true">
                   <div
                     className={cn(
                       "h-full",
@@ -47,7 +47,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                 {/* Circle */}
                 <span
                   className={cn(
-                    "relative z-10 flex size-8 items-center justify-center rounded-full transition-colors",
+                    "relative z-10 flex size-10 items-center justify-center rounded-full transition-colors",
                     step.status === "complete" &&
                       "bg-brand-primary group-hover:bg-brand-primary/80",
                     step.status === "current" && "border-2 border-brand-primary bg-card",
@@ -58,9 +58,9 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                   {step.status === "complete" ? (
                     <Check size={14} className="text-background" strokeWidth={2.5} />
                   ) : step.status === "current" ? (
-                    <span className="size-2.5 rounded-full bg-brand-primary" />
+                    <span className="size-3 rounded-full bg-brand-primary" />
                   ) : (
-                    <span className="size-2.5 rounded-full bg-transparent group-hover:bg-muted" />
+                    <span className="size-3 rounded-full bg-transparent group-hover:bg-muted" />
                   )}
                 </span>
 
@@ -75,7 +75,9 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                     {step.name}
                   </span>
                   {step.description && (
-                    <span className="caption text-muted-foreground">{step.description}</span>
+                    <span className="caption text-pretty text-muted-foreground">
+                      {step.description}
+                    </span>
                   )}
                 </span>
               </a>
@@ -93,7 +95,7 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
 
   return (
     <nav className={cn("flex items-center gap-4", className)} aria-label="Progress">
-      <p className="body font-medium text-muted-foreground">
+      <p className="body font-medium tabular-nums text-muted-foreground">
         Step {currentIdx + 1} of {steps.length}
       </p>
       <ol role="list" className="flex items-center gap-2">
@@ -102,11 +104,11 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
             <a
               href={step.href ?? "#"}
               onClick={!step.href ? (e) => e.preventDefault() : undefined}
-              className="block"
+              className="relative flex size-10 items-center justify-center"
             >
               {step.status === "complete" ? (
                 <span
-                  className="block size-2.5 rounded-full bg-brand-primary hover:bg-brand-primary/80 transition-colors"
+                  className="block size-2.5 rounded-full bg-brand-primary transition-colors hover:bg-brand-primary/80"
                   aria-label={`${step.name}: completed`}
                 />
               ) : step.status === "current" ? (
@@ -120,7 +122,7 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
                 </span>
               ) : (
                 <span
-                  className="block size-2.5 rounded-full bg-muted hover:bg-muted transition-colors"
+                  className="block size-2.5 rounded-full bg-muted transition-colors hover:bg-muted"
                   aria-label={`${step.name}: upcoming`}
                 />
               )}
@@ -143,7 +145,7 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
       {/* Bar */}
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
         <div
-          className="h-full rounded-full bg-brand-primary transition-all duration-500"
+          className="h-full rounded-full bg-brand-primary transition-[width] duration-500"
           style={{ width: `${progress}%` }}
         />
       </div>
@@ -155,7 +157,7 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
             <div
               key={step.id ?? i}
               className={cn(
-                "caption font-medium",
+                "caption font-medium text-pretty",
                 i === 0 ? "text-left" : isLast ? "text-right" : "text-center",
                 step.status === "upcoming" ? "text-muted-foreground" : "text-foreground",
               )}

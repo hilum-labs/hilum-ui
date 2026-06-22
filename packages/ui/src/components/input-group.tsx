@@ -39,7 +39,7 @@ const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
     const hasTrailing = trailingAddon || hasInsetTrailing || trailingButton;
 
     const baseInput = cn(
-      "flex h-9 w-full border bg-card body text-foreground placeholder:text-muted-foreground",
+      "flex h-10 w-full border bg-card body text-foreground placeholder:text-muted-foreground",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:disabled:cursor-not-allowed disabled:opacity-50",
       error
         ? "border-destructive focus-visible:ring-destructive/20 focus-visible:border-destructive"

@@ -1,39 +1,40 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { useState } from "react"
+import { useState } from "react";
 import {
   DesignerPane,
   DesignerPaneTitle,
   DesignerPaneContent,
   DesignerPanel,
   ShellProvider,
-} from "@hilum/designer"
-import { Badge, Button, Card, CardContent, Input } from "@hilum/ui"
+} from "@hilum/designer";
+import { Badge, Button, Card, CardContent, Input } from "@hilum/ui";
 
 const KINDS = [
   { id: "text-1", kind: "text", label: "Text" },
   { id: "image-1", kind: "image", label: "Image" },
   { id: "shape-1", kind: "shape", label: "Shape" },
   { id: "group-1", kind: "group", label: "Group" },
-]
+];
 
 function PaneVisibilityDemo() {
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
 
   // Build a kind resolver from the local KINDS table.
-  const resolveKind = (id: string) => KINDS.find((k) => k.id === id)?.kind
+  const resolveKind = (id: string) => KINDS.find((k) => k.id === id)?.kind;
 
   return (
     <div className="mx-auto max-w-5xl px-8 py-12">
       <div className="mb-10">
         <h1 className="display text-ground-900">DesignerPane.showFor</h1>
         <p className="body-lg text-ground-500 mt-3 max-w-2xl">
-          Click below to "select" different kinds. The properties panel on the right rerenders only the panes whose{" "}
-          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">showFor</code> predicate matches.
-          The shell itself doesn't know about layer kinds — apps wire a{" "}
-          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">resolveKind</code> function on{" "}
-          <code className="font-mono caption">ShellContext</code>.
+          Click below to "select" different kinds. The properties panel on the right rerenders only
+          the panes whose{" "}
+          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">showFor</code>{" "}
+          predicate matches. The shell itself doesn't know about layer kinds — apps wire a{" "}
+          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">resolveKind</code>{" "}
+          function on <code className="font-mono caption">ShellContext</code>.
         </p>
       </div>
 
@@ -46,7 +47,7 @@ function PaneVisibilityDemo() {
           </p>
           <div className="grid grid-cols-2 gap-2">
             {KINDS.map((k) => {
-              const selected = selectedIds.includes(k.id)
+              const selected = selectedIds.includes(k.id);
               return (
                 <button
                   key={k.id}
@@ -62,11 +63,14 @@ function PaneVisibilityDemo() {
                   }`}
                 >
                   <span className="font-medium">{k.label}</span>
-                  <Badge variant={selected ? "default" : "secondary"} className="caption-xs font-mono">
+                  <Badge
+                    variant={selected ? "default" : "secondary"}
+                    className="caption-xs font-mono"
+                  >
                     {k.kind}
                   </Badge>
                 </button>
-              )
+              );
             })}
           </div>
 
@@ -81,7 +85,12 @@ function PaneVisibilityDemo() {
           <Card>
             <CardContent className="p-0">
               <ShellProvider value={{ selectedIds, setSelectedIds, resolveKind }}>
-                <DesignerPanel side="right" width={undefined as unknown as number} bordered={false} className="w-full">
+                <DesignerPanel
+                  side="right"
+                  width={undefined as unknown as number}
+                  bordered={false}
+                  className="w-full"
+                >
                   <DesignerPane showFor={["text"]} collapsible>
                     <DesignerPaneTitle>Typography</DesignerPaneTitle>
                     <DesignerPaneContent>
@@ -123,7 +132,7 @@ function PaneVisibilityDemo() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export const Route = createFileRoute("/designer/pane-visibility/")({

@@ -63,9 +63,13 @@ function AvatarPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Avatar</span>
         </div>
@@ -125,9 +129,7 @@ function AvatarPage() {
             </AvatarFallback>
           </Avatar>
           <Avatar>
-            <AvatarFallback className="bg-ground-900 font-semibold text-white">
-              LM
-            </AvatarFallback>
+            <AvatarFallback className="bg-ground-900 font-semibold text-white">LM</AvatarFallback>
           </Avatar>
           <Avatar>
             <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">
@@ -144,19 +146,27 @@ function AvatarPage() {
           code={CODE.avatarStatus}
         >
           <AvatarWithStatus status="online">
-            <AvatarFallback className="bg-brand-primary font-semibold text-white">KB</AvatarFallback>
+            <AvatarFallback className="bg-brand-primary font-semibold text-white">
+              KB
+            </AvatarFallback>
           </AvatarWithStatus>
           <AvatarWithStatus status="away">
-            <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">AM</AvatarFallback>
+            <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">
+              AM
+            </AvatarFallback>
           </AvatarWithStatus>
           <AvatarWithStatus status="busy">
-            <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">LM</AvatarFallback>
+            <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">
+              LM
+            </AvatarFallback>
           </AvatarWithStatus>
           <AvatarWithStatus status="offline">
             <AvatarFallback>JD</AvatarFallback>
           </AvatarWithStatus>
           <AvatarWithStatus status="online" size="lg">
-            <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">EC</AvatarFallback>
+            <AvatarFallback className="bg-brand-secondary font-semibold text-ground-900">
+              EC
+            </AvatarFallback>
           </AvatarWithStatus>
         </PreviewBlock>
       </div>

@@ -10,7 +10,7 @@ const NativeSelect = React.forwardRef<
     <select
       ref={ref}
       className={cn(
-        "peer h-9 w-full appearance-none rounded-lg border border-border bg-card pl-3 pr-8",
+        "peer h-10 w-full appearance-none rounded-lg border border-border bg-card pl-3 pr-8",
         "body text-foreground",
         "focus:outline-none focus:ring-2 focus:ring-ring/30 focus:border-border",
         "disabled:cursor-not-allowed disabled:opacity-50",

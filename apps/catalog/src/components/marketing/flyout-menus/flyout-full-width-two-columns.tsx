@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   type LucideIcon,
@@ -62,13 +61,7 @@ const RESOURCE_LINKS: FlyoutItem[] = [
   },
 ];
 
-function FlyoutLink({
-  item,
-  iconClassName,
-}: {
-  item: FlyoutItem;
-  iconClassName?: string;
-}) {
+function FlyoutLink({ item, iconClassName }: { item: FlyoutItem; iconClassName?: string }) {
   const Icon = item.icon;
 
   return (
@@ -79,7 +72,7 @@ function FlyoutLink({
       <div
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
-          iconClassName
+          iconClassName,
         )}
       >
         <Icon size={18} />
@@ -107,10 +100,7 @@ export default function FlyoutFullWidthTwoColumns() {
               className="inline-flex items-center gap-1 body font-medium text-ground-700 transition-colors hover:text-ground-900"
             >
               Solutions
-              <ChevronDown
-                size={14}
-                className={cn("transition-transform", open && "rotate-180")}
-              />
+              <ChevronDown size={14} className={cn("transition-transform", open && "rotate-180")} />
             </button>
           </div>
         </div>
@@ -149,7 +139,8 @@ export default function FlyoutFullWidthTwoColumns() {
       <div className="px-6 py-12">
         <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
           <p className="body max-w-2xl text-ground-500">
-            Split layouts separate primary product discovery from educational and support resources without overcrowding either side.
+            Split layouts separate primary product discovery from educational and support resources
+            without overcrowding either side.
           </p>
         </div>
       </div>

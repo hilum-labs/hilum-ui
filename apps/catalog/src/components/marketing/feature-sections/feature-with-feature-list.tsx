@@ -36,15 +36,20 @@ export default function FeatureWithFeatureList() {
             </div>
             <div className="rounded-2xl bg-white/70 px-4 py-3 ring-1 ring-inset ring-white/[0.035]">
               <p className="caption text-ground-400">Latest update</p>
-              <p className="body mt-1 text-ground-700">Implementation completed ahead of schedule for APAC rollout.</p>
+              <p className="body mt-1 text-ground-700">
+                Implementation completed ahead of schedule for APAC rollout.
+              </p>
             </div>
           </div>
         </div>
         <div className="max-w-xl">
-          <Badge variant="secondary" className="mb-4">Customer visibility</Badge>
+          <Badge variant="secondary" className="mb-4">
+            Customer visibility
+          </Badge>
           <h3 className="heading text-ground-900">See the entire customer story in one place</h3>
           <p className="body mt-3 text-ground-500">
-            Unite product signals, lifecycle milestones, and account context so every team can act with the same source of truth.
+            Unite product signals, lifecycle milestones, and account context so every team can act
+            with the same source of truth.
           </p>
           <div className="mt-8 space-y-4">
             {items.map((item) => (

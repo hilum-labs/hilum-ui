@@ -27,8 +27,8 @@ export default function HeroSplitWithScreenshot() {
             The planning layer for every product launch.
           </h1>
           <p className="body mt-5 text-ground-500">
-            Align go-to-market owners, track readiness across workstreams, and
-            keep every stakeholder working from the same launch plan.
+            Align go-to-market owners, track readiness across workstreams, and keep every
+            stakeholder working from the same launch plan.
           </p>
 
           <form className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -48,9 +48,7 @@ export default function HeroSplitWithScreenshot() {
                 <Star key={index} className="size-4 fill-current" />
               ))}
             </div>
-            <p className="body">
-              Rated 4.9 out of 5 by growth, brand, and product teams.
-            </p>
+            <p className="body">Rated 4.9 out of 5 by growth, brand, and product teams.</p>
           </div>
         </div>
 

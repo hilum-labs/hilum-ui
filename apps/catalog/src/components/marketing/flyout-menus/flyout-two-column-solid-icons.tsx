@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import {
   type LucideIcon,
@@ -58,13 +57,7 @@ const FEATURE_GRID_ITEMS: FlyoutItem[] = [
   },
 ];
 
-function FlyoutLink({
-  item,
-  iconClassName,
-}: {
-  item: FlyoutItem;
-  iconClassName?: string;
-}) {
+function FlyoutLink({ item, iconClassName }: { item: FlyoutItem; iconClassName?: string }) {
   const Icon = item.icon;
 
   return (
@@ -75,7 +68,7 @@ function FlyoutLink({
       <div
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
-          iconClassName
+          iconClassName,
         )}
       >
         <Icon size={18} />
@@ -107,10 +100,7 @@ export default function FlyoutTwoColumnSolidIcons() {
             className="inline-flex items-center gap-1 body font-medium text-ground-700 transition-colors hover:text-ground-900"
           >
             Features
-            <ChevronDown
-              size={14}
-              className={cn("transition-transform", open && "rotate-180")}
-            />
+            <ChevronDown size={14} className={cn("transition-transform", open && "rotate-180")} />
           </button>
           {open ? (
             <div className="absolute right-0 z-10 mt-3 w-96 rounded-xl border border-ground-100 bg-white p-4 shadow-elevated ring-1 ring-ground-100/50">
@@ -130,7 +120,8 @@ export default function FlyoutTwoColumnSolidIcons() {
       <div className="px-6 py-12">
         <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
           <p className="body text-ground-500">
-            Wider, two-column flyouts work best once the product surface grows beyond a simple stacked list.
+            Wider, two-column flyouts work best once the product surface grows beyond a simple
+            stacked list.
           </p>
         </div>
       </div>

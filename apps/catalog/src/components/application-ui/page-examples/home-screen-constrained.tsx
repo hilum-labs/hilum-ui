@@ -1,4 +1,3 @@
-
 import {
   Bell,
   Calendar,
@@ -64,7 +63,11 @@ function AvatarStack() {
         <div
           key={member.name}
           className={`-ml-2 flex size-10 items-center justify-center rounded-full border-2 border-white bg-ground-900 text-white first:ml-0 ${
-            index === 1 ? "bg-brand-primary" : index === 2 ? "bg-brand-secondary text-ground-900" : ""
+            index === 1
+              ? "bg-brand-primary"
+              : index === 2
+                ? "bg-brand-secondary text-ground-900"
+                : ""
           }`}
         >
           <span className="caption font-medium">{member.initials}</span>
@@ -82,7 +85,7 @@ export default function HomeScreenConstrained() {
           <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4">
             <div className="flex items-center gap-6">
               <div className="flex items-center gap-3">
-                <div className="flex size-9 items-center justify-center rounded-2xl bg-brand-primary text-white">
+                <div className="flex size-10 items-center justify-center rounded-2xl bg-brand-primary text-white">
                   <span className="body font-medium">D</span>
                 </div>
                 <span className="body font-medium text-ground-900">Design Co.</span>
@@ -103,7 +106,10 @@ export default function HomeScreenConstrained() {
                 ))}
               </div>
             </div>
-            <button type="button" className="rounded-full p-2 text-ground-400 transition-colors hover:bg-ground-50 hover:text-ground-900">
+            <button
+              type="button"
+              className="flex size-10 items-center justify-center rounded-full text-ground-400 transition-colors hover:bg-ground-50 hover:text-ground-900"
+            >
               <Bell className="size-4" />
             </button>
           </div>
@@ -149,7 +155,10 @@ export default function HomeScreenConstrained() {
                 <AvatarStack />
                 <div className="mt-5 space-y-3">
                   {TEAM.slice(0, 3).map((member) => (
-                    <div key={member.name} className="flex items-center justify-between rounded-xl bg-ground-50 px-4 py-3">
+                    <div
+                      key={member.name}
+                      className="flex items-center justify-between rounded-xl bg-ground-50 px-4 py-3"
+                    >
                       <div>
                         <p className="body font-medium text-ground-900">{member.name}</p>
                         <p className="caption text-ground-400">{member.role}</p>

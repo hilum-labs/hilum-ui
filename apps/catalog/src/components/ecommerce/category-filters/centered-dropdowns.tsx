@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -78,9 +77,7 @@ function MenuPanel({
 
 export default function CenteredDropdowns() {
   const [centeredOpen, setCenteredOpen] = useState<CenteredMenuKey | null>(null);
-  const [centeredSelections, setCenteredSelections] = useState<
-    Record<CenteredMenuKey, string[]>
-  >({
+  const [centeredSelections, setCenteredSelections] = useState<Record<CenteredMenuKey, string[]>>({
     Category: ["Travel"],
     Color: ["Blue"],
     Size: ["M"],
@@ -94,8 +91,8 @@ export default function CenteredDropdowns() {
           <p className="label text-brand-primary">Seasonal selection</p>
           <h3 className="display mt-3 text-ground-900">New Arrivals</h3>
           <p className="body mx-auto mt-4 max-w-2xl text-ground-600">
-            A flexible browsing pattern for launches, editorial collections, or
-            short-term merchandising campaigns.
+            A flexible browsing pattern for launches, editorial collections, or short-term
+            merchandising campaigns.
           </p>
         </div>
 
@@ -104,9 +101,7 @@ export default function CenteredDropdowns() {
             <div key={menu} className="relative">
               <button
                 type="button"
-                onClick={() =>
-                  setCenteredOpen((current) => (current === menu ? null : menu))
-                }
+                onClick={() => setCenteredOpen((current) => (current === menu ? null : menu))}
                 className={`flex items-center gap-2 rounded-full border px-4 py-2 body transition-colors ${
                   centeredOpen === menu
                     ? "border-brand-primary bg-brand-primary/5 text-ground-900"

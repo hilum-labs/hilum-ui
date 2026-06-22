@@ -21,7 +21,7 @@ export default function SectionHeadingWithTabs() {
                 "caption border-b-2 pb-2 transition-colors",
                 activeTab === tab
                   ? "border-brand-primary text-ground-900"
-                  : "border-transparent text-ground-400 hover:text-ground-700"
+                  : "border-transparent text-ground-400 hover:text-ground-700",
               )}
             >
               {tab}

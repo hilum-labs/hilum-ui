@@ -198,8 +198,8 @@ function SidebarTrigger({ className, onClick, ...props }: React.ComponentProps<t
     <Button
       data-sidebar="trigger"
       variant="ghost"
-      size="sm"
-      className={cn("h-7 w-7", className)}
+      size="icon"
+      className={className}
       onClick={(e) => {
         onClick?.(e);
         toggleSidebar();
@@ -227,7 +227,7 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle sidebar"
       className={cn(
-        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 cursor-col-resize transition-all ease-linear",
+        "absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 cursor-col-resize transition-[left,right,width] ease-linear",
         "after:absolute after:inset-y-0 after:left-1/2 after:w-[2px]",
         "hover:after:bg-brand-primary/30",
         "group-data-[side=left]:-right-4 group-data-[side=right]:left-0",
@@ -353,7 +353,7 @@ function SidebarGroupAction({
     <Comp
       data-sidebar="group-action"
       className={cn(
-        "absolute right-3 top-3.5 flex aspect-square w-5 items-center justify-center",
+        "absolute right-2 top-2 flex size-8 items-center justify-center",
         "rounded-md text-muted-foreground hover:bg-muted hover:text-foreground",
         "outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
         className,
@@ -412,7 +412,7 @@ function SidebarMenuButton({
       data-size={size}
       className={cn(
         // Base
-        "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 body-sm text-left",
+        "peer/menu-button flex min-h-10 w-full items-center gap-2 overflow-hidden rounded-md p-2 body-sm text-left",
         "outline-none ring-ring",
         "transition-[width,height,padding] duration-150",
         "hover:bg-muted hover:text-foreground",
@@ -430,7 +430,7 @@ function SidebarMenuButton({
         ],
         // Collapsed state
         "group-data-[state=collapsed]/sidebar-wrapper:justify-center",
-        "group-data-[state=collapsed]/sidebar-wrapper:size-9",
+        "group-data-[state=collapsed]/sidebar-wrapper:size-10",
         "group-data-[state=collapsed]/sidebar-wrapper:p-0",
         className,
       )}
@@ -481,7 +481,7 @@ function SidebarMenuAction({
     <Comp
       data-sidebar="menu-action"
       className={cn(
-        "absolute right-1 top-1/2 -translate-y-1/2 flex aspect-square w-5 items-center justify-center",
+        "absolute right-1 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center",
         "rounded-md text-muted-foreground hover:bg-muted hover:text-foreground",
         "outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
         showOnHover && [
@@ -590,7 +590,7 @@ function SidebarMenuSubButton({
       data-sidebar="menu-sub-button"
       data-active={isActive}
       className={cn(
-        "flex h-7 min-w-0 items-center gap-2 overflow-hidden rounded-md px-2",
+        "flex min-h-8 min-w-0 items-center gap-2 overflow-hidden rounded-md px-2",
         "body text-muted-foreground outline-none",
         "transition-colors duration-150",
         "hover:text-foreground hover:bg-muted",

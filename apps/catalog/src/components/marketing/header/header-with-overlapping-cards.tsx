@@ -1,4 +1,3 @@
-
 import { PanelsTopLeft, TrendingUp, Users, Zap } from "lucide-react";
 
 function MetricCard({
@@ -28,12 +27,25 @@ export default function HeaderWithOverlappingCards() {
         <p className="caption text-ground-400">System performance</p>
         <h2 className="display mt-4 text-white">Measure the impact of a unified interface layer</h2>
         <p className="body mx-auto mt-5 max-w-2xl text-ground-300">
-          Show the business case for better design system coverage with a banner that transitions directly into the proof points below.
+          Show the business case for better design system coverage with a banner that transitions
+          directly into the proof points below.
         </p>
         <div className="mt-10 grid gap-4 lg:grid-cols-3 lg:translate-y-12">
-          <MetricCard icon={PanelsTopLeft} value="180+" label="Components documented across product and marketing" />
-          <MetricCard icon={TrendingUp} value="38%" label="Faster page assembly after standardizing content blocks" />
-          <MetricCard icon={Users} value="24 teams" label="Shipping from one shared set of foundations" />
+          <MetricCard
+            icon={PanelsTopLeft}
+            value="180+"
+            label="Components documented across product and marketing"
+          />
+          <MetricCard
+            icon={TrendingUp}
+            value="38%"
+            label="Faster page assembly after standardizing content blocks"
+          />
+          <MetricCard
+            icon={Users}
+            value="24 teams"
+            label="Shipping from one shared set of foundations"
+          />
         </div>
         <div className="mt-16 flex justify-center">
           <div className="flex size-12 items-center justify-center rounded-full bg-white/5 text-brand-secondary ring-1 ring-inset ring-white/[0.035]">

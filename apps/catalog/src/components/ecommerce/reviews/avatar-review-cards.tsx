@@ -1,4 +1,3 @@
-
 import { Avatar, AvatarFallback } from "@hilum/ui";
 
 const reviews = [
@@ -49,7 +48,10 @@ export default function AvatarReviewCards() {
     <section className="w-full rounded-xl border border-ground-100 bg-white p-6">
       <div className="grid gap-5 md:grid-cols-2">
         {reviews.map((review) => (
-          <article key={review.author} className="rounded-[24px] border border-ground-100 bg-ground-50 p-6">
+          <article
+            key={review.author}
+            className="rounded-[24px] border border-ground-100 bg-ground-50 p-6"
+          >
             <div className="flex items-start gap-4">
               <Avatar size="lg">
                 <AvatarFallback className="bg-brand-primary/10 text-brand-primary">

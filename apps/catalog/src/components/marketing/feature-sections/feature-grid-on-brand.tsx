@@ -17,10 +17,13 @@ export default function FeatureGridOnBrand() {
     <section className="w-full bg-ground-900 px-8 py-16 text-white md:px-12">
       <div className="mx-auto max-w-6xl">
         <div className="max-w-2xl">
-          <Badge variant="brand" className="mb-4">Built for scale</Badge>
+          <Badge variant="brand" className="mb-4">
+            Built for scale
+          </Badge>
           <h3 className="heading text-white">One system for every product story you ship</h3>
           <p className="body mt-3 text-ground-300">
-            Consolidate planning, proof, and publishing into a branded workflow designed for teams operating across multiple markets.
+            Consolidate planning, proof, and publishing into a branded workflow designed for teams
+            operating across multiple markets.
           </p>
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

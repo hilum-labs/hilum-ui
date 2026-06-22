@@ -55,15 +55,20 @@ function TogglePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Toggle</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Toggle</h1>
         <p className="body max-w-lg text-ground-500">
-          A two-state button that switches between pressed and unpressed — used in toolbars and filter controls.
+          A two-state button that switches between pressed and unpressed — used in toolbars and
+          filter controls.
         </p>
       </div>
 
@@ -82,11 +87,7 @@ function TogglePage() {
           <Toggle defaultPressed>Underline</Toggle>
         </PreviewBlock>
 
-        <PreviewBlock
-          title="Outline"
-          description="With border and background"
-          code={CODE.outline}
-        >
+        <PreviewBlock title="Outline" description="With border and background" code={CODE.outline}>
           <Toggle variant="outline">Bold</Toggle>
           <Toggle variant="outline">Italic</Toggle>
           <Toggle variant="outline">Underline</Toggle>
@@ -99,7 +100,9 @@ function TogglePage() {
         >
           <Toggle variant="brand">Bold</Toggle>
           <Toggle variant="brand">Italic</Toggle>
-          <Toggle variant="brand" defaultPressed>Underline</Toggle>
+          <Toggle variant="brand" defaultPressed>
+            Underline
+          </Toggle>
         </PreviewBlock>
 
         <PreviewBlock
@@ -107,19 +110,27 @@ function TogglePage() {
           description="Icon-only · default and outline"
           code={CODE.withIcons}
         >
-          <Toggle size="icon"><Bold size={16} /></Toggle>
-          <Toggle size="icon"><Italic size={16} /></Toggle>
-          <Toggle size="icon" defaultPressed><Underline size={16} /></Toggle>
-          <Toggle variant="outline" size="icon"><Bold size={16} /></Toggle>
-          <Toggle variant="outline" size="icon"><Italic size={16} /></Toggle>
-          <Toggle variant="outline" size="icon"><Underline size={16} /></Toggle>
+          <Toggle size="icon">
+            <Bold size={16} />
+          </Toggle>
+          <Toggle size="icon">
+            <Italic size={16} />
+          </Toggle>
+          <Toggle size="icon" defaultPressed>
+            <Underline size={16} />
+          </Toggle>
+          <Toggle variant="outline" size="icon">
+            <Bold size={16} />
+          </Toggle>
+          <Toggle variant="outline" size="icon">
+            <Italic size={16} />
+          </Toggle>
+          <Toggle variant="outline" size="icon">
+            <Underline size={16} />
+          </Toggle>
         </PreviewBlock>
 
-        <PreviewBlock
-          title="Sizes"
-          description="sm · default · lg"
-          code={CODE.sizes}
-        >
+        <PreviewBlock title="Sizes" description="sm · default · lg" code={CODE.sizes}>
           <Toggle size="sm">Format</Toggle>
           <Toggle>Format</Toggle>
           <Toggle size="lg">Format</Toggle>
@@ -131,7 +142,9 @@ function TogglePage() {
           code={CODE.disabled}
         >
           <Toggle disabled>Bold</Toggle>
-          <Toggle disabled defaultPressed>Underline</Toggle>
+          <Toggle disabled defaultPressed>
+            Underline
+          </Toggle>
         </PreviewBlock>
       </div>
     </div>

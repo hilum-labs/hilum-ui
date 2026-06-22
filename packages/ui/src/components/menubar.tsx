@@ -12,7 +12,7 @@ const MenubarRoot = React.forwardRef<
   <Menubar.Root
     ref={ref}
     className={cn(
-      "flex h-9 items-center gap-0.5 rounded-lg border border-border bg-card px-1",
+      "flex min-h-10 items-center gap-0.5 rounded-lg border border-border bg-card px-1",
       className,
     )}
     {...props}
@@ -35,7 +35,7 @@ const MenubarTrigger = React.forwardRef<
   <Menubar.Trigger
     ref={ref}
     className={cn(
-      "flex cursor-default items-center rounded-md px-3 py-1 body font-medium text-muted-foreground select-none outline-none",
+      "flex min-h-8 cursor-default items-center rounded-md px-3 py-1 body font-medium text-muted-foreground select-none outline-none",
       "hover:bg-muted",
       "data-[state=open]:bg-muted data-[state=open]:text-foreground",
       "focus:bg-muted",
@@ -80,7 +80,7 @@ const MenubarItem = React.forwardRef<
   <Menubar.Item
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -99,7 +99,7 @@ const MenubarCheckboxItem = React.forwardRef<
   <Menubar.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md pl-8 pr-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -124,7 +124,7 @@ const MenubarRadioItem = React.forwardRef<
   <Menubar.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md pl-8 pr-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -160,11 +160,7 @@ const MenubarSeparator = React.forwardRef<
   React.ComponentRef<typeof Menubar.Separator>,
   React.ComponentPropsWithoutRef<typeof Menubar.Separator>
 >(({ className, ...props }, ref) => (
-  <Menubar.Separator
-    ref={ref}
-    className={cn("mx-1 my-1 h-px bg-muted", className)}
-    {...props}
-  />
+  <Menubar.Separator ref={ref} className={cn("mx-1 my-1 h-px bg-muted", className)} {...props} />
 ));
 MenubarSeparator.displayName = "MenubarSeparator";
 
@@ -177,7 +173,7 @@ const MenubarSubTrigger = React.forwardRef<
   <Menubar.SubTrigger
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center gap-2 rounded-md px-2.5 py-1.5",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
       "body text-muted-foreground outline-none transition-colors",
       "focus:bg-muted focus:text-foreground data-[state=open]:bg-muted",
       inset && "pl-8",

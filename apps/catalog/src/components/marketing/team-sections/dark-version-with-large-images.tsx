@@ -51,7 +51,9 @@ function AvatarCircle({
   return (
     <div
       className={`${size} flex items-center justify-center rounded-full body font-semibold ${
-        dark ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700" : "bg-ground-200 text-ground-500"
+        dark
+          ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700"
+          : "bg-ground-200 text-ground-500"
       }`}
     >
       {initials}
@@ -65,9 +67,12 @@ export default function DarkVersionWithLargeImages() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <Badge variant="warning">Team</Badge>
-          <h2 className="heading mt-4 text-white">The group leading product, systems, and go-to-market</h2>
+          <h2 className="heading mt-4 text-white">
+            The group leading product, systems, and go-to-market
+          </h2>
           <p className="body mt-4 text-ground-300">
-            A darker presentation for landing pages that need stronger contrast or a more premium editorial tone.
+            A darker presentation for landing pages that need stronger contrast or a more premium
+            editorial tone.
           </p>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

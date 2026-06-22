@@ -43,8 +43,8 @@ export default function HeroWithScreenshot() {
             Launch campaigns without the spreadsheet chaos.
           </h1>
           <p className="body mt-5 text-ground-500">
-            Keep briefs, approvals, creative reviews, and reporting in one
-            workspace that leadership and delivery teams can trust.
+            Keep briefs, approvals, creative reviews, and reporting in one workspace that leadership
+            and delivery teams can trust.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button size="lg">

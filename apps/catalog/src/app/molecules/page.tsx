@@ -2,13 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@hilum/ui";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -27,19 +21,22 @@ const MOLECULES: MoleculeEntry[] = [
   {
     name: "Field",
     slug: "field",
-    description: "A labeled form control. Composes Label, Input or Textarea, and optional hint or error text.",
+    description:
+      "A labeled form control. Composes Label, Input or Textarea, and optional hint or error text.",
     atoms: "Label · Input · Textarea",
   },
   {
     name: "Input Group",
     slug: "input-group",
-    description: "An input with leading or trailing text addons and icons. Extends Input with contextual decoration.",
+    description:
+      "An input with leading or trailing text addons and icons. Extends Input with contextual decoration.",
     atoms: "Input",
   },
   {
     name: "Stat Card",
     slug: "stat-card",
-    description: "A metric display card. Composes a label, a large value, an optional trend indicator, and an optional icon.",
+    description:
+      "A metric display card. Composes a label, a large value, an optional trend indicator, and an optional icon.",
     atoms: "Card · Badge · Icon",
   },
   {
@@ -51,19 +48,22 @@ const MOLECULES: MoleculeEntry[] = [
   {
     name: "Description List",
     slug: "description-list",
-    description: "Key–value pairs for displaying structured details. Common in profile pages and settings panels.",
+    description:
+      "Key–value pairs for displaying structured details. Common in profile pages and settings panels.",
     atoms: "Badge · Button",
   },
   {
     name: "Section Heading",
     slug: "section-heading",
-    description: "A section header with optional description and action buttons. Used above lists and tables.",
+    description:
+      "A section header with optional description and action buttons. Used above lists and tables.",
     atoms: "Button",
   },
   {
     name: "Page Heading",
     slug: "page-heading",
-    description: "A full page header with breadcrumb navigation, title, metadata, and action buttons.",
+    description:
+      "A full page header with breadcrumb navigation, title, metadata, and action buttons.",
     atoms: "Button · Badge · Breadcrumb",
   },
   {
@@ -75,31 +75,36 @@ const MOLECULES: MoleculeEntry[] = [
   {
     name: "Stacked List",
     slug: "stacked-list",
-    description: "A vertically stacked list of rows with consistent padding and optional hover behavior.",
+    description:
+      "A vertically stacked list of rows with consistent padding and optional hover behavior.",
     atoms: "Badge · Avatar",
   },
   {
     name: "Action Panel",
     slug: "action-panel",
-    description: "A bordered card that communicates a single focused action. Common in settings pages.",
+    description:
+      "A bordered card that communicates a single focused action. Common in settings pages.",
     atoms: "Button · Card",
   },
   {
     name: "Notification",
     slug: "notification",
-    description: "A toast-style notification panel with success, error, warning, and info variants.",
+    description:
+      "A toast-style notification panel with success, error, warning, and info variants.",
     atoms: "Icon · Button",
   },
   {
     name: "Radio Cards",
     slug: "radio-card",
-    description: "Card-style single selection. Each option is a bordered card that highlights when selected.",
+    description:
+      "Card-style single selection. Each option is a bordered card that highlights when selected.",
     atoms: "Radio Group · Card",
   },
   {
     name: "Card Heading",
     slug: "card-heading",
-    description: "A header row for cards and panels. Combines title, description, leading slot, and trailing actions.",
+    description:
+      "A header row for cards and panels. Combines title, description, leading slot, and trailing actions.",
     atoms: "Card · Avatar · Button · Dropdown Menu",
   },
   {
@@ -111,19 +116,22 @@ const MOLECULES: MoleculeEntry[] = [
   {
     name: "Grid List",
     slug: "grid-list",
-    description: "A responsive grid of cards. Supports simple content, accent-strip, and custom contact layouts.",
+    description:
+      "A responsive grid of cards. Supports simple content, accent-strip, and custom contact layouts.",
     atoms: "Card · Badge · Avatar",
   },
   {
     name: "Command Palette",
     slug: "command-palette",
-    description: "A modal search dialog for navigating and executing commands quickly. Grouped by category.",
+    description:
+      "A modal search dialog for navigating and executing commands quickly. Grouped by category.",
     atoms: "Dialog · Input · Icon · Kbd",
   },
   {
     name: "Property Row",
     slug: "property-row",
-    description: "Horizontal label + control row for designer inspector panels. Left-aligned label, right-aligned controls.",
+    description:
+      "Horizontal label + control row for designer inspector panels. Left-aligned label, right-aligned controls.",
     atoms: "InputNumber · ColorInput · Slider",
   },
 ];
@@ -138,14 +146,16 @@ function MoleculesPage() {
       {/* Header */}
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Molecules</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Molecules</h1>
         <p className="body max-w-md text-ground-400">
-          Composed components built from atoms. Each molecule combines
-          primitives into a reusable, purpose-built pattern.
+          Composed components built from atoms. Each molecule combines primitives into a reusable,
+          purpose-built pattern.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">{MOLECULES.length} components</p>
@@ -169,9 +179,7 @@ function MoleculesPage() {
                   Molecule
                 </Badge>
               </div>
-              <CardTitle className="subheading text-ground-900">
-                {molecule.name}
-              </CardTitle>
+              <CardTitle className="subheading text-ground-900">{molecule.name}</CardTitle>
               <CardDescription className="caption leading-relaxed text-ground-400">
                 {molecule.description}
               </CardDescription>

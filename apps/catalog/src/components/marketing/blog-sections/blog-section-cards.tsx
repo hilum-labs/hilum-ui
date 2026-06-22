@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
@@ -45,12 +44,7 @@ function Avatar({ initials, size = "size-10" }: { initials: string; size?: strin
   );
 }
 
-function PostMeta({
-  author,
-  authorInitials,
-  date,
-  readTime,
-}: (typeof POSTS)[number]) {
+function PostMeta({ author, authorInitials, date, readTime }: (typeof POSTS)[number]) {
   return (
     <div className="mt-5 flex items-center gap-3">
       <Avatar initials={authorInitials} />
@@ -72,9 +66,12 @@ export default function BlogSectionCards() {
       <div className="mx-auto max-w-6xl">
         <div className="mx-auto mb-12 max-w-2xl text-center">
           <Badge variant="secondary">From the blog</Badge>
-          <h3 className="heading mt-4 text-ground-900">Insights from the team shaping the system</h3>
+          <h3 className="heading mt-4 text-ground-900">
+            Insights from the team shaping the system
+          </h3>
           <p className="body mt-3 text-ground-500">
-            Practical writing on design operations, UI architecture, and the systems work behind high-velocity product teams.
+            Practical writing on design operations, UI architecture, and the systems work behind
+            high-velocity product teams.
           </p>
         </div>
 

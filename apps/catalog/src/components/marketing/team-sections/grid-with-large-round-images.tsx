@@ -51,7 +51,9 @@ function AvatarCircle({
   return (
     <div
       className={`${size} flex items-center justify-center rounded-full body font-semibold ${
-        dark ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700" : "bg-ground-200 text-ground-500"
+        dark
+          ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700"
+          : "bg-ground-200 text-ground-500"
       }`}
     >
       {initials}
@@ -65,7 +67,9 @@ export default function GridWithLargeRoundImages() {
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 max-w-2xl">
           <Badge variant="outline">Team</Badge>
-          <h2 className="heading mt-4 text-ground-900">The operators building the product and platform</h2>
+          <h2 className="heading mt-4 text-ground-900">
+            The operators building the product and platform
+          </h2>
         </div>
         <div className="grid gap-6 lg:grid-cols-2">
           {TEAM.map((member) => (

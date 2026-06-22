@@ -19,13 +19,9 @@ export default function NewsletterSimpleStacked() {
       <p className="label mb-4 text-ground-400">Weekly brief</p>
       <h3 className="heading text-ground-900">Product notes worth opening</h3>
       <p className="body mx-auto mt-4 max-w-2xl text-ground-500">
-        A concise edit of launches, lessons, and design decisions from fast-moving
-        software teams.
+        A concise edit of launches, lessons, and design decisions from fast-moving software teams.
       </p>
-      <form
-        className="mx-auto mt-8 max-w-xl"
-        onSubmit={(event) => event.preventDefault()}
-      >
+      <form className="mx-auto mt-8 max-w-xl" onSubmit={(event) => event.preventDefault()}>
         <div className="flex flex-col gap-3 md:flex-row">
           <EmailInput className="md:flex-1" />
           <Button type="submit">Join the list</Button>

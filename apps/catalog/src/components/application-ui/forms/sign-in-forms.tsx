@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { Button } from "@hilum/ui";
 import { Checkbox } from "@hilum/ui";
@@ -35,9 +34,7 @@ export default function SignInForms() {
             </div>
             <div className="mb-6 text-center">
               <h3 className="heading text-ground-900">Sign in to your account</h3>
-              <p className="caption mt-1 text-ground-400">
-                Use your work email to continue.
-              </p>
+              <p className="caption mt-1 text-ground-400">Use your work email to continue.</p>
             </div>
             <div className="space-y-4">
               <div className="space-y-2">
@@ -46,11 +43,7 @@ export default function SignInForms() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="sign-in-password">Password</Label>
-                <Input
-                  id="sign-in-password"
-                  type="password"
-                  placeholder="••••••••"
-                />
+                <Input id="sign-in-password" type="password" placeholder="••••••••" />
               </div>
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2">
@@ -78,8 +71,8 @@ export default function SignInForms() {
                 </div>
                 <h3 className="heading mb-3">Build faster with a consistent system</h3>
                 <p className="body max-w-sm text-white/80">
-                  Access shared foundations, reusable patterns, and the latest release
-                  notes for every application team.
+                  Access shared foundations, reusable patterns, and the latest release notes for
+                  every application team.
                 </p>
               </div>
               <div className="px-8 py-10">

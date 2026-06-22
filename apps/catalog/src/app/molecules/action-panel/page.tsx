@@ -103,15 +103,20 @@ function ActionPanelPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">Molecules</a>
+          <a href="/molecules" className="hover:text-ground-700">
+            Molecules
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Action Panel</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Action Panel</h1>
         <p className="body max-w-md text-ground-400">
-          A bordered card that communicates a single, focused action. Variants for toggle, input, link, well, and button placement.
+          A bordered card that communicates a single, focused action. Variants for toggle, input,
+          link, well, and button placement.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Molecule</p>
@@ -123,10 +128,14 @@ function ActionPanelPage() {
       <PageDocs path="/molecules/action-panel/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Action Panel · Basic" />
-          <PreviewBlock title="Stacked layout" description="Title, description, and action stacked" code={CODE.basic} previewClassName="items-start">
+          <PreviewBlock
+            title="Stacked layout"
+            description="Title, description, and action stacked"
+            code={CODE.basic}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg">
               <ActionPanel
                 title="Delete your account"
@@ -139,7 +148,12 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · Inline" />
-          <PreviewBlock title="Side-by-side layout" description="Text and action on the same row" code={CODE.inline} previewClassName="items-start">
+          <PreviewBlock
+            title="Side-by-side layout"
+            description="Text and action on the same row"
+            code={CODE.inline}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg">
               <ActionPanel
                 title="Export data"
@@ -153,7 +167,12 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · With toggle" />
-          <PreviewBlock title="Toggle switch as action" description="Switch replaces the button — inline layout" code={CODE.withToggle} previewClassName="items-start">
+          <PreviewBlock
+            title="Toggle switch as action"
+            description="Switch replaces the button — inline layout"
+            code={CODE.withToggle}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-3">
               <ActionPanel
                 title="Enable two-factor authentication"
@@ -175,7 +194,12 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · With input" />
-          <PreviewBlock title="Input inside panel" description="Panel with inline form" code={CODE.withInput} previewClassName="items-start">
+          <PreviewBlock
+            title="Input inside panel"
+            description="Panel with inline form"
+            code={CODE.withInput}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg">
               <ActionPanel
                 title="Email notifications"
@@ -192,7 +216,12 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · With link" />
-          <PreviewBlock title="Text link instead of button" description="Lower-emphasis action using a text link" code={CODE.withLink} previewClassName="items-start">
+          <PreviewBlock
+            title="Text link instead of button"
+            description="Lower-emphasis action using a text link"
+            code={CODE.withLink}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-3">
               <ActionPanel
                 title="Privacy policy"
@@ -212,7 +241,12 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · Button at top right" />
-          <PreviewBlock title="Inline with short meta" description="Current state on left, action on right" code={CODE.topRight} previewClassName="items-start">
+          <PreviewBlock
+            title="Inline with short meta"
+            description="Current state on left, action on right"
+            code={CODE.topRight}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-3">
               <ActionPanel
                 title="Custom domain"
@@ -234,21 +268,27 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · With well" />
-          <PreviewBlock title="Nested content panel" description="Gray well inside for current state display" code={CODE.withWell} previewClassName="items-start">
+          <PreviewBlock
+            title="Nested content panel"
+            description="Gray well inside for current state display"
+            code={CODE.withWell}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-3">
-              <ActionPanel
-                title="Payment method"
-                description="Manage the card used for billing."
-              >
+              <ActionPanel title="Payment method" description="Manage the card used for billing.">
                 <div className="rounded-lg bg-ground-50 border border-ground-100 px-4 py-3 flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="flex size-8 items-center justify-center rounded bg-ground-200 caption font-bold text-ground-600">VI</div>
+                    <div className="flex size-8 items-center justify-center rounded bg-ground-200 caption font-bold text-ground-600">
+                      VI
+                    </div>
                     <div>
                       <p className="caption font-medium text-ground-900">Visa ending in 4242</p>
                       <p className="caption-xs text-ground-400">Expires 12/2026</p>
                     </div>
                   </div>
-                  <Button variant="ghost" size="sm">Edit</Button>
+                  <Button variant="ghost" size="sm">
+                    Edit
+                  </Button>
                 </div>
               </ActionPanel>
             </div>
@@ -257,7 +297,12 @@ function ActionPanelPage() {
 
         <div>
           <Heading label="Action Panel · Settings page composition" />
-          <PreviewBlock title="Stacked settings panels" description="Multiple panels in a danger zone section" code={CODE.basic} previewClassName="items-start">
+          <PreviewBlock
+            title="Stacked settings panels"
+            description="Multiple panels in a danger zone section"
+            code={CODE.basic}
+            previewClassName="items-start"
+          >
             <div className="w-full max-w-lg flex flex-col gap-3">
               <ActionPanel
                 title="Export data"
@@ -280,7 +325,6 @@ function ActionPanelPage() {
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

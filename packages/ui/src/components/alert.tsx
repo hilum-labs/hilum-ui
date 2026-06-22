@@ -29,14 +29,18 @@ Alert.displayName = "Alert";
 
 const AlertTitle = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn("mb-0.5 body font-semibold leading-tight", className)} {...props} />
+    <p
+      ref={ref}
+      className={cn("mb-0.5 body font-semibold leading-tight text-balance", className)}
+      {...props}
+    />
   ),
 );
 AlertTitle.displayName = "AlertTitle";
 
 const AlertDescription = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
   ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn("body opacity-90", className)} {...props} />
+    <p ref={ref} className={cn("body text-pretty opacity-90", className)} {...props} />
   ),
 );
 AlertDescription.displayName = "AlertDescription";

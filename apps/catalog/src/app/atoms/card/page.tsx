@@ -3,14 +3,7 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
 import { AudioLines, Shield } from "lucide-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardMedia,
-  CardTitle,
-} from "@hilum/ui";
+import { Card, CardContent, CardDescription, CardHeader, CardMedia, CardTitle } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -45,7 +38,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
 
   cardFeature: `{/* Feature card — icon + label + description on gray */}
 <div className="w-56 rounded-2xl bg-ground-50 p-6 flex flex-col gap-10">
-  <div className="size-14 rounded-2xl bg-white shadow-sm flex items-center justify-center">
+  <div className="size-14 rounded-xl bg-white shadow-sm flex items-center justify-center">
     <AudioLines size={22} strokeWidth={1.5} className="text-ground-600" />
   </div>
   <div>
@@ -80,7 +73,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
 </div>`,
 
   cardStats: `{/* Stats card — gray outer, white inner panel with chart */}
-<div className="w-64 rounded-2xl bg-ground-50 p-5 flex flex-col gap-6">
+<div className="w-64 rounded-[2rem] bg-ground-50 p-5 flex flex-col gap-6">
   <div className="bg-white rounded-xl p-4 shadow-sm">
     <p className="text-sm font-semibold text-ground-900">Success rate</p>
     <p className="text-2xl font-semibold text-ground-400 mt-0.5">61.5%</p>
@@ -160,15 +153,20 @@ function CardPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Card</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Card</h1>
         <p className="body max-w-lg text-ground-500">
-          Contained surface for grouping related content. Supports media, stats, and article layouts.
+          Contained surface for grouping related content. Supports media, stats, and article
+          layouts.
         </p>
       </div>
 
@@ -187,8 +185,7 @@ function CardPage() {
             <CardHeader>
               <CardTitle>Student Profile</CardTitle>
               <CardDescription>
-                Manage student information and track progress across all
-                enrolled courses.
+                Manage student information and track progress across all enrolled courses.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -199,12 +196,8 @@ function CardPage() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium text-ground-900">
-                    Sarah Parker
-                  </p>
-                  <p className="text-xs text-ground-400">
-                    Grade 10 · Class A
-                  </p>
+                  <p className="text-sm font-medium text-ground-900">Sarah Parker</p>
+                  <p className="text-xs text-ground-400">Grade 10 · Class A</p>
                 </div>
               </div>
             </CardContent>
@@ -218,14 +211,14 @@ function CardPage() {
         >
           <Card variant="muted" className="w-56 rounded-2xl">
             <CardContent className="flex flex-col gap-10 p-6">
-              <div className="flex size-14 items-center justify-center rounded-2xl bg-white shadow-sm">
+              <div className="flex size-14 items-center justify-center rounded-xl bg-white shadow-sm">
                 <AudioLines size={22} strokeWidth={1.5} className="text-ground-600" />
               </div>
               <div>
                 <p className="mb-2 text-sm font-medium text-ground-400">Voices</p>
                 <p className="text-sm font-medium leading-snug text-ground-900">
-                  Clone a replica of your own voice, design one from a
-                  prompt, or explore 1000s of voices from the library.
+                  Clone a replica of your own voice, design one from a prompt, or explore 1000s of
+                  voices from the library.
                 </p>
               </div>
             </CardContent>
@@ -242,9 +235,25 @@ function CardPage() {
               <div className="flex items-center justify-center py-6">
                 <svg viewBox="0 0 100 100" className="h-28 w-28">
                   {([8, 18, 28, 38, 48] as const).map((r, i) => (
-                    <circle key={i} cx={5 + r} cy={50} r={r} fill="none" stroke="#1c1917" strokeWidth="0.8" />
+                    <circle
+                      key={i}
+                      cx={5 + r}
+                      cy={50}
+                      r={r}
+                      fill="none"
+                      stroke="#1c1917"
+                      strokeWidth="0.8"
+                    />
                   ))}
-                  <circle cx={53} cy={50} r={53} fill="none" stroke="#1c1917" strokeWidth="0.8" strokeDasharray="2 3" />
+                  <circle
+                    cx={53}
+                    cy={50}
+                    r={53}
+                    fill="none"
+                    stroke="#1c1917"
+                    strokeWidth="0.8"
+                    strokeDasharray="2 3"
+                  />
                 </svg>
               </div>
               <div>
@@ -262,7 +271,7 @@ function CardPage() {
           description="variant=muted outer + default Card inner panel with mini chart"
           code={CODE.cardStats}
         >
-          <Card variant="muted" className="w-64 rounded-2xl">
+          <Card variant="muted" className="w-64 rounded-[2rem]">
             <CardContent className="flex flex-col gap-6 p-5">
               <Card className="rounded-xl">
                 <CardContent className="p-4">
@@ -272,15 +281,37 @@ function CardPage() {
                     <line x1="0" y1="0" x2="200" y2="0" stroke="#f5f5f4" strokeWidth="1" />
                     <line x1="0" y1="36" x2="200" y2="36" stroke="#f5f5f4" strokeWidth="1" />
                     <line x1="0" y1="72" x2="200" y2="72" stroke="#f5f5f4" strokeWidth="1" />
-                    <path d="M0,20 C25,17 50,14 75,18 C100,22 125,14 150,16 C170,18 185,9 200,7 L200,72 L0,72 Z" fill="rgba(251,146,60,0.12)" />
-                    <path d="M0,20 C25,17 50,14 75,18 C100,22 125,14 150,16 C170,18 185,9 200,7" fill="none" stroke="#f97316" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M0,36 C25,33 50,30 75,33 C100,36 125,30 150,32 C170,34 185,28 200,30 L200,72 L0,72 Z" fill="rgba(96,165,250,0.12)" />
-                    <path d="M0,36 C25,33 50,30 75,33 C100,36 125,30 150,32 C170,34 185,28 200,30" fill="none" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" />
+                    <path
+                      d="M0,20 C25,17 50,14 75,18 C100,22 125,14 150,16 C170,18 185,9 200,7 L200,72 L0,72 Z"
+                      fill="rgba(251,146,60,0.12)"
+                    />
+                    <path
+                      d="M0,20 C25,17 50,14 75,18 C100,22 125,14 150,16 C170,18 185,9 200,7"
+                      fill="none"
+                      stroke="#f97316"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M0,36 C25,33 50,30 75,33 C100,36 125,30 150,32 C170,34 185,28 200,30 L200,72 L0,72 Z"
+                      fill="rgba(96,165,250,0.12)"
+                    />
+                    <path
+                      d="M0,36 C25,33 50,30 75,33 C100,36 125,30 150,32 C170,34 185,28 200,30"
+                      fill="none"
+                      stroke="#60a5fa"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                    />
                     <rect x="130" y="8" width="56" height="30" rx="5" fill="white" />
                     <circle cx="138" cy="19" r="3" fill="#f97316" />
                     <circle cx="138" cy="30" r="3" fill="#60a5fa" />
-                    <text x="144" y="22" fontSize="7" fill="#57534e" fontFamily="system-ui">87.23%</text>
-                    <text x="144" y="33" fontSize="7" fill="#57534e" fontFamily="system-ui">63.04%</text>
+                    <text x="144" y="22" fontSize="7" fill="#57534e" fontFamily="system-ui">
+                      87.23%
+                    </text>
+                    <text x="144" y="33" fontSize="7" fill="#57534e" fontFamily="system-ui">
+                      63.04%
+                    </text>
                   </svg>
                 </CardContent>
               </Card>
@@ -339,9 +370,7 @@ function CardPage() {
         >
           <Card variant="ghost" className="w-52 overflow-hidden rounded-2xl">
             <CardMedia className="flex aspect-square items-center justify-center rounded-2xl bg-gradient-to-b from-sky-300 via-teal-700 to-ground-900">
-              <p className="px-4 text-center text-xl font-medium text-white">
-                Expressive mode
-              </p>
+              <p className="px-4 text-center text-xl font-medium text-white">Expressive mode</p>
             </CardMedia>
             <CardContent className="px-0 pb-0 pt-4">
               <CardTitle className="mb-1.5 body font-semibold leading-snug">

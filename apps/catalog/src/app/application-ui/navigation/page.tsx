@@ -100,7 +100,11 @@ function NavigationPage() {
             <PreviewBlock title="With search" code={navbarWithSearchSource} previewClassName="p-0">
               <NavbarWithSearch />
             </PreviewBlock>
-            <PreviewBlock title="Dark with quick action" code={navbarDarkActionSource} previewClassName="p-0">
+            <PreviewBlock
+              title="Dark with quick action"
+              code={navbarDarkActionSource}
+              previewClassName="p-0"
+            >
               <NavbarDarkAction />
             </PreviewBlock>
           </div>
@@ -109,7 +113,11 @@ function NavigationPage() {
         <section>
           <SectionHeading label="Tabs" />
           <div className="grid gap-4 xl:grid-cols-2">
-            <PreviewBlock title="Tabs with underline" code={tabsUnderlineSource} previewClassName="p-0">
+            <PreviewBlock
+              title="Tabs with underline"
+              code={tabsUnderlineSource}
+              previewClassName="p-0"
+            >
               <TabsUnderline />
             </PreviewBlock>
             <PreviewBlock
@@ -184,7 +192,11 @@ function NavigationPage() {
         <section>
           <SectionHeading label="Breadcrumbs" />
           <div className="grid gap-4 xl:grid-cols-2">
-            <PreviewBlock title="Simple with slashes" code={breadcrumbSimpleSource} previewClassName="p-0">
+            <PreviewBlock
+              title="Simple with slashes"
+              code={breadcrumbSimpleSource}
+              previewClassName="p-0"
+            >
               <BreadcrumbSimple />
             </PreviewBlock>
             <PreviewBlock title="Contained" code={breadcrumbContainedSource} previewClassName="p-0">
@@ -199,7 +211,11 @@ function NavigationPage() {
             <PreviewBlock title="Simple" code={commandPaletteSimpleSource} previewClassName="p-0">
               <CommandPaletteSimple />
             </PreviewBlock>
-            <PreviewBlock title="With groups" code={commandPaletteGroupsSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With groups"
+              code={commandPaletteGroupsSource}
+              previewClassName="p-0"
+            >
               <CommandPaletteGroups />
             </PreviewBlock>
           </div>
@@ -208,7 +224,11 @@ function NavigationPage() {
         <section>
           <SectionHeading label="Pagination" />
           <div className="grid gap-4 xl:grid-cols-2">
-            <PreviewBlock title="Centered page numbers" code={paginationCenteredSource} previewClassName="p-0">
+            <PreviewBlock
+              title="Centered page numbers"
+              code={paginationCenteredSource}
+              previewClassName="p-0"
+            >
               <PaginationCentered />
             </PreviewBlock>
             <PreviewBlock
@@ -224,7 +244,11 @@ function NavigationPage() {
         <section>
           <SectionHeading label="Vertical navigation" />
           <div className="grid gap-4 md:grid-cols-2">
-            <PreviewBlock title="On gray" code={verticalNavigationSimpleSource} previewClassName="p-0">
+            <PreviewBlock
+              title="On gray"
+              code={verticalNavigationSimpleSource}
+              previewClassName="p-0"
+            >
               <VerticalNavigationSimple />
             </PreviewBlock>
             <PreviewBlock

@@ -67,15 +67,20 @@ function StepsPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Steps</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Steps</h1>
         <p className="body max-w-md text-ground-400">
-          A progress indicator for multi-step flows. Supports circles, bullets, and progress-bar variants. Each step has complete, current, or upcoming status.
+          A progress indicator for multi-step flows. Supports circles, bullets, and progress-bar
+          variants. Each step has complete, current, or upcoming status.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Atom</p>
@@ -87,10 +92,13 @@ function StepsPage() {
       <PageDocs path="/atoms/steps/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <SectionHeading label="Steps · Circles" />
-          <PreviewBlock title="Circles" description="Circle indicators with connector lines" code={CODE.circles}>
+          <PreviewBlock
+            title="Circles"
+            description="Circle indicators with connector lines"
+            code={CODE.circles}
+          >
             <div className="w-full">
               <Steps steps={stepsBase} variant="circles" />
             </div>
@@ -99,14 +107,22 @@ function StepsPage() {
 
         <div>
           <SectionHeading label="Steps · Bullets" />
-          <PreviewBlock title="Bullets" description="Minimal dots with step counter" code={CODE.bullets}>
+          <PreviewBlock
+            title="Bullets"
+            description="Minimal dots with step counter"
+            code={CODE.bullets}
+          >
             <Steps steps={stepsBase} variant="bullets" />
           </PreviewBlock>
         </div>
 
         <div>
           <SectionHeading label="Steps · Progress bar" />
-          <PreviewBlock title="Progress bar" description="Horizontal fill bar with step labels" code={CODE.progress}>
+          <PreviewBlock
+            title="Progress bar"
+            description="Horizontal fill bar with step labels"
+            code={CODE.progress}
+          >
             <div className="w-full max-w-md">
               <Steps steps={stepsBase} variant="progress" />
             </div>
@@ -115,13 +131,16 @@ function StepsPage() {
 
         <div>
           <SectionHeading label="Steps · With descriptions" />
-          <PreviewBlock title="Circles with descriptions" description="Each step has a sub-label" code={CODE.withDesc}>
+          <PreviewBlock
+            title="Circles with descriptions"
+            description="Each step has a sub-label"
+            code={CODE.withDesc}
+          >
             <div className="w-full">
               <Steps steps={stepsShort} variant="circles" />
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

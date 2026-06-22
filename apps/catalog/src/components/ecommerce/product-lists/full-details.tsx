@@ -1,4 +1,3 @@
-
 const PRODUCTS = [
   {
     name: "Earthen Bottle",
@@ -40,7 +39,11 @@ export default function FullDetails() {
             className="rounded-[2rem] border border-ground-100 bg-white p-4 shadow-natural"
           >
             <div className="overflow-hidden rounded-2xl bg-ground-50">
-              <img src={product.image} alt={product.name} className="aspect-square w-full object-cover" />
+              <img
+                src={product.image}
+                alt={product.name}
+                className="aspect-square w-full object-cover"
+              />
             </div>
             <div className="mt-5">
               <div className="flex items-start justify-between gap-4">

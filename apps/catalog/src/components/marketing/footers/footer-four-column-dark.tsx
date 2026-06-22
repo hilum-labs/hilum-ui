@@ -1,4 +1,3 @@
-
 import { Github, Globe, Linkedin, Twitter } from "lucide-react";
 
 const FOOTER_NAV = {
@@ -26,7 +25,9 @@ function LogoMark({ dark = false }: { dark?: boolean }) {
       </div>
       <div>
         <p className="body font-medium">Northstar</p>
-        <p className={`caption ${dark ? "text-ground-400" : "text-ground-500"}`}>Design systems for product teams</p>
+        <p className={`caption ${dark ? "text-ground-400" : "text-ground-500"}`}>
+          Design systems for product teams
+        </p>
       </div>
     </div>
   );
@@ -39,7 +40,7 @@ function SocialButtons({ dark = false }: { dark?: boolean }) {
         <button
           key={label}
           aria-label={label}
-          className={`flex size-9 items-center justify-center rounded-full border transition-colors ${
+          className={`flex size-10 items-center justify-center rounded-full border transition-colors ${
             dark
               ? "border-ground-800 bg-ground-900 text-ground-300 hover:border-ground-700 hover:text-white"
               : "border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"

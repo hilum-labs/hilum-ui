@@ -1,4 +1,3 @@
-
 import { Check, Minus, X } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -47,10 +46,15 @@ export default function PricingBrandComparison() {
     <section className="w-full bg-ground-900 px-8 py-16 text-white md:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="brand" className="mb-4">Dark comparison</Badge>
-          <h3 className="heading text-white">Pair pricing cards with a deeper feature comparison</h3>
+          <Badge variant="brand" className="mb-4">
+            Dark comparison
+          </Badge>
+          <h3 className="heading text-white">
+            Pair pricing cards with a deeper feature comparison
+          </h3>
           <p className="body mt-3 text-ground-300">
-            Start with clear buying options, then let buyers scan the details that matter most before talking to sales.
+            Start with clear buying options, then let buyers scan the details that matter most
+            before talking to sales.
           </p>
         </div>
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
@@ -59,7 +63,9 @@ export default function PricingBrandComparison() {
               key={tier.name}
               className={[
                 "rounded-[2rem] border p-7",
-                tier.featured ? "border-brand-primary bg-white/10 shadow-elevated" : "border-ground-700 bg-white/5",
+                tier.featured
+                  ? "border-brand-primary bg-white/10 shadow-elevated"
+                  : "border-ground-700 bg-white/5",
               ].join(" ")}
             >
               <div className="flex items-center justify-between">
@@ -91,9 +97,15 @@ export default function PricingBrandComparison() {
               {rows.map((row) => (
                 <tr key={row.label}>
                   <td className="px-6 py-4 body text-ground-700">{row.label}</td>
-                  <td className="px-6 py-4 text-center"><PricingStatus value={row.starter} /></td>
-                  <td className="px-6 py-4 text-center"><PricingStatus value={row.growth} /></td>
-                  <td className="px-6 py-4 text-center"><PricingStatus value={row.scale} /></td>
+                  <td className="px-6 py-4 text-center">
+                    <PricingStatus value={row.starter} />
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <PricingStatus value={row.growth} />
+                  </td>
+                  <td className="px-6 py-4 text-center">
+                    <PricingStatus value={row.scale} />
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -40,16 +40,18 @@ function SettingsScreen({
 
   return (
     <div className={cn("flex flex-col gap-6 p-6 md:flex-row", className)}>
-      <aside className="md:w-56 shrink-0">
-        {title && <h1 className="heading text-foreground">{title}</h1>}
-        {description && <p className="caption text-muted-foreground mt-1.5">{description}</p>}
+      <aside className="shrink-0 md:w-56">
+        {title && <h1 className="heading text-balance text-foreground">{title}</h1>}
+        {description && (
+          <p className="caption mt-1.5 text-pretty text-muted-foreground">{description}</p>
+        )}
         <nav className={cn("flex flex-col gap-0.5", (title || description) && "mt-4")}>
           {sections.map((section) => {
             const active = section.id === activeId;
             const props = {
               href: section.href ?? `#${section.id}`,
               className: cn(
-                "flex flex-col rounded-lg px-3 py-2 transition-colors",
+                "flex min-h-10 flex-col justify-center rounded-lg px-3 py-2 transition-colors",
                 active
                   ? "bg-foreground text-background"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground",
@@ -60,7 +62,10 @@ function SettingsScreen({
                 <span className="caption font-medium">{section.label}</span>
                 {section.description && (
                   <span
-                    className={cn("caption-xs mt-0.5", active ? "text-background/70" : "text-muted-foreground")}
+                    className={cn(
+                      "caption-xs mt-0.5 text-pretty",
+                      active ? "text-background/70" : "text-muted-foreground",
+                    )}
                   >
                     {section.description}
                   </span>

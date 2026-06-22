@@ -33,13 +33,10 @@ export default function OffsetWithSupportingText() {
           <p className="label text-ground-400">Support</p>
           <h2 className="heading text-ground-900">Need a quick answer?</h2>
           <p className="body text-ground-500">
-            Use this treatment when the FAQ sits next to contact guidance
-            or additional service context.
+            Use this treatment when the FAQ sits next to contact guidance or additional service
+            context.
           </p>
-          <a
-            href="#"
-            className="body inline-block font-semibold text-brand-primary"
-          >
+          <a href="#" className="body inline-block font-semibold text-brand-primary">
             Contact support &rarr;
           </a>
         </div>

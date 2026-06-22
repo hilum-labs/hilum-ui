@@ -36,15 +36,20 @@ function PricingPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/marketing" className="hover:text-ground-700">Marketing</a>
+          <a href="/marketing" className="hover:text-ground-700">
+            Marketing
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Pricing</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Pricing</h1>
         <p className="body max-w-2xl text-ground-500">
-          Nine pricing section patterns covering straightforward tiers, single-plan layouts, split panels, and full comparison tables.
+          Nine pricing section patterns covering straightforward tiers, single-plan layouts, split
+          panels, and full comparison tables.
         </p>
       </div>
 

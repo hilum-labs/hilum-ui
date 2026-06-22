@@ -1,4 +1,3 @@
-
 import { Reply, Trash2 } from "lucide-react";
 
 function ToastShell({ children }: { children: React.ReactNode }) {
@@ -21,11 +20,17 @@ export default function NotificationWithSplitButtons() {
         </div>
         <div className="w-px bg-ground-100" />
         <div className="flex flex-col justify-center gap-3">
-          <button className="flex items-center gap-2 caption font-medium text-brand-primary" type="button">
+          <button
+            className="flex min-h-10 items-center gap-2 caption font-medium text-brand-primary"
+            type="button"
+          >
             <Reply size={14} />
             Reply
           </button>
-          <button className="flex items-center gap-2 caption font-medium text-ground-500" type="button">
+          <button
+            className="flex min-h-10 items-center gap-2 caption font-medium text-ground-500"
+            type="button"
+          >
             <Trash2 size={14} />
             Clear
           </button>

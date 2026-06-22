@@ -1,4 +1,3 @@
-
 import { Github, Globe, Linkedin, Twitter } from "lucide-react";
 
 const SOCIALS = [
@@ -15,7 +14,7 @@ function SocialButtons() {
         <button
           key={label}
           aria-label={label}
-          className="flex size-9 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
+          className="flex size-10 items-center justify-center rounded-full border transition-colors border-ground-200 bg-white text-ground-500 hover:border-ground-300 hover:text-ground-900"
         >
           <Icon className="size-4" />
         </button>
@@ -32,7 +31,9 @@ export default function FooterSocialLinksOnly() {
         <div className="mt-6 flex justify-center">
           <SocialButtons />
         </div>
-        <p className="caption mt-6 text-ground-400">© 2026 Northstar. Crafted for modern product teams.</p>
+        <p className="caption mt-6 text-ground-400">
+          © 2026 Northstar. Crafted for modern product teams.
+        </p>
       </div>
     </footer>
   );

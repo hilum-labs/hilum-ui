@@ -1057,7 +1057,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "CollapsibleRoot, CollapsibleTrigger, CollapsibleContent"
       }
     ],
-    "exampleCode": "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from \"@hilum/ui\"\n\n<Collapsible>\n  <CollapsibleTrigger className=\"flex w-full items-center justify-between py-2 text-sm font-medium\">\n    Voices\n    <ChevronDown size={14} />\n  </CollapsibleTrigger>\n  <CollapsibleContent>\n    <div className=\"flex flex-col gap-1 pb-2 pt-1\">\n      <a className=\"rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50\">My voices</a>\n      <a className=\"rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50\">Voice library</a>\n    </div>\n  </CollapsibleContent>\n</Collapsible>",
+    "exampleCode": "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from \"@hilum/ui\"\n\n<Collapsible>\n  <CollapsibleTrigger className=\"flex w-full items-center justify-between py-2 text-sm font-medium\">\n    Voices\n    <ChevronDown size={14} />\n  </CollapsibleTrigger>\n  <CollapsibleContent>\n    <div className=\"flex flex-col gap-1 pb-2 pt-1\">\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50\">My voices</a>\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50\">Voice library</a>\n    </div>\n  </CollapsibleContent>\n</Collapsible>",
     "kind": "component",
     "path": "/atoms/collapsible/",
     "summary": "Toggleable content region, building block for nav groups.",
@@ -1842,10 +1842,10 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Separator keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
       }
     ],
-    "exampleCode": "import { Separator } from \"@hilum/ui\"\n\n{/* Horizontal */}\n<Separator />\n\n{/* Vertical */}\n<Separator orientation=\"vertical\" className=\"h-5\" />",
+    "exampleCode": null,
     "kind": "component",
     "path": "/atoms/separator/",
-    "summary": "Visual divider between sections, horizontal or vertical.",
+    "summary": "",
     "title": "Separator",
     "whenNotToUse": [
       "Do not use Separator just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
@@ -2267,7 +2267,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Compare layout, content density, and emphasis across the included examples before copying an implementation."
       }
     ],
-    "exampleCode": "import { useState } from \"react\";\nimport {\n  LayoutDashboard, Users, FolderOpen, BarChart2, Settings,\n  Bell, ChevronDown, Menu, X, LogOut, User\n} from \"lucide-react\";\nimport { Badge } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@hilum/ui\";\nimport { cn } from \"@hilum/ui\";\n\nconst NAV_ITEMS = [\n// ...trimmed for docs",
+    "exampleCode": "import { useState } from \"react\";\nimport {\n  LayoutDashboard,\n  Users,\n  FolderOpen,\n  BarChart2,\n  Settings,\n  Bell,\n  ChevronDown,\n  Menu,\n  X,\n  LogOut,\n  User,\n} from \"lucide-react\";\nimport { Badge } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\nimport {\n// ...trimmed for docs",
     "kind": "component",
     "path": "/blocks/app-shell-sidebar/",
     "summary": "A sidebar navigation shell with logo, nav links, and a user menu at the bottom. Responsive — sidebar collapses off-canvas on mobile.",
@@ -2298,7 +2298,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Compare layout, content density, and emphasis across the included examples before copying an implementation."
       }
     ],
-    "exampleCode": "import { useState } from \"react\";\nimport {\n  LayoutDashboard, Users, FolderOpen, BarChart2,\n  Bell, Menu, X, ChevronDown, Settings, LogOut, User\n} from \"lucide-react\";\nimport { Badge } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@hilum/ui\";\nimport { cn } from \"@hilum/ui\";\n\nconst NAV_ITEMS = [\n// ...trimmed for docs",
+    "exampleCode": "import { useState } from \"react\";\nimport {\n  LayoutDashboard,\n  Users,\n  FolderOpen,\n  BarChart2,\n  Bell,\n  Menu,\n  X,\n  ChevronDown,\n  Settings,\n  LogOut,\n  User,\n} from \"lucide-react\";\nimport { Badge } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\nimport {\n// ...trimmed for docs",
     "kind": "component",
     "path": "/blocks/app-shell-stacked/",
     "summary": "A top-navigation shell with logo, nav links, notification bell, and a user menu. Collapses to a hamburger on mobile.",
@@ -2466,7 +2466,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Compare layout, content density, and emphasis across the included examples before copying an implementation."
       }
     ],
-    "exampleCode": "import { useState } from \"react\";\nimport { PageHeading } from \"@hilum/ui\";\nimport { SectionHeading as SectionHeadingComponent } from \"@hilum/ui\";\nimport { ActionPanel } from \"@hilum/ui\";\nimport { Field } from \"@hilum/ui\";\nimport { Input } from \"@hilum/ui\";\nimport { Textarea } from \"@hilum/ui\";\nimport { Switch } from \"@hilum/ui\";\nimport { Label } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\n\nconst NOTIFICATIONS = [\n  { id: \"notif-comments\", label: \"Comments\", description: \"Get notified when someone comments.\", defaultChecked: true },\n  { id: \"notif-mentions\", label: \"Mentions\", description: \"Get notified when you are mentioned.\", defaultChecked: true },\n  { id: \"notif-updates\", label: \"Product updates\", description: \"News and announcements.\", defaultChecked: false },\n  { id: \"notif-security\", label: \"Security alerts\", description: \"Login and account security events.\", defaultChecked: true },\n];\n// ...trimmed for docs",
+    "exampleCode": "import { useState } from \"react\";\nimport { PageHeading } from \"@hilum/ui\";\nimport { SectionHeading as SectionHeadingComponent } from \"@hilum/ui\";\nimport { ActionPanel } from \"@hilum/ui\";\nimport { Field } from \"@hilum/ui\";\nimport { Input } from \"@hilum/ui\";\nimport { Textarea } from \"@hilum/ui\";\nimport { Switch } from \"@hilum/ui\";\nimport { Label } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\n\nconst NOTIFICATIONS = [\n  {\n    id: \"notif-comments\",\n    label: \"Comments\",\n    description: \"Get notified when someone comments.\",\n    defaultChecked: true,\n// ...trimmed for docs",
     "kind": "component",
     "path": "/blocks/settings-screen/",
     "summary": "A multi-section settings page with sidebar labels and right-column controls. Includes profile, notifications, password, and danger zone.",
@@ -4503,7 +4503,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "leadingAddon, trailingAddon, leadingIcon, trailingIcon, trailingButton, error"
+        "description": "leadingAddon, trailingAddon, leadingIcon, trailingIcon, trailingAction, trailingActionClassName"
       }
     ],
     "exampleCode": "<InputGroup leadingAddon=\"https://\" placeholder=\"yoursite.com\" />",
@@ -4659,7 +4659,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "label, labelWidth, labelAlign"
+        "description": "label, layout, labelWidth, labelAlign"
       }
     ],
     "exampleCode": "import { PropertyRow, InputNumber } from \"@hilum/ui\"\n\n<PropertyRow label=\"Width\">\n  <InputNumber value={width} onChange={setWidth} unit=\"px\" />\n</PropertyRow>\n\n<PropertyRow label=\"Opacity\">\n  <Slider value={[opacity]} onValueChange={([v]) => setOpacity(v)} min={0} max={100} />\n  <InputNumber value={opacity} onChange={setOpacity} unit=\"%\" min={0} max={100} className=\"w-16 shrink-0\" />\n</PropertyRow>",

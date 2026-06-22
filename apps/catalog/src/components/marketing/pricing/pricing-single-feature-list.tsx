@@ -1,4 +1,3 @@
-
 import { ArrowRight, Check } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -18,19 +17,25 @@ export default function PricingSingleFeatureList() {
       <div className="mx-auto max-w-5xl rounded-[2rem] border border-ground-100 bg-white p-8 shadow-natural md:p-10">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <Badge variant="secondary" className="mb-4">Single plan</Badge>
+            <Badge variant="secondary" className="mb-4">
+              Single plan
+            </Badge>
             <h3 className="heading text-ground-900">Keep pricing simple while reinforcing value</h3>
             <div className="mt-6 flex items-end gap-2">
               <p className="text-6xl font-semibold tracking-tight text-ground-900">$199</p>
               <p className="body pb-2 text-ground-400">/mo</p>
             </div>
             <p className="body mt-4 text-ground-500">
-              Designed for teams that want one complete platform instead of piecing together approvals, content, and reporting tools.
+              Designed for teams that want one complete platform instead of piecing together
+              approvals, content, and reporting tools.
             </p>
           </div>
           <div className="space-y-4">
             {features.map((feature) => (
-              <div key={feature} className="flex items-start gap-3 rounded-2xl bg-ground-50 px-4 py-4">
+              <div
+                key={feature}
+                className="flex items-start gap-3 rounded-2xl bg-ground-50 px-4 py-4"
+              >
                 <Check className="mt-0.5 size-4 text-brand-primary" />
                 <p className="body text-ground-600">{feature}</p>
               </div>

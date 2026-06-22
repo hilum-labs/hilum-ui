@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Badge } from "@hilum/ui";
 
@@ -12,7 +11,8 @@ type CategoryCard = {
 const COLLECTION_ONE = "https://tailwindui.com/img/ecommerce-images/home-page-01-collection-01.jpg";
 const EDITION_ONE = "https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg";
 const EDITION_THREE = "https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg";
-const RELATED_ONE = "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg";
+const RELATED_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg";
 
 const SCROLLING_CATEGORIES: CategoryCard[] = [
   {
@@ -41,22 +41,8 @@ const SCROLLING_CATEGORIES: CategoryCard[] = [
   },
 ];
 
-function CategoryImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function CategoryImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function ScrollingCards() {
@@ -90,11 +76,7 @@ export default function ScrollingCards() {
               }`}
             >
               <div className="overflow-hidden">
-                <CategoryImage
-                  src={category.image}
-                  alt={category.name}
-                  className="aspect-[4/5]"
-                />
+                <CategoryImage src={category.image} alt={category.name} className="aspect-[4/5]" />
               </div>
               <div className="p-4">
                 <div className="flex items-center justify-between gap-3">

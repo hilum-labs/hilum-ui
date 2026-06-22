@@ -26,27 +26,33 @@ function FormLayoutPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/blocks" className="hover:text-ground-700">Blocks</a>
+          <a href="/blocks" className="hover:text-ground-700">
+            Blocks
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Form Layout</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Form Layout</h1>
         <p className="body max-w-md text-ground-400">
-          Full-form layout patterns — labels on left, simple stacked, per-section cards, and sidebar navigation.
+          Full-form layout patterns — labels on left, simple stacked, per-section cards, and sidebar
+          navigation.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Block</p>
           <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Field · Input · Textarea · Select · Switch · Button</p>
+          <p className="caption text-ground-400">
+            Field · Input · Textarea · Select · Switch · Button
+          </p>
         </div>
       </div>
 
       <PageDocs path="/blocks/form-layout/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <Heading label="Form Layout · Labels on left" />
           <PreviewBlock
@@ -96,7 +102,6 @@ function FormLayoutPage() {
             <WithSidebarForm />
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

@@ -7,7 +7,7 @@ export default function HeroSplitWithNavbar() {
       <div className="border-b border-ground-100 px-6 sm:px-10 lg:px-14">
         <div className="mx-auto flex max-w-6xl items-center justify-between py-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-xl bg-ground-900 text-white">
+            <div className="flex size-10 items-center justify-center rounded-xl bg-ground-900 text-white">
               <span className="subheading text-white">L</span>
             </div>
             <span className="subheading text-ground-900">Lattice OS</span>
@@ -42,8 +42,8 @@ export default function HeroSplitWithNavbar() {
               Own the handoff from strategy to launch.
             </h1>
             <p className="body mt-5 max-w-lg text-ground-500">
-              Keep briefs, deliverables, dependencies, and final sign-off in one
-              system so nothing falls out of sight when a date gets tight.
+              Keep briefs, deliverables, dependencies, and final sign-off in one system so nothing
+              falls out of sight when a date gets tight.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button size="lg">
@@ -58,15 +58,12 @@ export default function HeroSplitWithNavbar() {
 
           <div className="flex min-h-[320px] flex-col justify-between bg-brand-primary p-8 text-white sm:p-10 lg:p-12">
             <div className="space-y-3">
-              <p className="label uppercase tracking-[0.24em] text-white/70">
-                This week in motion
-              </p>
+              <p className="label uppercase tracking-[0.24em] text-white/70">This week in motion</p>
               <div className="rounded-2xl bg-white/12 p-5 backdrop-blur">
                 <p className="caption text-white/70">Launch readiness</p>
                 <p className="heading mt-2 text-white">92%</p>
                 <p className="body mt-2 text-white/80">
-                  Creative signed off, field enablement staged, regional
-                  localization on track.
+                  Creative signed off, field enablement staged, regional localization on track.
                 </p>
               </div>
             </div>

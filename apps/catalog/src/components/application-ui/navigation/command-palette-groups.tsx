@@ -1,4 +1,3 @@
-
 import { FileText, Search } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Input } from "@hilum/ui";
@@ -8,7 +7,10 @@ export default function CommandPaletteGroups() {
     <div className="w-full px-6 py-8">
       <div className="mx-auto max-w-lg overflow-hidden rounded-xl border border-ground-200 shadow-lg">
         <div className="relative border-b border-ground-100 bg-white">
-          <Search size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ground-400" />
+          <Search
+            size={16}
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-ground-400"
+          />
           <Input
             type="text"
             placeholder="Jump to..."

@@ -11,9 +11,7 @@ export default function PageHeadingWithBanner() {
         <div className="-mt-4 flex items-end justify-between gap-6">
           <div className="flex items-end gap-4">
             <Avatar className="size-16 ring-4 ring-white">
-              <AvatarFallback className="bg-brand-primary text-xl text-white">
-                AC
-              </AvatarFallback>
+              <AvatarFallback className="bg-brand-primary text-xl text-white">AC</AvatarFallback>
             </Avatar>
             <div className="mb-1">
               <h1 className="heading text-ground-900">Acme Corp</h1>

@@ -31,9 +31,13 @@ function ScrollAreaPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Scroll Area</span>
         </div>
@@ -54,8 +58,22 @@ function ScrollAreaPage() {
           code={CODE.scrollArea}
         >
           <ScrollArea className="h-44 w-64 rounded-xl border border-ground-100 p-4">
-            {["Instant speech", "Audiobook creation", "Image & Video dubbing", "ElevenAgents", "Music generation", "Dubbed video", "Voice cloning", "Sound effects", "Voice isolator", "Speech to text"].map((item) => (
-              <div key={item} className="border-b border-ground-100 py-2.5 text-sm text-ground-700 last:border-0">
+            {[
+              "Instant speech",
+              "Audiobook creation",
+              "Image & Video dubbing",
+              "ElevenAgents",
+              "Music generation",
+              "Dubbed video",
+              "Voice cloning",
+              "Sound effects",
+              "Voice isolator",
+              "Speech to text",
+            ].map((item) => (
+              <div
+                key={item}
+                className="border-b border-ground-100 py-2.5 text-sm text-ground-700 last:border-0"
+              >
                 {item}
               </div>
             ))}

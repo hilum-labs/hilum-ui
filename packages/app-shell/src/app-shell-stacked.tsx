@@ -27,10 +27,7 @@ function AppShellStacked({
   return (
     <Wrapper {...(wrapperProps as { value: LinkComponent })}>
       <div
-        className={cn(
-          "flex flex-col h-screen overflow-hidden bg-muted text-foreground",
-          className,
-        )}
+        className={cn("flex flex-col h-screen overflow-hidden bg-muted text-foreground", className)}
       >
         <Navbar {...navbarProps} />
         <main className="flex-1 overflow-auto">{children}</main>

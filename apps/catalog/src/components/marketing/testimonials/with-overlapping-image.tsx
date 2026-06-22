@@ -8,13 +8,7 @@ const TESTIMONIAL = {
   initials: "PD",
 };
 
-function Avatar({
-  initials,
-  className,
-}: {
-  initials: string;
-  className?: string;
-}) {
+function Avatar({ initials, className }: { initials: string; className?: string }) {
   return (
     <div
       className={`flex items-center justify-center rounded-full bg-ground-200 body font-semibold text-ground-400 ${className ?? ""}`}
@@ -40,18 +34,12 @@ export default function WithOverlappingImage() {
 
         <div className="flex items-center px-8 py-16 md:px-16">
           <div className="max-w-xl">
-            <p className="heading leading-tight text-ground-900">
-              {TESTIMONIAL.quote}
-            </p>
+            <p className="heading leading-tight text-ground-900">{TESTIMONIAL.quote}</p>
             <div className="mt-8 flex items-center gap-4">
               <Avatar initials={TESTIMONIAL.initials} className="size-12" />
               <div>
-                <p className="subheading font-semibold text-ground-900">
-                  {TESTIMONIAL.name}
-                </p>
-                <p className="body text-ground-500">
-                  {TESTIMONIAL.title}
-                </p>
+                <p className="subheading font-semibold text-ground-900">{TESTIMONIAL.name}</p>
+                <p className="body text-ground-500">{TESTIMONIAL.title}</p>
               </div>
             </div>
           </div>

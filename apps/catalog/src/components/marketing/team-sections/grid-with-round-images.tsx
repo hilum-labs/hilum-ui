@@ -51,7 +51,9 @@ function AvatarCircle({
   return (
     <div
       className={`${size} flex items-center justify-center rounded-full body font-semibold ${
-        dark ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700" : "bg-ground-200 text-ground-500"
+        dark
+          ? "bg-ground-800 text-ground-200 ring-2 ring-ground-700"
+          : "bg-ground-200 text-ground-500"
       }`}
     >
       {initials}

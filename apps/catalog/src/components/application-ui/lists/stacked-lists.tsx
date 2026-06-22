@@ -1,4 +1,3 @@
-
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 
@@ -126,10 +125,7 @@ export default function StackedLists() {
       <div className="w-full rounded-xl border border-ground-100 bg-white">
         <ul className="divide-y divide-ground-100">
           {PEOPLE.map((person) => (
-            <li
-              key={person.email}
-              className="flex items-center justify-between gap-4 px-6 py-4"
-            >
+            <li key={person.email} className="flex items-center justify-between gap-4 px-6 py-4">
               <div className="flex items-center gap-3">
                 <PersonAvatar person={person} />
                 <div>
@@ -172,7 +168,10 @@ export default function StackedLists() {
               </div>
               <ul className="divide-y divide-ground-100">
                 {group.people.map((person) => (
-                  <li key={`${group.heading}-${person.email}`} className="flex items-center gap-3 py-3">
+                  <li
+                    key={`${group.heading}-${person.email}`}
+                    className="flex items-center gap-3 py-3"
+                  >
                     <PersonAvatar person={person} size="sm" />
                     <div>
                       <p className="body font-medium text-ground-900">{person.name}</p>
@@ -191,10 +190,7 @@ export default function StackedLists() {
       <div className="w-full rounded-xl border border-ground-100 bg-white">
         <ul className="divide-y divide-ground-100">
           {COLLABORATOR_ROWS.map((item) => (
-            <li
-              key={item.name}
-              className="flex items-center justify-between gap-4 px-4 py-3"
-            >
+            <li key={item.name} className="flex items-center justify-between gap-4 px-4 py-3">
               <div className="flex items-center gap-3">
                 <PersonAvatar person={item.owner} size="md" className="size-8" />
                 <div>

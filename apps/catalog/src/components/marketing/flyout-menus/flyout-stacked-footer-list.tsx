@@ -1,11 +1,5 @@
-
 import { useState } from "react";
-import {
-  type LucideIcon,
-  BarChart2,
-  ChevronDown,
-  Layers,
-} from "lucide-react";
+import { type LucideIcon, BarChart2, ChevronDown, Layers } from "lucide-react";
 import { cn } from "@hilum/ui";
 
 type FlyoutItem = {
@@ -37,13 +31,7 @@ const SECONDARY_LINKS = [
   "Security overview",
 ];
 
-function FlyoutLink({
-  item,
-  iconClassName,
-}: {
-  item: FlyoutItem;
-  iconClassName?: string;
-}) {
+function FlyoutLink({ item, iconClassName }: { item: FlyoutItem; iconClassName?: string }) {
   const Icon = item.icon;
 
   return (
@@ -54,7 +42,7 @@ function FlyoutLink({
       <div
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
-          iconClassName
+          iconClassName,
         )}
       >
         <Icon size={18} />
@@ -74,7 +62,7 @@ export default function FlyoutStackedFooterList() {
     <div className="relative min-h-[19rem] bg-white">
       <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
         <div className="flex items-center gap-3">
-          <div className="flex size-9 items-center justify-center rounded-xl bg-brand-secondary text-sm font-semibold text-ground-900">
+          <div className="flex size-10 items-center justify-center rounded-xl bg-brand-secondary text-sm font-semibold text-ground-900">
             A
           </div>
           <span className="subheading text-ground-900">Atlas</span>
@@ -86,10 +74,7 @@ export default function FlyoutStackedFooterList() {
             className="inline-flex items-center gap-1 body font-medium text-ground-700 transition-colors hover:text-ground-900"
           >
             Platform
-            <ChevronDown
-              size={14}
-              className={cn("transition-transform", open && "rotate-180")}
-            />
+            <ChevronDown size={14} className={cn("transition-transform", open && "rotate-180")} />
           </button>
           {open ? (
             <div className="absolute right-0 z-10 mt-3 w-[22rem] rounded-xl border border-ground-100 bg-white shadow-elevated ring-1 ring-ground-100/50">

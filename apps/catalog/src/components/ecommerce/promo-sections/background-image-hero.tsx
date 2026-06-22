@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -9,7 +8,11 @@ const images = {
 export default function BackgroundImageHero() {
   return (
     <div className="relative min-h-[320px] w-full overflow-hidden rounded-xl">
-      <img src={images.main} alt="Workspace accessories" className="absolute inset-0 h-full w-full object-cover" />
+      <img
+        src={images.main}
+        alt="Workspace accessories"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div className="absolute inset-0 bg-ground-900/60" />
       <div className="relative flex min-h-[320px] flex-col items-center justify-center px-8 text-center">
         <Badge variant="warning">New arrivals</Badge>

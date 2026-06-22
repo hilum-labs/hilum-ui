@@ -88,40 +88,29 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "sticky top-0 flex h-screen flex-col border-r border-ground-100 bg-ground-50 transition-all duration-200",
-        collapsed ? "w-14" : "w-[220px]"
+        "sticky top-0 flex h-screen flex-col border-r border-ground-100 bg-ground-50 transition-[width] duration-200",
+        collapsed ? "w-14" : "w-[220px]",
       )}
     >
       {/* Logo mark */}
       <div
         className={cn(
           "flex h-12 items-center border-b border-ground-100",
-          collapsed ? "justify-center" : "gap-2.5 px-4"
+          collapsed ? "justify-center" : "gap-2.5 px-4",
         )}
       >
         <div className="flex size-6 shrink-0 items-center justify-center rounded-md bg-ground-900">
           <span className="text-[11px] font-bold leading-none text-white">D</span>
         </div>
-        {!collapsed && (
-          <span className="body font-semibold text-ground-900">
-            Design System
-          </span>
-        )}
+        {!collapsed && <span className="body font-semibold text-ground-900">Design System</span>}
       </div>
 
       {/* Navigation */}
       <nav className="flex-1 overflow-y-auto py-3">
-        {!collapsed && (
-          <p className="mb-1.5 px-4 label text-ground-400">
-            Navigation
-          </p>
-        )}
+        {!collapsed && <p className="mb-1.5 px-4 label text-ground-400">Navigation</p>}
         <div className={cn("flex flex-col gap-0.5", collapsed ? "items-center px-2" : "px-2")}>
           {navItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
 
             return (
               <Link
@@ -131,14 +120,12 @@ export function Sidebar() {
                 title={collapsed ? item.label : undefined}
                 className={cn(
                   "flex items-center rounded-md transition-colors",
-                  collapsed
-                    ? "size-9 justify-center"
-                    : "gap-2.5 px-2.5 py-2",
+                  collapsed ? "size-9 justify-center" : "gap-2.5 px-2.5 py-2",
                   isActive
                     ? "bg-ground-900 text-white"
                     : item.comingSoon
                       ? "cursor-default text-ground-300"
-                      : "text-ground-500 hover:bg-ground-100 hover:text-ground-900"
+                      : "text-ground-500 hover:bg-ground-100 hover:text-ground-900",
                 )}
               >
                 <item.icon size={15} strokeWidth={1.75} className="shrink-0" />
@@ -146,9 +133,7 @@ export function Sidebar() {
                   <>
                     <span className="flex-1 body font-medium">{item.label}</span>
                     {item.comingSoon && (
-                      <span className="caption-xs font-medium text-ground-300">
-                        Soon
-                      </span>
+                      <span className="caption-xs font-medium text-ground-300">Soon</span>
                     )}
                   </>
                 )}
@@ -164,9 +149,7 @@ export function Sidebar() {
           onClick={() => setCollapsed(!collapsed)}
           className={cn(
             "flex items-center rounded-md text-ground-400 transition-colors hover:bg-ground-100 hover:text-ground-600",
-            collapsed
-              ? "size-9 justify-center"
-              : "h-8 w-full gap-2 px-2.5"
+            collapsed ? "size-9 justify-center" : "h-8 w-full gap-2 px-2.5",
           )}
         >
           {collapsed ? (

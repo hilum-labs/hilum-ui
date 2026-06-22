@@ -16,7 +16,8 @@ const structuredData = {
       "@id": `${SITE_URL}/#website`,
       name: "Hilum UI",
       url: SITE_URL,
-      description: "Hilum UI design system documentation, component catalog, and theming reference.",
+      description:
+        "Hilum UI design system documentation, component catalog, and theming reference.",
       publisher: {
         "@id": `${SITE_URL}/#organization`,
       },
@@ -34,7 +35,8 @@ const structuredData = {
       name: "Hilum UI",
       applicationCategory: "DeveloperApplication",
       operatingSystem: "Any",
-      description: "Hilum UI design system documentation, component catalog, and theming reference.",
+      description:
+        "Hilum UI design system documentation, component catalog, and theming reference.",
       url: SITE_URL,
       codeRepository: REPOSITORY_URL,
       publisher: {
@@ -51,12 +53,13 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "application-name", content: "Hilum UI" },
       { name: "author", content: ORGANIZATION_NAME },
-      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
       { property: "og:site_name", content: "Hilum UI" },
     ],
-    links: [
-      { rel: "stylesheet", href: appCss },
-    ],
+    links: [{ rel: "stylesheet", href: appCss }],
     scripts: [
       {
         type: "application/ld+json",

@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { Button } from "@hilum/ui";
 import { Switch } from "@hilum/ui";
@@ -49,10 +48,7 @@ export default function ActionPanels() {
                   Keep your plan active and renew invoices without manual approval.
                 </p>
               </div>
-              <Switch
-                checked={renewalsEnabled}
-                onCheckedChange={setRenewalsEnabled}
-              />
+              <Switch checked={renewalsEnabled} onCheckedChange={setRenewalsEnabled} />
             </div>
           </div>
         </VariantCard>

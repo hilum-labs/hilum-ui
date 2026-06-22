@@ -16,17 +16,19 @@ import {
   ActionUndoRedo,
   ActionZoom,
   ActionTool,
-} from "@hilum/designer-canvas"
-import {
-  DesignerToolbar,
-  DesignerToolbarSeparator,
-} from "@hilum/designer"
-import { Square, Type } from "lucide-react"
+} from "@hilum/designer-canvas";
+import { DesignerToolbar, DesignerToolbarSeparator } from "@hilum/designer";
+import { Square, Type } from "lucide-react";
 
 /* ---------------- Renderers (app supplies these) ---------------- */
 
-interface RectData { fill: string }
-interface TextData { value: string; fill: string }
+interface RectData {
+  fill: string;
+}
+interface TextData {
+  value: string;
+  fill: string;
+}
 
 function RectRenderer({ layer, ctx }: LayerRendererProps<RectData>) {
   return (
@@ -37,7 +39,7 @@ function RectRenderer({ layer, ctx }: LayerRendererProps<RectData>) {
         outline: ctx.selected ? "2px solid var(--brand-primary)" : undefined,
       }}
     />
-  )
+  );
 }
 
 function TextRenderer({ layer }: LayerRendererProps<TextData>) {
@@ -48,13 +50,13 @@ function TextRenderer({ layer }: LayerRendererProps<TextData>) {
     >
       {layer.data.value}
     </div>
-  )
+  );
 }
 
 const renderers: RendererRegistry = {
   rect: RectRenderer as RendererRegistry["x"],
   text: TextRenderer as RendererRegistry["x"],
-}
+};
 
 /* ---------------- Initial state ---------------- */
 
@@ -63,35 +65,62 @@ const initialLayers = [
     id: "l1",
     type: "rect",
     name: "Background",
-    x: 60, y: 80, width: 480, height: 320,
-    rotation: 0, opacity: 1,
-    isLocked: false, isVisible: true,
+    x: 60,
+    y: 80,
+    width: 480,
+    height: 320,
+    rotation: 0,
+    opacity: 1,
+    isLocked: false,
+    isVisible: true,
     data: { fill: "#FDE086" } as Record<string, unknown>,
   },
   {
     id: "l2",
     type: "rect",
     name: "Accent",
-    x: 120, y: 140, width: 200, height: 160,
-    rotation: 0, opacity: 1,
-    isLocked: false, isVisible: true,
+    x: 120,
+    y: 140,
+    width: 200,
+    height: 160,
+    rotation: 0,
+    opacity: 1,
+    isLocked: false,
+    isVisible: true,
     data: { fill: "#FF4D01" } as Record<string, unknown>,
   },
   {
     id: "l3",
     type: "text",
     name: "Title",
-    x: 80, y: 360, width: 440, height: 60,
-    rotation: 0, opacity: 1,
-    isLocked: false, isVisible: true,
+    x: 80,
+    y: 360,
+    width: 440,
+    height: 60,
+    rotation: 0,
+    opacity: 1,
+    isLocked: false,
+    isVisible: true,
     data: { value: "Hilum Designer", fill: "#26181a" } as Record<string, unknown>,
   },
-]
+];
 
 const layerTypes = [
-  { type: "rect", label: "Rectangle", icon: Square, defaultData: { fill: "#FF4D01" }, defaultSize: { width: 200, height: 120 } },
-  { type: "text", label: "Text", icon: Type, defaultData: { value: "Type something", fill: "#26181a" }, defaultSize: { width: 300, height: 60 } },
-]
+  {
+    type: "rect",
+    label: "Rectangle",
+    icon: Square,
+    defaultData: { fill: "#FF4D01" },
+    defaultSize: { width: 200, height: 120 },
+  },
+  {
+    type: "text",
+    label: "Text",
+    icon: Type,
+    defaultData: { value: "Type something", fill: "#26181a" },
+    defaultSize: { width: 300, height: 60 },
+  },
+];
 
 /* ---------------- Page ---------------- */
 
@@ -100,15 +129,20 @@ function CanvasDemo() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/designer" className="hover:text-ground-700">Designer</a>
+          <a href="/designer" className="hover:text-ground-700">
+            Designer
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Canvas demo</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Canvas demo</h1>
         <p className="body max-w-2xl text-ground-500">
-          Live <code className="font-mono">@hilum/designer-canvas</code> surface with draggable layers, selection, and toolbar actions.
+          Live <code className="font-mono">@hilum/designer-canvas</code> surface with draggable
+          layers, selection, and toolbar actions.
         </p>
       </div>
 
@@ -161,7 +195,7 @@ function CanvasDemo() {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 export const Route = createFileRoute("/designer/canvas/")({

@@ -5,8 +5,14 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { useState } from "react";
 import { ChevronUp, ChevronDown, ChevronsUpDown, Trash2 } from "lucide-react";
 import {
-  Table, TableHeader, TableBody, TableFooter,
-  TableRow, TableHead, TableCell, TableCaption,
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
 } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -20,19 +26,99 @@ import { cn } from "@hilum/ui";
 /* ------------------------------------------------------------------ */
 
 const generations = [
-  { id: 1, voice: "Roger", text: "The quick brown fox jumps over the lazy dog.", duration: "0:08", status: "Done" as const },
-  { id: 2, voice: "Aria", text: "Welcome to ElevenLabs, the leading AI voice platform.", duration: "0:12", status: "Done" as const },
-  { id: 3, voice: "Sarah", text: "Generating expressive narration for chapter three...", duration: "—", status: "Processing" as const },
-  { id: 4, voice: "Charlie", text: "Error: audio sample rate mismatch detected.", duration: "—", status: "Failed" as const },
-  { id: 5, voice: "Marcus", text: "Voice synthesis complete for the audiobook project.", duration: "0:19", status: "Done" as const },
+  {
+    id: 1,
+    voice: "Roger",
+    text: "The quick brown fox jumps over the lazy dog.",
+    duration: "0:08",
+    status: "Done" as const,
+  },
+  {
+    id: 2,
+    voice: "Aria",
+    text: "Welcome to ElevenLabs, the leading AI voice platform.",
+    duration: "0:12",
+    status: "Done" as const,
+  },
+  {
+    id: 3,
+    voice: "Sarah",
+    text: "Generating expressive narration for chapter three...",
+    duration: "—",
+    status: "Processing" as const,
+  },
+  {
+    id: 4,
+    voice: "Charlie",
+    text: "Error: audio sample rate mismatch detected.",
+    duration: "—",
+    status: "Failed" as const,
+  },
+  {
+    id: 5,
+    voice: "Marcus",
+    text: "Voice synthesis complete for the audiobook project.",
+    duration: "0:19",
+    status: "Done" as const,
+  },
 ];
 
 const members = [
-  { id: 1, name: "Sarah Parker",  email: "s.parker@acme.com",   role: "Designer",       dept: "Product",     status: "Active",   initials: "SP", color: "bg-brand-primary",  textColor: "text-white"      },
-  { id: 2, name: "George Lin",    email: "g.lin@acme.com",      role: "Engineer",       dept: "Engineering", status: "Active",   initials: "GL", color: "bg-brand-secondary",    textColor: "text-ground-900" },
-  { id: 3, name: "Ana Portillo",  email: "a.portillo@acme.com", role: "Product Manager",dept: "Product",     status: "On leave", initials: "AP", color: "bg-brand-secondary",  textColor: "text-ground-900" },
-  { id: 4, name: "Lucas Meyer",   email: "l.meyer@acme.com",    role: "Engineer",       dept: "Engineering", status: "Active",   initials: "LM", color: "bg-ground-900",     textColor: "text-white"      },
-  { id: 5, name: "Emma Chen",     email: "e.chen@acme.com",     role: "Designer",       dept: "Brand",       status: "Active",   initials: "EC", color: "bg-brand-primary",  textColor: "text-white"      },
+  {
+    id: 1,
+    name: "Sarah Parker",
+    email: "s.parker@acme.com",
+    role: "Designer",
+    dept: "Product",
+    status: "Active",
+    initials: "SP",
+    color: "bg-brand-primary",
+    textColor: "text-white",
+  },
+  {
+    id: 2,
+    name: "George Lin",
+    email: "g.lin@acme.com",
+    role: "Engineer",
+    dept: "Engineering",
+    status: "Active",
+    initials: "GL",
+    color: "bg-brand-secondary",
+    textColor: "text-ground-900",
+  },
+  {
+    id: 3,
+    name: "Ana Portillo",
+    email: "a.portillo@acme.com",
+    role: "Product Manager",
+    dept: "Product",
+    status: "On leave",
+    initials: "AP",
+    color: "bg-brand-secondary",
+    textColor: "text-ground-900",
+  },
+  {
+    id: 4,
+    name: "Lucas Meyer",
+    email: "l.meyer@acme.com",
+    role: "Engineer",
+    dept: "Engineering",
+    status: "Active",
+    initials: "LM",
+    color: "bg-ground-900",
+    textColor: "text-white",
+  },
+  {
+    id: 5,
+    name: "Emma Chen",
+    email: "e.chen@acme.com",
+    role: "Designer",
+    dept: "Brand",
+    status: "Active",
+    initials: "EC",
+    color: "bg-brand-primary",
+    textColor: "text-white",
+  },
 ];
 
 const invoiceLines = [
@@ -45,18 +131,64 @@ const tax = subtotal * 0.2;
 const total = subtotal + tax;
 
 const transactions = [
-  { id: "TXN-8821", company: "Acme Corp",     type: "Invoice",  amount: "$4,200", date: "Apr 1, 2026",  status: "Paid"    },
-  { id: "TXN-8820", company: "Globex Inc.",   type: "Invoice",  amount: "$1,900", date: "Mar 28, 2026", status: "Pending" },
-  { id: "TXN-8819", company: "Initech LLC",   type: "Refund",   amount: "$320",   date: "Mar 22, 2026", status: "Paid"    },
-  { id: "TXN-8818", company: "Umbrella Corp", type: "Invoice",  amount: "$8,750", date: "Mar 15, 2026", status: "Overdue" },
-  { id: "TXN-8817", company: "Soylent Corp",  type: "Invoice",  amount: "$2,100", date: "Mar 10, 2026", status: "Paid"    },
-  { id: "TXN-8816", company: "Acme Corp",     type: "Credit",   amount: "$500",   date: "Mar 5, 2026",  status: "Paid"    },
+  {
+    id: "TXN-8821",
+    company: "Acme Corp",
+    type: "Invoice",
+    amount: "$4,200",
+    date: "Apr 1, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8820",
+    company: "Globex Inc.",
+    type: "Invoice",
+    amount: "$1,900",
+    date: "Mar 28, 2026",
+    status: "Pending",
+  },
+  {
+    id: "TXN-8819",
+    company: "Initech LLC",
+    type: "Refund",
+    amount: "$320",
+    date: "Mar 22, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8818",
+    company: "Umbrella Corp",
+    type: "Invoice",
+    amount: "$8,750",
+    date: "Mar 15, 2026",
+    status: "Overdue",
+  },
+  {
+    id: "TXN-8817",
+    company: "Soylent Corp",
+    type: "Invoice",
+    amount: "$2,100",
+    date: "Mar 10, 2026",
+    status: "Paid",
+  },
+  {
+    id: "TXN-8816",
+    company: "Acme Corp",
+    type: "Credit",
+    amount: "$500",
+    date: "Mar 5, 2026",
+    status: "Paid",
+  },
 ];
 
 const statusVariant: Record<string, "success" | "warning" | "destructive" | "secondary"> = {
-  Done: "success", Active: "success",
-  Processing: "warning", "On leave": "warning", Pending: "warning",
-  Failed: "destructive", Overdue: "destructive",
+  Done: "success",
+  Active: "success",
+  Processing: "warning",
+  "On leave": "warning",
+  Pending: "warning",
+  Failed: "destructive",
+  Overdue: "destructive",
   Paid: "secondary",
 };
 
@@ -228,7 +360,7 @@ function CheckboxTable() {
   const allSelected = selected.length === members.length;
   const someSelected = selected.length > 0 && !allSelected;
   const toggle = (id: number) =>
-    setSelected((s) => s.includes(id) ? s.filter((x) => x !== id) : [...s, id]);
+    setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
 
   return (
     <div className="w-full">
@@ -264,10 +396,7 @@ function CheckboxTable() {
               className={cn(selected.includes(m.id) && "bg-ground-50")}
             >
               <TableCell>
-                <Checkbox
-                  checked={selected.includes(m.id)}
-                  onCheckedChange={() => toggle(m.id)}
-                />
+                <Checkbox checked={selected.includes(m.id)} onCheckedChange={() => toggle(m.id)} />
               </TableCell>
               <TableCell>
                 <div className="flex items-center gap-3">
@@ -300,7 +429,9 @@ function SortableTable() {
   const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(null);
 
   const cycleSort = (col: string) =>
-    setSort((s) => s?.col === col ? (s.dir === "asc" ? { col, dir: "desc" } : null) : { col, dir: "asc" });
+    setSort((s) =>
+      s?.col === col ? (s.dir === "asc" ? { col, dir: "desc" } : null) : { col, dir: "asc" },
+    );
 
   const SortIcon = ({ col }: { col: string }) => {
     if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-ground-300" />;
@@ -311,10 +442,12 @@ function SortableTable() {
     if (!sort) return 0;
     const av = a[sort.col as keyof typeof a];
     const bv = b[sort.col as keyof typeof b];
-    return sort.dir === "asc" ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
+    return sort.dir === "asc"
+      ? String(av).localeCompare(String(bv))
+      : String(bv).localeCompare(String(av));
   });
 
-  const cols: { key: keyof typeof transactions[0]; label: string }[] = [
+  const cols: { key: keyof (typeof transactions)[0]; label: string }[] = [
     { key: "id", label: "ID" },
     { key: "company", label: "Company" },
     { key: "date", label: "Date" },
@@ -332,7 +465,7 @@ function SortableTable() {
                 onClick={() => cycleSort(key)}
                 className={cn(
                   "flex items-center gap-1 transition-colors hover:text-ground-700",
-                  sort?.col === key && "text-ground-900"
+                  sort?.col === key && "text-ground-900",
                 )}
               >
                 {label}
@@ -377,22 +510,26 @@ function TablePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Table</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Table</h1>
         <p className="body max-w-lg text-ground-500">
-          Structured data display with rows and columns. Supports striped rows, avatars, checkboxes, sorting, sticky headers, grouped rows, and summary footers.
+          Structured data display with rows and columns. Supports striped rows, avatars, checkboxes,
+          sorting, sticky headers, grouped rows, and summary footers.
         </p>
       </div>
 
       <PageDocs path="/atoms/table/" />
 
       <div className="flex flex-col gap-12">
-
         {/* Simple */}
         <section>
           <SectionHeading label="Simple" />
@@ -417,7 +554,9 @@ function TablePage() {
                   {generations.map((row) => (
                     <TableRow key={row.id}>
                       <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-ground-500">
+                        {row.text}
+                      </TableCell>
                       <TableCell>{row.duration}</TableCell>
                       <TableCell>
                         <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
@@ -445,9 +584,14 @@ function TablePage() {
                 </TableHeader>
                 <TableBody>
                   {generations.map((row, i) => (
-                    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-ground-50 hover:bg-ground-100/50" : ""}>
+                    <TableRow
+                      key={row.id}
+                      className={i % 2 !== 0 ? "bg-ground-50 hover:bg-ground-100/50" : ""}
+                    >
                       <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-ground-500">
+                        {row.text}
+                      </TableCell>
                       <TableCell>{row.duration}</TableCell>
                       <TableCell>
                         <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
@@ -478,10 +622,16 @@ function TablePage() {
                 <TableBody>
                   {transactions.map((t) => (
                     <TableRow key={t.id}>
-                      <TableCell className="py-1.5 font-mono text-xs text-ground-400">{t.id}</TableCell>
-                      <TableCell className="py-1.5 font-medium text-ground-900">{t.company}</TableCell>
+                      <TableCell className="py-1.5 font-mono text-xs text-ground-400">
+                        {t.id}
+                      </TableCell>
+                      <TableCell className="py-1.5 font-medium text-ground-900">
+                        {t.company}
+                      </TableCell>
                       <TableCell className="py-1.5 text-ground-500">{t.type}</TableCell>
-                      <TableCell className="py-1.5 font-medium text-ground-900">{t.amount}</TableCell>
+                      <TableCell className="py-1.5 font-medium text-ground-900">
+                        {t.amount}
+                      </TableCell>
                       <TableCell className="py-1.5 text-ground-500">{t.date}</TableCell>
                       <TableCell className="py-1.5">
                         <Badge variant={statusVariant[t.status] ?? "secondary"}>{t.status}</Badge>
@@ -579,10 +729,7 @@ function TablePage() {
                   return (
                     <>
                       <TableRow key={group} className="hover:bg-transparent">
-                        <TableCell
-                          colSpan={4}
-                          className="bg-ground-50 py-2 label text-ground-500"
-                        >
+                        <TableCell colSpan={4} className="bg-ground-50 py-2 label text-ground-500">
                           {group}
                         </TableCell>
                       </TableRow>
@@ -626,27 +773,29 @@ function TablePage() {
           >
             <Table containerClassName="max-h-56 overflow-auto rounded-xl border border-ground-100 bg-white">
               <TableHeader className="sticky top-0 z-10 bg-white/90 backdrop-blur-sm">
-                  <TableRow>
-                    <TableHead>Voice</TableHead>
-                    <TableHead>Text</TableHead>
-                    <TableHead>Duration</TableHead>
-                    <TableHead>Status</TableHead>
+                <TableRow>
+                  <TableHead>Voice</TableHead>
+                  <TableHead>Text</TableHead>
+                  <TableHead>Duration</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {[...generations, ...generations].map((row, i) => (
+                  <TableRow key={i}>
+                    <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
+                    <TableCell className="max-w-[200px] truncate text-ground-500">
+                      {row.text}
+                    </TableCell>
+                    <TableCell>{row.duration}</TableCell>
+                    <TableCell>
+                      <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
+                    </TableCell>
                   </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {[...generations, ...generations].map((row, i) => (
-                    <TableRow key={i}>
-                      <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
-                      <TableCell>{row.duration}</TableCell>
-                      <TableCell>
-                        <Badge variant={statusVariant[row.status]}>{row.status}</Badge>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </PreviewBlock>
+                ))}
+              </TableBody>
+            </Table>
+          </PreviewBlock>
         </section>
 
         {/* Summary rows */}
@@ -670,31 +819,46 @@ function TablePage() {
               <TableBody>
                 {invoiceLines.map((line) => (
                   <TableRow key={line.description}>
-                    <TableCell className="font-medium text-ground-900">{line.description}</TableCell>
+                    <TableCell className="font-medium text-ground-900">
+                      {line.description}
+                    </TableCell>
                     <TableCell className="text-right text-ground-500">{line.hrs}h</TableCell>
                     <TableCell className="text-right text-ground-500">${line.rate}/hr</TableCell>
-                    <TableCell className="text-right font-medium text-ground-900">${line.amount.toLocaleString()}</TableCell>
+                    <TableCell className="text-right font-medium text-ground-900">
+                      ${line.amount.toLocaleString()}
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right text-ground-500">Subtotal</TableCell>
-                  <TableCell className="text-right font-semibold text-ground-900">${subtotal.toLocaleString()}</TableCell>
+                  <TableCell colSpan={3} className="text-right text-ground-500">
+                    Subtotal
+                  </TableCell>
+                  <TableCell className="text-right font-semibold text-ground-900">
+                    ${subtotal.toLocaleString()}
+                  </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right text-ground-500">Tax (20%)</TableCell>
-                  <TableCell className="text-right font-semibold text-ground-900">${tax.toLocaleString()}</TableCell>
+                  <TableCell colSpan={3} className="text-right text-ground-500">
+                    Tax (20%)
+                  </TableCell>
+                  <TableCell className="text-right font-semibold text-ground-900">
+                    ${tax.toLocaleString()}
+                  </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right font-semibold text-ground-900">Total</TableCell>
-                  <TableCell className="text-right font-semibold text-ground-900">${total.toLocaleString()}</TableCell>
+                  <TableCell colSpan={3} className="text-right font-semibold text-ground-900">
+                    Total
+                  </TableCell>
+                  <TableCell className="text-right font-semibold text-ground-900">
+                    ${total.toLocaleString()}
+                  </TableCell>
                 </TableRow>
               </TableFooter>
             </Table>
           </PreviewBlock>
         </section>
-
       </div>
     </div>
   );

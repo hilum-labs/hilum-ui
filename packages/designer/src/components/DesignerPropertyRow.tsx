@@ -45,18 +45,16 @@ function DesignerPropertyRow({
       ) : (
         <>
           <DesignerPropertyLabel htmlFor={labelFor}>{label}</DesignerPropertyLabel>
-          <DesignerPropertyControls className={controlsClassName}>{children}</DesignerPropertyControls>
+          <DesignerPropertyControls className={controlsClassName}>
+            {children}
+          </DesignerPropertyControls>
         </>
       )}
     </div>
   );
 }
 
-function DesignerPropertyLabel({
-  className,
-  children,
-  ...rest
-}: DesignerPropertyLabelProps) {
+function DesignerPropertyLabel({ className, children, ...rest }: DesignerPropertyLabelProps) {
   return (
     <label
       className={cn(
@@ -70,11 +68,7 @@ function DesignerPropertyLabel({
   );
 }
 
-function DesignerPropertyControls({
-  className,
-  children,
-  ...rest
-}: DesignerPropertyControlsProps) {
+function DesignerPropertyControls({ className, children, ...rest }: DesignerPropertyControlsProps) {
   return (
     <div
       className={cn(
@@ -95,10 +89,7 @@ function DesignerPropertyGroup({
   ...rest
 }: DesignerPropertyGroupProps) {
   return (
-    <div
-      className={cn("flex min-w-0 max-w-full flex-col gap-3", className)}
-      {...rest}
-    >
+    <div className={cn("flex min-w-0 max-w-full flex-col gap-3", className)} {...rest}>
       {title && (
         <div className="caption-xs min-w-0 max-w-full select-none overflow-hidden text-ellipsis uppercase tracking-wider text-muted-foreground">
           {title}

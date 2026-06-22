@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 
 const stepItems = ["Shipping", "Payment", "Confirmation"] as const;
@@ -28,7 +27,9 @@ export default function StepsCircles() {
               <span className="caption mt-3 text-ground-600">{step}</span>
             </li>
             {index < stepItems.length - 1 ? (
-              <div className={`mt-4 h-px flex-1 ${index < currentStep ? "bg-brand-primary" : "bg-ground-200"}`} />
+              <div
+                className={`mt-4 h-px flex-1 ${index < currentStep ? "bg-brand-primary" : "bg-ground-200"}`}
+              />
             ) : null}
           </div>
         ))}

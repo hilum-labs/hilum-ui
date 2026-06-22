@@ -1,4 +1,3 @@
-
 import { Avatar, AvatarFallback } from "@hilum/ui";
 
 const person = {
@@ -23,21 +22,14 @@ export default function DescriptionListCard() {
       <div className="flex items-center justify-between border-b border-ground-100 px-6 py-4">
         <h3 className="subheading text-ground-900">Applicant Information</h3>
         <Avatar className="size-9">
-          <AvatarFallback className="bg-brand-primary text-white">
-            MT
-          </AvatarFallback>
+          <AvatarFallback className="bg-brand-primary text-white">MT</AvatarFallback>
         </Avatar>
       </div>
       <dl className="divide-y divide-ground-100">
         {cardFields.map(([term, definition]) => (
-          <div
-            key={term}
-            className="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4"
-          >
+          <div key={term} className="px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4">
             <dt className="caption font-medium text-ground-500">{term}</dt>
-            <dd className="mt-1 body text-ground-900 sm:col-span-2 sm:mt-0">
-              {definition}
-            </dd>
+            <dd className="mt-1 body text-ground-900 sm:col-span-2 sm:mt-0">{definition}</dd>
           </div>
         ))}
       </dl>

@@ -31,8 +31,8 @@ export default function TwoColumnsOnDark() {
       <div className="mx-auto max-w-5xl">
         <h2 className="heading text-white">Frequently asked questions</h2>
         <p className="body mt-3 max-w-2xl text-ground-300">
-          Useful for footer-adjacent support sections or darker product
-          narratives that need consistent contrast.
+          Useful for footer-adjacent support sections or darker product narratives that need
+          consistent contrast.
         </p>
 
         <dl className="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">

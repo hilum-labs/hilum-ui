@@ -1,4 +1,3 @@
-
 import { type ReactNode } from "react";
 import { Bold, Italic, Paperclip, Underline } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -52,7 +51,7 @@ export default function Textareas() {
               <div className="mt-3 flex items-center justify-between">
                 <button
                   type="button"
-                  className="inline-flex items-center gap-2 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-500 transition hover:border-ground-300 hover:text-ground-700"
+                  className="inline-flex items-center gap-2 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-500 transition-colors hover:border-ground-300 hover:text-ground-700"
                 >
                   <Paperclip size={14} />
                   Attach file
@@ -69,21 +68,21 @@ export default function Textareas() {
             <div className="flex flex-wrap gap-2">
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition hover:border-ground-300 hover:text-ground-900"
+                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition-colors hover:border-ground-300 hover:text-ground-900"
               >
                 <Bold size={13} />
                 Bold
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition hover:border-ground-300 hover:text-ground-900"
+                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition-colors hover:border-ground-300 hover:text-ground-900"
               >
                 <Italic size={13} />
                 Italic
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition hover:border-ground-300 hover:text-ground-900"
+                className="inline-flex items-center gap-1 rounded-full border border-ground-200 px-3 py-1.5 caption text-ground-600 transition-colors hover:border-ground-300 hover:text-ground-900"
               >
                 <Underline size={13} />
                 Link

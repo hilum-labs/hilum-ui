@@ -33,8 +33,10 @@ function SectionHeading({
       )}
     >
       <div className="min-w-0 flex-1">
-        <h2 className="heading text-foreground truncate">{title}</h2>
-        {description && <p className="mt-1 body text-muted-foreground">{description}</p>}
+        <h2 className="heading text-balance text-foreground truncate">{title}</h2>
+        {description && (
+          <p className="mt-1 body text-pretty text-muted-foreground">{description}</p>
+        )}
       </div>
 
       {actions && actions.length > 0 && (

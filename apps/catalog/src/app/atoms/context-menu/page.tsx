@@ -2,7 +2,17 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { Copy, Edit2, FileText, FolderOpen, Share2, Trash2, ExternalLink, Link2, Mail } from "lucide-react";
+import {
+  Copy,
+  Edit2,
+  FileText,
+  FolderOpen,
+  Share2,
+  Trash2,
+  ExternalLink,
+  Link2,
+  Mail,
+} from "lucide-react";
 import {
   ContextMenu,
   ContextMenuTrigger,
@@ -94,9 +104,13 @@ function ContextMenuPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Context Menu</span>
         </div>

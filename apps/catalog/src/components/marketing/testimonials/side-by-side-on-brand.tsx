@@ -15,13 +15,7 @@ const TESTIMONIALS = [
   },
 ];
 
-function Avatar({
-  initials,
-  className,
-}: {
-  initials: string;
-  className?: string;
-}) {
+function Avatar({ initials, className }: { initials: string; className?: string }) {
   return (
     <div
       className={`flex items-center justify-center rounded-full bg-ground-200 body font-semibold text-ground-400 ${className ?? ""}`}
@@ -36,21 +30,12 @@ export default function SideBySideOnBrand() {
     <section className="w-full bg-ground-900 px-8 py-16">
       <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1fr_auto_1fr] md:items-stretch">
         <article className="space-y-6">
-          <p className="body leading-7 text-white">
-            {TESTIMONIALS[0].quote}
-          </p>
+          <p className="body leading-7 text-white">{TESTIMONIALS[0].quote}</p>
           <div className="flex items-center gap-3">
-            <Avatar
-              initials={TESTIMONIALS[0].initials}
-              className="size-10 text-sm"
-            />
+            <Avatar initials={TESTIMONIALS[0].initials} className="size-10 text-sm" />
             <div>
-              <p className="body font-semibold text-white">
-                {TESTIMONIALS[0].name}
-              </p>
-              <p className="caption text-ground-400">
-                {TESTIMONIALS[0].role}
-              </p>
+              <p className="body font-semibold text-white">{TESTIMONIALS[0].name}</p>
+              <p className="caption text-ground-400">{TESTIMONIALS[0].role}</p>
             </div>
           </div>
           <div className="h-px bg-ground-700 md:hidden" />
@@ -59,21 +44,12 @@ export default function SideBySideOnBrand() {
         <div className="hidden h-full w-px bg-ground-700 md:block" />
 
         <article className="space-y-6">
-          <p className="body leading-7 text-white">
-            {TESTIMONIALS[1].quote}
-          </p>
+          <p className="body leading-7 text-white">{TESTIMONIALS[1].quote}</p>
           <div className="flex items-center gap-3">
-            <Avatar
-              initials={TESTIMONIALS[1].initials}
-              className="size-10 text-sm"
-            />
+            <Avatar initials={TESTIMONIALS[1].initials} className="size-10 text-sm" />
             <div>
-              <p className="body font-semibold text-white">
-                {TESTIMONIALS[1].name}
-              </p>
-              <p className="caption text-ground-400">
-                {TESTIMONIALS[1].role}
-              </p>
+              <p className="body font-semibold text-white">{TESTIMONIALS[1].name}</p>
+              <p className="caption text-ground-400">{TESTIMONIALS[1].role}</p>
             </div>
           </div>
         </article>

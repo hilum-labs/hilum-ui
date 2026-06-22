@@ -1,11 +1,7 @@
 "use client";
 
 import * as React from "react";
-import {
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-} from "./dropdown-menu";
+import { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from "./dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./avatar";
 import { cn } from "../lib/utils";
 
@@ -54,14 +50,11 @@ const AccountMenuHeader = React.forwardRef<HTMLDivElement, AccountMenuHeaderProp
 AccountMenuHeader.displayName = "AccountMenuHeader";
 
 const AccountMenuSection = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("p-2", className)} {...props} />
-  ),
+  ({ className, ...props }, ref) => <div ref={ref} className={cn("p-2", className)} {...props} />,
 );
 AccountMenuSection.displayName = "AccountMenuSection";
 
-interface AccountMenuItemProps
-  extends React.ComponentPropsWithoutRef<typeof DropdownMenuItem> {
+interface AccountMenuItemProps extends React.ComponentPropsWithoutRef<typeof DropdownMenuItem> {
   icon?: React.ReactNode;
   trailing?: React.ReactNode;
   description?: React.ReactNode;

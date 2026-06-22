@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -52,7 +51,9 @@ export default function BlogSectionNewsletter() {
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.3fr_0.9fr]">
         <div>
           <Badge variant="secondary">Latest posts</Badge>
-          <h3 className="heading mt-4 text-ground-900">Fresh thinking from across design and engineering</h3>
+          <h3 className="heading mt-4 text-ground-900">
+            Fresh thinking from across design and engineering
+          </h3>
           <div className="mt-8 space-y-4">
             {POSTS.slice(0, 2).map((post) => (
               <article
@@ -77,7 +78,7 @@ export default function BlogSectionNewsletter() {
                       <p className="caption text-ground-500">Staff writer</p>
                     </div>
                   </div>
-                  <button className="inline-flex items-center gap-2 body font-medium text-ground-900 transition-colors hover:text-brand-primary">
+                  <button className="inline-flex min-h-10 items-center gap-2 body font-medium text-ground-900 transition-colors hover:text-brand-primary">
                     Read article
                     <ArrowRight className="size-4" />
                   </button>
@@ -91,7 +92,8 @@ export default function BlogSectionNewsletter() {
           <Badge variant="brand">Newsletter</Badge>
           <h3 className="heading mt-4 text-ground-900">Get articles in your inbox</h3>
           <p className="body mt-3 text-ground-500">
-            A weekly note with product essays, design system patterns, and shipping lessons from the team.
+            A weekly note with product essays, design system patterns, and shipping lessons from the
+            team.
           </p>
           <div className="mt-8 space-y-3">
             <input

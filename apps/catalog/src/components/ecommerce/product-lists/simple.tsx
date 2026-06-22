@@ -1,4 +1,3 @@
-
 const PRODUCTS = [
   {
     name: "Earthen Bottle",

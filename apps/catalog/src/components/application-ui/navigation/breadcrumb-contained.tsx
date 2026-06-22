@@ -1,4 +1,3 @@
-
 import { ChevronRight, Home } from "lucide-react";
 
 export default function BreadcrumbContained() {

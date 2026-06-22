@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { X, Megaphone } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -6,7 +5,10 @@ import { Button } from "@hilum/ui";
 export default function BannerFloatingBottom() {
   const [visible, setVisible] = useState(true);
   return (
-    <div className="relative w-full overflow-hidden rounded-xl border border-ground-100 bg-ground-50 shadow-natural" style={{ height: 240 }}>
+    <div
+      className="relative w-full overflow-hidden rounded-xl border border-ground-100 bg-ground-50 shadow-natural"
+      style={{ height: 240 }}
+    >
       <div className="flex h-full items-center justify-center">
         <p className="body text-ground-400">Page content</p>
       </div>
@@ -17,8 +19,8 @@ export default function BannerFloatingBottom() {
               <Megaphone size={15} />
             </div>
             <p className="body text-ground-700">
-              <strong className="font-semibold text-ground-900">We've just launched v3.</strong>{" "}
-              See what's new in the latest release.
+              <strong className="font-semibold text-ground-900">We've just launched v3.</strong> See
+              what's new in the latest release.
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-2">

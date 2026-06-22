@@ -47,7 +47,7 @@ function DataDisplayPage() {
           <Badge variant="outline">Data · 16 variants</Badge>
         </div>
 
-      <PageDocs path="/application-ui/data-display/" />
+        <PageDocs path="/application-ui/data-display/" />
         <div className="mb-10 h-px bg-ground-100" />
 
         <div className="space-y-10">

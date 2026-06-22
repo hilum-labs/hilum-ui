@@ -30,9 +30,13 @@ function KbdPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Kbd</span>
         </div>
@@ -57,10 +61,12 @@ function KbdPage() {
             <Kbd>⌘K</Kbd>
             <Kbd>⇧⌘P</Kbd>
             <span className="flex items-center gap-1 text-sm text-ground-600">
-              Save <Kbd>⌘</Kbd><Kbd>S</Kbd>
+              Save <Kbd>⌘</Kbd>
+              <Kbd>S</Kbd>
             </span>
             <span className="flex items-center gap-1 text-sm text-ground-600">
-              Undo <Kbd>⌘</Kbd><Kbd>Z</Kbd>
+              Undo <Kbd>⌘</Kbd>
+              <Kbd>Z</Kbd>
             </span>
           </div>
         </PreviewBlock>

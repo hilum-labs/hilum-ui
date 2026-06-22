@@ -31,7 +31,8 @@ function FlyoutMenusPage() {
       <div className="space-y-3">
         <h1 className="heading text-ground-900">Flyout Menus</h1>
         <p className="body text-ground-500">
-          Click-driven dropdown patterns for product navigation, editorial callouts, and full-width discovery menus.
+          Click-driven dropdown patterns for product navigation, editorial callouts, and full-width
+          discovery menus.
         </p>
       </div>
 

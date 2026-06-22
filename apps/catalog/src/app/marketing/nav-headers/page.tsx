@@ -29,7 +29,8 @@ function NavHeadersPage() {
       <div className="space-y-3">
         <h1 className="heading text-ground-900">Nav Headers</h1>
         <p className="body text-ground-500">
-          Marketing navigation patterns with responsive drawers, centered link layouts, and a full-width flyout.
+          Marketing navigation patterns with responsive drawers, centered link layouts, and a
+          full-width flyout.
         </p>
       </div>
 

@@ -6,14 +6,19 @@ import {
   DesignerStaticFrame,
   type LayerRendererProps,
   type RendererRegistry,
-} from "@hilum/designer-canvas"
-import { Card, CardContent } from "@hilum/ui"
+} from "@hilum/designer-canvas";
+import { Card, CardContent } from "@hilum/ui";
 
-interface RectData { fill: string }
-interface TextData { value: string; fill: string }
+interface RectData {
+  fill: string;
+}
+interface TextData {
+  value: string;
+  fill: string;
+}
 
 function RectRenderer({ layer }: LayerRendererProps<RectData>) {
-  return <div className="size-full rounded-md" style={{ background: layer.data.fill }} />
+  return <div className="size-full rounded-md" style={{ background: layer.data.fill }} />;
 }
 
 function TextRenderer({ layer }: LayerRendererProps<TextData>) {
@@ -24,20 +29,28 @@ function TextRenderer({ layer }: LayerRendererProps<TextData>) {
     >
       {layer.data.value}
     </div>
-  )
+  );
 }
 
 const renderers: RendererRegistry = {
   rect: RectRenderer as RendererRegistry["x"],
   text: TextRenderer as RendererRegistry["x"],
-}
+};
 
 const SAMPLES = [
   {
     title: "Onboarding hero",
     layers: [
       { id: "1", type: "rect", x: 0, y: 0, width: 320, height: 200, data: { fill: "#FDE086" } },
-      { id: "2", type: "text", x: 16, y: 84, width: 288, height: 32, data: { value: "Welcome", fill: "#26181a" } },
+      {
+        id: "2",
+        type: "text",
+        x: 16,
+        y: 84,
+        width: 288,
+        height: 32,
+        data: { value: "Welcome", fill: "#26181a" },
+      },
     ],
   },
   {
@@ -45,24 +58,48 @@ const SAMPLES = [
     layers: [
       { id: "1", type: "rect", x: 0, y: 0, width: 320, height: 200, data: { fill: "#ffffff" } },
       { id: "2", type: "rect", x: 12, y: 12, width: 296, height: 4, data: { fill: "#FF4D01" } },
-      { id: "3", type: "text", x: 16, y: 32, width: 280, height: 24, data: { value: "Recent activity", fill: "#26181a" } },
+      {
+        id: "3",
+        type: "text",
+        x: 16,
+        y: 32,
+        width: 280,
+        height: 24,
+        data: { value: "Recent activity", fill: "#26181a" },
+      },
     ],
   },
   {
     title: "Brand block",
     layers: [
       { id: "1", type: "rect", x: 0, y: 0, width: 320, height: 200, data: { fill: "#FF4D01" } },
-      { id: "2", type: "text", x: 16, y: 80, width: 288, height: 40, data: { value: "Hilum", fill: "#ffffff" } },
+      {
+        id: "2",
+        type: "text",
+        x: 16,
+        y: 80,
+        width: 288,
+        height: 40,
+        data: { value: "Hilum", fill: "#ffffff" },
+      },
     ],
   },
   {
     title: "Success state",
     layers: [
       { id: "1", type: "rect", x: 0, y: 0, width: 320, height: 200, data: { fill: "#CDEA19" } },
-      { id: "2", type: "text", x: 16, y: 80, width: 288, height: 40, data: { value: "All systems go", fill: "#26181a" } },
+      {
+        id: "2",
+        type: "text",
+        x: 16,
+        y: 80,
+        width: 288,
+        height: 40,
+        data: { value: "All systems go", fill: "#26181a" },
+      },
     ],
   },
-]
+];
 
 function StaticFrameDemo() {
   return (
@@ -70,10 +107,13 @@ function StaticFrameDemo() {
       <div className="mb-10">
         <h1 className="display text-ground-900">Static frame</h1>
         <p className="body-lg text-ground-500 mt-3 max-w-2xl">
-          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">DesignerStaticFrame</code>{" "}
-          renders a canvas read-only — no interactivity, no overlays. Use it for dashboard thumbnails, project gallery
-          tiles, and PDF previews. The same renderers from your <code className="font-mono caption">RendererProvider</code>{" "}
-          drive both interactive and static modes.
+          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">
+            DesignerStaticFrame
+          </code>{" "}
+          renders a canvas read-only — no interactivity, no overlays. Use it for dashboard
+          thumbnails, project gallery tiles, and PDF previews. The same renderers from your{" "}
+          <code className="font-mono caption">RendererProvider</code> drive both interactive and
+          static modes.
         </p>
       </div>
 
@@ -108,7 +148,7 @@ function StaticFrameDemo() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export const Route = createFileRoute("/designer/static-frame/")({

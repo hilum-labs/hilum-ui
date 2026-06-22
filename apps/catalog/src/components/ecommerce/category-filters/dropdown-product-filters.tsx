@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -92,9 +91,7 @@ export default function DropdownProductFilters() {
               <div key={menu} className="relative">
                 <button
                   type="button"
-                  onClick={() =>
-                    setTopBarOpen((current) => (current === menu ? null : menu))
-                  }
+                  onClick={() => setTopBarOpen((current) => (current === menu ? null : menu))}
                   className={`flex items-center gap-2 rounded-full border px-4 py-2 body transition-colors ${
                     topBarOpen === menu
                       ? "border-brand-primary bg-brand-primary/5 text-ground-900"
@@ -150,10 +147,7 @@ export default function DropdownProductFilters() {
 
         <div className="mt-6 grid gap-4 md:grid-cols-3">
           {["Flight Pack", "Weekender Pouch", "Canvas Layer"].map((name, index) => (
-            <div
-              key={name}
-              className="rounded-[24px] border border-ground-100 bg-ground-50 p-4"
-            >
+            <div key={name} className="rounded-[24px] border border-ground-100 bg-ground-50 p-4">
               <div
                 className={`h-32 rounded-2xl ${
                   index === 1 ? "bg-brand-secondary/40" : "bg-brand-secondary/40"

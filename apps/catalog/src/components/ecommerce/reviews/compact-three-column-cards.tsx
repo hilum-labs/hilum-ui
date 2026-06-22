@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 const reviews = [
@@ -61,7 +60,7 @@ export default function CompactThreeColumnCards() {
               key={review.author}
               onMouseEnter={() => setActiveAuthor(review.author)}
               onClick={() => setActiveAuthor(review.author)}
-              className={`rounded-[22px] border p-5 text-left transition ${
+              className={`rounded-[22px] border p-5 text-left transition-colors ${
                 active
                   ? "border-brand-primary/40 bg-brand-primary/5"
                   : "border-ground-100 hover:border-ground-200 hover:bg-ground-50"

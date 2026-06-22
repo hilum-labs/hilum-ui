@@ -20,15 +20,13 @@ export default function CTABrandPanelWithScreenshot() {
     <section className="w-full bg-white px-6 py-16 sm:px-10 lg:px-14">
       <div className="mx-auto grid max-w-6xl overflow-hidden rounded-[2rem] border border-ground-100 lg:grid-cols-[0.95fr_1.05fr]">
         <div className="bg-ground-900 p-8 text-white sm:p-10 lg:p-12">
-          <p className="label uppercase tracking-[0.24em] text-ground-400">
-            Product tour
-          </p>
+          <p className="label uppercase tracking-[0.24em] text-ground-400">Product tour</p>
           <h2 className="heading mt-4 text-white">
             See the platform that keeps launch work moving.
           </h2>
           <p className="body mt-4 text-ground-300">
-            Bring planning, sign-off, and execution into the same workspace your
-            teams actually want to use.
+            Bring planning, sign-off, and execution into the same workspace your teams actually want
+            to use.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Button size="lg">Start free</Button>
@@ -57,9 +55,7 @@ export default function CTABrandPanelWithScreenshot() {
             <div className="mb-5 flex items-center justify-between">
               <div>
                 <p className="caption text-ground-400">Quarterly launch board</p>
-                <p className="subheading mt-1 text-ground-900">
-                  Live execution snapshot
-                </p>
+                <p className="subheading mt-1 text-ground-900">Live execution snapshot</p>
               </div>
               <span className="rounded-full bg-brand-secondary px-3 py-1 label text-ground-900">
                 7 active launches
@@ -81,10 +77,7 @@ export default function CTABrandPanelWithScreenshot() {
                 const textColor = index === 2 ? "text-white" : "text-ground-900";
 
                 return (
-                  <div
-                    key={label}
-                    className={`rounded-2xl p-4 ${background} ${textColor}`}
-                  >
+                  <div key={label} className={`rounded-2xl p-4 ${background} ${textColor}`}>
                     <p className="caption opacity-80">{label}</p>
                     <p className="subheading mt-2">{value}</p>
                   </div>

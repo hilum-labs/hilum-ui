@@ -64,15 +64,20 @@ function AvatarStackPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Avatar Stack</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Avatar Stack</h1>
         <p className="body max-w-md text-ground-400">
-          Overlapping avatars for showing a group of users at a glance. Supports an overflow badge when the count exceeds a maximum.
+          Overlapping avatars for showing a group of users at a glance. Supports an overflow badge
+          when the count exceeds a maximum.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Atom</p>
@@ -84,7 +89,6 @@ function AvatarStackPage() {
       <PageDocs path="/atoms/avatar-stack/" />
 
       <div className="flex flex-col gap-10">
-
         <div>
           <SectionHeading label="Avatar Stack · Basic" />
           <PreviewBlock title="Default" description="Four stacked avatars" code={CODE.basic}>
@@ -94,7 +98,11 @@ function AvatarStackPage() {
 
         <div>
           <SectionHeading label="Avatar Stack · Overflow" />
-          <PreviewBlock title="With max + overflow" description="Collapses to +N when exceeding max" code={CODE.max}>
+          <PreviewBlock
+            title="With max + overflow"
+            description="Collapses to +N when exceeding max"
+            code={CODE.max}
+          >
             <div className="flex flex-col gap-4">
               <AvatarStack avatars={AVATARS} max={3} />
               <AvatarStack avatars={AVATARS} max={4} />
@@ -116,16 +124,20 @@ function AvatarStackPage() {
 
         <div>
           <SectionHeading label="Avatar Stack · In context" />
-          <PreviewBlock title="With accompanying text" description="Stack + supporting label" code={CODE.withText}>
+          <PreviewBlock
+            title="With accompanying text"
+            description="Stack + supporting label"
+            code={CODE.withText}
+          >
             <div className="flex items-center gap-3">
               <AvatarStack avatars={AVATARS} max={4} />
               <p className="body text-ground-500">
-                <span className="font-semibold text-ground-900">Sofia</span> and 2 others are viewing
+                <span className="font-semibold text-ground-900">Sofia</span> and 2 others are
+                viewing
               </p>
             </div>
           </PreviewBlock>
         </div>
-
       </div>
       <div className="h-16" />
     </div>

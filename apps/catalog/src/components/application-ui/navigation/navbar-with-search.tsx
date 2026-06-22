@@ -1,4 +1,3 @@
-
 import { ChevronDown, Search } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Input } from "@hilum/ui";
@@ -23,22 +22,14 @@ function ProfileButton() {
       className="flex items-center gap-1.5 rounded-full transition-colors text-ground-600 hover:text-ground-900"
     >
       <Avatar size="sm">
-        <AvatarFallback className="bg-ground-100 text-ground-700">
-          WK
-        </AvatarFallback>
+        <AvatarFallback className="bg-ground-100 text-ground-700">WK</AvatarFallback>
       </Avatar>
       <ChevronDown size={14} />
     </button>
   );
 }
 
-function NavItemLink({
-  label,
-  active,
-}: {
-  label: string;
-  active: boolean;
-}) {
+function NavItemLink({ label, active }: { label: string; active: boolean }) {
   const className = active
     ? "bg-brand-primary/10 text-brand-primary font-medium"
     : "text-ground-500 hover:text-ground-900";
@@ -65,7 +56,10 @@ export default function NavbarWithSearch() {
         <div className="flex flex-col gap-3 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center">
           <LogoMark />
           <div className="relative max-w-md lg:mx-6 lg:w-full">
-            <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ground-400" />
+            <Search
+              size={16}
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ground-400"
+            />
             <Input
               type="text"
               placeholder="Search"

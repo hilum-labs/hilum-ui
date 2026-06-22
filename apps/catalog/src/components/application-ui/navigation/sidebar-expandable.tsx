@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronRight } from "lucide-react";
 
@@ -16,7 +15,10 @@ export default function SidebarExpandable() {
             onClick={() => setAnalyticsOpen((value) => !value)}
             className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-ground-700 transition-colors hover:bg-ground-50"
           >
-            <ChevronRight size={16} className={`transition-transform ${analyticsOpen ? "rotate-90" : ""}`} />
+            <ChevronRight
+              size={16}
+              className={`transition-transform ${analyticsOpen ? "rotate-90" : ""}`}
+            />
             Analytics
           </button>
           {analyticsOpen && (
@@ -42,7 +44,10 @@ export default function SidebarExpandable() {
             onClick={() => setCustomersOpen((value) => !value)}
             className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm text-ground-700 transition-colors hover:bg-ground-50"
           >
-            <ChevronRight size={16} className={`transition-transform ${customersOpen ? "rotate-90" : ""}`} />
+            <ChevronRight
+              size={16}
+              className={`transition-transform ${customersOpen ? "rotate-90" : ""}`}
+            />
             Customers
           </button>
           {customersOpen && (

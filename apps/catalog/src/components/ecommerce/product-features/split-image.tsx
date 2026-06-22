@@ -1,8 +1,9 @@
-
 import { Button } from "@hilum/ui";
 
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
 function FeatureList({ items }: { items: string[] }) {
   return (
@@ -17,22 +18,8 @@ function FeatureList({ items }: { items: string[] }) {
   );
 }
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function SplitImage() {
@@ -41,12 +28,10 @@ export default function SplitImage() {
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <div className="rounded-[28px] border border-ground-100 bg-ground-50 p-6">
           <p className="label mb-3 text-brand-primary">Why it works</p>
-          <h3 className="heading text-ground-900">
-            A compact carry built around useful limits.
-          </h3>
+          <h3 className="heading text-ground-900">A compact carry built around useful limits.</h3>
           <p className="body mt-4 text-ground-600">
-            The form factor rewards clear priorities: laptop accessories, a small
-            notebook, charger, wallet, and a layer for the change in weather.
+            The form factor rewards clear priorities: laptop accessories, a small notebook, charger,
+            wallet, and a layer for the change in weather.
           </p>
           <div className="mt-6">
             <FeatureList

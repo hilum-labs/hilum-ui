@@ -1,4 +1,3 @@
-
 import { FolderKanban, LayoutDashboard, Settings, Users } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
@@ -27,11 +26,7 @@ function ShellFrame({ children }: { children: any }) {
 }
 
 function ChevronMetric({ value }: { value: string }) {
-  return (
-    <div className="rounded-full bg-white px-3 py-1 caption text-ground-500">
-      {value}
-    </div>
-  );
+  return <div className="rounded-full bg-white px-3 py-1 caption text-ground-500">{value}</div>;
 }
 
 export default function FullWidthThreeColumnShell() {
@@ -68,7 +63,9 @@ export default function FullWidthThreeColumnShell() {
           <div className="mb-6 flex items-start justify-between gap-4">
             <div>
               <h3 className="heading text-ground-900">Project activity</h3>
-              <p className="caption mt-1 text-ground-400">A full-width three-column frame for operators and PMs.</p>
+              <p className="caption mt-1 text-ground-400">
+                A full-width three-column frame for operators and PMs.
+              </p>
             </div>
             <Badge variant="secondary">28 active tasks</Badge>
           </div>

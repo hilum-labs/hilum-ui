@@ -7,15 +7,11 @@ export default function PageHeadingWithAvatarActions() {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Avatar className="size-12">
-            <AvatarFallback className="bg-brand-primary text-lg text-white">
-              TF
-            </AvatarFallback>
+            <AvatarFallback className="bg-brand-primary text-lg text-white">TF</AvatarFallback>
           </Avatar>
           <div>
             <h1 className="heading text-ground-900">Taylor Foster</h1>
-            <p className="body text-ground-500">
-              Senior Designer · Product Design
-            </p>
+            <p className="body text-ground-500">Senior Designer · Product Design</p>
           </div>
         </div>
         <div className="flex gap-2">

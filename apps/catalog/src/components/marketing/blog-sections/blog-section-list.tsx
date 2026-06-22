@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -55,7 +54,8 @@ export default function BlogSectionList() {
             <Badge variant="outline">Editorial</Badge>
             <h3 className="heading mt-4 text-ground-900">A sharper read on product craft</h3>
             <p className="body mt-3 text-ground-500">
-              A simplified article index with denser content, clearer scanning, and a more newsroom-like rhythm.
+              A simplified article index with denser content, clearer scanning, and a more
+              newsroom-like rhythm.
             </p>
           </div>
           <Button variant="ghost" className="hidden text-ground-600 lg:inline-flex">
@@ -85,7 +85,7 @@ export default function BlogSectionList() {
                   </p>
                 </div>
               </div>
-              <button className="mt-5 inline-flex items-center gap-2 body font-medium text-ground-900 transition-colors hover:text-brand-primary">
+              <button className="mt-5 inline-flex min-h-10 items-center gap-2 body font-medium text-ground-900 transition-colors hover:text-brand-primary">
                 Read more
                 <ArrowRight className="size-4" />
               </button>

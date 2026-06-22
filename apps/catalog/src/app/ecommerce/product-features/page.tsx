@@ -53,12 +53,11 @@ function ProductFeaturesPage() {
           </div>
           <h1 className="display mb-2 text-ground-900">Product Features</h1>
           <p className="body max-w-2xl text-ground-400">
-            Showcase product specs and details with images, tabs, and alternating
-            layouts.
+            Showcase product specs and details with images, tabs, and alternating layouts.
           </p>
         </div>
 
-      <PageDocs path="/ecommerce/product-features/" />
+        <PageDocs path="/ecommerce/product-features/" />
 
         <div className="space-y-8">
           <SectionHeading label="Alternating Sections" />

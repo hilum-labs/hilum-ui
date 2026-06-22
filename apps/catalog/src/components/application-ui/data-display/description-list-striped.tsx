@@ -1,4 +1,3 @@
-
 import { cn } from "@hilum/ui";
 
 const person = {
@@ -26,7 +25,7 @@ export default function DescriptionListStriped() {
             key={term}
             className={cn(
               "px-6 py-4 sm:grid sm:grid-cols-3 sm:gap-4",
-              index % 2 === 0 ? "bg-white" : "bg-ground-50"
+              index % 2 === 0 ? "bg-white" : "bg-ground-50",
             )}
           >
             <dt className="caption font-medium text-ground-500">{term}</dt>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -20,7 +19,8 @@ export default function TextWithProductTiles() {
           <Badge variant="brand">Desk favorites</Badge>
           <h2 className="display mt-5 text-ground-900">Everything your workspace needs</h2>
           <p className="body mt-3 text-ground-500">
-            Start with versatile essentials, then layer in statement pieces that help the whole room feel considered.
+            Start with versatile essentials, then layer in statement pieces that help the whole room
+            feel considered.
           </p>
           <p className="caption mt-5 text-ground-400">Currently spotlighting: {selectedTile}</p>
           <div className="mt-6">
@@ -39,7 +39,7 @@ export default function TextWithProductTiles() {
             key={tile.title}
             onMouseEnter={() => setSelectedTile(tile.title)}
             onClick={() => setSelectedTile(tile.title)}
-            className={`overflow-hidden rounded-[24px] border text-left transition ${
+            className={`overflow-hidden rounded-[24px] border text-left transition-colors ${
               selectedTile === tile.title
                 ? "border-brand-primary shadow-natural"
                 : "border-ground-100 hover:border-ground-200"

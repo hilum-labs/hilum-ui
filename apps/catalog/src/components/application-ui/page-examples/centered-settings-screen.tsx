@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Trash2 } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -65,7 +64,9 @@ export default function CenteredSettingsScreen() {
             <span className="text-ground-900">Account Settings</span>
           </div>
           <h3 className="heading text-ground-900">Account Settings</h3>
-          <p className="caption mt-1 text-ground-400">A centered settings form with clear section separation.</p>
+          <p className="caption mt-1 text-ground-400">
+            A centered settings form with clear section separation.
+          </p>
 
           <div className="mt-6 rounded-2xl border border-ground-100 bg-white p-6">
             <div className="border-b border-ground-100 pb-6">

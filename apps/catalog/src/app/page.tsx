@@ -19,14 +19,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@hilum/ui";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Separator } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { cn } from "@hilum/ui";
@@ -69,7 +62,24 @@ const categories: Category[] = [
     count: 41,
     href: "/atoms",
     comingSoon: false,
-    items: ["Button", "Button Group", "Badge", "Avatar", "Input", "Steps", "Card", "Select", "Combobox", "Dialog", "Table", "Calendar", "Carousel", "Sidebar", "Chart", "Data Table"],
+    items: [
+      "Button",
+      "Button Group",
+      "Badge",
+      "Avatar",
+      "Input",
+      "Steps",
+      "Card",
+      "Select",
+      "Combobox",
+      "Dialog",
+      "Table",
+      "Calendar",
+      "Carousel",
+      "Sidebar",
+      "Chart",
+      "Data Table",
+    ],
   },
   {
     id: "foundations",
@@ -89,7 +99,20 @@ const categories: Category[] = [
     count: 16,
     href: "/molecules",
     comingSoon: false,
-    items: ["Field", "Input Group", "Stat Card", "Empty State", "Section Heading", "Page Heading", "Activity Feed", "Stacked List", "Radio Cards", "Card Heading", "Grid List", "Command Palette"],
+    items: [
+      "Field",
+      "Input Group",
+      "Stat Card",
+      "Empty State",
+      "Section Heading",
+      "Page Heading",
+      "Activity Feed",
+      "Stacked List",
+      "Radio Cards",
+      "Card Heading",
+      "Grid List",
+      "Command Palette",
+    ],
   },
   {
     id: "blocks",
@@ -99,7 +122,15 @@ const categories: Category[] = [
     count: 7,
     href: "/blocks",
     comingSoon: false,
-    items: ["Sign In", "Navbar", "Form Layout", "App Shell · Sidebar", "App Shell · Stacked", "Detail Screen", "Settings Screen"],
+    items: [
+      "Sign In",
+      "Navbar",
+      "Form Layout",
+      "App Shell · Sidebar",
+      "App Shell · Stacked",
+      "Detail Screen",
+      "Settings Screen",
+    ],
   },
   {
     id: "marketing",
@@ -109,27 +140,70 @@ const categories: Category[] = [
     count: 15,
     href: "/marketing",
     comingSoon: false,
-    items: ["Heroes", "Feature Sections", "CTA Sections", "Pricing", "Testimonials", "FAQ Sections", "Stats", "Logo Clouds", "Newsletter", "Content Sections", "Blog", "Contact", "Team", "Footers", "Headers"],
+    items: [
+      "Heroes",
+      "Feature Sections",
+      "CTA Sections",
+      "Pricing",
+      "Testimonials",
+      "FAQ Sections",
+      "Stats",
+      "Logo Clouds",
+      "Newsletter",
+      "Content Sections",
+      "Blog",
+      "Contact",
+      "Team",
+      "Footers",
+      "Headers",
+    ],
   },
   {
     id: "ecommerce",
     label: "Ecommerce",
-    description: "Shop UI patterns — product listings, checkout flows, navigation, and cart components.",
+    description:
+      "Shop UI patterns — product listings, checkout flows, navigation, and cart components.",
     icon: ShoppingBag,
     count: 14,
     href: "/ecommerce",
     comingSoon: false,
-    items: ["Product Lists", "Product Overviews", "Product Features", "Shopping Carts", "Checkout Forms", "Category Filters", "Category Previews", "Store Navigation", "Promo Sections", "Incentives", "Reviews", "Order History"],
+    items: [
+      "Product Lists",
+      "Product Overviews",
+      "Product Features",
+      "Shopping Carts",
+      "Checkout Forms",
+      "Category Filters",
+      "Category Previews",
+      "Store Navigation",
+      "Promo Sections",
+      "Incentives",
+      "Reviews",
+      "Order History",
+    ],
   },
   {
     id: "application-ui",
     label: "Application UI",
-    description: "App interface patterns — shells, forms, navigation, lists, overlays, and page layouts.",
+    description:
+      "App interface patterns — shells, forms, navigation, lists, overlays, and page layouts.",
     icon: LayoutDashboard,
     count: 11,
     href: "/application-ui",
     comingSoon: false,
-    items: ["Application Shells", "Forms", "Navigation", "Lists", "Overlays", "Data Display", "Headings", "Layout", "Elements", "Feedback", "Page Examples"],
+    items: [
+      "Application Shells",
+      "Forms",
+      "Navigation",
+      "Lists",
+      "Overlays",
+      "Data Display",
+      "Headings",
+      "Layout",
+      "Elements",
+      "Feedback",
+      "Page Examples",
+    ],
   },
 ];
 
@@ -141,8 +215,10 @@ const packages: PackageDoc[] = [
       "Core design system primitives: buttons, inputs, dialogs, comboboxes, data display, tokens, fonts, and Hilum icons.",
     install: "pnpm add @hilum/ui",
     setup: "Import the token and font stylesheets once in your app's global CSS.",
-    setupCode: '@import "tailwindcss";\n@import "@hilum/ui/tokens.css";\n@import "@hilum/ui/fonts.css";',
-    usage: 'import { Button, Dialog, Input } from "@hilum/ui";\nimport { Plus } from "@hilum/ui/icons";\n\n<Button>\n  <Plus size={14} />\n  New project\n</Button>',
+    setupCode:
+      '@import "tailwindcss";\n@import "@hilum/ui/tokens.css";\n@import "@hilum/ui/fonts.css";',
+    usage:
+      'import { Button, Dialog, Input } from "@hilum/ui";\nimport { Plus } from "@hilum/ui/icons";\n\n<Button>\n  <Plus size={14} />\n  New project\n</Button>',
     bestFor: ["Product UI primitives", "Brand tokens", "Light/dark theming", "Shared icon exports"],
     dependencies: "Peer dependencies: react and react-dom.",
     icon: Component,
@@ -153,9 +229,16 @@ const packages: PackageDoc[] = [
     description:
       "Composed product-app layouts built from Hilum primitives: sidebars, top bars, page headers, detail screens, and settings screens.",
     install: "pnpm add @hilum/app-shell @hilum/ui",
-    setup: "Pass your router's Link component into AppShell. Active navigation state stays caller-controlled.",
-    usage: 'import { AppShell, AppSidebar, AppHeader } from "@hilum/app-shell";\n\n<AppShell linkComponent={Link}>\n  <AppSidebar sections={sections} user={currentUser} />\n  <AppHeader breadcrumbs={breadcrumbs} />\n  <main>{children}</main>\n</AppShell>',
-    bestFor: ["Internal app shells", "Sidebar navigation", "Product chrome", "Settings and detail layouts"],
+    setup:
+      "Pass your router's Link component into AppShell. Active navigation state stays caller-controlled.",
+    usage:
+      'import { AppShell, AppSidebar, AppHeader } from "@hilum/app-shell";\n\n<AppShell linkComponent={Link}>\n  <AppSidebar sections={sections} user={currentUser} />\n  <AppHeader breadcrumbs={breadcrumbs} />\n  <main>{children}</main>\n</AppShell>',
+    bestFor: [
+      "Internal app shells",
+      "Sidebar navigation",
+      "Product chrome",
+      "Settings and detail layouts",
+    ],
     dependencies: "Peers: @hilum/ui, react, react-dom. Optional peer: lucide-react.",
     icon: PanelTop,
   },
@@ -165,9 +248,16 @@ const packages: PackageDoc[] = [
     description:
       "Engine-agnostic editor chrome for authoring surfaces: shell, toolbar, side panels, collapsible panes, history, and keybindings.",
     install: "pnpm add @hilum/designer @hilum/ui",
-    setup: "Use it for the editor frame and control surface. Pair it with a canvas, form builder, layout editor, or custom authoring engine.",
-    usage: 'import { DesignerShell, DesignerToolbar, DesignerPanel } from "@hilum/designer";\n\n<DesignerShell>\n  <DesignerToolbar />\n  <DesignerPanel />\n  {editorSurface}\n</DesignerShell>',
-    bestFor: ["Editor chrome", "Toolbar composition", "Property panels", "Undo and keyboard shortcuts"],
+    setup:
+      "Use it for the editor frame and control surface. Pair it with a canvas, form builder, layout editor, or custom authoring engine.",
+    usage:
+      'import { DesignerShell, DesignerToolbar, DesignerPanel } from "@hilum/designer";\n\n<DesignerShell>\n  <DesignerToolbar />\n  <DesignerPanel />\n  {editorSurface}\n</DesignerShell>',
+    bestFor: [
+      "Editor chrome",
+      "Toolbar composition",
+      "Property panels",
+      "Undo and keyboard shortcuts",
+    ],
     dependencies: "Peers: @hilum/ui, react, react-dom. Runtime dependency: lucide-react.",
     icon: Layers,
   },
@@ -177,10 +267,18 @@ const packages: PackageDoc[] = [
     description:
       "Generic free-positioned canvas engine with typed layers, pan/zoom, drag and resize, marquee selection, snap guides, actions, and pluggable renderers.",
     install: "pnpm add @hilum/designer-canvas @hilum/designer @hilum/ui",
-    setup: "Register app-specific renderers and optional services for paths, fonts, units, uploads, or thumbnails.",
-    usage: 'import { CanvasProvider, DesignerCanvas, DesignerFrame } from "@hilum/designer-canvas";\n\n<CanvasProvider frameSize={frameSize} renderers={renderers} services={services}>\n  <DesignerCanvas>\n    <DesignerFrame />\n  </DesignerCanvas>\n</CanvasProvider>',
-    bestFor: ["Layered canvases", "Pan and zoom viewports", "Drag/resize tools", "Renderer registries"],
-    dependencies: "Peers: @hilum/designer, @hilum/ui, react, react-dom. Optional peer: lucide-react.",
+    setup:
+      "Register app-specific renderers and optional services for paths, fonts, units, uploads, or thumbnails.",
+    usage:
+      'import { CanvasProvider, DesignerCanvas, DesignerFrame } from "@hilum/designer-canvas";\n\n<CanvasProvider frameSize={frameSize} renderers={renderers} services={services}>\n  <DesignerCanvas>\n    <DesignerFrame />\n  </DesignerCanvas>\n</CanvasProvider>',
+    bestFor: [
+      "Layered canvases",
+      "Pan and zoom viewports",
+      "Drag/resize tools",
+      "Renderer registries",
+    ],
+    dependencies:
+      "Peers: @hilum/designer, @hilum/ui, react, react-dom. Optional peer: lucide-react.",
     icon: Box,
   },
   {
@@ -189,10 +287,12 @@ const packages: PackageDoc[] = [
     description:
       "CLI for installing Hilum marketing blocks into an application from the catalog registry.",
     install: "pnpm add -D @hilum/blocks",
-    setup: "Run the CLI from an app workspace. Added blocks are written into src/components/blocks by default.",
+    setup:
+      "Run the CLI from an app workspace. Added blocks are written into src/components/blocks by default.",
     usage: "pnpm hilum list\npnpm hilum add hero-simple-centered",
     bestFor: ["Marketing block installs", "Registry-driven copy", "Dependency-aware scaffolding"],
-    dependencies: "Runtime dependency: commander. The CLI installs block dependencies declared by the registry.",
+    dependencies:
+      "Runtime dependency: commander. The CLI installs block dependencies declared by the registry.",
     icon: Terminal,
   },
 ];
@@ -204,19 +304,16 @@ const packages: PackageDoc[] = [
 function HomePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-
       {/* Header */}
       <div className="mb-10 -mx-8 px-8 py-8 rounded-2xl bg-brand-secondary/30">
         <div className="mb-4 flex items-center gap-2">
           <Badge variant="secondary">packages v2.0.1</Badge>
           <Badge variant="outline">catalog v0.1.1</Badge>
         </div>
-        <h1 className="display mb-3 text-ground-900">
-          Design System
-        </h1>
+        <h1 className="display mb-3 text-ground-900">Design System</h1>
         <p className="body max-w-md text-ground-500">
-          The visual language powering every interface we build. Consistent,
-          accessible, and beautifully crafted components for every team.
+          The visual language powering every interface we build. Consistent, accessible, and
+          beautifully crafted components for every team.
         </p>
       </div>
 
@@ -226,9 +323,7 @@ function HomePage() {
       <div className="mb-10">
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-2 label text-ground-400">
-              Packages
-            </p>
+            <p className="mb-2 label text-ground-400">Packages</p>
             <h2 className="heading text-ground-900">Install and use Hilum packages</h2>
           </div>
           <Badge variant="outline">5 packages</Badge>
@@ -253,31 +348,28 @@ function HomePage() {
 
       {/* Categories */}
       <div className="mb-10">
-        <p className="mb-4 label text-ground-400">
-          Categories
-        </p>
+        <p className="mb-4 label text-ground-400">Categories</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {categories.map((cat) =>
             cat.comingSoon ? (
               <ComingSoonCard key={cat.id} cat={cat} />
             ) : (
               <ActiveCard key={cat.id} cat={cat} />
-            )
+            ),
           )}
         </div>
       </div>
 
       {/* Getting started */}
       <div>
-        <p className="mb-4 label text-ground-400">
-          Getting started
-        </p>
+        <p className="mb-4 label text-ground-400">Getting started</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="subheading">Install the package</CardTitle>
               <CardDescription className="body">
-                Add <code className="font-mono text-ground-600">@hilum/ui</code> to your project, import the tokens CSS, and start using components.
+                Add <code className="font-mono text-ground-600">@hilum/ui</code> to your project,
+                import the tokens CSS, and start using components.
               </CardDescription>
             </CardHeader>
             <CardContent className="px-0 pb-0">
@@ -304,7 +396,8 @@ function HomePage() {
             <CardHeader>
               <CardTitle className="subheading">Brand tokens and themes</CardTitle>
               <CardDescription className="body">
-                Hilum ships a fixed brand palette, typography, fonts, component tokens, and automatic light/dark mode support.
+                Hilum ships a fixed brand palette, typography, fonts, component tokens, and
+                automatic light/dark mode support.
               </CardDescription>
             </CardHeader>
             <CardContent className="px-0 pb-0">
@@ -313,9 +406,9 @@ function HomePage() {
                   <code>
                     <span className="text-ground-500">{`<!-- force a mode when needed -->`}</span>
                     {"\n"}
-                    <span className="text-ground-300">{"<html data-theme=\"light\">"}</span>
+                    <span className="text-ground-300">{'<html data-theme="light">'}</span>
                     {"\n"}
-                    <span className="text-ground-300">{"<html data-theme=\"dark\">"}</span>
+                    <span className="text-ground-300">{'<html data-theme="dark">'}</span>
                   </code>
                 </pre>
               </div>
@@ -346,9 +439,7 @@ function ActiveCard({ cat }: { cat: Category }) {
           <div className="flex size-8 items-center justify-center rounded-lg bg-brand-primary">
             <cat.icon size={15} strokeWidth={1.75} className="text-white" />
           </div>
-          <span className="caption font-medium text-ground-400">
-            {cat.count} items
-          </span>
+          <span className="caption font-medium text-ground-400">{cat.count} items</span>
         </div>
         <CardTitle className="subheading">{cat.label}</CardTitle>
         <CardDescription className="body">{cat.description}</CardDescription>
@@ -484,7 +575,9 @@ function Stat({ label, value, active }: { label: string; value: string; active: 
       <p className={cn("heading font-medium", active ? "text-ground-900" : "text-ground-300")}>
         {value}
       </p>
-      <p className={cn("mt-0.5 caption font-medium", active ? "text-ground-400" : "text-ground-300")}>
+      <p
+        className={cn("mt-0.5 caption font-medium", active ? "text-ground-400" : "text-ground-300")}
+      >
         {label}
       </p>
     </div>

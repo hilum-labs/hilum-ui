@@ -107,7 +107,7 @@ function CommandPalette({
                     <button
                       key={item.id ?? i}
                       type="button"
-                      className="flex w-full items-center gap-3 px-4 py-2.5 body text-left transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none"
+                      className="flex min-h-10 w-full items-center gap-3 px-4 py-2.5 body text-left transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-none"
                       onClick={() => handleSelect(item)}
                     >
                       {item.icon && (
@@ -118,7 +118,9 @@ function CommandPalette({
                       <div className="min-w-0 flex-1">
                         <p className="font-medium text-foreground truncate">{item.label}</p>
                         {item.description && (
-                          <p className="caption text-muted-foreground truncate">{item.description}</p>
+                          <p className="caption text-muted-foreground truncate">
+                            {item.description}
+                          </p>
                         )}
                       </div>
                       <ArrowRight size={13} className="shrink-0 text-muted-foreground" />

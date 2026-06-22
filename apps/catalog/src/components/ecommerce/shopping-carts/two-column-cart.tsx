@@ -1,15 +1,8 @@
-
 import { useState } from "react";
 import { Trash2 } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@hilum/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@hilum/ui";
 
 const CART_ITEMS = [
   {
@@ -77,14 +70,19 @@ function CartRow({
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <a href={item.href} className="subheading text-ground-900 transition hover:text-brand-primary">
+            <a
+              href={item.href}
+              className="subheading text-ground-900 transition-colors hover:text-brand-primary"
+            >
               {item.name}
             </a>
             <p className="caption mt-1 text-ground-500">
               {item.color} / {item.size}
             </p>
           </div>
-          <p className="body font-medium text-ground-900">{formatCurrency(item.price * quantity)}</p>
+          <p className="body font-medium text-ground-900">
+            {formatCurrency(item.price * quantity)}
+          </p>
         </div>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
           {quantityControl}
@@ -170,7 +168,9 @@ export default function TwoColumnCart() {
           <div className="mt-6 rounded-2xl bg-ground-50 p-4">
             <div className="flex items-center justify-between">
               <p className="subheading text-ground-900">Total</p>
-              <p className="heading text-ground-900">{formatCurrency(subtotalTwo + shippingTwo + taxTwo)}</p>
+              <p className="heading text-ground-900">
+                {formatCurrency(subtotalTwo + shippingTwo + taxTwo)}
+              </p>
             </div>
             <p className="caption mt-2 text-ground-500">Delivery in 2 to 4 business days.</p>
           </div>

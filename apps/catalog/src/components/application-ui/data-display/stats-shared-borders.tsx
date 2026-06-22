@@ -1,4 +1,3 @@
-
 const stats = [
   { label: "Total Subscribers", value: "71,897", change: "+12%", up: true },
   { label: "Avg. Open Rate", value: "58.16%", change: "+5.4%", up: true },
@@ -16,9 +15,7 @@ export default function StatsSharedBorders() {
         <div key={stat.label} className="px-6 py-5">
           <dt className="mb-1 caption text-ground-500">{stat.label}</dt>
           <dd className="flex items-end justify-between gap-4">
-            <span className="heading font-semibold text-ground-900">
-              {stat.value}
-            </span>
+            <span className="heading font-semibold text-ground-900">{stat.value}</span>
             <span className={changeClass(stat.up)}>{stat.change}</span>
           </dd>
         </div>

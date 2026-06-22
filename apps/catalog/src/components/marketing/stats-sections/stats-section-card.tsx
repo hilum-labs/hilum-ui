@@ -1,4 +1,3 @@
-
 const STATS = [
   { label: "Customers worldwide", value: "8,000+" },
   { label: "Revenue generated", value: "M+" },
@@ -31,8 +30,8 @@ export default function StatsSectionCard() {
       <div className="mx-auto max-w-5xl">
         <h2 className="heading text-ground-900">Trusted by teams worldwide</h2>
         <p className="body mx-auto mt-3 max-w-2xl text-ground-500">
-          A clean metrics block for product pages where the proof needs to
-          feel polished without overpowering the surrounding content.
+          A clean metrics block for product pages where the proof needs to feel polished without
+          overpowering the surrounding content.
         </p>
 
         <div className="shadow-elevated mt-10 overflow-hidden rounded-xl bg-white">

@@ -2,11 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import {
-  ResizablePanelGroup,
-  ResizablePanel,
-  ResizableHandle,
-} from "@hilum/ui";
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { cn } from "@hilum/ui";
 
@@ -130,9 +126,13 @@ function ResizablePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Resizable</span>
         </div>
@@ -153,7 +153,10 @@ function ResizablePage() {
           code={CODE.horizontal}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 300 }}>
+          <div
+            className="w-full overflow-hidden rounded-xl border border-ground-100"
+            style={{ height: 300 }}
+          >
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={50}>
                 <PanelContent label="Left panel" />
@@ -172,7 +175,10 @@ function ResizablePage() {
           code={CODE.threePanel}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 300 }}>
+          <div
+            className="w-full overflow-hidden rounded-xl border border-ground-100"
+            style={{ height: 300 }}
+          >
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={25} minSize={20}>
                 <PanelContent label="Sidebar" />
@@ -197,7 +203,10 @@ function ResizablePage() {
           code={CODE.vertical}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 400 }}>
+          <div
+            className="w-full overflow-hidden rounded-xl border border-ground-100"
+            style={{ height: 400 }}
+          >
             <ResizablePanelGroup direction="vertical">
               <ResizablePanel defaultSize={40}>
                 <PanelContent label="Header / Toolbar" />
@@ -218,7 +227,10 @@ function ResizablePage() {
           code={CODE.nested}
           previewClassName="p-6"
         >
-          <div className="w-full overflow-hidden rounded-xl border border-ground-100" style={{ height: 400 }}>
+          <div
+            className="w-full overflow-hidden rounded-xl border border-ground-100"
+            style={{ height: 400 }}
+          >
             <ResizablePanelGroup direction="horizontal">
               <ResizablePanel defaultSize={30}>
                 <PanelContent label="Navigation" />

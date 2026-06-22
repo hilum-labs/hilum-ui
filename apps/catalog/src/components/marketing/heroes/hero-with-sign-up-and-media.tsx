@@ -12,8 +12,8 @@ export default function HeroWithSignUpAndMedia() {
             Build a repeatable launch engine in one week.
           </h1>
           <p className="body mt-5 text-ground-500">
-            Start with your next launch, invite the whole team, and roll the
-            workflow forward as a reusable operating system.
+            Start with your next launch, invite the whole team, and roll the workflow forward as a
+            reusable operating system.
           </p>
           <form className="mt-8 flex flex-col gap-3 sm:flex-row">
             <input
@@ -32,8 +32,8 @@ export default function HeroWithSignUpAndMedia() {
             <p className="caption text-ground-400">Rollout impact</p>
             <p className="heading mt-3 text-ground-900">3.4x faster</p>
             <p className="body mt-3 text-ground-500">
-              Teams using guided launch templates cut planning time from nine
-              days to less than three.
+              Teams using guided launch templates cut planning time from nine days to less than
+              three.
             </p>
             <div className="mt-6 grid grid-cols-3 gap-3">
               {[
@@ -55,9 +55,8 @@ export default function HeroWithSignUpAndMedia() {
               "We replaced three disconnected tools in our first rollout."
             </p>
             <p className="body mt-4 text-ground-300">
-              "Before Beacon, launch week meant chasing updates in Slack and
-              rebuilding status decks at midnight. Now every stakeholder sees the
-              same picture."
+              "Before Beacon, launch week meant chasing updates in Slack and rebuilding status decks
+              at midnight. Now every stakeholder sees the same picture."
             </p>
             <div className="mt-8 flex items-center gap-3">
               <div className="flex size-11 items-center justify-center rounded-full bg-white/10">
@@ -65,9 +64,7 @@ export default function HeroWithSignUpAndMedia() {
               </div>
               <div>
                 <p className="body text-white">Avery Ng</p>
-                <p className="caption text-ground-400">
-                  VP Marketing, Northstar
-                </p>
+                <p className="caption text-ground-400">VP Marketing, Northstar</p>
               </div>
             </div>
           </div>

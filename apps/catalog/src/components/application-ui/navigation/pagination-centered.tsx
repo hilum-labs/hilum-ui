@@ -1,14 +1,7 @@
-
 import { type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-function PageNumber({
-  current = false,
-  children,
-}: {
-  current?: boolean;
-  children: ReactNode;
-}) {
+function PageNumber({ current = false, children }: { current?: boolean; children: ReactNode }) {
   return (
     <button
       type="button"

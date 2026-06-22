@@ -30,12 +30,10 @@ export default function SideBySide() {
     <section className="w-full bg-white px-8 py-16">
       <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <div>
-          <h2 className="heading text-ground-900">
-            Got questions? We have answers.
-          </h2>
+          <h2 className="heading text-ground-900">Got questions? We have answers.</h2>
           <p className="body mt-4 max-w-md text-ground-500">
-            This layout works well when the FAQ needs to support a strong
-            section headline and a bit more brand voice.
+            This layout works well when the FAQ needs to support a strong section headline and a bit
+            more brand voice.
           </p>
         </div>
 

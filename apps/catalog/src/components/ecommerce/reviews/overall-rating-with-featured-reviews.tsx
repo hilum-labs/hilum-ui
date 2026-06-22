@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { MessageSquareQuote } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -96,7 +95,7 @@ export default function OverallRatingWithFeaturedReviews() {
               <button
                 key={review.author}
                 onClick={() => setActiveAuthor(review.author)}
-                className={`rounded-[28px] border p-6 text-left transition ${
+                className={`rounded-[28px] border p-6 text-left transition-colors ${
                   active
                     ? "border-brand-primary/40 bg-brand-primary/5"
                     : "border-ground-100 hover:border-ground-200"

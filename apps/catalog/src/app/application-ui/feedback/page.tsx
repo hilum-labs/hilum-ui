@@ -67,19 +67,35 @@ function FeedbackPage() {
         <section>
           <SectionHeading label="Alerts" />
           <div className="grid gap-4 xl:grid-cols-2">
-            <PreviewBlock title="With description" code={alertWithDescriptionSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With description"
+              code={alertWithDescriptionSource}
+              previewClassName="p-0"
+            >
               <AlertWithDescription />
             </PreviewBlock>
-            <PreviewBlock title="With accent border" code={alertAccentBorderSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With accent border"
+              code={alertAccentBorderSource}
+              previewClassName="p-0"
+            >
               <AlertAccentBorder />
             </PreviewBlock>
-            <PreviewBlock title="With dismiss button" code={alertDismissibleSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With dismiss button"
+              code={alertDismissibleSource}
+              previewClassName="p-0"
+            >
               <AlertDismissible />
             </PreviewBlock>
             <PreviewBlock title="With actions" code={alertWithActionsSource} previewClassName="p-0">
               <AlertWithActions />
             </PreviewBlock>
-            <PreviewBlock title="With link on right" code={alertWithLinkSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With link on right"
+              code={alertWithLinkSource}
+              previewClassName="p-0"
+            >
               <AlertWithLink />
             </PreviewBlock>
             <PreviewBlock title="With list" code={alertWithListSource} previewClassName="p-0">
@@ -94,7 +110,11 @@ function FeedbackPage() {
             <PreviewBlock title="Simple" code={emptyStateSimpleSource} previewClassName="p-0">
               <EmptyStateSimple />
             </PreviewBlock>
-            <PreviewBlock title="With dashed border" code={emptyStateDashedSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With dashed border"
+              code={emptyStateDashedSource}
+              previewClassName="p-0"
+            >
               <EmptyStateDashed />
             </PreviewBlock>
             <PreviewBlock
@@ -120,7 +140,11 @@ function FeedbackPage() {
             >
               <EmptyStateStartingPoints />
             </PreviewBlock>
-            <PreviewBlock title="With templates" code={emptyStateTemplatesSource} previewClassName="p-0">
+            <PreviewBlock
+              title="With templates"
+              code={emptyStateTemplatesSource}
+              previewClassName="p-0"
+            >
               <EmptyStateTemplates />
             </PreviewBlock>
           </div>

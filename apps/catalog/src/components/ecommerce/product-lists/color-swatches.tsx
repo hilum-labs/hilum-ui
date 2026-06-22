@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 const PRODUCTS = [
@@ -70,7 +69,11 @@ export default function ColorSwatches() {
                 className="w-72 shrink-0 rounded-[2rem] border border-ground-100 bg-white p-4 shadow-natural md:w-auto"
               >
                 <div className="overflow-hidden rounded-2xl bg-ground-50">
-                  <img src={product.image} alt={product.name} className="aspect-square w-full object-cover" />
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="aspect-square w-full object-cover"
+                  />
                 </div>
                 <div className="mt-4">
                   <div className="flex items-start justify-between gap-4">
@@ -92,7 +95,7 @@ export default function ColorSwatches() {
                           }))
                         }
                         aria-label={`${product.name} in ${color.name}`}
-                        className={`flex size-7 items-center justify-center rounded-full border transition ${
+                        className={`flex size-7 items-center justify-center rounded-full border transition-colors ${
                           selectedSwatches[product.name] === colorIndex
                             ? "border-ground-900"
                             : "border-transparent hover:border-ground-200"

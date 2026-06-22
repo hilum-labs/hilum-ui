@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { CheckCircle2, X } from "lucide-react";
 
@@ -17,7 +16,8 @@ export default function AlertDismissible() {
           <div className="flex-1">
             <p className="body font-semibold text-ground-900">Changes published</p>
             <p className="body mt-1 text-ground-700">
-              Your design token updates are live and synced across the web app, docs site, and Figma library.
+              Your design token updates are live and synced across the web app, docs site, and Figma
+              library.
             </p>
           </div>
           <button

@@ -22,10 +22,7 @@ function Navbar({ logo, items = [], actions, className }: NavbarProps) {
 
   return (
     <nav
-      className={cn(
-        "flex h-16 items-center gap-6 border-b border-border bg-card px-6",
-        className,
-      )}
+      className={cn("flex h-16 items-center gap-6 border-b border-border bg-card px-6", className)}
     >
       {logo && <div className="shrink-0">{logo}</div>}
 
@@ -36,7 +33,7 @@ function Navbar({ logo, items = [], actions, className }: NavbarProps) {
               href={item.href}
               {...(item.onClick !== undefined && { onClick: item.onClick })}
               className={cn(
-                "flex items-center gap-2 rounded-md px-3 py-1.5 caption transition-colors",
+                "flex min-h-10 items-center gap-2 rounded-md px-3 caption transition-colors",
                 item.active
                   ? "text-foreground bg-muted font-medium"
                   : "text-muted-foreground hover:text-foreground hover:bg-muted",

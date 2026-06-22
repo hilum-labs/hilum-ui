@@ -1,4 +1,3 @@
-
 import { AlertTriangle } from "lucide-react";
 import { Button } from "@hilum/ui";
 
@@ -20,9 +19,7 @@ export default function ModalSimpleAlert() {
           Deactivating this account will remove access to all shared workspaces and billing tools.
         </p>
         <div className="mt-6 grid grid-cols-2 gap-3">
-          <Button variant="destructive">
-            Deactivate
-          </Button>
+          <Button variant="destructive">Deactivate</Button>
           <Button variant="outline">Cancel</Button>
         </div>
       </div>

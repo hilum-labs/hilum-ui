@@ -16,7 +16,9 @@ function Field({
 }
 
 function MessageField({ rows = 5 }: { rows?: number }) {
-  return <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />;
+  return (
+    <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />
+  );
 }
 
 export default function ContactCentered() {

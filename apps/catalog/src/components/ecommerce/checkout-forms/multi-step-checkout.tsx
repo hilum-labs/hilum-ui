@@ -1,17 +1,10 @@
-
 import { useState } from "react";
 import { Check, ChevronRight, CreditCard, Package, User } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Input } from "@hilum/ui";
 import { Label } from "@hilum/ui";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@hilum/ui";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@hilum/ui";
 
 const STATES = ["California", "New York", "Texas", "Washington"];
 const COUNTRIES = ["United States", "Canada", "Mexico"];
@@ -46,7 +39,12 @@ function ContactFields({ prefix }: { prefix: string }) {
       <FormField id={`${prefix}-first-name`} label="First name" placeholder="Ava" />
       <FormField id={`${prefix}-last-name`} label="Last name" placeholder="Mitchell" />
       <div className="sm:col-span-2">
-        <FormField id={`${prefix}-email`} label="Email" type="email" placeholder="ava@example.com" />
+        <FormField
+          id={`${prefix}-email`}
+          label="Email"
+          type="email"
+          placeholder="ava@example.com"
+        />
       </div>
     </div>
   );
@@ -144,7 +142,7 @@ export default function MultiStepCheckout() {
                 key={step.label}
                 type="button"
                 onClick={() => setCurrentStep(index)}
-                className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition ${
+                className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition-colors ${
                   isCompleted
                     ? "border-brand-primary/20 bg-brand-primary/10"
                     : isCurrent
@@ -153,7 +151,7 @@ export default function MultiStepCheckout() {
                 }`}
               >
                 <div
-                  className={`flex size-9 items-center justify-center rounded-full ${
+                  className={`flex size-10 items-center justify-center rounded-full ${
                     isCompleted
                       ? "bg-brand-primary text-white"
                       : isCurrent
@@ -164,7 +162,9 @@ export default function MultiStepCheckout() {
                   {isCompleted ? <Check size={16} /> : <Icon size={16} />}
                 </div>
                 <div>
-                  <p className={`label ${isCompleted || isCurrent ? "text-brand-primary" : "text-ground-400"}`}>
+                  <p
+                    className={`label ${isCompleted || isCurrent ? "text-brand-primary" : "text-ground-400"}`}
+                  >
                     Step {index + 1}
                   </p>
                   <p className="body font-medium text-ground-900">{step.label}</p>
@@ -174,12 +174,18 @@ export default function MultiStepCheckout() {
           })}
         </div>
         {currentStep === 0 ? (
-          <FormSection title="Contact information" description="Start with the customer details for this order.">
+          <FormSection
+            title="Contact information"
+            description="Start with the customer details for this order."
+          >
             <ContactFields prefix="step-contact" />
           </FormSection>
         ) : null}
         {currentStep === 1 ? (
-          <FormSection title="Shipping address" description="Set the destination before selecting payment.">
+          <FormSection
+            title="Shipping address"
+            description="Set the destination before selecting payment."
+          >
             <ShippingFields prefix="step-shipping" />
           </FormSection>
         ) : null}

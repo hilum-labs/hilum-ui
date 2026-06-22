@@ -1,4 +1,3 @@
-
 const person = {
   name: "Margaret Thropp",
   email: "margaret@example.com",

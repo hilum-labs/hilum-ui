@@ -17,7 +17,9 @@ function Field({
 }
 
 function MessageField({ rows = 5 }: { rows?: number }) {
-  return <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />;
+  return (
+    <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />
+  );
 }
 
 function ContactCard({
@@ -70,13 +72,24 @@ export default function ContactSideBySideGrid() {
       <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <aside className="rounded-2xl bg-ground-50 p-8">
           <p className="label text-brand-primary">General inquiries</p>
-          <h2 className="heading mt-4 text-ground-900">Need a quick answer or a detailed proposal?</h2>
+          <h2 className="heading mt-4 text-ground-900">
+            Need a quick answer or a detailed proposal?
+          </h2>
           <p className="body mt-4 text-ground-500">
-            Tell us whether you are evaluating a new system, refreshing an existing library, or planning a migration.
+            Tell us whether you are evaluating a new system, refreshing an existing library, or
+            planning a migration.
           </p>
           <div className="mt-8 space-y-4">
-            <ContactCard icon={Mail} title="Sales" details={["sales@northstar.so", "Response in 24 hours"]} />
-            <ContactCard icon={MessageSquare} title="Support" details={["support@northstar.so", "For implementation questions"]} />
+            <ContactCard
+              icon={Mail}
+              title="Sales"
+              details={["sales@northstar.so", "Response in 24 hours"]}
+            />
+            <ContactCard
+              icon={MessageSquare}
+              title="Support"
+              details={["support@northstar.so", "For implementation questions"]}
+            />
           </div>
         </aside>
         <ContactForm />

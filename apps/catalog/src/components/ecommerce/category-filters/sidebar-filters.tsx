@@ -1,4 +1,3 @@
-
 import { useState, type Dispatch, type SetStateAction } from "react";
 import { ChevronDown } from "lucide-react";
 import { Badge } from "@hilum/ui";
@@ -82,14 +81,9 @@ function CheckboxRow({
   );
 }
 
-function toggleArrayValue(
-  value: string,
-  setter: Dispatch<SetStateAction<string[]>>
-) {
+function toggleArrayValue(value: string, setter: Dispatch<SetStateAction<string[]>>) {
   setter((current) =>
-    current.includes(value)
-      ? current.filter((entry) => entry !== value)
-      : [...current, value]
+    current.includes(value) ? current.filter((entry) => entry !== value) : [...current, value],
   );
 }
 
@@ -109,11 +103,13 @@ export default function SidebarFilters() {
     <section className="min-h-[320px] w-full bg-white lg:flex">
       <aside className="w-full border-b border-ground-100 p-6 lg:w-64 lg:border-b-0 lg:border-r">
         <div className="space-y-6">
-          {([
-            ["color", "Color"],
-            ["category", "Category"],
-            ["size", "Sizes"],
-          ] as const).map(([key, label]) => (
+          {(
+            [
+              ["color", "Color"],
+              ["category", "Category"],
+              ["size", "Sizes"],
+            ] as const
+          ).map(([key, label]) => (
             <div key={key}>
               <button
                 type="button"
@@ -149,9 +145,7 @@ export default function SidebarFilters() {
                         key={option}
                         label={option}
                         checked={sidebarCategories.includes(option)}
-                        onChange={() =>
-                          toggleArrayValue(option, setSidebarCategories)
-                        }
+                        onChange={() => toggleArrayValue(option, setSidebarCategories)}
                       />
                     ))}
                   {key === "size" &&

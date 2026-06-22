@@ -26,13 +26,10 @@ export default function NewsletterCenteredCardWithGraphic() {
           <p className="label mb-4 text-brand-primary">Inside Workflow</p>
           <h3 className="heading text-ground-900">The build log, delivered weekly</h3>
           <p className="body mx-auto mt-4 max-w-2xl text-ground-500">
-            Get a tighter look at roadmap themes, product bets, and reusable design
-            patterns without the noise.
+            Get a tighter look at roadmap themes, product bets, and reusable design patterns without
+            the noise.
           </p>
-          <form
-            className="mx-auto mt-8 max-w-xl"
-            onSubmit={(event) => event.preventDefault()}
-          >
+          <form className="mx-auto mt-8 max-w-xl" onSubmit={(event) => event.preventDefault()}>
             <div className="flex flex-col gap-3 md:flex-row">
               <EmailInput className="md:flex-1" />
               <Button type="submit">Subscribe</Button>

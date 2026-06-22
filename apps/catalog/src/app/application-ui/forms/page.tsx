@@ -51,8 +51,8 @@ function FormsPage() {
           <div>
             <h1 className="display mb-2 text-ground-900">Forms</h1>
             <p className="body max-w-2xl text-ground-500">
-              Input groups, radio groups, selects, checkboxes, toggles, form
-              layouts, and sign-in forms.
+              Input groups, radio groups, selects, checkboxes, toggles, form layouts, and sign-in
+              forms.
             </p>
           </div>
           <Badge variant="brand" className="self-start rounded-full px-3 py-1">

@@ -1,4 +1,3 @@
-
 import { ArrowRight } from "lucide-react";
 
 const PRODUCTS = [
@@ -29,7 +28,11 @@ export default function CtaLink() {
         {PRODUCTS.map((product) => (
           <article key={product.name}>
             <div className="overflow-hidden rounded-3xl bg-ground-100">
-              <img src={product.image} alt={product.name} className="aspect-[4/3] w-full object-cover" />
+              <img
+                src={product.image}
+                alt={product.name}
+                className="aspect-[4/3] w-full object-cover"
+              />
             </div>
             <div className="mt-4 flex items-start justify-between gap-4">
               <div>

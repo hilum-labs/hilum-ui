@@ -1,14 +1,4 @@
-
-const COMPANIES = [
-  "Vercel",
-  "Linear",
-  "Stripe",
-  "Figma",
-  "Notion",
-  "Loom",
-  "Intercom",
-  "Segment",
-];
+const COMPANIES = ["Vercel", "Linear", "Stripe", "Figma", "Notion", "Loom", "Intercom", "Segment"];
 
 function LogoWordmark({
   name,

@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-
 import { Badge } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -54,12 +53,11 @@ function CategoryPreviewsPage() {
           </div>
           <h1 className="display mb-2 text-ground-900">Category Previews</h1>
           <p className="body max-w-2xl text-ground-400">
-            Category landing sections with image cards, scrolling carousels, and split
-            layouts.
+            Category landing sections with image cards, scrolling carousels, and split layouts.
           </p>
         </div>
 
-      <PageDocs path="/ecommerce/category-previews/" />
+        <PageDocs path="/ecommerce/category-previews/" />
 
         <div className="space-y-8">
           <SectionHeading label="Three Column" />

@@ -7,10 +7,10 @@ export default function HeroSimpleCentered() {
         <p className="label uppercase tracking-[0.24em] text-muted-foreground">
           Revenue operations for modern teams
         </p>
-        <h1 className="display mt-6 text-foreground">
+        <h1 className="display mt-6 text-balance text-foreground">
           Run every launch with more <span className="text-brand-primary">clarity</span>.
         </h1>
-        <p className="body mx-auto mt-5 max-w-2xl text-muted-foreground">
+        <p className="body mx-auto mt-5 max-w-2xl text-pretty text-muted-foreground">
           Newlane gives product, marketing, and sales one operating layer for planning campaigns,
           aligning teams, and measuring impact without the spreadsheet churn.
         </p>

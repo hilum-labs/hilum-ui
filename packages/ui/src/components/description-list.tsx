@@ -28,8 +28,10 @@ function DescriptionList({
     <div className={className}>
       {(title || description) && (
         <div className="mb-4">
-          {title && <p className="body font-semibold text-foreground">{title}</p>}
-          {description && <p className="mt-1 caption text-muted-foreground">{description}</p>}
+          {title && <p className="body font-semibold text-balance text-foreground">{title}</p>}
+          {description && (
+            <p className="mt-1 caption text-pretty text-muted-foreground">{description}</p>
+          )}
         </div>
       )}
 

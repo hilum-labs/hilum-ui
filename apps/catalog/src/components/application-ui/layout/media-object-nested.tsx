@@ -5,9 +5,7 @@ export default function MediaObjectNested() {
     <div className="w-full bg-white p-6">
       <div className="flex gap-4">
         <Avatar className="size-10 shrink-0">
-          <AvatarFallback className="bg-ground-200 text-ground-700">
-            PM
-          </AvatarFallback>
+          <AvatarFallback className="bg-ground-200 text-ground-700">PM</AvatarFallback>
         </Avatar>
         <div className="flex-1">
           <p className="subheading text-ground-900">Project Manager</p>
@@ -16,17 +14,11 @@ export default function MediaObjectNested() {
           </p>
           <div className="flex gap-3 rounded-lg bg-ground-50 p-3">
             <Avatar className="size-8 shrink-0">
-              <AvatarFallback className="bg-brand-primary text-xs text-white">
-                DW
-              </AvatarFallback>
+              <AvatarFallback className="bg-brand-primary text-xs text-white">DW</AvatarFallback>
             </Avatar>
             <div>
-              <p className="caption font-medium text-ground-900">
-                Direct Report
-              </p>
-              <p className="caption text-ground-500">
-                Frontend engineer on the dashboard team.
-              </p>
+              <p className="caption font-medium text-ground-900">Direct Report</p>
+              <p className="caption text-ground-500">Frontend engineer on the dashboard team.</p>
             </div>
           </div>
         </div>

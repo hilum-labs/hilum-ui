@@ -40,7 +40,8 @@ function FootersPage() {
         </div>
         <h1 className="display text-ground-900">Footers</h1>
         <p className="body mt-3 text-ground-500">
-          Footer patterns for brand presence, structured navigation, email capture, and dark-site layouts.
+          Footer patterns for brand presence, structured navigation, email capture, and dark-site
+          layouts.
         </p>
       </div>
 

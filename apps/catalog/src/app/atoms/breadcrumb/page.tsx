@@ -56,9 +56,13 @@ function BreadcrumbPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Breadcrumb</span>
         </div>
@@ -80,11 +84,17 @@ function BreadcrumbPage() {
         >
           <Breadcrumb>
             <BreadcrumbList>
-              <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbLink href="/atoms">Atoms</BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/atoms">Atoms</BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbCurrentPage>Breadcrumb</BreadcrumbCurrentPage></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbCurrentPage>Breadcrumb</BreadcrumbCurrentPage>
+              </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </PreviewBlock>
@@ -96,13 +106,21 @@ function BreadcrumbPage() {
         >
           <Breadcrumb>
             <BreadcrumbList>
-              <BreadcrumbItem><BreadcrumbLink href="/">Home</BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbEllipsis /></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbEllipsis />
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbLink href="/atoms">Atoms</BreadcrumbLink></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/atoms">Atoms</BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem><BreadcrumbCurrentPage>Breadcrumb</BreadcrumbCurrentPage></BreadcrumbItem>
+              <BreadcrumbItem>
+                <BreadcrumbCurrentPage>Breadcrumb</BreadcrumbCurrentPage>
+              </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
         </PreviewBlock>

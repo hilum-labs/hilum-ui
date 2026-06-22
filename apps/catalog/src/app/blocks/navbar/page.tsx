@@ -20,15 +20,20 @@ function NavbarPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/blocks" className="hover:text-ground-700">Blocks</a>
+          <a href="/blocks" className="hover:text-ground-700">
+            Blocks
+          </a>
           <span>/</span>
           <span className="body font-semibold text-ground-900">Navbar</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Navbar</h1>
         <p className="body max-w-md text-ground-400">
-          A top navigation bar with logo, nav links, notification bell, and a user profile dropdown. Responsive with a mobile menu toggle.
+          A top navigation bar with logo, nav links, notification bell, and a user profile dropdown.
+          Responsive with a mobile menu toggle.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
           <p className="caption text-ground-400">Block</p>
@@ -42,7 +47,12 @@ function NavbarPage() {
       <div className="flex flex-col gap-10">
         <div>
           <SectionHeading label="Navbar · Simple" />
-          <PreviewBlock title="Logo + links + user menu" description="Standard app navigation bar" code={navbarBlockSource} previewClassName="p-0 items-stretch">
+          <PreviewBlock
+            title="Logo + links + user menu"
+            description="Standard app navigation bar"
+            code={navbarBlockSource}
+            previewClassName="p-0 items-stretch"
+          >
             <div className="w-full">
               <NavbarBlock />
             </div>

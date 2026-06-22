@@ -41,8 +41,10 @@ function SignInScreen({
         <div className="w-full max-w-sm">
           {logo && <div className="mb-8">{logo}</div>}
           <div className="mb-6">
-            <h1 className="heading-xl text-foreground">{title}</h1>
-            {description && <p className="body text-muted-foreground mt-2">{description}</p>}
+            <h1 className="heading-xl text-balance text-foreground">{title}</h1>
+            {description && (
+              <p className="body mt-2 text-pretty text-muted-foreground">{description}</p>
+            )}
           </div>
           {children}
           {footer && <div className="mt-6 caption text-muted-foreground">{footer}</div>}

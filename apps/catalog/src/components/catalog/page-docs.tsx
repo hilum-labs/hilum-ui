@@ -6,7 +6,11 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 function Card({ children }: { children: React.ReactNode }) {
-  return <div className="rounded-2xl border border-ground-100 bg-white p-6 shadow-natural">{children}</div>;
+  return (
+    <div className="rounded-2xl border border-ground-100 bg-white p-6 shadow-natural">
+      {children}
+    </div>
+  );
 }
 
 function BulletList({ items }: { items: string[] }) {
@@ -31,7 +35,9 @@ function LinkList({ items }: { items: CatalogDocLink[] }) {
           className="rounded-xl border border-ground-100 bg-ground-50 px-4 py-3 transition-colors hover:border-ground-200 hover:bg-white"
         >
           <p className="body font-medium text-ground-900">{item.label}</p>
-          {item.description ? <p className="caption mt-1 text-ground-500">{item.description}</p> : null}
+          {item.description ? (
+            <p className="caption mt-1 text-ground-500">{item.description}</p>
+          ) : null}
         </a>
       ))}
     </div>
@@ -42,7 +48,10 @@ function ApiList({ items }: { items: CatalogDocApiItem[] }) {
   return (
     <div className="space-y-3">
       {items.map((item) => (
-        <div key={item.label} className="rounded-xl border border-ground-100 bg-ground-50 px-4 py-3">
+        <div
+          key={item.label}
+          className="rounded-xl border border-ground-100 bg-ground-50 px-4 py-3"
+        >
           <p className="body font-medium text-ground-900">{item.label}</p>
           <p className="caption mt-1 text-ground-500">{item.description}</p>
         </div>

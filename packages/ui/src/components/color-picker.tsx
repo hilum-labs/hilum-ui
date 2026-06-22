@@ -45,7 +45,7 @@ function ColorPicker({
           disabled={disabled}
           aria-label={ariaLabel}
           className={cn(
-            "inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card",
+            "inline-flex size-10 items-center justify-center rounded-md border border-border bg-card",
             "transition-colors hover:border-border",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
             "disabled:cursor-not-allowed disabled:opacity-50",
@@ -84,18 +84,18 @@ function ColorPicker({
               onKeyDown={(e) => {
                 if (e.key === "Enter") commit((e.target as HTMLInputElement).value);
               }}
-              className="flex-1 h-7 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
+              className="h-10 flex-1 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
             />
           </div>
           {presets && presets.length > 0 && (
-            <div className="mt-3 grid grid-cols-8 gap-1.5">
+            <div className="mt-3 grid grid-cols-4 gap-2">
               {presets.map((p) => (
                 <button
                   key={p}
                   type="button"
                   onClick={() => onChange(p)}
                   aria-label={p}
-                  className="h-5 w-5 rounded-sm border border-black/10 transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+                  className="size-10 rounded-md border border-black/10 transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
                   style={{ backgroundColor: p }}
                 />
               ))}

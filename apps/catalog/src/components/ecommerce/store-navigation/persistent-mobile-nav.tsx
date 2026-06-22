@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  House,
-  LayoutGrid,
-  Search,
-  ShoppingBag,
-} from "lucide-react";
+import { House, LayoutGrid, Search, ShoppingBag } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
 type CategoryName = "Women" | "Men";
@@ -64,7 +59,7 @@ const categories: NavCategory[] = [
 function LogoMark() {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex size-9 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
+      <div className="flex size-10 items-center justify-center rounded-lg bg-ground-900 text-sm font-semibold text-white">
         D
       </div>
       <div>
@@ -79,7 +74,10 @@ function CartButton() {
   return (
     <button className="relative flex size-10 items-center justify-center rounded-full border border-ground-100 text-ground-700 transition-colors hover:bg-ground-50">
       <ShoppingBag size={17} />
-      <Badge variant="brand" className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none">
+      <Badge
+        variant="brand"
+        className="absolute -right-1.5 -top-1.5 min-w-5 justify-center px-1.5 py-0 text-[10px] leading-none"
+      >
         2
       </Badge>
     </button>
@@ -88,7 +86,9 @@ function CartButton() {
 
 function PageContent({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}>
+    <div
+      className={`flex items-center justify-center bg-ground-50 body text-ground-400 ${compact ? "h-[200px]" : "h-32"}`}
+    >
       Page content
     </div>
   );
@@ -99,11 +99,18 @@ function DoubleColumnMenu({ category }: { category: NavCategory }) {
     <div className="grid gap-5 border-t border-ground-100 bg-white px-5 py-5 md:grid-cols-[1.1fr_0.9fr]">
       <div className="grid gap-4 sm:grid-cols-2">
         {category.sections.map((section) => (
-          <div key={section.label} className="rounded-[24px] border border-ground-100 bg-ground-50 p-5">
+          <div
+            key={section.label}
+            className="rounded-[24px] border border-ground-100 bg-ground-50 p-5"
+          >
             <p className="label mb-3 text-ground-400">{section.label}</p>
             <div className="space-y-2">
               {section.links.map((link) => (
-                <a key={link} href="#" className="block body text-ground-600 transition-colors hover:text-ground-900">
+                <a
+                  key={link}
+                  href="#"
+                  className="block body text-ground-600 transition-colors hover:text-ground-900"
+                >
                   {link}
                 </a>
               ))}
@@ -132,7 +139,8 @@ function DoubleColumnMenu({ category }: { category: NavCategory }) {
 export default function PersistentMobileNav() {
   const [persistentMenu, setPersistentMenu] = useState<CategoryName>("Men");
 
-  const persistentCategory = categories.find((category) => category.name === persistentMenu) ?? categories[0];
+  const persistentCategory =
+    categories.find((category) => category.name === persistentMenu) ?? categories[0];
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">

@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@hilum/ui";
@@ -12,7 +11,7 @@ function Logo({ dark = false }: { dark?: boolean }) {
       <div
         className={cn(
           "flex h-8 w-8 items-center justify-center rounded-lg text-sm font-bold",
-          dark ? "bg-brand-secondary text-ground-900" : "bg-brand-primary text-white"
+          dark ? "bg-brand-secondary text-ground-900" : "bg-brand-primary text-white",
         )}
       >
         D
@@ -22,27 +21,16 @@ function Logo({ dark = false }: { dark?: boolean }) {
   );
 }
 
-function DesktopLinks({
-  centered = false,
-  dark = false,
-}: {
-  centered?: boolean;
-  dark?: boolean;
-}) {
+function DesktopLinks({ centered = false, dark = false }: { centered?: boolean; dark?: boolean }) {
   return (
-    <nav
-      className={cn(
-        "hidden items-center gap-6 md:flex",
-        centered && "flex-1 justify-center"
-      )}
-    >
+    <nav className={cn("hidden items-center gap-6 md:flex", centered && "flex-1 justify-center")}>
       {NAV_LINKS.map((link) => (
         <a
           key={link}
           href={`#${link.toLowerCase()}`}
           className={cn(
             "body transition-colors",
-            dark ? "text-ground-300 hover:text-white" : "text-ground-600 hover:text-ground-900"
+            dark ? "text-ground-300 hover:text-white" : "text-ground-600 hover:text-ground-900",
           )}
         >
           {link}
@@ -52,13 +40,7 @@ function DesktopLinks({
   );
 }
 
-function MobileMenuButton({
-  onClick,
-  dark = false,
-}: {
-  onClick: () => void;
-  dark?: boolean;
-}) {
+function MobileMenuButton({ onClick, dark = false }: { onClick: () => void; dark?: boolean }) {
   return (
     <button
       type="button"
@@ -67,7 +49,7 @@ function MobileMenuButton({
         "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors md:hidden",
         dark
           ? "text-ground-300 hover:bg-ground-800 hover:text-white"
-          : "text-ground-600 hover:bg-ground-100 hover:text-ground-900"
+          : "text-ground-600 hover:bg-ground-100 hover:text-ground-900",
       )}
     >
       <Menu size={18} />
@@ -94,7 +76,7 @@ function MobileDrawer({
     <div
       className={cn(
         "absolute inset-x-0 top-0 z-50 rounded-xl border p-4 shadow-elevated",
-        dark ? "border-ground-700 bg-ground-900" : "border-ground-100 bg-white"
+        dark ? "border-ground-700 bg-ground-900" : "border-ground-100 bg-white",
       )}
     >
       <div className="mb-4 flex items-center justify-between">
@@ -103,10 +85,10 @@ function MobileDrawer({
           type="button"
           onClick={onClose}
           className={cn(
-            "inline-flex h-9 w-9 items-center justify-center rounded-lg transition-colors",
+            "inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors",
             dark
               ? "text-ground-300 hover:bg-ground-800 hover:text-white"
-              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900"
+              : "text-ground-500 hover:bg-ground-100 hover:text-ground-900",
           )}
         >
           <X size={18} />
@@ -127,7 +109,11 @@ export default function HeaderBrandedDark() {
           <Logo dark />
           <DesktopLinks dark />
           <div className="hidden items-center gap-2 md:flex">
-            <Button variant="ghost" size="sm" className="text-ground-400 hover:bg-ground-800 hover:text-white">
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-ground-400 hover:bg-ground-800 hover:text-white"
+            >
               Sign in
             </Button>
             <Button
@@ -173,7 +159,8 @@ export default function HeaderBrandedDark() {
       <div className="px-6 py-10">
         <div className="rounded-2xl border border-dashed border-ground-700 bg-ground-900 p-6">
           <p className="body text-ground-300">
-            A branded dark header shifts the tone immediately while keeping the interaction model familiar.
+            A branded dark header shifts the tone immediately while keeping the interaction model
+            familiar.
           </p>
         </div>
       </div>

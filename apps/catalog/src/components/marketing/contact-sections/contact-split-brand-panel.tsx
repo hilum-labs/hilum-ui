@@ -16,7 +16,9 @@ function Field({
 }
 
 function MessageField({ rows = 5 }: { rows?: number }) {
-  return <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />;
+  return (
+    <textarea rows={rows} placeholder="Tell us about your project" className={TEXTAREA_CLASS} />
+  );
 }
 
 function ContactForm({ compact = false }: { compact?: boolean }) {
@@ -43,9 +45,12 @@ export default function ContactSplitBrandPanel() {
       <div className="bg-brand-primary px-8 py-14 text-white">
         <div className="mx-auto max-w-lg">
           <p className="label text-white/70">Why teams reach out</p>
-          <h2 className="heading mt-4 text-white">Move from one-off UI decisions to a system people trust</h2>
+          <h2 className="heading mt-4 text-white">
+            Move from one-off UI decisions to a system people trust
+          </h2>
           <p className="body mt-4 text-white/80">
-            A focused engagement helps your team reduce inconsistency, improve delivery speed, and align product, design, and engineering.
+            A focused engagement helps your team reduce inconsistency, improve delivery speed, and
+            align product, design, and engineering.
           </p>
           <ul className="mt-8 space-y-4">
             {[
@@ -66,7 +71,8 @@ export default function ContactSplitBrandPanel() {
           <p className="label text-ground-400">Project brief</p>
           <h3 className="heading mt-4 text-ground-900">Request a tailored walkthrough</h3>
           <p className="body mt-4 text-ground-500">
-            Share your team size, current stack, and timeline. We will reply with recommended scope and a proposed intro call.
+            Share your team size, current stack, and timeline. We will reply with recommended scope
+            and a proposed intro call.
           </p>
           <div className="mt-8">
             <ContactForm compact />

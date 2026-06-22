@@ -1,13 +1,5 @@
-
 import { useState } from "react";
-import {
-  type LucideIcon,
-  ExternalLink,
-  Globe,
-  ChevronDown,
-  Users,
-  Zap,
-} from "lucide-react";
+import { type LucideIcon, ExternalLink, Globe, ChevronDown, Users, Zap } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { cn } from "@hilum/ui";
 
@@ -39,13 +31,7 @@ const STACKED_ITEMS: FlyoutItem[] = [
   },
 ];
 
-function FlyoutLink({
-  item,
-  iconClassName,
-}: {
-  item: FlyoutItem;
-  iconClassName?: string;
-}) {
+function FlyoutLink({ item, iconClassName }: { item: FlyoutItem; iconClassName?: string }) {
   const Icon = item.icon;
 
   return (
@@ -56,7 +42,7 @@ function FlyoutLink({
       <div
         className={cn(
           "flex size-10 shrink-0 items-center justify-center rounded-lg bg-ground-100 text-ground-700",
-          iconClassName
+          iconClassName,
         )}
       >
         <Icon size={18} />
@@ -127,7 +113,8 @@ export default function FlyoutStackedFooterActions() {
       <div className="px-6 py-12">
         <div className="rounded-2xl border border-dashed border-ground-200 bg-ground-50 p-6">
           <p className="body text-ground-500">
-            Footer actions work well when the menu is primarily navigational but still needs quick escape hatches for deeper exploration.
+            Footer actions work well when the menu is primarily navigational but still needs quick
+            escape hatches for deeper exploration.
           </p>
         </div>
       </div>

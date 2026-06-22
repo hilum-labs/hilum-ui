@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 
 type Plan = "startup" | "business" | "enterprise";
@@ -91,7 +90,7 @@ export default function RadioGroups() {
                   key={plan.value}
                   type="button"
                   onClick={() => setSelectedPlan(plan.value)}
-                  className={`rounded-2xl border p-5 text-left transition ${
+                  className={`rounded-2xl border p-5 text-left transition-colors ${
                     active
                       ? "border-brand-primary ring-2 ring-brand-primary"
                       : "border-ground-200 hover:border-ground-300"
@@ -115,7 +114,7 @@ export default function RadioGroups() {
                   key={size}
                   type="button"
                   onClick={() => setSelectedSize(size)}
-                  className={`rounded-full px-4 py-2 body font-medium transition ${
+                  className={`rounded-full px-4 py-2 body font-medium transition-colors ${
                     active
                       ? "bg-brand-primary text-white"
                       : "border border-ground-200 bg-white text-ground-700 hover:border-ground-300"
@@ -156,7 +155,7 @@ export default function RadioGroups() {
                   type="button"
                   aria-label={option.value}
                   onClick={() => setSelectedColor(option.value)}
-                  className={`rounded-full p-1 transition ${
+                  className={`rounded-full p-1 transition-colors ${
                     active ? "ring-2 ring-brand-primary ring-offset-1" : ""
                   }`}
                 >

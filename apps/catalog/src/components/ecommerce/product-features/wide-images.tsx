@@ -1,27 +1,15 @@
-
 import { ArrowRight } from "lucide-react";
 import { Button } from "@hilum/ui";
 
-const PRODUCT_IMAGE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
-const DETAIL_IMAGE_ONE = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
-const DETAIL_IMAGE_TWO = "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
+const PRODUCT_IMAGE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-full-bleed-image.jpg";
+const DETAIL_IMAGE_ONE =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-01.jpg";
+const DETAIL_IMAGE_TWO =
+  "https://tailwindui.com/img/ecommerce-images/product-feature-02-detail-02.jpg";
 
-function ProductImage({
-  src,
-  alt,
-  className,
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <img
-      src={src}
-      alt={alt}
-      className={`h-full w-full object-cover ${className ?? ""}`}
-    />
-  );
+function ProductImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  return <img src={src} alt={alt} className={`h-full w-full object-cover ${className ?? ""}`} />;
 }
 
 export default function WideImages() {
@@ -39,8 +27,8 @@ export default function WideImages() {
             <p className="label text-brand-secondary">Wide hero</p>
             <h3 className="heading mt-3">A refined daily carry without visual noise.</h3>
             <p className="body mt-4 text-white/80">
-              The lead image does the emotional work while the copy stays focused on
-              how the product fits into real life.
+              The lead image does the emotional work while the copy stays focused on how the product
+              fits into real life.
             </p>
             <div className="mt-6">
               <Button variant="brand" size="sm">
@@ -64,8 +52,8 @@ export default function WideImages() {
               Material, zipper path, and seam placement in one pass.
             </h3>
             <p className="body mt-4 text-ground-600">
-              This block shifts the emphasis from aspiration to evidence. It is a
-              straightforward way to show how finish, fit, and function line up.
+              This block shifts the emphasis from aspiration to evidence. It is a straightforward
+              way to show how finish, fit, and function line up.
             </p>
           </div>
         </div>
@@ -82,9 +70,9 @@ export default function WideImages() {
               The closing frame leaves room for a practical takeaway.
             </h3>
             <p className="body mt-3 max-w-2xl text-ground-600">
-              Weight, comfort, and long-term durability are usually the last
-              questions before purchase. Putting that answer beside the final image
-              keeps the story useful right up to the end.
+              Weight, comfort, and long-term durability are usually the last questions before
+              purchase. Putting that answer beside the final image keeps the story useful right up
+              to the end.
             </p>
           </div>
         </div>

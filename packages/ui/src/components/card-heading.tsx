@@ -28,8 +28,10 @@ function CardHeading({ title, description, actions, children, className }: CardH
       <div className="flex min-w-0 items-center gap-3">
         {children}
         <div className="min-w-0">
-          <p className="body font-semibold text-foreground truncate">{title}</p>
-          {description && <p className="caption text-muted-foreground mt-0.5">{description}</p>}
+          <p className="body truncate font-semibold text-balance text-foreground">{title}</p>
+          {description && (
+            <p className="caption mt-0.5 text-pretty text-muted-foreground">{description}</p>
+          )}
         </div>
       </div>
 

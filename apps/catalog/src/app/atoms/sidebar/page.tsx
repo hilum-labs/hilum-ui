@@ -267,9 +267,7 @@ function DefaultSidebarContent() {
                     <item.icon size={15} />
                     <span>{item.title}</span>
                   </SidebarMenuButton>
-                  {item.badge && (
-                    <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>
-                  )}
+                  {item.badge && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
@@ -325,16 +323,20 @@ function SidebarPage() {
       {/* Page header */}
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Sidebar</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Sidebar</h1>
         <p className="body max-w-lg text-ground-500">
-          Composable sidebar system supporting collapsible modes, icon-only
-          collapse, sub-menus, badges, and flexible layout composition.
+          Composable sidebar system supporting collapsible modes, icon-only collapse, sub-menus,
+          badges, and flexible layout composition.
         </p>
       </div>
 
@@ -366,8 +368,8 @@ function SidebarPage() {
                   <div className="grid grid-cols-3 gap-3">
                     {[
                       { label: "Total Revenue", value: "$48,295", delta: "+12%" },
-                      { label: "Active Users",  value: "2,841",   delta: "+5%" },
-                      { label: "Conversions",   value: "18.4%",   delta: "+2.1%" },
+                      { label: "Active Users", value: "2,841", delta: "+5%" },
+                      { label: "Conversions", value: "18.4%", delta: "+2.1%" },
                     ].map((stat) => (
                       <div
                         key={stat.label}
@@ -428,9 +430,7 @@ function SidebarPage() {
                           </SidebarMenuButton>
                           <SidebarMenuSub>
                             <SidebarMenuSubItem>
-                              <SidebarMenuSubButton href="#">
-                                Design System
-                              </SidebarMenuSubButton>
+                              <SidebarMenuSubButton href="#">Design System</SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                             <SidebarMenuSubItem>
                               <SidebarMenuSubButton href="#" isActive>
@@ -438,9 +438,7 @@ function SidebarPage() {
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                             <SidebarMenuSubItem>
-                              <SidebarMenuSubButton href="#">
-                                API Platform
-                              </SidebarMenuSubButton>
+                              <SidebarMenuSubButton href="#">API Platform</SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           </SidebarMenuSub>
                         </SidebarMenuItem>
@@ -487,7 +485,9 @@ function SidebarPage() {
                       W
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col group-data-[state=collapsed]/sidebar-wrapper:hidden">
-                      <span className="body font-medium text-ground-900 truncate">William Chen</span>
+                      <span className="body font-medium text-ground-900 truncate">
+                        William Chen
+                      </span>
                       <span className="caption text-ground-400 truncate">w@designco.com</span>
                     </div>
                   </div>
@@ -507,8 +507,8 @@ function SidebarPage() {
                   <div className="rounded-lg border border-ground-100 bg-white p-4">
                     <p className="body font-medium text-ground-900 mb-1">Mobile App</p>
                     <p className="caption text-ground-400">
-                      Sub-navigation is visible when expanded and hidden when collapsed to
-                      icon-only mode.
+                      Sub-navigation is visible when expanded and hidden when collapsed to icon-only
+                      mode.
                     </p>
                   </div>
                   <div className="flex-1 rounded-lg border border-ground-100 bg-ground-50" />

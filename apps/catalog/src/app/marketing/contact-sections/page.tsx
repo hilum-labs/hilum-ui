@@ -47,7 +47,8 @@ function ContactSectionsPage() {
         </div>
         <h1 className="display text-ground-900">Contact Sections</h1>
         <p className="body mt-3 text-ground-500">
-          Contact layouts spanning compact forms, split-screen inquiries, and multi-channel support patterns.
+          Contact layouts spanning compact forms, split-screen inquiries, and multi-channel support
+          patterns.
         </p>
       </div>
 

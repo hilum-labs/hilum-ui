@@ -3,15 +3,7 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
 import React, { useState, useEffect } from "react";
-import {
-  Calendar,
-  CreditCard,
-  FileText,
-  HelpCircle,
-  Search,
-  Settings,
-  User,
-} from "lucide-react";
+import { Calendar, CreditCard, FileText, HelpCircle, Search, Settings, User } from "lucide-react";
 import {
   Command,
   CommandEmpty,
@@ -125,15 +117,27 @@ function CommandDialogDemo() {
             <CommandList>
               <CommandEmpty />
               <CommandGroup heading="Suggestions">
-                <CommandItem value="calendar" keywords={["calendar"]} onSelect={() => setOpen(false)}>
+                <CommandItem
+                  value="calendar"
+                  keywords={["calendar"]}
+                  onSelect={() => setOpen(false)}
+                >
                   <Calendar size={14} />
                   Calendar
                 </CommandItem>
-                <CommandItem value="search-emoji" keywords={["search emoji"]} onSelect={() => setOpen(false)}>
+                <CommandItem
+                  value="search-emoji"
+                  keywords={["search emoji"]}
+                  onSelect={() => setOpen(false)}
+                >
                   <Search size={14} />
                   Search Emoji
                 </CommandItem>
-                <CommandItem value="settings" keywords={["settings"]} onSelect={() => setOpen(false)}>
+                <CommandItem
+                  value="settings"
+                  keywords={["settings"]}
+                  onSelect={() => setOpen(false)}
+                >
                   <Settings size={14} />
                   Settings
                 </CommandItem>
@@ -162,9 +166,13 @@ function CommandPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Command</span>
         </div>
@@ -194,11 +202,21 @@ function CommandPage() {
                 <CommandInput placeholder="Search..." />
                 <CommandList>
                   <CommandEmpty />
-                  <CommandItem value="calendar" keywords={["calendar"]}>Calendar</CommandItem>
-                  <CommandItem value="search-emoji" keywords={["search emoji"]}>Search Emoji</CommandItem>
-                  <CommandItem value="settings" keywords={["settings"]}>Settings</CommandItem>
-                  <CommandItem value="profile" keywords={["profile"]}>Profile</CommandItem>
-                  <CommandItem value="documentation" keywords={["documentation"]}>Documentation</CommandItem>
+                  <CommandItem value="calendar" keywords={["calendar"]}>
+                    Calendar
+                  </CommandItem>
+                  <CommandItem value="search-emoji" keywords={["search emoji"]}>
+                    Search Emoji
+                  </CommandItem>
+                  <CommandItem value="settings" keywords={["settings"]}>
+                    Settings
+                  </CommandItem>
+                  <CommandItem value="profile" keywords={["profile"]}>
+                    Profile
+                  </CommandItem>
+                  <CommandItem value="documentation" keywords={["documentation"]}>
+                    Documentation
+                  </CommandItem>
                 </CommandList>
               </Command>
             </div>
@@ -218,15 +236,27 @@ function CommandPage() {
                 <CommandList>
                   <CommandEmpty />
                   <CommandGroup heading="Suggestions">
-                    <CommandItem value="calendar" keywords={["calendar"]}>Calendar</CommandItem>
-                    <CommandItem value="search-emoji" keywords={["search emoji"]}>Search Emoji</CommandItem>
-                    <CommandItem value="calculator" keywords={["calculator"]}>Calculator</CommandItem>
+                    <CommandItem value="calendar" keywords={["calendar"]}>
+                      Calendar
+                    </CommandItem>
+                    <CommandItem value="search-emoji" keywords={["search emoji"]}>
+                      Search Emoji
+                    </CommandItem>
+                    <CommandItem value="calculator" keywords={["calculator"]}>
+                      Calculator
+                    </CommandItem>
                   </CommandGroup>
                   <CommandSeparator />
                   <CommandGroup heading="Settings">
-                    <CommandItem value="profile" keywords={["profile"]}>Profile</CommandItem>
-                    <CommandItem value="billing" keywords={["billing"]}>Billing</CommandItem>
-                    <CommandItem value="settings" keywords={["settings"]}>Settings</CommandItem>
+                    <CommandItem value="profile" keywords={["profile"]}>
+                      Profile
+                    </CommandItem>
+                    <CommandItem value="billing" keywords={["billing"]}>
+                      Billing
+                    </CommandItem>
+                    <CommandItem value="settings" keywords={["settings"]}>
+                      Settings
+                    </CommandItem>
                   </CommandGroup>
                 </CommandList>
               </Command>

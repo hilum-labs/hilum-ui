@@ -28,7 +28,7 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
     <button
       type="button"
       className={cn(
-        "relative inline-flex items-center gap-1.5 px-3.5 py-2 body font-medium transition-colors",
+        "relative inline-flex min-h-10 items-center gap-1.5 px-3.5 py-2 body font-medium transition-colors",
         "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:ring-inset",
         active
           ? "bg-foreground text-background"

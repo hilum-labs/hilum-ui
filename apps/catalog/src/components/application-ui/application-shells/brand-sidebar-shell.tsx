@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 
@@ -37,11 +36,15 @@ function LogoMark({ tone }: { tone: "light" | "dark" | "brand" }) {
 
   return (
     <div className="flex items-center gap-3">
-      <div className={`flex size-9 items-center justify-center rounded-xl ${classes}`}>
+      <div className={`flex size-10 items-center justify-center rounded-xl ${classes}`}>
         <span className="subheading font-medium">D</span>
       </div>
       <div>
-        <p className={tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"}>
+        <p
+          className={
+            tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"
+          }
+        >
           Design Co.
         </p>
         <p className={tone === "light" ? "caption text-ground-400" : "caption text-white/60"}>
@@ -181,7 +184,9 @@ export default function BrandSidebarShell() {
         <div className="flex items-center justify-between border-b border-ground-100 px-5 py-4">
           <div>
             <p className="heading text-ground-900">Projects</p>
-            <p className="caption text-ground-400">A branded navigation frame for internal product teams.</p>
+            <p className="caption text-ground-400">
+              A branded navigation frame for internal product teams.
+            </p>
           </div>
           <Button size="sm">Create Project</Button>
         </div>

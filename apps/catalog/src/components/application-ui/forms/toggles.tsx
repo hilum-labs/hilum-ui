@@ -1,4 +1,3 @@
-
 import { type ReactNode, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Switch } from "@hilum/ui";

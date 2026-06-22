@@ -19,7 +19,7 @@ export default function SectionHeadingWithInlineTabs() {
                 "caption border-b-2 pb-1 transition-colors",
                 activeTab === tab
                   ? "border-brand-primary text-ground-900"
-                  : "border-transparent text-ground-400 hover:text-ground-700"
+                  : "border-transparent text-ground-400 hover:text-ground-700",
               )}
             >
               {tab}

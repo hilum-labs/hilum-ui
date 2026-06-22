@@ -2,11 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import {
-  HoverCard,
-  HoverCardTrigger,
-  HoverCardContent,
-} from "@hilum/ui";
+import { HoverCard, HoverCardTrigger, HoverCardContent } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
@@ -75,7 +71,7 @@ const CODE = {
   {users.map((user) => (
     <HoverCard key={user.handle} openDelay={100}>
       <HoverCardTrigger asChild>
-        <button className="relative flex size-9 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110">
+        <button className="relative flex size-10 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110">
           <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
         </button>
       </HoverCardTrigger>
@@ -115,15 +111,20 @@ function HoverCardPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Hover Card</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Hover Card</h1>
         <p className="body max-w-lg text-ground-500">
-          Rich floating card revealed on hover, for previewing user profiles, links, and contextual details.
+          Rich floating card revealed on hover, for previewing user profiles, links, and contextual
+          details.
         </p>
       </div>
 
@@ -188,8 +189,8 @@ function HoverCardPage() {
                       The Future of Design Systems
                     </p>
                     <p className="caption text-ground-500 leading-relaxed">
-                      How component libraries are evolving to meet the demands of
-                      AI-assisted workflows and multi-platform delivery.
+                      How component libraries are evolving to meet the demands of AI-assisted
+                      workflows and multi-platform delivery.
                     </p>
                   </div>
                 </HoverCardContent>
@@ -205,14 +206,18 @@ function HoverCardPage() {
                 {USERS.map((user) => (
                   <HoverCard key={user.handle} openDelay={100}>
                     <HoverCardTrigger asChild>
-                      <button className="relative flex size-9 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110 focus:outline-none">
-                        <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
+                      <button className="relative flex size-10 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110 focus:outline-none">
+                        <span className="caption-xs font-semibold text-ground-600">
+                          {user.initials}
+                        </span>
                       </button>
                     </HoverCardTrigger>
                     <HoverCardContent side="top">
                       <div className="flex items-center gap-3">
                         <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ground-100">
-                          <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
+                          <span className="caption-xs font-semibold text-ground-600">
+                            {user.initials}
+                          </span>
                         </div>
                         <div>
                           <p className="body font-medium text-ground-900">{user.name}</p>

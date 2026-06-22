@@ -1,4 +1,3 @@
-
 import { Badge } from "@hilum/ui";
 
 const NAV_ITEMS = ["Dashboard", "Team", "Projects", "Calendar", "Reports"];
@@ -49,7 +48,11 @@ function HorizontalNav({ tone }: { tone: "light" | "dark" | "brand" }) {
           <div className={`flex size-8 items-center justify-center rounded-xl ${brandClass}`}>
             <span className="body font-medium">D</span>
           </div>
-          <span className={tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"}>
+          <span
+            className={
+              tone === "light" ? "body font-medium text-ground-900" : "body font-medium text-white"
+            }
+          >
             Design Co.
           </span>
         </div>
@@ -68,11 +71,15 @@ function HorizontalNav({ tone }: { tone: "light" | "dark" | "brand" }) {
       <div className="flex items-center gap-3">
         <button
           type="button"
-          className={tone === "light" ? "caption text-ground-400 hover:text-ground-700" : "caption text-white/70 hover:text-white"}
+          className={
+            tone === "light"
+              ? "caption text-ground-400 hover:text-ground-700"
+              : "caption text-white/70 hover:text-white"
+          }
         >
           Help
         </button>
-        <div className={`flex size-9 items-center justify-center rounded-full ${avatarClass}`}>
+        <div className={`flex size-10 items-center justify-center rounded-full ${avatarClass}`}>
           <span className="body font-medium">{USER.initials}</span>
         </div>
       </div>
@@ -98,7 +105,10 @@ export default function BrandOverlapShell() {
             </div>
             <div className="grid gap-4 lg:grid-cols-3">
               {CONTENT_ROWS.map((row) => (
-                <div key={row.title} className="rounded-xl border border-ground-100 bg-ground-50 p-4">
+                <div
+                  key={row.title}
+                  className="rounded-xl border border-ground-100 bg-ground-50 p-4"
+                >
                   <p className="body font-medium text-ground-900">{row.title}</p>
                   <p className="caption mt-1 text-ground-400">{row.meta}</p>
                   <div className="mt-4 space-y-2">

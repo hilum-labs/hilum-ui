@@ -35,13 +35,10 @@ export default function ThreeColumnsWithIntroduction() {
           <Badge variant="outline">Pricing support</Badge>
           <h2 className="heading text-ground-900">Answers before you commit</h2>
           <p className="body text-ground-500">
-            Everything prospects usually need to know before they start a
-            trial, upgrade a workspace, or talk to procurement.
+            Everything prospects usually need to know before they start a trial, upgrade a
+            workspace, or talk to procurement.
           </p>
-          <a
-            href="#"
-            className="body inline-block font-semibold text-brand-primary"
-          >
+          <a href="#" className="body inline-block font-semibold text-brand-primary">
             Explore pricing details
           </a>
         </div>

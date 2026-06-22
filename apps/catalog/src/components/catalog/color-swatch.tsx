@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { cn } from "@hilum/ui";
@@ -11,13 +10,7 @@ interface ColorSwatchProps {
   size?: "sm" | "md";
 }
 
-export function ColorSwatch({
-  name,
-  hex,
-  usage,
-  lightText = true,
-  size = "md",
-}: ColorSwatchProps) {
+export function ColorSwatch({ name, hex, usage, lightText = true, size = "md" }: ColorSwatchProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -27,18 +20,18 @@ export function ColorSwatch({
   };
 
   return (
-    <button onClick={handleCopy} className="group flex flex-col gap-2 text-left">
+    <button onClick={handleCopy} className="group flex min-h-10 flex-col gap-2 text-left">
       <div
         className={cn(
-          "relative w-full overflow-hidden rounded-lg transition-all group-hover:ring-2 group-hover:ring-ground-900/10 group-hover:ring-offset-2",
-          size === "md" ? "h-14" : "h-9"
+          "relative w-full overflow-hidden rounded-lg transition-[box-shadow] group-hover:ring-2 group-hover:ring-ground-900/10 group-hover:ring-offset-2",
+          size === "md" ? "h-14" : "h-9",
         )}
         style={{ backgroundColor: hex }}
       >
         <div
           className={cn(
             "absolute inset-0 flex items-center justify-center rounded-lg opacity-0 transition-opacity group-hover:opacity-100",
-            lightText ? "text-white" : "text-ground-900"
+            lightText ? "text-white" : "text-ground-900",
           )}
         >
           {copied ? (
@@ -51,9 +44,7 @@ export function ColorSwatch({
       <div className="min-w-0">
         <p className="truncate text-[11px] font-semibold text-ground-700">{name}</p>
         <p className="font-mono caption-xs text-ground-400">{hex}</p>
-        {usage && (
-          <p className="mt-0.5 caption-xs leading-tight text-ground-300">{usage}</p>
-        )}
+        {usage && <p className="mt-0.5 caption-xs leading-tight text-ground-300">{usage}</p>}
       </div>
     </button>
   );

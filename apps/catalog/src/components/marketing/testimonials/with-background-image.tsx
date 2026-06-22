@@ -31,16 +31,10 @@ export default function WithBackgroundImage() {
 
       <div className="relative mx-auto max-w-3xl text-center">
         <QuoteMarks className="mx-auto mb-8 size-16 text-white" />
-        <p className="display italic text-white">
-          {TESTIMONIAL.quote}
-        </p>
+        <p className="display italic text-white">{TESTIMONIAL.quote}</p>
         <div className="mt-8">
-          <p className="subheading font-semibold text-white">
-            {TESTIMONIAL.name}
-          </p>
-          <p className="body text-ground-300">
-            {TESTIMONIAL.title}
-          </p>
+          <p className="subheading font-semibold text-white">{TESTIMONIAL.name}</p>
+          <p className="body text-ground-300">{TESTIMONIAL.title}</p>
         </div>
       </div>
     </section>

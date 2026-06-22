@@ -8,9 +8,21 @@ import { Label } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const NOTIFICATION_TYPES = [
-  { id: "comments", label: "Comments", description: "Get notified when someone posts a comment on your content." },
-  { id: "candidates", label: "Candidates", description: "Get notified when a candidate applies for a job." },
-  { id: "offers", label: "Offers", description: "Get notified when a candidate receives or accepts an offer." },
+  {
+    id: "comments",
+    label: "Comments",
+    description: "Get notified when someone posts a comment on your content.",
+  },
+  {
+    id: "candidates",
+    label: "Candidates",
+    description: "Get notified when a candidate applies for a job.",
+  },
+  {
+    id: "offers",
+    label: "Offers",
+    description: "Get notified when a candidate receives or accepts an offer.",
+  },
 ];
 
 const MAILING_LISTS = [
@@ -101,16 +113,22 @@ function Heading({ label }: { label: string }) {
 
 function CheckboxPage() {
   const [rightSide, setRightSide] = useState<Record<string, boolean>>({
-    newsletter: false, offers: true, trial: false,
+    newsletter: false,
+    offers: true,
+    trial: false,
   });
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Checkbox</span>
         </div>
@@ -125,7 +143,12 @@ function CheckboxPage() {
       <div className="flex flex-col gap-10">
         <div>
           <Heading label="Checkbox · Basic" />
-          <PreviewBlock title="Default" description="Simple checkbox with label" code={CODE.basic} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Default"
+            description="Simple checkbox with label"
+            code={CODE.basic}
+            previewClassName="flex-col items-start"
+          >
             <div className="flex flex-col gap-2.5">
               <div className="flex items-center gap-2">
                 <Checkbox id="mp3-out" defaultChecked />
@@ -141,7 +164,9 @@ function CheckboxPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Checkbox id="disabled-cb" disabled />
-                <Label htmlFor="disabled-cb" className="text-ground-400">Unavailable option</Label>
+                <Label htmlFor="disabled-cb" className="text-ground-400">
+                  Unavailable option
+                </Label>
               </div>
             </div>
           </PreviewBlock>
@@ -149,7 +174,12 @@ function CheckboxPage() {
 
         <div>
           <Heading label="Checkbox · List with description" />
-          <PreviewBlock title="Description below label" description="Each option has descriptive text below the label" code={CODE.withDescription} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Description below label"
+            description="Each option has descriptive text below the label"
+            code={CODE.withDescription}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-lg">
               <fieldset>
                 <legend className="body font-semibold text-ground-900">Notifications</legend>
@@ -171,7 +201,12 @@ function CheckboxPage() {
 
         <div>
           <Heading label="Checkbox · List with inline description" />
-          <PreviewBlock title="Inline description" description="Description text inline with label, de-emphasized" code={CODE.withInlineDescription} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Inline description"
+            description="Description text inline with label, de-emphasized"
+            code={CODE.withInlineDescription}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-lg">
               <fieldset>
                 <legend className="body font-semibold text-ground-900">By email</legend>
@@ -193,7 +228,12 @@ function CheckboxPage() {
 
         <div>
           <Heading label="Checkbox · Checkbox on right" />
-          <PreviewBlock title="Right-aligned checkboxes" description="Labels on left, checkboxes on right with dividers" code={CODE.rightSide} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Right-aligned checkboxes"
+            description="Labels on left, checkboxes on right with dividers"
+            code={CODE.rightSide}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-lg">
               <fieldset>
                 <legend className="body font-semibold text-ground-900 mb-3">Mailing lists</legend>
@@ -221,7 +261,12 @@ function CheckboxPage() {
 
         <div>
           <Heading label="Checkbox · Simple list with heading" />
-          <PreviewBlock title="Fieldset with heading" description="Legend above, checkboxes to the right of each label" code={CODE.simpleHeading} previewClassName="flex-col items-start">
+          <PreviewBlock
+            title="Fieldset with heading"
+            description="Legend above, checkboxes to the right of each label"
+            code={CODE.simpleHeading}
+            previewClassName="flex-col items-start"
+          >
             <div className="w-full max-w-sm">
               <fieldset>
                 <legend className="body font-semibold text-ground-900">Export options</legend>
@@ -233,7 +278,9 @@ function CheckboxPage() {
                     { id: "xml", label: "XML data", checked: false },
                   ].map((opt) => (
                     <div key={opt.id} className="flex items-center justify-between gap-3 py-2">
-                      <Label htmlFor={`sh-${opt.id}`} className="cursor-pointer">{opt.label}</Label>
+                      <Label htmlFor={`sh-${opt.id}`} className="cursor-pointer">
+                        {opt.label}
+                      </Label>
                       <Checkbox id={`sh-${opt.id}`} defaultChecked={opt.checked} />
                     </div>
                   ))}

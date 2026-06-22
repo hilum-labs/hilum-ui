@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -59,16 +58,12 @@ export default function CalendarMonth() {
               <span
                 className={cn(
                   "flex size-8 items-center justify-center rounded-full body transition-colors",
-                  isToday
-                    ? "bg-brand-primary text-white"
-                    : "text-ground-700"
+                  isToday ? "bg-brand-primary text-white" : "text-ground-700",
                 )}
               >
                 {day}
               </span>
-              {hasEvent && (
-                <span className="mt-0.5 size-1 rounded-full bg-brand-primary" />
-              )}
+              {hasEvent && <span className="mt-0.5 size-1 rounded-full bg-brand-primary" />}
             </div>
           );
         })}
@@ -89,9 +84,7 @@ export default function CalendarMonth() {
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="body font-medium text-ground-900">
-                    {event.name}
-                  </p>
+                  <p className="body font-medium text-ground-900">{event.name}</p>
                   <p className="caption text-ground-500">January {event.day}</p>
                 </div>
               </div>

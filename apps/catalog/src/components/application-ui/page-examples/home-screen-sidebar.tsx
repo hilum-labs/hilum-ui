@@ -1,4 +1,3 @@
-
 import {
   Bell,
   Calendar,
@@ -104,7 +103,9 @@ export default function HomeScreenSidebar() {
             <div className="flex items-center justify-between gap-4">
               <div>
                 <p className="heading text-ground-900">Good morning, Tom</p>
-                <p className="caption mt-1 text-ground-400">Here's what changed across the business since yesterday.</p>
+                <p className="caption mt-1 text-ground-400">
+                  Here's what changed across the business since yesterday.
+                </p>
               </div>
               <Button size="sm">
                 <Sparkles className="size-4" />
@@ -118,7 +119,9 @@ export default function HomeScreenSidebar() {
                 <div key={stat.label} className="rounded-2xl border border-ground-100 bg-white p-5">
                   <p className="caption text-ground-400">{stat.label}</p>
                   <p className="heading mt-2 text-ground-900">{stat.value}</p>
-                  <p className={`caption mt-2 ${index === 2 ? "text-brand-primary" : "text-ground-400"}`}>
+                  <p
+                    className={`caption mt-2 ${index === 2 ? "text-brand-primary" : "text-ground-400"}`}
+                  >
                     {stat.change} vs last week
                   </p>
                 </div>
@@ -129,7 +132,9 @@ export default function HomeScreenSidebar() {
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <p className="subheading text-ground-900">Activity feed</p>
-                    <p className="caption text-ground-400">Live updates from projects, ops, and sales.</p>
+                    <p className="caption text-ground-400">
+                      Live updates from projects, ops, and sales.
+                    </p>
                   </div>
                   <Badge variant="secondary">6 new</Badge>
                 </div>

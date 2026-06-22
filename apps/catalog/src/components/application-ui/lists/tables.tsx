@@ -1,17 +1,9 @@
-
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Checkbox } from "@hilum/ui";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@hilum/ui";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@hilum/ui";
 
 const PEOPLE = [
   {
@@ -160,7 +152,9 @@ export default function Tables() {
               <TableCell>{person.email}</TableCell>
               <TableCell>{person.dept}</TableCell>
               <TableCell className="text-right">
-                <a href="#" className="body font-medium text-brand-primary">Edit</a>
+                <a href="#" className="body font-medium text-brand-primary">
+                  Edit
+                </a>
               </TableCell>
             </TableRow>
           ))}
@@ -189,7 +183,9 @@ export default function Tables() {
               <TableCell>{person.title}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell className="text-right">
-                <a href="#" className="body font-medium text-brand-primary">Edit</a>
+                <a href="#" className="body font-medium text-brand-primary">
+                  Edit
+                </a>
               </TableCell>
             </TableRow>
           ))}
@@ -256,17 +252,29 @@ export default function Tables() {
         <TableHeader>
           <TableRow>
             <TableHead>
-              <button className="flex items-center gap-1" onClick={() => handleSort("name")} type="button">
+              <button
+                className="flex items-center gap-1"
+                onClick={() => handleSort("name")}
+                type="button"
+              >
                 Name {sortIcon("name")}
               </button>
             </TableHead>
             <TableHead>
-              <button className="flex items-center gap-1" onClick={() => handleSort("title")} type="button">
+              <button
+                className="flex items-center gap-1"
+                onClick={() => handleSort("title")}
+                type="button"
+              >
                 Title {sortIcon("title")}
               </button>
             </TableHead>
             <TableHead>
-              <button className="flex items-center gap-1" onClick={() => handleSort("email")} type="button">
+              <button
+                className="flex items-center gap-1"
+                onClick={() => handleSort("email")}
+                type="button"
+              >
                 Email {sortIcon("email")}
               </button>
             </TableHead>

@@ -16,8 +16,8 @@ const CODE = {
   </CollapsibleTrigger>
   <CollapsibleContent>
     <div className="flex flex-col gap-1 pb-2 pt-1">
-      <a className="rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50">My voices</a>
-      <a className="rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50">Voice library</a>
+      <a className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50">My voices</a>
+      <a className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50">Voice library</a>
     </div>
   </CollapsibleContent>
 </Collapsible>`,
@@ -37,9 +37,13 @@ function CollapsiblePage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Collapsible</span>
         </div>
@@ -68,9 +72,24 @@ function CollapsiblePage() {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <div className="flex flex-col gap-0.5 pb-2">
-                  <a href="#" className="rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50">My voices</a>
-                  <a href="#" className="rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50">Voice library</a>
-                  <a href="#" className="rounded-md px-2 py-1.5 text-sm text-ground-600 hover:bg-ground-50">Voice design</a>
+                  <a
+                    href="#"
+                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50"
+                  >
+                    My voices
+                  </a>
+                  <a
+                    href="#"
+                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50"
+                  >
+                    Voice library
+                  </a>
+                  <a
+                    href="#"
+                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50"
+                  >
+                    Voice design
+                  </a>
                 </div>
               </CollapsibleContent>
             </Collapsible>

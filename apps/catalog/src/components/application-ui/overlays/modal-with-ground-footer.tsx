@@ -1,4 +1,3 @@
-
 import { Button } from "@hilum/ui";
 
 function ModalShell({ children }: { children: React.ReactNode }) {
@@ -15,7 +14,8 @@ export default function ModalWithGroundFooter() {
       <div className="p-6">
         <h3 className="subheading text-ground-900">Move selected files?</h3>
         <p className="body mt-3 text-ground-500">
-          These files will be transferred into the archive folder and hidden from the active release queue.
+          These files will be transferred into the archive folder and hidden from the active release
+          queue.
         </p>
       </div>
       <div className="flex justify-end gap-3 border-t border-ground-100 bg-ground-50 px-6 py-4">

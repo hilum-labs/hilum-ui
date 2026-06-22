@@ -36,7 +36,7 @@ function ProductCard({ icon, title, description, href = "#" }: ProductCardProps)
       className={cn(
         "flex select-none flex-col gap-1 rounded-xl p-3",
         "hover:bg-ground-50 outline-none transition-colors",
-        "no-underline"
+        "no-underline",
       )}
     >
       <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
@@ -61,7 +61,7 @@ function DevLink({ title, description, href = "#" }: DevLinkProps) {
       className={cn(
         "flex select-none flex-col gap-0.5 rounded-md p-2.5",
         "hover:bg-ground-50 outline-none transition-colors",
-        "no-underline"
+        "no-underline",
       )}
     >
       <p className="body font-medium text-ground-900">{title}</p>
@@ -231,22 +231,10 @@ function HorizontalNavDemo() {
           <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid w-[360px] grid-cols-2 gap-1 p-3">
-              <DevLink
-                title="API Reference"
-                description="Explore the full REST API"
-              />
-              <DevLink
-                title="SDKs"
-                description="Client libraries for every platform"
-              />
-              <DevLink
-                title="Documentation"
-                description="Guides, tutorials, and examples"
-              />
-              <DevLink
-                title="Status"
-                description="Uptime and incident history"
-              />
+              <DevLink title="API Reference" description="Explore the full REST API" />
+              <DevLink title="SDKs" description="Client libraries for every platform" />
+              <DevLink title="Documentation" description="Guides, tutorials, and examples" />
+              <DevLink title="Status" description="Uptime and incident history" />
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -307,22 +295,10 @@ function WithViewportDemo() {
           <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid w-[360px] grid-cols-2 gap-1 p-3">
-              <DevLink
-                title="API Reference"
-                description="Explore the full REST API"
-              />
-              <DevLink
-                title="SDKs"
-                description="Client libraries for every platform"
-              />
-              <DevLink
-                title="Documentation"
-                description="Guides, tutorials, and examples"
-              />
-              <DevLink
-                title="Status"
-                description="Uptime and incident history"
-              />
+              <DevLink title="API Reference" description="Explore the full REST API" />
+              <DevLink title="SDKs" description="Client libraries for every platform" />
+              <DevLink title="Documentation" description="Guides, tutorials, and examples" />
+              <DevLink title="Status" description="Uptime and incident history" />
             </div>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -332,14 +308,8 @@ function WithViewportDemo() {
           <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
           <NavigationMenuContent>
             <div className="grid w-[340px] grid-cols-1 gap-1 p-3">
-              <DevLink
-                title="Blog"
-                description="Product updates, guides, and design articles"
-              />
-              <DevLink
-                title="Changelog"
-                description="See what's new in each release"
-              />
+              <DevLink title="Blog" description="Product updates, guides, and design articles" />
+              <DevLink title="Changelog" description="See what's new in each release" />
               <DevLink
                 title="Community"
                 description="Forums, Discord, and open-source contributions"
@@ -383,8 +353,8 @@ function NavigationMenuPage() {
         </div>
         <h1 className="display mb-2 text-ground-900">Navigation Menu</h1>
         <p className="body max-w-lg text-ground-500">
-          Horizontal navigation with rich dropdown panels. Supports direct
-          content dropdowns and animated viewport transitions.
+          Horizontal navigation with rich dropdown panels. Supports direct content dropdowns and
+          animated viewport transitions.
         </p>
       </div>
 

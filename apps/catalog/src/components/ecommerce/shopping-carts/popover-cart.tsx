@@ -1,4 +1,3 @@
-
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
@@ -46,7 +45,9 @@ export default function PopoverCart() {
             </div>
             <div>
               <p className="subheading text-ground-900">Quick cart</p>
-              <p className="caption text-ground-500">{CART_ITEMS.reduce((sum, item) => sum + item.qty, 0)} items in bag</p>
+              <p className="caption text-ground-500">
+                {CART_ITEMS.reduce((sum, item) => sum + item.qty, 0)} items in bag
+              </p>
             </div>
           </div>
           <Badge variant="secondary">{formatCurrency(subtotalFive)}</Badge>
@@ -61,7 +62,9 @@ export default function PopoverCart() {
                   Qty {item.qty} · {item.color}
                 </p>
               </div>
-              <p className="caption font-medium text-ground-900">{formatCurrency(item.price * item.qty)}</p>
+              <p className="caption font-medium text-ground-900">
+                {formatCurrency(item.price * item.qty)}
+              </p>
             </div>
           ))}
         </div>

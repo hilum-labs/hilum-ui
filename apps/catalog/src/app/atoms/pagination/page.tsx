@@ -46,16 +46,18 @@ function PaginationPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">Design System</a>
+          <a href="/" className="hover:text-ground-700">
+            Design System
+          </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">Atoms</a>
+          <a href="/atoms" className="hover:text-ground-700">
+            Atoms
+          </a>
           <span>/</span>
           <span className="font-semibold text-ground-900">Pagination</span>
         </div>
         <h1 className="display mb-2 text-ground-900">Pagination</h1>
-        <p className="body max-w-lg text-ground-500">
-          Navigation control for multi-page content.
-        </p>
+        <p className="body max-w-lg text-ground-500">Navigation control for multi-page content.</p>
       </div>
 
       <PageDocs path="/atoms/pagination/" />
@@ -71,13 +73,29 @@ function PaginationPage() {
         >
           <Pagination>
             <PaginationContent>
-              <PaginationItem><PaginationPrevious href="#" /></PaginationItem>
-              <PaginationItem><PaginationLink href="#">1</PaginationLink></PaginationItem>
-              <PaginationItem><PaginationLink href="#" isActive>2</PaginationLink></PaginationItem>
-              <PaginationItem><PaginationLink href="#">3</PaginationLink></PaginationItem>
-              <PaginationItem><PaginationEllipsis /></PaginationItem>
-              <PaginationItem><PaginationLink href="#">8</PaginationLink></PaginationItem>
-              <PaginationItem><PaginationNext href="#" /></PaginationItem>
+              <PaginationItem>
+                <PaginationPrevious href="#" />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">1</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#" isActive>
+                  2
+                </PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">3</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationEllipsis />
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationLink href="#">8</PaginationLink>
+              </PaginationItem>
+              <PaginationItem>
+                <PaginationNext href="#" />
+              </PaginationItem>
             </PaginationContent>
           </Pagination>
         </PreviewBlock>

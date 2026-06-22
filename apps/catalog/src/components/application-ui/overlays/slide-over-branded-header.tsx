@@ -1,4 +1,3 @@
-
 import { X } from "lucide-react";
 
 function SlideOverFrame({ children }: { children: React.ReactNode }) {

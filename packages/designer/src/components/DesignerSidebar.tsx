@@ -76,7 +76,7 @@ function SidebarButton({ item }: { item: SidebarItem }) {
           aria-label={item.label}
           aria-pressed={item.active}
           className={cn(
-            "relative flex size-9 items-center justify-center rounded-md transition-colors",
+            "relative flex size-10 items-center justify-center rounded-md transition-[background-color,color,opacity,scale] active:scale-[0.96]",
             item.active
               ? "bg-foreground text-background"
               : "text-muted-foreground hover:bg-muted hover:text-foreground",

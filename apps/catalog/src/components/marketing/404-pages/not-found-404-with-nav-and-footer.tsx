@@ -22,13 +22,19 @@ export default function NotFound404WithNavAndFooter() {
           </div>
           <nav className="hidden items-center gap-1 md:flex">
             {NAV.map((item) => (
-              <a key={item} href="#" className="rounded-md px-3 py-1.5 caption text-ground-500 hover:bg-ground-50 hover:text-ground-900">
+              <a
+                key={item}
+                href="#"
+                className="inline-flex min-h-10 items-center rounded-md px-3 caption text-ground-500 hover:bg-ground-50 hover:text-ground-900"
+              >
                 {item}
               </a>
             ))}
           </nav>
           <div className="hidden gap-2 md:flex">
-            <Button variant="ghost" size="sm">Sign in</Button>
+            <Button variant="ghost" size="sm">
+              Sign in
+            </Button>
             <Button size="sm">Sign up</Button>
           </div>
         </div>
@@ -57,7 +63,9 @@ export default function NotFound404WithNavAndFooter() {
               <ul className="mt-3 space-y-2">
                 {links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="caption text-ground-500 hover:text-ground-900">{link}</a>
+                    <a href="#" className="caption text-ground-500 hover:text-ground-900">
+                      {link}
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -68,9 +76,15 @@ export default function NotFound404WithNavAndFooter() {
           <div className="mx-auto flex max-w-7xl items-center justify-between">
             <p className="caption text-ground-400">© 2025 Acme Inc. All rights reserved.</p>
             <div className="flex gap-3 text-ground-400">
-              <a href="#" className="hover:text-ground-700"><Github size={15} /></a>
-              <a href="#" className="hover:text-ground-700"><Twitter size={15} /></a>
-              <a href="#" className="hover:text-ground-700"><Linkedin size={15} /></a>
+              <a href="#" className="hover:text-ground-700">
+                <Github size={15} />
+              </a>
+              <a href="#" className="hover:text-ground-700">
+                <Twitter size={15} />
+              </a>
+              <a href="#" className="hover:text-ground-700">
+                <Linkedin size={15} />
+              </a>
             </div>
           </div>
         </div>

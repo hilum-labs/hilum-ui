@@ -32,19 +32,27 @@ export default function FeatureSideBySideImages() {
             <div className={`aspect-[4/3] bg-gradient-to-br ${card.accent} p-6`}>
               <div className="flex h-full flex-col justify-between rounded-[1.5rem] bg-white/70 p-6 shadow-natural ring-1 ring-inset ring-white/[0.035] backdrop-blur">
                 <div className="flex items-center justify-between">
-                  <p className="label text-ground-400">{index === 0 ? "Attribution view" : "Asset control"}</p>
+                  <p className="label text-ground-400">
+                    {index === 0 ? "Attribution view" : "Asset control"}
+                  </p>
                   <Badge variant={index === 0 ? "warning" : "success"}>
                     {index === 0 ? "Live experiment" : "Approved"}
                   </Badge>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                   <div className="rounded-2xl bg-white px-4 py-3 shadow-natural">
-                    <p className="caption text-ground-400">{index === 0 ? "Qualified pipeline" : "Launch readiness"}</p>
+                    <p className="caption text-ground-400">
+                      {index === 0 ? "Qualified pipeline" : "Launch readiness"}
+                    </p>
                     <p className="subheading text-ground-900">{index === 0 ? "+23%" : "96%"}</p>
                   </div>
                   <div className="rounded-2xl bg-white px-4 py-3 shadow-natural">
-                    <p className="caption text-ground-400">{index === 0 ? "Winning audience" : "Reusable modules"}</p>
-                    <p className="subheading text-ground-900">{index === 0 ? "Mid-market IT" : "48 sections"}</p>
+                    <p className="caption text-ground-400">
+                      {index === 0 ? "Winning audience" : "Reusable modules"}
+                    </p>
+                    <p className="subheading text-ground-900">
+                      {index === 0 ? "Mid-market IT" : "48 sections"}
+                    </p>
                   </div>
                 </div>
               </div>
