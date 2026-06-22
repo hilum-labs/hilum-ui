@@ -1,5 +1,13 @@
 # @hilum/designer-canvas
 
+## 3.2.1
+
+### Patch Changes
+
+- Updated dependencies [48ddf55]
+  - @hilum/ui@3.2.1
+  - @hilum/designer@3.2.1
+
 ## 3.2.0
 
 ### Patch Changes

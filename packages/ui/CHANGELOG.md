@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.1
+
+### Patch Changes
+
+- 48ddf55: Restyle ButtonGroup as an iOS-style segmented control with a muted rounded track and selected card pill.
+
 ## 3.2.0
 
 ### Minor Changes
