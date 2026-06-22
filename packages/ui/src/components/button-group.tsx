@@ -10,7 +10,7 @@ function ButtonGroup({ children, className }: ButtonGroupProps) {
   return (
     <div
       className={cn(
-        "inline-flex divide-x divide-border overflow-hidden rounded-lg border border-border bg-card shadow-natural",
+        "inline-flex items-center gap-0.5 rounded-2xl bg-muted p-1",
         className,
       )}
     >
@@ -28,11 +28,12 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
     <button
       type="button"
       className={cn(
-        "relative inline-flex min-h-10 items-center gap-1.5 px-3.5 py-2 body font-medium transition-colors",
-        "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:ring-inset",
+        "relative inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl px-3.5 py-2 body font-medium",
+        "transition-[background-color,box-shadow,color,opacity,scale] active:scale-[0.96]",
+        "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30",
         active
-          ? "bg-foreground text-background"
-          : "text-muted-foreground hover:bg-muted hover:text-foreground",
+          ? "bg-card text-foreground shadow-natural"
+          : "text-muted-foreground hover:text-foreground",
         className,
       )}
       {...props}

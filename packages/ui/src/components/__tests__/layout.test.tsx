@@ -461,6 +461,22 @@ describe("ButtonGroup", () => {
     expect(screen.getByRole("button", { name: "Month" })).toBeInTheDocument();
   });
 
+  it("uses an iOS-style track and selected pill", () => {
+    const { container } = render(
+      <ButtonGroup>
+        <ButtonGroupItem>All</ButtonGroupItem>
+        <ButtonGroupItem active>Missed</ButtonGroupItem>
+      </ButtonGroup>,
+    );
+
+    const group = container.firstElementChild;
+    const activeItem = screen.getByRole("button", { name: "Missed" });
+
+    expect(group).toHaveClass("rounded-2xl", "bg-muted", "p-1");
+    expect(group).not.toHaveClass("divide-x", "border", "shadow-natural");
+    expect(activeItem).toHaveClass("rounded-xl", "bg-card", "text-foreground", "shadow-natural");
+  });
+
   it("calls onClick on item click", () => {
     const onClick = vi.fn();
     render(
