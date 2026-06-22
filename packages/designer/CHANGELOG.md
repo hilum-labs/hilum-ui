@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 3.2.3
+
+### Patch Changes
+
+- 9a27459: Remove the extra border from DesignerToolbar so the native toolbar surface uses only the Hilum natural shadow.
+  - @hilum/ui@3.2.3
+
 ## 3.2.2
 
 ### Patch Changes
