@@ -50,7 +50,7 @@ function AppMobileNav({
   userMenu = DEFAULT_USER_MENU,
   accountLabel = user?.email,
   accountMenuLabel = "Open account menu",
-  getItemLabel = (item) => item.label,
+  getItemLabel = (item) => item.mobileLabel ?? item.label,
   className,
 }: AppMobileNavProps) {
   const Link = useLink();

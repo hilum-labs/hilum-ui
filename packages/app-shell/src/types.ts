@@ -4,6 +4,8 @@ import type { LucideIcon } from "lucide-react";
 
 export interface NavItem {
   label: string;
+  /** Optional shorter label used by compact/mobile navigation. */
+  mobileLabel?: ReactNode;
   href: string;
   icon?: LucideIcon;
   badge?: ReactNode;

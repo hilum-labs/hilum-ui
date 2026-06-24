@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { AppShell } from "../app-shell";
 import { AppShellStacked } from "../app-shell-stacked";
 import { AppHeader } from "../app-header";
+import { AppMobileNav } from "../app-mobile-nav";
 import { PageHeader } from "../page-header";
 import { DetailScreen } from "../detail-screen";
 import { SettingsScreen } from "../settings-screen";
@@ -88,6 +89,52 @@ describe("AppHeader", () => {
       </AppShell>,
     );
     expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AppMobileNav                                                        */
+/* ------------------------------------------------------------------ */
+
+describe("AppMobileNav", () => {
+  it("renders brand, subtitle, and compact mobile labels", () => {
+    render(
+      <AppShell>
+        <AppMobileNav
+          brand="Hilum Admin"
+          subtitle="Platform operations"
+          sections={[
+            {
+              items: [
+                { label: "Dashboard", mobileLabel: "Home", href: "/dashboard", active: true },
+                { label: "Platform Health", mobileLabel: "Health", href: "/health" },
+              ],
+            },
+          ]}
+        />
+      </AppShell>,
+    );
+
+    expect(screen.getByText("Hilum Admin")).toBeInTheDocument();
+    expect(screen.getByText("Platform operations")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "Health" })).toHaveAttribute("href", "/health");
+    expect(screen.queryByRole("link", { name: "Platform Health" })).not.toBeInTheDocument();
+  });
+
+  it("renders account menu trigger when user is provided", () => {
+    render(
+      <AppShell>
+        <AppMobileNav
+          brand="Admin"
+          sections={[{ items: [{ label: "Dashboard", href: "/dashboard" }] }]}
+          user={{ name: "Operator", email: "operator@example.com", initials: "OP" }}
+        />
+      </AppShell>,
+    );
+
+    expect(screen.getByRole("button", { name: "Open account menu" })).toBeInTheDocument();
+    expect(screen.getByText("OP")).toBeInTheDocument();
   });
 });
 
