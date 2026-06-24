@@ -13,7 +13,8 @@ import {
 } from "../card";
 import { Avatar, AvatarFallback, AvatarImage, AvatarWithStatus } from "../avatar";
 import { AvatarStack } from "../avatar-stack";
-import { StatCard } from "../stat-card";
+import { StatCard, StatCardGrid } from "../stat-card";
+import { TitledCard } from "../titled-card";
 import { StatusBadge, statusBadgeVariantFor, statusLabel } from "../status-badge";
 import { Notification } from "../notification";
 import { MediaAssetCard } from "../media-asset-card";
@@ -183,6 +184,54 @@ describe("StatCard", () => {
       expect(screen.getByText("5%")).toBeInTheDocument();
       unmount();
     }
+  });
+
+  it("renders empty grid slots for configurable dashboards", () => {
+    const { container } = render(
+      <StatCardGrid maxSlots={3} showEmptySlots>
+        <StatCard label="Revenue" value="$10k" />
+      </StatCardGrid>,
+    );
+
+    expect(container.querySelector('[data-slot="stat-card-grid"]')).toHaveClass(
+      "grid",
+      "grid-cols-2",
+    );
+    expect(screen.getAllByRole("button", { name: "Add card" })).toHaveLength(2);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* TitledCard                                                           */
+/* ------------------------------------------------------------------ */
+
+describe("TitledCard", () => {
+  it("renders title, subtitle, content, and actions", () => {
+    render(
+      <TitledCard
+        title="Shipping zones"
+        subtitle="Configured geographic regions"
+        actionButtons={<button type="button">Add</button>}
+      >
+        <p>Zone list</p>
+      </TitledCard>,
+    );
+
+    expect(screen.getByText("Shipping zones")).toBeInTheDocument();
+    expect(screen.getByText("Configured geographic regions")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
+    expect(screen.getByText("Zone list")).toBeInTheDocument();
+  });
+
+  it("uses mobile flat-card classes for dense dashboard lists", () => {
+    const { container } = render(<TitledCard title="Orders">Rows</TitledCard>);
+
+    expect(container.querySelector('[data-slot="titled-card"]')).toHaveClass(
+      "max-sm:rounded-none",
+      "max-sm:border-0",
+      "max-sm:bg-transparent",
+      "max-sm:shadow-none",
+    );
   });
 });
 

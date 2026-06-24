@@ -16,6 +16,7 @@
 - Add `MediaAssetCard` for reusable media library and product media cards.
 - Add `StatusBadge` for consistent status labels, tones, and compact dots.
 - Add `HelpTooltip` package coverage for touch-friendly contextual field help.
+- Add `TitledCard` and `StatCardGrid` package coverage for dashboard card migration.
 
 ## 3.2.3
 
