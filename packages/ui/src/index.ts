@@ -36,6 +36,7 @@ export * from "./components/command-palette";
 export * from "./components/command";
 export * from "./components/context-menu";
 export * from "./components/data-table";
+export * from "./components/data-transfer-controls";
 export * from "./components/date-picker";
 export * from "./components/description-list";
 export * from "./components/dialog";

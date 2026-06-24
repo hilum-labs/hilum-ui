@@ -9,6 +9,7 @@ import { InputNumber } from "../input-number";
 import { InputGroup } from "../input-group";
 import { Field } from "../field";
 import { FileDropzone, formatFileSize } from "../file-dropzone";
+import { DataTransferControls } from "../data-transfer-controls";
 import { NativeSelect, NativeSelectOption } from "../native-select";
 import { RadioCards } from "../radio-card";
 import { Combobox } from "../combobox";
@@ -340,6 +341,72 @@ describe("FileDropzone", () => {
     expect(formatFileSize(512)).toBe("512 B");
     expect(formatFileSize(1536)).toBe("1.5 KB");
     expect(formatFileSize(1024 * 1024 * 12)).toBe("12 MB");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* DataTransferControls                                                */
+/* ------------------------------------------------------------------ */
+
+describe("DataTransferControls", () => {
+  const scopeOptions = [
+    { value: "all", label: "All products" },
+    { value: "active", label: "Active only" },
+  ];
+
+  it("renders scoped import and export actions", () => {
+    const onScopeChange = vi.fn();
+    const onImport = vi.fn();
+    const onExport = vi.fn();
+
+    render(
+      <DataTransferControls
+        scopeValue="all"
+        onScopeChange={onScopeChange}
+        scopeOptions={scopeOptions}
+        actions={[
+          { label: "Import products", shortLabel: "Import", onSelect: onImport },
+          { label: "Export CSV", shortLabel: "CSV", onSelect: onExport },
+        ]}
+      />,
+    );
+
+    expect(screen.getByRole("combobox", { name: "Scope" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Import products" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Export CSV" })).toBeInTheDocument();
+  });
+
+  it("uses a mobile-friendly compact dropdown trigger", () => {
+    render(
+      <DataTransferControls
+        compact
+        scopeValue="all"
+        onScopeChange={() => {}}
+        scopeOptions={scopeOptions}
+        actions={[
+          { label: "Import products", onSelect: () => {} },
+          { label: "Export CSV", onSelect: () => {} },
+        ]}
+      />,
+    );
+
+    expect(
+      screen.getByRole("button", { name: "Import and export actions" }),
+    ).toHaveClass("size-10");
+  });
+
+  it("disables loading actions and renders a spinner", () => {
+    render(
+      <DataTransferControls
+        actions={[
+          { label: "Import products", onSelect: () => {}, loading: true },
+          { label: "Export CSV", onSelect: () => {} },
+        ]}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: "Import products" })).toBeDisabled();
+    expect(document.querySelector(".animate-spin")).toBeInTheDocument();
   });
 });
 
