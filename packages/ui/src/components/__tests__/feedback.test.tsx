@@ -1,11 +1,17 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { Alert, AlertTitle, AlertDescription } from "../alert";
 import { Callout } from "../callout";
 import { Button } from "../button";
 import { Progress } from "../progress";
 import { Steps } from "../steps";
 import { EmptyState } from "../empty-state";
+import {
+  UrlRedirectPrompt,
+  hasUrlHandleChanged,
+  normalizeUrlHandle,
+  urlResourcePath,
+} from "../url-redirect-prompt";
 import type { Step } from "../steps";
 
 /* ------------------------------------------------------------------ */
@@ -79,6 +85,57 @@ describe("Callout", () => {
       expect(screen.getByText(`${tone} callout`)).toBeInTheDocument();
       unmount();
     }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* UrlRedirectPrompt                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("UrlRedirectPrompt", () => {
+  it("normalizes handles and builds resource paths", () => {
+    expect(normalizeUrlHandle("/summer-sale/")).toBe("summer-sale");
+    expect(urlResourcePath("/products/", "/linen-shirt/")).toBe("/products/linen-shirt");
+  });
+
+  it("detects changed handles only when both handles are present", () => {
+    expect(hasUrlHandleChanged("old", "new")).toBe(true);
+    expect(hasUrlHandleChanged("old", "old")).toBe(false);
+    expect(hasUrlHandleChanged("", "new")).toBe(false);
+  });
+
+  it("does not render when the handle is unchanged", () => {
+    const { container } = render(
+      <UrlRedirectPrompt
+        originalHandle="linen-shirt"
+        nextHandle="linen-shirt"
+        pathPrefix="products"
+        checked
+        onCheckedChange={() => undefined}
+      />,
+    );
+
+    expect(container).toBeEmptyDOMElement();
+  });
+
+  it("renders old and new paths with a switch", () => {
+    const onCheckedChange = vi.fn();
+    render(
+      <UrlRedirectPrompt
+        originalHandle="linen-shirt"
+        nextHandle="linen-shirt-v2"
+        pathPrefix="products"
+        checked={false}
+        onCheckedChange={onCheckedChange}
+      />,
+    );
+
+    expect(screen.getByRole("status")).toBeInTheDocument();
+    expect(screen.getByText("/products/linen-shirt")).toBeInTheDocument();
+    expect(screen.getByText("/products/linen-shirt-v2")).toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole("switch", { name: "Create URL redirect" }));
+    expect(onCheckedChange).toHaveBeenCalledWith(true);
   });
 });
 
