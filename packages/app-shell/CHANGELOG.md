@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - Add reusable page header icon and responsive action layout support for dense dashboard headers.
+- Add a reusable `AppMobileNav` shell for compact mobile headers with account menu and horizontal section tabs.
 - Updated dependencies
   - @hilum/ui@3.2.4
 

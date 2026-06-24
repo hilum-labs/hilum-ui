@@ -7,6 +7,7 @@ export * from "./app-shell";
 export * from "./app-shell-stacked";
 export * from "./app-sidebar";
 export * from "./app-header";
+export * from "./app-mobile-nav";
 export * from "./navbar";
 export * from "./page-header";
 export * from "./detail-screen";
