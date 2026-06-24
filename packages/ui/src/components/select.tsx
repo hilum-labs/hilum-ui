@@ -4,6 +4,7 @@ import * as React from "react";
 import { Select } from "radix-ui";
 import { Check, ChevronDown, ChevronUp } from "lucide-react";
 import { cn } from "../lib/utils";
+import { mobilePopperSheetStyle } from "../lib/mobile-popper-sheet";
 
 const SelectRoot = Select.Root;
 const SelectGroup = Select.Group;
@@ -38,38 +39,47 @@ const SelectContent = React.forwardRef<
   React.ComponentRef<typeof Select.Content>,
   React.ComponentPropsWithoutRef<typeof Select.Content>
 >(({ className, children, position = "popper", ...props }, ref) => (
-  <Select.Portal>
-    <Select.Content
-      ref={ref}
-      className={cn(
-        "relative z-50 max-h-96 min-w-[8rem] overflow-hidden",
-        "bg-card rounded-xl shadow-natural p-1",
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
-        position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
-        className,
-      )}
-      position={position}
-      {...props}
-    >
-      <Select.ScrollUpButton className="flex cursor-default items-center justify-center py-1">
-        <ChevronUp size={14} className="text-muted-foreground" />
-      </Select.ScrollUpButton>
-      <Select.Viewport
+  <>
+    <style>{mobilePopperSheetStyle}</style>
+    <Select.Portal>
+      <Select.Content
+        ref={ref}
+        data-hilum-mobile-sheet="true"
         className={cn(
-          position === "popper" &&
-            "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
+          "relative z-50 max-h-96 min-w-[8rem] overflow-hidden",
+          "bg-card rounded-xl shadow-natural p-1",
+          "max-sm:!fixed max-sm:!inset-x-3 max-sm:!bottom-3 max-sm:!top-auto max-sm:!left-3 max-sm:!right-3",
+          "max-sm:!w-auto max-sm:!min-w-0 max-sm:!max-w-none max-sm:!transform-none",
+          "max-sm:max-h-[min(70dvh,28rem)] max-sm:rounded-2xl max-sm:border max-sm:border-border max-sm:p-2 max-sm:shadow-elevated",
+          "data-[state=open]:animate-in data-[state=closed]:animate-out",
+          "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+          "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+          "max-sm:data-[state=closed]:slide-out-to-bottom max-sm:data-[state=open]:slide-in-from-bottom",
+          "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
+          position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
+          className,
         )}
+        position={position}
+        {...props}
       >
-        {children}
-      </Select.Viewport>
-      <Select.ScrollDownButton className="flex cursor-default items-center justify-center py-1">
-        <ChevronDown size={14} className="text-muted-foreground" />
-      </Select.ScrollDownButton>
-    </Select.Content>
-  </Select.Portal>
+        <Select.ScrollUpButton className="flex cursor-default items-center justify-center py-1">
+          <ChevronUp size={14} className="text-muted-foreground" />
+        </Select.ScrollUpButton>
+        <Select.Viewport
+          className={cn(
+            position === "popper" &&
+              "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]",
+            "max-sm:!h-auto max-sm:max-h-[calc(min(70dvh,28rem)-3rem)] max-sm:!w-full max-sm:!min-w-0",
+          )}
+        >
+          {children}
+        </Select.Viewport>
+        <Select.ScrollDownButton className="flex cursor-default items-center justify-center py-1">
+          <ChevronDown size={14} className="text-muted-foreground" />
+        </Select.ScrollDownButton>
+      </Select.Content>
+    </Select.Portal>
+  </>
 ));
 SelectContent.displayName = "SelectContent";
 

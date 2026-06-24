@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.4
+
+### Patch Changes
+
+- Use mobile bottom-sheet presentation for dialogs, alert dialogs, dropdown menus, and select menus.
+
 ## 3.2.3
 
 ## 3.2.2
