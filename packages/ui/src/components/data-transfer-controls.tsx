@@ -107,7 +107,7 @@ function DataTransferControls({
               type="button"
               variant="outline"
               size="icon"
-              className="size-10"
+              className="size-9"
               aria-label={compactLabel}
             >
               <MoreHorizontal className="size-4" aria-hidden="true" />

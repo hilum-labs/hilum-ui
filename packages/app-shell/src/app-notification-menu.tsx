@@ -65,7 +65,7 @@ function AppNotificationMenu({
           variant="ghost"
           size="icon"
           className={cn(
-            "relative size-10 text-muted-foreground transition-[color,scale] hover:text-foreground active:scale-[0.96]",
+            "relative size-9 text-muted-foreground transition-[color,scale] hover:text-foreground active:scale-[0.96]",
             className,
           )}
           aria-label={triggerLabel}

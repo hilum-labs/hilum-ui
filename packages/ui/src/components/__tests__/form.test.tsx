@@ -392,7 +392,7 @@ describe("DataTransferControls", () => {
 
     expect(
       screen.getByRole("button", { name: "Import and export actions" }),
-    ).toHaveClass("size-10");
+    ).toHaveClass("size-9");
   });
 
   it("disables loading actions and renders a spinner", () => {

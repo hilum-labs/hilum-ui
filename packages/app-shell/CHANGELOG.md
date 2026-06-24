@@ -1,5 +1,13 @@
 # @hilum/app-shell
 
+## 3.2.5
+
+### Patch Changes
+
+- Reduce compact icon trigger defaults from 40px to h-9 w-9 for tighter dashboard controls.
+- Updated dependencies
+  - @hilum/ui@3.2.5
+
 ## 3.2.4
 
 ### Patch Changes
