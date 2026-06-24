@@ -4,7 +4,12 @@ import * as React from "react";
 import { DropdownMenu } from "radix-ui";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../lib/utils";
-import { mobilePopperSheetStyle } from "../lib/mobile-popper-sheet";
+import {
+  mobilePopperSheetMotionClassName,
+  mobilePopperSheetPositionClassName,
+  mobilePopperSheetStyle,
+  mobilePopperSheetSurfaceClassName,
+} from "../lib/mobile-popper-sheet";
 
 const DropdownMenuRoot = DropdownMenu.Root;
 const DropdownMenuTrigger = DropdownMenu.Trigger;
@@ -26,13 +31,13 @@ const DropdownMenuContent = React.forwardRef<
         sideOffset={sideOffset}
         className={cn(
           "z-50 min-w-[8rem] bg-card rounded-xl shadow-natural p-1",
-          "max-sm:!fixed max-sm:!inset-x-3 max-sm:!bottom-3 max-sm:!top-auto max-sm:!left-3 max-sm:!right-3",
-          "max-sm:!w-auto max-sm:!min-w-0 max-sm:!max-w-none max-sm:!transform-none",
-          "max-sm:max-h-[min(70dvh,28rem)] max-sm:overflow-y-auto max-sm:rounded-2xl max-sm:border max-sm:border-border max-sm:px-2 max-sm:pb-2 max-sm:pt-5 max-sm:shadow-elevated",
+          mobilePopperSheetPositionClassName,
+          mobilePopperSheetSurfaceClassName,
+          "max-sm:overflow-y-auto max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-          "max-sm:data-[state=closed]:slide-out-to-bottom max-sm:data-[state=open]:slide-in-from-bottom",
+          mobilePopperSheetMotionClassName,
           "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
           "data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",
           className,
@@ -178,13 +183,13 @@ const DropdownMenuSubContent = React.forwardRef<
       data-hilum-mobile-sheet="true"
       className={cn(
         "z-50 min-w-[8rem] bg-card rounded-xl border border-border shadow-natural p-1",
-        "max-sm:!fixed max-sm:!inset-x-3 max-sm:!bottom-3 max-sm:!top-auto max-sm:!left-3 max-sm:!right-3",
-        "max-sm:!w-auto max-sm:!min-w-0 max-sm:!max-w-none max-sm:!transform-none",
-        "max-sm:max-h-[min(70dvh,28rem)] max-sm:overflow-y-auto max-sm:rounded-2xl max-sm:px-2 max-sm:pb-2 max-sm:pt-5 max-sm:shadow-elevated",
+        mobilePopperSheetPositionClassName,
+        mobilePopperSheetSurfaceClassName,
+        "max-sm:overflow-y-auto max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "max-sm:data-[state=closed]:slide-out-to-bottom max-sm:data-[state=open]:slide-in-from-bottom",
+        mobilePopperSheetMotionClassName,
         "data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",
         className,
       )}

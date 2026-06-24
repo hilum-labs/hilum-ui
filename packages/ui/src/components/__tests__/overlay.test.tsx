@@ -4,6 +4,20 @@ import { userEvent } from "@testing-library/user-event";
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from "../tooltip";
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from "../dialog";
 import {
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogTitle,
+} from "../alert-dialog";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../dropdown-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../select";
+import {
   ContextMenu,
   ContextMenuTrigger,
   ContextMenuContent,
@@ -71,6 +85,133 @@ describe("Dialog", () => {
     );
     await user.click(screen.getByRole("button", { name: "Open" }));
     expect(await screen.findByRole("button", { name: /close/i })).toBeInTheDocument();
+  });
+
+  it("presents dialog content as a mobile bottom sheet by default", () => {
+    render(
+      <Dialog defaultOpen>
+        <DialogContent>
+          <DialogTitle>Mobile sheet dialog</DialogTitle>
+        </DialogContent>
+      </Dialog>,
+    );
+
+    expect(screen.getByRole("dialog")).toHaveClass(
+      "rounded-t-2xl",
+      "max-sm:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "data-[state=open]:slide-in-from-bottom",
+      "sm:data-[state=open]:zoom-in-95",
+    );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Alert dialog                                                         */
+/* ------------------------------------------------------------------ */
+
+describe("AlertDialog", () => {
+  it("presents alert dialog content as a mobile bottom sheet by default", () => {
+    render(
+      <AlertDialog defaultOpen>
+        <AlertDialogContent>
+          <AlertDialogTitle>Delete product</AlertDialogTitle>
+          <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
+        </AlertDialogContent>
+      </AlertDialog>,
+    );
+
+    expect(screen.getByRole("alertdialog")).toHaveClass(
+      "rounded-t-2xl",
+      "max-sm:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "data-[state=open]:slide-in-from-bottom",
+      "sm:data-[state=open]:zoom-in-95",
+    );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Dropdown menu                                                        */
+/* ------------------------------------------------------------------ */
+
+describe("DropdownMenu", () => {
+  it("opts menu content into the mobile bottom sheet treatment", async () => {
+    const user = userEvent.setup();
+    render(
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button>Actions</button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem>Edit</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Actions" }));
+
+    expect(screen.getByRole("menu")).toHaveAttribute("data-hilum-mobile-sheet", "true");
+    expect(screen.getByRole("menu")).toHaveClass(
+      "max-sm:!fixed",
+      "max-sm:rounded-2xl",
+      "max-sm:data-[state=open]:slide-in-from-bottom",
+    );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Select                                                               */
+/* ------------------------------------------------------------------ */
+
+describe("Select", () => {
+  it("opts select content into the mobile bottom sheet treatment", async () => {
+    const user = userEvent.setup();
+    render(
+      <Select>
+        <SelectTrigger aria-label="Status">
+          <SelectValue placeholder="Choose status" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="active">Active</SelectItem>
+          <SelectItem value="draft">Draft</SelectItem>
+        </SelectContent>
+      </Select>,
+    );
+
+    await user.click(screen.getByRole("combobox", { name: "Status" }));
+
+    expect(screen.getByRole("listbox")).toHaveAttribute("data-hilum-mobile-sheet", "true");
+    expect(screen.getByRole("listbox")).toHaveClass(
+      "max-sm:!fixed",
+      "max-sm:rounded-2xl",
+      "max-sm:data-[state=open]:slide-in-from-bottom",
+    );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Popover                                                              */
+/* ------------------------------------------------------------------ */
+
+describe("Popover", () => {
+  it("opts popover content into the mobile bottom sheet treatment", async () => {
+    const user = userEvent.setup();
+    render(
+      <Popover>
+        <PopoverTrigger asChild>
+          <button>Filters</button>
+        </PopoverTrigger>
+        <PopoverContent>Filter content</PopoverContent>
+      </Popover>,
+    );
+
+    await user.click(screen.getByRole("button", { name: "Filters" }));
+
+    expect(screen.getByText("Filter content")).toHaveAttribute("data-hilum-mobile-sheet", "true");
+    expect(screen.getByText("Filter content")).toHaveClass(
+      "max-sm:!fixed",
+      "max-sm:rounded-2xl",
+      "max-sm:data-[state=open]:slide-in-from-bottom",
+    );
   });
 });
 

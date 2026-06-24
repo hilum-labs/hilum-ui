@@ -1,6 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Alert, AlertTitle, AlertDescription } from "../alert";
+import { Callout } from "../callout";
+import { Button } from "../button";
 import { Progress } from "../progress";
 import { Steps } from "../steps";
 import { EmptyState } from "../empty-state";
@@ -32,6 +34,49 @@ describe("Alert", () => {
     for (const variant of variants) {
       const { unmount } = render(<Alert variant={variant}>Alert</Alert>);
       expect(screen.getByRole("alert")).toBeInTheDocument();
+      unmount();
+    }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Callout                                                              */
+/* ------------------------------------------------------------------ */
+
+describe("Callout", () => {
+  it("renders title and description", () => {
+    render(<Callout title="Redirect recommended" description="Preserve old links." />);
+    expect(screen.getByRole("status")).toBeInTheDocument();
+    expect(screen.getByText("Redirect recommended")).toBeInTheDocument();
+    expect(screen.getByText("Preserve old links.")).toBeInTheDocument();
+  });
+
+  it("uses alert role for destructive tone by default", () => {
+    render(<Callout tone="destructive" title="Could not load products" />);
+    expect(screen.getByRole("alert")).toBeInTheDocument();
+  });
+
+  it("renders icon, children, and actions", () => {
+    render(
+      <Callout
+        icon={<span data-testid="icon" />}
+        title="Review hold"
+        actions={<Button size="sm">Resolve</Button>}
+      >
+        <span>2 orders need attention.</span>
+      </Callout>,
+    );
+
+    expect(screen.getByTestId("icon")).toBeInTheDocument();
+    expect(screen.getByText("2 orders need attention.")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Resolve" })).toBeInTheDocument();
+  });
+
+  it("renders all tones without error", () => {
+    const tones = ["default", "info", "success", "warning", "destructive"] as const;
+    for (const tone of tones) {
+      const { unmount } = render(<Callout tone={tone} title={`${tone} callout`} />);
+      expect(screen.getByText(`${tone} callout`)).toBeInTheDocument();
       unmount();
     }
   });

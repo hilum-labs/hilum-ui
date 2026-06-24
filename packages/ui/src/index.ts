@@ -23,6 +23,7 @@ export * from "./components/breadcrumb";
 export * from "./components/button-group";
 export * from "./components/button";
 export * from "./components/calendar";
+export * from "./components/callout";
 export * from "./components/card-heading";
 export * from "./components/card";
 export * from "./components/carousel";

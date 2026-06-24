@@ -4,7 +4,12 @@ import * as React from "react";
 import { ContextMenu } from "radix-ui";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../lib/utils";
-import { mobilePopperSheetStyle } from "../lib/mobile-popper-sheet";
+import {
+  mobilePopperSheetMotionClassName,
+  mobilePopperSheetPositionClassName,
+  mobilePopperSheetStyle,
+  mobilePopperSheetSurfaceClassName,
+} from "../lib/mobile-popper-sheet";
 
 const ContextMenuRoot = ContextMenu.Root;
 const ContextMenuTrigger = ContextMenu.Trigger;
@@ -25,11 +30,13 @@ const ContextMenuContent = React.forwardRef<
         data-hilum-mobile-sheet="true"
         className={cn(
           "z-50 min-w-[8rem] overflow-hidden rounded-xl border border-border bg-card p-1 text-card-foreground shadow-elevated outline-none",
-          "max-sm:max-h-[min(70dvh,28rem)] max-sm:overflow-y-auto max-sm:rounded-2xl max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
+          mobilePopperSheetPositionClassName,
+          mobilePopperSheetSurfaceClassName,
+          "max-sm:overflow-y-auto max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-          "max-sm:data-[state=closed]:slide-out-to-bottom max-sm:data-[state=open]:slide-in-from-bottom",
+          mobilePopperSheetMotionClassName,
           "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
           "data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",
           className,
@@ -175,11 +182,13 @@ const ContextMenuSubContent = React.forwardRef<
       data-hilum-mobile-sheet="true"
       className={cn(
         "z-50 min-w-[8rem] overflow-hidden rounded-xl border border-border bg-card p-1 text-card-foreground shadow-elevated outline-none",
-        "max-sm:max-h-[min(70dvh,28rem)] max-sm:overflow-y-auto max-sm:rounded-2xl max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
+        mobilePopperSheetPositionClassName,
+        mobilePopperSheetSurfaceClassName,
+        "max-sm:overflow-y-auto max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "max-sm:data-[state=closed]:slide-out-to-bottom max-sm:data-[state=open]:slide-in-from-bottom",
+        mobilePopperSheetMotionClassName,
         "data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2",
         className,
       )}

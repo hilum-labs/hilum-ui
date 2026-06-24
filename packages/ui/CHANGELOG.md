@@ -18,6 +18,8 @@
 - Add `HelpTooltip` package coverage for touch-friendly contextual field help.
 - Add `TitledCard` and `StatCardGrid` package coverage for dashboard card migration.
 - Add `DataTransferControls` for reusable scoped import/export toolbars with mobile sheet menus.
+- Add `Callout` for reusable inline notices, warnings, validation states, and action prompts.
+- Consolidate the mobile bottom-sheet contract for dialogs, alert dialogs, selects, dropdowns, popovers, context menus, and menubars with safe-area spacing.
 
 ## 3.2.3
 
