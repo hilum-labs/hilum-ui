@@ -15,6 +15,7 @@
 - Add `FileDropzone` for reusable drag-and-click upload surfaces.
 - Add `MediaAssetCard` for reusable media library and product media cards.
 - Add `StatusBadge` for consistent status labels, tones, and compact dots.
+- Add `HelpTooltip` package coverage for touch-friendly contextual field help.
 
 ## 3.2.3
 

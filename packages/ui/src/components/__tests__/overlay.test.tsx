@@ -12,6 +12,7 @@ import {
 import { Progress } from "../progress";
 import { Switch } from "../switch";
 import { Slider } from "../slider";
+import { HelpTooltip } from "../help-tooltip";
 
 /**
  * Tests for Radix overlay primitives. These focus on:
@@ -152,6 +153,50 @@ describe("Tooltip", () => {
     await user.hover(screen.getByRole("button", { name: "Trigger" }));
     // Use role="tooltip" to target the accessible tooltip element specifically
     expect(await screen.findByRole("tooltip", { name: "Tooltip text" })).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* HelpTooltip                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("HelpTooltip", () => {
+  it("opens explanatory content on click", async () => {
+    const user = userEvent.setup();
+
+    render(<HelpTooltip text="Stock-keeping unit. A unique code for inventory tracking." />);
+
+    await user.click(screen.getByRole("button", { name: "Help" }));
+
+    expect(
+      screen.getAllByText("Stock-keeping unit. A unique code for inventory tracking.")[0],
+    ).toBeInTheDocument();
+  });
+
+  it("truncates long help text and renders a learn more link", async () => {
+    const user = userEvent.setup();
+    const text =
+      "This is a long explanation for a form field that should stay compact inside a tooltip so dense settings screens do not become visually noisy.";
+
+    render(<HelpTooltip text={text} learnMoreUrl="/docs/settings" />);
+
+    await user.click(screen.getByRole("button", { name: "Help" }));
+
+    expect(screen.getAllByText(`${text.slice(0, 117)}...`)[0]).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: "Learn more" })[0]).toHaveAttribute(
+      "href",
+      "/docs/settings",
+    );
+  });
+
+  it("uses a compact icon with an expanded touch target", () => {
+    render(<HelpTooltip text="Helpful text" />);
+
+    expect(screen.getByRole("button", { name: "Help" })).toHaveClass(
+      "size-5",
+      "before:-inset-2.5",
+      "active:scale-[0.96]",
+    );
   });
 });
 
