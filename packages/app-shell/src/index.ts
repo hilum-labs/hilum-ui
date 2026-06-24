@@ -9,6 +9,7 @@ export * from "./app-command-palette";
 export * from "./app-sidebar";
 export * from "./app-header";
 export * from "./app-mobile-nav";
+export * from "./app-notification-menu";
 export * from "./app-status-banner";
 export * from "./navbar";
 export * from "./page-header";

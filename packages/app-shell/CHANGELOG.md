@@ -8,6 +8,7 @@
 - Add a reusable `AppMobileNav` shell for compact mobile headers with account menu, horizontal section tabs, and optional mobile nav labels.
 - Add `AppCommandPalette` for route/action command palettes driven by app shell navigation data.
 - Add `AppCommandButton` for consistent app-shell command palette triggers.
+- Add `AppNotificationMenu` for consistent top-bar notification bells, unread badges, empty states, and clear actions.
 - Add `AppStatusBanner` for impersonation, preview, maintenance, and other app-level status sessions.
 - Updated dependencies
   - @hilum/ui@3.2.4

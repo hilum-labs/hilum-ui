@@ -9,6 +9,7 @@ import {
 } from "../app-command-palette";
 import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
+import { AppNotificationMenu } from "../app-notification-menu";
 import { AppStatusBanner } from "../app-status-banner";
 import { PageHeader } from "../page-header";
 import { DetailScreen } from "../detail-screen";
@@ -165,6 +166,69 @@ describe("AppHeader", () => {
       </AppShell>,
     );
     expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AppNotificationMenu                                                  */
+/* ------------------------------------------------------------------ */
+
+describe("AppNotificationMenu", () => {
+  it("renders a notification trigger with an unread badge", () => {
+    render(<AppNotificationMenu items={[{ title: "Export ready" }, { title: "New order" }]} />);
+
+    expect(screen.getByRole("button", { name: "Notifications" })).toBeInTheDocument();
+    expect(screen.getByLabelText("2 unread notifications")).toHaveTextContent("2");
+  });
+
+  it("renders empty state when there are no notifications", () => {
+    render(<AppNotificationMenu defaultOpen />);
+
+    expect(screen.getByText("No new notifications")).toBeInTheDocument();
+  });
+
+  it("renders notification rows and calls row select handlers", () => {
+    let selected = false;
+
+    render(
+      <AppNotificationMenu
+        defaultOpen
+        items={[
+          {
+            title: "Order paid",
+            message: "Order #1001 is ready to fulfill.",
+            time: "Just now",
+            onSelect: () => {
+              selected = true;
+            },
+          },
+        ]}
+      />,
+    );
+
+    expect(screen.getByText("Order #1001 is ready to fulfill.")).toBeInTheDocument();
+    expect(screen.getByText("Just now")).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Order paid"));
+
+    expect(selected).toBe(true);
+  });
+
+  it("calls clear handler from the menu header", () => {
+    let cleared = false;
+
+    render(
+      <AppNotificationMenu
+        defaultOpen
+        items={[{ title: "Order paid" }]}
+        onClear={() => {
+          cleared = true;
+        }}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Clear all" }));
+
+    expect(cleared).toBe(true);
   });
 });
 
