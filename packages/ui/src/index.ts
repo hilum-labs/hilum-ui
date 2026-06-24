@@ -44,6 +44,7 @@ export * from "./components/dropdown-menu";
 export * from "./components/empty-state";
 export * from "./components/field";
 export * from "./components/grid-list";
+export * from "./components/help-tooltip";
 export * from "./components/hover-card";
 export * from "./components/input-group";
 export * from "./components/input-number";
