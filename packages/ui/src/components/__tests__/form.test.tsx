@@ -8,6 +8,7 @@ import { Slider } from "../slider";
 import { InputNumber } from "../input-number";
 import { InputGroup } from "../input-group";
 import { Field } from "../field";
+import { FileDropzone, formatFileSize } from "../file-dropzone";
 import { NativeSelect, NativeSelectOption } from "../native-select";
 import { RadioCards } from "../radio-card";
 import { Combobox } from "../combobox";
@@ -267,6 +268,78 @@ describe("RichTextEditor", () => {
     expect(onChange).toHaveBeenCalledWith(
       expect.stringContaining("https://cdn.example.com/image.png"),
     );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* FileDropzone                                                         */
+/* ------------------------------------------------------------------ */
+
+describe("FileDropzone", () => {
+  it("renders label, description, and file input constraints", () => {
+    render(
+      <FileDropzone
+        label="Upload assets"
+        description="Images, documents, and videos"
+        accept="image/*"
+        multiple
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: /upload assets/i })).toBeInTheDocument();
+    expect(screen.getByText("Images, documents, and videos")).toBeInTheDocument();
+    expect(document.querySelector("input[type='file']")).toHaveAttribute("accept", "image/*");
+    expect(document.querySelector("input[type='file']")).toHaveAttribute("multiple");
+  });
+
+  it("emits selected files from the input", () => {
+    const onFilesSelected = vi.fn();
+    render(<FileDropzone onFilesSelected={onFilesSelected} />);
+
+    const file = new File(["hello"], "hello.csv", { type: "text/csv" });
+    fireEvent.change(document.querySelector("input[type='file']")!, {
+      target: { files: [file] },
+    });
+
+    expect(onFilesSelected).toHaveBeenCalledWith([file]);
+  });
+
+  it("emits dropped files", () => {
+    const onFilesSelected = vi.fn();
+    render(<FileDropzone onFilesSelected={onFilesSelected} />);
+
+    const file = new File(["image"], "hero.png", { type: "image/png" });
+    fireEvent.drop(screen.getByRole("button"), {
+      dataTransfer: { files: [file] },
+    });
+
+    expect(onFilesSelected).toHaveBeenCalledWith([file]);
+  });
+
+  it("renders selected file summary", () => {
+    render(<FileDropzone selectedFiles={[{ name: "catalog.csv", size: 2048 }]} />);
+
+    expect(screen.getByText("catalog.csv (2.0 KB)")).toBeInTheDocument();
+    expect(screen.getByText("Selected")).toBeInTheDocument();
+  });
+
+  it("renders loading state and disables selection", () => {
+    const onFilesSelected = vi.fn();
+    render(<FileDropzone loading loadingText="Importing..." onFilesSelected={onFilesSelected} />);
+
+    expect(screen.getByText("Importing...")).toBeInTheDocument();
+    expect(screen.getByRole("button")).toHaveAttribute("aria-disabled", "true");
+    fireEvent.change(document.querySelector("input[type='file']")!, {
+      target: { files: [new File([""], "ignored.csv")] },
+    });
+    expect(onFilesSelected).not.toHaveBeenCalled();
+  });
+
+  it("formats file sizes", () => {
+    expect(formatFileSize(0)).toBe("0 B");
+    expect(formatFileSize(512)).toBe("512 B");
+    expect(formatFileSize(1536)).toBe("1.5 KB");
+    expect(formatFileSize(1024 * 1024 * 12)).toBe("12 MB");
   });
 });
 
