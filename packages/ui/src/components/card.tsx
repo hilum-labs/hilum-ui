@@ -92,6 +92,18 @@ const CardFooter = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>
 );
 CardFooter.displayName = "CardFooter";
 
+const CardAction = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      data-slot="card-action"
+      className={cn("col-start-2 row-span-2 row-start-1 self-start justify-self-end", className)}
+      {...props}
+    />
+  ),
+);
+CardAction.displayName = "CardAction";
+
 /* ------------------------------------------------------------------ */
 /*  CardMedia — full-bleed image/gradient header                       */
 /* ------------------------------------------------------------------ */
@@ -115,6 +127,7 @@ export {
   CardDescription,
   CardContent,
   CardFooter,
+  CardAction,
   CardMedia,
   cardVariants,
 };
