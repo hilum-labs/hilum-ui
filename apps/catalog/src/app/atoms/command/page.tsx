@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import { Calendar, CreditCard, FileText, HelpCircle, Search, Settings, User } from "lucide-react";
 import {
   Command,
+  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
@@ -14,7 +15,6 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@hilum/ui";
-import { Dialog, DialogContent } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -71,14 +71,10 @@ useEffect(() => {
   return () => document.removeEventListener("keydown", down)
 }, [])
 
-<Dialog open={open} onOpenChange={setOpen}>
-  <DialogContent className="p-0 overflow-hidden max-w-sm">
-    <Command className="border-0 rounded-none">
-      <CommandInput placeholder="Type a command..." />
-      <CommandList>...</CommandList>
-    </Command>
-  </DialogContent>
-</Dialog>`,
+<CommandDialog open={open} onOpenChange={setOpen}>
+  <CommandInput placeholder="Type a command..." />
+  <CommandList>...</CommandList>
+</CommandDialog>`,
 };
 
 function SectionHeading({ label }: { label: string }) {
@@ -110,53 +106,41 @@ function CommandDialogDemo() {
         Open Command Palette
         <CommandShortcut>⌘K</CommandShortcut>
       </Button>
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="p-0 overflow-hidden max-w-sm">
-          <Command className="border-0 rounded-none shadow-none">
-            <CommandInput placeholder="Type a command or search..." />
-            <CommandList>
-              <CommandEmpty />
-              <CommandGroup heading="Suggestions">
-                <CommandItem
-                  value="calendar"
-                  keywords={["calendar"]}
-                  onSelect={() => setOpen(false)}
-                >
-                  <Calendar size={14} />
-                  Calendar
-                </CommandItem>
-                <CommandItem
-                  value="search-emoji"
-                  keywords={["search emoji"]}
-                  onSelect={() => setOpen(false)}
-                >
-                  <Search size={14} />
-                  Search Emoji
-                </CommandItem>
-                <CommandItem
-                  value="settings"
-                  keywords={["settings"]}
-                  onSelect={() => setOpen(false)}
-                >
-                  <Settings size={14} />
-                  Settings
-                </CommandItem>
-              </CommandGroup>
-              <CommandSeparator />
-              <CommandGroup heading="Account">
-                <CommandItem value="profile" keywords={["profile"]} onSelect={() => setOpen(false)}>
-                  <User size={14} />
-                  Profile
-                </CommandItem>
-                <CommandItem value="billing" keywords={["billing"]} onSelect={() => setOpen(false)}>
-                  <CreditCard size={14} />
-                  Billing
-                </CommandItem>
-              </CommandGroup>
-            </CommandList>
-          </Command>
-        </DialogContent>
-      </Dialog>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput placeholder="Type a command or search..." />
+        <CommandList>
+          <CommandEmpty />
+          <CommandGroup heading="Suggestions">
+            <CommandItem value="calendar" keywords={["calendar"]} onSelect={() => setOpen(false)}>
+              <Calendar size={14} />
+              Calendar
+            </CommandItem>
+            <CommandItem
+              value="search-emoji"
+              keywords={["search emoji"]}
+              onSelect={() => setOpen(false)}
+            >
+              <Search size={14} />
+              Search Emoji
+            </CommandItem>
+            <CommandItem value="settings" keywords={["settings"]} onSelect={() => setOpen(false)}>
+              <Settings size={14} />
+              Settings
+            </CommandItem>
+          </CommandGroup>
+          <CommandSeparator />
+          <CommandGroup heading="Account">
+            <CommandItem value="profile" keywords={["profile"]} onSelect={() => setOpen(false)}>
+              <User size={14} />
+              Profile
+            </CommandItem>
+            <CommandItem value="billing" keywords={["billing"]} onSelect={() => setOpen(false)}>
+              <CreditCard size={14} />
+              Billing
+            </CommandItem>
+          </CommandGroup>
+        </CommandList>
+      </CommandDialog>
     </>
   );
 }

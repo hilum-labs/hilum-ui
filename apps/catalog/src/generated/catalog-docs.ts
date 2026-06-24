@@ -995,12 +995,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, className, height, labelClassName"
-      },
-      {
         "label": "Key exports",
-        "description": "ChartContainer, ChartTooltip, CHART_COLORS"
+        "description": "ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle"
       }
     ],
     "exampleCode": "import {\n  ChartContainer, ChartTooltip, CHART_COLORS,\n  BarChart, Bar, CartesianGrid, XAxis, YAxis, RechartsTooltip,\n} from \"@hilum/ui\";\n\n<ChartContainer height={280}>\n  <BarChart data={monthlyData}>\n    <CartesianGrid strokeDasharray=\"3 3\" stroke=\"#f2eeea\" />\n    <XAxis dataKey=\"month\" tick={{ fill: \"#a8978a\", fontSize: 12 }} axisLine={false} tickLine={false} />\n    <YAxis tick={{ fill: \"#a8978a\", fontSize: 12 }} axisLine={false} tickLine={false} />\n    <RechartsTooltip content={<ChartTooltip />} />\n    <Bar dataKey=\"revenue\" fill={CHART_COLORS.primary} radius={[4, 4, 0, 0]} />\n  </BarChart>\n</ChartContainer>",
@@ -1162,11 +1158,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "onSelect, heading, value, keywords, disabled"
+        "description": "onSelect, heading, value, keywords, disabled, title"
       },
       {
         "label": "Key exports",
-        "description": "Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem"
+        "description": "Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup"
       }
     ],
     "exampleCode": "import { Command, CommandInput, CommandList, CommandEmpty, CommandItem } from \"@hilum/ui\"\n\n<Command>\n  <CommandInput placeholder=\"Search...\" />\n  <CommandList>\n    <CommandItem value=\"calendar\" keywords={[\"calendar\"]}>Calendar</CommandItem>\n    <CommandItem value=\"settings\" keywords={[\"settings\"]}>Settings</CommandItem>\n    <CommandEmpty />\n  </CommandList>\n</Command>",

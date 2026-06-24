@@ -3,6 +3,13 @@
 import * as React from "react";
 import { Search } from "lucide-react";
 import { cn } from "../lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "./dialog";
 
 interface CommandContextValue {
   query: string;
@@ -238,10 +245,38 @@ function CommandShortcut({ className, ...props }: React.HTMLAttributes<HTMLSpanE
 }
 CommandShortcut.displayName = "CommandShortcut";
 
+interface CommandDialogProps extends React.ComponentProps<typeof Dialog> {
+  title?: string;
+  description?: string;
+  className?: string;
+}
+
+function CommandDialog({
+  title = "Command Palette",
+  description = "Search for a command to run...",
+  children,
+  className,
+  ...props
+}: CommandDialogProps) {
+  return (
+    <Dialog {...props}>
+      <DialogContent className={cn("gap-0 overflow-hidden p-0 sm:max-w-xl", className)}>
+        <DialogHeader className="sr-only">
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
+        </DialogHeader>
+        <Command className="rounded-none border-0 shadow-none">{children}</Command>
+      </DialogContent>
+    </Dialog>
+  );
+}
+CommandDialog.displayName = "CommandDialog";
+
 Command.displayName = "Command";
 
 export {
   Command,
+  CommandDialog,
   CommandInput,
   CommandList,
   CommandEmpty,

@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - Use mobile bottom-sheet presentation for dialogs, alert dialogs, dropdown menus, and select menus.
+- Add a reusable `CommandDialog` composition for modal command palettes.
 
 ## 3.2.3
 
