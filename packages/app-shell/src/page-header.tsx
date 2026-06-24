@@ -8,22 +8,59 @@ interface PageHeaderProps {
   description?: ReactNode;
   /** Buttons or controls on the right. */
   actions?: ReactNode;
+  /** Optional leading icon rendered inside the title. */
+  icon?: ReactNode;
   /** Optional eyebrow above the title (e.g. category, breadcrumb summary). */
   eyebrow?: ReactNode;
   /** Heading level (default: 1). */
   level?: 1 | 2 | 3;
+  actionsClassName?: string;
   className?: string;
+}
+
+interface PageHeaderActionsProps {
+  children: ReactNode;
+  className?: string;
+}
+
+function PageHeaderActions({ children, className }: PageHeaderActionsProps) {
+  return (
+    <div
+      className={cn(
+        "grid w-[calc(100vw-2rem)] max-w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-2 sm:flex sm:w-auto sm:max-w-[64vw] sm:flex-wrap sm:items-center sm:justify-end",
+        "[&>*:first-child]:col-span-2 [&>*:first-child]:w-full sm:[&>*:first-child]:col-span-1 sm:[&>*:first-child]:w-auto",
+        "[&_.dashboard-action-primary]:col-span-2 [&_.dashboard-action-primary]:w-full sm:[&_.dashboard-action-primary]:col-span-1 sm:[&_.dashboard-action-primary]:w-auto",
+        "[&_.dashboard-action-wide]:col-span-2 sm:[&_.dashboard-action-wide]:col-span-1",
+        className,
+      )}
+      data-slot="page-header-actions"
+    >
+      {children}
+    </div>
+  );
 }
 
 function PageHeader({
   title,
   description,
   actions,
+  icon,
   eyebrow,
   level = 1,
+  actionsClassName,
   className,
 }: PageHeaderProps) {
   const Tag = `h${level}` as const;
+  const headingTitle = icon ? (
+    <span className="flex min-w-0 items-center gap-3">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-secondary/30 text-ground-700 ring-1 ring-border [&_svg]:size-5">
+        {icon}
+      </span>
+      <span className="min-w-0 truncate">{title}</span>
+    </span>
+  ) : (
+    title
+  );
 
   return (
     <div
@@ -48,16 +85,18 @@ function PageHeader({
                 : "subheading text-foreground",
           )}
         >
-          {title}
+          {headingTitle}
         </Tag>
         {description && (
           <p className="body mt-2 max-w-2xl text-pretty text-muted-foreground">{description}</p>
         )}
       </div>
-      {actions && <div className="flex items-center gap-2 shrink-0">{actions}</div>}
+      {actions && (
+        <div className={cn("flex items-center gap-2 shrink-0", actionsClassName)}>{actions}</div>
+      )}
     </div>
   );
 }
 
-export { PageHeader };
-export type { PageHeaderProps };
+export { PageHeader, PageHeaderActions };
+export type { PageHeaderProps, PageHeaderActionsProps };
