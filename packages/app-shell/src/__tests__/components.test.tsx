@@ -11,7 +11,7 @@ import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
 import { AppNotificationMenu } from "../app-notification-menu";
 import { AppStatusBanner } from "../app-status-banner";
-import { PageHeader } from "../page-header";
+import { PageHeader, PageHeaderActions } from "../page-header";
 import { DetailScreen } from "../detail-screen";
 import { SettingsScreen } from "../settings-screen";
 import { SignInScreen } from "../sign-in-screen";
@@ -367,6 +367,49 @@ describe("PageHeader", () => {
   it("renders actions", () => {
     render(<PageHeader title="Title" actions={<button>Add User</button>} />);
     expect(screen.getByRole("button", { name: "Add User" })).toBeInTheDocument();
+  });
+
+  it("uses the shared responsive actions layout", () => {
+    const { container } = render(
+      <PageHeader
+        title="Title"
+        actions={
+          <>
+            <button>Search</button>
+            <button className="dashboard-action-primary">Create</button>
+          </>
+        }
+        actionsClassName="custom-actions"
+      />,
+    );
+
+    const actions = container.querySelector('[data-slot="page-header-actions"]');
+    expect(actions).toHaveClass("grid");
+    expect(actions).toHaveClass("custom-actions");
+    expect(actions).toHaveTextContent("Search");
+    expect(actions).toHaveTextContent("Create");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* PageHeaderActions                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("PageHeaderActions", () => {
+  it("renders the responsive dashboard action classes", () => {
+    const { container } = render(
+      <PageHeaderActions>
+        <button>Export</button>
+        <button className="dashboard-action-wide">Import</button>
+      </PageHeaderActions>,
+    );
+
+    const actions = container.querySelector('[data-slot="page-header-actions"]');
+    expect(actions).toHaveClass("grid");
+    expect(actions).toHaveClass("sm:flex");
+    expect(actions).toHaveClass("[&_.dashboard-action-wide]:col-span-2");
+    expect(screen.getByRole("button", { name: "Export" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Import" })).toBeInTheDocument();
   });
 });
 

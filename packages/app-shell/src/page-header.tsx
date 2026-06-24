@@ -91,9 +91,12 @@ function PageHeader({
           <p className="body mt-2 max-w-2xl text-pretty text-muted-foreground">{description}</p>
         )}
       </div>
-      {actions && (
-        <div className={cn("flex items-center gap-2 shrink-0", actionsClassName)}>{actions}</div>
-      )}
+      {actions &&
+        (actionsClassName ? (
+          <PageHeaderActions className={actionsClassName}>{actions}</PageHeaderActions>
+        ) : (
+          <PageHeaderActions>{actions}</PageHeaderActions>
+        ))}
     </div>
   );
 }
