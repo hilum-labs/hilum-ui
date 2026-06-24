@@ -65,6 +65,7 @@ export * from "./components/property-row";
 export * from "./components/radio-card";
 export * from "./components/radio-group";
 export * from "./components/resizable";
+export * from "./components/rich-text-editor";
 export * from "./components/scroll-area";
 export * from "./components/section-heading";
 export * from "./components/searchable-table";

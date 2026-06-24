@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { Checkbox } from "../checkbox";
 import { RadioGroup, RadioGroupItem } from "../radio-group";
@@ -11,6 +11,7 @@ import { Field } from "../field";
 import { NativeSelect, NativeSelectOption } from "../native-select";
 import { RadioCards } from "../radio-card";
 import { Combobox } from "../combobox";
+import { RichTextEditor } from "../rich-text-editor";
 
 const FRUITS = [
   { value: "apple", label: "Apple" },
@@ -194,6 +195,78 @@ describe("InputGroup", () => {
     const { container } = render(<InputGroup error />);
     // Error icon is rendered inside
     expect(container.querySelector("input")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* RichTextEditor                                                       */
+/* ------------------------------------------------------------------ */
+
+describe("RichTextEditor", () => {
+  it("renders the formatting toolbar and editable textbox", () => {
+    render(<RichTextEditor value="<p>Hello</p>" onChange={() => {}} />);
+
+    expect(screen.getByRole("toolbar", { name: /text formatting/i })).toBeInTheDocument();
+    expect(screen.getByRole("textbox", { name: /content editor/i })).toHaveTextContent("Hello");
+    expect(screen.getByRole("button", { name: /bold/i })).toBeInTheDocument();
+  });
+
+  it("calls onChange with the editor html on input", () => {
+    const onChange = vi.fn();
+    render(<RichTextEditor value="" onChange={onChange} />);
+
+    const editor = screen.getByRole("textbox", { name: /content editor/i });
+    editor.innerHTML = "<p>Draft</p>";
+    fireEvent.input(editor);
+
+    expect(onChange).toHaveBeenCalledWith("<p>Draft</p>");
+  });
+
+  it("syncs external value changes when the editor is not focused", () => {
+    const { rerender } = render(<RichTextEditor value="<p>First</p>" onChange={() => {}} />);
+    rerender(<RichTextEditor value="<p>Second</p>" onChange={() => {}} />);
+
+    expect(screen.getByRole("textbox", { name: /content editor/i })).toHaveTextContent("Second");
+  });
+
+  it("opens the link input from the toolbar", () => {
+    render(<RichTextEditor value="" onChange={() => {}} />);
+
+    fireEvent.mouseDown(screen.getByRole("button", { name: /insert link/i }));
+
+    expect(screen.getByRole("textbox", { name: /link url/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Insert" })).toBeInTheDocument();
+  });
+
+  it("uses a provided image url handler when inserting images", async () => {
+    const onChange = vi.fn();
+    const { container } = render(
+      <RichTextEditor
+        value=""
+        onChange={onChange}
+        onRequestImageUrl={() => "https://cdn.example.com/image.png"}
+      />,
+    );
+
+    const editor = screen.getByRole("textbox", { name: /content editor/i });
+    const range = document.createRange();
+    range.selectNodeContents(editor);
+    range.collapse(false);
+    const selection = window.getSelection();
+    selection?.removeAllRanges();
+    selection?.addRange(range);
+
+    fireEvent.mouseDown(screen.getByRole("button", { name: /insert image/i }));
+
+    await waitFor(() =>
+      expect(container.querySelector("img")).toHaveAttribute(
+        "src",
+        "https://cdn.example.com/image.png",
+      ),
+    );
+    expect(onChange).toHaveBeenCalledWith(
+      expect.stringContaining("https://cdn.example.com/image.png"),
+    );
   });
 });
 

@@ -10,6 +10,7 @@
 - Add a reusable `CommandDialog` composition for modal command palettes.
 - Add mobile sheet state and `SidebarInput` to the reusable sidebar primitive.
 - Add `SearchableTable` for controlled search, filters, sorting, pagination, and mobile list views.
+- Add `RichTextEditor` for product, content, theme, and admin HTML editing surfaces.
 
 ## 3.2.3
 
