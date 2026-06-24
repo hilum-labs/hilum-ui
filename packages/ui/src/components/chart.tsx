@@ -129,15 +129,6 @@ ${colorConfig
   );
 };
 
-function ChartTooltip(props: React.ComponentProps<typeof RechartsPrimitive.Tooltip>) {
-  const hasDirectTooltipPayload = "active" in props || "payload" in props;
-  if (hasDirectTooltipPayload) {
-    return <ChartTooltipContent {...(props as unknown as ChartTooltipContentProps)} />;
-  }
-  return <RechartsPrimitive.Tooltip {...props} />;
-}
-ChartTooltip.displayName = "ChartTooltip";
-
 type ChartTooltipContentProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   "children" | "content"
@@ -165,6 +156,23 @@ type ChartTooltipContentProps = Omit<
   labelKey?: string;
 };
 
+type ChartTooltipProps =
+  | React.ComponentProps<typeof RechartsPrimitive.Tooltip>
+  | ChartTooltipContentProps;
+
+function ChartTooltip(props: ChartTooltipProps) {
+  const hasDirectTooltipPayload = "active" in props || "payload" in props;
+  if (hasDirectTooltipPayload) {
+    return <ChartTooltipContent {...(props as ChartTooltipContentProps)} />;
+  }
+  return (
+    <RechartsPrimitive.Tooltip
+      {...(props as React.ComponentProps<typeof RechartsPrimitive.Tooltip>)}
+    />
+  );
+}
+ChartTooltip.displayName = "ChartTooltip";
+
 function ChartTooltipContent({
   active,
   payload,
@@ -180,7 +188,8 @@ function ChartTooltipContent({
   nameKey,
   labelKey,
 }: ChartTooltipContentProps) {
-  const { config } = useChart();
+  const chartContext = React.useContext(ChartContext);
+  const config = chartContext?.config ?? {};
 
   const tooltipLabel = React.useMemo(() => {
     if (hideLabel || !payload?.length) {
