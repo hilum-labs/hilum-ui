@@ -2,7 +2,11 @@ import { describe, it, expect } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { AppShell } from "../app-shell";
 import { AppShellStacked } from "../app-shell-stacked";
-import { AppCommandPalette } from "../app-command-palette";
+import {
+  APP_COMMAND_PALETTE_EVENT,
+  AppCommandButton,
+  AppCommandPalette,
+} from "../app-command-palette";
 import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
 import { PageHeader } from "../page-header";
@@ -55,6 +59,28 @@ describe("AppShell", () => {
 /* ------------------------------------------------------------------ */
 
 describe("AppCommandPalette", () => {
+  it("renders a command trigger with the default label and shortcut", () => {
+    render(<AppCommandButton />);
+
+    expect(screen.getByRole("button", { name: /open command palette/i })).toBeInTheDocument();
+    expect(screen.getByText("Search")).toBeInTheDocument();
+    expect(screen.getByText("⌘K")).toBeInTheDocument();
+  });
+
+  it("dispatches the command palette open event from the trigger", () => {
+    let openCount = 0;
+    const handleOpen = () => {
+      openCount += 1;
+    };
+    window.addEventListener(APP_COMMAND_PALETTE_EVENT, handleOpen);
+
+    render(<AppCommandButton />);
+    fireEvent.click(screen.getByRole("button", { name: /open command palette/i }));
+
+    window.removeEventListener(APP_COMMAND_PALETTE_EVENT, handleOpen);
+    expect(openCount).toBe(1);
+  });
+
   it("renders navigation sections and actions", () => {
     render(
       <AppCommandPalette

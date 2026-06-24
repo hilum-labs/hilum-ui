@@ -1,5 +1,13 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
 import {
+  useEffect,
+  useMemo,
+  useState,
+  type ComponentProps,
+  type MouseEvent,
+  type ReactNode,
+} from "react";
+import {
+  Button,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
@@ -7,8 +15,10 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
+  Kbd,
   cn,
 } from "@hilum/ui";
+import { Search } from "lucide-react";
 import type { NavSection } from "./types";
 
 const APP_COMMAND_PALETTE_EVENT = "hilum:open-command-palette";
@@ -40,9 +50,58 @@ interface AppCommandPaletteProps {
   className?: string;
 }
 
+interface AppCommandButtonProps extends Omit<ComponentProps<typeof Button>, "children"> {
+  label?: ReactNode;
+  shortcut?: ReactNode;
+  icon?: ReactNode;
+  showShortcut?: boolean;
+  openEventName?: string;
+  onOpen?: () => void;
+}
+
 function openAppCommandPalette(eventName = APP_COMMAND_PALETTE_EVENT) {
   if (typeof window === "undefined") return;
   window.dispatchEvent(new CustomEvent(eventName));
+}
+
+function AppCommandButton({
+  label = "Search",
+  shortcut = "⌘K",
+  icon,
+  showShortcut = true,
+  openEventName = APP_COMMAND_PALETTE_EVENT,
+  onOpen,
+  onClick,
+  className,
+  variant = "outline",
+  size,
+  "aria-label": ariaLabel = "Open command palette (Ctrl+K)",
+  ...props
+}: AppCommandButtonProps) {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    onClick?.(event);
+    if (event.defaultPrevented) return;
+    onOpen?.();
+    openAppCommandPalette(openEventName);
+  };
+
+  return (
+    <Button
+      variant={variant}
+      size={size}
+      className={cn(
+        "hidden min-h-10 min-w-52 justify-start gap-2 text-muted-foreground md:inline-flex",
+        className,
+      )}
+      onClick={handleClick}
+      aria-label={ariaLabel}
+      {...props}
+    >
+      {icon ?? <Search className="size-3.5" />}
+      <span className="min-w-0 flex-1 truncate text-left">{label}</span>
+      {showShortcut && shortcut ? <Kbd>{shortcut}</Kbd> : null}
+    </Button>
+  );
 }
 
 function AppCommandPalette({
@@ -154,7 +213,12 @@ function AppCommandPalette({
                 <CommandItem
                   key={`${item.group ?? "commands"}-${item.href ?? item.label}`}
                   value={item.href ?? item.label}
-                  keywords={[item.label, item.group ?? "", item.href ?? "", ...(item.keywords ?? [])]}
+                  keywords={[
+                    item.label,
+                    item.group ?? "",
+                    item.href ?? "",
+                    ...(item.keywords ?? []),
+                  ]}
                   onSelect={() => handleSelect(item)}
                   className="cursor-pointer"
                 >
@@ -163,7 +227,9 @@ function AppCommandPalette({
                       {item.icon}
                     </span>
                   )}
-                  <span className={cn("min-w-0 truncate", item.disabled && "text-muted-foreground")}>
+                  <span
+                    className={cn("min-w-0 truncate", item.disabled && "text-muted-foreground")}
+                  >
                     {item.label}
                   </span>
                 </CommandItem>
@@ -177,6 +243,7 @@ function AppCommandPalette({
 }
 
 AppCommandPalette.displayName = "AppCommandPalette";
+AppCommandButton.displayName = "AppCommandButton";
 
-export { APP_COMMAND_PALETTE_EVENT, AppCommandPalette, openAppCommandPalette };
-export type { AppCommandPaletteItem, AppCommandPaletteProps };
+export { APP_COMMAND_PALETTE_EVENT, AppCommandButton, AppCommandPalette, openAppCommandPalette };
+export type { AppCommandButtonProps, AppCommandPaletteItem, AppCommandPaletteProps };

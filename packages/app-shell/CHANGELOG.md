@@ -7,6 +7,7 @@
 - Add reusable page header icon and responsive action layout support for dense dashboard headers.
 - Add a reusable `AppMobileNav` shell for compact mobile headers with account menu, horizontal section tabs, and optional mobile nav labels.
 - Add `AppCommandPalette` for route/action command palettes driven by app shell navigation data.
+- Add `AppCommandButton` for consistent app-shell command palette triggers.
 - Updated dependencies
   - @hilum/ui@3.2.4
 
