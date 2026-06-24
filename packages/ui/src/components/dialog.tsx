@@ -37,6 +37,7 @@ const DialogContent = React.forwardRef<
       className={cn(
         "fixed inset-x-0 bottom-0 z-50 max-h-[calc(100dvh-1rem)] w-full overflow-y-auto",
         "rounded-t-2xl border border-border bg-card p-6 shadow-elevated",
+        "max-sm:pt-8 max-sm:before:absolute max-sm:before:left-1/2 max-sm:before:top-3 max-sm:before:h-1 max-sm:before:w-9 max-sm:before:-translate-x-1/2 max-sm:before:rounded-full max-sm:before:bg-muted-foreground/35",
         "sm:bottom-auto sm:left-1/2 sm:top-1/2 sm:max-h-[calc(100dvh-2rem)] sm:max-w-lg sm:-translate-x-1/2 sm:-translate-y-1/2 sm:rounded-2xl",
         "data-[state=open]:animate-in data-[state=closed]:animate-out",
         "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -62,7 +63,16 @@ function DialogHeader({ className, ...props }: React.HTMLAttributes<HTMLDivEleme
 DialogHeader.displayName = "DialogHeader";
 
 function DialogFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex items-center justify-end gap-2 mt-6", className)} {...props} />;
+  return (
+    <div
+      className={cn(
+        "mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-end",
+        "[&>*]:w-full sm:[&>*]:w-auto",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 DialogFooter.displayName = "DialogFooter";
 

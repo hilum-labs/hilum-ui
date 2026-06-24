@@ -2,7 +2,14 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { DataTable, createColumnHelper, type ColumnDef } from "@hilum/ui";
+import { useState } from "react";
+import {
+  DataTable,
+  SearchableTable,
+  createColumnHelper,
+  type ColumnDef,
+  type SearchableTableColumn,
+} from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
@@ -188,6 +195,37 @@ const SIMPLE_COLUMNS: ColumnDef<Transaction, any>[] = [
   }),
 ];
 
+const SEARCHABLE_COLUMNS: SearchableTableColumn<Transaction>[] = [
+  {
+    key: "company",
+    label: "Company",
+    sortable: true,
+    render: (transaction) => (
+      <span className="font-medium text-ground-900">{transaction.company}</span>
+    ),
+  },
+  {
+    key: "type",
+    label: "Type",
+    sortable: true,
+  },
+  {
+    key: "amount",
+    label: "Amount",
+    sortAccessor: (transaction) => Number(transaction.amount.replace(/[$,]/g, "")),
+    render: (transaction) => (
+      <span className="font-medium tabular-nums text-ground-900">{transaction.amount}</span>
+    ),
+  },
+  {
+    key: "status",
+    label: "Status",
+    render: (transaction) => (
+      <Badge variant={statusVariant[transaction.status]}>{transaction.status}</Badge>
+    ),
+  },
+];
+
 /* ------------------------------------------------------------------ */
 /*  Code snippets                                                      */
 /* ------------------------------------------------------------------ */
@@ -267,6 +305,43 @@ const columns: ColumnDef<Transaction>[] = [
 ]
 
 <DataTable columns={columns} data={data} pageSize={5} />`,
+
+  searchable: `import { SearchableTable, type SearchableTableColumn } from "@hilum/ui"
+
+const columns: SearchableTableColumn<Transaction>[] = [
+  { key: "company", label: "Company", sortable: true },
+  { key: "type", label: "Type", sortable: true },
+  { key: "amount", label: "Amount", sortAccessor: row => Number(row.amount.replace(/[$,]/g, "")) },
+  { key: "status", label: "Status", render: row => <Badge>{row.status}</Badge> },
+]
+
+function Example() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const [status, setStatus] = useState("all")
+  const rows = status === "all" ? data : data.filter(row => row.status === status)
+
+  return (
+    <SearchableTable
+      data={rows}
+      columns={columns}
+      searchTerm={searchTerm}
+      onSearchChange={setSearchTerm}
+      filters={{
+        status: {
+          value: status,
+          onChange: setStatus,
+          placeholder: "Status",
+          options: [
+            { value: "all", label: "All statuses" },
+            { value: "Paid", label: "Paid" },
+            { value: "Pending", label: "Pending" },
+            { value: "Overdue", label: "Overdue" },
+          ],
+        },
+      }}
+    />
+  )
+}`,
 };
 
 /* ------------------------------------------------------------------ */
@@ -279,6 +354,40 @@ function SectionHeading({ label }: { label: string }) {
       <h2 className="label text-ground-400">{label}</h2>
       <div className="h-px flex-1 bg-ground-100" />
     </div>
+  );
+}
+
+function SearchableTableDemo() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [status, setStatus] = useState("all");
+  const rows = status === "all" ? DATA : DATA.filter((transaction) => transaction.status === status);
+
+  return (
+    <SearchableTable
+      data={rows}
+      columns={SEARCHABLE_COLUMNS}
+      searchTerm={searchTerm}
+      onSearchChange={setSearchTerm}
+      searchPlaceholder="Search transactions..."
+      filters={{
+        status: {
+          value: status,
+          onChange: setStatus,
+          placeholder: "Status",
+          options: [
+            { value: "all", label: "All statuses" },
+            { value: "Paid", label: "Paid" },
+            { value: "Pending", label: "Pending" },
+            { value: "Overdue", label: "Overdue" },
+          ],
+        },
+      }}
+      actions={(transaction) => (
+        <Button variant="ghost" size="sm">
+          View {transaction.id}
+        </Button>
+      )}
+    />
   );
 }
 
@@ -349,6 +458,18 @@ function DataTablePage() {
             previewClassName="flex-col items-stretch"
           >
             <DataTable columns={SIMPLE_COLUMNS} data={DATA} pageSize={5} />
+          </PreviewBlock>
+        </section>
+
+        <section>
+          <SectionHeading label="Searchable table" />
+          <PreviewBlock
+            title="Controlled search, filters, and mobile rows"
+            description="App-style table with controlled search/filter state and stacked mobile rows"
+            code={CODE.searchable}
+            previewClassName="flex-col items-stretch"
+          >
+            <SearchableTableDemo />
           </PreviewBlock>
         </section>
       </div>

@@ -5,8 +5,11 @@
 ### Patch Changes
 
 - Use mobile bottom-sheet presentation for dialogs, alert dialogs, dropdown menus, and select menus.
+- Extend mobile bottom-sheet presentation to popovers and add safe-area grabbers to mobile menu/select sheets.
+- Stack dialog and alert dialog footer actions full-width on mobile while preserving desktop modal footers.
 - Add a reusable `CommandDialog` composition for modal command palettes.
 - Add mobile sheet state and `SidebarInput` to the reusable sidebar primitive.
+- Add `SearchableTable` for controlled search, filters, sorting, pagination, and mobile list views.
 
 ## 3.2.3
 
