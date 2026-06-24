@@ -5,7 +5,9 @@ import { PanelLeft } from "lucide-react";
 import { Slot } from "radix-ui";
 import { cn } from "../lib/utils";
 import { Button } from "./button";
+import { Input } from "./input";
 import { Separator } from "./separator";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "./sheet";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
 
 /* ------------------------------------------------------------------ */
@@ -13,8 +15,27 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tool
 /* ------------------------------------------------------------------ */
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state";
+const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
+const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3.5rem";
+const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+const MOBILE_BREAKPOINT = 768;
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`);
+    const onChange = () => setIsMobile(mediaQuery.matches);
+
+    onChange();
+    mediaQuery.addEventListener("change", onChange);
+    return () => mediaQuery.removeEventListener("change", onChange);
+  }, []);
+
+  return isMobile;
+}
 
 /* ------------------------------------------------------------------ */
 /*  Context                                                             */
@@ -23,7 +44,10 @@ const SIDEBAR_WIDTH_ICON = "3.5rem";
 interface SidebarContextValue {
   state: "expanded" | "collapsed";
   open: boolean;
-  setOpen: (open: boolean) => void;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  openMobile: boolean;
+  setOpenMobile: React.Dispatch<React.SetStateAction<boolean>>;
+  isMobile: boolean;
   toggleSidebar: () => void;
 }
 
@@ -54,32 +78,59 @@ function SidebarProvider({
   children,
   ...props
 }: SidebarProviderProps) {
+  const isMobile = useIsMobile();
+  const [openMobile, setOpenMobile] = React.useState(false);
   const [_open, _setOpen] = React.useState(defaultOpen);
 
   const open = openProp !== undefined ? openProp : _open;
 
   const setOpen = React.useCallback(
-    (value: boolean) => {
+    (value: React.SetStateAction<boolean>) => {
+      const nextOpen = typeof value === "function" ? value(open) : value;
       if (onOpenChange) {
-        onOpenChange(value);
+        onOpenChange(nextOpen);
       } else {
-        _setOpen(value);
+        _setOpen(nextOpen);
       }
-      // Persist to cookie
-      document.cookie = `${SIDEBAR_COOKIE_NAME}=${value}; path=/; max-age=${60 * 60 * 24 * 7}`;
+      document.cookie = `${SIDEBAR_COOKIE_NAME}=${nextOpen}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
     },
-    [onOpenChange],
+    [onOpenChange, open],
   );
 
   const toggleSidebar = React.useCallback(() => {
-    setOpen(!open);
-  }, [open, setOpen]);
+    if (isMobile) {
+      setOpenMobile((currentOpen) => !currentOpen);
+      return;
+    }
+
+    setOpen((currentOpen) => !currentOpen);
+  }, [isMobile, setOpen]);
+
+  React.useEffect(() => {
+    function handleKeyDown(event: KeyboardEvent) {
+      if (event.key === SIDEBAR_KEYBOARD_SHORTCUT && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault();
+        toggleSidebar();
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [toggleSidebar]);
 
   const state = open ? "expanded" : "collapsed";
 
   const contextValue = React.useMemo<SidebarContextValue>(
-    () => ({ state, open, setOpen, toggleSidebar }),
-    [state, open, setOpen, toggleSidebar],
+    () => ({
+      state,
+      open,
+      setOpen,
+      openMobile,
+      setOpenMobile,
+      isMobile,
+      toggleSidebar,
+    }),
+    [state, open, setOpen, openMobile, setOpenMobile, isMobile, toggleSidebar],
   );
 
   return (
@@ -92,6 +143,7 @@ function SidebarProvider({
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH,
+              "--sidebar-width-mobile": SIDEBAR_WIDTH_MOBILE,
               "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
               ...style,
             } as React.CSSProperties
@@ -109,7 +161,7 @@ function SidebarProvider({
 /*  Sidebar                                                             */
 /* ------------------------------------------------------------------ */
 
-interface SidebarProps extends React.ComponentProps<"aside"> {
+interface SidebarProps extends React.ComponentProps<"div"> {
   side?: "left" | "right";
   variant?: "sidebar" | "floating" | "inset";
   collapsible?: "offcanvas" | "icon" | "none";
@@ -123,7 +175,7 @@ function Sidebar({
   children,
   ...props
 }: SidebarProps) {
-  const { state } = useSidebar();
+  const { state, isMobile, openMobile, setOpenMobile } = useSidebar();
 
   if (collapsible === "none") {
     return (
@@ -140,6 +192,28 @@ function Sidebar({
       >
         {children}
       </aside>
+    );
+  }
+
+  if (isMobile) {
+    return (
+      <Sheet open={openMobile} onOpenChange={setOpenMobile} {...props}>
+        <SheetContent
+          data-sidebar="sidebar"
+          data-mobile="true"
+          side={side}
+          className={cn(
+            "w-(--sidebar-width-mobile) max-w-[85dvw] bg-card p-0 text-foreground [&>button]:hidden",
+            className,
+          )}
+        >
+          <SheetHeader className="sr-only">
+            <SheetTitle>Sidebar</SheetTitle>
+            <SheetDescription>Displays the mobile sidebar.</SheetDescription>
+          </SheetHeader>
+          <div className="flex h-full w-full flex-col">{children}</div>
+        </SheetContent>
+      </Sheet>
     );
   }
 
@@ -247,7 +321,7 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
   return (
     <main
       data-sidebar="inset"
-      className={cn("relative flex min-h-svh flex-1 flex-col bg-card overflow-hidden", className)}
+      className={cn("relative flex min-h-svh flex-1 flex-col overflow-hidden bg-background", className)}
       {...props}
     />
   );
@@ -292,6 +366,16 @@ function SidebarSeparator({ className, ...props }: React.ComponentProps<typeof S
     <Separator
       data-sidebar="separator"
       className={cn("mx-2 my-1 bg-muted", className)}
+      {...props}
+    />
+  );
+}
+
+function SidebarInput({ className, ...props }: React.ComponentProps<typeof Input>) {
+  return (
+    <Input
+      data-sidebar="input"
+      className={cn("h-8 w-full bg-background shadow-none", className)}
       {...props}
     />
   );
@@ -619,6 +703,7 @@ export {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarInput,
   SidebarInset,
   SidebarMenu,
   SidebarMenuAction,
@@ -632,5 +717,11 @@ export {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
+  SIDEBAR_COOKIE_MAX_AGE,
+  SIDEBAR_COOKIE_NAME,
+  SIDEBAR_KEYBOARD_SHORTCUT,
+  SIDEBAR_WIDTH,
+  SIDEBAR_WIDTH_ICON,
+  SIDEBAR_WIDTH_MOBILE,
   useSidebar,
 };
