@@ -9,6 +9,7 @@ import {
 } from "../app-command-palette";
 import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
+import { AppStatusBanner } from "../app-status-banner";
 import { PageHeader } from "../page-header";
 import { DetailScreen } from "../detail-screen";
 import { SettingsScreen } from "../settings-screen";
@@ -164,6 +165,67 @@ describe("AppHeader", () => {
       </AppShell>,
     );
     expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AppStatusBanner                                                      */
+/* ------------------------------------------------------------------ */
+
+describe("AppStatusBanner", () => {
+  it("renders title, description, and tone metadata", () => {
+    const { container } = render(
+      <AppStatusBanner
+        tone="warning"
+        title="Viewing as merchant"
+        description="You have write access in this session."
+      />,
+    );
+
+    expect(screen.getByRole("status")).toHaveTextContent("Viewing as merchant");
+    expect(screen.getByText("You have write access in this session.")).toBeInTheDocument();
+    expect(container.querySelector("[data-slot='app-status-banner']")).toHaveAttribute(
+      "data-tone",
+      "warning",
+    );
+  });
+
+  it("calls primary action and dismiss handlers", () => {
+    let primaryCount = 0;
+    let dismissCount = 0;
+
+    render(
+      <AppStatusBanner
+        title="Maintenance mode"
+        primaryAction={{ label: "Disable", onClick: () => (primaryCount += 1) }}
+        onDismiss={() => (dismissCount += 1)}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole("button", { name: "Disable" }));
+    fireEvent.click(screen.getByRole("button", { name: "Dismiss" }));
+
+    expect(primaryCount).toBe(1);
+    expect(dismissCount).toBe(1);
+  });
+
+  it("renders linked actions through the app link provider", () => {
+    const CustomLink = ({ href, children }: { href: string; children?: React.ReactNode }) => (
+      <a data-testid="custom-link" href={href}>
+        {children}
+      </a>
+    );
+
+    render(
+      <AppShell linkComponent={CustomLink}>
+        <AppStatusBanner
+          title="Preview mode"
+          primaryAction={{ label: "Open store", href: "/store" }}
+        />
+      </AppShell>,
+    );
+
+    expect(screen.getByTestId("custom-link")).toHaveAttribute("href", "/store");
   });
 });
 
