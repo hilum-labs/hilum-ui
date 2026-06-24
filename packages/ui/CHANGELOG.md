@@ -12,6 +12,7 @@
 - Add `SearchableTable` for controlled search, filters, sorting, pagination, and mobile list views.
 - Add `RichTextEditor` for product, content, theme, and admin HTML editing surfaces.
 - Add `FileDropzone` for reusable drag-and-click upload surfaces.
+- Add `MediaAssetCard` for reusable media library and product media cards.
 
 ## 3.2.3
 

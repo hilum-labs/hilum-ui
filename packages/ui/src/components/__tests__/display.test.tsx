@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { ChartContainer, ChartTooltip, CHART_COLORS } from "../chart";
 import { tokens } from "../../tokens/tokens";
 import {
@@ -15,6 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage, AvatarWithStatus } from "../avatar
 import { AvatarStack } from "../avatar-stack";
 import { StatCard } from "../stat-card";
 import { Notification } from "../notification";
+import { MediaAssetCard } from "../media-asset-card";
 import { MediaObject } from "../media-object";
 
 /* ------------------------------------------------------------------ */
@@ -260,6 +261,58 @@ describe("MediaObject", () => {
       expect(screen.getByText("Body")).toBeInTheDocument();
       unmount();
     }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* MediaAssetCard                                                       */
+/* ------------------------------------------------------------------ */
+
+describe("MediaAssetCard", () => {
+  it("renders image media, name, and meta", () => {
+    render(
+      <MediaAssetCard
+        name="hero.png"
+        src="https://cdn.example.com/hero.png"
+        alt="Hero"
+        meta="24 KB"
+      />,
+    );
+
+    expect(screen.getByAltText("Hero")).toHaveAttribute("src", "https://cdn.example.com/hero.png");
+    expect(screen.getByText("hero.png")).toBeInTheDocument();
+    expect(screen.getByText("24 KB")).toBeInTheDocument();
+  });
+
+  it("renders file fallback without an image source", () => {
+    const { container } = render(<MediaAssetCard name="catalog.csv" meta="2 KB" />);
+
+    expect(screen.getByText("catalog.csv")).toBeInTheDocument();
+    expect(container.querySelector("img")).not.toBeInTheDocument();
+  });
+
+  it("renders actions", () => {
+    render(<MediaAssetCard name="hero.png" actions={<button type="button">Copy URL</button>} />);
+
+    expect(screen.getByRole("button", { name: "Copy URL" })).toBeInTheDocument();
+  });
+
+  it("calls onSelect from the media surface", () => {
+    const onSelect = vi.fn();
+    render(<MediaAssetCard name="hero.png" onSelect={onSelect} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "hero.png" }));
+
+    expect(onSelect).toHaveBeenCalledTimes(1);
+  });
+
+  it("marks selected cards", () => {
+    const { container } = render(<MediaAssetCard name="hero.png" selected />);
+
+    expect(container.querySelector("[data-slot='media-asset-card']")).toHaveAttribute(
+      "data-selected",
+      "true",
+    );
   });
 });
 
