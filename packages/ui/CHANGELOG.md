@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.6
+
+### Patch Changes
+
+- Add icon support to StatusBadge for shared status and risk labels.
+
 ## 3.2.5
 
 ### Patch Changes

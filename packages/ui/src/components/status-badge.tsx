@@ -5,6 +5,7 @@ import { Badge } from "./badge";
 import { cn } from "../lib/utils";
 
 type StatusBadgeVariant = NonNullable<React.ComponentProps<typeof Badge>["variant"]>;
+type StatusBadgeIcon = React.ComponentType<{ className?: string }>;
 
 interface StatusBadgeProps extends Omit<
   React.ComponentProps<typeof Badge>,
@@ -15,6 +16,9 @@ interface StatusBadgeProps extends Omit<
   variant?: StatusBadgeVariant;
   variantMap?: Record<string, StatusBadgeVariant>;
   labelMap?: Record<string, React.ReactNode>;
+  icon?: StatusBadgeIcon;
+  iconMap?: Record<string, StatusBadgeIcon>;
+  iconClassName?: string;
   showDot?: boolean;
   dotClassName?: string;
 }
@@ -108,6 +112,9 @@ function StatusBadge({
   variant,
   variantMap,
   labelMap,
+  icon,
+  iconMap,
+  iconClassName,
   showDot = false,
   dotClassName,
   className,
@@ -116,11 +123,12 @@ function StatusBadge({
   const normalized = normalizeStatus(status);
   const resolvedVariant = variant ?? statusBadgeVariantFor(normalized, variantMap);
   const resolvedLabel = label ?? labelMap?.[normalized] ?? statusLabel(normalized);
+  const Icon = icon ?? iconMap?.[normalized];
 
   return (
     <Badge
       variant={resolvedVariant}
-      className={cn("max-w-full whitespace-nowrap", showDot && "pl-2", className)}
+      className={cn("max-w-full whitespace-nowrap", (showDot || Icon) && "pl-2", className)}
       {...props}
     >
       {showDot && (
@@ -133,6 +141,7 @@ function StatusBadge({
           aria-hidden="true"
         />
       )}
+      {Icon && <Icon className={cn("size-3 shrink-0", iconClassName)} aria-hidden="true" />}
       <span className="min-w-0 truncate">{resolvedLabel}</span>
     </Badge>
   );

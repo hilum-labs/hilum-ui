@@ -6,6 +6,7 @@ import { Button } from "../button";
 import { Progress } from "../progress";
 import { Steps } from "../steps";
 import { EmptyState } from "../empty-state";
+import { StatusBadge } from "../status-badge";
 import {
   UrlRedirectPrompt,
   hasUrlHandleChanged,
@@ -85,6 +86,23 @@ describe("Callout", () => {
       expect(screen.getByText(`${tone} callout`)).toBeInTheDocument();
       unmount();
     }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* StatusBadge                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("StatusBadge", () => {
+  it("renders an icon from an icon map", () => {
+    function CheckIcon({ className }: { className?: string }) {
+      return <svg data-testid="status-icon" className={className} />;
+    }
+
+    render(<StatusBadge status="confirmed" iconMap={{ confirmed: CheckIcon }} />);
+
+    expect(screen.getByTestId("status-icon")).toBeInTheDocument();
+    expect(screen.getByText("Confirmed")).toBeInTheDocument();
   });
 });
 
