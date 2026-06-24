@@ -1,5 +1,13 @@
 # @hilum/app-shell
 
+## 3.2.4
+
+### Patch Changes
+
+- Add reusable page header icon and responsive action layout support for dense dashboard headers.
+- Updated dependencies
+  - @hilum/ui@3.2.4
+
 ## 3.2.3
 
 ### Patch Changes
