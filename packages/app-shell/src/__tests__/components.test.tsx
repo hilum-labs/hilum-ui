@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { AppShell } from "../app-shell";
 import { AppShellStacked } from "../app-shell-stacked";
+import { AppCommandPalette } from "../app-command-palette";
 import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
 import { PageHeader } from "../page-header";
@@ -46,6 +47,54 @@ describe("AppShell", () => {
       </AppShell>,
     );
     expect(screen.getByText("content")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AppCommandPalette                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("AppCommandPalette", () => {
+  it("renders navigation sections and actions", () => {
+    render(
+      <AppCommandPalette
+        defaultOpen
+        sections={[
+          {
+            label: "Navigate",
+            items: [
+              { label: "Dashboard", href: "/dashboard" },
+              { label: "Orders", mobileLabel: "Sales", href: "/orders" },
+            ],
+          },
+        ]}
+        actions={[{ label: "Create product", href: "/products?action=create", group: "Actions" }]}
+      />,
+    );
+
+    expect(screen.getByPlaceholderText("Search pages, actions...")).toBeInTheDocument();
+    expect(screen.getByText("Navigate")).toBeInTheDocument();
+    expect(screen.getByText("Dashboard")).toBeInTheDocument();
+    expect(screen.getByText("Orders")).toBeInTheDocument();
+    expect(screen.getByText("Actions")).toBeInTheDocument();
+    expect(screen.getByText("Create product")).toBeInTheDocument();
+  });
+
+  it("calls onNavigate when a navigation item is selected", () => {
+    let selectedHref = "";
+    render(
+      <AppCommandPalette
+        defaultOpen
+        sections={[{ items: [{ label: "Orders", href: "/orders" }] }]}
+        onNavigate={(href) => {
+          selectedHref = href;
+        }}
+      />,
+    );
+
+    fireEvent.click(screen.getByText("Orders"));
+
+    expect(selectedHref).toBe("/orders");
   });
 });
 

@@ -5,6 +5,7 @@ export { useLink, LinkProvider } from "./link-context";
 
 export * from "./app-shell";
 export * from "./app-shell-stacked";
+export * from "./app-command-palette";
 export * from "./app-sidebar";
 export * from "./app-header";
 export * from "./app-mobile-nav";
