@@ -9,6 +9,15 @@ export const mobilePopperSheetStyle = `
     z-index: 50 !important;
   }
 
+  [data-radix-popper-content-wrapper]:has([data-hilum-mobile-sheet="true"][data-state="open"])::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 0.3);
+    backdrop-filter: blur(4px);
+    pointer-events: auto;
+  }
+
   [data-hilum-mobile-sheet="true"] {
     position: fixed !important;
     left: 0.75rem !important;
@@ -20,6 +29,7 @@ export const mobilePopperSheetStyle = `
     max-width: none !important;
     transform: none !important;
     pointer-events: auto;
+    transform-origin: bottom center !important;
   }
 
   [data-hilum-mobile-sheet="true"]::before {

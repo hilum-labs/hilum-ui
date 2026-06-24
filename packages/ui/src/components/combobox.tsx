@@ -174,74 +174,93 @@ function Combobox({
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-border bg-card shadow-elevated">
-          <ul id={listboxId} role="listbox" className="max-h-60 overflow-auto py-1">
-            {filtered.length === 0 ? (
-              <li className="px-3 py-2 body text-muted-foreground">{emptyText}</li>
-            ) : (
-              filtered.map((option, idx) => {
-                const isSelected = option.value === value;
-                const isActive = idx === activeIndex;
-                return (
-                  <li
-                    key={option.value}
-                    id={`${listboxId}-option-${idx}`}
-                    role="option"
-                    aria-selected={isSelected}
-                    className={cn(
-                      "flex min-h-10 cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
-                      isSelected
-                        ? "bg-brand-primary text-background"
-                        : isActive
-                          ? "bg-muted text-foreground"
-                          : "text-foreground hover:bg-muted",
-                    )}
-                    onMouseDown={(e) => e.preventDefault()}
-                    onMouseEnter={() => setActiveIndex(idx)}
-                    onClick={() => selectOption(option)}
-                  >
-                    {/* Avatar */}
-                    {option.avatar && (
-                      <div
-                        className={cn(
-                          "flex size-6 shrink-0 items-center justify-center rounded-full caption-xs font-semibold",
-                          isSelected
-                            ? "bg-card/20 text-background"
-                            : "bg-muted text-muted-foreground",
-                        )}
-                      >
-                        {option.avatar}
-                      </div>
-                    )}
-                    {/* Status dot */}
-                    {option.statusColor && !option.avatar && (
-                      <div
-                        className="size-2 shrink-0 rounded-full"
-                        style={{ backgroundColor: option.statusColor }}
-                      />
-                    )}
-                    <div className="min-w-0 flex-1">
-                      <p className={cn("truncate", isSelected && "font-semibold")}>
-                        {option.label}
-                      </p>
-                      {option.description && (
-                        <p
+        <>
+          <button
+            type="button"
+            aria-label="Close options"
+            className="fixed inset-0 z-40 hidden bg-black/30 backdrop-blur-sm max-sm:block"
+            onClick={closeDropdown}
+          />
+          <div
+            className={cn(
+              "absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-border bg-card shadow-elevated",
+              "max-sm:fixed max-sm:inset-x-3 max-sm:bottom-3 max-sm:[bottom:max(0.75rem,env(safe-area-inset-bottom))] max-sm:top-auto max-sm:mt-0 max-sm:w-auto",
+              "max-sm:max-h-[min(70dvh,28rem)] max-sm:rounded-2xl max-sm:p-2 max-sm:pt-5",
+              "max-sm:before:absolute max-sm:before:left-1/2 max-sm:before:top-2 max-sm:before:h-1 max-sm:before:w-9 max-sm:before:-translate-x-1/2 max-sm:before:rounded-full max-sm:before:bg-muted-foreground/35",
+            )}
+          >
+            <ul
+              id={listboxId}
+              role="listbox"
+              className="max-h-60 overflow-auto py-1 max-sm:max-h-[calc(min(70dvh,28rem)-3rem)]"
+            >
+              {filtered.length === 0 ? (
+                <li className="px-3 py-2 body text-muted-foreground">{emptyText}</li>
+              ) : (
+                filtered.map((option, idx) => {
+                  const isSelected = option.value === value;
+                  const isActive = idx === activeIndex;
+                  return (
+                    <li
+                      key={option.value}
+                      id={`${listboxId}-option-${idx}`}
+                      role="option"
+                      aria-selected={isSelected}
+                      className={cn(
+                        "flex min-h-10 cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
+                        isSelected
+                          ? "bg-brand-primary text-background"
+                          : isActive
+                            ? "bg-muted text-foreground"
+                            : "text-foreground hover:bg-muted",
+                      )}
+                      onMouseDown={(e) => e.preventDefault()}
+                      onMouseEnter={() => setActiveIndex(idx)}
+                      onClick={() => selectOption(option)}
+                    >
+                      {/* Avatar */}
+                      {option.avatar && (
+                        <div
                           className={cn(
-                            "caption truncate",
-                            isSelected ? "text-background/70" : "text-muted-foreground",
+                            "flex size-6 shrink-0 items-center justify-center rounded-full caption-xs font-semibold",
+                            isSelected
+                              ? "bg-card/20 text-background"
+                              : "bg-muted text-muted-foreground",
                           )}
                         >
-                          {option.description}
-                        </p>
+                          {option.avatar}
+                        </div>
                       )}
-                    </div>
-                    {isSelected && <Check size={14} className="shrink-0" />}
-                  </li>
-                );
-              })
-            )}
-          </ul>
-        </div>
+                      {/* Status dot */}
+                      {option.statusColor && !option.avatar && (
+                        <div
+                          className="size-2 shrink-0 rounded-full"
+                          style={{ backgroundColor: option.statusColor }}
+                        />
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <p className={cn("truncate", isSelected && "font-semibold")}>
+                          {option.label}
+                        </p>
+                        {option.description && (
+                          <p
+                            className={cn(
+                              "caption truncate",
+                              isSelected ? "text-background/70" : "text-muted-foreground",
+                            )}
+                          >
+                            {option.description}
+                          </p>
+                        )}
+                      </div>
+                      {isSelected && <Check size={14} className="shrink-0" />}
+                    </li>
+                  );
+                })
+              )}
+            </ul>
+          </div>
+        </>
       )}
     </div>
   );

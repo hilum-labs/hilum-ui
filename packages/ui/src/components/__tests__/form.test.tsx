@@ -514,6 +514,21 @@ describe("Combobox", () => {
     expect(screen.getAllByRole("option")).toHaveLength(3);
   });
 
+  it("renders a mobile bottom sheet backdrop when open", async () => {
+    const user = userEvent.setup();
+    render(<Combobox options={FRUITS} />);
+    await user.click(screen.getByRole("combobox"));
+
+    expect(screen.getByRole("button", { name: "Close options" })).toHaveClass(
+      "max-sm:block",
+      "backdrop-blur-sm",
+    );
+    expect(screen.getByRole("listbox").parentElement).toHaveClass(
+      "max-sm:fixed",
+      "max-sm:rounded-2xl",
+    );
+  });
+
   it("filters options by query", async () => {
     const user = userEvent.setup();
     render(<Combobox options={FRUITS} />);

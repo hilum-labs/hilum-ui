@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { Popover } from "radix-ui";
+import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 
 interface ColorPickerProps {
   value: string;
@@ -38,8 +38,8 @@ function ColorPicker({
   };
 
   return (
-    <Popover.Root>
-      <Popover.Trigger asChild>
+    <Popover>
+      <PopoverTrigger asChild>
         <button
           type="button"
           disabled={disabled}
@@ -58,52 +58,46 @@ function ColorPicker({
             style={{ backgroundColor: value }}
           />
         </button>
-      </Popover.Trigger>
-      <Popover.Portal>
-        <Popover.Content
-          align="start"
-          sideOffset={6}
-          className="z-50 w-56 rounded-xl bg-card p-3 shadow-natural outline-none"
-        >
+      </PopoverTrigger>
+      <PopoverContent align="start" sideOffset={6} className="w-56 p-3 max-sm:px-3">
+        <input
+          type="color"
+          value={isValidHex(hex) ? hex : "#000000"}
+          onChange={(e) => {
+            setHex(e.target.value);
+            onChange(e.target.value);
+          }}
+          className="h-10 w-full cursor-pointer rounded-md border border-border bg-card p-0.5"
+        />
+        <div className="mt-2 flex items-center gap-2">
+          <span className="caption text-muted-foreground">Hex</span>
           <input
-            type="color"
-            value={isValidHex(hex) ? hex : "#000000"}
-            onChange={(e) => {
-              setHex(e.target.value);
-              onChange(e.target.value);
+            type="text"
+            value={hex}
+            onChange={(e) => setHex(e.target.value)}
+            onBlur={(e) => commit(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") commit((e.target as HTMLInputElement).value);
             }}
-            className="h-10 w-full cursor-pointer rounded-md border border-border bg-card p-0.5"
+            className="h-10 flex-1 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
           />
-          <div className="mt-2 flex items-center gap-2">
-            <span className="caption text-muted-foreground">Hex</span>
-            <input
-              type="text"
-              value={hex}
-              onChange={(e) => setHex(e.target.value)}
-              onBlur={(e) => commit(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") commit((e.target as HTMLInputElement).value);
-              }}
-              className="h-10 flex-1 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
-            />
+        </div>
+        {presets && presets.length > 0 && (
+          <div className="mt-3 grid grid-cols-4 gap-2">
+            {presets.map((p) => (
+              <button
+                key={p}
+                type="button"
+                onClick={() => onChange(p)}
+                aria-label={p}
+                className="size-10 rounded-md border border-black/10 transition-transform hover:scale-105 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+                style={{ backgroundColor: p }}
+              />
+            ))}
           </div>
-          {presets && presets.length > 0 && (
-            <div className="mt-3 grid grid-cols-4 gap-2">
-              {presets.map((p) => (
-                <button
-                  key={p}
-                  type="button"
-                  onClick={() => onChange(p)}
-                  aria-label={p}
-                  className="size-10 rounded-md border border-black/10 transition-transform hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
-                  style={{ backgroundColor: p }}
-                />
-              ))}
-            </div>
-          )}
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
+        )}
+      </PopoverContent>
+    </Popover>
   );
 }
 

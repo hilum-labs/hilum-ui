@@ -81,6 +81,7 @@ export * from "./components/sonner";
 export * from "./components/spinner";
 export * from "./components/stacked-list";
 export * from "./components/stat-card";
+export * from "./components/status-badge";
 export * from "./components/steps";
 export * from "./components/switch";
 export * from "./components/table";

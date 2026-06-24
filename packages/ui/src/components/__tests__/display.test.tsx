@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage, AvatarWithStatus } from "../avatar";
 import { AvatarStack } from "../avatar-stack";
 import { StatCard } from "../stat-card";
+import { StatusBadge, statusBadgeVariantFor, statusLabel } from "../status-badge";
 import { Notification } from "../notification";
 import { MediaAssetCard } from "../media-asset-card";
 import { MediaObject } from "../media-object";
@@ -182,6 +183,46 @@ describe("StatCard", () => {
       expect(screen.getByText("5%")).toBeInTheDocument();
       unmount();
     }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* StatusBadge                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("StatusBadge", () => {
+  it("formats status labels", () => {
+    render(<StatusBadge status="held_for_review" />);
+    expect(screen.getByText("Held For Review")).toBeInTheDocument();
+  });
+
+  it("maps common statuses to badge variants", () => {
+    expect(statusBadgeVariantFor("active")).toBe("success");
+    expect(statusBadgeVariantFor("pending")).toBe("warning");
+    expect(statusBadgeVariantFor("draft")).toBe("secondary");
+    expect(statusBadgeVariantFor("failed")).toBe("destructive");
+    expect(statusBadgeVariantFor("custom")).toBe("outline");
+  });
+
+  it("accepts custom variant and label maps", () => {
+    render(
+      <StatusBadge
+        status="queued"
+        variantMap={{ queued: "warning" }}
+        labelMap={{ queued: "Waiting" }}
+      />,
+    );
+
+    expect(screen.getByText("Waiting")).toBeInTheDocument();
+  });
+
+  it("renders a compact status dot", () => {
+    const { container } = render(<StatusBadge status="healthy" showDot />);
+    expect(container.querySelector("[aria-hidden='true']")).toHaveClass("rounded-full");
+  });
+
+  it("exports label helper", () => {
+    expect(statusLabel("dead-letter")).toBe("Dead Letter");
   });
 });
 

@@ -97,6 +97,25 @@ describe("ContextMenu", () => {
       "shadow-elevated",
     );
   });
+
+  it("opts into the mobile bottom sheet treatment", () => {
+    render(
+      <ContextMenu>
+        <ContextMenuTrigger>Canvas</ContextMenuTrigger>
+        <ContextMenuContent>
+          <ContextMenuItem>Copy</ContextMenuItem>
+        </ContextMenuContent>
+      </ContextMenu>,
+    );
+
+    fireEvent.contextMenu(screen.getByText("Canvas"));
+
+    expect(screen.getByRole("menu")).toHaveAttribute("data-hilum-mobile-sheet", "true");
+    expect(screen.getByRole("menu")).toHaveClass(
+      "max-sm:rounded-2xl",
+      "max-sm:data-[state=open]:slide-in-from-bottom",
+    );
+  });
 });
 
 /* ------------------------------------------------------------------ */

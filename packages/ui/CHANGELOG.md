@@ -6,6 +6,7 @@
 
 - Use mobile bottom-sheet presentation for dialogs, alert dialogs, dropdown menus, and select menus.
 - Extend mobile bottom-sheet presentation to popovers and add safe-area grabbers to mobile menu/select sheets.
+- Extend mobile bottom-sheet presentation to context menus, menubars, color pickers, and combobox option lists.
 - Stack dialog and alert dialog footer actions full-width on mobile while preserving desktop modal footers.
 - Add a reusable `CommandDialog` composition for modal command palettes.
 - Add mobile sheet state and `SidebarInput` to the reusable sidebar primitive.
@@ -13,6 +14,7 @@
 - Add `RichTextEditor` for product, content, theme, and admin HTML editing surfaces.
 - Add `FileDropzone` for reusable drag-and-click upload surfaces.
 - Add `MediaAssetCard` for reusable media library and product media cards.
+- Add `StatusBadge` for consistent status labels, tones, and compact dots.
 
 ## 3.2.3
 
