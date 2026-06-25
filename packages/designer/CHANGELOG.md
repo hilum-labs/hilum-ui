@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 3.2.11
+
+### Patch Changes
+
+- Updated dependencies [aa3c2db]
+  - @hilum/ui@3.2.11
+
 ## 3.2.10
 
 ### Patch Changes

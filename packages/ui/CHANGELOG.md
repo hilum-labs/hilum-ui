@@ -1,5 +1,12 @@
 # @hilum/ui
 
+## 3.2.11
+
+### Patch Changes
+
+- aa3c2db: Reduce empty-state icon containers from 48px to 36px for tighter dashboard and admin layouts.
+  Reduce mobile app navigation items from 40px to 36px to keep compact operator headers.
+
 ## 3.2.10
 
 ### Patch Changes
