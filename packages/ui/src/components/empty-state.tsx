@@ -18,7 +18,7 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
   return (
     <div className={cn("flex flex-col items-center gap-4 px-6 py-14 text-center", className)}>
       {icon && (
-        <div className="flex size-12 items-center justify-center rounded-xl bg-brand-secondary/20 text-muted-foreground">
+        <div className="flex size-9 items-center justify-center rounded-md bg-brand-secondary/20 text-muted-foreground">
           {icon}
         </div>
       )}
