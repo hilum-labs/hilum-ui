@@ -148,7 +148,7 @@ function AppMobileNav({
                     aria-current={item.active ? "page" : undefined}
                     {...(item.onClick && { onClick: item.onClick })}
                     className={cn(
-                      "flex h-10 min-w-[76px] scroll-mx-3 items-center justify-center gap-1 rounded-md px-2.5 text-[11px] font-medium transition-[background-color,box-shadow,color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
+                      "flex h-9 min-w-[76px] scroll-mx-3 items-center justify-center gap-1 rounded-md px-2.5 text-[11px] font-medium transition-[background-color,box-shadow,color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
                       item.active
                         ? "bg-ground-900 text-background shadow-natural"
                         : item.disabled
