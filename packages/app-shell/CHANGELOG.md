@@ -1,5 +1,12 @@
 # @hilum/app-shell
 
+## 3.2.12
+
+### Patch Changes
+
+- f3bcc32: Keep the shared command palette trigger at the compact 36px app control height.
+  - @hilum/ui@3.2.12
+
 ## 3.2.11
 
 ### Patch Changes
