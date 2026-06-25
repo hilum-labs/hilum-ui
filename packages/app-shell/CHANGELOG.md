@@ -1,5 +1,12 @@
 # @hilum/app-shell
 
+## 3.2.13
+
+### Patch Changes
+
+- f41712c: Add compact disabled and loading action states to AppStatusBanner.
+  - @hilum/ui@3.2.13
+
 ## 3.2.12
 
 ### Patch Changes
