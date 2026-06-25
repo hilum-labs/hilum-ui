@@ -167,7 +167,7 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-10 rounded-full",
+        "absolute h-9 w-9 rounded-full",
         orientation === "vertical"
           ? "-top-12 left-1/2 -translate-x-1/2 rotate-90"
           : "-left-12 top-1/2 -translate-y-1/2",
@@ -196,7 +196,7 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "absolute size-10 rounded-full",
+        "absolute h-9 w-9 rounded-full",
         orientation === "vertical"
           ? "-bottom-12 left-1/2 -translate-x-1/2 rotate-90"
           : "-right-12 top-1/2 -translate-y-1/2",

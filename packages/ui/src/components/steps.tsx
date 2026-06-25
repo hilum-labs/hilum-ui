@@ -29,7 +29,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
             <li key={step.id ?? i} className={cn("relative", !isLast && "flex-1")}>
               {/* Connector line */}
               {!isLast && (
-                <div className="absolute left-10 right-0 top-5 h-0.5" aria-hidden="true">
+                <div className="absolute left-9 right-0 top-[18px] h-0.5" aria-hidden="true">
                   <div
                     className={cn(
                       "h-full",
@@ -47,7 +47,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
                 {/* Circle */}
                 <span
                   className={cn(
-                    "relative z-10 flex size-10 items-center justify-center rounded-full transition-colors",
+                    "relative z-10 flex h-9 w-9 items-center justify-center rounded-full transition-colors",
                     step.status === "complete" &&
                       "bg-brand-primary group-hover:bg-brand-primary/80",
                     step.status === "current" && "border-2 border-brand-primary bg-card",
@@ -104,7 +104,7 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
             <a
               href={step.href ?? "#"}
               onClick={!step.href ? (e) => e.preventDefault() : undefined}
-              className="relative flex size-10 items-center justify-center"
+              className="relative flex h-9 w-9 items-center justify-center"
             >
               {step.status === "complete" ? (
                 <span
