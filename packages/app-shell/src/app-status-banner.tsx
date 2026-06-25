@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AlertTriangle, CheckCircle2, Info, X } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Info, LoaderCircle, X } from "lucide-react";
 import { Button, cn } from "@hilum/ui";
 import { useLink } from "./link-context";
 
@@ -7,9 +7,13 @@ type AppStatusBannerTone = "neutral" | "info" | "success" | "warning" | "danger"
 
 interface AppStatusBannerAction {
   label: ReactNode;
+  loadingLabel?: ReactNode;
   href?: string;
   onClick?: () => void;
   variant?: "default" | "outline" | "ghost" | "destructive";
+  disabled?: boolean;
+  loading?: boolean;
+  className?: string;
 }
 
 interface AppStatusBannerProps {
@@ -52,11 +56,23 @@ const defaultIcon: Record<AppStatusBannerTone, ReactNode> = {
 function AppStatusBannerActionButton({ action }: { action: AppStatusBannerAction }) {
   const Link = useLink();
   const variant = action.variant ?? "outline";
+  const content = (
+    <>
+      {action.loading && <LoaderCircle className="size-3.5 animate-spin" aria-hidden="true" />}
+      {action.loading ? (action.loadingLabel ?? action.label) : action.label}
+    </>
+  );
 
   if (action.href) {
     return (
-      <Button variant={variant} size="sm" className="min-h-10 shrink-0" asChild>
-        <Link href={action.href}>{action.label}</Link>
+      <Button
+        variant={variant}
+        size="sm"
+        className={cn("h-9 shrink-0 gap-1.5", action.className)}
+        disabled={action.disabled || action.loading}
+        asChild
+      >
+        <Link href={action.href}>{content}</Link>
       </Button>
     );
   }
@@ -65,11 +81,12 @@ function AppStatusBannerActionButton({ action }: { action: AppStatusBannerAction
     <Button
       variant={variant}
       size="sm"
-      className="min-h-10 shrink-0"
+      className={cn("h-9 shrink-0 gap-1.5", action.className)}
       onClick={action.onClick}
+      disabled={action.disabled || action.loading}
       type="button"
     >
-      {action.label}
+      {content}
     </Button>
   );
 }
