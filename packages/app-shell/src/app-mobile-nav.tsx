@@ -87,7 +87,7 @@ function AppMobileNav({
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="flex size-10 shrink-0 items-center justify-center rounded-md transition-[background-color,box-shadow,scale] hover:bg-muted active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+                className="flex size-9 shrink-0 items-center justify-center rounded-md transition-[background-color,box-shadow,scale] hover:bg-muted active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
                 aria-label={accountMenuLabel}
               >
                 <Avatar size="xs">

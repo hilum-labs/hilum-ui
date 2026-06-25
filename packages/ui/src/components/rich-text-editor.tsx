@@ -294,7 +294,7 @@ function RichTextEditor({
       type="button"
       variant="ghost"
       size="icon"
-      className="size-10 text-muted-foreground hover:text-foreground"
+      className="size-9 text-muted-foreground hover:text-foreground"
       title={title}
       aria-label={title}
       onMouseDown={(event) => {
@@ -334,7 +334,7 @@ function RichTextEditor({
           type="button"
           variant="ghost"
           size="icon"
-          className="size-10 text-muted-foreground hover:text-foreground"
+          className="size-9 text-muted-foreground hover:text-foreground"
           title="Insert link"
           aria-label="Insert link"
           onMouseDown={(event) => {
@@ -349,7 +349,7 @@ function RichTextEditor({
           type="button"
           variant="ghost"
           size="icon"
-          className="size-10 text-muted-foreground hover:text-foreground"
+          className="size-9 text-muted-foreground hover:text-foreground"
           title="Insert image"
           aria-label="Insert image"
           onMouseDown={(event) => {

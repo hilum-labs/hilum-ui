@@ -514,7 +514,7 @@ function SidebarMenuButton({
         ],
         // Collapsed state
         "group-data-[state=collapsed]/sidebar-wrapper:justify-center",
-        "group-data-[state=collapsed]/sidebar-wrapper:size-10",
+        "group-data-[state=collapsed]/sidebar-wrapper:size-9",
         "group-data-[state=collapsed]/sidebar-wrapper:p-0",
         className,
       )}

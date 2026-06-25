@@ -88,8 +88,8 @@ function AppSidebar({
                   {...(linkOnClick !== undefined && { onClick: linkOnClick })}
                   {...(collapsed && { title: item.label })}
                   className={cn(
-                    "flex min-h-10 items-center rounded-lg transition-colors caption",
-                    collapsed ? "size-10 justify-center" : "gap-2.5 px-2.5 py-2",
+                    "flex items-center rounded-lg transition-colors caption",
+                    collapsed ? "size-9 justify-center" : "min-h-10 gap-2.5 px-2.5 py-2",
                     item.active
                       ? "bg-ground-900 text-background font-medium shadow-natural"
                       : item.disabled
@@ -124,8 +124,8 @@ function AppSidebar({
             <DropdownMenuTrigger asChild>
               <button
                 className={cn(
-                  "flex min-h-10 w-full items-center rounded-lg transition-colors caption text-muted-foreground hover:bg-muted",
-                  collapsed ? "size-10 justify-center" : "gap-2.5 px-2.5 py-2",
+                  "flex w-full items-center rounded-lg transition-colors caption text-muted-foreground hover:bg-muted",
+                  collapsed ? "size-9 justify-center" : "min-h-10 gap-2.5 px-2.5 py-2",
                 )}
               >
                 <Avatar size="xs">

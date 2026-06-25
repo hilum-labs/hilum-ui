@@ -95,7 +95,7 @@ function Notification({
               <button
                 type="button"
                 onClick={onClose}
-                className="flex size-10 items-center justify-center rounded-md text-muted-foreground transition-[color,scale] hover:text-muted-foreground active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-[color,scale] hover:text-muted-foreground active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
               >
                 <span className="sr-only">Close</span>
                 <X size={16} />

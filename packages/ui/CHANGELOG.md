@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.7
+
+### Patch Changes
+
+- Reduce compact icon controls from 40px to h-9 w-9 across Button, Toggle, pagination, rich text editor toolbar, dialog close, sheet close, notifications, and collapsed sidebar items.
+
 ## 3.2.6
 
 ### Patch Changes

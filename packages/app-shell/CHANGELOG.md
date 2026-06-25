@@ -1,5 +1,13 @@
 # @hilum/app-shell
 
+## 3.2.7
+
+### Patch Changes
+
+- Reduce compact app-shell account, collapsed sidebar, and dismiss controls from 40px to h-9 w-9.
+- Updated dependencies
+  - @hilum/ui@3.2.7
+
 ## 3.2.6
 
 ### Patch Changes

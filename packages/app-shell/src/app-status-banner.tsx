@@ -120,7 +120,7 @@ function AppStatusBanner({
               type="button"
               variant="ghost"
               size="icon"
-              className="size-10 shrink-0"
+              className="size-9 shrink-0"
               onClick={onDismiss}
               aria-label={dismissLabel}
             >
