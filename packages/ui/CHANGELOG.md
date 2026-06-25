@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.10
+
+### Patch Changes
+
+- 0dd03fd: Reduce compact calendar, carousel, and step controls from 40px to 36px.
+
 ## 3.2.9
 
 ### Patch Changes
