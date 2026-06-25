@@ -90,7 +90,7 @@ function AppCommandButton({
       variant={variant}
       size={size}
       className={cn(
-        "hidden min-h-10 min-w-52 justify-start gap-2 text-muted-foreground md:inline-flex",
+        "hidden h-9 min-w-52 justify-start gap-2 text-muted-foreground md:inline-flex",
         className,
       )}
       onClick={handleClick}
