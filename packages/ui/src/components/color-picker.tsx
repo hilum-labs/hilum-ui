@@ -45,7 +45,7 @@ function ColorPicker({
           disabled={disabled}
           aria-label={ariaLabel}
           className={cn(
-            "inline-flex size-10 items-center justify-center rounded-md border border-border bg-card",
+            "inline-flex size-9 items-center justify-center rounded-md border border-border bg-card",
             "transition-colors hover:border-border",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
             "disabled:cursor-not-allowed disabled:opacity-50",
@@ -54,7 +54,7 @@ function ColorPicker({
         >
           <span
             aria-hidden
-            className="h-5 w-5 rounded-sm border border-black/5"
+            className="size-4 rounded-sm border border-black/5"
             style={{ backgroundColor: value }}
           />
         </button>
@@ -67,7 +67,7 @@ function ColorPicker({
             setHex(e.target.value);
             onChange(e.target.value);
           }}
-          className="h-10 w-full cursor-pointer rounded-md border border-border bg-card p-0.5"
+          className="h-9 w-full cursor-pointer rounded-md border border-border bg-card p-0.5"
         />
         <div className="mt-2 flex items-center gap-2">
           <span className="caption text-muted-foreground">Hex</span>
@@ -79,7 +79,7 @@ function ColorPicker({
             onKeyDown={(e) => {
               if (e.key === "Enter") commit((e.target as HTMLInputElement).value);
             }}
-            className="h-10 flex-1 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
+            className="h-9 flex-1 rounded-md border border-border bg-card px-2 caption text-foreground focus:outline-none focus:border-brand-primary"
           />
         </div>
         {presets && presets.length > 0 && (
@@ -90,7 +90,7 @@ function ColorPicker({
                 type="button"
                 onClick={() => onChange(p)}
                 aria-label={p}
-                className="size-10 rounded-md border border-black/10 transition-transform hover:scale-105 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+                className="size-9 rounded-md border border-black/10 transition-transform hover:scale-105 active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
                 style={{ backgroundColor: p }}
               />
             ))}
