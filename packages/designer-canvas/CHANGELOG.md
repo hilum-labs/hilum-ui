@@ -1,5 +1,12 @@
 # @hilum/designer-canvas
 
+## 3.2.13
+
+### Patch Changes
+
+- @hilum/ui@3.2.13
+- @hilum/designer@3.2.13
+
 ## 3.2.12
 
 ### Patch Changes
