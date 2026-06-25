@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 3.2.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @hilum/ui@3.2.7
+
 ## 3.2.6
 
 ### Patch Changes
