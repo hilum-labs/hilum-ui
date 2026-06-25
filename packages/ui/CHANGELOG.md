@@ -1,5 +1,7 @@
 # @hilum/ui
 
+## 3.2.8
+
 ## 3.2.7
 
 ### Patch Changes

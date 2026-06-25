@@ -1,5 +1,12 @@
 # @hilum/designer
 
+## 3.2.8
+
+### Patch Changes
+
+- 9de7762: Reduce designer toolbar and sidebar icon controls from 40px to 36px.
+  - @hilum/ui@3.2.8
+
 ## 3.2.7
 
 ### Patch Changes
