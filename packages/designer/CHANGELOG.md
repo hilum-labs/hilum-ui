@@ -1,5 +1,11 @@
 # @hilum/designer
 
+## 3.2.12
+
+### Patch Changes
+
+- @hilum/ui@3.2.12
+
 ## 3.2.11
 
 ### Patch Changes
