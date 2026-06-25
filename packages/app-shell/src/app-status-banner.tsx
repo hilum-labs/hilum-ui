@@ -107,7 +107,7 @@ function AppStatusBanner({
     <div
       role="status"
       className={cn(
-        "flex min-w-0 items-start gap-3 border-b px-3 py-2 shadow-natural sm:items-center sm:px-4",
+        "grid min-w-0 grid-cols-[auto_minmax(0,1fr)] items-start gap-x-3 gap-y-3 border-b px-3 py-2 shadow-natural sm:grid-cols-[auto_minmax(0,1fr)_auto] sm:items-center sm:px-4",
         sticky && "sticky top-0 z-50",
         toneClassName[tone],
         className,
@@ -129,7 +129,7 @@ function AppStatusBanner({
         {description && <p className="caption mt-0.5 text-pretty opacity-80">{description}</p>}
       </div>
       {(secondaryAction || primaryAction || onDismiss) && (
-        <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+        <div className="col-start-2 row-start-2 flex min-w-0 flex-wrap items-center justify-start gap-2 sm:col-start-3 sm:row-start-1 sm:shrink-0 sm:justify-end">
           {secondaryAction && <AppStatusBannerActionButton action={secondaryAction} />}
           {primaryAction && <AppStatusBannerActionButton action={primaryAction} />}
           {onDismiss && (

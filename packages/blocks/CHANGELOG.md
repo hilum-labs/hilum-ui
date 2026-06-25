@@ -1,5 +1,11 @@
 # @hilum/blocks
 
+## 3.2.14
+
+### Patch Changes
+
+- Improve AppStatusBanner mobile layout so actions stack below the message instead of squeezing banner copy.
+
 ## 3.2.13
 
 ## 3.2.12

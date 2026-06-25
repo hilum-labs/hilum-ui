@@ -1,5 +1,13 @@
 # @hilum/app-shell
 
+## 3.2.14
+
+### Patch Changes
+
+- Improve AppStatusBanner mobile layout so actions stack below the message instead of squeezing banner copy.
+- Updated dependencies
+  - @hilum/ui@3.2.14
+
 ## 3.2.13
 
 ### Patch Changes
