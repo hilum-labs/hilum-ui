@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.2.9
+
+### Patch Changes
+
+- ba1614b: Reduce ColorPicker compact controls from 40px to 36px for tighter editor layouts.
+
 ## 3.2.8
 
 ## 3.2.7
