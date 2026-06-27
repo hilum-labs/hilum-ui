@@ -10,6 +10,7 @@ import {
 import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
 import { AppNotificationMenu } from "../app-notification-menu";
+import { AppSidebar } from "../app-sidebar";
 import { AppStatusBanner } from "../app-status-banner";
 import { PageHeader, PageHeaderActions } from "../page-header";
 import { DetailScreen } from "../detail-screen";
@@ -166,6 +167,63 @@ describe("AppHeader", () => {
       </AppShell>,
     );
     expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AppSidebar                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("AppSidebar", () => {
+  it("renders Studio-style brand header, sections, badges, and footer slot", () => {
+    render(
+      <AppShell>
+        <AppSidebar
+          logo={<span aria-label="Logo">H</span>}
+          brand="Pappery"
+          subtitle="Admin"
+          headerAction={<button>New</button>}
+          sections={[
+            {
+              label: "Workspace",
+              items: [
+                { label: "Home", href: "/home", active: true, badge: "3" },
+                { label: "Templates", href: "/templates" },
+              ],
+            },
+          ]}
+          footer={<button>Upgrade</button>}
+          user={{ name: "Ada Lovelace", email: "ada@example.com", initials: "AL" }}
+        />
+      </AppShell>,
+    );
+
+    expect(screen.getByText("Pappery")).toBeInTheDocument();
+    expect(screen.getByText("Admin")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "New" })).toBeInTheDocument();
+    expect(screen.getByText("Workspace")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /home/i })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Upgrade" })).toBeInTheDocument();
+    expect(screen.getByText("ada@example.com")).toBeInTheDocument();
+  });
+
+  it("collapses labels while keeping icon navigation accessible by title", () => {
+    render(
+      <AppShell>
+        <AppSidebar
+          collapsed
+          brand="Hilum"
+          sections={[{ items: [{ label: "Dashboard", href: "/dashboard", active: true }] }]}
+        />
+      </AppShell>,
+    );
+
+    const link = screen.getByRole("link", { name: "Dashboard" });
+    expect(link).toHaveAttribute("href", "/dashboard");
+    expect(link).toHaveAttribute("title", "Dashboard");
+    expect(screen.queryByText("Hilum")).not.toBeInTheDocument();
+    expect(screen.queryByText("Dashboard")).not.toBeInTheDocument();
   });
 });
 

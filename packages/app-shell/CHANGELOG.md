@@ -1,5 +1,14 @@
 # @hilum/app-shell
 
+## 3.3.2
+
+### Patch Changes
+
+- Restyle the shared app sidebar and header around the Hilum Studio shell treatment.
+
+  `AppSidebar` now composes the same `@hilum/ui` sidebar primitives used in Studio, including grouped menu rendering, brand-primary active states, sidebar badges, account footer styling, and collapsed accessibility labels. It also adds `subtitle`, `headerAction`, and `footer` slots so product apps can share the shell without moving app-specific behavior into the package.
+  - @hilum/ui@3.3.2
+
 ## 3.3.1
 
 ### Patch Changes
