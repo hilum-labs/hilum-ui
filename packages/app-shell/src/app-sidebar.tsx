@@ -11,6 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  useOptionalSidebar,
 } from "@hilum/ui";
 import { useLink } from "./link-context";
 import type { NavSection, User } from "./types";
@@ -51,6 +52,22 @@ function AppSidebar({
   className,
 }: AppSidebarProps) {
   const Link = useLink();
+  const sidebar = useOptionalSidebar();
+
+  function closeMobileSidebar() {
+    if (sidebar?.isMobile) {
+      sidebar.setOpenMobile(false);
+    }
+  }
+
+  function wasDefaultPrevented(event: unknown): boolean {
+    return (
+      typeof event === "object" &&
+      event !== null &&
+      "defaultPrevented" in event &&
+      Boolean((event as { defaultPrevented?: boolean }).defaultPrevented)
+    );
+  }
 
   return (
     <aside
@@ -78,14 +95,23 @@ function AppSidebar({
           >
             {section.items.map((item, iIdx) => {
               const Icon = item.icon;
-              const linkOnClick = item.disabled
-                ? (e: unknown) => (e as { preventDefault?: () => void }).preventDefault?.()
-                : item.onClick;
+              const linkOnClick = (event: unknown) => {
+                if (item.disabled) {
+                  (event as { preventDefault?: () => void }).preventDefault?.();
+                  return;
+                }
+
+                item.onClick?.(event);
+
+                if (!wasDefaultPrevented(event)) {
+                  closeMobileSidebar();
+                }
+              };
               return (
                 <Link
                   key={iIdx}
                   href={item.disabled ? "#" : item.href}
-                  {...(linkOnClick !== undefined && { onClick: linkOnClick })}
+                  onClick={linkOnClick}
                   {...(collapsed && { title: item.label })}
                   className={cn(
                     "flex items-center rounded-lg transition-colors caption",

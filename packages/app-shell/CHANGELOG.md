@@ -1,5 +1,16 @@
 # @hilum/app-shell
 
+## 3.3.1
+
+### Patch Changes
+
+- Tighten `SidebarMenuButton` default vertical spacing for denser sidebar navigation.
+
+  Move mobile sidebar close-on-navigation behavior into `AppSidebar` when it is rendered inside a shared `SidebarProvider`.
+
+- Updated dependencies
+  - @hilum/ui@3.3.1
+
 ## 3.3.0
 
 ### Patch Changes

@@ -59,6 +59,10 @@ function useSidebar() {
   return ctx;
 }
 
+function useOptionalSidebar() {
+  return React.useContext(SidebarContext);
+}
+
 /* ------------------------------------------------------------------ */
 /*  SidebarProvider                                                     */
 /* ------------------------------------------------------------------ */
@@ -496,7 +500,7 @@ function SidebarMenuButton({
       data-size={size}
       className={cn(
         // Base
-        "peer/menu-button flex min-h-10 w-full items-center gap-2 overflow-hidden rounded-md p-2 body-sm text-left",
+        "peer/menu-button flex min-h-8 w-full items-center gap-2 overflow-hidden rounded-md px-2 py-1.5 body-sm text-left",
         "outline-none ring-ring",
         "transition-[width,height,padding] duration-150",
         "hover:bg-muted hover:text-foreground",
@@ -723,5 +727,6 @@ export {
   SIDEBAR_WIDTH,
   SIDEBAR_WIDTH_ICON,
   SIDEBAR_WIDTH_MOBILE,
+  useOptionalSidebar,
   useSidebar,
 };
