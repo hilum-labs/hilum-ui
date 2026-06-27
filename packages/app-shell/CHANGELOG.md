@@ -1,5 +1,14 @@
 # @hilum/app-shell
 
+## 3.3.3
+
+### Patch Changes
+
+- Make `AppSidebar` mirror Hilum Studio's sidebar structure exactly when it is rendered inside the shared `@hilum/ui` sidebar.
+
+  The component now emits the same `SidebarHeader`, `MediaObject`, `SidebarContent`, grouped `SidebarMenu`, `SidebarSeparator`, and `SidebarFooter` primitive tree that Studio uses, without an extra app-shell-specific inner sidebar wrapper.
+  - @hilum/ui@3.3.3
+
 ## 3.3.2
 
 ### Patch Changes
