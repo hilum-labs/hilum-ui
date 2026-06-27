@@ -24,6 +24,12 @@ import { Separator } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { cn } from "@hilum/ui";
 import type { LucideIcon } from "lucide-react";
+import { getComponentCountBySection } from "@/lib/component-registry";
+import appShellPackage from "../../../../packages/app-shell/package.json";
+import blocksPackage from "../../../../packages/blocks/package.json";
+import designerCanvasPackage from "../../../../packages/designer-canvas/package.json";
+import designerPackage from "../../../../packages/designer/package.json";
+import uiPackage from "../../../../packages/ui/package.json";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -53,7 +59,13 @@ interface PackageDoc {
   icon: LucideIcon;
 }
 
-const HILUM_PACKAGE_VERSION = "3.2.0";
+const packageVersions = {
+  "@hilum/app-shell": appShellPackage.version,
+  "@hilum/blocks": blocksPackage.version,
+  "@hilum/designer": designerPackage.version,
+  "@hilum/designer-canvas": designerCanvasPackage.version,
+  "@hilum/ui": uiPackage.version,
+} as const;
 
 const categories: Category[] = [
   {
@@ -61,7 +73,7 @@ const categories: Category[] = [
     label: "Atoms",
     description: "The smallest functional units — buttons, badges, inputs, and more.",
     icon: Atom,
-    count: 58,
+    count: getComponentCountBySection("atoms"),
     href: "/atoms",
     comingSoon: false,
     items: [
@@ -81,6 +93,9 @@ const categories: Category[] = [
       "Sidebar",
       "Chart",
       "Data Table",
+      "Rich Text Editor",
+      "Searchable Table",
+      "File Dropzone",
     ],
   },
   {
@@ -98,7 +113,7 @@ const categories: Category[] = [
     label: "Molecules",
     description: "Composed patterns — forms, navigation, data displays.",
     icon: Layers,
-    count: 16,
+    count: getComponentCountBySection("molecules"),
     href: "/molecules",
     comingSoon: false,
     items: [
@@ -114,6 +129,8 @@ const categories: Category[] = [
       "Card Heading",
       "Grid List",
       "Command Palette",
+      "Account Menu",
+      "Media Asset Card",
     ],
   },
   {
@@ -212,7 +229,7 @@ const categories: Category[] = [
 const packages: PackageDoc[] = [
   {
     name: "@hilum/ui",
-    version: HILUM_PACKAGE_VERSION,
+    version: packageVersions["@hilum/ui"],
     description:
       "Core design system primitives: buttons, inputs, dialogs, comboboxes, data display, tokens, fonts, and Hilum icons.",
     install: "pnpm add @hilum/ui",
@@ -227,7 +244,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/app-shell",
-    version: HILUM_PACKAGE_VERSION,
+    version: packageVersions["@hilum/app-shell"],
     description:
       "Composed product-app layouts built from Hilum primitives: sidebars, top bars, page headers, detail screens, and settings screens.",
     install: "pnpm add @hilum/app-shell @hilum/ui",
@@ -246,7 +263,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/designer",
-    version: HILUM_PACKAGE_VERSION,
+    version: packageVersions["@hilum/designer"],
     description:
       "Engine-agnostic editor chrome for authoring surfaces: shell, toolbar, side panels, collapsible panes, history, and keybindings.",
     install: "pnpm add @hilum/designer @hilum/ui",
@@ -265,7 +282,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/designer-canvas",
-    version: HILUM_PACKAGE_VERSION,
+    version: packageVersions["@hilum/designer-canvas"],
     description:
       "Generic free-positioned canvas engine with typed layers, pan/zoom, drag and resize, marquee selection, snap guides, actions, and pluggable renderers.",
     install: "pnpm add @hilum/designer-canvas @hilum/designer @hilum/ui",
@@ -285,7 +302,7 @@ const packages: PackageDoc[] = [
   },
   {
     name: "@hilum/blocks",
-    version: HILUM_PACKAGE_VERSION,
+    version: packageVersions["@hilum/blocks"],
     description:
       "CLI for installing Hilum marketing blocks into an application from the catalog registry.",
     install: "pnpm add -D @hilum/blocks",
@@ -309,7 +326,7 @@ function HomePage() {
       {/* Header */}
       <div className="mb-10 -mx-8 px-8 py-8 rounded-2xl bg-brand-secondary/30">
         <div className="mb-4 flex items-center gap-2">
-          <Badge variant="secondary">packages v{HILUM_PACKAGE_VERSION}</Badge>
+          <Badge variant="secondary">packages v{packageVersions["@hilum/ui"]}</Badge>
           <Badge variant="outline">catalog v0.1.1</Badge>
         </div>
         <h1 className="display mb-3 text-ground-900">Design System</h1>

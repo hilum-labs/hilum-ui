@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.3.0
+
+### Minor Changes
+
+- Add complete catalog coverage for Hilum UI atom and molecule exports, generate package-level `llms.txt` from the canonical component registry, improve catalog mobile navigation, and quiet Recharts prerender output for chart docs.
+
 ## 3.2.14
 
 ### Patch Changes

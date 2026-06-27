@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
 import { basename, dirname, join, relative } from "path";
 import { fileURLToPath } from "url";
+import { getComponentEntriesBySection } from "../src/data/component-registry.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CATALOG_ROOT = join(__dirname, "..");
@@ -151,7 +152,9 @@ function extractTitle(source, routePath) {
 function extractSummary(source) {
   const h1Index = source.search(/<h1[^>]*>/);
   const slice = h1Index >= 0 ? source.slice(h1Index) : source;
-  const matches = [...slice.matchAll(/<p className="(?:body|body-lg|caption)[^"]*"[^>]*>([\s\S]*?)<\/p>/g)];
+  const matches = [
+    ...slice.matchAll(/<p className="(?:body|body-lg|caption)[^"]*"[^>]*>([\s\S]*?)<\/p>/g),
+  ];
   for (const match of matches) {
     const text = stripJsx(match[1]);
     if (text.length > 12) {
@@ -276,13 +279,17 @@ function inferAccessibilityKind(routePath, title, summary) {
   if (/(sidebar|navigation|breadcrumb|pagination|tabs|steps|header|navbar)/.test(haystack)) {
     return "navigation";
   }
-  if (/(table|chart|data|stat|description list|grid list|stacked list|activity feed)/.test(haystack)) {
+  if (
+    /(table|chart|data|stat|description list|grid list|stacked list|activity feed)/.test(haystack)
+  ) {
     return "data";
   }
   if (/(alert|notification|progress|spinner|toast|empty state|feedback)/.test(haystack)) {
     return "feedback";
   }
-  if (/(layout|shell|page|media object|card heading|section heading|designer|blocks)/.test(haystack)) {
+  if (
+    /(layout|shell|page|media object|card heading|section heading|designer|blocks)/.test(haystack)
+  ) {
     return "layout";
   }
   return "generic";
@@ -301,7 +308,25 @@ function parseVariantPropNames(source) {
 
   return [...variantsMatch[1].matchAll(/^\s+([a-zA-Z0-9-]+):\s*\{/gm)]
     .map((match) => match[1])
-    .filter((key) => !["default", "destructive", "outline", "secondary", "brand", "ghost", "link", "xs", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"].includes(key));
+    .filter(
+      (key) =>
+        ![
+          "default",
+          "destructive",
+          "outline",
+          "secondary",
+          "brand",
+          "ghost",
+          "link",
+          "xs",
+          "sm",
+          "lg",
+          "icon",
+          "icon-xs",
+          "icon-sm",
+          "icon-lg",
+        ].includes(key),
+    );
 }
 
 function parseInterfaceProps(source) {
@@ -324,7 +349,12 @@ function parseExportNames(source) {
   for (const match of source.matchAll(/export\s+\{([^}]+)\};/g)) {
     const names = match[1]
       .split(",")
-      .map((part) => part.trim().split(/\s+as\s+/)[0]?.trim())
+      .map((part) =>
+        part
+          .trim()
+          .split(/\s+as\s+/)[0]
+          ?.trim(),
+      )
       .filter(Boolean);
     names.forEach((name) => exportSet.add(name));
   }
@@ -426,7 +456,10 @@ function buildApiItems(routePath, title, pageSource, previewBlocks) {
   if (previewBlocks.length > 0) {
     pageItems.push({
       label: "Included examples",
-      description: previewBlocks.slice(0, 4).map((block) => block.title).join(", "),
+      description: previewBlocks
+        .slice(0, 4)
+        .map((block) => block.title)
+        .join(", "),
     });
   }
   if (importedSymbols.length > 0) {
@@ -445,7 +478,8 @@ function buildApiItems(routePath, title, pageSource, previewBlocks) {
   if (pageItems.length === 1 && previewBlocks.length > 0) {
     pageItems.push({
       label: "Variation points",
-      description: "Compare layout, content density, and emphasis across the included examples before copying an implementation.",
+      description:
+        "Compare layout, content density, and emphasis across the included examples before copying an implementation.",
     });
   }
 
@@ -616,6 +650,17 @@ function buildImportantLinks(routePath, previewBlocks, source) {
   }
 
   if (segments.length <= 1) {
+    const componentSection = segments[0];
+    if (componentSection === "atoms" || componentSection === "molecules") {
+      return getComponentEntriesBySection(componentSection)
+        .slice(0, 8)
+        .map((component) => ({
+          label: component.name,
+          href: component.catalogPath,
+          description: component.description,
+        }));
+    }
+
     const prefix = routePath === "/" ? "/" : `${routePath}`;
     const links = extractSectionLinks(source, prefix);
     return links.slice(0, 8).map((link) => ({

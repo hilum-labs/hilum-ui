@@ -1,5 +1,7 @@
 # @hilum/blocks
 
+## 3.3.0
+
 ## 3.2.14
 
 ### Patch Changes

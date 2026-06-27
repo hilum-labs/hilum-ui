@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Toaster } from "@hilum/ui";
-import { Sidebar } from "@/components/catalog/sidebar";
+import { MobileNavigation, Sidebar } from "@/components/catalog/sidebar";
 import appCss from "../styles/globals.css?url";
 
 const SITE_URL = "https://ui.hilum.dev";
@@ -77,9 +77,12 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <div className="flex min-h-screen bg-white text-ground-900 antialiased">
+        <div className="min-h-screen bg-white text-ground-900 antialiased lg:flex">
           <Sidebar />
-          <main className="flex-1 overflow-auto">{children}</main>
+          <div className="flex min-h-screen min-w-0 flex-1 flex-col">
+            <MobileNavigation />
+            <main className="min-w-0 flex-1 overflow-auto">{children}</main>
+          </div>
           <Toaster />
         </div>
         <Scripts />

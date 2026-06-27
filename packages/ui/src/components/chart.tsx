@@ -59,12 +59,44 @@ function ChartContainer({
 }: ChartContainerProps) {
   const uniqueId = React.useId();
   const chartId = `chart-${id || uniqueId.replace(/:/g, "")}`;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [canRenderChart, setCanRenderChart] = React.useState(false);
+  const initialDimension = React.useMemo(
+    () => ({ width: 800, height: typeof height === "number" ? height : 450 }),
+    [height],
+  );
   const resolvedStyle =
     height === undefined ? style : ({ ...style, height } as React.CSSProperties);
+
+  React.useEffect(() => {
+    const element = containerRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const updateCanRenderChart = () => {
+      const rect = element.getBoundingClientRect();
+      setCanRenderChart(rect.width > 0 && rect.height > 0);
+    };
+
+    updateCanRenderChart();
+
+    if (typeof ResizeObserver === "undefined") {
+      setCanRenderChart(true);
+      return;
+    }
+
+    const observer = new ResizeObserver(updateCanRenderChart);
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <ChartContext.Provider value={{ config }}>
       <div
+        ref={containerRef}
         data-slot="chart"
         data-chart={chartId}
         className={cn(
@@ -87,9 +119,14 @@ function ChartContainer({
         {...props}
       >
         <ChartStyle id={chartId} config={config} />
-        <RechartsPrimitive.ResponsiveContainer>
-          {children}
-        </RechartsPrimitive.ResponsiveContainer>
+        {canRenderChart ? (
+          <RechartsPrimitive.ResponsiveContainer
+            initialDimension={initialDimension}
+            minWidth={0}
+          >
+            {children}
+          </RechartsPrimitive.ResponsiveContainer>
+        ) : null}
       </div>
     </ChartContext.Provider>
   );

@@ -5,136 +5,13 @@ import { Link } from "@tanstack/react-router";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
+import { getComponentEntriesBySection } from "@/lib/component-registry";
 
 /* ------------------------------------------------------------------ */
 /*  Component registry                                                  */
 /* ------------------------------------------------------------------ */
 
-type MoleculeEntry = {
-  name: string;
-  slug: string;
-  description: string;
-  atoms: string;
-};
-
-const MOLECULES: MoleculeEntry[] = [
-  {
-    name: "Field",
-    slug: "field",
-    description:
-      "A labeled form control. Composes Label, Input or Textarea, and optional hint or error text.",
-    atoms: "Label · Input · Textarea",
-  },
-  {
-    name: "Input Group",
-    slug: "input-group",
-    description:
-      "An input with leading or trailing text addons and icons. Extends Input with contextual decoration.",
-    atoms: "Input",
-  },
-  {
-    name: "Stat Card",
-    slug: "stat-card",
-    description:
-      "A metric display card. Composes a label, a large value, an optional trend indicator, and an optional icon.",
-    atoms: "Card · Badge · Icon",
-  },
-  {
-    name: "Empty State",
-    slug: "empty-state",
-    description: "A placeholder for empty lists, zero-data views, and no-results scenarios.",
-    atoms: "Button · Icon",
-  },
-  {
-    name: "Description List",
-    slug: "description-list",
-    description:
-      "Key–value pairs for displaying structured details. Common in profile pages and settings panels.",
-    atoms: "Badge · Button",
-  },
-  {
-    name: "Section Heading",
-    slug: "section-heading",
-    description:
-      "A section header with optional description and action buttons. Used above lists and tables.",
-    atoms: "Button",
-  },
-  {
-    name: "Page Heading",
-    slug: "page-heading",
-    description:
-      "A full page header with breadcrumb navigation, title, metadata, and action buttons.",
-    atoms: "Button · Badge · Breadcrumb",
-  },
-  {
-    name: "Activity Feed",
-    slug: "activity-feed",
-    description: "A vertical timeline of events with icons, rich content, and timestamps.",
-    atoms: "Icon",
-  },
-  {
-    name: "Stacked List",
-    slug: "stacked-list",
-    description:
-      "A vertically stacked list of rows with consistent padding and optional hover behavior.",
-    atoms: "Badge · Avatar",
-  },
-  {
-    name: "Action Panel",
-    slug: "action-panel",
-    description:
-      "A bordered card that communicates a single focused action. Common in settings pages.",
-    atoms: "Button · Card",
-  },
-  {
-    name: "Notification",
-    slug: "notification",
-    description:
-      "A toast-style notification panel with success, error, warning, and info variants.",
-    atoms: "Icon · Button",
-  },
-  {
-    name: "Radio Cards",
-    slug: "radio-card",
-    description:
-      "Card-style single selection. Each option is a bordered card that highlights when selected.",
-    atoms: "Radio Group · Card",
-  },
-  {
-    name: "Card Heading",
-    slug: "card-heading",
-    description:
-      "A header row for cards and panels. Combines title, description, leading slot, and trailing actions.",
-    atoms: "Card · Avatar · Button · Dropdown Menu",
-  },
-  {
-    name: "Media Object",
-    slug: "media-object",
-    description: "A layout primitive pairing a fixed media element with a flexible text block.",
-    atoms: "Avatar · Icon",
-  },
-  {
-    name: "Grid List",
-    slug: "grid-list",
-    description:
-      "A responsive grid of cards. Supports simple content, accent-strip, and custom contact layouts.",
-    atoms: "Card · Badge · Avatar",
-  },
-  {
-    name: "Command Palette",
-    slug: "command-palette",
-    description:
-      "A modal search dialog for navigating and executing commands quickly. Grouped by category.",
-    atoms: "Dialog · Input · Icon · Kbd",
-  },
-  {
-    name: "Property Row",
-    slug: "property-row",
-    description:
-      "Horizontal label + control row for designer inspector panels. Left-aligned label, right-aligned controls.",
-    atoms: "InputNumber · ColorInput · Slider",
-  },
-];
+const MOLECULES = getComponentEntriesBySection("molecules");
 
 /* ------------------------------------------------------------------ */
 /*  Page                                                                */
@@ -185,7 +62,7 @@ function MoleculesPage() {
               </CardDescription>
             </CardHeader>
             <div className="px-5 pb-3">
-              <p className="caption text-ground-300">{molecule.atoms}</p>
+              <p className="caption text-ground-300">{molecule.composedFrom}</p>
             </div>
             <CardFooter className="pt-0">
               <Button

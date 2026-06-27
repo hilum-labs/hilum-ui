@@ -925,6 +925,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/atoms/callout/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "title, description, icon, actions"
+      },
+      {
+        "label": "Variant props",
+        "description": "tone, compact"
+      }
+    ],
+    "exampleCode": "import { Callout } from \"@hilum/ui\"\nimport { AlertTriangle, CheckCircle2, Info } from \"lucide-react\"\n\n<Callout\n  tone=\"info\"\n  icon={<Info aria-hidden=\"true\" />}\n  title=\"Review recommended\"\n  description=\"This workflow has unsaved changes in two sections.\"\n/>\n<Callout\n  tone=\"success\"\n  icon={<CheckCircle2 aria-hidden=\"true\" />}\n  title=\"Import complete\"\n  description=\"148 records were added to the workspace.\"\n/>\n<Callout\n  tone=\"warning\"\n  icon={<AlertTriangle aria-hidden=\"true\" />}\n// ...trimmed for docs",
+    "kind": "component",
+    "path": "/atoms/callout/",
+    "summary": "Prominent status or guidance panel with icon, actions, and semantic tone.",
+    "title": "Callout",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Callout when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/atoms/card/": {
     "accessibility": [
       "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
@@ -1346,6 +1377,68 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Review the examples below to compare trigger styles, content density, and dismissal expectations."
     ]
   },
+  "/atoms/file-dropzone/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "accept, multiple, disabled, loading, loadingText, label"
+      },
+      {
+        "label": "Key exports",
+        "description": "FileDropzone, formatFileSize"
+      }
+    ],
+    "exampleCode": "import { FileDropzone } from \"@hilum/ui\"\n\nconst [files, setFiles] = React.useState([])\n\n<FileDropzone\n  accept=\"image/*\"\n  multiple\n  selectedFiles={files}\n  onFilesSelected={setFiles}\n  description=\"PNG, JPG, or WebP up to 10 MB each.\"\n/>",
+    "kind": "component",
+    "path": "/atoms/file-dropzone/",
+    "summary": "Accessible drag-and-drop file input with loading and selected-file states.",
+    "title": "File Dropzone",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use File Dropzone when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/help-tooltip/": {
+    "accessibility": [
+      "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
+      "Support Escape to dismiss non-destructive overlays and ensure the trigger communicates expanded state where appropriate.",
+      "Do not hide critical actions behind hover-only disclosure; keyboard and touch users need equivalent access."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "text, learnMoreUrl, learnMoreURL, placement, className, contentClassName"
+      },
+      {
+        "label": "Key exports",
+        "description": "HelpTooltip, type HelpTooltipProps"
+      }
+    ],
+    "exampleCode": "import { HelpTooltip, Label, Input } from \"@hilum/ui\"\n\n<div className=\"grid gap-2\">\n  <Label htmlFor=\"slug\">\n    Public slug\n    <HelpTooltip text=\"This value is used in the public URL. Keep it short and stable.\" />\n  </Label>\n  <Input id=\"slug\" defaultValue=\"summer-drop\" />\n</div>",
+    "kind": "component",
+    "path": "/atoms/help-tooltip/",
+    "summary": "Inline help trigger with tooltip content and optional learn-more link.",
+    "title": "Help Tooltip",
+    "whenNotToUse": [
+      "Do not move a full workflow into an overlay if the user needs persistent navigation, rich context, or deep editing space.",
+      "Do not rely on an overlay for critical messaging when it can be missed, dismissed accidentally, or blocked by focus issues."
+    ],
+    "whenToUse": [
+      "Use Help Tooltip when content needs to appear in context without forcing a full page transition.",
+      "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
+      "Review the examples below to compare trigger styles, content density, and dismissal expectations."
+    ]
+  },
   "/atoms/hover-card/": {
     "accessibility": [
       "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
@@ -1596,36 +1689,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "importantLinks": [
       {
-        "label": "Button",
-        "href": "/atoms/button"
+        "label": "Accordion",
+        "href": "/atoms/accordion/",
+        "description": "Vertically stacked sections that expand and collapse."
       },
       {
-        "label": "Button Group",
-        "href": "/atoms/button-group"
+        "label": "Alert Dialog",
+        "href": "/atoms/alert-dialog/",
+        "description": "Confirmation modal that requires explicit action before proceeding."
       },
       {
-        "label": "Badge",
-        "href": "/atoms/badge"
+        "label": "Alert",
+        "href": "/atoms/alert/",
+        "description": "Inline message communicating status or feedback."
       },
       {
-        "label": "Avatar",
-        "href": "/atoms/avatar"
+        "label": "Aspect Ratio",
+        "href": "/atoms/aspect-ratio/",
+        "description": "Constrains content to a specific width-to-height ratio."
       },
       {
         "label": "Avatar Stack",
-        "href": "/atoms/avatar-stack"
+        "href": "/atoms/avatar-stack/",
+        "description": "Overlapping group of avatars with optional overflow badge."
       },
       {
-        "label": "Input",
-        "href": "/atoms/input"
+        "label": "Avatar",
+        "href": "/atoms/avatar/",
+        "description": "User representations with image, fallback, and optional status indicator."
       },
       {
-        "label": "Label",
-        "href": "/atoms/label"
+        "label": "Badge",
+        "href": "/atoms/badge/",
+        "description": "Compact labels for status, categories, and metadata."
       },
       {
-        "label": "Separator",
-        "href": "/atoms/separator"
+        "label": "Breadcrumb",
+        "href": "/atoms/breadcrumb/",
+        "description": "Navigation trail showing the current page location."
       }
     ],
     "intro": [
@@ -1772,6 +1873,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
+  "/atoms/rich-text-editor/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, onChange, placeholder, minHeight, id, className"
+      }
+    ],
+    "exampleCode": "import { RichTextEditor } from \"@hilum/ui\"\n\nconst [html, setHtml] = React.useState(\"<h2>Launch notes</h2><p>Draft the release summary.</p>\")\n\n<RichTextEditor\n  value={html}\n  onChange={setHtml}\n  placeholder=\"Write the update...\"\n  minHeight={220}\n/>",
+    "kind": "component",
+    "path": "/atoms/rich-text-editor/",
+    "summary": "Toolbar-driven content editor for formatted HTML input.",
+    "title": "Rich Text Editor",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Rich Text Editor when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/atoms/scroll-area/": {
     "accessibility": [
       "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
@@ -1797,6 +1925,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Scroll Area when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
       "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
       "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
+  "/atoms/searchable-table/": {
+    "accessibility": [
+      "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
+      "Ensure arrow-key or tab-key movement stays predictable when the pattern behaves like a composite widget.",
+      "Do not rely on icon-only navigation unless every control has a clear accessible name."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "id, data, columns, searchPlaceholder, searchTerm, onSearchChange"
+      }
+    ],
+    "exampleCode": "import { SearchableTable, StatusBadge, type SearchableTableColumn } from \"@hilum/ui\"\n\nconst columns: SearchableTableColumn<Campaign>[] = [\n  { key: \"name\", label: \"Campaign\", sortable: true },\n  { key: \"owner\", label: \"Owner\", sortable: true },\n  {\n    key: \"status\",\n    label: \"Status\",\n    render: (campaign) => <StatusBadge status={campaign.status} showDot />,\n  },\n]\n\n<SearchableTable\n  data={campaigns}\n  columns={columns}\n  searchTerm={searchTerm}\n  onSearchChange={setSearchTerm}\n/>",
+    "kind": "component",
+    "path": "/atoms/searchable-table/",
+    "summary": "Responsive table with search, filters, sorting, mobile cards, and pagination.",
+    "title": "Searchable Table",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Searchable Table when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
   "/atoms/select/": {
@@ -2023,6 +2178,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Spinner when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/atoms/status-badge/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "status, label, variant, variantMap, labelMap, icon"
+      },
+      {
+        "label": "Key exports",
+        "description": "StatusBadge, statusBadgeVariantFor, statusLabel"
+      }
+    ],
+    "exampleCode": "import { StatusBadge } from \"@hilum/ui\"\n\n<StatusBadge status=\"active\" showDot />\n<StatusBadge status=\"pending\" showDot />\n<StatusBadge status=\"draft\" showDot />\n<StatusBadge status=\"failed\" showDot />",
+    "kind": "component",
+    "path": "/atoms/status-badge/",
+    "summary": "Semantic badge that maps status values to labels, variants, icons, and dots.",
+    "title": "Status Badge",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Status Badge when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
@@ -4270,6 +4456,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "summary": "Customer proof sections for landing pages, campaigns, and product narratives. These examples range from minimal editorial quotes to darker, higher-contrast layouts.",
     "title": "Testimonials"
   },
+  "/molecules/account-menu/": {
+    "accessibility": [
+      "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
+      "Support Escape to dismiss non-destructive overlays and ensure the trigger communicates expanded state where appropriate.",
+      "Do not hide critical actions behind hover-only disclosure; keyboard and touch users need equivalent access."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "name, email, avatarSrc, avatarAlt, fallback, icon"
+      },
+      {
+        "label": "Key exports",
+        "description": "AccountMenuContent, AccountMenuHeader, AccountMenuSection, AccountMenuItem, AccountMenuSeparator"
+      }
+    ],
+    "exampleCode": "import {\n  AccountMenuContent, AccountMenuHeader, AccountMenuItem,\n  AccountMenuSection, AccountMenuSeparator, DropdownMenu, DropdownMenuTrigger,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\nimport { Settings, LogOut } from \"lucide-react\"\n\n<DropdownMenu>\n  <DropdownMenuTrigger asChild>\n    <Button variant=\"outline\">Open account menu</Button>\n  </DropdownMenuTrigger>\n  <AccountMenuContent align=\"end\">\n    <AccountMenuHeader name=\"Sofia Perez\" email=\"sofia@hilum.dev\" fallback=\"SP\" />\n    <AccountMenuSeparator />\n    <AccountMenuSection>\n      <AccountMenuItem icon={<Settings aria-hidden=\"true\" />}>Settings</AccountMenuItem>\n      <AccountMenuItem icon={<LogOut aria-hidden=\"true\" />} destructive>\n        Sign out\n// ...trimmed for docs",
+    "kind": "component",
+    "path": "/molecules/account-menu/",
+    "summary": "Structured account dropdown with profile header, sections, action rows, and separators.",
+    "title": "Account Menu",
+    "whenNotToUse": [
+      "Do not move a full workflow into an overlay if the user needs persistent navigation, rich context, or deep editing space.",
+      "Do not rely on an overlay for critical messaging when it can be missed, dismissed accidentally, or blocked by focus issues."
+    ],
+    "whenToUse": [
+      "Use Account Menu when content needs to appear in context without forcing a full page transition.",
+      "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
+      "Review the examples below to compare trigger styles, content density, and dismissal expectations."
+    ]
+  },
   "/molecules/action-panel/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -4376,6 +4593,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Command Palette when content needs to appear in context without forcing a full page transition.",
       "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
       "Review the examples below to compare trigger styles, content density, and dismissal expectations."
+    ]
+  },
+  "/molecules/data-transfer-controls/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "scopeValue, onScopeChange, scopeOptions, scopePlaceholder, actions, compact"
+      }
+    ],
+    "exampleCode": "import { DataTransferControls } from \"@hilum/ui\"\nimport { Download, Upload } from \"lucide-react\"\n\n<DataTransferControls\n  scopeValue={scope}\n  onScopeChange={setScope}\n  scopeOptions={[\n    { value: \"visible\", label: \"Visible rows\" },\n    { value: \"selected\", label: \"Selected rows\" },\n    { value: \"all\", label: \"All records\" },\n  ]}\n  actions={[\n    { label: \"Import CSV\", shortLabel: \"Import\", icon: <Upload />, onSelect: importCsv },\n    { label: \"Export CSV\", shortLabel: \"Export\", icon: <Download />, onSelect: exportCsv },\n  ]}\n/>",
+    "kind": "component",
+    "path": "/molecules/data-transfer-controls/",
+    "summary": "Import and export control cluster with optional scope selector and compact menu mode.",
+    "title": "Data Transfer Controls",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Data Transfer Controls when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
   "/molecules/description-list/": {
@@ -4517,6 +4761,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
     ]
   },
+  "/molecules/media-asset-card/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "name, src, alt, meta, details, actions"
+      }
+    ],
+    "exampleCode": "import { MediaAssetCard } from \"@hilum/ui\"\n\n<MediaAssetCard\n  name=\"campaign-cover.png\"\n  src={coverImage}\n  meta=\"PNG - 1.2 MB\"\n  details=\"Used by the summer campaign landing page.\"\n  selected\n/>",
+    "kind": "component",
+    "path": "/molecules/media-asset-card/",
+    "summary": "Selectable media or file card with grid, list, and responsive orientations.",
+    "title": "Media Asset Card",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Media Asset Card when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/molecules/media-object/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -4605,36 +4876,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "importantLinks": [
       {
-        "label": "Field",
-        "href": "/molecules/field"
+        "label": "Account Menu",
+        "href": "/molecules/account-menu/",
+        "description": "Structured account dropdown with profile header, sections, action rows, and separators."
       },
       {
-        "label": "Input Group",
-        "href": "/molecules/input-group"
-      },
-      {
-        "label": "Stat Card",
-        "href": "/molecules/stat-card"
-      },
-      {
-        "label": "Empty State",
-        "href": "/molecules/empty-state"
-      },
-      {
-        "label": "Description List",
-        "href": "/molecules/description-list"
-      },
-      {
-        "label": "Section Heading",
-        "href": "/molecules/section-heading"
-      },
-      {
-        "label": "Page Heading",
-        "href": "/molecules/page-heading"
+        "label": "Action Panel",
+        "href": "/molecules/action-panel/",
+        "description": "Bordered panel that communicates one focused action."
       },
       {
         "label": "Activity Feed",
-        "href": "/molecules/activity-feed"
+        "href": "/molecules/activity-feed/",
+        "description": "Vertical timeline of events with icons, rich content, and timestamps."
+      },
+      {
+        "label": "Card Heading",
+        "href": "/molecules/card-heading/",
+        "description": "Header row for cards and panels with title, description, leading slot, and actions."
+      },
+      {
+        "label": "Command Palette",
+        "href": "/molecules/command-palette/",
+        "description": "Modal search dialog for navigating and executing grouped commands."
+      },
+      {
+        "label": "Data Transfer Controls",
+        "href": "/molecules/data-transfer-controls/",
+        "description": "Import and export control cluster with optional scope selector and compact menu mode."
+      },
+      {
+        "label": "Description List",
+        "href": "/molecules/description-list/",
+        "description": "Key-value pairs for structured details in profiles and settings panels."
+      },
+      {
+        "label": "Empty State",
+        "href": "/molecules/empty-state/",
+        "description": "Placeholder for empty lists, zero-data views, and no-results scenarios."
       }
     ],
     "intro": [
@@ -4767,7 +5046,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "label, value, trend, direction, icon, className"
+        "description": "label, title, value, trend, direction, icon"
+      },
+      {
+        "label": "Key exports",
+        "description": "StatCard, StatCardGrid, StatCardSlot, type StatCardProps, type StatCardGridProps, type StatCardSlotProps"
       }
     ],
     "exampleCode": "import { StatCard } from \"@hilum/ui\"\n\n<StatCard label=\"Total users\" value=\"24,521\" />",
@@ -4781,6 +5064,68 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Stat Card when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/molecules/titled-card/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "title, subtitle, children, actionButtons, icon, className"
+      },
+      {
+        "label": "Key exports",
+        "description": "TitledCard, type TitledCardProps"
+      }
+    ],
+    "exampleCode": "import { Button, TitledCard } from \"@hilum/ui\"\nimport { BarChart3, Plus } from \"lucide-react\"\n\n<TitledCard\n  title=\"Campaign performance\"\n  subtitle=\"Live metrics from active acquisition campaigns.\"\n  icon={BarChart3}\n  actionButtons={<Button size=\"sm\"><Plus /> New report</Button>}\n>\n  <div>Card content</div>\n</TitledCard>",
+    "kind": "component",
+    "path": "/molecules/titled-card/",
+    "summary": "Responsive card wrapper with title, subtitle, actions, and mobile-flattened layout.",
+    "title": "Titled Card",
+    "whenNotToUse": [
+      "Do not use Titled Card just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Titled Card when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
+  "/molecules/url-redirect-prompt/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "originalHandle, nextHandle, pathPrefix, checked, onCheckedChange, title"
+      },
+      {
+        "label": "Key exports",
+        "description": "UrlRedirectPrompt, hasUrlHandleChanged, normalizeUrlHandle, urlResourcePath"
+      }
+    ],
+    "exampleCode": "import { UrlRedirectPrompt } from \"@hilum/ui\"\n\n<UrlRedirectPrompt\n  originalHandle=\"linen-shirt\"\n  nextHandle={handle}\n  pathPrefix=\"products\"\n  checked={createRedirect}\n  onCheckedChange={setCreateRedirect}\n/>",
+    "kind": "component",
+    "path": "/molecules/url-redirect-prompt/",
+    "summary": "Redirect recommendation callout shown when an editable URL handle changes.",
+    "title": "URL Redirect Prompt",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use URL Redirect Prompt when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
