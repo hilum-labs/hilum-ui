@@ -1,5 +1,12 @@
 # @hilum/app-shell
 
+## 3.3.4
+
+### Patch Changes
+
+- Make AppSidebar navigation buttons vertically tighter while preserving the shared Studio-style sidebar structure.
+  - @hilum/ui@3.3.4
+
 ## 3.3.3
 
 ### Patch Changes

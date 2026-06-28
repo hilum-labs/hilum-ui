@@ -202,7 +202,9 @@ describe("AppSidebar", () => {
     expect(screen.getByText("Admin")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "New" })).toBeInTheDocument();
     expect(screen.getByText("Workspace")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /home/i })).toHaveAttribute("aria-current", "page");
+    const activeLink = screen.getByRole("link", { name: /home/i });
+    expect(activeLink).toHaveAttribute("aria-current", "page");
+    expect(activeLink).toHaveClass("min-h-7", "py-1");
     expect(screen.getByText("3")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Upgrade" })).toBeInTheDocument();
     expect(screen.getByText("ada@example.com")).toBeInTheDocument();

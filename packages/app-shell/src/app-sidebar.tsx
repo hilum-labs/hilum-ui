@@ -65,6 +65,8 @@ const DEFAULT_USER_MENU: AppSidebarMenuItem[] = [
   { label: "Sign out", icon: <LogOut size={13} />, destructive: true },
 ];
 
+const APP_SIDEBAR_MENU_BUTTON_CLASS = "min-h-7 py-1";
+
 function AppSidebar({
   logo,
   brand,
@@ -170,6 +172,7 @@ function AppSidebar({
                       isActive={Boolean(item.active)}
                       {...(collapsed && sidebar && { tooltip: item.label })}
                       className={cn(
+                        APP_SIDEBAR_MENU_BUTTON_CLASS,
                         item.disabled &&
                           "cursor-default text-muted-foreground/60 hover:bg-transparent hover:text-muted-foreground/60",
                       )}
