@@ -64,3 +64,7 @@ Light/dark mode works automatically via `prefers-color-scheme`. Override explici
 ## Light / dark
 
 Both modes ship out of the box. `prefers-color-scheme` is respected by default; force a mode by setting `<html data-theme="light">` or `<html data-theme="dark">`.
+
+## Credits
+
+[Fluid Functionalism](https://github.com/mickadesign/fluid-functionalism) by Micka Touillaud.

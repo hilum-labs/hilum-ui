@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ScrollArea } from "radix-ui";
 import { cn } from "../lib/utils";
+import { motionClasses } from "../lib/interaction";
 
 const ScrollAreaRoot = React.forwardRef<
   React.ComponentRef<typeof ScrollArea.Root>,
@@ -27,14 +28,20 @@ const ScrollAreaScrollbar = React.forwardRef<
     ref={ref}
     orientation={orientation}
     className={cn(
-      "flex touch-none select-none transition-colors",
+      "flex touch-none select-none",
+      motionClasses,
       orientation === "vertical" && "h-full w-2 border-l border-l-transparent p-px",
       orientation === "horizontal" && "h-2 flex-col border-t border-t-transparent p-px",
       className,
     )}
     {...props}
   >
-    <ScrollArea.Thumb className="relative flex-1 rounded-full bg-muted hover:bg-muted transition-colors" />
+    <ScrollArea.Thumb
+      className={cn(
+        "relative flex-1 rounded-full bg-muted hover:bg-muted-foreground/30",
+        motionClasses,
+      )}
+    />
   </ScrollArea.Scrollbar>
 ));
 ScrollAreaScrollbar.displayName = "ScrollAreaScrollbar";

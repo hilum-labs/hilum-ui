@@ -21,6 +21,7 @@ import { Route as AtomsPageRouteImport } from './app/atoms/page'
 import { Route as ApplicationUiPageRouteImport } from './app/application-ui/page'
 import { Route as MoleculesUrlRedirectPromptPageRouteImport } from './app/molecules/url-redirect-prompt/page'
 import { Route as MoleculesTitledCardPageRouteImport } from './app/molecules/titled-card/page'
+import { Route as MoleculesThinkingStepsPageRouteImport } from './app/molecules/thinking-steps/page'
 import { Route as MoleculesStatCardPageRouteImport } from './app/molecules/stat-card/page'
 import { Route as MoleculesStackedListPageRouteImport } from './app/molecules/stacked-list/page'
 import { Route as MoleculesSectionHeadingPageRouteImport } from './app/molecules/section-heading/page'
@@ -28,16 +29,22 @@ import { Route as MoleculesRadioCardPageRouteImport } from './app/molecules/radi
 import { Route as MoleculesPropertyRowPageRouteImport } from './app/molecules/property-row/page'
 import { Route as MoleculesPageHeadingPageRouteImport } from './app/molecules/page-heading/page'
 import { Route as MoleculesNotificationPageRouteImport } from './app/molecules/notification/page'
+import { Route as MoleculesNavMenuPageRouteImport } from './app/molecules/nav-menu/page'
+import { Route as MoleculesMobileDrawerPageRouteImport } from './app/molecules/mobile-drawer/page'
 import { Route as MoleculesMediaObjectPageRouteImport } from './app/molecules/media-object/page'
 import { Route as MoleculesMediaAssetCardPageRouteImport } from './app/molecules/media-asset-card/page'
+import { Route as MoleculesInputMessagePageRouteImport } from './app/molecules/input-message/page'
 import { Route as MoleculesInputGroupPageRouteImport } from './app/molecules/input-group/page'
+import { Route as MoleculesInputCopyPageRouteImport } from './app/molecules/input-copy/page'
 import { Route as MoleculesGridListPageRouteImport } from './app/molecules/grid-list/page'
 import { Route as MoleculesFieldPageRouteImport } from './app/molecules/field/page'
 import { Route as MoleculesEmptyStatePageRouteImport } from './app/molecules/empty-state/page'
 import { Route as MoleculesDescriptionListPageRouteImport } from './app/molecules/description-list/page'
 import { Route as MoleculesDataTransferControlsPageRouteImport } from './app/molecules/data-transfer-controls/page'
 import { Route as MoleculesCommandPalettePageRouteImport } from './app/molecules/command-palette/page'
+import { Route as MoleculesChatMessagePageRouteImport } from './app/molecules/chat-message/page'
 import { Route as MoleculesCardHeadingPageRouteImport } from './app/molecules/card-heading/page'
+import { Route as MoleculesAskUserQuestionsPageRouteImport } from './app/molecules/ask-user-questions/page'
 import { Route as MoleculesActivityFeedPageRouteImport } from './app/molecules/activity-feed/page'
 import { Route as MoleculesActionPanelPageRouteImport } from './app/molecules/action-panel/page'
 import { Route as MoleculesAccountMenuPageRouteImport } from './app/molecules/account-menu/page'
@@ -88,8 +95,10 @@ import { Route as BlocksAppShellSidebarPageRouteImport } from './app/blocks/app-
 import { Route as AtomsTooltipPageRouteImport } from './app/atoms/tooltip/page'
 import { Route as AtomsTogglePageRouteImport } from './app/atoms/toggle/page'
 import { Route as AtomsToggleGroupPageRouteImport } from './app/atoms/toggle-group/page'
+import { Route as AtomsThinkingIndicatorPageRouteImport } from './app/atoms/thinking-indicator/page'
 import { Route as AtomsTextareaPageRouteImport } from './app/atoms/textarea/page'
 import { Route as AtomsTabsPageRouteImport } from './app/atoms/tabs/page'
+import { Route as AtomsTabsSubtlePageRouteImport } from './app/atoms/tabs-subtle/page'
 import { Route as AtomsTablePageRouteImport } from './app/atoms/table/page'
 import { Route as AtomsSwitchPageRouteImport } from './app/atoms/switch/page'
 import { Route as AtomsStepsPageRouteImport } from './app/atoms/steps/page'
@@ -111,8 +120,10 @@ import { Route as AtomsProgressPageRouteImport } from './app/atoms/progress/page
 import { Route as AtomsPopoverPageRouteImport } from './app/atoms/popover/page'
 import { Route as AtomsPaginationPageRouteImport } from './app/atoms/pagination/page'
 import { Route as AtomsNavigationMenuPageRouteImport } from './app/atoms/navigation-menu/page'
+import { Route as AtomsNavItemPageRouteImport } from './app/atoms/nav-item/page'
 import { Route as AtomsNativeSelectPageRouteImport } from './app/atoms/native-select/page'
 import { Route as AtomsMenubarPageRouteImport } from './app/atoms/menubar/page'
+import { Route as AtomsMenuItemPageRouteImport } from './app/atoms/menu-item/page'
 import { Route as AtomsLabelPageRouteImport } from './app/atoms/label/page'
 import { Route as AtomsKbdPageRouteImport } from './app/atoms/kbd/page'
 import { Route as AtomsInputPageRouteImport } from './app/atoms/input/page'
@@ -120,7 +131,9 @@ import { Route as AtomsInputOtpPageRouteImport } from './app/atoms/input-otp/pag
 import { Route as AtomsInputNumberPageRouteImport } from './app/atoms/input-number/page'
 import { Route as AtomsHoverCardPageRouteImport } from './app/atoms/hover-card/page'
 import { Route as AtomsHelpTooltipPageRouteImport } from './app/atoms/help-tooltip/page'
+import { Route as AtomsFileThumbnailPageRouteImport } from './app/atoms/file-thumbnail/page'
 import { Route as AtomsFileDropzonePageRouteImport } from './app/atoms/file-dropzone/page'
+import { Route as AtomsDropdownPageRouteImport } from './app/atoms/dropdown/page'
 import { Route as AtomsDropdownMenuPageRouteImport } from './app/atoms/dropdown-menu/page'
 import { Route as AtomsDrawerPageRouteImport } from './app/atoms/drawer/page'
 import { Route as AtomsDialogPageRouteImport } from './app/atoms/dialog/page'
@@ -133,6 +146,7 @@ import { Route as AtomsColorPickerPageRouteImport } from './app/atoms/color-pick
 import { Route as AtomsColorInputPageRouteImport } from './app/atoms/color-input/page'
 import { Route as AtomsCollapsiblePageRouteImport } from './app/atoms/collapsible/page'
 import { Route as AtomsCheckboxPageRouteImport } from './app/atoms/checkbox/page'
+import { Route as AtomsCheckboxGroupPageRouteImport } from './app/atoms/checkbox-group/page'
 import { Route as AtomsChartPageRouteImport } from './app/atoms/chart/page'
 import { Route as AtomsCarouselPageRouteImport } from './app/atoms/carousel/page'
 import { Route as AtomsCardPageRouteImport } from './app/atoms/card/page'
@@ -221,6 +235,12 @@ const MoleculesTitledCardPageRoute = MoleculesTitledCardPageRouteImport.update({
   path: '/molecules/titled-card/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoleculesThinkingStepsPageRoute =
+  MoleculesThinkingStepsPageRouteImport.update({
+    id: '/molecules/thinking-steps/',
+    path: '/molecules/thinking-steps/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MoleculesStatCardPageRoute = MoleculesStatCardPageRouteImport.update({
   id: '/molecules/stat-card/',
   path: '/molecules/stat-card/',
@@ -261,6 +281,17 @@ const MoleculesNotificationPageRoute =
     path: '/molecules/notification/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MoleculesNavMenuPageRoute = MoleculesNavMenuPageRouteImport.update({
+  id: '/molecules/nav-menu/',
+  path: '/molecules/nav-menu/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoleculesMobileDrawerPageRoute =
+  MoleculesMobileDrawerPageRouteImport.update({
+    id: '/molecules/mobile-drawer/',
+    path: '/molecules/mobile-drawer/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MoleculesMediaObjectPageRoute =
   MoleculesMediaObjectPageRouteImport.update({
     id: '/molecules/media-object/',
@@ -273,9 +304,20 @@ const MoleculesMediaAssetCardPageRoute =
     path: '/molecules/media-asset-card/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MoleculesInputMessagePageRoute =
+  MoleculesInputMessagePageRouteImport.update({
+    id: '/molecules/input-message/',
+    path: '/molecules/input-message/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MoleculesInputGroupPageRoute = MoleculesInputGroupPageRouteImport.update({
   id: '/molecules/input-group/',
   path: '/molecules/input-group/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoleculesInputCopyPageRoute = MoleculesInputCopyPageRouteImport.update({
+  id: '/molecules/input-copy/',
+  path: '/molecules/input-copy/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoleculesGridListPageRoute = MoleculesGridListPageRouteImport.update({
@@ -311,10 +353,22 @@ const MoleculesCommandPalettePageRoute =
     path: '/molecules/command-palette/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MoleculesChatMessagePageRoute =
+  MoleculesChatMessagePageRouteImport.update({
+    id: '/molecules/chat-message/',
+    path: '/molecules/chat-message/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MoleculesCardHeadingPageRoute =
   MoleculesCardHeadingPageRouteImport.update({
     id: '/molecules/card-heading/',
     path: '/molecules/card-heading/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MoleculesAskUserQuestionsPageRoute =
+  MoleculesAskUserQuestionsPageRouteImport.update({
+    id: '/molecules/ask-user-questions/',
+    path: '/molecules/ask-user-questions/',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MoleculesActivityFeedPageRoute =
@@ -597,6 +651,12 @@ const AtomsToggleGroupPageRoute = AtomsToggleGroupPageRouteImport.update({
   path: '/atoms/toggle-group/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsThinkingIndicatorPageRoute =
+  AtomsThinkingIndicatorPageRouteImport.update({
+    id: '/atoms/thinking-indicator/',
+    path: '/atoms/thinking-indicator/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AtomsTextareaPageRoute = AtomsTextareaPageRouteImport.update({
   id: '/atoms/textarea/',
   path: '/atoms/textarea/',
@@ -605,6 +665,11 @@ const AtomsTextareaPageRoute = AtomsTextareaPageRouteImport.update({
 const AtomsTabsPageRoute = AtomsTabsPageRouteImport.update({
   id: '/atoms/tabs/',
   path: '/atoms/tabs/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsTabsSubtlePageRoute = AtomsTabsSubtlePageRouteImport.update({
+  id: '/atoms/tabs-subtle/',
+  path: '/atoms/tabs-subtle/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsTablePageRoute = AtomsTablePageRouteImport.update({
@@ -713,6 +778,11 @@ const AtomsNavigationMenuPageRoute = AtomsNavigationMenuPageRouteImport.update({
   path: '/atoms/navigation-menu/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsNavItemPageRoute = AtomsNavItemPageRouteImport.update({
+  id: '/atoms/nav-item/',
+  path: '/atoms/nav-item/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsNativeSelectPageRoute = AtomsNativeSelectPageRouteImport.update({
   id: '/atoms/native-select/',
   path: '/atoms/native-select/',
@@ -721,6 +791,11 @@ const AtomsNativeSelectPageRoute = AtomsNativeSelectPageRouteImport.update({
 const AtomsMenubarPageRoute = AtomsMenubarPageRouteImport.update({
   id: '/atoms/menubar/',
   path: '/atoms/menubar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsMenuItemPageRoute = AtomsMenuItemPageRouteImport.update({
+  id: '/atoms/menu-item/',
+  path: '/atoms/menu-item/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsLabelPageRoute = AtomsLabelPageRouteImport.update({
@@ -758,9 +833,19 @@ const AtomsHelpTooltipPageRoute = AtomsHelpTooltipPageRouteImport.update({
   path: '/atoms/help-tooltip/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsFileThumbnailPageRoute = AtomsFileThumbnailPageRouteImport.update({
+  id: '/atoms/file-thumbnail/',
+  path: '/atoms/file-thumbnail/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsFileDropzonePageRoute = AtomsFileDropzonePageRouteImport.update({
   id: '/atoms/file-dropzone/',
   path: '/atoms/file-dropzone/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsDropdownPageRoute = AtomsDropdownPageRouteImport.update({
+  id: '/atoms/dropdown/',
+  path: '/atoms/dropdown/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsDropdownMenuPageRoute = AtomsDropdownMenuPageRouteImport.update({
@@ -821,6 +906,11 @@ const AtomsCollapsiblePageRoute = AtomsCollapsiblePageRouteImport.update({
 const AtomsCheckboxPageRoute = AtomsCheckboxPageRouteImport.update({
   id: '/atoms/checkbox/',
   path: '/atoms/checkbox/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsCheckboxGroupPageRoute = AtomsCheckboxGroupPageRouteImport.update({
+  id: '/atoms/checkbox-group/',
+  path: '/atoms/checkbox-group/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsChartPageRoute = AtomsChartPageRouteImport.update({
@@ -999,6 +1089,7 @@ export interface FileRoutesByFullPath {
   '/atoms/card/': typeof AtomsCardPageRoute
   '/atoms/carousel/': typeof AtomsCarouselPageRoute
   '/atoms/chart/': typeof AtomsChartPageRoute
+  '/atoms/checkbox-group/': typeof AtomsCheckboxGroupPageRoute
   '/atoms/checkbox/': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible/': typeof AtomsCollapsiblePageRoute
   '/atoms/color-input/': typeof AtomsColorInputPageRoute
@@ -1011,7 +1102,9 @@ export interface FileRoutesByFullPath {
   '/atoms/dialog/': typeof AtomsDialogPageRoute
   '/atoms/drawer/': typeof AtomsDrawerPageRoute
   '/atoms/dropdown-menu/': typeof AtomsDropdownMenuPageRoute
+  '/atoms/dropdown/': typeof AtomsDropdownPageRoute
   '/atoms/file-dropzone/': typeof AtomsFileDropzonePageRoute
+  '/atoms/file-thumbnail/': typeof AtomsFileThumbnailPageRoute
   '/atoms/help-tooltip/': typeof AtomsHelpTooltipPageRoute
   '/atoms/hover-card/': typeof AtomsHoverCardPageRoute
   '/atoms/input-number/': typeof AtomsInputNumberPageRoute
@@ -1019,8 +1112,10 @@ export interface FileRoutesByFullPath {
   '/atoms/input/': typeof AtomsInputPageRoute
   '/atoms/kbd/': typeof AtomsKbdPageRoute
   '/atoms/label/': typeof AtomsLabelPageRoute
+  '/atoms/menu-item/': typeof AtomsMenuItemPageRoute
   '/atoms/menubar/': typeof AtomsMenubarPageRoute
   '/atoms/native-select/': typeof AtomsNativeSelectPageRoute
+  '/atoms/nav-item/': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu/': typeof AtomsNavigationMenuPageRoute
   '/atoms/pagination/': typeof AtomsPaginationPageRoute
   '/atoms/popover/': typeof AtomsPopoverPageRoute
@@ -1042,8 +1137,10 @@ export interface FileRoutesByFullPath {
   '/atoms/steps/': typeof AtomsStepsPageRoute
   '/atoms/switch/': typeof AtomsSwitchPageRoute
   '/atoms/table/': typeof AtomsTablePageRoute
+  '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
+  '/atoms/thinking-indicator/': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/toggle-group/': typeof AtomsToggleGroupPageRoute
   '/atoms/toggle/': typeof AtomsTogglePageRoute
   '/atoms/tooltip/': typeof AtomsTooltipPageRoute
@@ -1094,16 +1191,22 @@ export interface FileRoutesByFullPath {
   '/molecules/account-menu/': typeof MoleculesAccountMenuPageRoute
   '/molecules/action-panel/': typeof MoleculesActionPanelPageRoute
   '/molecules/activity-feed/': typeof MoleculesActivityFeedPageRoute
+  '/molecules/ask-user-questions/': typeof MoleculesAskUserQuestionsPageRoute
   '/molecules/card-heading/': typeof MoleculesCardHeadingPageRoute
+  '/molecules/chat-message/': typeof MoleculesChatMessagePageRoute
   '/molecules/command-palette/': typeof MoleculesCommandPalettePageRoute
   '/molecules/data-transfer-controls/': typeof MoleculesDataTransferControlsPageRoute
   '/molecules/description-list/': typeof MoleculesDescriptionListPageRoute
   '/molecules/empty-state/': typeof MoleculesEmptyStatePageRoute
   '/molecules/field/': typeof MoleculesFieldPageRoute
   '/molecules/grid-list/': typeof MoleculesGridListPageRoute
+  '/molecules/input-copy/': typeof MoleculesInputCopyPageRoute
   '/molecules/input-group/': typeof MoleculesInputGroupPageRoute
+  '/molecules/input-message/': typeof MoleculesInputMessagePageRoute
   '/molecules/media-asset-card/': typeof MoleculesMediaAssetCardPageRoute
   '/molecules/media-object/': typeof MoleculesMediaObjectPageRoute
+  '/molecules/mobile-drawer/': typeof MoleculesMobileDrawerPageRoute
+  '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
@@ -1111,6 +1214,7 @@ export interface FileRoutesByFullPath {
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/stacked-list/': typeof MoleculesStackedListPageRoute
   '/molecules/stat-card/': typeof MoleculesStatCardPageRoute
+  '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
 }
@@ -1151,6 +1255,7 @@ export interface FileRoutesByTo {
   '/atoms/card': typeof AtomsCardPageRoute
   '/atoms/carousel': typeof AtomsCarouselPageRoute
   '/atoms/chart': typeof AtomsChartPageRoute
+  '/atoms/checkbox-group': typeof AtomsCheckboxGroupPageRoute
   '/atoms/checkbox': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible': typeof AtomsCollapsiblePageRoute
   '/atoms/color-input': typeof AtomsColorInputPageRoute
@@ -1163,7 +1268,9 @@ export interface FileRoutesByTo {
   '/atoms/dialog': typeof AtomsDialogPageRoute
   '/atoms/drawer': typeof AtomsDrawerPageRoute
   '/atoms/dropdown-menu': typeof AtomsDropdownMenuPageRoute
+  '/atoms/dropdown': typeof AtomsDropdownPageRoute
   '/atoms/file-dropzone': typeof AtomsFileDropzonePageRoute
+  '/atoms/file-thumbnail': typeof AtomsFileThumbnailPageRoute
   '/atoms/help-tooltip': typeof AtomsHelpTooltipPageRoute
   '/atoms/hover-card': typeof AtomsHoverCardPageRoute
   '/atoms/input-number': typeof AtomsInputNumberPageRoute
@@ -1171,8 +1278,10 @@ export interface FileRoutesByTo {
   '/atoms/input': typeof AtomsInputPageRoute
   '/atoms/kbd': typeof AtomsKbdPageRoute
   '/atoms/label': typeof AtomsLabelPageRoute
+  '/atoms/menu-item': typeof AtomsMenuItemPageRoute
   '/atoms/menubar': typeof AtomsMenubarPageRoute
   '/atoms/native-select': typeof AtomsNativeSelectPageRoute
+  '/atoms/nav-item': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu': typeof AtomsNavigationMenuPageRoute
   '/atoms/pagination': typeof AtomsPaginationPageRoute
   '/atoms/popover': typeof AtomsPopoverPageRoute
@@ -1194,8 +1303,10 @@ export interface FileRoutesByTo {
   '/atoms/steps': typeof AtomsStepsPageRoute
   '/atoms/switch': typeof AtomsSwitchPageRoute
   '/atoms/table': typeof AtomsTablePageRoute
+  '/atoms/tabs-subtle': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs': typeof AtomsTabsPageRoute
   '/atoms/textarea': typeof AtomsTextareaPageRoute
+  '/atoms/thinking-indicator': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/toggle-group': typeof AtomsToggleGroupPageRoute
   '/atoms/toggle': typeof AtomsTogglePageRoute
   '/atoms/tooltip': typeof AtomsTooltipPageRoute
@@ -1246,16 +1357,22 @@ export interface FileRoutesByTo {
   '/molecules/account-menu': typeof MoleculesAccountMenuPageRoute
   '/molecules/action-panel': typeof MoleculesActionPanelPageRoute
   '/molecules/activity-feed': typeof MoleculesActivityFeedPageRoute
+  '/molecules/ask-user-questions': typeof MoleculesAskUserQuestionsPageRoute
   '/molecules/card-heading': typeof MoleculesCardHeadingPageRoute
+  '/molecules/chat-message': typeof MoleculesChatMessagePageRoute
   '/molecules/command-palette': typeof MoleculesCommandPalettePageRoute
   '/molecules/data-transfer-controls': typeof MoleculesDataTransferControlsPageRoute
   '/molecules/description-list': typeof MoleculesDescriptionListPageRoute
   '/molecules/empty-state': typeof MoleculesEmptyStatePageRoute
   '/molecules/field': typeof MoleculesFieldPageRoute
   '/molecules/grid-list': typeof MoleculesGridListPageRoute
+  '/molecules/input-copy': typeof MoleculesInputCopyPageRoute
   '/molecules/input-group': typeof MoleculesInputGroupPageRoute
+  '/molecules/input-message': typeof MoleculesInputMessagePageRoute
   '/molecules/media-asset-card': typeof MoleculesMediaAssetCardPageRoute
   '/molecules/media-object': typeof MoleculesMediaObjectPageRoute
+  '/molecules/mobile-drawer': typeof MoleculesMobileDrawerPageRoute
+  '/molecules/nav-menu': typeof MoleculesNavMenuPageRoute
   '/molecules/notification': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading': typeof MoleculesPageHeadingPageRoute
   '/molecules/property-row': typeof MoleculesPropertyRowPageRoute
@@ -1263,6 +1380,7 @@ export interface FileRoutesByTo {
   '/molecules/section-heading': typeof MoleculesSectionHeadingPageRoute
   '/molecules/stacked-list': typeof MoleculesStackedListPageRoute
   '/molecules/stat-card': typeof MoleculesStatCardPageRoute
+  '/molecules/thinking-steps': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card': typeof MoleculesTitledCardPageRoute
   '/molecules/url-redirect-prompt': typeof MoleculesUrlRedirectPromptPageRoute
 }
@@ -1304,6 +1422,7 @@ export interface FileRoutesById {
   '/atoms/card/': typeof AtomsCardPageRoute
   '/atoms/carousel/': typeof AtomsCarouselPageRoute
   '/atoms/chart/': typeof AtomsChartPageRoute
+  '/atoms/checkbox-group/': typeof AtomsCheckboxGroupPageRoute
   '/atoms/checkbox/': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible/': typeof AtomsCollapsiblePageRoute
   '/atoms/color-input/': typeof AtomsColorInputPageRoute
@@ -1316,7 +1435,9 @@ export interface FileRoutesById {
   '/atoms/dialog/': typeof AtomsDialogPageRoute
   '/atoms/drawer/': typeof AtomsDrawerPageRoute
   '/atoms/dropdown-menu/': typeof AtomsDropdownMenuPageRoute
+  '/atoms/dropdown/': typeof AtomsDropdownPageRoute
   '/atoms/file-dropzone/': typeof AtomsFileDropzonePageRoute
+  '/atoms/file-thumbnail/': typeof AtomsFileThumbnailPageRoute
   '/atoms/help-tooltip/': typeof AtomsHelpTooltipPageRoute
   '/atoms/hover-card/': typeof AtomsHoverCardPageRoute
   '/atoms/input-number/': typeof AtomsInputNumberPageRoute
@@ -1324,8 +1445,10 @@ export interface FileRoutesById {
   '/atoms/input/': typeof AtomsInputPageRoute
   '/atoms/kbd/': typeof AtomsKbdPageRoute
   '/atoms/label/': typeof AtomsLabelPageRoute
+  '/atoms/menu-item/': typeof AtomsMenuItemPageRoute
   '/atoms/menubar/': typeof AtomsMenubarPageRoute
   '/atoms/native-select/': typeof AtomsNativeSelectPageRoute
+  '/atoms/nav-item/': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu/': typeof AtomsNavigationMenuPageRoute
   '/atoms/pagination/': typeof AtomsPaginationPageRoute
   '/atoms/popover/': typeof AtomsPopoverPageRoute
@@ -1347,8 +1470,10 @@ export interface FileRoutesById {
   '/atoms/steps/': typeof AtomsStepsPageRoute
   '/atoms/switch/': typeof AtomsSwitchPageRoute
   '/atoms/table/': typeof AtomsTablePageRoute
+  '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
+  '/atoms/thinking-indicator/': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/toggle-group/': typeof AtomsToggleGroupPageRoute
   '/atoms/toggle/': typeof AtomsTogglePageRoute
   '/atoms/tooltip/': typeof AtomsTooltipPageRoute
@@ -1399,16 +1524,22 @@ export interface FileRoutesById {
   '/molecules/account-menu/': typeof MoleculesAccountMenuPageRoute
   '/molecules/action-panel/': typeof MoleculesActionPanelPageRoute
   '/molecules/activity-feed/': typeof MoleculesActivityFeedPageRoute
+  '/molecules/ask-user-questions/': typeof MoleculesAskUserQuestionsPageRoute
   '/molecules/card-heading/': typeof MoleculesCardHeadingPageRoute
+  '/molecules/chat-message/': typeof MoleculesChatMessagePageRoute
   '/molecules/command-palette/': typeof MoleculesCommandPalettePageRoute
   '/molecules/data-transfer-controls/': typeof MoleculesDataTransferControlsPageRoute
   '/molecules/description-list/': typeof MoleculesDescriptionListPageRoute
   '/molecules/empty-state/': typeof MoleculesEmptyStatePageRoute
   '/molecules/field/': typeof MoleculesFieldPageRoute
   '/molecules/grid-list/': typeof MoleculesGridListPageRoute
+  '/molecules/input-copy/': typeof MoleculesInputCopyPageRoute
   '/molecules/input-group/': typeof MoleculesInputGroupPageRoute
+  '/molecules/input-message/': typeof MoleculesInputMessagePageRoute
   '/molecules/media-asset-card/': typeof MoleculesMediaAssetCardPageRoute
   '/molecules/media-object/': typeof MoleculesMediaObjectPageRoute
+  '/molecules/mobile-drawer/': typeof MoleculesMobileDrawerPageRoute
+  '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
@@ -1416,6 +1547,7 @@ export interface FileRoutesById {
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/stacked-list/': typeof MoleculesStackedListPageRoute
   '/molecules/stat-card/': typeof MoleculesStatCardPageRoute
+  '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
 }
@@ -1458,6 +1590,7 @@ export interface FileRouteTypes {
     | '/atoms/card/'
     | '/atoms/carousel/'
     | '/atoms/chart/'
+    | '/atoms/checkbox-group/'
     | '/atoms/checkbox/'
     | '/atoms/collapsible/'
     | '/atoms/color-input/'
@@ -1470,7 +1603,9 @@ export interface FileRouteTypes {
     | '/atoms/dialog/'
     | '/atoms/drawer/'
     | '/atoms/dropdown-menu/'
+    | '/atoms/dropdown/'
     | '/atoms/file-dropzone/'
+    | '/atoms/file-thumbnail/'
     | '/atoms/help-tooltip/'
     | '/atoms/hover-card/'
     | '/atoms/input-number/'
@@ -1478,8 +1613,10 @@ export interface FileRouteTypes {
     | '/atoms/input/'
     | '/atoms/kbd/'
     | '/atoms/label/'
+    | '/atoms/menu-item/'
     | '/atoms/menubar/'
     | '/atoms/native-select/'
+    | '/atoms/nav-item/'
     | '/atoms/navigation-menu/'
     | '/atoms/pagination/'
     | '/atoms/popover/'
@@ -1501,8 +1638,10 @@ export interface FileRouteTypes {
     | '/atoms/steps/'
     | '/atoms/switch/'
     | '/atoms/table/'
+    | '/atoms/tabs-subtle/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
+    | '/atoms/thinking-indicator/'
     | '/atoms/toggle-group/'
     | '/atoms/toggle/'
     | '/atoms/tooltip/'
@@ -1553,16 +1692,22 @@ export interface FileRouteTypes {
     | '/molecules/account-menu/'
     | '/molecules/action-panel/'
     | '/molecules/activity-feed/'
+    | '/molecules/ask-user-questions/'
     | '/molecules/card-heading/'
+    | '/molecules/chat-message/'
     | '/molecules/command-palette/'
     | '/molecules/data-transfer-controls/'
     | '/molecules/description-list/'
     | '/molecules/empty-state/'
     | '/molecules/field/'
     | '/molecules/grid-list/'
+    | '/molecules/input-copy/'
     | '/molecules/input-group/'
+    | '/molecules/input-message/'
     | '/molecules/media-asset-card/'
     | '/molecules/media-object/'
+    | '/molecules/mobile-drawer/'
+    | '/molecules/nav-menu/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
     | '/molecules/property-row/'
@@ -1570,6 +1715,7 @@ export interface FileRouteTypes {
     | '/molecules/section-heading/'
     | '/molecules/stacked-list/'
     | '/molecules/stat-card/'
+    | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
     | '/molecules/url-redirect-prompt/'
   fileRoutesByTo: FileRoutesByTo
@@ -1610,6 +1756,7 @@ export interface FileRouteTypes {
     | '/atoms/card'
     | '/atoms/carousel'
     | '/atoms/chart'
+    | '/atoms/checkbox-group'
     | '/atoms/checkbox'
     | '/atoms/collapsible'
     | '/atoms/color-input'
@@ -1622,7 +1769,9 @@ export interface FileRouteTypes {
     | '/atoms/dialog'
     | '/atoms/drawer'
     | '/atoms/dropdown-menu'
+    | '/atoms/dropdown'
     | '/atoms/file-dropzone'
+    | '/atoms/file-thumbnail'
     | '/atoms/help-tooltip'
     | '/atoms/hover-card'
     | '/atoms/input-number'
@@ -1630,8 +1779,10 @@ export interface FileRouteTypes {
     | '/atoms/input'
     | '/atoms/kbd'
     | '/atoms/label'
+    | '/atoms/menu-item'
     | '/atoms/menubar'
     | '/atoms/native-select'
+    | '/atoms/nav-item'
     | '/atoms/navigation-menu'
     | '/atoms/pagination'
     | '/atoms/popover'
@@ -1653,8 +1804,10 @@ export interface FileRouteTypes {
     | '/atoms/steps'
     | '/atoms/switch'
     | '/atoms/table'
+    | '/atoms/tabs-subtle'
     | '/atoms/tabs'
     | '/atoms/textarea'
+    | '/atoms/thinking-indicator'
     | '/atoms/toggle-group'
     | '/atoms/toggle'
     | '/atoms/tooltip'
@@ -1705,16 +1858,22 @@ export interface FileRouteTypes {
     | '/molecules/account-menu'
     | '/molecules/action-panel'
     | '/molecules/activity-feed'
+    | '/molecules/ask-user-questions'
     | '/molecules/card-heading'
+    | '/molecules/chat-message'
     | '/molecules/command-palette'
     | '/molecules/data-transfer-controls'
     | '/molecules/description-list'
     | '/molecules/empty-state'
     | '/molecules/field'
     | '/molecules/grid-list'
+    | '/molecules/input-copy'
     | '/molecules/input-group'
+    | '/molecules/input-message'
     | '/molecules/media-asset-card'
     | '/molecules/media-object'
+    | '/molecules/mobile-drawer'
+    | '/molecules/nav-menu'
     | '/molecules/notification'
     | '/molecules/page-heading'
     | '/molecules/property-row'
@@ -1722,6 +1881,7 @@ export interface FileRouteTypes {
     | '/molecules/section-heading'
     | '/molecules/stacked-list'
     | '/molecules/stat-card'
+    | '/molecules/thinking-steps'
     | '/molecules/titled-card'
     | '/molecules/url-redirect-prompt'
   id:
@@ -1762,6 +1922,7 @@ export interface FileRouteTypes {
     | '/atoms/card/'
     | '/atoms/carousel/'
     | '/atoms/chart/'
+    | '/atoms/checkbox-group/'
     | '/atoms/checkbox/'
     | '/atoms/collapsible/'
     | '/atoms/color-input/'
@@ -1774,7 +1935,9 @@ export interface FileRouteTypes {
     | '/atoms/dialog/'
     | '/atoms/drawer/'
     | '/atoms/dropdown-menu/'
+    | '/atoms/dropdown/'
     | '/atoms/file-dropzone/'
+    | '/atoms/file-thumbnail/'
     | '/atoms/help-tooltip/'
     | '/atoms/hover-card/'
     | '/atoms/input-number/'
@@ -1782,8 +1945,10 @@ export interface FileRouteTypes {
     | '/atoms/input/'
     | '/atoms/kbd/'
     | '/atoms/label/'
+    | '/atoms/menu-item/'
     | '/atoms/menubar/'
     | '/atoms/native-select/'
+    | '/atoms/nav-item/'
     | '/atoms/navigation-menu/'
     | '/atoms/pagination/'
     | '/atoms/popover/'
@@ -1805,8 +1970,10 @@ export interface FileRouteTypes {
     | '/atoms/steps/'
     | '/atoms/switch/'
     | '/atoms/table/'
+    | '/atoms/tabs-subtle/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
+    | '/atoms/thinking-indicator/'
     | '/atoms/toggle-group/'
     | '/atoms/toggle/'
     | '/atoms/tooltip/'
@@ -1857,16 +2024,22 @@ export interface FileRouteTypes {
     | '/molecules/account-menu/'
     | '/molecules/action-panel/'
     | '/molecules/activity-feed/'
+    | '/molecules/ask-user-questions/'
     | '/molecules/card-heading/'
+    | '/molecules/chat-message/'
     | '/molecules/command-palette/'
     | '/molecules/data-transfer-controls/'
     | '/molecules/description-list/'
     | '/molecules/empty-state/'
     | '/molecules/field/'
     | '/molecules/grid-list/'
+    | '/molecules/input-copy/'
     | '/molecules/input-group/'
+    | '/molecules/input-message/'
     | '/molecules/media-asset-card/'
     | '/molecules/media-object/'
+    | '/molecules/mobile-drawer/'
+    | '/molecules/nav-menu/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
     | '/molecules/property-row/'
@@ -1874,6 +2047,7 @@ export interface FileRouteTypes {
     | '/molecules/section-heading/'
     | '/molecules/stacked-list/'
     | '/molecules/stat-card/'
+    | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
     | '/molecules/url-redirect-prompt/'
   fileRoutesById: FileRoutesById
@@ -1915,6 +2089,7 @@ export interface RootRouteChildren {
   AtomsCardPageRoute: typeof AtomsCardPageRoute
   AtomsCarouselPageRoute: typeof AtomsCarouselPageRoute
   AtomsChartPageRoute: typeof AtomsChartPageRoute
+  AtomsCheckboxGroupPageRoute: typeof AtomsCheckboxGroupPageRoute
   AtomsCheckboxPageRoute: typeof AtomsCheckboxPageRoute
   AtomsCollapsiblePageRoute: typeof AtomsCollapsiblePageRoute
   AtomsColorInputPageRoute: typeof AtomsColorInputPageRoute
@@ -1927,7 +2102,9 @@ export interface RootRouteChildren {
   AtomsDialogPageRoute: typeof AtomsDialogPageRoute
   AtomsDrawerPageRoute: typeof AtomsDrawerPageRoute
   AtomsDropdownMenuPageRoute: typeof AtomsDropdownMenuPageRoute
+  AtomsDropdownPageRoute: typeof AtomsDropdownPageRoute
   AtomsFileDropzonePageRoute: typeof AtomsFileDropzonePageRoute
+  AtomsFileThumbnailPageRoute: typeof AtomsFileThumbnailPageRoute
   AtomsHelpTooltipPageRoute: typeof AtomsHelpTooltipPageRoute
   AtomsHoverCardPageRoute: typeof AtomsHoverCardPageRoute
   AtomsInputNumberPageRoute: typeof AtomsInputNumberPageRoute
@@ -1935,8 +2112,10 @@ export interface RootRouteChildren {
   AtomsInputPageRoute: typeof AtomsInputPageRoute
   AtomsKbdPageRoute: typeof AtomsKbdPageRoute
   AtomsLabelPageRoute: typeof AtomsLabelPageRoute
+  AtomsMenuItemPageRoute: typeof AtomsMenuItemPageRoute
   AtomsMenubarPageRoute: typeof AtomsMenubarPageRoute
   AtomsNativeSelectPageRoute: typeof AtomsNativeSelectPageRoute
+  AtomsNavItemPageRoute: typeof AtomsNavItemPageRoute
   AtomsNavigationMenuPageRoute: typeof AtomsNavigationMenuPageRoute
   AtomsPaginationPageRoute: typeof AtomsPaginationPageRoute
   AtomsPopoverPageRoute: typeof AtomsPopoverPageRoute
@@ -1958,8 +2137,10 @@ export interface RootRouteChildren {
   AtomsStepsPageRoute: typeof AtomsStepsPageRoute
   AtomsSwitchPageRoute: typeof AtomsSwitchPageRoute
   AtomsTablePageRoute: typeof AtomsTablePageRoute
+  AtomsTabsSubtlePageRoute: typeof AtomsTabsSubtlePageRoute
   AtomsTabsPageRoute: typeof AtomsTabsPageRoute
   AtomsTextareaPageRoute: typeof AtomsTextareaPageRoute
+  AtomsThinkingIndicatorPageRoute: typeof AtomsThinkingIndicatorPageRoute
   AtomsToggleGroupPageRoute: typeof AtomsToggleGroupPageRoute
   AtomsTogglePageRoute: typeof AtomsTogglePageRoute
   AtomsTooltipPageRoute: typeof AtomsTooltipPageRoute
@@ -2010,16 +2191,22 @@ export interface RootRouteChildren {
   MoleculesAccountMenuPageRoute: typeof MoleculesAccountMenuPageRoute
   MoleculesActionPanelPageRoute: typeof MoleculesActionPanelPageRoute
   MoleculesActivityFeedPageRoute: typeof MoleculesActivityFeedPageRoute
+  MoleculesAskUserQuestionsPageRoute: typeof MoleculesAskUserQuestionsPageRoute
   MoleculesCardHeadingPageRoute: typeof MoleculesCardHeadingPageRoute
+  MoleculesChatMessagePageRoute: typeof MoleculesChatMessagePageRoute
   MoleculesCommandPalettePageRoute: typeof MoleculesCommandPalettePageRoute
   MoleculesDataTransferControlsPageRoute: typeof MoleculesDataTransferControlsPageRoute
   MoleculesDescriptionListPageRoute: typeof MoleculesDescriptionListPageRoute
   MoleculesEmptyStatePageRoute: typeof MoleculesEmptyStatePageRoute
   MoleculesFieldPageRoute: typeof MoleculesFieldPageRoute
   MoleculesGridListPageRoute: typeof MoleculesGridListPageRoute
+  MoleculesInputCopyPageRoute: typeof MoleculesInputCopyPageRoute
   MoleculesInputGroupPageRoute: typeof MoleculesInputGroupPageRoute
+  MoleculesInputMessagePageRoute: typeof MoleculesInputMessagePageRoute
   MoleculesMediaAssetCardPageRoute: typeof MoleculesMediaAssetCardPageRoute
   MoleculesMediaObjectPageRoute: typeof MoleculesMediaObjectPageRoute
+  MoleculesMobileDrawerPageRoute: typeof MoleculesMobileDrawerPageRoute
+  MoleculesNavMenuPageRoute: typeof MoleculesNavMenuPageRoute
   MoleculesNotificationPageRoute: typeof MoleculesNotificationPageRoute
   MoleculesPageHeadingPageRoute: typeof MoleculesPageHeadingPageRoute
   MoleculesPropertyRowPageRoute: typeof MoleculesPropertyRowPageRoute
@@ -2027,6 +2214,7 @@ export interface RootRouteChildren {
   MoleculesSectionHeadingPageRoute: typeof MoleculesSectionHeadingPageRoute
   MoleculesStackedListPageRoute: typeof MoleculesStackedListPageRoute
   MoleculesStatCardPageRoute: typeof MoleculesStatCardPageRoute
+  MoleculesThinkingStepsPageRoute: typeof MoleculesThinkingStepsPageRoute
   MoleculesTitledCardPageRoute: typeof MoleculesTitledCardPageRoute
   MoleculesUrlRedirectPromptPageRoute: typeof MoleculesUrlRedirectPromptPageRoute
 }
@@ -2117,6 +2305,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoleculesTitledCardPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/molecules/thinking-steps/': {
+      id: '/molecules/thinking-steps/'
+      path: '/molecules/thinking-steps'
+      fullPath: '/molecules/thinking-steps/'
+      preLoaderRoute: typeof MoleculesThinkingStepsPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/molecules/stat-card/': {
       id: '/molecules/stat-card/'
       path: '/molecules/stat-card'
@@ -2166,6 +2361,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoleculesNotificationPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/molecules/nav-menu/': {
+      id: '/molecules/nav-menu/'
+      path: '/molecules/nav-menu'
+      fullPath: '/molecules/nav-menu/'
+      preLoaderRoute: typeof MoleculesNavMenuPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/mobile-drawer/': {
+      id: '/molecules/mobile-drawer/'
+      path: '/molecules/mobile-drawer'
+      fullPath: '/molecules/mobile-drawer/'
+      preLoaderRoute: typeof MoleculesMobileDrawerPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/molecules/media-object/': {
       id: '/molecules/media-object/'
       path: '/molecules/media-object'
@@ -2180,11 +2389,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoleculesMediaAssetCardPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/molecules/input-message/': {
+      id: '/molecules/input-message/'
+      path: '/molecules/input-message'
+      fullPath: '/molecules/input-message/'
+      preLoaderRoute: typeof MoleculesInputMessagePageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/molecules/input-group/': {
       id: '/molecules/input-group/'
       path: '/molecules/input-group'
       fullPath: '/molecules/input-group/'
       preLoaderRoute: typeof MoleculesInputGroupPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/input-copy/': {
+      id: '/molecules/input-copy/'
+      path: '/molecules/input-copy'
+      fullPath: '/molecules/input-copy/'
+      preLoaderRoute: typeof MoleculesInputCopyPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/grid-list/': {
@@ -2229,11 +2452,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoleculesCommandPalettePageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/molecules/chat-message/': {
+      id: '/molecules/chat-message/'
+      path: '/molecules/chat-message'
+      fullPath: '/molecules/chat-message/'
+      preLoaderRoute: typeof MoleculesChatMessagePageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/molecules/card-heading/': {
       id: '/molecules/card-heading/'
       path: '/molecules/card-heading'
       fullPath: '/molecules/card-heading/'
       preLoaderRoute: typeof MoleculesCardHeadingPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/ask-user-questions/': {
+      id: '/molecules/ask-user-questions/'
+      path: '/molecules/ask-user-questions'
+      fullPath: '/molecules/ask-user-questions/'
+      preLoaderRoute: typeof MoleculesAskUserQuestionsPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/activity-feed/': {
@@ -2586,6 +2823,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsToggleGroupPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/thinking-indicator/': {
+      id: '/atoms/thinking-indicator/'
+      path: '/atoms/thinking-indicator'
+      fullPath: '/atoms/thinking-indicator/'
+      preLoaderRoute: typeof AtomsThinkingIndicatorPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/textarea/': {
       id: '/atoms/textarea/'
       path: '/atoms/textarea'
@@ -2598,6 +2842,13 @@ declare module '@tanstack/react-router' {
       path: '/atoms/tabs'
       fullPath: '/atoms/tabs/'
       preLoaderRoute: typeof AtomsTabsPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/tabs-subtle/': {
+      id: '/atoms/tabs-subtle/'
+      path: '/atoms/tabs-subtle'
+      fullPath: '/atoms/tabs-subtle/'
+      preLoaderRoute: typeof AtomsTabsSubtlePageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/table/': {
@@ -2747,6 +2998,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsNavigationMenuPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/nav-item/': {
+      id: '/atoms/nav-item/'
+      path: '/atoms/nav-item'
+      fullPath: '/atoms/nav-item/'
+      preLoaderRoute: typeof AtomsNavItemPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/native-select/': {
       id: '/atoms/native-select/'
       path: '/atoms/native-select'
@@ -2759,6 +3017,13 @@ declare module '@tanstack/react-router' {
       path: '/atoms/menubar'
       fullPath: '/atoms/menubar/'
       preLoaderRoute: typeof AtomsMenubarPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/menu-item/': {
+      id: '/atoms/menu-item/'
+      path: '/atoms/menu-item'
+      fullPath: '/atoms/menu-item/'
+      preLoaderRoute: typeof AtomsMenuItemPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/label/': {
@@ -2810,11 +3075,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsHelpTooltipPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/file-thumbnail/': {
+      id: '/atoms/file-thumbnail/'
+      path: '/atoms/file-thumbnail'
+      fullPath: '/atoms/file-thumbnail/'
+      preLoaderRoute: typeof AtomsFileThumbnailPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/file-dropzone/': {
       id: '/atoms/file-dropzone/'
       path: '/atoms/file-dropzone'
       fullPath: '/atoms/file-dropzone/'
       preLoaderRoute: typeof AtomsFileDropzonePageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/dropdown/': {
+      id: '/atoms/dropdown/'
+      path: '/atoms/dropdown'
+      fullPath: '/atoms/dropdown/'
+      preLoaderRoute: typeof AtomsDropdownPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/dropdown-menu/': {
@@ -2899,6 +3178,13 @@ declare module '@tanstack/react-router' {
       path: '/atoms/checkbox'
       fullPath: '/atoms/checkbox/'
       preLoaderRoute: typeof AtomsCheckboxPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/checkbox-group/': {
+      id: '/atoms/checkbox-group/'
+      path: '/atoms/checkbox-group'
+      fullPath: '/atoms/checkbox-group/'
+      preLoaderRoute: typeof AtomsCheckboxGroupPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/chart/': {
@@ -3124,6 +3410,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsCardPageRoute: AtomsCardPageRoute,
   AtomsCarouselPageRoute: AtomsCarouselPageRoute,
   AtomsChartPageRoute: AtomsChartPageRoute,
+  AtomsCheckboxGroupPageRoute: AtomsCheckboxGroupPageRoute,
   AtomsCheckboxPageRoute: AtomsCheckboxPageRoute,
   AtomsCollapsiblePageRoute: AtomsCollapsiblePageRoute,
   AtomsColorInputPageRoute: AtomsColorInputPageRoute,
@@ -3136,7 +3423,9 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsDialogPageRoute: AtomsDialogPageRoute,
   AtomsDrawerPageRoute: AtomsDrawerPageRoute,
   AtomsDropdownMenuPageRoute: AtomsDropdownMenuPageRoute,
+  AtomsDropdownPageRoute: AtomsDropdownPageRoute,
   AtomsFileDropzonePageRoute: AtomsFileDropzonePageRoute,
+  AtomsFileThumbnailPageRoute: AtomsFileThumbnailPageRoute,
   AtomsHelpTooltipPageRoute: AtomsHelpTooltipPageRoute,
   AtomsHoverCardPageRoute: AtomsHoverCardPageRoute,
   AtomsInputNumberPageRoute: AtomsInputNumberPageRoute,
@@ -3144,8 +3433,10 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsInputPageRoute: AtomsInputPageRoute,
   AtomsKbdPageRoute: AtomsKbdPageRoute,
   AtomsLabelPageRoute: AtomsLabelPageRoute,
+  AtomsMenuItemPageRoute: AtomsMenuItemPageRoute,
   AtomsMenubarPageRoute: AtomsMenubarPageRoute,
   AtomsNativeSelectPageRoute: AtomsNativeSelectPageRoute,
+  AtomsNavItemPageRoute: AtomsNavItemPageRoute,
   AtomsNavigationMenuPageRoute: AtomsNavigationMenuPageRoute,
   AtomsPaginationPageRoute: AtomsPaginationPageRoute,
   AtomsPopoverPageRoute: AtomsPopoverPageRoute,
@@ -3167,8 +3458,10 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsStepsPageRoute: AtomsStepsPageRoute,
   AtomsSwitchPageRoute: AtomsSwitchPageRoute,
   AtomsTablePageRoute: AtomsTablePageRoute,
+  AtomsTabsSubtlePageRoute: AtomsTabsSubtlePageRoute,
   AtomsTabsPageRoute: AtomsTabsPageRoute,
   AtomsTextareaPageRoute: AtomsTextareaPageRoute,
+  AtomsThinkingIndicatorPageRoute: AtomsThinkingIndicatorPageRoute,
   AtomsToggleGroupPageRoute: AtomsToggleGroupPageRoute,
   AtomsTogglePageRoute: AtomsTogglePageRoute,
   AtomsTooltipPageRoute: AtomsTooltipPageRoute,
@@ -3219,7 +3512,9 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesAccountMenuPageRoute: MoleculesAccountMenuPageRoute,
   MoleculesActionPanelPageRoute: MoleculesActionPanelPageRoute,
   MoleculesActivityFeedPageRoute: MoleculesActivityFeedPageRoute,
+  MoleculesAskUserQuestionsPageRoute: MoleculesAskUserQuestionsPageRoute,
   MoleculesCardHeadingPageRoute: MoleculesCardHeadingPageRoute,
+  MoleculesChatMessagePageRoute: MoleculesChatMessagePageRoute,
   MoleculesCommandPalettePageRoute: MoleculesCommandPalettePageRoute,
   MoleculesDataTransferControlsPageRoute:
     MoleculesDataTransferControlsPageRoute,
@@ -3227,9 +3522,13 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesEmptyStatePageRoute: MoleculesEmptyStatePageRoute,
   MoleculesFieldPageRoute: MoleculesFieldPageRoute,
   MoleculesGridListPageRoute: MoleculesGridListPageRoute,
+  MoleculesInputCopyPageRoute: MoleculesInputCopyPageRoute,
   MoleculesInputGroupPageRoute: MoleculesInputGroupPageRoute,
+  MoleculesInputMessagePageRoute: MoleculesInputMessagePageRoute,
   MoleculesMediaAssetCardPageRoute: MoleculesMediaAssetCardPageRoute,
   MoleculesMediaObjectPageRoute: MoleculesMediaObjectPageRoute,
+  MoleculesMobileDrawerPageRoute: MoleculesMobileDrawerPageRoute,
+  MoleculesNavMenuPageRoute: MoleculesNavMenuPageRoute,
   MoleculesNotificationPageRoute: MoleculesNotificationPageRoute,
   MoleculesPageHeadingPageRoute: MoleculesPageHeadingPageRoute,
   MoleculesPropertyRowPageRoute: MoleculesPropertyRowPageRoute,
@@ -3237,6 +3536,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesSectionHeadingPageRoute: MoleculesSectionHeadingPageRoute,
   MoleculesStackedListPageRoute: MoleculesStackedListPageRoute,
   MoleculesStatCardPageRoute: MoleculesStatCardPageRoute,
+  MoleculesThinkingStepsPageRoute: MoleculesThinkingStepsPageRoute,
   MoleculesTitledCardPageRoute: MoleculesTitledCardPageRoute,
   MoleculesUrlRedirectPromptPageRoute: MoleculesUrlRedirectPromptPageRoute,
 }

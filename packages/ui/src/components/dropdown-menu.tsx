@@ -5,6 +5,12 @@ import { DropdownMenu } from "radix-ui";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../lib/utils";
 import {
+  menuItemActiveClasses,
+  menuItemClasses,
+  motionClasses,
+  pressClasses,
+} from "../lib/interaction";
+import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
   mobilePopperSheetStyle,
@@ -30,7 +36,7 @@ const DropdownMenuContent = React.forwardRef<
         data-hilum-mobile-sheet="true"
         sideOffset={sideOffset}
         className={cn(
-          "z-50 min-w-[8rem] bg-card rounded-xl shadow-natural p-1",
+          "z-50 min-w-[8rem] rounded-xl border border-border bg-card p-1 shadow-elevated",
           mobilePopperSheetPositionClassName,
           mobilePopperSheetSurfaceClassName,
           "max-sm:overflow-y-auto max-sm:px-2 max-sm:pb-2 max-sm:pt-5",
@@ -59,11 +65,13 @@ const DropdownMenuItem = React.forwardRef<
   <DropdownMenu.Item
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
-      "body outline-none transition-colors",
+      menuItemClasses,
+      motionClasses,
+      pressClasses,
       destructive
         ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
         : "text-muted-foreground focus:bg-muted focus:text-foreground",
+      !destructive && menuItemActiveClasses,
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       inset && "pl-8",
       className,
@@ -80,9 +88,9 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenu.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      menuItemClasses,
+      menuItemActiveClasses,
+      "py-2 pl-8 pr-2.5 text-muted-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -105,9 +113,9 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenu.RadioItem
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      menuItemClasses,
+      menuItemActiveClasses,
+      "py-2 pl-8 pr-2.5 text-muted-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -158,9 +166,9 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenu.SubTrigger
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground data-[state=open]:bg-muted",
+      menuItemClasses,
+      menuItemActiveClasses,
+      "text-muted-foreground data-[state=open]:bg-muted",
       inset && "pl-8",
       className,
     )}
@@ -182,7 +190,7 @@ const DropdownMenuSubContent = React.forwardRef<
       ref={ref}
       data-hilum-mobile-sheet="true"
       className={cn(
-        "z-50 min-w-[8rem] bg-card rounded-xl border border-border shadow-natural p-1",
+        "z-50 min-w-[8rem] rounded-xl border border-border bg-card p-1 shadow-elevated",
         mobilePopperSheetPositionClassName,
         mobilePopperSheetSurfaceClassName,
         "max-sm:overflow-y-auto max-sm:px-2 max-sm:pb-2 max-sm:pt-5",

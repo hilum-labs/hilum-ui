@@ -1,34 +1,115 @@
-import * as React from "react";
+"use client";
+
+import { forwardRef, type HTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { useShape } from "../lib/shape-context";
 
-const badgeVariants = cva(
-  "inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 caption font-medium transition-colors",
-  {
-    variants: {
-      variant: {
-        default: "bg-foreground text-background",
-        secondary: "bg-muted text-muted-foreground",
-        outline: "border border-border text-muted-foreground bg-transparent",
-        brand: "bg-brand-primary text-background",
-        success: "bg-brand-secondary/20 text-muted-foreground border border-brand-secondary/50",
-        warning: "bg-brand-secondary/70 text-muted-foreground border border-brand-secondary",
-        destructive: "bg-destructive/10 text-destructive border border-destructive/20",
-      },
+const badgeColors = {
+  gray: "#a3a3a3",
+  red: "#ef4444",
+  orange: "#f97316",
+  amber: "#f59e0b",
+  yellow: "#eab308",
+  lime: "#84cc16",
+  green: "#22c55e",
+  emerald: "#10b981",
+  teal: "#14b8a6",
+  cyan: "#06b6d4",
+  blue: "#3b82f6",
+  indigo: "#6366f1",
+  violet: "#8b5cf6",
+  purple: "#a855f7",
+  fuchsia: "#d946ef",
+  pink: "#ec4899",
+  rose: "#f43f5e",
+} as const;
+
+type BadgeColor = keyof typeof badgeColors;
+
+const badgeVariants = cva("inline-flex items-center font-medium whitespace-nowrap", {
+  variants: {
+    variant: {
+      default: "",
+      secondary: "",
+      outline: "border border-border text-foreground",
+      brand: "",
+      success: "",
+      warning: "",
+      destructive: "",
+      solid: "",
+      dot: "border border-border text-foreground",
     },
-    defaultVariants: {
-      variant: "default",
+    size: {
+      sm: "h-5 px-2 text-[11px] gap-1",
+      md: "h-6 px-2.5 text-[12px] gap-1.5",
+      lg: "h-7 px-3 text-[13px] gap-1.5",
     },
+  },
+  defaultVariants: {
+    variant: "solid",
+    size: "md",
+  },
+});
+
+interface BadgeProps
+  extends Omit<HTMLAttributes<HTMLSpanElement>, "color">, VariantProps<typeof badgeVariants> {
+  color?: BadgeColor;
+}
+
+const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
+  ({ className, variant = "solid", size = "md", color, children, style, ...props }, ref) => {
+    const shape = useShape();
+    const resolvedColor =
+      color ??
+      (variant === "brand"
+        ? "blue"
+        : variant === "success"
+          ? "green"
+          : variant === "warning"
+            ? "amber"
+            : variant === "destructive"
+              ? "red"
+              : "gray");
+    const colorValue = badgeColors[resolvedColor];
+    const isSolid = variant !== "dot" && variant !== "outline";
+    const dotSize = size === "sm" ? 6 : size === "lg" ? 8 : 7;
+
+    const colorStyle = isSolid
+      ? resolvedColor === "gray"
+        ? { backgroundColor: "var(--accent)", color: "var(--foreground)" }
+        : {
+            color: "var(--foreground)",
+            backgroundColor: `color-mix(in srgb, ${colorValue} 15%, var(--background))`,
+          }
+      : {};
+
+    const dotColor = resolvedColor === "gray" ? "var(--muted-foreground)" : colorValue;
+
+    return (
+      <span
+        ref={ref}
+        className={cn(badgeVariants({ variant, size }), shape.item, className)}
+        style={{ ...colorStyle, ...style }}
+        {...props}
+      >
+        {!isSolid && (
+          <span
+            className="shrink-0 rounded-full"
+            style={{
+              width: dotSize,
+              height: dotSize,
+              backgroundColor: dotColor,
+            }}
+          />
+        )}
+        {children}
+      </span>
+    );
   },
 );
 
-interface BadgeProps extends React.ComponentProps<"span">, VariantProps<typeof badgeVariants> {}
-
-function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
-    <span data-slot="badge" className={cn(badgeVariants({ variant, className }))} {...props} />
-  );
-}
 Badge.displayName = "Badge";
 
-export { Badge, badgeVariants };
+export { Badge, badgeVariants, badgeColors };
+export type { BadgeProps, BadgeColor };

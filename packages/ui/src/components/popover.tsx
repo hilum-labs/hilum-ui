@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Popover } from "radix-ui";
 import { cn } from "../lib/utils";
+import { motionClasses } from "../lib/interaction";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
@@ -27,7 +28,8 @@ const PopoverContent = React.forwardRef<
         align={align}
         sideOffset={sideOffset}
         className={cn(
-          "relative z-50 w-72 rounded-xl bg-card p-4 shadow-natural outline-none",
+          "relative z-50 w-72 rounded-xl border border-border bg-card p-4 shadow-elevated outline-none",
+          motionClasses,
           mobilePopperSheetPositionClassName,
           mobilePopperSheetSurfaceClassName,
           "max-sm:overflow-y-auto max-sm:px-4 max-sm:pb-4 max-sm:pt-6",

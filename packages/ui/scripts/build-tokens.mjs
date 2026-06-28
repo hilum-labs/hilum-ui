@@ -142,6 +142,20 @@ lines.push(`@keyframes accordion-down {
   0%, 70%, 100% { opacity: 1; }
   20%, 50% { opacity: 0; }
 }
+@keyframes hilum-orbit {
+  0% { stroke-dasharray: 10 90; stroke-dashoffset: 0; }
+  50% { stroke-dasharray: 28 72; stroke-dashoffset: -18; }
+  100% { stroke-dasharray: 10 90; stroke-dashoffset: -100; }
+}
+@keyframes hilum-spring-in {
+  0% { opacity: 0; transform: scale(0.92); }
+  70% { opacity: 1; transform: scale(1.04); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes hilum-thinking {
+  0%, 100% { opacity: 0.42; transform: translateY(0) scale(0.92); }
+  50% { opacity: 1; transform: translateY(-1px) scale(1); }
+}
 `);
 
 /* ---------------- Base body / box-sizing ---------------- */

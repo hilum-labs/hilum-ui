@@ -72,6 +72,8 @@ const DEFAULT_STATUS_VARIANT: Record<string, StatusBadgeVariant> = {
 
 const DEFAULT_DOT_CLASS: Record<StatusBadgeVariant, string> = {
   default: "bg-background",
+  solid: "bg-background",
+  dot: "bg-muted-foreground",
   secondary: "bg-muted-foreground",
   outline: "bg-muted-foreground",
   brand: "bg-background",

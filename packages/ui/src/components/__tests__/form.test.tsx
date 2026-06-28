@@ -2,9 +2,10 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { Checkbox } from "../checkbox";
+import { CheckboxGroup } from "../checkbox-group";
 import { RadioGroup, RadioGroupItem } from "../radio-group";
 import { Switch } from "../switch";
-import { Slider } from "../slider";
+import { Slider, SliderComfortable, SliderControl } from "../slider";
 import { InputNumber } from "../input-number";
 import { InputGroup } from "../input-group";
 import { Field } from "../field";
@@ -39,6 +40,25 @@ describe("Checkbox", () => {
   it("is disabled when disabled prop is set", () => {
     render(<Checkbox disabled />);
     expect(screen.getByRole("checkbox")).toBeDisabled();
+  });
+});
+
+describe("CheckboxGroup", () => {
+  it("renders options and toggles selected values", async () => {
+    const user = userEvent.setup();
+    const onValueChange = vi.fn();
+    render(
+      <CheckboxGroup
+        options={FRUITS}
+        value={["apple"]}
+        onValueChange={onValueChange}
+        aria-label="Fruit"
+      />,
+    );
+
+    expect(screen.getByRole("checkbox", { name: "Apple" })).toBeChecked();
+    await user.click(screen.getByRole("checkbox", { name: "Banana" }));
+    expect(onValueChange).toHaveBeenCalledWith(["apple", "banana"]);
   });
 });
 
@@ -107,6 +127,44 @@ describe("Slider", () => {
   it("shows the provided value", () => {
     render(<Slider defaultValue={[25]} min={0} max={100} />);
     expect(screen.getByRole("slider")).toHaveAttribute("aria-valuenow", "25");
+  });
+
+  it("renders range mode with two thumbs", () => {
+    render(<Slider defaultValue={[25, 75]} min={0} max={100} />);
+    expect(screen.getAllByRole("slider")).toHaveLength(2);
+  });
+
+  it("renders controlled value display and step pips", () => {
+    render(<SliderControl label="Volume" value={40} onChange={() => undefined} showSteps />);
+    expect(screen.getByText("Volume:")).toBeInTheDocument();
+    expect(screen.getByText("40")).toBeInTheDocument();
+    expect(screen.getByRole("slider")).toHaveAttribute("aria-valuenow", "40");
+  });
+
+  it("renders controlled range value display", () => {
+    render(<SliderControl label="Window" value={[25, 75]} onChange={() => undefined} />);
+    expect(screen.getByText("25 - 75")).toBeInTheDocument();
+    expect(screen.getAllByRole("slider")).toHaveLength(2);
+  });
+
+  it("renders comfortable pips and scrubber variants", () => {
+    const { rerender } = render(
+      <SliderComfortable label="Roundness" value={2} min={0} max={5} onChange={() => undefined} />,
+    );
+    expect(screen.getByText("Roundness")).toBeInTheDocument();
+    expect(screen.getByText("2")).toBeInTheDocument();
+
+    rerender(
+      <SliderComfortable
+        label="Volume"
+        value={50}
+        variant="scrubber"
+        formatValue={(value) => `${value}%`}
+        onChange={() => undefined}
+      />,
+    );
+    expect(screen.getByText("Volume")).toBeInTheDocument();
+    expect(screen.getByText("50%")).toBeInTheDocument();
   });
 });
 
@@ -390,9 +448,7 @@ describe("DataTransferControls", () => {
       />,
     );
 
-    expect(
-      screen.getByRole("button", { name: "Import and export actions" }),
-    ).toHaveClass("size-9");
+    expect(screen.getByRole("button", { name: "Import and export actions" })).toHaveClass("size-9");
   });
 
   it("disables loading actions and renders a spinner", () => {

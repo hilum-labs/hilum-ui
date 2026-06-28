@@ -1,16 +1,17 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { motionClasses } from "../lib/interaction";
 
 /* ------------------------------------------------------------------ */
 /*  Card root                                                          */
 /* ------------------------------------------------------------------ */
 
-const cardVariants = cva("rounded-xl", {
+const cardVariants = cva(["rounded-xl", motionClasses], {
   variants: {
     variant: {
       default: "bg-card shadow-natural",
-      muted: "bg-muted",
+      muted: "bg-muted shadow-natural",
       ghost: "bg-transparent",
     },
   },

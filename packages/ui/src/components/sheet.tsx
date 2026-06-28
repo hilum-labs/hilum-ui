@@ -5,6 +5,7 @@ import { Dialog } from "radix-ui";
 import { X } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
+import { focusRingClasses, motionClasses, pressClasses } from "../lib/interaction";
 
 const SheetRoot = Dialog.Root;
 const SheetTrigger = Dialog.Trigger;
@@ -20,6 +21,7 @@ const SheetOverlay = React.forwardRef<
       "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "data-[state=closed]:duration-100 data-[state=open]:duration-150",
       className,
     )}
     {...props}
@@ -29,7 +31,7 @@ SheetOverlay.displayName = "SheetOverlay";
 
 const sheetContentVariants = cva(
   [
-    "fixed z-50 bg-card shadow-elevated p-6",
+    "fixed z-50 border-border bg-card p-6 shadow-elevated",
     "data-[state=open]:animate-in data-[state=closed]:animate-out",
     "transition-transform ease-in-out duration-300",
   ],
@@ -37,11 +39,11 @@ const sheetContentVariants = cva(
     variants: {
       side: {
         right:
-          "right-0 top-0 h-full w-full max-w-sm data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
-        left: "left-0 top-0 h-full w-full max-w-sm data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
-        top: "top-0 inset-x-0 h-auto data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+          "right-0 top-0 h-full w-full max-w-sm border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+        left: "left-0 top-0 h-full w-full max-w-sm border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
+        top: "top-0 inset-x-0 h-auto border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
-          "bottom-0 inset-x-0 h-auto data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+          "bottom-0 inset-x-0 h-auto border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
       },
     },
     defaultVariants: {
@@ -65,7 +67,14 @@ const SheetContent = React.forwardRef<React.ComponentRef<typeof Dialog.Content>,
         {...props}
       >
         {children}
-        <Dialog.Close className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-md text-muted-foreground opacity-70 transition-[opacity,scale] hover:opacity-100 active:scale-[0.96] focus:outline-none focus:ring-2 focus:ring-ground-900/20">
+        <Dialog.Close
+          className={cn(
+            "absolute right-3 top-3 flex size-9 items-center justify-center rounded-md text-muted-foreground opacity-70 hover:bg-muted hover:text-foreground hover:opacity-100",
+            motionClasses,
+            pressClasses,
+            focusRingClasses,
+          )}
+        >
           <X size={16} />
           <span className="sr-only">Close</span>
         </Dialog.Close>

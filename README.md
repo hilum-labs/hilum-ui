@@ -40,3 +40,7 @@ See `PLATFORM_PLAN.md` §2.1 D8 for full rationale.
 ## Contributing
 
 Sole maintainer: William ([@hilum-labs](https://github.com/hilum-labs)). External contributions are not accepted at this time.
+
+## Credits
+
+Hilum UI includes component interaction ideas and MIT-compatible source adaptation from [Fluid Functionalism](https://github.com/mickadesign/fluid-functionalism) by Micka Touillaud.

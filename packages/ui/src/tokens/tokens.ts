@@ -323,6 +323,9 @@ export const tokens = {
     "accordion-down": "accordion-down 0.2s ease-out",
     "accordion-up": "accordion-up 0.2s ease-out",
     "caret-blink": "caret-blink 1.25s ease-out infinite",
+    "hilum-orbit": "hilum-orbit 1.4s ease-in-out infinite",
+    "hilum-spring-in": "hilum-spring-in 180ms cubic-bezier(0.2, 0.9, 0.2, 1.15)",
+    "hilum-thinking": "hilum-thinking 1.1s ease-in-out infinite",
   },
 } as const;
 

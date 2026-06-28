@@ -3,6 +3,7 @@
 import * as React from "react";
 import { AlertDialog } from "radix-ui";
 import { cn } from "../lib/utils";
+import { focusRingClasses, motionClasses, pressClasses } from "../lib/interaction";
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
@@ -23,6 +24,7 @@ const AlertDialogOverlay = React.forwardRef<
       "fixed inset-0 z-50 bg-black/30 backdrop-blur-sm",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "data-[state=closed]:duration-100 data-[state=open]:duration-150",
       className,
     )}
     {...props}
@@ -41,7 +43,7 @@ const AlertDialogContent = React.forwardRef<
       className={cn(
         mobileDialogSheetContentClassName,
         desktopDialogContentClassName,
-        "sm:max-w-md",
+        "border border-border shadow-elevated sm:max-w-md",
         dialogSheetMotionClassName,
         className,
       )}
@@ -104,9 +106,11 @@ const AlertDialogAction = React.forwardRef<
     ref={ref}
     className={cn(
       "inline-flex h-10 items-center justify-center rounded-md px-4",
-      "body font-medium whitespace-nowrap transition-[background-color,box-shadow,color,opacity,scale] duration-150 active:scale-[0.96]",
+      "body font-medium whitespace-nowrap",
+      motionClasses,
+      pressClasses,
       "bg-brand-primary text-background hover:bg-brand-primary/90 active:bg-brand-primary/80",
-      "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
+      focusRingClasses,
       "disabled:pointer-events-none disabled:opacity-50",
       className,
     )}
@@ -123,9 +127,11 @@ const AlertDialogCancel = React.forwardRef<
     ref={ref}
     className={cn(
       "inline-flex h-10 items-center justify-center rounded-md px-4",
-      "body font-medium whitespace-nowrap transition-[background-color,box-shadow,color,opacity,scale] duration-150 active:scale-[0.96]",
+      "body font-medium whitespace-nowrap",
+      motionClasses,
+      pressClasses,
       "bg-card text-muted-foreground shadow-natural hover:bg-muted rounded-xl",
-      "focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1 outline-none",
+      focusRingClasses,
       "disabled:pointer-events-none disabled:opacity-50",
       className,
     )}

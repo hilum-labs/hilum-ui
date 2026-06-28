@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { motionClasses } from "../lib/interaction";
 import { ColorPicker } from "./color-picker";
 
 interface ColorInputProps {
@@ -43,7 +44,8 @@ function ColorInput({
     <div
       className={cn(
         "inline-flex h-8 items-stretch gap-0 rounded-md border border-border bg-card overflow-hidden",
-        "focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
+        "shadow-natural focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
+        motionClasses,
         disabled && "opacity-50 pointer-events-none",
         className,
       )}

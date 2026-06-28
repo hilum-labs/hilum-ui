@@ -5,6 +5,8 @@ import { Callout } from "../callout";
 import { Button } from "../button";
 import { Progress } from "../progress";
 import { Steps } from "../steps";
+import { ThinkingIndicator } from "../thinking-indicator";
+import { ThinkingSteps } from "../thinking-steps";
 import { EmptyState } from "../empty-state";
 import { StatusBadge } from "../status-badge";
 import {
@@ -230,6 +232,29 @@ describe("Steps", () => {
     ];
     render(<Steps steps={stepsWithDesc} />);
     expect(screen.getByText("First step")).toBeInTheDocument();
+  });
+});
+
+describe("ThinkingIndicator", () => {
+  it("renders an accessible status", () => {
+    render(<ThinkingIndicator label="Working" />);
+    expect(screen.getByRole("status", { name: "Working" })).toBeInTheDocument();
+  });
+});
+
+describe("ThinkingSteps", () => {
+  it("renders reasoning steps with status content", () => {
+    render(
+      <ThinkingSteps
+        steps={[
+          { label: "Read request", status: "complete" },
+          { label: "Draft response", status: "current" },
+        ]}
+      />,
+    );
+
+    expect(screen.getByText("Read request")).toBeInTheDocument();
+    expect(screen.getByText("Draft response")).toBeInTheDocument();
   });
 });
 

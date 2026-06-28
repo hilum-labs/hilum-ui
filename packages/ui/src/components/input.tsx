@@ -1,5 +1,6 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { controlSurfaceClasses, focusRingClasses, motionClasses } from "../lib/interaction";
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (
@@ -7,10 +8,12 @@ function Input({ className, type, ...props }: React.ComponentProps<"input">) {
       type={type}
       data-slot="input"
       className={cn(
-        "flex h-10 w-full rounded-md border border-border bg-card px-3 py-1",
+        "flex h-10 w-full rounded-md px-3 py-1",
         "body text-foreground placeholder:text-muted-foreground",
-        "transition-colors duration-150",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
+        controlSurfaceClasses,
+        motionClasses,
+        focusRingClasses,
+        "focus-visible:border-brand-primary",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
         "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
         className,

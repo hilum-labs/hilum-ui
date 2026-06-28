@@ -1,151 +1,346 @@
-import * as React from "react";
-import { AlertCircle } from "lucide-react";
-import { cn } from "../lib/utils";
+"use client";
 
-interface InputGroupProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  leadingAddon?: React.ReactNode;
-  trailingAddon?: React.ReactNode;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
-  trailingAction?: React.ReactNode;
-  trailingActionClassName?: string;
-  trailingButton?: React.ReactNode;
-  error?: boolean;
-  pill?: boolean;
-  wrapperClassName?: string;
+import {
+  useRef,
+  useState,
+  useCallback,
+  useEffect,
+  createContext,
+  useContext,
+  forwardRef,
+  type ReactNode,
+  type HTMLAttributes,
+  type InputHTMLAttributes,
+  type ChangeEventHandler,
+} from "react";
+import type { IconComponent } from "../lib/icon-context";
+import { cn } from "../lib/utils";
+import { fontWeights } from "../lib/font-weight";
+import { useShape } from "../lib/shape-context";
+
+interface InputGroupContextValue {
+  registerItem: (index: number, element: HTMLLabelElement | null) => void;
+  activeIndex: number | null;
 }
 
-const InputGroup = React.forwardRef<HTMLInputElement, InputGroupProps>(
+const InputGroupContext = createContext<InputGroupContextValue | null>(null);
+
+function useInputGroup() {
+  const ctx = useContext(InputGroupContext);
+  if (!ctx) throw new Error("useInputGroup must be used within an InputGroup");
+  return ctx;
+}
+
+interface InputGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange"> {
+  children?: ReactNode;
+  placeholder?: string;
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
+  leadingAddon?: ReactNode;
+  trailingAddon?: ReactNode;
+  trailingAction?: ReactNode;
+  leadingIcon?: ReactNode;
+  trailingIcon?: ReactNode;
+  trailingButton?: ReactNode;
+  error?: boolean | string;
+  disabled?: boolean;
+  wrapperClassName?: string;
+  pill?: boolean;
+  type?: InputHTMLAttributes<HTMLInputElement>["type"];
+  defaultValue?: InputHTMLAttributes<HTMLInputElement>["defaultValue"];
+  id?: string;
+}
+
+const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
   (
     {
+      children,
+      className,
+      placeholder,
+      value,
+      onChange,
       leadingAddon,
       trailingAddon,
+      trailingAction,
       leadingIcon,
       trailingIcon,
-      trailingAction,
-      trailingActionClassName,
       trailingButton,
       error,
-      pill,
-      className,
+      disabled,
       wrapperClassName,
+      pill,
+      type,
+      defaultValue,
+      id,
       ...props
     },
     ref,
   ) => {
-    const radius = pill ? "rounded-full" : "rounded-lg";
-    const hasLeading = leadingAddon || leadingIcon;
-    const hasInsetTrailing = trailingIcon || trailingAction || error;
-    const hasTrailing = trailingAddon || hasInsetTrailing || trailingButton;
+    const itemsRef = useRef(new Map<number, HTMLLabelElement>());
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-    const baseInput = cn(
-      "flex h-10 w-full border bg-card body text-foreground placeholder:text-muted-foreground",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:disabled:cursor-not-allowed disabled:opacity-50",
-      error
-        ? "border-destructive focus-visible:ring-destructive/20 focus-visible:border-destructive"
-        : "border-border focus-visible:ring-brand-primary/20 focus-visible:border-brand-primary",
-    );
+    const registerItem = useCallback((index: number, element: HTMLLabelElement | null) => {
+      if (element) {
+        itemsRef.current.set(index, element);
+      } else {
+        itemsRef.current.delete(index);
+      }
+    }, []);
 
-    if (!hasLeading && !hasTrailing) {
-      return <input ref={ref} className={cn(baseInput, radius, "px-3", className)} {...props} />;
+    const handleMouseMove = useCallback((e: React.MouseEvent) => {
+      const mouseY = e.clientY;
+
+      let closestIndex: number | null = null;
+      let closestDistance = Infinity;
+
+      itemsRef.current.forEach((element, index) => {
+        const rect = element.getBoundingClientRect();
+        const itemCenterY = rect.top + rect.height / 2;
+        const distance = Math.abs(mouseY - itemCenterY);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveIndex(closestIndex);
+    }, []);
+
+    const handleMouseLeave = useCallback(() => {
+      setActiveIndex(null);
+    }, []);
+
+    const rendersInput =
+      placeholder !== undefined ||
+      value !== undefined ||
+      onChange !== undefined ||
+      leadingAddon !== undefined ||
+      trailingAddon !== undefined ||
+      trailingAction !== undefined ||
+      leadingIcon !== undefined ||
+      trailingIcon !== undefined ||
+      trailingButton !== undefined ||
+      error !== undefined;
+
+    if (rendersInput) {
+      return (
+        <div
+          ref={ref}
+          className={cn(
+            "relative flex items-center gap-2 rounded-[var(--radius-input)] border bg-background px-3 py-2 text-[13px] transition-colors",
+            error ? "border-destructive/50" : "border-border",
+            disabled && "opacity-50",
+            pill && "rounded-full",
+            wrapperClassName,
+          )}
+          {...props}
+        >
+          {leadingAddon && <span className="shrink-0 text-muted-foreground">{leadingAddon}</span>}
+          {leadingIcon && <span className="shrink-0 text-muted-foreground">{leadingIcon}</span>}
+          <input
+            id={id}
+            type={type}
+            value={value}
+            defaultValue={defaultValue}
+            onChange={onChange}
+            placeholder={placeholder}
+            disabled={disabled}
+            aria-invalid={!!error || undefined}
+            className={cn(
+              "min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground",
+              (trailingAction || trailingIcon) && "pr-16",
+              className,
+            )}
+          />
+          {trailingAddon && <span className="shrink-0 text-muted-foreground">{trailingAddon}</span>}
+          {trailingIcon && <span className="shrink-0 text-muted-foreground">{trailingIcon}</span>}
+          {trailingButton}
+          {trailingAction && (
+            <span className="absolute right-2 top-1/2 -translate-y-1/2">{trailingAction}</span>
+          )}
+        </div>
+      );
     }
 
     return (
-      <div className={cn("flex", wrapperClassName)}>
-        {/* Leading addon (text) */}
-        {leadingAddon && (
-          <span
-            className={cn(
-              "inline-flex items-center border border-r-0 bg-muted px-3 body text-muted-foreground select-none",
-              error ? "border-destructive" : "border-border",
-              pill ? "rounded-l-full" : "rounded-l-lg",
-            )}
-          >
-            {leadingAddon}
-          </span>
-        )}
-
-        {/* Relative wrapper for icon-only inputs */}
-        <div className="relative flex-1">
-          {leadingIcon && (
-            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-muted-foreground">
-              {leadingIcon}
-            </div>
-          )}
-
-          <input
-            ref={ref}
-            className={cn(
-              baseInput,
-              // Border radius
-              leadingAddon
-                ? trailingAddon || trailingButton
-                  ? "rounded-none px-3"
-                  : pill
-                    ? "rounded-none rounded-r-full px-3"
-                    : "rounded-none rounded-r-lg px-3"
-                : leadingIcon
-                  ? trailingAddon
-                    ? pill
-                      ? "rounded-l-full rounded-r-none pl-9 pr-3"
-                      : "rounded-l-lg rounded-r-none pl-9 pr-3"
-                    : hasInsetTrailing
-                      ? cn(radius, "pl-9 pr-9")
-                      : cn(radius, "pl-9 pr-3")
-                  : trailingAddon
-                    ? pill
-                      ? "rounded-l-full rounded-r-none px-3"
-                      : "rounded-l-lg rounded-r-none px-3"
-                    : hasInsetTrailing
-                      ? cn(radius, "pl-3 pr-9")
-                      : cn(radius, "px-3"),
-              trailingAction && "pr-16",
-              className,
-            )}
-            {...props}
-          />
-
-          {(trailingIcon || error) && (
-            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-              {error ? (
-                <AlertCircle size={15} className="text-destructive" />
-              ) : (
-                <span className="text-muted-foreground">{trailingIcon}</span>
-              )}
-            </div>
-          )}
-
-          {trailingAction && (
-            <div
-              className={cn(
-                "absolute right-2 top-1/2 flex -translate-y-1/2 items-center",
-                trailingActionClassName,
-              )}
-            >
-              {trailingAction}
-            </div>
-          )}
+      <InputGroupContext.Provider value={{ registerItem, activeIndex }}>
+        <div
+          ref={ref}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          className={cn("flex flex-col gap-3 w-72 max-w-full", className)}
+          {...props}
+        >
+          {children}
         </div>
-
-        {/* Trailing addon (text) */}
-        {trailingAddon && (
-          <span
-            className={cn(
-              "inline-flex items-center border border-l-0 bg-muted px-3 body text-muted-foreground select-none",
-              error ? "border-destructive" : "border-border",
-              pill ? "rounded-r-full" : "rounded-r-lg",
-            )}
-          >
-            {trailingAddon}
-          </span>
-        )}
-
-        {/* Trailing button */}
-        {trailingButton && <div className="flex">{trailingButton}</div>}
-      </div>
+      </InputGroupContext.Provider>
     );
   },
 );
+
 InputGroup.displayName = "InputGroup";
 
-export { InputGroup };
+interface InputFieldProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "onChange" | "index"
+> {
+  label: string;
+  placeholder?: string;
+  icon?: IconComponent;
+  index: number;
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  disabled?: boolean;
+  className?: string;
+}
+
+const InputField = forwardRef<HTMLLabelElement, InputFieldProps>(
+  (
+    {
+      label,
+      placeholder,
+      icon: Icon,
+      index,
+      value,
+      onChange,
+      error,
+      disabled,
+      className,
+      ...props
+    },
+    ref,
+  ) => {
+    const internalRef = useRef<HTMLLabelElement>(null);
+    const { registerItem, activeIndex } = useInputGroup();
+    const [isFocused, setIsFocused] = useState(false);
+    const shape = useShape();
+
+    useEffect(() => {
+      registerItem(index, internalRef.current);
+      return () => registerItem(index, null);
+    }, [index, registerItem]);
+
+    const isActive = activeIndex === index;
+    const labelActive = isActive || isFocused;
+
+    const errorId = error ? `input-error-${index}` : undefined;
+
+    const handleFocus = () => {
+      setIsFocused(true);
+    };
+
+    const handleBlur = () => {
+      setIsFocused(false);
+    };
+
+    // Input container classes
+    let bgClass: string;
+    let ringClass: string;
+
+    if (disabled) {
+      bgClass = "bg-transparent";
+      ringClass = "ring-border";
+    } else if (error) {
+      bgClass = isFocused ? "bg-card" : isActive ? "bg-destructive-light/60" : "bg-transparent";
+      ringClass = isFocused || isActive ? "ring-destructive/50" : "ring-transparent";
+    } else if (isFocused) {
+      bgClass = "bg-card";
+      ringClass = "ring-border";
+    } else if (isActive) {
+      bgClass = "bg-muted/50";
+      ringClass = "ring-border";
+    } else {
+      bgClass = "bg-transparent";
+      ringClass = "ring-transparent";
+    }
+
+    return (
+      <label
+        ref={(node) => {
+          (internalRef as React.MutableRefObject<HTMLLabelElement | null>).current = node;
+          if (typeof ref === "function") ref(node);
+          else if (ref) (ref as React.MutableRefObject<HTMLLabelElement | null>).current = node;
+        }}
+        className={cn(
+          "flex flex-col gap-1 cursor-text",
+          disabled && "opacity-50 pointer-events-none",
+          className,
+        )}
+      >
+        {/* Label */}
+        <span className="inline-grid text-[13px] pl-3">
+          <span
+            className="col-start-1 row-start-1 invisible"
+            style={{ fontVariationSettings: fontWeights.semibold }}
+            aria-hidden="true"
+          >
+            {label}
+          </span>
+          <span
+            className={cn(
+              "col-start-1 row-start-1",
+              error ? "text-destructive" : "text-muted-foreground",
+            )}
+            style={{
+              fontVariationSettings: fontWeights.normal,
+            }}
+          >
+            {label}
+          </span>
+        </span>
+
+        {/* Input container */}
+        <div
+          className={cn(
+            `flex items-center gap-2 ${shape.input} px-3 py-2 ring-1 transition-all duration-80`,
+            bgClass,
+            ringClass,
+          )}
+        >
+          {Icon && (
+            <Icon
+              size={16}
+              strokeWidth={labelActive ? 2 : 1.5}
+              className={cn(
+                "shrink-0 transition-[color,stroke-width] duration-80",
+                labelActive ? "text-foreground" : "text-muted-foreground",
+              )}
+            />
+          )}
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            placeholder={placeholder}
+            disabled={disabled}
+            aria-invalid={!!error || undefined}
+            aria-describedby={errorId}
+            className="w-full bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground outline-none font-[inherit]"
+            style={{ fontVariationSettings: fontWeights.normal }}
+            {...props}
+          />
+        </div>
+
+        {/* Error message */}
+        {error && (
+          <span
+            id={errorId}
+            className="text-[12px] text-destructive pl-3"
+            style={{ fontVariationSettings: fontWeights.medium }}
+          >
+            {error}
+          </span>
+        )}
+      </label>
+    );
+  },
+);
+
+InputField.displayName = "InputField";
+
+export { InputGroup, InputField };
+export default InputGroup;

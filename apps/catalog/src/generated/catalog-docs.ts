@@ -612,8 +612,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "children, type, collapsible, defaultValue, value, onValueChange"
+      },
+      {
         "label": "Key exports",
-        "description": "AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent"
+        "description": "Accordion, AccordionGroup, AccordionItem, AccordionTrigger, AccordionContent"
       }
     ],
     "exampleCode": "import {\n  Accordion, AccordionItem, AccordionTrigger, AccordionContent,\n} from \"@hilum/ui\"\n\n<Accordion type=\"single\" collapsible>\n  <AccordionItem value=\"item-1\">\n    <AccordionTrigger>What is a voice clone?</AccordionTrigger>\n    <AccordionContent>\n      A voice clone is an AI model trained on your voice samples\n      that can generate speech in your voice.\n    </AccordionContent>\n  </AccordionItem>\n  <AccordionItem value=\"item-2\">\n    <AccordionTrigger>How many samples do I need?</AccordionTrigger>\n    <AccordionContent>\n      For best results, provide at least 10 minutes of clean,\n      studio-quality audio with no background noise.\n    </AccordionContent>\n// ...trimmed for docs",
@@ -782,12 +786,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "color"
+      },
+      {
         "label": "Variant props",
-        "description": "variant"
+        "description": "variant, size"
       },
       {
         "label": "Key exports",
-        "description": "Badge, badgeVariants"
+        "description": "Badge, badgeVariants, badgeColors"
       }
     ],
     "exampleCode": "import { Badge } from \"@hilum/ui\"\n\n<Badge>Default</Badge>\n<Badge variant=\"secondary\">Secondary</Badge>\n<Badge variant=\"outline\">Outline</Badge>\n<Badge variant=\"brand\">Brand</Badge>\n<Badge variant=\"success\">Success</Badge>\n<Badge variant=\"warning\">Warning</Badge>\n<Badge variant=\"destructive\">Error</Badge>",
@@ -841,11 +849,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "asChild"
-      },
-      {
-        "label": "Variant props",
-        "description": "variant, size"
+        "description": "asChild, loading, leadingIcon, trailingIcon, active"
       },
       {
         "label": "Key exports",
@@ -1072,6 +1076,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/atoms/checkbox-group/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "children, checkedIndices, options, value, onValueChange, label"
+      },
+      {
+        "label": "Key exports",
+        "description": "CheckboxGroup, CheckboxItem"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/checkbox-group/",
+    "summary": "Grouped multi-select options with product-style row highlighting.",
+    "title": "Checkbox Group",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Checkbox Group when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/atoms/collapsible/": {
     "accessibility": [
       "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
@@ -1135,7 +1170,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "value, onChange, className, disabled, presets, ariaLabel"
+        "description": "value, defaultValue, onChange, onValueChange, ariaLabel, format"
+      },
+      {
+        "label": "Key exports",
+        "description": "ColorPicker, ColorPickerPopover, ColorPickerPortalContainer, ColorSwatch, ColorTile, parseColor"
       }
     ],
     "exampleCode": "import { ColorPicker } from \"@hilum/ui\"\n\nconst [color, setColor] = React.useState(\"#c100f1\")\n\n<ColorPicker value={color} onChange={setColor} />",
@@ -1304,8 +1343,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "size, container"
+      },
+      {
         "label": "Key exports",
-        "description": "DialogRoot, DialogTrigger, DialogOverlay, DialogContent, DialogHeader, DialogFooter"
+        "description": "Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle"
       }
     ],
     "exampleCode": "import {\n  Dialog, DialogTrigger, DialogContent,\n  DialogHeader, DialogFooter, DialogTitle, DialogDescription,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Dialog>\n  <DialogTrigger asChild>\n    <Button variant=\"outline\">Delete voice</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Delete voice clone?</DialogTitle>\n      <DialogDescription>\n        This action cannot be undone. The voice clone \"Roger\" will be\n        permanently removed from your library.\n      </DialogDescription>\n    </DialogHeader>\n// ...trimmed for docs",
@@ -1348,6 +1391,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Drawer when content needs to appear in context without forcing a full page transition.",
       "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
       "Review the examples below to compare trigger styles, content density, and dismissal expectations."
+    ]
+  },
+  "/atoms/dropdown/": {
+    "accessibility": [
+      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
+      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
+      "Use status, selection, and disabled states that remain understandable without color alone."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "children, checkedIndex"
+      },
+      {
+        "label": "Key exports",
+        "description": "Dropdown, DropdownLabel, DropdownSeparator, useDropdown"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/dropdown/",
+    "summary": "",
+    "title": "Dropdown",
+    "whenNotToUse": [
+      "Do not use Dropdown just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Dropdown when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
   "/atoms/dropdown-menu/": {
@@ -1406,6 +1480,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use File Dropzone when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/file-thumbnail/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "file, name, type, size, className"
+      },
+      {
+        "label": "Key exports",
+        "description": "FileThumbnail, loadPdfjs, renderPdfFirstPage"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/file-thumbnail/",
+    "summary": "Compact file preview row with icon, type, and size metadata.",
+    "title": "File Thumbnail",
+    "whenNotToUse": [
+      "Do not use File Thumbnail just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use File Thumbnail when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
   "/atoms/help-tooltip/": {
@@ -1601,6 +1706,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
+  "/atoms/menu-item/": {
+    "accessibility": [
+      "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
+      "Support Escape to dismiss non-destructive overlays and ensure the trigger communicates expanded state where appropriate.",
+      "Do not hide critical actions behind hover-only disclosure; keyboard and touch users need equivalent access."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "icon, label, index, checked, onSelect, trailing"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/menu-item/",
+    "summary": "Reusable command row for menus, lists, and product navigation.",
+    "title": "Menu Item",
+    "whenNotToUse": [
+      "Do not move a full workflow into an overlay if the user needs persistent navigation, rich context, or deep editing space.",
+      "Do not rely on an overlay for critical messaging when it can be missed, dismissed accidentally, or blocked by focus issues."
+    ],
+    "whenToUse": [
+      "Use Menu Item when content needs to appear in context without forcing a full page transition.",
+      "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
+      "Review the examples below to compare trigger styles, content density, and dismissal expectations."
+    ]
+  },
   "/atoms/menubar/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -1653,6 +1785,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Native Select when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/nav-item/": {
+    "accessibility": [
+      "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
+      "Ensure arrow-key or tab-key movement stays predictable when the pattern behaves like a composite widget.",
+      "Do not rely on icon-only navigation unless every control has a clear accessible name."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "icon, active, trailing"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/nav-item/",
+    "summary": "Single navigation row with icon, active state, and trailing content.",
+    "title": "Nav Item",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Nav Item when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
   "/atoms/navigation-menu/": {
@@ -1827,8 +1986,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "children, selectedIndex, value, defaultValue, onValueChange, label"
+      },
+      {
         "label": "Key exports",
-        "description": "RadioGroupRoot, RadioGroupItem"
+        "description": "RadioGroup, RadioItem, RadioGroupItem"
       }
     ],
     "exampleCode": "<RadioGroup defaultValue=\"mp3\">\n  <div className=\"flex items-center gap-2\">\n    <RadioGroupItem value=\"mp3\" id=\"fmt-mp3\" />\n    <Label htmlFor=\"fmt-mp3\">MP3 — 128 kbps</Label>\n  </div>\n  <div className=\"flex items-center gap-2\">\n    <RadioGroupItem value=\"wav\" id=\"fmt-wav\" />\n    <Label htmlFor=\"fmt-wav\">WAV — lossless</Label>\n  </div>\n</RadioGroup>",
@@ -1962,8 +2125,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "children, value, defaultValue, onValueChange, disabled, name"
+      },
+      {
+        "label": "Variant props",
+        "description": "variant"
+      },
+      {
         "label": "Key exports",
-        "description": "SelectRoot, SelectGroup, SelectValue, SelectTrigger, SelectContent, SelectItem"
+        "description": "Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup"
       }
     ],
     "exampleCode": "import {\n  Select, SelectTrigger, SelectValue,\n  SelectContent, SelectItem, SelectLabel, SelectGroup,\n} from \"@hilum/ui\"\n\n<Select>\n  <SelectTrigger className=\"w-[200px]\">\n    <SelectValue placeholder=\"Select voice...\" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"roger\">Roger</SelectItem>\n    <SelectItem value=\"aria\">Aria</SelectItem>\n    <SelectItem value=\"sarah\">Sarah</SelectItem>\n  </SelectContent>\n</Select>",
@@ -2105,8 +2276,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Slider keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Props",
+        "description": "value, defaultValue, onChange, onValueChange, min, max"
+      },
+      {
+        "label": "Key exports",
+        "description": "Slider, SliderControl, SliderComfortable"
       }
     ],
     "exampleCode": "import { Slider } from \"@hilum/ui\"\n\n<div className=\"flex flex-col gap-2\">\n  <div className=\"flex justify-between text-xs text-ground-400\">\n    <span>Slower</span>\n    <span>Faster</span>\n  </div>\n  <Slider defaultValue={[50]} max={100} step={1} />\n</div>",
@@ -2248,8 +2423,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Switch keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Props",
+        "description": "label, checked, defaultChecked, onCheckedChange, onToggle, disabled"
       }
     ],
     "exampleCode": "import { Switch } from \"@hilum/ui\"\nimport { Label } from \"@hilum/ui\"\n\n<div className=\"flex items-center gap-3\">\n  <Switch id=\"lang\" defaultChecked />\n  <Label htmlFor=\"lang\">Language override</Label>\n</div>",
@@ -2274,6 +2449,10 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
     ],
     "api": [
+      {
+        "label": "Props",
+        "description": "children, containerClassName, index"
+      },
       {
         "label": "Key exports",
         "description": "Table, TableHeader, TableBody, TableFooter, TableRow, TableHead"
@@ -2302,8 +2481,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "value, onValueChange, selectedIndex, onSelect, icon, label"
+      },
+      {
         "label": "Key exports",
-        "description": "TabsRoot, TabsList, TabsTrigger, TabsContent"
+        "description": "Tabs, TabsList, TabItem, TabPanel, TabsTrigger, TabsContent"
       }
     ],
     "exampleCode": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@hilum/ui\"\n\n<Tabs defaultValue=\"settings\">\n  <TabsList>\n    <TabsTrigger value=\"settings\">Settings</TabsTrigger>\n    <TabsTrigger value=\"history\">History</TabsTrigger>\n    <TabsTrigger value=\"usage\">Usage</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"settings\">\n    <p className=\"text-sm text-ground-500\">Manage your account settings and preferences.</p>\n  </TabsContent>\n  <TabsContent value=\"history\">\n    <p className=\"text-sm text-ground-500\">View your generation history.</p>\n  </TabsContent>\n  <TabsContent value=\"usage\">\n    <p className=\"text-sm text-ground-500\">Track your API usage and credits.</p>\n  </TabsContent>\n</Tabs>",
@@ -2319,6 +2502,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Tabs when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/tabs-subtle/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "children, selectedIndex, onSelect, idPrefix, activeLabel, icon"
+      },
+      {
+        "label": "Key exports",
+        "description": "TabsSubtle, TabsSubtleItem, TabsSubtlePanel"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/tabs-subtle/",
+    "summary": "Quiet segmented tab navigation for compact product panels.",
+    "title": "Tabs Subtle",
+    "whenNotToUse": [
+      "Do not use Tabs Subtle just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Tabs Subtle when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
   "/atoms/textarea/": {
@@ -2346,6 +2560,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Textarea when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/thinking-indicator/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "label, showIcon"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/thinking-indicator/",
+    "summary": "Compact animated status indicator for pending assistant or system work.",
+    "title": "Thinking Indicator",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Thinking Indicator when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
   "/atoms/toggle/": {
@@ -2414,8 +2655,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "content, children, side, sideOffset, delayDuration, className"
+      },
+      {
         "label": "Key exports",
-        "description": "TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent"
+        "description": "Tooltip, TooltipPortalContainer, TooltipProvider, TooltipRoot, TooltipTrigger, TooltipContent"
       }
     ],
     "exampleCode": "import {\n  Tooltip, TooltipTrigger, TooltipContent, TooltipProvider,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<TooltipProvider>\n  <Tooltip>\n    <TooltipTrigger asChild>\n      <Button size=\"icon\" variant=\"outline\"><Volume2 size={15} /></Button>\n    </TooltipTrigger>\n    <TooltipContent>Preview voice</TooltipContent>\n  </Tooltip>\n</TooltipProvider>",
@@ -4541,6 +4786,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/molecules/ask-user-questions/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "questions, currentIndex, defaultCurrentIndex, onCurrentIndexChange, answers, defaultAnswers"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/ask-user-questions/",
+    "summary": "Question prompt panel for clarifications, answers, and review decisions.",
+    "title": "Ask User Questions",
+    "whenNotToUse": [
+      "Do not use Ask User Questions just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Ask User Questions when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
   "/molecules/card-heading/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -4566,6 +4838,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Card Heading when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/molecules/chat-message/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "from, files, thumbnailSize, time, actions, children"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/chat-message/",
+    "summary": "Chat transcript row with avatar, metadata, alignment, and bubble tone.",
+    "title": "Chat Message",
+    "whenNotToUse": [
+      "Do not use Chat Message just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Chat Message when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
     ]
   },
   "/molecules/command-palette/": {
@@ -4734,6 +5033,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/molecules/input-copy/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, label, onCopy, disabled, variant, align"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/input-copy/",
+    "summary": "Read-only value field with integrated clipboard action and copied feedback.",
+    "title": "Input Copy",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Input Copy when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/molecules/input-group/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -4743,7 +5069,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "leadingAddon, trailingAddon, leadingIcon, trailingIcon, trailingAction, trailingActionClassName"
+        "description": "children, placeholder, value, onChange, leadingAddon, trailingAddon"
+      },
+      {
+        "label": "Key exports",
+        "description": "InputGroup, InputField"
       }
     ],
     "exampleCode": "<InputGroup leadingAddon=\"https://\" placeholder=\"yoursite.com\" />",
@@ -4759,6 +5089,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use buttons for explicit user-triggered actions such as submit, save, continue, or open.",
       "Choose the variant and size that matches the action hierarchy in the surrounding view.",
       "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
+    ]
+  },
+  "/molecules/input-message/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, onValueChange, onSend, placeholder, leftSlot, rightSlot"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/input-message/",
+    "summary": "Auto-growing chat-style message composer with action slots and send affordance.",
+    "title": "Input Message",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Input Message when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
   "/molecules/media-asset-card/": {
@@ -4813,6 +5170,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Media Object when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/molecules/mobile-drawer/": {
+    "accessibility": [
+      "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
+      "Support Escape to dismiss non-destructive overlays and ensure the trigger communicates expanded state where appropriate.",
+      "Do not hide critical actions behind hover-only disclosure; keyboard and touch users need equivalent access."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "title, description, triggerLabel, children"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/mobile-drawer/",
+    "summary": "Mobile navigation drawer wrapper with trigger, sheet content, and title.",
+    "title": "Mobile Drawer",
+    "whenNotToUse": [
+      "Do not move a full workflow into an overlay if the user needs persistent navigation, rich context, or deep editing space.",
+      "Do not rely on an overlay for critical messaging when it can be missed, dismissed accidentally, or blocked by focus issues."
+    ],
+    "whenToUse": [
+      "Use Mobile Drawer when content needs to appear in context without forcing a full page transition.",
+      "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
+      "Review the examples below to compare trigger styles, content density, and dismissal expectations."
+    ]
+  },
+  "/molecules/nav-menu/": {
+    "accessibility": [
+      "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
+      "Support Escape to dismiss non-destructive overlays and ensure the trigger communicates expanded state where appropriate.",
+      "Do not hide critical actions behind hover-only disclosure; keyboard and touch users need equivalent access."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "items"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/nav-menu/",
+    "summary": "Vertical navigation list with proximity-aware row activation.",
+    "title": "Nav Menu",
+    "whenNotToUse": [
+      "Do not move a full workflow into an overlay if the user needs persistent navigation, rich context, or deep editing space.",
+      "Do not rely on an overlay for critical messaging when it can be missed, dismissed accidentally, or blocked by focus issues."
+    ],
+    "whenToUse": [
+      "Use Nav Menu when content needs to appear in context without forcing a full page transition.",
+      "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
+      "Review the examples below to compare trigger styles, content density, and dismissal expectations."
     ]
   },
   "/molecules/notification/": {
@@ -4891,9 +5302,19 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Vertical timeline of events with icons, rich content, and timestamps."
       },
       {
+        "label": "Ask User Questions",
+        "href": "/molecules/ask-user-questions/",
+        "description": "Question prompt panel for collecting answers, clarifications, and review decisions."
+      },
+      {
         "label": "Card Heading",
         "href": "/molecules/card-heading/",
         "description": "Header row for cards and panels with title, description, leading slot, and actions."
+      },
+      {
+        "label": "Chat Message",
+        "href": "/molecules/chat-message/",
+        "description": "Chat transcript row with avatar, author metadata, alignment, and message bubble tone."
       },
       {
         "label": "Command Palette",
@@ -4904,16 +5325,6 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "label": "Data Transfer Controls",
         "href": "/molecules/data-transfer-controls/",
         "description": "Import and export control cluster with optional scope selector and compact menu mode."
-      },
-      {
-        "label": "Description List",
-        "href": "/molecules/description-list/",
-        "description": "Key-value pairs for structured details in profiles and settings panels."
-      },
-      {
-        "label": "Empty State",
-        "href": "/molecules/empty-state/",
-        "description": "Placeholder for empty lists, zero-data views, and no-results scenarios."
       }
     ],
     "intro": [
@@ -5064,6 +5475,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Stat Card when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/molecules/thinking-steps/": {
+    "accessibility": [
+      "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
+      "Ensure arrow-key or tab-key movement stays predictable when the pattern behaves like a composite widget.",
+      "Do not rely on icon-only navigation unless every control has a clear accessible name."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "defaultOpen, open, onOpenChange, children, steps, label"
+      },
+      {
+        "label": "Key exports",
+        "description": "ThinkingSteps, ThinkingStepsHeader, ThinkingStepsContent, ThinkingStep, ThinkingStepDetails, ThinkingStepSources"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/thinking-steps/",
+    "summary": "Reasoning progress list with complete, current, and pending step states.",
+    "title": "Thinking Steps",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Thinking Steps when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
