@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.5.0
+
+### Minor Changes
+
+- 9a25e44: Add Fluid Functionalism parity across Hilum UI primitives, interaction foundations, and catalog examples.
+
 ## 3.4.0
 
 ### Minor Changes
