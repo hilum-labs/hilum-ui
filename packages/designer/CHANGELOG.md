@@ -1,5 +1,13 @@
 # @hilum/designer
 
+## 3.4.0
+
+### Minor Changes
+
+- 96bd6ec: Add compact two-value and four-value designer controls for dense inspector panels.
+
+  `@hilum/ui` InputNumber now supports mixed values and live commit-on-change behavior for editor controls.
+
 ## 3.3.4
 
 ### Patch Changes
