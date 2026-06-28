@@ -9,6 +9,7 @@ export * from "./components/DesignerPanel";
 export * from "./components/DesignerPane";
 export * from "./components/DesignerPropertyRow";
 export * from "./components/DesignerToolbar";
+export * from "./components/DesignerValueControls";
 
 export * from "./hooks/useHistory";
 export * from "./hooks/useKeybindings";

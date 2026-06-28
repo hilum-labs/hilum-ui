@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Frame, MousePointer2, Image, Layers, Package, Code2 } from "lucide-react";
+import { CornerRadiusControl, SpacingControl, TwoValueControl } from "@hilum/designer";
 import {
   Badge,
   Card,
@@ -100,6 +102,23 @@ const EXPORT_GROUPS = [
         name: "DesignerPaneContent",
         kind: "Inspector",
         description: "Consistent content spacing for property rows and controls inside a pane.",
+      },
+      {
+        name: "TwoValueControl",
+        kind: "Inspector",
+        description: "Compact paired numeric fields for properties such as X/Y, W/H, and offsets.",
+      },
+      {
+        name: "FourValueControl",
+        kind: "Inspector",
+        description:
+          "Generic 2×2 numeric control with linked/unlinked behavior for sides and corners.",
+      },
+      {
+        name: "SpacingControl / CornerRadiusControl",
+        kind: "Inspector",
+        description:
+          "Semantic wrappers over FourValueControl for padding, margins, and corner radii.",
       },
       {
         name: "DesignerToolbar",
@@ -253,6 +272,17 @@ const API_NOTES = [
 ];
 
 function DesignerIndex() {
+  const [position, setPosition] = useState({ x: 48, y: 32 });
+  const [spacing, setSpacing] = useState({ top: 10, right: 12, bottom: 10, left: 12 });
+  const [spacingLinked, setSpacingLinked] = useState(false);
+  const [corners, setCorners] = useState({
+    topLeft: 16,
+    topRight: 24,
+    bottomLeft: 16,
+    bottomRight: 24,
+  });
+  const [cornersLinked, setCornersLinked] = useState(false);
+
   return (
     <div className="mx-auto max-w-7xl px-8 py-12">
       <div className="mb-10">
@@ -312,6 +342,81 @@ function DesignerIndex() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className="mb-12">
+        <div className="mb-4">
+          <p className="caption-xs uppercase tracking-wider font-semibold text-muted-foreground">
+            Property controls
+          </p>
+          <h2 className="heading mt-1 text-foreground">Dense inspector inputs</h2>
+        </div>
+
+        <div className="grid gap-4 lg:grid-cols-3">
+          <Card>
+            <CardHeader>
+              <CardTitle>TwoValueControl</CardTitle>
+              <CardDescription>Paired numeric values for geometry and offsets.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <TwoValueControl
+                label="Position"
+                unit="px"
+                values={position}
+                items={[
+                  { key: "x", label: "X", ariaLabel: "X position" },
+                  { key: "y", label: "Y", ariaLabel: "Y position" },
+                ]}
+                onChange={(key, value) => setPosition((next) => ({ ...next, [key]: value }))}
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>SpacingControl</CardTitle>
+              <CardDescription>Four sides with optional linked editing.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SpacingControl
+                label="Margins"
+                unit="mm"
+                values={spacing}
+                linked={spacingLinked}
+                onLinkedChange={setSpacingLinked}
+                onChange={(side, value) => setSpacing((next) => ({ ...next, [side]: value }))}
+                onChangeAll={(value) =>
+                  setSpacing({ top: value, right: value, bottom: value, left: value })
+                }
+              />
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>CornerRadiusControl</CardTitle>
+              <CardDescription>Corner-specific values over the same four-value base.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CornerRadiusControl
+                label="Corners"
+                unit="px"
+                values={corners}
+                linked={cornersLinked}
+                onLinkedChange={setCornersLinked}
+                onChange={(corner, value) => setCorners((next) => ({ ...next, [corner]: value }))}
+                onChangeAll={(value) =>
+                  setCorners({
+                    topLeft: value,
+                    topRight: value,
+                    bottomLeft: value,
+                    bottomRight: value,
+                  })
+                }
+              />
+            </CardContent>
+          </Card>
         </div>
       </section>
 

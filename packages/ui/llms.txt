@@ -5,7 +5,7 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.3.0
+- Package version: 3.3.4
 - Component modules: 85
 - Atom components: 63
 - Molecule components: 22

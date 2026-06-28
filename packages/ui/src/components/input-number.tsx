@@ -7,17 +7,21 @@ interface InputNumberProps extends Omit<
   React.ComponentProps<"input">,
   "type" | "value" | "onChange"
 > {
-  value: number;
+  value: number | null;
   onChange: (next: number) => void;
-  min?: number;
-  max?: number;
-  step?: number;
+  min?: number | undefined;
+  max?: number | undefined;
+  step?: number | undefined;
   /** Suffix shown after the number (e.g. "px", "mm", "°", "%"). */
-  unit?: string;
+  unit?: string | undefined;
   /** Number of decimals to display. Default: 0. */
-  precision?: number;
+  precision?: number | undefined;
+  /** Text shown when value is null. Useful for mixed multi-selection values. */
+  mixedLabel?: string | undefined;
+  /** Calls onChange while typing instead of waiting for blur/Enter. */
+  commitOnChange?: boolean | undefined;
   /** Hides the up/down stepper buttons. */
-  hideSteppers?: boolean;
+  hideSteppers?: boolean | undefined;
 }
 
 /**
@@ -34,39 +38,59 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
       step = 1,
       unit,
       precision = 0,
+      mixedLabel = "Mixed",
+      commitOnChange = false,
       hideSteppers = false,
       className,
       disabled,
+      onBlur,
+      onFocus,
+      onKeyDown,
       ...rest
     },
     ref,
   ) => {
-    const [text, setText] = React.useState<string>(value.toFixed(precision));
+    const formatValue = React.useCallback(
+      (next: number | null) => (next === null ? mixedLabel : next.toFixed(precision)),
+      [mixedLabel, precision],
+    );
+
+    const [text, setText] = React.useState<string>(formatValue(value));
 
     React.useEffect(() => {
-      setText(value.toFixed(precision));
-    }, [value, precision]);
+      setText(formatValue(value));
+    }, [formatValue, value]);
 
     const clamp = React.useCallback((n: number) => Math.min(max, Math.max(min, n)), [min, max]);
 
-    const commit = (raw: string) => {
+    const parseAndClamp = React.useCallback((raw: string) => {
       const n = parseFloat(raw);
       if (Number.isFinite(n)) {
-        const next = clamp(n);
-        onChange(next);
-        setText(next.toFixed(precision));
-      } else {
-        setText(value.toFixed(precision));
+        return clamp(n);
       }
-    };
+      return null;
+    }, [clamp]);
 
-    const bump = (delta: number) => {
-      const next = clamp(value + delta);
+    const commit = (raw: string) => {
+      const next = parseAndClamp(raw);
+      if (next === null) {
+        setText(formatValue(value));
+        return;
+      }
       onChange(next);
       setText(next.toFixed(precision));
     };
 
-    const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const bump = (delta: number) => {
+      const next = clamp((value ?? 0) + delta);
+      onChange(next);
+      setText(next.toFixed(precision));
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      onKeyDown?.(e);
+      if (e.defaultPrevented) return;
+
       if (e.key === "ArrowUp") {
         e.preventDefault();
         bump(step * (e.shiftKey ? 10 : 1));
@@ -93,9 +117,26 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
           inputMode="decimal"
           spellCheck={false}
           value={text}
-          onChange={(e) => setText(e.target.value)}
-          onBlur={(e) => commit(e.target.value)}
-          onKeyDown={onKeyDown}
+          onChange={(e) => {
+            setText(e.target.value);
+            if (commitOnChange) {
+              const next = parseAndClamp(e.target.value);
+              if (next !== null) {
+                onChange(next);
+              }
+            }
+          }}
+          onFocus={(e) => {
+            if (value === null) {
+              setText("");
+            }
+            onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            commit(e.target.value);
+            onBlur?.(e);
+          }}
+          onKeyDown={handleKeyDown}
           disabled={disabled}
           className="w-full caption text-foreground px-2 bg-transparent focus:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none text-right"
           {...rest}
