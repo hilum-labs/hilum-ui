@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.3
+
+### Patch Changes
+
+- 46ca3d9: Add responsive `StatusTile` and `StatusTileGrid` primitives for service health and operational status panels.
+
 ## 3.6.2
 
 ### Patch Changes
