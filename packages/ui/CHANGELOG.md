@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.7
+
+### Patch Changes
+
+- d160989: Pin dialog and alert dialog surfaces as full-width bottom sheets on mobile, even when callers provide max-width or rounded shape classes.
+
 ## 3.6.6
 
 ### Patch Changes
