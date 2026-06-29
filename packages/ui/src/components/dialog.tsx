@@ -84,10 +84,10 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
       size === "sm"
         ? container
           ? "max-w-[400px]"
-          : "sm:max-w-[400px]"
+          : "lg:max-w-[400px]"
         : container
           ? "max-w-[540px]"
-          : "sm:max-w-[540px]";
+          : "lg:max-w-[540px]";
 
     return (
       <DialogPrimitive.Portal forceMount container={container ?? undefined}>

@@ -1,19 +1,20 @@
 export const mobileDialogSheetContentClassName = [
   "fixed inset-x-0 bottom-0 z-50 max-h-[calc(100dvh-1rem)] w-full overflow-y-auto",
+  "max-lg:!w-full max-lg:!max-w-none max-lg:!rounded-b-none",
   "rounded-t-2xl border border-border bg-card p-6 shadow-elevated",
-  "max-md:pb-[calc(1.5rem+env(safe-area-inset-bottom))] max-md:pt-8",
-  "max-md:before:absolute max-md:before:left-1/2 max-md:before:top-3 max-md:before:h-1 max-md:before:w-9",
-  "max-md:before:-translate-x-1/2 max-md:before:rounded-full max-md:before:bg-muted-foreground/35",
+  "max-lg:pb-[calc(1.5rem+env(safe-area-inset-bottom))] max-lg:pt-8",
+  "max-lg:before:absolute max-lg:before:left-1/2 max-lg:before:top-3 max-lg:before:h-1 max-lg:before:w-9",
+  "max-lg:before:-translate-x-1/2 max-lg:before:rounded-full max-lg:before:bg-muted-foreground/35",
 ].join(" ");
 
 export const desktopDialogContentClassName =
-  "md:bottom-auto md:left-1/2 md:top-1/2 md:max-h-[calc(100dvh-2rem)] md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-2xl";
+  "lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:max-h-[calc(100dvh-2rem)] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-2xl";
 
 export const dialogSheetMotionClassName = [
   "data-[state=open]:animate-in data-[state=closed]:animate-out",
   "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
   "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-  "md:data-[state=closed]:zoom-out-95 md:data-[state=open]:zoom-in-95",
+  "lg:data-[state=closed]:zoom-out-95 lg:data-[state=open]:zoom-in-95",
 ].join(" ");
 
 export const mobilePopperSheetPositionClassName = [
