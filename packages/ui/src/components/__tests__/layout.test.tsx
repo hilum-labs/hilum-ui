@@ -306,6 +306,18 @@ describe("StackedList", () => {
     );
     expect(screen.getByRole("button", { name: "Clickable" })).toBeInTheDocument();
   });
+
+  it("supports the responsive surface", () => {
+    render(
+      <StackedList surface="responsive">
+        <StackedListItem>Responsive item</StackedListItem>
+      </StackedList>,
+    );
+
+    expect(screen.getByRole("list")).toHaveClass("max-sm:rounded-none");
+    expect(screen.getByRole("list")).toHaveClass("max-sm:border-x-0");
+    expect(screen.getByRole("list")).toHaveClass("max-sm:bg-transparent");
+  });
 });
 
 /* ------------------------------------------------------------------ */

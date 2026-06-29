@@ -5,10 +5,17 @@ interface StackedListProps {
   children: React.ReactNode;
   divided?: boolean;
   bordered?: boolean;
+  surface?: "card" | "responsive";
   className?: string;
 }
 
-function StackedList({ children, divided = true, bordered = true, className }: StackedListProps) {
+function StackedList({
+  children,
+  divided = true,
+  bordered = true,
+  surface = "card",
+  className,
+}: StackedListProps) {
   return (
     <ul
       role="list"
@@ -16,6 +23,8 @@ function StackedList({ children, divided = true, bordered = true, className }: S
         "overflow-hidden rounded-xl bg-card",
         bordered && "border border-border shadow-natural",
         divided && "divide-y divide-border",
+        surface === "responsive" &&
+          "rounded-lg shadow-none max-sm:rounded-none max-sm:border-x-0 max-sm:bg-transparent",
         className,
       )}
     >

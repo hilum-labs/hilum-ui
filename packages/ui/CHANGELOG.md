@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.9
+
+### Patch Changes
+
+- Add a responsive `StackedList` surface for desktop card lists that flatten on mobile.
+
 ## 3.6.8
 
 ### Patch Changes
