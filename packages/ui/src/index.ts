@@ -99,6 +99,7 @@ export * from "./components/stacked-list";
 export * from "./components/stat-card";
 export * from "./components/status-badge";
 export * from "./components/steps";
+export * from "./components/summary-tile";
 export * from "./components/switch";
 export * from "./components/table";
 export * from "./components/tabs";

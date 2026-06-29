@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage, AvatarWithStatus } from "../avatar";
 import { AvatarStack } from "../avatar-stack";
 import { StatCard, StatCardGrid } from "../stat-card";
+import { SummaryTile, SummaryTileGrid } from "../summary-tile";
 import { TitledCard } from "../titled-card";
 import { StatusBadge, statusBadgeVariantFor, statusLabel } from "../status-badge";
 import { Notification } from "../notification";
@@ -194,7 +195,9 @@ describe("StatCard", () => {
   });
 
   it("supports a responsive flat-mobile surface", () => {
-    const { container } = render(<StatCard label="Total users" value="1,234" variant="responsive" />);
+    const { container } = render(
+      <StatCard label="Total users" value="1,234" variant="responsive" />,
+    );
     expect(container.querySelector('[data-slot="stat-card"]')).toHaveClass(
       "bg-transparent",
       "sm:rounded-xl",
@@ -249,6 +252,56 @@ describe("TitledCard", () => {
       "max-sm:border-0",
       "max-sm:bg-transparent",
       "max-sm:shadow-none",
+    );
+  });
+
+  it("can flush content padding on mobile", () => {
+    const { container } = render(
+      <TitledCard title="Configuration center" contentPadding="flush-mobile">
+        Rows
+      </TitledCard>,
+    );
+
+    expect(container.querySelector('[data-slot="card-content"]')).toHaveClass("p-0", "sm:p-5");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* SummaryTile                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("SummaryTile", () => {
+  it("renders compact title, value, and description", () => {
+    render(
+      <SummaryTile
+        title="Automations"
+        value="Active"
+        description="Abandoned checkout and post-purchase flows."
+      />,
+    );
+
+    expect(screen.getByText("Automations")).toBeInTheDocument();
+    expect(screen.getByText("Active")).toBeInTheDocument();
+    expect(screen.getByText("Abandoned checkout and post-purchase flows.")).toBeInTheDocument();
+  });
+
+  it("renders a responsive flat-mobile summary grid", () => {
+    const { container } = render(
+      <SummaryTileGrid columns={3}>
+        <SummaryTile title="SEO" value="Ready" />
+      </SummaryTileGrid>,
+    );
+
+    expect(container.querySelector('[data-slot="summary-tile-grid"]')).toHaveClass(
+      "divide-y",
+      "md:grid",
+      "xl:grid-cols-3",
+    );
+    expect(container.querySelector('[data-slot="summary-tile"]')).toHaveClass(
+      "py-4",
+      "md:rounded-lg",
+      "md:border",
+      "md:bg-card",
     );
   });
 });

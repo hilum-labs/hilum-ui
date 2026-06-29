@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.2
+
+### Patch Changes
+
+- Add reusable `SummaryTile` components and a `TitledCard` mobile content padding option for compact dashboard panels.
+
 ## 3.6.1
 
 ### Patch Changes

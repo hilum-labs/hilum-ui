@@ -2,13 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
 import { CardHeading } from "./card-heading";
 
 interface TitledCardProps {
@@ -17,6 +11,7 @@ interface TitledCardProps {
   children?: React.ReactNode;
   actionButtons?: React.ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
+  contentPadding?: "default" | "flush-mobile" | "flush";
   className?: string;
   contentClassName?: string;
   containerClassName?: string;
@@ -29,6 +24,7 @@ function TitledCard({
   children,
   actionButtons,
   icon: Icon,
+  contentPadding = "default",
   className,
   contentClassName,
   containerClassName,
@@ -36,6 +32,14 @@ function TitledCard({
 }: TitledCardProps) {
   const hasHeader = Boolean(title || subtitle || actionButtons);
   const canUseCardHeading = Boolean(title) && !actionButtons && !titleClassName;
+  const contentPaddingClassName =
+    contentPadding === "flush"
+      ? "p-0"
+      : contentPadding === "flush-mobile"
+        ? "p-0 sm:p-5"
+        : hasHeader
+          ? "p-4 sm:p-5"
+          : "p-0 sm:p-5";
 
   return (
     <Card
@@ -84,11 +88,7 @@ function TitledCard({
       ) : null}
       {children && (
         <CardContent
-          className={cn(
-            hasHeader ? "p-4 sm:p-5" : "p-0 sm:p-5",
-            "min-w-0 max-sm:px-0",
-            contentClassName,
-          )}
+          className={cn(contentPaddingClassName, "min-w-0 max-sm:px-0", contentClassName)}
         >
           {children}
         </CardContent>
