@@ -5,10 +5,10 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.4.0
-- Component modules: 99
+- Package version: 3.5.2
+- Component modules: 100
 - Atom components: 70
-- Molecule components: 29
+- Molecule components: 30
 - Docs site: https://ui.hilum.dev
 - GitHub repository: https://github.com/hilum-labs/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
@@ -153,6 +153,7 @@ Primary exports:
 - Spinner (/atoms/spinner/) — Animated loading indicator for async operations.
 - Stacked List (/molecules/stacked-list/) — Vertically stacked rows with consistent padding and optional hover behavior. Composes: Badge · Avatar.
 - Stat Card (/molecules/stat-card/) — Metric display card with label, value, optional trend, and optional icon. Composes: Card · Badge · Icon.
+- Usage Bar (/molecules/usage-bar/) — Compact quota, readiness, and capacity meter with inline and stacked layouts. Composes: Progress.
 - Status Badge (/atoms/status-badge/) — Semantic badge that maps status values to labels, variants, icons, and dots.
 - Steps (/atoms/steps/) — Multi-step progress indicator with circles, bullets, and progress variants.
 - Switch (/atoms/switch/) — Toggle between two states, on and off.

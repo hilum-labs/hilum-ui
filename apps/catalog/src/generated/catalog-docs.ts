@@ -5572,6 +5572,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/molecules/usage-bar/": {
+    "accessibility": [
+      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
+      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
+      "Use status, selection, and disabled states that remain understandable without color alone."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "label, value, max, percent, valueLabel, showPercent"
+      }
+    ],
+    "exampleCode": "import { UsageBar } from \"@hilum/ui\"\n\n<UsageBar label=\"Products\" value={430} max={500} />\n<UsageBar label=\"Orders / month\" value={6200} max={10000} />\n<UsageBar label=\"Bandwidth (GB)\" value={82} max={100} />",
+    "kind": "component",
+    "path": "/molecules/usage-bar/",
+    "summary": "Compact quota, readiness, and capacity meter with automatic threshold tones.",
+    "title": "Usage Bar",
+    "whenNotToUse": [
+      "Do not use Usage Bar just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Usage Bar when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
   "/": {
     "grouping": [
       "The top-level  page groups the catalog by subcategory, making it easier to choose a family of patterns before drilling into an implementation.",

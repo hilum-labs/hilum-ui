@@ -684,6 +684,15 @@ const componentDefinitions = [
     "Card · Badge · Icon",
   ],
   [
+    "usage-bar",
+    "Usage Bar",
+    "molecules",
+    "Data Display",
+    "data",
+    "Compact quota, readiness, and capacity meter with inline and stacked layouts.",
+    "Progress",
+  ],
+  [
     "status-badge",
     "Status Badge",
     "atoms",

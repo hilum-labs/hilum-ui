@@ -10,8 +10,8 @@
     "url": "https://ui.hilum.dev"
   },
   "codeRepository": "https://github.com/hilum-labs/hilum-ui",
-  "dateModified": "2026-06-28T04:26:09.523Z",
-  "numberOfItems": 164,
+  "dateModified": "2026-06-29T05:50:27.949Z",
+  "numberOfItems": 165,
   "sections": [
     {
       "name": "Application UI",
@@ -65,7 +65,7 @@
       "name": "Molecules",
       "path": "/molecules",
       "url": "https://ui.hilum.dev/molecules/",
-      "count": 30
+      "count": 31
     },
     {
       "name": "Theming",
@@ -1710,6 +1710,16 @@
       "position": 164,
       "item": {
         "@type": "WebPage",
+        "name": "Usage Bar",
+        "url": "https://ui.hilum.dev/molecules/usage-bar/",
+        "description": "Usage Bar reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 165,
+      "item": {
+        "@type": "WebPage",
         "name": "Theming",
         "url": "https://ui.hilum.dev/theming/",
         "description": "Theming documentation for Hilum UI."
@@ -3020,6 +3030,14 @@
       "description": "Url Redirect Prompt reference in the Molecules section of Hilum UI.",
       "section": "Molecules",
       "sourcePath": "src/app/molecules/url-redirect-prompt/page.tsx"
+    },
+    {
+      "path": "/molecules/usage-bar",
+      "url": "https://ui.hilum.dev/molecules/usage-bar/",
+      "title": "Usage Bar",
+      "description": "Usage Bar reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/usage-bar/page.tsx"
     },
     {
       "path": "/theming",

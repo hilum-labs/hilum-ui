@@ -19,6 +19,7 @@ import { Route as DesignerPageRouteImport } from './app/designer/page'
 import { Route as BlocksPageRouteImport } from './app/blocks/page'
 import { Route as AtomsPageRouteImport } from './app/atoms/page'
 import { Route as ApplicationUiPageRouteImport } from './app/application-ui/page'
+import { Route as MoleculesUsageBarPageRouteImport } from './app/molecules/usage-bar/page'
 import { Route as MoleculesUrlRedirectPromptPageRouteImport } from './app/molecules/url-redirect-prompt/page'
 import { Route as MoleculesTitledCardPageRouteImport } from './app/molecules/titled-card/page'
 import { Route as MoleculesThinkingStepsPageRouteImport } from './app/molecules/thinking-steps/page'
@@ -222,6 +223,11 @@ const AtomsPageRoute = AtomsPageRouteImport.update({
 const ApplicationUiPageRoute = ApplicationUiPageRouteImport.update({
   id: '/application-ui/',
   path: '/application-ui/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoleculesUsageBarPageRoute = MoleculesUsageBarPageRouteImport.update({
+  id: '/molecules/usage-bar/',
+  path: '/molecules/usage-bar/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoleculesUrlRedirectPromptPageRoute =
@@ -1217,6 +1223,7 @@ export interface FileRoutesByFullPath {
   '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
+  '/molecules/usage-bar/': typeof MoleculesUsageBarPageRoute
 }
 export interface FileRoutesByTo {
   '/': typeof PageRoute
@@ -1383,6 +1390,7 @@ export interface FileRoutesByTo {
   '/molecules/thinking-steps': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card': typeof MoleculesTitledCardPageRoute
   '/molecules/url-redirect-prompt': typeof MoleculesUrlRedirectPromptPageRoute
+  '/molecules/usage-bar': typeof MoleculesUsageBarPageRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -1550,6 +1558,7 @@ export interface FileRoutesById {
   '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
+  '/molecules/usage-bar/': typeof MoleculesUsageBarPageRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -1718,6 +1727,7 @@ export interface FileRouteTypes {
     | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
     | '/molecules/url-redirect-prompt/'
+    | '/molecules/usage-bar/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -1884,6 +1894,7 @@ export interface FileRouteTypes {
     | '/molecules/thinking-steps'
     | '/molecules/titled-card'
     | '/molecules/url-redirect-prompt'
+    | '/molecules/usage-bar'
   id:
     | '__root__'
     | '/'
@@ -2050,6 +2061,7 @@ export interface FileRouteTypes {
     | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
     | '/molecules/url-redirect-prompt/'
+    | '/molecules/usage-bar/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -2217,6 +2229,7 @@ export interface RootRouteChildren {
   MoleculesThinkingStepsPageRoute: typeof MoleculesThinkingStepsPageRoute
   MoleculesTitledCardPageRoute: typeof MoleculesTitledCardPageRoute
   MoleculesUrlRedirectPromptPageRoute: typeof MoleculesUrlRedirectPromptPageRoute
+  MoleculesUsageBarPageRoute: typeof MoleculesUsageBarPageRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -2289,6 +2302,13 @@ declare module '@tanstack/react-router' {
       path: '/application-ui'
       fullPath: '/application-ui/'
       preLoaderRoute: typeof ApplicationUiPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/usage-bar/': {
+      id: '/molecules/usage-bar/'
+      path: '/molecules/usage-bar'
+      fullPath: '/molecules/usage-bar/'
+      preLoaderRoute: typeof MoleculesUsageBarPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/url-redirect-prompt/': {
@@ -3539,6 +3559,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesThinkingStepsPageRoute: MoleculesThinkingStepsPageRoute,
   MoleculesTitledCardPageRoute: MoleculesTitledCardPageRoute,
   MoleculesUrlRedirectPromptPageRoute: MoleculesUrlRedirectPromptPageRoute,
+  MoleculesUsageBarPageRoute: MoleculesUsageBarPageRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
