@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.1
+
+### Patch Changes
+
+- Render `DialogContent` as a true bottom sheet on mobile instead of keeping the panel centered.
+
 ## 3.6.0
 
 ### Minor Changes

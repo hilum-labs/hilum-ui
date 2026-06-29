@@ -97,11 +97,16 @@ describe("Dialog", () => {
     );
 
     expect(screen.getByRole("dialog")).toHaveClass(
+      "bottom-0",
+      "inset-x-0",
       "rounded-t-2xl",
       "max-sm:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "sm:top-1/2",
+      "sm:-translate-y-1/2",
       "data-[state=open]:slide-in-from-bottom",
       "sm:data-[state=open]:zoom-in-95",
     );
+    expect(screen.getByRole("dialog")).not.toHaveClass("top-1/2");
   });
 });
 

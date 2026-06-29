@@ -17,6 +17,11 @@ import { spring } from "../lib/springs";
 import { useShape } from "../lib/shape-context";
 import { SurfaceProvider, useSurface } from "../lib/surface-context";
 import { surfaceClasses } from "../lib/surface-classes";
+import {
+  desktopDialogContentClassName,
+  dialogSheetMotionClassName,
+  mobileDialogSheetContentClassName,
+} from "../lib/mobile-popper-sheet";
 import { Button } from "./button";
 
 const DIALOG_OFFSET = 4;
@@ -75,6 +80,15 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
     if (!mounted) return null;
 
+    const sizeClassName =
+      size === "sm"
+        ? container
+          ? "max-w-[400px]"
+          : "sm:max-w-[400px]"
+        : container
+          ? "max-w-[540px]"
+          : "sm:max-w-[540px]";
+
     return (
       <DialogPrimitive.Portal forceMount container={container ?? undefined}>
         <DialogPrimitive.Overlay asChild forceMount>
@@ -91,24 +105,31 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         <DialogPrimitive.Content ref={ref} asChild forceMount {...props}>
           <motion.div
             className={cn(
-              container ? "absolute" : "fixed",
-              "left-1/2 top-1/2 z-50 w-[calc(100%-2rem)]",
+              container
+                ? "absolute left-1/2 top-1/2 z-50 w-[calc(100%-2rem)]"
+                : [
+                    mobileDialogSheetContentClassName,
+                    desktopDialogContentClassName,
+                    dialogSheetMotionClassName,
+                  ],
               surfaceClasses(dialogLevel),
               "p-6 focus:outline-none",
-              "rounded-t-2xl max-sm:pb-[calc(1.5rem+env(safe-area-inset-bottom))] data-[state=open]:slide-in-from-bottom sm:data-[state=open]:zoom-in-95",
-              size === "sm" && "max-w-[400px]",
-              size === "lg" && "max-w-[540px]",
+              sizeClassName,
               shape.container,
               "rounded-t-2xl",
               className,
             )}
-            initial={{ opacity: 0, scale: 0.97, x: "-50%", y: "-50%" }}
-            animate={{
-              opacity: open ? 1 : 0,
-              scale: open ? 1 : 0.97,
-              x: "-50%",
-              y: "-50%",
-            }}
+            initial={container ? { opacity: 0, scale: 0.97, x: "-50%", y: "-50%" } : { opacity: 0 }}
+            animate={
+              container
+                ? {
+                    opacity: open ? 1 : 0,
+                    scale: open ? 1 : 0.97,
+                    x: "-50%",
+                    y: "-50%",
+                  }
+                : { opacity: open ? 1 : 0 }
+            }
             transition={open ? spring.slow : spring.slow.exit}
             onAnimationComplete={handleExitComplete}
           >
