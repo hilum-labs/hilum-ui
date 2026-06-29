@@ -701,6 +701,14 @@ const componentDefinitions = [
     "Semantic badge that maps status values to labels, variants, icons, and dots.",
   ],
   [
+    "summary-tile",
+    "Summary Tile",
+    "atoms",
+    "Data",
+    "data",
+    "Compact metric tiles for dense dashboard summaries and responsive mobile panels.",
+  ],
+  [
     "steps",
     "Steps",
     "atoms",
