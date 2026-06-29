@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.5.2
+
+### Patch Changes
+
+- Add a shared `UsageBar` component for compact quota, readiness, and capacity meters across admin and dashboard surfaces.
+
 ## 3.5.1
 
 ## 3.5.0

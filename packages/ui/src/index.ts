@@ -108,3 +108,4 @@ export * from "./components/toggle-group";
 export * from "./components/toggle";
 export * from "./components/tooltip";
 export * from "./components/url-redirect-prompt";
+export * from "./components/usage-bar";
