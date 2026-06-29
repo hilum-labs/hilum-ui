@@ -100,7 +100,10 @@ describe("Dialog", () => {
       "bottom-0",
       "inset-x-0",
       "rounded-t-2xl",
-      "max-lg:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "max-lg:!fixed",
+      "max-lg:!top-auto",
+      "max-lg:!max-w-none",
+      "max-lg:!pb-[calc(1.25rem+env(safe-area-inset-bottom))]",
       "lg:top-1/2",
       "lg:-translate-y-1/2",
       "data-[state=open]:slide-in-from-bottom",
@@ -127,7 +130,10 @@ describe("AlertDialog", () => {
 
     expect(screen.getByRole("alertdialog")).toHaveClass(
       "rounded-t-2xl",
-      "max-lg:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "max-lg:!fixed",
+      "max-lg:!top-auto",
+      "max-lg:!max-w-none",
+      "max-lg:!pb-[calc(1.25rem+env(safe-area-inset-bottom))]",
       "data-[state=open]:slide-in-from-bottom",
       "lg:data-[state=open]:zoom-in-95",
     );
