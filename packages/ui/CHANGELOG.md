@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.6
+
+### Patch Changes
+
+- 781d225: Allow caller-provided dialog max-width classes to override default desktop sizing while preserving mobile sheet behavior.
+
 ## 3.6.5
 
 ### Patch Changes
