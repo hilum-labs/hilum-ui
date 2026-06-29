@@ -4,7 +4,8 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 import { motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
-import { ColorPicker } from "./color-picker";
+import { ColorPickerPopover } from "./color-picker";
+import type { ControlMobileSurface } from "./input";
 
 interface ColorInputProps {
   value: string;
@@ -15,6 +16,7 @@ interface ColorInputProps {
   className?: string;
   disabled?: boolean;
   presets?: string[];
+  mobileSurface?: ControlMobileSurface;
 }
 
 /**
@@ -29,6 +31,7 @@ function ColorInput({
   className,
   disabled,
   presets,
+  mobileSurface = "default",
 }: ColorInputProps) {
   const shape = useShape();
   const [hex, setHex] = React.useState(value);
@@ -42,6 +45,11 @@ function ColorInput({
     else setHex(value);
   };
 
+  const mobileSurfaceClass =
+    mobileSurface === "flush"
+      ? "max-sm:rounded-none max-sm:border-x-0 max-sm:border-t-0 max-sm:bg-transparent max-sm:px-0 max-sm:shadow-none max-sm:focus-within:ring-0"
+      : "";
+
   return (
     <div
       className={cn(
@@ -49,16 +57,19 @@ function ColorInput({
         shape.input,
         "focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20",
         motionClasses,
+        mobileSurfaceClass,
         disabled && "opacity-50 pointer-events-none",
         className,
       )}
     >
-      <ColorPicker
+      <ColorPickerPopover
         value={value}
         onChange={onChange}
         {...(presets !== undefined && { presets })}
         {...(disabled !== undefined && { disabled })}
-        className="h-full w-8 border-0 rounded-none focus-visible:ring-0"
+        triggerShowValue={false}
+        hideEyedropper
+        triggerClassName="h-full w-8 border-0 rounded-none bg-transparent px-1 hover:bg-hover focus-visible:ring-0"
       />
       <input
         type="text"

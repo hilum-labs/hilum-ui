@@ -87,7 +87,7 @@ const CODE = {
     <NavigationMenuItem>
       <NavigationMenuTrigger>Products</NavigationMenuTrigger>
       <NavigationMenuContent>
-        <div className="grid w-[480px] grid-cols-3 gap-1 p-3">
+        <div className="grid w-[min(480px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-3">
           <ProductCard
             icon={<Box size={16} />}
             title="Components"
@@ -111,7 +111,7 @@ const CODE = {
     <NavigationMenuItem>
       <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
       <NavigationMenuContent>
-        <div className="grid w-[360px] grid-cols-2 gap-1 p-3">
+        <div className="grid w-[min(360px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-2">
           <DevLink title="API Reference" description="Explore the full REST API" />
           <DevLink title="SDKs" description="Client libraries for every platform" />
           <DevLink title="Documentation" description="Guides and tutorials" />
@@ -200,13 +200,13 @@ function SectionHeading({ label }: { label: string }) {
 
 function HorizontalNavDemo() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="max-w-full justify-start">
+      <NavigationMenuList className="flex-wrap justify-start">
         {/* Products */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Products</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid w-[480px] grid-cols-3 gap-1 p-3">
+            <div className="grid w-[min(480px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-3">
               <ProductCard
                 icon={<Box size={16} />}
                 title="Components"
@@ -230,7 +230,7 @@ function HorizontalNavDemo() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid w-[360px] grid-cols-2 gap-1 p-3">
+            <div className="grid w-[min(360px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-2">
               <DevLink title="API Reference" description="Explore the full REST API" />
               <DevLink title="SDKs" description="Client libraries for every platform" />
               <DevLink title="Documentation" description="Guides, tutorials, and examples" />
@@ -262,15 +262,15 @@ function HorizontalNavDemo() {
 
 function WithViewportDemo() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="max-w-full justify-start">
+      <NavigationMenuList className="flex-wrap justify-start">
         <NavigationMenuIndicator />
 
         {/* Products */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Products</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid w-[480px] grid-cols-3 gap-1 p-3">
+            <div className="grid w-[min(480px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-3">
               <ProductCard
                 icon={<Box size={16} />}
                 title="Components"
@@ -294,7 +294,7 @@ function WithViewportDemo() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Developers</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid w-[360px] grid-cols-2 gap-1 p-3">
+            <div className="grid w-[min(360px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-2">
               <DevLink title="API Reference" description="Explore the full REST API" />
               <DevLink title="SDKs" description="Client libraries for every platform" />
               <DevLink title="Documentation" description="Guides, tutorials, and examples" />
@@ -307,7 +307,7 @@ function WithViewportDemo() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <div className="grid w-[340px] grid-cols-1 gap-1 p-3">
+            <div className="grid w-[min(340px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3">
               <DevLink title="Blog" description="Product updates, guides, and design articles" />
               <DevLink title="Changelog" description="See what's new in each release" />
               <DevLink
@@ -338,7 +338,7 @@ function WithViewportDemo() {
 
 function NavigationMenuPage() {
   return (
-    <div className="mx-auto max-w-7xl px-8 py-10">
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
           <a href="/" className="hover:text-ground-700">
@@ -367,18 +367,22 @@ function NavigationMenuPage() {
           title="Horizontal navigation"
           description="Products and Developers dropdowns with rich content, plus plain nav links"
           code={CODE.horizontal}
-          previewClassName="min-h-48 items-start pt-8"
+          previewClassName="min-h-48 items-start overflow-x-auto pt-8"
         >
-          <HorizontalNavDemo />
+          <div className="w-full min-w-0">
+            <HorizontalNavDemo />
+          </div>
         </PreviewBlock>
 
         <PreviewBlock
           title="With viewport"
           description="Animated floating viewport panel with cross-fade transitions between items"
           code={CODE.withViewport}
-          previewClassName="min-h-64 items-start pt-8"
+          previewClassName="min-h-64 items-start overflow-x-auto pt-8"
         >
-          <WithViewportDemo />
+          <div className="w-full min-w-0">
+            <WithViewportDemo />
+          </div>
         </PreviewBlock>
       </div>
     </div>

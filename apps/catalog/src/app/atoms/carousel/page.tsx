@@ -148,7 +148,7 @@ const CODE = {
   <Carousel>
     <CarouselContent>
       {cards.map((card, i) => (
-        <CarouselItem key={i} className="basis-1/3">
+        <CarouselItem key={i} className="basis-full sm:basis-1/2 lg:basis-1/3">
           <div className="bg-white rounded-xl border border-ground-100 p-5 shadow-natural">
             <div className="mb-3 flex size-10 items-center justify-center rounded-full bg-brand-primary/10">
               <card.Icon className="size-4 text-brand-primary" />
@@ -248,7 +248,7 @@ function CarouselPage() {
           code={CODE.imageCarousel}
           previewClassName="py-10"
         >
-          <div className="w-full px-12">
+          <div className="w-full px-8 sm:px-12">
             <Carousel opts={{ loop: true }}>
               <CarouselContent>
                 {IMAGE_SLIDES.map((slide, i) => (
@@ -275,11 +275,11 @@ function CarouselPage() {
           code={CODE.cardCarousel}
           previewClassName="py-10"
         >
-          <div className="w-full px-12">
+          <div className="w-full px-8 sm:px-12">
             <Carousel>
               <CarouselContent>
                 {CARD_SLIDES.map((card, i) => (
-                  <CarouselItem key={i} className="basis-1/3">
+                  <CarouselItem key={i} className="basis-full sm:basis-1/2 lg:basis-1/3">
                     <div className="h-full rounded-xl border border-ground-100 bg-white p-5 shadow-natural">
                       <div className="mb-3 flex size-10 items-center justify-center rounded-full bg-brand-primary/10">
                         <card.Icon className="size-4 text-brand-primary" />
@@ -307,7 +307,7 @@ function CarouselPage() {
           code={CODE.testimonialCarousel}
           previewClassName="py-10"
         >
-          <div className="w-full px-12">
+          <div className="w-full px-8 sm:px-12">
             <Carousel>
               <CarouselContent>
                 {TESTIMONIALS.map((t, i) => (
@@ -333,7 +333,7 @@ function CarouselPage() {
           code={CODE.verticalCarousel}
           previewClassName="py-10"
         >
-          <div className="w-full px-12">
+          <div className="w-full px-8 sm:px-12">
             <Carousel opts={{ axis: "y" }} orientation="vertical">
               <div className="h-[300px]">
                 <CarouselContent className="h-[300px]">

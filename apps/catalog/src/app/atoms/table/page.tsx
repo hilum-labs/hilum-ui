@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { ChevronUp, ChevronDown, ChevronsUpDown, Trash2 } from "lucide-react";
 import {
   Table,
@@ -727,8 +727,8 @@ function TablePage() {
                   const rows = transactions.filter((t) => t.status === group);
                   if (!rows.length) return null;
                   return (
-                    <>
-                      <TableRow key={group} className="hover:bg-transparent">
+                    <Fragment key={group}>
+                      <TableRow className="hover:bg-transparent">
                         <TableCell colSpan={4} className="bg-ground-50 py-2 label text-ground-500">
                           {group}
                         </TableCell>
@@ -741,7 +741,7 @@ function TablePage() {
                           <TableCell className="text-ground-500">{t.date}</TableCell>
                         </TableRow>
                       ))}
-                    </>
+                    </Fragment>
                   );
                 })}
               </TableBody>

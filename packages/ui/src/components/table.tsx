@@ -22,19 +22,38 @@ import { useProximityHover } from "../hooks/use-proximity-hover";
 interface TableContextValue {
   registerItem: (index: number, element: HTMLElement | null) => void;
   activeIndex: number | null;
+  density: TableDensity;
+  mobileDensity: TableDensity;
 }
 
 const TableContext = createContext<TableContextValue | null>(null);
 
 // ── Table ────────────────────────────────────────────────
 
+type TableDensity = "default" | "compact";
+type TableMobileSurface = "default" | "flat";
+
 interface TableProps extends HTMLAttributes<HTMLTableElement> {
   children: ReactNode;
   containerClassName?: string;
+  density?: TableDensity;
+  mobileDensity?: TableDensity;
+  mobileSurface?: TableMobileSurface;
 }
 
 const Table = forwardRef<HTMLTableElement, TableProps>(
-  ({ children, className, containerClassName, ...props }, ref) => {
+  (
+    {
+      children,
+      className,
+      containerClassName,
+      density = "default",
+      mobileDensity = "default",
+      mobileSurface = "default",
+      ...props
+    },
+    ref,
+  ) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const { activeIndex, itemRects, sessionRef, handlers, registerItem, measureItems } =
@@ -47,10 +66,15 @@ const Table = forwardRef<HTMLTableElement, TableProps>(
     const activeRect = activeIndex !== null ? itemRects[activeIndex] : null;
 
     return (
-      <TableContext.Provider value={{ registerItem, activeIndex }}>
+      <TableContext.Provider value={{ registerItem, activeIndex, density, mobileDensity }}>
         <div
           ref={containerRef}
-          className={cn("relative", containerClassName)}
+          className={cn(
+            "relative",
+            mobileSurface === "flat" &&
+              "max-sm:-mx-4 max-sm:overflow-x-auto max-sm:rounded-none max-sm:border-x-0",
+            containerClassName,
+          )}
           onMouseEnter={handlers.onMouseEnter}
           onMouseMove={handlers.onMouseMove}
           onMouseLeave={handlers.onMouseLeave}
@@ -86,7 +110,7 @@ const Table = forwardRef<HTMLTableElement, TableProps>(
 
           <table
             ref={ref}
-            className={cn("w-full text-[13px] border-collapse", className)}
+            className={cn("w-full border-collapse text-[13px]", className)}
             {...props}
           >
             {children}
@@ -168,9 +192,20 @@ TableRow.displayName = "TableRow";
 // ── TableHead ────────────────────────────────────────────
 
 const TableHead = forwardRef<HTMLTableCellElement, ThHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
-    <th ref={ref} className={cn("px-3 py-2 text-left text-foreground", className)} {...props} />
-  ),
+  ({ className, ...props }, ref) => {
+    const ctx = useContext(TableContext);
+    const densityClass = ctx?.density === "compact" ? "px-2 py-1.5" : "px-3 py-2";
+    const mobileDensityClass =
+      ctx?.mobileDensity === "compact" ? "max-sm:px-2 max-sm:py-1.5" : "";
+
+    return (
+      <th
+        ref={ref}
+        className={cn(densityClass, mobileDensityClass, "text-left text-foreground", className)}
+        {...props}
+      />
+    );
+  },
 );
 
 TableHead.displayName = "TableHead";
@@ -178,16 +213,25 @@ TableHead.displayName = "TableHead";
 // ── TableCell ────────────────────────────────────────────
 
 const TableCell = forwardRef<HTMLTableCellElement, TdHTMLAttributes<HTMLTableCellElement>>(
-  ({ className, ...props }, ref) => (
-    <td
-      ref={ref}
-      className={cn(
-        "px-3 py-2 text-muted-foreground transition-colors duration-80 group-[.is-active]/row:text-foreground",
-        className,
-      )}
-      {...props}
-    />
-  ),
+  ({ className, ...props }, ref) => {
+    const ctx = useContext(TableContext);
+    const densityClass = ctx?.density === "compact" ? "px-2 py-1.5" : "px-3 py-2";
+    const mobileDensityClass =
+      ctx?.mobileDensity === "compact" ? "max-sm:px-2 max-sm:py-1.5" : "";
+
+    return (
+      <td
+        ref={ref}
+        className={cn(
+          densityClass,
+          mobileDensityClass,
+          "text-muted-foreground transition-colors duration-80 group-[.is-active]/row:text-foreground",
+          className,
+        )}
+        {...props}
+      />
+    );
+  },
 );
 
 TableCell.displayName = "TableCell";
@@ -213,3 +257,4 @@ TableCaption.displayName = "TableCaption";
 // ── Exports ──────────────────────────────────────────────
 
 export { Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption };
+export type { TableDensity, TableMobileSurface, TableProps };

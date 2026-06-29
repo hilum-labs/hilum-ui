@@ -7,6 +7,14 @@ import { motionClasses } from "../lib/interaction";
 /*  Card root                                                          */
 /* ------------------------------------------------------------------ */
 
+type CardMobileSurface = "default" | "flat" | "flush";
+
+const cardMobileSurfaceClasses: Record<CardMobileSurface, string> = {
+  default: "",
+  flat: "max-sm:rounded-none max-sm:border-x-0 max-sm:border-y max-sm:bg-transparent max-sm:shadow-none",
+  flush: "max-sm:rounded-none max-sm:border-0 max-sm:bg-transparent max-sm:shadow-none",
+};
+
 const cardVariants = cva(["rounded-xl", motionClasses], {
   variants: {
     variant: {
@@ -24,14 +32,16 @@ const cardVariants = cva(["rounded-xl", motionClasses], {
   },
 });
 
-interface CardProps extends React.ComponentProps<"div">, VariantProps<typeof cardVariants> {}
+interface CardProps extends React.ComponentProps<"div">, VariantProps<typeof cardVariants> {
+  mobileSurface?: CardMobileSurface;
+}
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, ...props }, ref) => (
+  ({ className, variant, mobileSurface = "default", ...props }, ref) => (
     <div
       ref={ref}
       data-slot="card"
-      className={cn(cardVariants({ variant }), className)}
+      className={cn(cardVariants({ variant }), cardMobileSurfaceClasses[mobileSurface], className)}
       {...props}
     />
   ),
@@ -136,3 +146,4 @@ export {
   CardMedia,
   cardVariants,
 };
+export type { CardMobileSurface, CardProps };

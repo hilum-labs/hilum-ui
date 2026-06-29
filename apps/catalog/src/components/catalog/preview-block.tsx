@@ -58,7 +58,7 @@ export function PreviewBlock({
       {/* Preview area */}
       <div
         className={cn(
-          "flex min-h-32 flex-wrap items-center justify-center gap-3 p-8",
+          "flex min-h-32 min-w-0 flex-wrap items-center justify-center gap-3 overflow-x-auto p-4 sm:p-8",
           "bg-white",
           previewClassName,
         )}

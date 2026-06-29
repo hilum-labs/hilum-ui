@@ -319,7 +319,7 @@ function DefaultSidebarContent() {
 
 function SidebarPage() {
   return (
-    <div className="mx-auto max-w-7xl px-8 py-10">
+    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
       {/* Page header */}
       <div className="mb-10">
         <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
@@ -365,7 +365,7 @@ function SidebarPage() {
                 </header>
                 <div className="flex flex-1 flex-col gap-4 p-6">
                   {/* Placeholder content */}
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                     {[
                       { label: "Total Revenue", value: "$48,295", delta: "+12%" },
                       { label: "Active Users", value: "2,841", delta: "+5%" },
@@ -540,7 +540,7 @@ function SidebarPage() {
                   <p className="caption text-ground-400">
                     Hover over the icons to see tooltips. Click the toggle to expand.
                   </p>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {Array.from({ length: 4 }).map((_, i) => (
                       <div
                         key={i}

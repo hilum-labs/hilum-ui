@@ -24,6 +24,7 @@ import { useProximityHover } from "../hooks/use-proximity-hover";
 import { useShape } from "../lib/shape-context";
 import { useScrollEdges, ScrollEdgeCue } from "../lib/scroll-fade";
 import { Elevated } from "../lib/elevated";
+import type { ControlDensity, ControlMobileSurface } from "./input";
 
 // ---------------------------------------------------------------------------
 // Select context
@@ -140,15 +141,48 @@ const triggerVariants = cva(
   },
 );
 
+const selectTriggerDensityClasses: Record<ControlDensity, string> = {
+  default: "h-9 px-3",
+  compact: "h-8 px-2.5",
+};
+
+const selectTriggerMobileDensityClasses: Record<ControlDensity, string> = {
+  default: "",
+  compact: "max-sm:h-8 max-sm:px-2.5",
+};
+
+const selectTriggerMobileSurfaceClasses: Record<ControlMobileSurface, string> = {
+  default: "",
+  flush:
+    "max-sm:rounded-none max-sm:border-x-0 max-sm:border-t-0 max-sm:bg-transparent max-sm:px-0 max-sm:shadow-none max-sm:focus-visible:ring-0 max-sm:focus-visible:ring-offset-0",
+};
+
 interface SelectTriggerProps
   extends HTMLAttributes<HTMLButtonElement>, VariantProps<typeof triggerVariants> {
   icon?: IconComponent;
   placeholder?: string;
   error?: string;
+  density?: ControlDensity;
+  mobileDensity?: ControlDensity;
+  mobileSurface?: ControlMobileSurface;
 }
 
 const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
-  ({ className, variant, icon: Icon, placeholder = "Select…", error, children, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      icon: Icon,
+      placeholder = "Select…",
+      error,
+      children,
+      density = "default",
+      mobileDensity = "default",
+      mobileSurface = "default",
+      ...props
+    },
+    ref,
+  ) => {
     const { value, open, setOpen, disabled, triggerRef, labelMap } = useSelectContext();
     const shape = useShape();
     const label = value ? (labelMap.current.get(value) ?? value) : undefined;
@@ -179,6 +213,9 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
           aria-invalid={!!error || undefined}
           className={cn(
             triggerVariants({ variant }),
+            selectTriggerDensityClasses[density],
+            selectTriggerMobileDensityClasses[mobileDensity],
+            selectTriggerMobileSurfaceClasses[mobileSurface],
             shape.input,
             error && "border-destructive/50 hover:border-destructive/50",
             className,

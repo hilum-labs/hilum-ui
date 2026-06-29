@@ -405,13 +405,16 @@ function SidebarGroupLabel({
   ...props
 }: React.ComponentProps<"div"> & { asChild?: boolean }) {
   const Comp = asChild ? Slot.Root : "div";
+  const state = useOptionalSidebar()?.state ?? "expanded";
 
   return (
     <Comp
       data-sidebar="group-label"
+      data-state={state}
       className={cn(
         "flex h-8 shrink-0 items-center rounded-md px-2 label text-muted-foreground",
         "outline-none ring-ring transition-[margin,opacity] duration-200 ease-linear",
+        "data-[state=collapsed]:h-0 data-[state=collapsed]:m-0 data-[state=collapsed]:overflow-hidden data-[state=collapsed]:p-0 data-[state=collapsed]:opacity-0",
         "group-data-[state=collapsed]/sidebar-wrapper:opacity-0",
         "group-data-[state=collapsed]/sidebar-wrapper:h-0",
         "group-data-[state=collapsed]/sidebar-wrapper:m-0",
@@ -492,10 +495,12 @@ function SidebarMenuButton({
   ...props
 }: SidebarMenuButtonProps) {
   const Comp = asChild ? (Slot.Root as React.ElementType) : "button";
+  const state = useOptionalSidebar()?.state ?? "expanded";
 
   const button = (
     <Comp
       data-sidebar="menu-button"
+      data-state={state}
       data-active={isActive}
       data-size={size}
       className={cn(
@@ -508,6 +513,7 @@ function SidebarMenuButton({
         "active:bg-muted",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&>svg]:size-4 [&>svg]:shrink-0",
+        "[&>span]:min-w-0 [&>span]:truncate",
         // Size variants
         size === "sm" && "h-7 text-xs",
         size === "lg" && "h-10",
@@ -517,9 +523,12 @@ function SidebarMenuButton({
           "hover:bg-brand-primary/15 hover:text-brand-primary",
         ],
         // Collapsed state
+        "data-[state=collapsed]:size-9 data-[state=collapsed]:justify-center data-[state=collapsed]:p-0",
+        "data-[state=collapsed]:[&>span]:hidden",
         "group-data-[state=collapsed]/sidebar-wrapper:justify-center",
         "group-data-[state=collapsed]/sidebar-wrapper:size-9",
         "group-data-[state=collapsed]/sidebar-wrapper:p-0",
+        "group-data-[state=collapsed]/sidebar-wrapper:[&>span]:hidden",
         className,
       )}
       {...props}
@@ -590,12 +599,16 @@ function SidebarMenuAction({
 /* ------------------------------------------------------------------ */
 
 function SidebarMenuBadge({ className, ...props }: React.ComponentProps<"div">) {
+  const state = useOptionalSidebar()?.state ?? "expanded";
+
   return (
     <div
       data-sidebar="menu-badge"
+      data-state={state}
       className={cn(
         "absolute right-1 flex h-5 min-w-5 items-center justify-center rounded-full",
         "caption font-medium bg-muted text-muted-foreground px-1",
+        "data-[state=collapsed]:hidden",
         "group-data-[state=collapsed]/sidebar-wrapper:hidden",
         className,
       )}
@@ -637,11 +650,15 @@ function SidebarMenuSkeleton({
 /* ------------------------------------------------------------------ */
 
 function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
+  const state = useOptionalSidebar()?.state ?? "expanded";
+
   return (
     <ul
       data-sidebar="menu-sub"
+      data-state={state}
       className={cn(
         "mx-3.5 flex min-w-0 flex-col gap-1 border-l border-border pl-3",
+        "data-[state=collapsed]:hidden",
         "group-data-[state=collapsed]/sidebar-wrapper:hidden",
         className,
       )}

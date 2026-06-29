@@ -232,11 +232,11 @@ function ChartPage() {
           title="Bar Chart"
           description="Monthly revenue as grouped bars"
           code={CODE.barChart}
-          previewClassName="p-6"
+          previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
             <p className="subheading mb-4 text-ground-900">Monthly Revenue</p>
-            <ChartContainer height={280}>
+            <ChartContainer height={280} className="min-w-0">
               <BarChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f2eeea" />
                 <XAxis dataKey="month" {...axisProps} />
@@ -253,11 +253,11 @@ function ChartPage() {
           title="Line Chart"
           description="User growth over time as a continuous line"
           code={CODE.lineChart}
-          previewClassName="p-6"
+          previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
             <p className="subheading mb-4 text-ground-900">User Growth</p>
-            <ChartContainer height={280}>
+            <ChartContainer height={280} className="min-w-0">
               <LineChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f2eeea" />
                 <XAxis dataKey="month" {...axisProps} />
@@ -281,11 +281,11 @@ function ChartPage() {
           title="Area Chart"
           description="Weekly sessions vs. bounces with filled gradient areas"
           code={CODE.areaChart}
-          previewClassName="p-6"
+          previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
             <p className="subheading mb-4 text-ground-900">Weekly Traffic</p>
-            <ChartContainer height={280}>
+            <ChartContainer height={280} className="min-w-0">
               <AreaChart data={weeklyData}>
                 <defs>
                   <linearGradient id="colorSessions" x1="0" y1="0" x2="0" y2="1">
@@ -326,11 +326,11 @@ function ChartPage() {
           title="Donut Chart"
           description="Category breakdown with a custom legend"
           code={CODE.pieChart}
-          previewClassName="p-6"
+          previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
             <p className="subheading mb-4 text-ground-900">Team Breakdown</p>
-            <ChartContainer height={220}>
+            <ChartContainer height={220} className="min-w-0">
               <PieChart>
                 <Pie
                   data={categoryData}
@@ -369,11 +369,11 @@ function ChartPage() {
           title="Grouped Bar Chart"
           description="Revenue and conversions compared side-by-side"
           code={CODE.multiBar}
-          previewClassName="p-6"
+          previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
             <p className="subheading mb-4 text-ground-900">Revenue vs Conversions</p>
-            <ChartContainer height={280}>
+            <ChartContainer height={280} className="min-w-0">
               <BarChart data={monthlyData} barSize={10}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f2eeea" />
                 <XAxis dataKey="month" {...axisProps} />

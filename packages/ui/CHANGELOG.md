@@ -1,5 +1,16 @@
 # @hilum/ui
 
+## 3.7.0
+
+### Minor Changes
+
+- Add native mobile surface and density props to cards, tables, and form controls so app screens can use compact, flush mobile layouts without app-level style overrides.
+
+### Patch Changes
+
+- 585c22b: Keep dialog bottom-sheet behavior through tablet/mobile widths and prevent per-dialog max-width classes from narrowing mobile sheets.
+- Keep dialogs and alert dialogs pinned as full-width bottom sheets on mobile, even when callers provide max-width or rounded shape classes.
+
 ## 3.6.12
 
 ### Patch Changes
@@ -43,11 +54,6 @@
 - 781d225: Allow caller-provided dialog max-width classes to override default desktop sizing while preserving mobile sheet behavior.
 
 ## 3.6.5
-
-### Patch Changes
-
-- 585c22b: Keep dialog bottom-sheet behavior through tablet/mobile widths and prevent per-dialog max-width classes from narrowing mobile sheets.
-
 ## 3.6.4
 
 ### Patch Changes

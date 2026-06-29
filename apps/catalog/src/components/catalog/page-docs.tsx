@@ -7,7 +7,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 
 function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl border border-ground-100 bg-white p-6 shadow-natural">
+    <div className="min-w-0 rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
       {children}
     </div>
   );
@@ -50,10 +50,10 @@ function ApiList({ items }: { items: CatalogDocApiItem[] }) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="rounded-xl border border-ground-100 bg-ground-50 px-4 py-3"
+          className="min-w-0 rounded-xl border border-ground-100 bg-ground-50 px-4 py-3"
         >
           <p className="body font-medium text-ground-900">{item.label}</p>
-          <p className="caption mt-1 text-ground-500">{item.description}</p>
+          <p className="caption mt-1 break-words text-ground-500">{item.description}</p>
         </div>
       ))}
     </div>
@@ -62,7 +62,7 @@ function ApiList({ items }: { items: CatalogDocApiItem[] }) {
 
 function ExampleCode({ code }: { code: string }) {
   return (
-    <pre className="overflow-x-auto rounded-xl bg-ground-950 px-5 py-5 caption leading-relaxed text-ground-300">
+    <pre className="max-w-full overflow-x-auto rounded-xl bg-ground-950 px-5 py-5 caption leading-relaxed text-ground-300">
       <code className="font-mono">{code}</code>
     </pre>
   );
@@ -70,7 +70,7 @@ function ExampleCode({ code }: { code: string }) {
 
 function ComponentDocBlock({ doc }: { doc: Extract<CatalogPageDoc, { kind: "component" }> }) {
   return (
-    <section className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)]">
+    <section className="mb-10 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)]">
       <Card>
         <div className="space-y-6">
           <div>
@@ -96,7 +96,7 @@ function ComponentDocBlock({ doc }: { doc: Extract<CatalogPageDoc, { kind: "comp
         </div>
       </Card>
 
-      <div className="space-y-6">
+      <div className="min-w-0 space-y-6">
         <Card>
           <SectionLabel>Key Props / API</SectionLabel>
           <div className="mt-3">
@@ -123,7 +123,7 @@ function CollectionDocBlock({
   doc: Extract<CatalogPageDoc, { kind: "collection" | "section" }>;
 }) {
   return (
-    <section className="mb-10 grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)]">
+    <section className="mb-10 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)]">
       <Card>
         <div className="space-y-6">
           <div>

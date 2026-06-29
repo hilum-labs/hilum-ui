@@ -2,7 +2,14 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  type CardMobileSurface,
+} from "./card";
 import { CardHeading } from "./card-heading";
 
 interface TitledCardProps {
@@ -12,6 +19,7 @@ interface TitledCardProps {
   actionButtons?: React.ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
   contentPadding?: "default" | "flush-mobile" | "flush";
+  mobileSurface?: CardMobileSurface;
   className?: string;
   contentClassName?: string;
   containerClassName?: string;
@@ -25,6 +33,7 @@ function TitledCard({
   actionButtons,
   icon: Icon,
   contentPadding = "default",
+  mobileSurface = "flush",
   className,
   contentClassName,
   containerClassName,
@@ -40,12 +49,13 @@ function TitledCard({
         : hasHeader
           ? "p-4 sm:p-5"
           : "p-0 sm:p-5";
+  const isMobileFlat = mobileSurface === "flat" || mobileSurface === "flush";
 
   return (
     <Card
+      mobileSurface={mobileSurface}
       className={cn(
         "min-w-0 overflow-hidden border border-border bg-card shadow-natural",
-        "max-sm:rounded-none max-sm:border-0 max-sm:bg-transparent max-sm:shadow-none",
         containerClassName,
         className,
       )}
@@ -55,12 +65,17 @@ function TitledCard({
         <CardHeading
           title={title!}
           {...(subtitle ? { description: subtitle } : {})}
-          className="max-sm:border-b-0 max-sm:px-0 max-sm:pb-3"
+          className={cn(isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3")}
         >
           {Icon && <Icon className="size-5 shrink-0 text-muted-foreground" />}
         </CardHeading>
       ) : hasHeader ? (
-        <CardHeader className="flex flex-col gap-3 border-b border-border p-4 max-sm:border-b-0 max-sm:px-0 max-sm:pb-3 sm:flex-row sm:items-start sm:justify-between sm:p-5">
+        <CardHeader
+          className={cn(
+            "flex flex-col gap-3 border-b border-border p-4 sm:flex-row sm:items-start sm:justify-between sm:p-5",
+            isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3",
+          )}
+        >
           <div className="min-w-0 flex-1">
             {title && (
               <CardTitle
@@ -88,7 +103,12 @@ function TitledCard({
       ) : null}
       {children && (
         <CardContent
-          className={cn(contentPaddingClassName, "min-w-0 max-sm:px-0", contentClassName)}
+          className={cn(
+            contentPaddingClassName,
+            "min-w-0",
+            isMobileFlat && "max-sm:px-0",
+            contentClassName,
+          )}
         >
           {children}
         </CardContent>
