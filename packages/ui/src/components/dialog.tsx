@@ -159,7 +159,16 @@ function DialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
 }
 
 function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex justify-end gap-2 mt-6", className)} {...props} />;
+  return (
+    <div
+      className={cn(
+        "mt-6 flex justify-end gap-2",
+        "max-sm:flex-col-reverse max-sm:[&>*]:w-full",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
 
 const DialogTitle = forwardRef<

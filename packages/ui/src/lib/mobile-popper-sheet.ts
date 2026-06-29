@@ -1,8 +1,10 @@
 export const mobileDialogSheetContentClassName = [
   "fixed inset-x-0 bottom-0 z-50 max-h-[calc(100dvh-1rem)] w-full overflow-y-auto",
-  "max-lg:!w-full max-lg:!max-w-none max-lg:!rounded-b-none",
+  "max-lg:!fixed max-lg:!inset-x-0 max-lg:!bottom-0 max-lg:!top-auto",
+  "max-lg:!w-full max-lg:!max-w-none max-lg:!max-h-[calc(100dvh-1rem)]",
+  "max-lg:!rounded-b-none max-lg:overscroll-contain",
   "rounded-t-2xl border border-border bg-card p-6 shadow-elevated",
-  "max-lg:pb-[calc(1.5rem+env(safe-area-inset-bottom))] max-lg:pt-8",
+  "max-lg:!px-5 max-lg:!pb-[calc(1.25rem+env(safe-area-inset-bottom))] max-lg:!pt-8",
   "max-lg:before:absolute max-lg:before:left-1/2 max-lg:before:top-3 max-lg:before:h-1 max-lg:before:w-9",
   "max-lg:before:-translate-x-1/2 max-lg:before:rounded-full max-lg:before:bg-muted-foreground/35",
 ].join(" ");

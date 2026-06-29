@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.10
+
+### Patch Changes
+
+- Tighten mobile dialog sheet positioning and action layout for touch viewports.
+
 ## 3.6.9
 
 ### Patch Changes
