@@ -246,33 +246,34 @@ function SearchableTable<T extends { id: string | number }>({
 
   return (
     <div className="space-y-4">
-      <div className="md:rounded-lg md:border md:border-border md:bg-muted/30 md:p-3">
-        <div className="flex flex-col gap-2.5 md:flex-row md:flex-wrap md:items-center md:justify-start md:gap-3">
-          <InputGroup
-            placeholder={searchPlaceholder}
-            value={searchTerm}
-            onChange={(event) => onSearchChange(event.target.value)}
-            leadingIcon={<Search className="size-4" />}
-            wrapperClassName="w-full min-w-0 md:min-w-[280px] md:max-w-[520px] md:flex-1 md:basis-[340px]"
-            className="h-9 bg-background"
-          />
-          <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap md:w-auto md:justify-end">
-            {Object.entries(filters).map(([key, filter]) => (
-              <Select key={key} value={filter.value} onValueChange={filter.onChange}>
-                <SelectTrigger className="h-9 w-full bg-background sm:w-[180px]">
-                  <Filter className="mr-2 size-4" />
-                  <SelectValue placeholder={filter.placeholder} />
-                </SelectTrigger>
-                <SelectContent>
-                  {filter.options.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      {option.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            ))}
-          </div>
+      <div
+        data-slot="searchable-table-toolbar"
+        className="flex flex-col gap-2.5 md:flex-row md:flex-wrap md:items-center md:justify-start md:gap-3"
+      >
+        <InputGroup
+          placeholder={searchPlaceholder}
+          value={searchTerm}
+          onChange={(event) => onSearchChange(event.target.value)}
+          leadingIcon={<Search className="size-4" />}
+          wrapperClassName="w-full min-w-0 md:min-w-[280px] md:max-w-[520px] md:flex-1 md:basis-[340px]"
+          className="h-9 bg-background"
+        />
+        <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap md:w-auto md:justify-end">
+          {Object.entries(filters).map(([key, filter]) => (
+            <Select key={key} value={filter.value} onValueChange={filter.onChange}>
+              <SelectTrigger className="h-9 w-full bg-background sm:w-[180px]">
+                <Filter className="mr-2 size-4" />
+                <SelectValue placeholder={filter.placeholder} />
+              </SelectTrigger>
+              <SelectContent>
+                {filter.options.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    {option.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          ))}
         </div>
       </div>
 

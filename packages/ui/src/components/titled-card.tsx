@@ -40,6 +40,7 @@ function TitledCard({
   titleClassName,
 }: TitledCardProps) {
   const hasHeader = Boolean(title || subtitle || actionButtons);
+  const hasContent = Boolean(children);
   const canUseCardHeading = Boolean(title) && !actionButtons && !titleClassName;
   const contentPaddingClassName =
     contentPadding === "flush"
@@ -54,18 +55,17 @@ function TitledCard({
   return (
     <Card
       mobileSurface={mobileSurface}
-      className={cn(
-        "min-w-0 overflow-hidden border border-border bg-card shadow-natural",
-        containerClassName,
-        className,
-      )}
+      className={cn("min-w-0 overflow-hidden", containerClassName, className)}
       data-slot="titled-card"
     >
       {canUseCardHeading ? (
         <CardHeading
           title={title!}
           {...(subtitle ? { description: subtitle } : {})}
-          className={cn(isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3")}
+          className={cn(
+            !hasContent && "border-b-0",
+            isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3",
+          )}
         >
           {Icon && <Icon className="size-5 shrink-0 text-muted-foreground" />}
         </CardHeading>
@@ -73,6 +73,7 @@ function TitledCard({
         <CardHeader
           className={cn(
             "flex flex-col gap-3 border-b border-border p-4 sm:flex-row sm:items-start sm:justify-between sm:p-5",
+            !hasContent && "border-b-0",
             isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3",
           )}
         >

@@ -17,6 +17,7 @@ import { StatCard, StatCardGrid } from "../stat-card";
 import { StatusTile, StatusTileGrid } from "../status-tile";
 import { SummaryTile, SummaryTileGrid } from "../summary-tile";
 import { TitledCard } from "../titled-card";
+import { SearchableTable, type SearchableTableColumn } from "../searchable-table";
 import { StatusBadge, statusBadgeVariantFor, statusLabel } from "../status-badge";
 import { Notification } from "../notification";
 import { MediaAssetGrid, MediaAssetGridItem } from "../media-asset-grid";
@@ -269,6 +270,15 @@ describe("TitledCard", () => {
     );
   });
 
+  it("delegates its surface to Card instead of forcing a bordered variant", () => {
+    const { container } = render(<TitledCard title="No metaobjects yet" />);
+    const card = container.querySelector('[data-slot="titled-card"]');
+
+    expect(card).toHaveClass("bg-card", "shadow-natural");
+    expect(card).not.toHaveClass("border");
+    expect(card?.firstElementChild).not.toHaveClass("border-b");
+  });
+
   it("can flush content padding on mobile", () => {
     const { container } = render(
       <TitledCard title="Configuration center" contentPadding="flush-mobile">
@@ -277,6 +287,32 @@ describe("TitledCard", () => {
     );
 
     expect(container.querySelector('[data-slot="card-content"]')).toHaveClass("p-0", "sm:p-5");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* SearchableTable                                                      */
+/* ------------------------------------------------------------------ */
+
+describe("SearchableTable", () => {
+  it("renders search controls directly without a nested toolbar panel", () => {
+    type Row = { id: string; name: string };
+    const columns: SearchableTableColumn<Row>[] = [{ key: "name", label: "Name" }];
+    const { container } = render(
+      <SearchableTable
+        data={[{ id: "1", name: "Linen Utility Shirt" }]}
+        columns={columns}
+        searchTerm=""
+        onSearchChange={() => undefined}
+        searchPlaceholder="Search products..."
+      />,
+    );
+    const toolbar = container.querySelector('[data-slot="searchable-table-toolbar"]');
+
+    expect(toolbar).toHaveClass("flex");
+    expect(toolbar).not.toHaveClass("md:border");
+    expect(toolbar).not.toHaveClass("md:bg-muted/30");
+    expect(screen.getByPlaceholderText("Search products...")).toBeInTheDocument();
   });
 });
 

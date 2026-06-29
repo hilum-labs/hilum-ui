@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.7.1
+
+### Patch Changes
+
+- Remove nested SearchableTable toolbar chrome and let TitledCard inherit Card surface styling.
+
 ## 3.7.0
 
 ### Minor Changes
@@ -54,6 +60,7 @@
 - 781d225: Allow caller-provided dialog max-width classes to override default desktop sizing while preserving mobile sheet behavior.
 
 ## 3.6.5
+
 ## 3.6.4
 
 ### Patch Changes
