@@ -14,6 +14,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage, AvatarWithStatus } from "../avatar";
 import { AvatarStack } from "../avatar-stack";
 import { StatCard, StatCardGrid } from "../stat-card";
+import { StatusTile, StatusTileGrid } from "../status-tile";
 import { SummaryTile, SummaryTileGrid } from "../summary-tile";
 import { TitledCard } from "../titled-card";
 import { StatusBadge, statusBadgeVariantFor, statusLabel } from "../status-badge";
@@ -302,6 +303,48 @@ describe("SummaryTile", () => {
       "md:rounded-lg",
       "md:border",
       "md:bg-card",
+    );
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* StatusTile                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("StatusTile", () => {
+  it("renders title, status badge, description, and meta", () => {
+    render(
+      <StatusTile
+        title="Renderer"
+        status="healthy"
+        description="operational"
+        meta={<span>https://renderer.internal/ready</span>}
+      />,
+    );
+
+    expect(screen.getByText("Renderer")).toBeInTheDocument();
+    expect(screen.getByText("Healthy")).toBeInTheDocument();
+    expect(screen.getByText("operational")).toBeInTheDocument();
+    expect(screen.getByText("https://renderer.internal/ready")).toBeInTheDocument();
+  });
+
+  it("renders a responsive flat-mobile status grid", () => {
+    const { container } = render(
+      <StatusTileGrid columns={3}>
+        <StatusTile title="Catalog" status="healthy" />
+      </StatusTileGrid>,
+    );
+
+    expect(container.querySelector('[data-slot="status-tile-grid"]')).toHaveClass(
+      "divide-y",
+      "md:grid",
+      "xl:grid-cols-3",
+    );
+    expect(container.querySelector('[data-slot="status-tile"]')).toHaveClass(
+      "py-4",
+      "md:rounded-lg",
+      "md:border",
+      "md:bg-background",
     );
   });
 });

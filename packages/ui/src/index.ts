@@ -98,6 +98,7 @@ export * from "./components/spinner";
 export * from "./components/stacked-list";
 export * from "./components/stat-card";
 export * from "./components/status-badge";
+export * from "./components/status-tile";
 export * from "./components/steps";
 export * from "./components/summary-tile";
 export * from "./components/switch";

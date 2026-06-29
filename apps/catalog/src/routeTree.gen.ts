@@ -104,6 +104,7 @@ import { Route as AtomsTablePageRouteImport } from './app/atoms/table/page'
 import { Route as AtomsSwitchPageRouteImport } from './app/atoms/switch/page'
 import { Route as AtomsSummaryTilePageRouteImport } from './app/atoms/summary-tile/page'
 import { Route as AtomsStepsPageRouteImport } from './app/atoms/steps/page'
+import { Route as AtomsStatusTilePageRouteImport } from './app/atoms/status-tile/page'
 import { Route as AtomsStatusBadgePageRouteImport } from './app/atoms/status-badge/page'
 import { Route as AtomsSpinnerPageRouteImport } from './app/atoms/spinner/page'
 import { Route as AtomsSonnerPageRouteImport } from './app/atoms/sonner/page'
@@ -699,6 +700,11 @@ const AtomsStepsPageRoute = AtomsStepsPageRouteImport.update({
   path: '/atoms/steps/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsStatusTilePageRoute = AtomsStatusTilePageRouteImport.update({
+  id: '/atoms/status-tile/',
+  path: '/atoms/status-tile/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsStatusBadgePageRoute = AtomsStatusBadgePageRouteImport.update({
   id: '/atoms/status-badge/',
   path: '/atoms/status-badge/',
@@ -1146,6 +1152,7 @@ export interface FileRoutesByFullPath {
   '/atoms/sonner/': typeof AtomsSonnerPageRoute
   '/atoms/spinner/': typeof AtomsSpinnerPageRoute
   '/atoms/status-badge/': typeof AtomsStatusBadgePageRoute
+  '/atoms/status-tile/': typeof AtomsStatusTilePageRoute
   '/atoms/steps/': typeof AtomsStepsPageRoute
   '/atoms/summary-tile/': typeof AtomsSummaryTilePageRoute
   '/atoms/switch/': typeof AtomsSwitchPageRoute
@@ -1314,6 +1321,7 @@ export interface FileRoutesByTo {
   '/atoms/sonner': typeof AtomsSonnerPageRoute
   '/atoms/spinner': typeof AtomsSpinnerPageRoute
   '/atoms/status-badge': typeof AtomsStatusBadgePageRoute
+  '/atoms/status-tile': typeof AtomsStatusTilePageRoute
   '/atoms/steps': typeof AtomsStepsPageRoute
   '/atoms/summary-tile': typeof AtomsSummaryTilePageRoute
   '/atoms/switch': typeof AtomsSwitchPageRoute
@@ -1483,6 +1491,7 @@ export interface FileRoutesById {
   '/atoms/sonner/': typeof AtomsSonnerPageRoute
   '/atoms/spinner/': typeof AtomsSpinnerPageRoute
   '/atoms/status-badge/': typeof AtomsStatusBadgePageRoute
+  '/atoms/status-tile/': typeof AtomsStatusTilePageRoute
   '/atoms/steps/': typeof AtomsStepsPageRoute
   '/atoms/summary-tile/': typeof AtomsSummaryTilePageRoute
   '/atoms/switch/': typeof AtomsSwitchPageRoute
@@ -1653,6 +1662,7 @@ export interface FileRouteTypes {
     | '/atoms/sonner/'
     | '/atoms/spinner/'
     | '/atoms/status-badge/'
+    | '/atoms/status-tile/'
     | '/atoms/steps/'
     | '/atoms/summary-tile/'
     | '/atoms/switch/'
@@ -1821,6 +1831,7 @@ export interface FileRouteTypes {
     | '/atoms/sonner'
     | '/atoms/spinner'
     | '/atoms/status-badge'
+    | '/atoms/status-tile'
     | '/atoms/steps'
     | '/atoms/summary-tile'
     | '/atoms/switch'
@@ -1989,6 +2000,7 @@ export interface FileRouteTypes {
     | '/atoms/sonner/'
     | '/atoms/spinner/'
     | '/atoms/status-badge/'
+    | '/atoms/status-tile/'
     | '/atoms/steps/'
     | '/atoms/summary-tile/'
     | '/atoms/switch/'
@@ -2158,6 +2170,7 @@ export interface RootRouteChildren {
   AtomsSonnerPageRoute: typeof AtomsSonnerPageRoute
   AtomsSpinnerPageRoute: typeof AtomsSpinnerPageRoute
   AtomsStatusBadgePageRoute: typeof AtomsStatusBadgePageRoute
+  AtomsStatusTilePageRoute: typeof AtomsStatusTilePageRoute
   AtomsStepsPageRoute: typeof AtomsStepsPageRoute
   AtomsSummaryTilePageRoute: typeof AtomsSummaryTilePageRoute
   AtomsSwitchPageRoute: typeof AtomsSwitchPageRoute
@@ -2912,6 +2925,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsStepsPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/status-tile/': {
+      id: '/atoms/status-tile/'
+      path: '/atoms/status-tile'
+      fullPath: '/atoms/status-tile/'
+      preLoaderRoute: typeof AtomsStatusTilePageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/status-badge/': {
       id: '/atoms/status-badge/'
       path: '/atoms/status-badge'
@@ -3495,6 +3515,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsSonnerPageRoute: AtomsSonnerPageRoute,
   AtomsSpinnerPageRoute: AtomsSpinnerPageRoute,
   AtomsStatusBadgePageRoute: AtomsStatusBadgePageRoute,
+  AtomsStatusTilePageRoute: AtomsStatusTilePageRoute,
   AtomsStepsPageRoute: AtomsStepsPageRoute,
   AtomsSummaryTilePageRoute: AtomsSummaryTilePageRoute,
   AtomsSwitchPageRoute: AtomsSwitchPageRoute,
