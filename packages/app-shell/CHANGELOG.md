@@ -1,5 +1,11 @@
 # @hilum/app-shell
 
+## 3.5.1
+
+### Patch Changes
+
+- Make `PageHeader` use the dashboard mobile-safe responsive layout by default so product apps can consume it directly without local heading adapters.
+
 ## 3.5.0
 
 ## 3.4.0

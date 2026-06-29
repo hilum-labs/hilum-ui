@@ -65,7 +65,7 @@ function PageHeader({
   return (
     <div
       className={cn(
-        "flex items-start justify-between gap-6 pb-6 border-b border-border",
+        "flex min-w-0 flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-start sm:justify-between",
         className,
       )}
     >
