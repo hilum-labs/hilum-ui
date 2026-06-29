@@ -7,6 +7,7 @@ import { focusRingClasses, motionClasses, pressClasses } from "../lib/interactio
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
+  mobileDialogSheetStyle,
   mobileDialogSheetContentClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -37,9 +38,11 @@ const AlertDialogContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof AlertDialog.Content>
 >(({ className, children, ...props }, ref) => (
   <AlertDialog.Portal>
+    <style>{mobileDialogSheetStyle}</style>
     <AlertDialogOverlay />
     <AlertDialog.Content
       ref={ref}
+      data-hilum-dialog-sheet="true"
       className={cn(
         mobileDialogSheetContentClassName,
         desktopDialogContentClassName,
