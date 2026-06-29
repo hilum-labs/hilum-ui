@@ -6,6 +6,7 @@ interface StatCardProps {
   label?: string;
   title?: string;
   value?: string | number;
+  variant?: "default" | "responsive";
   trend?: {
     value: string;
     direction: "up" | "down" | "neutral";
@@ -37,6 +38,7 @@ function StatCard({
   label,
   title,
   value,
+  variant = "default",
   trend,
   icon,
   children,
@@ -58,11 +60,15 @@ function StatCard({
     down: TrendingDown,
     neutral: Minus,
   };
+  const surfaceClass =
+    variant === "responsive"
+      ? "min-w-0 border-border bg-transparent p-4 sm:rounded-xl sm:border sm:bg-card sm:p-5 sm:shadow-natural"
+      : "min-w-0 rounded-xl border border-border bg-card p-4 shadow-natural sm:p-5";
 
   return (
     <div
       className={cn(
-        "min-w-0 rounded-xl border border-border bg-card p-4 shadow-natural sm:p-5",
+        surfaceClass,
         containerClassName,
         className,
       )}

@@ -193,6 +193,17 @@ describe("StatCard", () => {
     }
   });
 
+  it("supports a responsive flat-mobile surface", () => {
+    const { container } = render(<StatCard label="Total users" value="1,234" variant="responsive" />);
+    expect(container.querySelector('[data-slot="stat-card"]')).toHaveClass(
+      "bg-transparent",
+      "sm:rounded-xl",
+      "sm:border",
+      "sm:bg-card",
+      "sm:shadow-natural",
+    );
+  });
+
   it("renders empty grid slots for configurable dashboards", () => {
     const { container } = render(
       <StatCardGrid maxSlots={3} showEmptySlots>

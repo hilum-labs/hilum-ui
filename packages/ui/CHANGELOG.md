@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.5.4
+
+### Patch Changes
+
+- Add a responsive StatCard surface for flat mobile metrics and carded desktop dashboards.
+
 ## 3.5.3
 
 ### Patch Changes
