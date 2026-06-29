@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.11
+
+### Patch Changes
+
+- Add `CheckboxCard` for reusable bordered checkbox option rows.
+
 ## 3.6.10
 
 ### Patch Changes

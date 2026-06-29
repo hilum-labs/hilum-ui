@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { Checkbox } from "../checkbox";
+import { CheckboxCard } from "../checkbox-card";
 import { CheckboxGroup } from "../checkbox-group";
 import { RadioGroup, RadioGroupItem } from "../radio-group";
 import { Switch } from "../switch";
@@ -40,6 +41,29 @@ describe("Checkbox", () => {
   it("is disabled when disabled prop is set", () => {
     render(<Checkbox disabled />);
     expect(screen.getByRole("checkbox")).toBeDisabled();
+  });
+});
+
+describe("CheckboxCard", () => {
+  it("renders a labelled checkbox card", () => {
+    render(<CheckboxCard label="Enable storefront filters" />);
+    expect(screen.getByText("Enable storefront filters")).toBeInTheDocument();
+    expect(screen.getByRole("checkbox")).toBeInTheDocument();
+  });
+
+  it("toggles through the card surface", async () => {
+    const user = userEvent.setup();
+    const onCheckedChange = vi.fn();
+    render(<CheckboxCard label="Show vendor" onCheckedChange={onCheckedChange} />);
+
+    await user.click(screen.getByText("Show vendor"));
+
+    expect(onCheckedChange).toHaveBeenCalledWith(true);
+  });
+
+  it("renders optional description text", () => {
+    render(<CheckboxCard label="Product schema" description="Expose product JSON-LD." />);
+    expect(screen.getByText("Expose product JSON-LD.")).toBeInTheDocument();
   });
 });
 

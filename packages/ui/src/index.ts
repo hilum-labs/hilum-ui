@@ -34,6 +34,7 @@ export * from "./components/carousel";
 export * from "./components/chart";
 export * from "./components/chat-message";
 export * from "./components/checkbox";
+export * from "./components/checkbox-card";
 export * from "./components/checkbox-group";
 export * from "./components/collapsible";
 export * from "./components/color-input";
