@@ -100,11 +100,11 @@ describe("Dialog", () => {
       "bottom-0",
       "inset-x-0",
       "rounded-t-2xl",
-      "max-sm:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
-      "sm:top-1/2",
-      "sm:-translate-y-1/2",
+      "max-md:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "md:top-1/2",
+      "md:-translate-y-1/2",
       "data-[state=open]:slide-in-from-bottom",
-      "sm:data-[state=open]:zoom-in-95",
+      "md:data-[state=open]:zoom-in-95",
     );
     expect(screen.getByRole("dialog")).not.toHaveClass("top-1/2");
   });
@@ -127,9 +127,9 @@ describe("AlertDialog", () => {
 
     expect(screen.getByRole("alertdialog")).toHaveClass(
       "rounded-t-2xl",
-      "max-sm:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
+      "max-md:pb-[calc(1.5rem+env(safe-area-inset-bottom))]",
       "data-[state=open]:slide-in-from-bottom",
-      "sm:data-[state=open]:zoom-in-95",
+      "md:data-[state=open]:zoom-in-95",
     );
   });
 });
@@ -156,9 +156,9 @@ describe("DropdownMenu", () => {
 
     expect(screen.getByRole("menu")).toHaveAttribute("data-hilum-mobile-sheet", "true");
     expect(screen.getByRole("menu")).toHaveClass(
-      "max-sm:!fixed",
-      "max-sm:rounded-2xl",
-      "max-sm:data-[state=open]:slide-in-from-bottom",
+      "max-md:!fixed",
+      "max-md:rounded-2xl",
+      "max-md:data-[state=open]:slide-in-from-bottom",
     );
   });
 });
@@ -186,9 +186,9 @@ describe("Select", () => {
 
     expect(screen.getByRole("listbox")).toHaveAttribute("data-hilum-mobile-sheet", "true");
     expect(screen.getByRole("listbox")).toHaveClass(
-      "max-sm:!fixed",
-      "max-sm:rounded-2xl",
-      "max-sm:data-[state=open]:slide-in-from-bottom",
+      "max-md:!fixed",
+      "max-md:rounded-2xl",
+      "max-md:data-[state=open]:slide-in-from-bottom",
     );
   });
 });
@@ -213,9 +213,9 @@ describe("Popover", () => {
 
     expect(screen.getByText("Filter content")).toHaveAttribute("data-hilum-mobile-sheet", "true");
     expect(screen.getByText("Filter content")).toHaveClass(
-      "max-sm:!fixed",
-      "max-sm:rounded-2xl",
-      "max-sm:data-[state=open]:slide-in-from-bottom",
+      "max-md:!fixed",
+      "max-md:rounded-2xl",
+      "max-md:data-[state=open]:slide-in-from-bottom",
     );
   });
 });
@@ -259,8 +259,8 @@ describe("ContextMenu", () => {
 
     expect(screen.getByRole("menu")).toHaveAttribute("data-hilum-mobile-sheet", "true");
     expect(screen.getByRole("menu")).toHaveClass(
-      "max-sm:rounded-2xl",
-      "max-sm:data-[state=open]:slide-in-from-bottom",
+      "max-md:rounded-2xl",
+      "max-md:data-[state=open]:slide-in-from-bottom",
     );
   });
 });

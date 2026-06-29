@@ -643,12 +643,12 @@ describe("Combobox", () => {
     await user.click(screen.getByRole("combobox"));
 
     expect(screen.getByRole("button", { name: "Close options" })).toHaveClass(
-      "max-sm:block",
+      "max-md:block",
       "backdrop-blur-sm",
     );
     expect(screen.getByRole("listbox").parentElement).toHaveClass(
-      "max-sm:fixed",
-      "max-sm:rounded-2xl",
+      "max-md:fixed",
+      "max-md:rounded-2xl",
     );
   });
 

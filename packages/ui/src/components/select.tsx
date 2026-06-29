@@ -448,7 +448,7 @@ const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               }}
               onKeyDown={handleKeyDown}
               className={cn(
-                `relative flex flex-col gap-0.5 max-h-[300px] overflow-y-auto ${shape.container} p-1 select-none outline-none max-sm:!fixed max-sm:rounded-2xl max-sm:data-[state=open]:slide-in-from-bottom`,
+                `relative flex flex-col gap-0.5 max-h-[300px] overflow-y-auto ${shape.container} p-1 select-none outline-none max-md:!fixed max-md:rounded-2xl max-md:data-[state=open]:slide-in-from-bottom`,
                 className,
               )}
             >

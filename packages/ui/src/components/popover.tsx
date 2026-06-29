@@ -32,7 +32,7 @@ const PopoverContent = React.forwardRef<
           motionClasses,
           mobilePopperSheetPositionClassName,
           mobilePopperSheetSurfaceClassName,
-          "max-sm:overflow-y-auto max-sm:px-4 max-sm:pb-4 max-sm:pt-6",
+          "max-md:overflow-y-auto max-md:px-4 max-md:pb-4 max-md:pt-6",
           "data-[state=open]:animate-in data-[state=closed]:animate-out",
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
