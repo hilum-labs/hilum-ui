@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.12
+
+### Patch Changes
+
+- Add shared `outlined` and `elevated` Card variants for bordered application surfaces.
+
 ## 3.6.11
 
 ### Patch Changes

@@ -36,6 +36,28 @@ import { Avatar, AvatarFallback } from "@hilum/ui"
   </CardContent>
 </Card>`,
 
+  cardOutlined: `{/* Outlined card — standard bordered product/admin surface */}
+<Card variant="outlined" className="w-72">
+  <CardHeader>
+    <CardTitle>Plan summary</CardTitle>
+    <CardDescription>Current usage and billing status.</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-sm text-ground-500">Starter · 24 active products</p>
+  </CardContent>
+</Card>`,
+
+  cardElevated: `{/* Elevated card — high-emphasis auth or focused panel surface */}
+<Card variant="elevated" className="w-72">
+  <CardHeader>
+    <CardTitle>Secure access</CardTitle>
+    <CardDescription>Authenticate before managing this workspace.</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-sm text-ground-500">Session protected by Hilum Identity.</p>
+  </CardContent>
+</Card>`,
+
   cardFeature: `{/* Feature card — icon + label + description on gray */}
 <div className="w-56 rounded-2xl bg-ground-50 p-6 flex flex-col gap-10">
   <div className="size-14 rounded-xl bg-white shadow-sm flex items-center justify-center">
@@ -200,6 +222,40 @@ function CardPage() {
                   <p className="text-xs text-ground-400">Grade 10 · Class A</p>
                 </div>
               </div>
+            </CardContent>
+          </Card>
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="Outlined"
+          description="variant=outlined — shared bordered surface for product and admin panels"
+          code={CODE.cardOutlined}
+          previewClassName="items-start"
+        >
+          <Card variant="outlined" className="w-72">
+            <CardHeader>
+              <CardTitle>Plan summary</CardTitle>
+              <CardDescription>Current usage and billing status.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-ground-500">Starter · 24 active products</p>
+            </CardContent>
+          </Card>
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="Elevated"
+          description="variant=elevated — shared high-emphasis surface for auth and focused panels"
+          code={CODE.cardElevated}
+          previewClassName="items-start"
+        >
+          <Card variant="elevated" className="w-72">
+            <CardHeader>
+              <CardTitle>Secure access</CardTitle>
+              <CardDescription>Authenticate before managing this workspace.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-ground-500">Session protected by Hilum Identity.</p>
             </CardContent>
           </Card>
         </PreviewBlock>

@@ -11,6 +11,8 @@ const cardVariants = cva(["rounded-xl", motionClasses], {
   variants: {
     variant: {
       default: "bg-card shadow-natural",
+      outlined: "border border-border bg-card shadow-natural",
+      elevated: "border border-border bg-card shadow-elevated",
       muted: "bg-muted shadow-natural",
       ghost: "bg-transparent",
       responsive:
