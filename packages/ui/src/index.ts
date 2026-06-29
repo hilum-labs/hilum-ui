@@ -65,6 +65,7 @@ export * from "./components/input-otp";
 export * from "./components/input";
 export * from "./components/kbd";
 export * from "./components/label";
+export * from "./components/media-asset-grid";
 export * from "./components/media-asset-card";
 export * from "./components/media-object";
 export * from "./components/menu-item";

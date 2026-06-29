@@ -19,6 +19,7 @@ import { SummaryTile, SummaryTileGrid } from "../summary-tile";
 import { TitledCard } from "../titled-card";
 import { StatusBadge, statusBadgeVariantFor, statusLabel } from "../status-badge";
 import { Notification } from "../notification";
+import { MediaAssetGrid, MediaAssetGridItem } from "../media-asset-grid";
 import { MediaAssetCard } from "../media-asset-card";
 import { MediaObject } from "../media-object";
 
@@ -473,6 +474,24 @@ describe("MediaObject", () => {
 /* ------------------------------------------------------------------ */
 
 describe("MediaAssetCard", () => {
+  it("renders media assets in a responsive semantic list", () => {
+    render(
+      <MediaAssetGrid columns={5}>
+        <MediaAssetGridItem>
+          <MediaAssetCard name="hero.png" meta="24 KB" />
+        </MediaAssetGridItem>
+        <MediaAssetGridItem>
+          <MediaAssetCard name="catalog.csv" meta="2 KB" mediaType="file" />
+        </MediaAssetGridItem>
+      </MediaAssetGrid>,
+    );
+
+    expect(screen.getByRole("list")).toHaveClass("divide-y", "sm:grid", "xl:grid-cols-5");
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+    expect(screen.getByText("hero.png")).toBeInTheDocument();
+    expect(screen.getByText("catalog.csv")).toBeInTheDocument();
+  });
+
   it("renders image media, name, and meta", () => {
     render(
       <MediaAssetCard

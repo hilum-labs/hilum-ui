@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.8
+
+### Patch Changes
+
+- Add `MediaAssetGrid` and `MediaAssetGridItem` for responsive media library layouts.
+
 ## 3.6.7
 
 ### Patch Changes
