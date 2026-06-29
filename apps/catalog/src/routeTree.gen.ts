@@ -33,6 +33,7 @@ import { Route as MoleculesNotificationPageRouteImport } from './app/molecules/n
 import { Route as MoleculesNavMenuPageRouteImport } from './app/molecules/nav-menu/page'
 import { Route as MoleculesMobileDrawerPageRouteImport } from './app/molecules/mobile-drawer/page'
 import { Route as MoleculesMediaObjectPageRouteImport } from './app/molecules/media-object/page'
+import { Route as MoleculesMediaAssetGridPageRouteImport } from './app/molecules/media-asset-grid/page'
 import { Route as MoleculesMediaAssetCardPageRouteImport } from './app/molecules/media-asset-card/page'
 import { Route as MoleculesInputMessagePageRouteImport } from './app/molecules/input-message/page'
 import { Route as MoleculesInputGroupPageRouteImport } from './app/molecules/input-group/page'
@@ -304,6 +305,12 @@ const MoleculesMediaObjectPageRoute =
   MoleculesMediaObjectPageRouteImport.update({
     id: '/molecules/media-object/',
     path: '/molecules/media-object/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MoleculesMediaAssetGridPageRoute =
+  MoleculesMediaAssetGridPageRouteImport.update({
+    id: '/molecules/media-asset-grid/',
+    path: '/molecules/media-asset-grid/',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MoleculesMediaAssetCardPageRoute =
@@ -1224,6 +1231,7 @@ export interface FileRoutesByFullPath {
   '/molecules/input-group/': typeof MoleculesInputGroupPageRoute
   '/molecules/input-message/': typeof MoleculesInputMessagePageRoute
   '/molecules/media-asset-card/': typeof MoleculesMediaAssetCardPageRoute
+  '/molecules/media-asset-grid/': typeof MoleculesMediaAssetGridPageRoute
   '/molecules/media-object/': typeof MoleculesMediaObjectPageRoute
   '/molecules/mobile-drawer/': typeof MoleculesMobileDrawerPageRoute
   '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
@@ -1393,6 +1401,7 @@ export interface FileRoutesByTo {
   '/molecules/input-group': typeof MoleculesInputGroupPageRoute
   '/molecules/input-message': typeof MoleculesInputMessagePageRoute
   '/molecules/media-asset-card': typeof MoleculesMediaAssetCardPageRoute
+  '/molecules/media-asset-grid': typeof MoleculesMediaAssetGridPageRoute
   '/molecules/media-object': typeof MoleculesMediaObjectPageRoute
   '/molecules/mobile-drawer': typeof MoleculesMobileDrawerPageRoute
   '/molecules/nav-menu': typeof MoleculesNavMenuPageRoute
@@ -1563,6 +1572,7 @@ export interface FileRoutesById {
   '/molecules/input-group/': typeof MoleculesInputGroupPageRoute
   '/molecules/input-message/': typeof MoleculesInputMessagePageRoute
   '/molecules/media-asset-card/': typeof MoleculesMediaAssetCardPageRoute
+  '/molecules/media-asset-grid/': typeof MoleculesMediaAssetGridPageRoute
   '/molecules/media-object/': typeof MoleculesMediaObjectPageRoute
   '/molecules/mobile-drawer/': typeof MoleculesMobileDrawerPageRoute
   '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
@@ -1734,6 +1744,7 @@ export interface FileRouteTypes {
     | '/molecules/input-group/'
     | '/molecules/input-message/'
     | '/molecules/media-asset-card/'
+    | '/molecules/media-asset-grid/'
     | '/molecules/media-object/'
     | '/molecules/mobile-drawer/'
     | '/molecules/nav-menu/'
@@ -1903,6 +1914,7 @@ export interface FileRouteTypes {
     | '/molecules/input-group'
     | '/molecules/input-message'
     | '/molecules/media-asset-card'
+    | '/molecules/media-asset-grid'
     | '/molecules/media-object'
     | '/molecules/mobile-drawer'
     | '/molecules/nav-menu'
@@ -2072,6 +2084,7 @@ export interface FileRouteTypes {
     | '/molecules/input-group/'
     | '/molecules/input-message/'
     | '/molecules/media-asset-card/'
+    | '/molecules/media-asset-grid/'
     | '/molecules/media-object/'
     | '/molecules/mobile-drawer/'
     | '/molecules/nav-menu/'
@@ -2242,6 +2255,7 @@ export interface RootRouteChildren {
   MoleculesInputGroupPageRoute: typeof MoleculesInputGroupPageRoute
   MoleculesInputMessagePageRoute: typeof MoleculesInputMessagePageRoute
   MoleculesMediaAssetCardPageRoute: typeof MoleculesMediaAssetCardPageRoute
+  MoleculesMediaAssetGridPageRoute: typeof MoleculesMediaAssetGridPageRoute
   MoleculesMediaObjectPageRoute: typeof MoleculesMediaObjectPageRoute
   MoleculesMobileDrawerPageRoute: typeof MoleculesMobileDrawerPageRoute
   MoleculesNavMenuPageRoute: typeof MoleculesNavMenuPageRoute
@@ -2426,6 +2440,13 @@ declare module '@tanstack/react-router' {
       path: '/molecules/media-object'
       fullPath: '/molecules/media-object/'
       preLoaderRoute: typeof MoleculesMediaObjectPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/media-asset-grid/': {
+      id: '/molecules/media-asset-grid/'
+      path: '/molecules/media-asset-grid'
+      fullPath: '/molecules/media-asset-grid/'
+      preLoaderRoute: typeof MoleculesMediaAssetGridPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/media-asset-card/': {
@@ -3588,6 +3609,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesInputGroupPageRoute: MoleculesInputGroupPageRoute,
   MoleculesInputMessagePageRoute: MoleculesInputMessagePageRoute,
   MoleculesMediaAssetCardPageRoute: MoleculesMediaAssetCardPageRoute,
+  MoleculesMediaAssetGridPageRoute: MoleculesMediaAssetGridPageRoute,
   MoleculesMediaObjectPageRoute: MoleculesMediaObjectPageRoute,
   MoleculesMobileDrawerPageRoute: MoleculesMobileDrawerPageRoute,
   MoleculesNavMenuPageRoute: MoleculesNavMenuPageRoute,

@@ -5,10 +5,10 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.5.2
-- Component modules: 100
-- Atom components: 70
-- Molecule components: 30
+- Package version: 3.6.8
+- Component modules: 103
+- Atom components: 72
+- Molecule components: 31
 - Docs site: https://ui.hilum.dev
 - GitHub repository: https://github.com/hilum-labs/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
@@ -122,6 +122,7 @@ Primary exports:
 - Kbd (/atoms/kbd/) — Keyboard shortcut display using compact monospaced styling.
 - Label (/atoms/label/) — Accessible form label that associates text with its control.
 - Media Asset Card (/molecules/media-asset-card/) — Selectable media or file card with grid, list, and responsive orientations. Composes: Card · Icon · Image.
+- Media Asset Grid (/molecules/media-asset-grid/) — Responsive media asset container that keeps compact divided rows on mobile and switches to a grid on larger screens. Composes: MediaAssetCard · List.
 - Media Object (/molecules/media-object/) — Layout primitive pairing fixed media with flexible text content. Composes: Avatar · Icon.
 - Menu Item (/atoms/menu-item/) — Reusable command row for menus, lists, and product navigation surfaces.
 - Menubar (/atoms/menubar/) — Horizontal application menu bar with nested dropdown panels.
@@ -155,6 +156,8 @@ Primary exports:
 - Stat Card (/molecules/stat-card/) — Metric display card with label, value, optional trend, and optional icon. Composes: Card · Badge · Icon.
 - Usage Bar (/molecules/usage-bar/) — Compact quota, readiness, and capacity meter with inline and stacked layouts. Composes: Progress.
 - Status Badge (/atoms/status-badge/) — Semantic badge that maps status values to labels, variants, icons, and dots.
+- Status Tile (/atoms/status-tile/) — Compact status tiles for service health, operational states, and responsive mobile panels.
+- Summary Tile (/atoms/summary-tile/) — Compact metric tiles for dense dashboard summaries and responsive mobile panels.
 - Steps (/atoms/steps/) — Multi-step progress indicator with circles, bullets, and progress variants.
 - Switch (/atoms/switch/) — Toggle between two states, on and off.
 - Table (/atoms/table/) — Structured data display with rows and columns.

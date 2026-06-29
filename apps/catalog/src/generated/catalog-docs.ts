@@ -798,7 +798,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Badge, badgeVariants, badgeColors"
       }
     ],
-    "exampleCode": "import { Badge } from \"@hilum/ui\"\n\n<Badge>Default</Badge>\n<Badge variant=\"secondary\">Secondary</Badge>\n<Badge variant=\"outline\">Outline</Badge>\n<Badge variant=\"brand\">Brand</Badge>\n<Badge variant=\"success\">Success</Badge>\n<Badge variant=\"warning\">Warning</Badge>\n<Badge variant=\"destructive\">Error</Badge>",
+    "exampleCode": "import { Badge } from \"@hilum/ui\"\n\n<Badge color=\"violet\">Fiction</Badge>\n<Badge color=\"amber\">Science</Badge>\n<Badge color=\"green\">Philosophy</Badge>\n<Badge color=\"blue\">History</Badge>\n<Badge color=\"rose\">Poetry</Badge>",
     "kind": "component",
     "path": "/atoms/badge/",
     "summary": "Compact labels for status, categories, and metadata.",
@@ -856,7 +856,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Button, buttonVariants"
       }
     ],
-    "exampleCode": "import { Button } from \"@hilum/ui\"\n\n<Button>Default</Button>\n<Button variant=\"brand\">Brand</Button>\n<Button variant=\"outline\">Outline</Button>\n<Button variant=\"ghost\">Ghost</Button>\n<Button variant=\"secondary\">Secondary</Button>\n<Button variant=\"link\">Link</Button>\n<Button variant=\"destructive\">Destructive</Button>",
+    "exampleCode": "import { Button } from \"@hilum/ui\"\n\n<Button variant=\"primary\">Primary</Button>\n<Button variant=\"secondary\">Secondary</Button>\n<Button variant=\"tertiary\">Tertiary</Button>\n<Button variant=\"ghost\">Ghost</Button>",
     "kind": "component",
     "path": "/atoms/button/",
     "summary": "Triggers actions. Supports multiple variants, sizes, and icon compositions.",
@@ -1095,7 +1095,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": null,
     "kind": "component",
     "path": "/atoms/checkbox-group/",
-    "summary": "Grouped multi-select options with product-style row highlighting.",
+    "summary": "Checkbox group with merged backgrounds for contiguous selections.",
     "title": "Checkbox Group",
     "whenNotToUse": [
       "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
@@ -1395,9 +1395,9 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
   },
   "/atoms/dropdown/": {
     "accessibility": [
-      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
-      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
-      "Use status, selection, and disabled states that remain understandable without color alone."
+      "Move focus into the overlay when it opens and return focus to the trigger when it closes.",
+      "Support Escape to dismiss non-destructive overlays and ensure the trigger communicates expanded state where appropriate.",
+      "Do not hide critical actions behind hover-only disclosure; keyboard and touch users need equivalent access."
     ],
     "api": [
       {
@@ -1412,16 +1412,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": null,
     "kind": "component",
     "path": "/atoms/dropdown/",
-    "summary": "",
+    "summary": "Menu-style dropdown with proximity hover and animated backgrounds.",
     "title": "Dropdown",
     "whenNotToUse": [
-      "Do not use Dropdown just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
-      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+      "Do not move a full workflow into an overlay if the user needs persistent navigation, rich context, or deep editing space.",
+      "Do not rely on an overlay for critical messaging when it can be missed, dismissed accidentally, or blocked by focus issues."
     ],
     "whenToUse": [
-      "Use Dropdown when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
-      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
-      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+      "Use Dropdown when content needs to appear in context without forcing a full page transition.",
+      "Match the overlay type to the weight of the task: lightweight guidance for hints, stronger containment for focused tasks.",
+      "Review the examples below to compare trigger styles, content density, and dismissal expectations."
     ]
   },
   "/atoms/dropdown-menu/": {
@@ -2388,6 +2388,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/atoms/status-tile/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "columns, title, status, description, meta, icon"
+      },
+      {
+        "label": "Key exports",
+        "description": "StatusTile, StatusTileGrid, type StatusTileProps, type StatusTileGridProps"
+      }
+    ],
+    "exampleCode": "import { StatusTile, StatusTileGrid } from \"@hilum/ui\";\nimport { MonitorSmartphone } from \"@hilum/ui/icons\";\n\n<StatusTileGrid>\n  <StatusTile\n    title=\"Catalog\"\n    status=\"healthy\"\n    icon={MonitorSmartphone}\n    description=\"operational\"\n    meta={<p className=\"caption truncate\">https://catalog.internal/health</p>}\n  />\n  <StatusTile title=\"Checkout\" status=\"degraded\" description=\"carrier rates delayed\" />\n  <StatusTile title=\"Renderer\" status=\"critical\" description=\"origin checks failing\" />\n</StatusTileGrid>",
+    "kind": "component",
+    "path": "/atoms/status-tile/",
+    "summary": "Compact status tiles for service health, operational states, and dense responsive panels.",
+    "title": "Status Tile",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Status Tile when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/atoms/steps/": {
     "accessibility": [
       "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
@@ -2411,6 +2442,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Steps when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/atoms/summary-tile/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "columns, title, value, description"
+      },
+      {
+        "label": "Key exports",
+        "description": "SummaryTile, SummaryTileGrid, type SummaryTileProps, type SummaryTileGridProps"
+      }
+    ],
+    "exampleCode": "import { SummaryTile, SummaryTileGrid } from \"@hilum/ui\";\n\n<SummaryTileGrid>\n  <SummaryTile title=\"Revenue\" value=\"$48.2k\" description=\"+12% from last month\" />\n  <SummaryTile title=\"Active users\" value=\"2,841\" description=\"+5% this week\" />\n  <SummaryTile title=\"Conversion\" value=\"18.4%\" description=\"+2.1 points\" />\n</SummaryTileGrid>",
+    "kind": "component",
+    "path": "/atoms/summary-tile/",
+    "summary": "Compact metric tiles for dashboard summaries, status snapshots, and dense product panels.",
+    "title": "Summary Tile",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Summary Tile when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
@@ -2506,9 +2568,9 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
   },
   "/atoms/tabs-subtle/": {
     "accessibility": [
-      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
-      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
-      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+      "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
+      "Ensure arrow-key or tab-key movement stays predictable when the pattern behaves like a composite widget.",
+      "Do not rely on icon-only navigation unless every control has a clear accessible name."
     ],
     "api": [
       {
@@ -2523,7 +2585,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": null,
     "kind": "component",
     "path": "/atoms/tabs-subtle/",
-    "summary": "Quiet segmented tab navigation for compact product panels.",
+    "summary": "Tab navigation with smooth pill animations.",
     "title": "Tabs Subtle",
     "whenNotToUse": [
       "Do not use Tabs Subtle just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
@@ -5048,16 +5110,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": null,
     "kind": "component",
     "path": "/molecules/input-copy/",
-    "summary": "Read-only value field with integrated clipboard action and copied feedback.",
+    "summary": "Read-only input with a copy-to-clipboard button and animated check feedback.",
     "title": "Input Copy",
     "whenNotToUse": [
-      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
-      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+      "Do not use a button when plain text, static status, or passive decoration would communicate the state just as well.",
+      "Do not overload a single view with too many equally prominent buttons; reduce or demote secondary actions first."
     ],
     "whenToUse": [
-      "Use Input Copy when the user needs to enter or choose information as part of a larger form or workflow.",
-      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
-      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+      "Use buttons for explicit user-triggered actions such as submit, save, continue, or open.",
+      "Choose the variant and size that matches the action hierarchy in the surrounding view.",
+      "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
     ]
   },
   "/molecules/input-group/": {
@@ -5076,19 +5138,19 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "InputGroup, InputField"
       }
     ],
-    "exampleCode": "<InputGroup leadingAddon=\"https://\" placeholder=\"yoursite.com\" />",
+    "exampleCode": "import { InputField, InputGroup } from \"@hilum/ui\";\nimport { Search } from \"lucide-react\";\nimport { useState } from \"react\";\n\nconst [value, setValue] = useState(\"\");\n\n<InputGroup>\n  <InputField\n    index={0}\n    label=\"Search\"\n    placeholder=\"Search teamspaces...\"\n    icon={Search}\n    value={value}\n    onChange={setValue}\n  />\n</InputGroup>",
     "kind": "component",
     "path": "/molecules/input-group/",
-    "summary": "An input with optional leading/trailing addons, icons, buttons, validation state, pill shape, keyboard shortcuts, and shared-border card inputs.",
+    "summary": "Input field group with proximity hover and validation.",
     "title": "Input Group",
     "whenNotToUse": [
-      "Do not use a button when plain text, static status, or passive decoration would communicate the state just as well.",
-      "Do not overload a single view with too many equally prominent buttons; reduce or demote secondary actions first."
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
     ],
     "whenToUse": [
-      "Use buttons for explicit user-triggered actions such as submit, save, continue, or open.",
-      "Choose the variant and size that matches the action hierarchy in the surrounding view.",
-      "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
+      "Use Input Group when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
   "/molecules/input-message/": {
@@ -5141,6 +5203,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Media Asset Card when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/molecules/media-asset-grid/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "columns, children"
+      },
+      {
+        "label": "Key exports",
+        "description": "MediaAssetGrid, MediaAssetGridItem"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/media-asset-grid/",
+    "summary": "Responsive media asset container that keeps compact divided rows on mobile and switches to a grid on larger screens.",
+    "title": "Media Asset Grid",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Media Asset Grid when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
@@ -5457,7 +5550,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "label, title, value, trend, direction, icon"
+        "description": "label, title, value, variant, trend, direction"
       },
       {
         "label": "Key exports",
@@ -5519,7 +5612,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "title, subtitle, children, actionButtons, icon, className"
+        "description": "title, subtitle, children, actionButtons, icon, contentPadding"
       },
       {
         "label": "Key exports",

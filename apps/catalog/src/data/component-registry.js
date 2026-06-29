@@ -447,6 +447,15 @@ const componentDefinitions = [
     "Card · Icon · Image",
   ],
   [
+    "media-asset-grid",
+    "Media Asset Grid",
+    "molecules",
+    "Media",
+    "data",
+    "Responsive media asset container that keeps compact divided rows on mobile and switches to a grid on larger screens.",
+    "MediaAssetCard · List",
+  ],
+  [
     "media-object",
     "Media Object",
     "molecules",
