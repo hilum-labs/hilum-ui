@@ -1076,6 +1076,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/atoms/checkbox-card/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "checked, disabled, label, description, onCheckedChange"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/checkbox-card/",
+    "summary": "Clickable card-style checkbox option for settings, filters, and compact binary choices.",
+    "title": "Checkbox Card",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Checkbox Card when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/atoms/checkbox-group/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -5519,7 +5546,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "children, divided, bordered, className, href, onClick"
+        "description": "children, divided, bordered, surface, className, href"
       },
       {
         "label": "Key exports",

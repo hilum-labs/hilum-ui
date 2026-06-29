@@ -151,6 +151,7 @@ import { Route as AtomsColorInputPageRouteImport } from './app/atoms/color-input
 import { Route as AtomsCollapsiblePageRouteImport } from './app/atoms/collapsible/page'
 import { Route as AtomsCheckboxPageRouteImport } from './app/atoms/checkbox/page'
 import { Route as AtomsCheckboxGroupPageRouteImport } from './app/atoms/checkbox-group/page'
+import { Route as AtomsCheckboxCardPageRouteImport } from './app/atoms/checkbox-card/page'
 import { Route as AtomsChartPageRouteImport } from './app/atoms/chart/page'
 import { Route as AtomsCarouselPageRouteImport } from './app/atoms/carousel/page'
 import { Route as AtomsCardPageRouteImport } from './app/atoms/card/page'
@@ -938,6 +939,11 @@ const AtomsCheckboxGroupPageRoute = AtomsCheckboxGroupPageRouteImport.update({
   path: '/atoms/checkbox-group/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsCheckboxCardPageRoute = AtomsCheckboxCardPageRouteImport.update({
+  id: '/atoms/checkbox-card/',
+  path: '/atoms/checkbox-card/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsChartPageRoute = AtomsChartPageRouteImport.update({
   id: '/atoms/chart/',
   path: '/atoms/chart/',
@@ -1114,6 +1120,7 @@ export interface FileRoutesByFullPath {
   '/atoms/card/': typeof AtomsCardPageRoute
   '/atoms/carousel/': typeof AtomsCarouselPageRoute
   '/atoms/chart/': typeof AtomsChartPageRoute
+  '/atoms/checkbox-card/': typeof AtomsCheckboxCardPageRoute
   '/atoms/checkbox-group/': typeof AtomsCheckboxGroupPageRoute
   '/atoms/checkbox/': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible/': typeof AtomsCollapsiblePageRoute
@@ -1284,6 +1291,7 @@ export interface FileRoutesByTo {
   '/atoms/card': typeof AtomsCardPageRoute
   '/atoms/carousel': typeof AtomsCarouselPageRoute
   '/atoms/chart': typeof AtomsChartPageRoute
+  '/atoms/checkbox-card': typeof AtomsCheckboxCardPageRoute
   '/atoms/checkbox-group': typeof AtomsCheckboxGroupPageRoute
   '/atoms/checkbox': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible': typeof AtomsCollapsiblePageRoute
@@ -1455,6 +1463,7 @@ export interface FileRoutesById {
   '/atoms/card/': typeof AtomsCardPageRoute
   '/atoms/carousel/': typeof AtomsCarouselPageRoute
   '/atoms/chart/': typeof AtomsChartPageRoute
+  '/atoms/checkbox-card/': typeof AtomsCheckboxCardPageRoute
   '/atoms/checkbox-group/': typeof AtomsCheckboxGroupPageRoute
   '/atoms/checkbox/': typeof AtomsCheckboxPageRoute
   '/atoms/collapsible/': typeof AtomsCollapsiblePageRoute
@@ -1627,6 +1636,7 @@ export interface FileRouteTypes {
     | '/atoms/card/'
     | '/atoms/carousel/'
     | '/atoms/chart/'
+    | '/atoms/checkbox-card/'
     | '/atoms/checkbox-group/'
     | '/atoms/checkbox/'
     | '/atoms/collapsible/'
@@ -1797,6 +1807,7 @@ export interface FileRouteTypes {
     | '/atoms/card'
     | '/atoms/carousel'
     | '/atoms/chart'
+    | '/atoms/checkbox-card'
     | '/atoms/checkbox-group'
     | '/atoms/checkbox'
     | '/atoms/collapsible'
@@ -1967,6 +1978,7 @@ export interface FileRouteTypes {
     | '/atoms/card/'
     | '/atoms/carousel/'
     | '/atoms/chart/'
+    | '/atoms/checkbox-card/'
     | '/atoms/checkbox-group/'
     | '/atoms/checkbox/'
     | '/atoms/collapsible/'
@@ -2138,6 +2150,7 @@ export interface RootRouteChildren {
   AtomsCardPageRoute: typeof AtomsCardPageRoute
   AtomsCarouselPageRoute: typeof AtomsCarouselPageRoute
   AtomsChartPageRoute: typeof AtomsChartPageRoute
+  AtomsCheckboxCardPageRoute: typeof AtomsCheckboxCardPageRoute
   AtomsCheckboxGroupPageRoute: typeof AtomsCheckboxGroupPageRoute
   AtomsCheckboxPageRoute: typeof AtomsCheckboxPageRoute
   AtomsCollapsiblePageRoute: typeof AtomsCollapsiblePageRoute
@@ -3268,6 +3281,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsCheckboxGroupPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/checkbox-card/': {
+      id: '/atoms/checkbox-card/'
+      path: '/atoms/checkbox-card'
+      fullPath: '/atoms/checkbox-card/'
+      preLoaderRoute: typeof AtomsCheckboxCardPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/chart/': {
       id: '/atoms/chart/'
       path: '/atoms/chart'
@@ -3491,6 +3511,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsCardPageRoute: AtomsCardPageRoute,
   AtomsCarouselPageRoute: AtomsCarouselPageRoute,
   AtomsChartPageRoute: AtomsChartPageRoute,
+  AtomsCheckboxCardPageRoute: AtomsCheckboxCardPageRoute,
   AtomsCheckboxGroupPageRoute: AtomsCheckboxGroupPageRoute,
   AtomsCheckboxPageRoute: AtomsCheckboxPageRoute,
   AtomsCollapsiblePageRoute: AtomsCollapsiblePageRoute,

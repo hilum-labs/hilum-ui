@@ -5,9 +5,9 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.6.8
-- Component modules: 103
-- Atom components: 72
+- Package version: 3.6.11
+- Component modules: 104
+- Atom components: 73
 - Molecule components: 31
 - Docs site: https://ui.hilum.dev
 - GitHub repository: https://github.com/hilum-labs/hilum-ui
@@ -90,6 +90,7 @@ Primary exports:
 - Chart (/atoms/chart/) — Recharts-based data visualization with design-system styling.
 - Chat Message (/molecules/chat-message/) — Chat transcript row with avatar, author metadata, alignment, and message bubble tone. Composes: Avatar.
 - Checkbox (/atoms/checkbox/) — Binary selection control with checked, unchecked, and indeterminate states.
+- Checkbox Card (/atoms/checkbox-card/) — Clickable card-style checkbox option for settings, filters, and compact binary choices. Composes: Checkbox.
 - Checkbox Group (/atoms/checkbox-group/) — Grouped multi-select options with contiguous product-style row highlighting.
 - Collapsible (/atoms/collapsible/) — Toggleable content region, often used for navigation groups.
 - Color Input (/atoms/color-input/) — Compact color input combining swatch, hex field, and optional opacity control.

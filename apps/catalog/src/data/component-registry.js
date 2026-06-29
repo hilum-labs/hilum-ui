@@ -188,6 +188,15 @@ const componentDefinitions = [
     "Binary selection control with checked, unchecked, and indeterminate states.",
   ],
   [
+    "checkbox-card",
+    "Checkbox Card",
+    "atoms",
+    "Form",
+    "form",
+    "Clickable card-style checkbox option for settings, filters, and compact binary choices.",
+    "Checkbox",
+  ],
+  [
     "checkbox-group",
     "Checkbox Group",
     "atoms",
