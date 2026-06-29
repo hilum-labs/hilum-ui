@@ -36,12 +36,19 @@ describe("Card", () => {
   });
 
   it("renders all variants without error", () => {
-    const variants = ["default", "muted", "ghost"] as const;
+    const variants = ["default", "muted", "ghost", "responsive"] as const;
     for (const variant of variants) {
       const { unmount } = render(<Card variant={variant}>Card</Card>);
       expect(screen.getByText("Card")).toBeInTheDocument();
       unmount();
     }
+  });
+
+  it("owns the responsive admin panel surface", () => {
+    const { container } = render(<Card variant="responsive">Panel</Card>);
+    expect(container.firstChild).toHaveClass("max-sm:rounded-none");
+    expect(container.firstChild).toHaveClass("max-sm:border-x-0");
+    expect(container.firstChild).toHaveClass("sm:rounded-xl");
   });
 
   it("composes sub-components correctly", () => {

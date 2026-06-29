@@ -13,6 +13,8 @@ const cardVariants = cva(["rounded-xl", motionClasses], {
       default: "bg-card shadow-natural",
       muted: "bg-muted shadow-natural",
       ghost: "bg-transparent",
+      responsive:
+        "border border-border bg-card p-5 shadow-natural sm:rounded-xl max-sm:rounded-none max-sm:border-x-0 max-sm:border-y max-sm:bg-transparent max-sm:px-0 max-sm:py-5 max-sm:shadow-none",
     },
   },
   defaultVariants: {

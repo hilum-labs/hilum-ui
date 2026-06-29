@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.5.3
+
+### Patch Changes
+
+- Add a responsive `Card` variant for mobile-flattened dashboard and admin panels.
+
 ## 3.5.2
 
 ### Patch Changes
