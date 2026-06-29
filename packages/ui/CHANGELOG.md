@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.5
+
+### Patch Changes
+
+- 585c22b: Keep dialog bottom-sheet behavior through tablet/mobile widths and prevent per-dialog max-width classes from narrowing mobile sheets.
+
 ## 3.6.4
 
 ### Patch Changes
