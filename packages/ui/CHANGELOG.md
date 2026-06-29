@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.4
+
+### Patch Changes
+
+- 1b9c1b4: Keep dialogs, selects, menus, popovers, and comboboxes in mobile bottom-sheet mode until the md breakpoint.
+
 ## 3.6.3
 
 ### Patch Changes
