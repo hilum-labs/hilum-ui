@@ -17,6 +17,24 @@ export const dialogSheetMotionClassName = [
   "lg:data-[state=closed]:zoom-out-95 lg:data-[state=open]:zoom-in-95",
 ].join(" ");
 
+export const mobileDialogSheetStyle = `
+@media (max-width: 1023px) {
+  [data-hilum-dialog-sheet="true"] {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: calc(100dvh - 1rem) !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    transform-origin: bottom center !important;
+  }
+}
+`;
+
 export const mobilePopperSheetPositionClassName = [
   "max-md:!fixed max-md:!inset-x-3 max-md:!bottom-3 max-md:!top-auto max-md:!left-3 max-md:!right-3",
   "max-md:!w-auto max-md:!min-w-0 max-md:!max-w-none max-md:!transform-none",

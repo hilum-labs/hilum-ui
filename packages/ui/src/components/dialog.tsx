@@ -2,6 +2,7 @@
 
 import {
   createContext,
+  createElement,
   forwardRef,
   useContext,
   useEffect,
@@ -20,6 +21,7 @@ import { surfaceClasses } from "../lib/surface-classes";
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
+  mobileDialogSheetStyle,
   mobileDialogSheetContentClassName,
 } from "../lib/mobile-popper-sheet";
 import { Button } from "./button";
@@ -91,6 +93,7 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
 
     return (
       <DialogPrimitive.Portal forceMount container={container ?? undefined}>
+        {!container && <style>{mobileDialogSheetStyle}</style>}
         <DialogPrimitive.Overlay asChild forceMount>
           <motion.div
             className={cn(
@@ -104,6 +107,7 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
         </DialogPrimitive.Overlay>
         <DialogPrimitive.Content ref={ref} asChild forceMount {...props}>
           <motion.div
+            data-hilum-dialog-sheet={container ? undefined : "true"}
             className={cn(
               container
                 ? "absolute left-1/2 top-1/2 z-50 w-[calc(100%-2rem)]"
@@ -137,7 +141,7 @@ const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
               {children}
               <DialogPrimitive.Close asChild>
                 <Button variant="ghost" size="icon-sm" className="absolute right-3 top-3">
-                  <XIcon />
+                  {createElement(XIcon)}
                   <span className="sr-only">Close</span>
                 </Button>
               </DialogPrimitive.Close>
