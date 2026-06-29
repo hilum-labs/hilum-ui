@@ -43,7 +43,7 @@ const AlertDialogContent = React.forwardRef<
       className={cn(
         mobileDialogSheetContentClassName,
         desktopDialogContentClassName,
-        "border border-border shadow-elevated sm:max-w-md",
+        "border border-border shadow-elevated max-w-md",
         dialogSheetMotionClassName,
         className,
       )}
