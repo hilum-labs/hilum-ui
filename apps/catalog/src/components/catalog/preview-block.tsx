@@ -55,11 +55,11 @@ export function PreviewBlock({
         </button>
       </div>
 
-      {/* Preview area — dot grid */}
+      {/* Preview area */}
       <div
         className={cn(
           "flex min-h-32 flex-wrap items-center justify-center gap-3 p-8",
-          "bg-ground-50",
+          "bg-white",
           previewClassName,
         )}
       >

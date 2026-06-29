@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useShape } from "../lib/shape-context";
 
 export interface ComboboxOption {
   value: string;
@@ -31,6 +32,7 @@ function Combobox({
   emptyText = "No results found.",
   className,
 }: ComboboxProps) {
+  const shape = useShape();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState(-1);
@@ -132,9 +134,10 @@ function Combobox({
           }
           aria-autocomplete="list"
           className={cn(
-            "flex h-10 w-full rounded-lg border border-border bg-card pr-10 body text-foreground",
+            "flex h-10 w-full border border-border bg-background pr-10 body text-foreground",
+            shape.input,
             "placeholder:text-muted-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 focus-visible:border-border",
+            "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30",
             "disabled:cursor-not-allowed disabled:opacity-50",
             selectedOption?.avatar && !open
               ? "pl-8"

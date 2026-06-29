@@ -1,5 +1,11 @@
 # @hilum/ui
 
+## 3.6.0
+
+### Minor Changes
+
+- Flatten form control surfaces, default shape tokens to rounded, and align Fluid-inspired controls and catalog previews.
+
 ## 3.5.4
 
 ### Patch Changes

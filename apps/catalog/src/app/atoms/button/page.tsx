@@ -2,55 +2,54 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { ArrowRight, Loader2, Mail, Plus, Search, Settings } from "lucide-react";
-import { Button } from "@hilum/ui";
+import { ArrowRight, Loader, Plus, Search } from "lucide-react";
+import { Button, ShapeProvider } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
   buttonVariants: `import { Button } from "@hilum/ui"
 
-<Button>Default</Button>
-<Button variant="brand">Brand</Button>
-<Button variant="outline">Outline</Button>
-<Button variant="ghost">Ghost</Button>
+<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
-<Button variant="link">Link</Button>
-<Button variant="destructive">Destructive</Button>`,
+<Button variant="tertiary">Tertiary</Button>
+<Button variant="ghost">Ghost</Button>
+`,
 
   buttonSizes: `import { Button } from "@hilum/ui"
+import { Plus } from "lucide-react"
 
-<Button size="xs">Extra Small</Button>
 <Button size="sm">Small</Button>
-<Button>Default</Button>
-<Button size="lg">Large</Button>`,
+<Button size="md">Medium</Button>
+<Button size="lg">Large</Button>
+<Button size="icon-sm"><Plus /></Button>
+<Button size="icon"><Plus /></Button>
+<Button size="icon-lg"><Plus /></Button>`,
 
-  buttonPill: `import { Button } from "@hilum/ui"
+  buttonRadius: `import { Button, ShapeProvider } from "@hilum/ui"
 
-// Add rounded-full to get pill-shaped buttons
-<Button className="rounded-full">Get started</Button>
-<Button variant="outline" className="rounded-full">Contact sales</Button>
-<Button variant="brand" className="rounded-full">Explore</Button>`,
+{/* rounded is the default */}
+<Button>Rounded</Button>
+
+<ShapeProvider defaultShape="pill">
+  <Button>Pill</Button>
+</ShapeProvider>`,
 
   buttonIcons: `import { Button } from "@hilum/ui"
-import { ArrowRight, Mail, Plus, Search, Settings } from "lucide-react"
+import { ArrowRight, Plus, Search } from "lucide-react"
 
-<Button><Mail size={15} /> Send email</Button>
-<Button variant="outline"><Search size={15} /> Search</Button>
-<Button>Explore <ArrowRight size={15} /></Button>
-<Button size="icon"><Plus /></Button>
-<Button size="icon" variant="outline"><Settings /></Button>`,
+<Button leadingIcon={Plus}>Create</Button>
+<Button variant="secondary" trailingIcon={ArrowRight}>Next</Button>
+<Button variant="tertiary" leadingIcon={Search} trailingIcon={ArrowRight}>
+  Search
+</Button>`,
 
   buttonStates: `import { Button } from "@hilum/ui"
-import { Loader2 } from "lucide-react"
+import { Loader } from "lucide-react"
 
+<Button loading>Loading</Button>
+<Button variant="secondary" loading leadingIcon={Loader}>Saving</Button>
 <Button disabled>Disabled</Button>
-<Button variant="outline" disabled>Disabled outline</Button>
-
-{/* Loading state */}
-<Button>
-  <Loader2 size={15} className="animate-spin" />
-  Saving...
-</Button>`,
+`,
 };
 
 function SectionHeading({ label }: { label: string }) {
@@ -88,74 +87,63 @@ function ButtonPage() {
       <div className="flex flex-col gap-3">
         <SectionHeading label="Button" />
 
-        <PreviewBlock
-          title="Variants"
-          description="All available visual styles"
-          code={CODE.buttonVariants}
-        >
-          <Button>Default</Button>
-          <Button variant="brand">Brand</Button>
-          <Button variant="outline">Outline</Button>
-          <Button variant="ghost">Ghost</Button>
+        <PreviewBlock title="Variants" description="Fluid visual styles" code={CODE.buttonVariants}>
+          <Button variant="primary">Primary</Button>
           <Button variant="secondary">Secondary</Button>
-          <Button variant="link">Link</Button>
-          <Button variant="destructive">Destructive</Button>
+          <Button variant="tertiary">Tertiary</Button>
+          <Button variant="ghost">Ghost</Button>
         </PreviewBlock>
 
-        <PreviewBlock title="Sizes" description="xs · sm · default · lg" code={CODE.buttonSizes}>
-          <Button size="xs">Extra Small</Button>
+        <PreviewBlock title="Sizes" description="sm · md · lg · icon sizes" code={CODE.buttonSizes}>
           <Button size="sm">Small</Button>
-          <Button>Default</Button>
+          <Button size="md">Medium</Button>
           <Button size="lg">Large</Button>
-        </PreviewBlock>
-
-        <PreviewBlock
-          title="Pill shape"
-          description="rounded-full — the primary CTA style"
-          code={CODE.buttonPill}
-        >
-          <Button className="rounded-full">Get started</Button>
-          <Button variant="outline" className="rounded-full">
-            Contact sales
-          </Button>
-          <Button variant="brand" className="rounded-full">
-            Explore
-          </Button>
-        </PreviewBlock>
-
-        <PreviewBlock
-          title="With icons"
-          description="Leading icons, trailing icons, icon-only"
-          code={CODE.buttonIcons}
-        >
-          <Button>
-            <Mail size={15} />
-            Send email
-          </Button>
-          <Button variant="outline">
-            <Search size={15} />
-            Search
-          </Button>
-          <Button>
-            Explore <ArrowRight size={15} />
+          <Button size="icon-sm">
+            <Plus />
           </Button>
           <Button size="icon">
             <Plus />
           </Button>
-          <Button size="icon" variant="outline">
-            <Settings />
+          <Button size="icon-lg">
+            <Plus />
           </Button>
         </PreviewBlock>
 
-        <PreviewBlock title="States" description="Disabled, loading" code={CODE.buttonStates}>
+        <PreviewBlock
+          title="Radius modes"
+          description="Rounded by default, pill via ShapeProvider"
+          code={CODE.buttonRadius}
+        >
+          <Button>Rounded</Button>
+          <ShapeProvider defaultShape="pill">
+            <Button>Pill</Button>
+          </ShapeProvider>
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="With icons"
+          description="Leading and trailing icon slots"
+          code={CODE.buttonIcons}
+        >
+          <Button leadingIcon={Plus}>Create</Button>
+          <Button variant="secondary" trailingIcon={ArrowRight}>
+            Next
+          </Button>
+          <Button variant="tertiary" leadingIcon={Search} trailingIcon={ArrowRight}>
+            Search
+          </Button>
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="Loading & Disabled"
+          description="Built-in loading state"
+          code={CODE.buttonStates}
+        >
+          <Button loading>Loading</Button>
+          <Button variant="secondary" loading leadingIcon={Loader}>
+            Saving
+          </Button>
           <Button disabled>Disabled</Button>
-          <Button variant="outline" disabled>
-            Disabled outline
-          </Button>
-          <Button>
-            <Loader2 size={15} className="animate-spin" />
-            Saving...
-          </Button>
         </PreviewBlock>
       </div>
     </div>

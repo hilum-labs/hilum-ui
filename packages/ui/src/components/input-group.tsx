@@ -78,6 +78,7 @@ const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
   ) => {
     const itemsRef = useRef(new Map<number, HTMLLabelElement>());
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const shape = useShape();
 
     const registerItem = useCallback((index: number, element: HTMLLabelElement | null) => {
       if (element) {
@@ -128,7 +129,8 @@ const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
         <div
           ref={ref}
           className={cn(
-            "relative flex items-center gap-2 rounded-[var(--radius-input)] border bg-background px-3 py-2 text-[13px] transition-colors",
+            "relative flex items-center gap-2 border bg-background px-3 py-2 text-[13px] transition-colors",
+            shape.input,
             error ? "border-destructive/50" : "border-border",
             disabled && "opacity-50",
             pill && "rounded-full",

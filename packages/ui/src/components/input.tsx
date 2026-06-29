@@ -1,14 +1,20 @@
+"use client";
+
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { controlSurfaceClasses, focusRingClasses, motionClasses } from "../lib/interaction";
+import { useShape } from "../lib/shape-context";
 
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
+  const shape = useShape();
+
   return (
     <input
       type={type}
       data-slot="input"
       className={cn(
-        "flex h-10 w-full rounded-md px-3 py-1",
+        "flex h-10 w-full px-3 py-1",
+        shape.input,
         "body text-foreground placeholder:text-muted-foreground",
         controlSurfaceClasses,
         motionClasses,

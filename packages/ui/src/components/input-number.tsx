@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { useShape } from "../lib/shape-context";
 
 interface InputNumberProps extends Omit<
   React.ComponentProps<"input">,
@@ -50,6 +51,8 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
     },
     ref,
   ) => {
+    const shape = useShape();
+
     const formatValue = React.useCallback(
       (next: number | null) => (next === null ? mixedLabel : next.toFixed(precision)),
       [mixedLabel, precision],
@@ -63,13 +66,16 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
 
     const clamp = React.useCallback((n: number) => Math.min(max, Math.max(min, n)), [min, max]);
 
-    const parseAndClamp = React.useCallback((raw: string) => {
-      const n = parseFloat(raw);
-      if (Number.isFinite(n)) {
-        return clamp(n);
-      }
-      return null;
-    }, [clamp]);
+    const parseAndClamp = React.useCallback(
+      (raw: string) => {
+        const n = parseFloat(raw);
+        if (Number.isFinite(n)) {
+          return clamp(n);
+        }
+        return null;
+      },
+      [clamp],
+    );
 
     const commit = (raw: string) => {
       const next = parseAndClamp(raw);
@@ -105,8 +111,9 @@ const InputNumber = React.forwardRef<HTMLInputElement, InputNumberProps>(
     return (
       <div
         className={cn(
-          "inline-flex h-8 items-stretch rounded-md border border-border bg-card overflow-hidden",
-          "focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
+          "inline-flex h-8 items-stretch overflow-hidden border border-border bg-background",
+          shape.input,
+          "focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20",
           disabled && "opacity-50 pointer-events-none",
           className,
         )}

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { motionClasses } from "../lib/interaction";
+import { useShape } from "../lib/shape-context";
 import { ColorPicker } from "./color-picker";
 
 interface ColorInputProps {
@@ -29,6 +30,7 @@ function ColorInput({
   disabled,
   presets,
 }: ColorInputProps) {
+  const shape = useShape();
   const [hex, setHex] = React.useState(value);
 
   React.useEffect(() => {
@@ -43,8 +45,9 @@ function ColorInput({
   return (
     <div
       className={cn(
-        "inline-flex h-8 items-stretch gap-0 rounded-md border border-border bg-card overflow-hidden",
-        "shadow-natural focus-within:ring-2 focus-within:ring-brand-primary/20 focus-within:border-brand-primary",
+        "inline-flex h-8 items-stretch gap-0 overflow-hidden border border-border bg-background",
+        shape.input,
+        "focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20",
         motionClasses,
         disabled && "opacity-50 pointer-events-none",
         className,
