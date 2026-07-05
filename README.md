@@ -39,7 +39,7 @@ See `PLATFORM_PLAN.md` §2.1 D8 for full rationale.
 
 ## Contributing
 
-Sole maintainer: William ([@hilum-labs](https://github.com/hilum-labs)). External contributions are not accepted at this time.
+Sole maintainer: William. External contributions are not accepted at this time.
 
 ## Credits
 

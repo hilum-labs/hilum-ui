@@ -69,28 +69,58 @@ variable "force_destroy_bucket" {
   default     = false
 }
 
-variable "github_repository" {
-  description = "GitHub repository in owner/name form for the deploy IAM role."
-  type        = string
-  default     = ""
+variable "create_codecommit_repository" {
+  description = "Whether Terraform should create the primary CodeCommit repository."
+  type        = bool
+  default     = true
 }
 
-variable "github_branch" {
-  description = "Git branch allowed to assume the deploy role."
+variable "codecommit_repository_name" {
+  description = "CodeCommit repository name for Hilum UI."
+  type        = string
+  default     = "hilum-ui"
+}
+
+variable "enable_codecommit_release_pipeline" {
+  description = "Whether to run AWS-native releases from CodeCommit main updates."
+  type        = bool
+  default     = true
+}
+
+variable "release_branch" {
+  description = "CodeCommit branch that triggers automatic patch releases."
   type        = string
   default     = "main"
 }
 
-variable "github_environment" {
-  description = "Optional GitHub environment name allowed to assume the deploy role."
-  type        = string
-  default     = ""
+variable "create_npm_token_secret" {
+  description = "Whether Terraform should create the Secrets Manager secret that stores the npm automation token."
+  type        = bool
+  default     = true
 }
 
-variable "github_oidc_thumbprints" {
-  description = "Thumbprints for the GitHub Actions OIDC provider."
-  type        = list(string)
-  default     = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+variable "npm_token_secret_name" {
+  description = "Secrets Manager secret name that stores the npm automation token as a plain secret string."
+  type        = string
+  default     = "hilum-ui/prod/npm-token"
+}
+
+variable "codebuild_image" {
+  description = "CodeBuild image used for AWS-native releases."
+  type        = string
+  default     = "aws/codebuild/standard:7.0"
+}
+
+variable "codebuild_compute_type" {
+  description = "CodeBuild compute size used for AWS-native releases."
+  type        = string
+  default     = "BUILD_GENERAL1_MEDIUM"
+}
+
+variable "codebuild_timeout_minutes" {
+  description = "Maximum duration for AWS-native release builds."
+  type        = number
+  default     = 30
 }
 
 variable "tags" {

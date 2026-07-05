@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
+    "url": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui",
     "directory": "packages/blocks"
   },
   "publishConfig": {

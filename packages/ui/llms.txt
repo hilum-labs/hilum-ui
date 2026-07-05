@@ -10,7 +10,7 @@
 - Atom components: 73
 - Molecule components: 31
 - Docs site: https://ui.hilum.dev
-- GitHub repository: https://github.com/hilum-labs/hilum-ui
+- Source repository: https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
 - Machine-readable marketing blocks registry: https://ui.hilum.dev/registry.json
 - Stack: React 19, Tailwind CSS v4, Radix UI primitives, TanStack Start, TanStack Router

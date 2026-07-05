@@ -28,9 +28,29 @@ output "catalog_url" {
   value       = "https://${var.domain_name}"
 }
 
-output "github_actions_deploy_role_arn" {
-  description = "IAM role ARN for GitHub Actions catalog deploys — set as CATALOG_DEPLOY_ROLE_ARN secret."
-  value       = local.github_actions_enabled ? aws_iam_role.github_actions_catalog_deployer[0].arn : null
+output "codecommit_repository_name" {
+  description = "Primary Hilum UI CodeCommit repository name."
+  value       = var.codecommit_repository_name
+}
+
+output "codecommit_clone_url_http" {
+  description = "HTTPS clone URL for the primary Hilum UI CodeCommit repository."
+  value       = local.codecommit_repository_clone_url
+}
+
+output "codebuild_release_project_name" {
+  description = "CodeBuild project that auto-bumps patch releases, publishes npm packages, and deploys the catalog."
+  value       = local.codecommit_release_enabled ? aws_codebuild_project.release[0].name : null
+}
+
+output "npm_token_secret_name" {
+  description = "Secrets Manager secret name that must contain the npm automation token."
+  value       = var.npm_token_secret_name
+}
+
+output "npm_token_secret_arn" {
+  description = "Secrets Manager secret ARN that must contain the npm automation token."
+  value       = local.codecommit_release_enabled ? local.npm_token_secret_arn : null
 }
 
 output "route53_zone_id" {

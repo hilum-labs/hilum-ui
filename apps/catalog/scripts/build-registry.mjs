@@ -31,7 +31,7 @@ const SITE_NAME = "Hilum UI";
 const SITE_URL = "https://ui.hilum.dev";
 const SITE_DESCRIPTION =
   "Hilum UI design system documentation, component catalog, and theming reference.";
-const REPOSITORY_URL = "https://github.com/hilum-labs/hilum-ui";
+const REPOSITORY_URL = "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui";
 const UPDATED_AT = new Date().toISOString();
 
 // Known runtime dependencies a block might use
@@ -353,7 +353,7 @@ function buildLlmsTxt() {
     `- Atom components: ${getComponentCountBySection("atoms")}`,
     `- Molecule components: ${getComponentCountBySection("molecules")}`,
     `- Docs site: ${SITE_URL}`,
-    `- GitHub repository: ${REPOSITORY_URL}`,
+    `- Source repository: ${REPOSITORY_URL}`,
     `- Machine-readable docs index: ${SITE_URL}/catalog.json`,
     `- Machine-readable marketing blocks registry: ${SITE_URL}/registry.json`,
     "- Stack: React 19, Tailwind CSS v4, Radix UI primitives, TanStack Start, TanStack Router",

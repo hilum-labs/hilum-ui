@@ -14,7 +14,7 @@
 | Phase 3 — `@hilum/designer` | ✅ Complete | ShellContext + DesignerShell/Header/Sidebar/Panel/Pane/Toolbar primitives + useHistory<T> + useKeybindings. Engine-agnostic. |
 | Phase 4 — `@hilum/designer-canvas` | ✅ Complete | Generic Layer<TData>, slim reducer (24 action types), CanvasProvider wrapping ShellProvider, RendererRegistry, services interfaces, Designer/Canvas/Frame/StaticFrame, 3 overlays, 11 toolbar action components. |
 | Phase 6 — Catalog integration | ✅ Complete | 4 designer showcase pages (`/designer`, `/designer/shell`, `/designer/canvas`, `/designer/static-frame`, `/designer/pane-visibility`) + sidebar Designer entry. Catalog consumes all four `@hilum/*` packages. |
-| Phase 7 — Production hardening | ✅ Complete | Changesets configured for lockstep (D4), vitest (29 tests), GitHub Actions CI + release workflow, dependabot, RELEASING.md. All packages publish-ready under `hilum-labs` org on GitHub Packages. |
+| Phase 7 — Production hardening | ✅ Complete | Changesets configured for lockstep (D4), vitest, AWS CodeCommit + CodeBuild release workflow, and RELEASING.md. All packages publish-ready on npm under the `@hilum` scope. |
 
 ## Phase 1 — what shipped
 
