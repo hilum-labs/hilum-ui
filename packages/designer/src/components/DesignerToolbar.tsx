@@ -8,7 +8,7 @@ import { cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@h
 interface DesignerToolbarProps {
   className?: string;
   /** Position. Default: 'floating' (centered, floating above content). */
-  variant?: "floating" | "inline";
+  variant?: "floating" | "inline" | "dock";
   children: ReactNode;
 }
 
@@ -20,6 +20,11 @@ function DesignerToolbar({ className, variant = "floating", children }: Designer
         className={cn(
           "flex items-center gap-0.5 rounded-lg bg-card p-1 shadow-natural",
           variant === "floating" && "fixed bottom-4 left-1/2 -translate-x-1/2 z-30",
+          variant === "dock" &&
+            [
+              "fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30",
+              "overflow-x-auto overscroll-x-contain rounded-xl",
+            ],
           className,
         )}
       >
@@ -66,6 +71,7 @@ interface DesignerToolbarButtonProps {
   disabled?: boolean;
   /** Optional keyboard shortcut shown in the tooltip (e.g. 'V', 'Cmd+Z'). */
   shortcut?: string;
+  size?: "default" | "touch";
   className?: string;
   children?: ReactNode;
 }
@@ -77,6 +83,7 @@ function DesignerToolbarButton({
   active,
   disabled,
   shortcut,
+  size = "default",
   className,
   children,
 }: DesignerToolbarButtonProps) {
@@ -91,6 +98,8 @@ function DesignerToolbarButton({
           aria-pressed={active}
           className={cn(
             "flex h-9 min-w-9 items-center justify-center gap-1 rounded-md px-2 caption transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+            "[@media(pointer:coarse)]:h-11 [@media(pointer:coarse)]:min-w-11",
+            size === "touch" && "h-11 min-w-11",
             active
               ? "bg-foreground text-background"
               : "text-muted-foreground hover:bg-muted hover:text-foreground",

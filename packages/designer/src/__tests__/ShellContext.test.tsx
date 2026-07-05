@@ -179,8 +179,8 @@ describe("DesignerToolbar", () => {
     expect(screen.getByRole("toolbar")).not.toHaveClass("border", "border-border");
   });
 
-  it("renders floating and inline variants without error", () => {
-    const variants = ["floating", "inline"] as const;
+  it("renders floating, inline, and dock variants without error", () => {
+    const variants = ["floating", "inline", "dock"] as const;
     for (const variant of variants) {
       const { unmount } = render(
         <DesignerToolbar variant={variant}>
@@ -190,6 +190,15 @@ describe("DesignerToolbar", () => {
       expect(screen.getByRole("toolbar")).toBeInTheDocument();
       unmount();
     }
+  });
+
+  it("adds mobile dock positioning when requested", () => {
+    render(
+      <DesignerToolbar variant="dock">
+        <span>T</span>
+      </DesignerToolbar>,
+    );
+    expect(screen.getByRole("toolbar")).toHaveClass("inset-x-3", "overflow-x-auto");
   });
 });
 
@@ -232,6 +241,23 @@ describe("DesignerSidebar", () => {
     );
     expect(screen.getByRole("button", { name: "Settings" })).toBeInTheDocument();
   });
+
+  it("renders a bottom tool dock variant for mobile shells", () => {
+    render(
+      <DesignerSidebar
+        variant="bottom"
+        items={[
+          { id: "select", label: "Select", icon: MockIcon },
+          { id: "hand", label: "Pan", icon: MockIcon },
+        ]}
+      />,
+    );
+    expect(screen.getByRole("navigation", { name: "Editor tools" })).toHaveClass(
+      "fixed",
+      "inset-x-3",
+    );
+    expect(screen.getByRole("button", { name: "Select" })).toHaveClass("size-11");
+  });
 });
 
 /* ------------------------------------------------------------------ */
@@ -258,6 +284,18 @@ describe("DesignerPanel", () => {
       </DesignerPanel>,
     );
     expect(screen.getByText("L-panel")).toBeInTheDocument();
+  });
+
+  it("renders a controlled sheet variant for mobile panels", () => {
+    render(
+      <DesignerPanel side="right" variant="sheet" open sheetTitle="Properties">
+        <span>Mobile panel content</span>
+      </DesignerPanel>,
+    );
+
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(screen.getByText("Properties")).toBeInTheDocument();
+    expect(screen.getByText("Mobile panel content")).toBeInTheDocument();
   });
 });
 
