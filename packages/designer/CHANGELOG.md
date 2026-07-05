@@ -1,5 +1,11 @@
 # @hilum/designer
 
+## 3.8.0
+
+### Minor Changes
+
+- 4d67c29: Add mobile-ready editor chrome variants for responsive Studio shells: sheet panels, bottom sidebars, docked toolbars, and coarse-pointer toolbar targets.
+
 ## 3.7.1
 
 ## 3.7.0
