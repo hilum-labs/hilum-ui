@@ -33,3 +33,10 @@ export function resolveDesignerWorkspaceInsets(
     left: input?.left === undefined ? fallbackValue : toCssLength(input.left),
   };
 }
+
+export function getDesignerFloatingMaxHeight(insets: {
+  top: string;
+  bottom: string;
+}): string {
+  return `calc(100% - ${insets.top} - ${insets.bottom})`;
+}

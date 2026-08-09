@@ -1,6 +1,7 @@
 import type { CSSProperties, ReactNode } from "react";
 import { cn, Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@hilum/ui";
 import {
+  getDesignerFloatingMaxHeight,
   resolveDesignerWorkspaceInsets,
   type DesignerWorkspaceInsetsInput,
 } from "./designer-workspace-insets";
@@ -90,9 +91,10 @@ function DesignerPanel({
     variant === "floating"
       ? {
           top: floatingInsets.top,
-          bottom: floatingInsets.bottom,
           [side]: floatingInsets[side],
           width,
+          height: "fit-content",
+          maxHeight: getDesignerFloatingMaxHeight(floatingInsets),
           maxWidth: "calc(100% - 2rem)",
           ...style,
         }
@@ -106,8 +108,10 @@ function DesignerPanel({
         "flex min-w-0 max-w-full shrink-0 flex-col overflow-hidden bg-card",
         variant === "inline" && bordered && (side === "left" ? "border-r" : "border-l"),
         variant === "inline" && bordered && "border-border",
-        variant === "floating" && "absolute z-20 rounded-2xl shadow-natural",
-        variant === "floating" && bordered && "border border-border",
+        variant === "floating" && [
+          "absolute z-20 rounded-lg shadow-natural",
+          "[interpolate-size:allow-keywords] transition-[height,max-height,opacity,transform,box-shadow] duration-200 ease-out motion-reduce:transition-none",
+        ],
         className,
       )}
       style={floatingStyle}

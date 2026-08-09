@@ -19,6 +19,10 @@ full-bleed surface. Without `safeInsets`, the viewport fills the workspace and
 floating panels overlay the canvas. Add `safeInsets` when an editor instead
 needs an unobscured region for fit and center calculations.
 
+Floating rails and panels size themselves to their content. Their configured
+top and bottom insets define a maximum available height; overflowing content
+scrolls inside the surface instead of stretching it to the full workspace.
+
 ```tsx
 <DesignerWorkspace>
   <DesignerWorkspaceViewport>{canvas}</DesignerWorkspaceViewport>

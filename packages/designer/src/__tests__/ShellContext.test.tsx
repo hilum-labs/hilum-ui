@@ -305,6 +305,27 @@ describe("DesignerSidebar", () => {
     expect(screen.getByRole("button", { name: "Pan" })).toBeInTheDocument();
   });
 
+  it("renders item tooltips as designed floating surfaces", async () => {
+    const user = userEvent.setup();
+    render(
+      <DesignerSidebar
+        items={[{ id: "select", label: "Select", icon: MockIcon }]}
+      />,
+    );
+
+    await user.hover(screen.getByRole("button", { name: "Select" }));
+
+    const tooltip = await screen.findByRole("tooltip", { name: "Select" });
+    const surface = screen.getAllByText("Select")[0]?.closest("div");
+    expect(tooltip).toBeInTheDocument();
+    expect(surface).toHaveClass(
+      "rounded-lg",
+      "bg-foreground",
+      "text-background",
+      "shadow-natural",
+    );
+  });
+
   it("renders on left and right sides without error", () => {
     for (const side of ["left", "right"] as const) {
       const { unmount } = render(<DesignerSidebar items={[]} side={side} />);
@@ -350,8 +371,19 @@ describe("DesignerSidebar", () => {
     );
 
     const rail = screen.getByRole("navigation", { name: "Editor tools" });
-    expect(rail).toHaveClass("absolute", "rounded-xl", "shadow-natural");
-    expect(rail).toHaveStyle({ top: "12px", bottom: "20px", left: "16px" });
+    const itemList = rail.querySelector("[data-designer-sidebar-items]");
+    expect(rail).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-natural");
+    expect(rail).toHaveClass("duration-200", "ease-out", "motion-reduce:transition-none");
+    expect(rail).not.toHaveClass("border", "border-border");
+    expect(rail).toHaveStyle({
+      top: "12px",
+      left: "16px",
+      height: "fit-content",
+      maxHeight: "calc(100% - 12px - 20px)",
+    });
+    expect(rail.style.bottom).toBe("");
+    expect(itemList).toHaveClass("flex-initial");
+    expect(itemList).not.toHaveClass("flex-1");
   });
 });
 
@@ -407,13 +439,17 @@ describe("DesignerPanel", () => {
 
     const panel = screen.getByText("Floating panel").closest("aside");
     expect(panel).toHaveAttribute("data-variant", "floating");
-    expect(panel).toHaveClass("absolute", "rounded-2xl", "shadow-natural");
+    expect(panel).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-natural");
+    expect(panel).toHaveClass("duration-200", "ease-out", "motion-reduce:transition-none");
+    expect(panel).not.toHaveClass("border", "border-border");
     expect(panel).toHaveStyle({
       top: "12px",
-      bottom: "20px",
       left: "76px",
       width: "280px",
+      height: "fit-content",
+      maxHeight: "calc(100% - 12px - 20px)",
     });
+    expect(panel?.style.bottom).toBe("");
   });
 });
 
