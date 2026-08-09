@@ -17,6 +17,8 @@ import {
 } from "lucide-react";
 import {
   DesignerShell,
+  DesignerWorkspace,
+  DesignerWorkspaceViewport,
   DesignerHeader,
   DesignerSidebar,
   DesignerPanel,
@@ -118,8 +120,12 @@ function Demo() {
         }
       />
 
-      <div className="flex flex-1 min-h-0">
+      <DesignerWorkspace
+        safeInsets={{ top: 16, right: 292, bottom: 72, left: 312 }}
+        className="bg-ground-100"
+      >
         <DesignerSidebar
+          variant="floating"
           items={TOOLS.map((t) => ({
             id: t.id,
             label: t.label,
@@ -129,102 +135,130 @@ function Demo() {
           }))}
         />
 
-        <main className="relative flex-1 overflow-hidden bg-ground-100">
-          <div className="absolute left-4 top-4 rounded-md border border-ground-200 bg-white px-2.5 py-1 shadow-natural">
-            <span className="caption-xs font-mono text-ground-500">
-              {activeTool} · {zoom}%
-            </span>
-          </div>
+        <DesignerWorkspaceViewport>
+          <main className="relative flex-1 overflow-hidden bg-ground-100">
+            <div className="absolute left-4 top-4 rounded-md border border-ground-200 bg-white px-2.5 py-1 shadow-natural">
+              <span className="caption-xs font-mono text-ground-500">
+                {activeTool} · {zoom}%
+              </span>
+            </div>
 
-          <div className="absolute inset-0 flex items-center justify-center p-8">
-            <button
-              type="button"
-              aria-label="Select demo layer"
-              aria-pressed={selected}
-              onClick={() => setSelectedIds(["demo-1"])}
-              className="relative h-[520px] w-[620px] rounded-md bg-white shadow-elevated outline-none"
-              style={{ transform: `scale(${zoomScale})` }}
-            >
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:24px_24px]" />
-              <div
-                className={cn(
-                  "absolute flex items-center justify-center rounded-lg border-2 text-center transition-shadow",
-                  selected ? "border-brand-primary shadow-natural" : "border-ground-200",
-                  activeTool === "hand" ? "cursor-grab" : "cursor-pointer",
-                )}
-                style={{
-                  left: x,
-                  top: y,
-                  width,
-                  height,
-                  backgroundColor: fill,
-                  opacity: opacity / 100,
-                }}
+            <div className="absolute inset-0 flex items-center justify-center p-8">
+              <button
+                type="button"
+                aria-label="Select demo layer"
+                aria-pressed={selected}
+                onClick={() => setSelectedIds(["demo-1"])}
+                className="relative h-[520px] w-[620px] rounded-md bg-white shadow-elevated outline-none"
+                style={{ transform: `scale(${zoomScale})` }}
               >
-                <div className={cn("px-4", opacity < 35 ? "text-ground-900" : "text-white")}>
-                  <p className="heading">{name}</p>
-                  <p className="caption mt-1">Move, resize, recolor, and fade this layer.</p>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:24px_24px]" />
+                <div
+                  className={cn(
+                    "absolute flex items-center justify-center rounded-lg border-2 text-center transition-shadow",
+                    selected ? "border-brand-primary shadow-natural" : "border-ground-200",
+                    activeTool === "hand" ? "cursor-grab" : "cursor-pointer",
+                  )}
+                  style={{
+                    left: x,
+                    top: y,
+                    width,
+                    height,
+                    backgroundColor: fill,
+                    opacity: opacity / 100,
+                  }}
+                >
+                  <div className={cn("px-4", opacity < 35 ? "text-ground-900" : "text-white")}>
+                    <p className="heading">{name}</p>
+                    <p className="caption mt-1">Move, resize, recolor, and fade this layer.</p>
+                  </div>
                 </div>
-              </div>
-            </button>
-          </div>
+              </button>
+            </div>
+          </main>
+        </DesignerWorkspaceViewport>
 
-          <DesignerToolbar
-            variant="inline"
-            className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2"
-          >
-            <DesignerToolbarGroup>
-              <DesignerToolbarButton
-                label="Undo"
-                shortcut="⌘Z"
-                onClick={() => {
-                  setX(120);
-                  setY(80);
-                  setWidth(320);
-                  setHeight(180);
-                  setOpacity(80);
-                  setFill("#c100f1");
-                }}
-              >
-                <Undo2 size={16} />
-              </DesignerToolbarButton>
-              <DesignerToolbarButton
-                label="Redo"
-                shortcut="⇧⌘Z"
-                onClick={() => {
-                  setX(180);
-                  setY(130);
-                  setWidth(280);
-                  setHeight(150);
-                  setOpacity(64);
-                  setFill("#740092");
-                }}
-              >
-                <Redo2 size={16} />
-              </DesignerToolbarButton>
-            </DesignerToolbarGroup>
-            <DesignerToolbarSeparator />
-            <DesignerToolbarGroup>
-              <DesignerToolbarButton
-                label="Zoom out"
-                onClick={() => setZoom((z) => Math.max(50, z - 10))}
-              >
-                <ZoomOut size={16} />
-              </DesignerToolbarButton>
-              <DesignerToolbarButton label="Reset zoom" onClick={() => setZoom(100)}>
-                <span className="caption-xs tabular-nums">{zoom}%</span>
-              </DesignerToolbarButton>
-              <DesignerToolbarButton
-                label="Zoom in"
-                onClick={() => setZoom((z) => Math.min(150, z + 10))}
-              >
-                <ZoomIn size={16} />
-              </DesignerToolbarButton>
-            </DesignerToolbarGroup>
-          </DesignerToolbar>
-        </main>
+        <DesignerToolbar boundary="workspace" center="safe-area">
+          <DesignerToolbarGroup>
+            <DesignerToolbarButton
+              label="Undo"
+              shortcut="⌘Z"
+              onClick={() => {
+                setX(120);
+                setY(80);
+                setWidth(320);
+                setHeight(180);
+                setOpacity(80);
+                setFill("#c100f1");
+              }}
+            >
+              <Undo2 size={16} />
+            </DesignerToolbarButton>
+            <DesignerToolbarButton
+              label="Redo"
+              shortcut="⇧⌘Z"
+              onClick={() => {
+                setX(180);
+                setY(130);
+                setWidth(280);
+                setHeight(150);
+                setOpacity(64);
+                setFill("#740092");
+              }}
+            >
+              <Redo2 size={16} />
+            </DesignerToolbarButton>
+          </DesignerToolbarGroup>
+          <DesignerToolbarSeparator />
+          <DesignerToolbarGroup>
+            <DesignerToolbarButton
+              label="Zoom out"
+              onClick={() => setZoom((z) => Math.max(50, z - 10))}
+            >
+              <ZoomOut size={16} />
+            </DesignerToolbarButton>
+            <DesignerToolbarButton label="Reset zoom" onClick={() => setZoom(100)}>
+              <span className="caption-xs tabular-nums">{zoom}%</span>
+            </DesignerToolbarButton>
+            <DesignerToolbarButton
+              label="Zoom in"
+              onClick={() => setZoom((z) => Math.min(150, z + 10))}
+            >
+              <ZoomIn size={16} />
+            </DesignerToolbarButton>
+          </DesignerToolbarGroup>
+        </DesignerToolbar>
 
-        <DesignerPanel side="right" width={260}>
+        <DesignerPanel
+          side="left"
+          variant="floating"
+          width={220}
+          floatingInset={{ top: 16, bottom: 16, left: 76 }}
+        >
+          <DesignerPane>
+            <DesignerPaneTitle>Layers</DesignerPaneTitle>
+            <DesignerPaneContent className="gap-1">
+              {["Hero text", "Background", "Decoration"].map((layer, index) => (
+                <button
+                  key={layer}
+                  type="button"
+                  className={cn(
+                    "flex items-center gap-2 rounded-md px-2 py-2 text-left caption",
+                    index === 0
+                      ? "bg-ground-100 font-medium text-ground-900"
+                      : "text-ground-500 hover:bg-ground-50",
+                  )}
+                  onClick={() => index === 0 && setSelectedIds(["demo-1"])}
+                >
+                  <span className="size-2 rounded-sm bg-brand-primary/60" />
+                  {layer}
+                </button>
+              ))}
+            </DesignerPaneContent>
+          </DesignerPane>
+        </DesignerPanel>
+
+        <DesignerPanel side="right" variant="floating" width={260}>
           <DesignerPane>
             <DesignerPaneTitle>Layer</DesignerPaneTitle>
             <DesignerPaneContent>
@@ -276,7 +310,7 @@ function Demo() {
             </DesignerPaneContent>
           </DesignerPane>
         </DesignerPanel>
-      </div>
+      </DesignerWorkspace>
     </DesignerShell>
   );
 }

@@ -3,6 +3,7 @@
 export * from "./shell/ShellContext";
 
 export * from "./components/DesignerShell";
+export * from "./components/DesignerWorkspace";
 export * from "./components/DesignerHeader";
 export * from "./components/DesignerSidebar";
 export * from "./components/DesignerPanel";

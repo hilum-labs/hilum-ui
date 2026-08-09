@@ -1,5 +1,9 @@
-import type { ComponentType, ReactNode } from "react";
+import type { ComponentType, CSSProperties, ReactNode } from "react";
 import { cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@hilum/ui";
+import {
+  resolveDesignerWorkspaceInsets,
+  type DesignerWorkspaceInsetsInput,
+} from "./designer-workspace-insets";
 
 interface SidebarItem {
   id: string;
@@ -17,10 +21,13 @@ interface DesignerSidebarProps {
   items: SidebarItem[];
   /** Optional bottom group (settings, help, account). */
   bottomItems?: SidebarItem[];
-  /** Layout variant. `rail` preserves the desktop vertical rail. */
-  variant?: "rail" | "bottom";
+  /** Layout variant. `rail` preserves the inline desktop vertical rail. */
+  variant?: "rail" | "floating" | "bottom";
   side?: "left" | "right";
+  /** Insets used to position a floating rail within DesignerWorkspace. Default: 16px. */
+  floatingInset?: DesignerWorkspaceInsetsInput;
   className?: string;
+  style?: CSSProperties;
   children?: ReactNode;
 }
 
@@ -34,7 +41,9 @@ function DesignerSidebar({
   bottomItems,
   variant = "rail",
   side = "left",
+  floatingInset,
   className,
+  style,
   children,
 }: DesignerSidebarProps) {
   if (variant === "bottom") {
@@ -48,6 +57,7 @@ function DesignerSidebar({
           "rounded-xl border border-border bg-card p-1 shadow-natural",
           className,
         )}
+        style={style}
       >
         <TooltipProvider>
           <div className="flex min-w-0 items-center gap-1 overflow-x-auto overscroll-x-contain">
@@ -61,32 +71,71 @@ function DesignerSidebar({
     );
   }
 
+  const content = (
+    <TooltipProvider>
+      <div className="flex min-h-0 flex-1 flex-col items-center gap-0.5 overflow-y-auto overscroll-contain p-1.5">
+        {items.map((item) => (
+          <SidebarButton
+            key={item.id}
+            item={item}
+            tooltipSide={side === "left" ? "right" : "left"}
+          />
+        ))}
+      </div>
+
+      {children}
+
+      {bottomItems && bottomItems.length > 0 && (
+        <div className="flex shrink-0 flex-col items-center gap-0.5 p-1.5">
+          {bottomItems.map((item) => (
+            <SidebarButton
+              key={item.id}
+              item={item}
+              tooltipSide={side === "left" ? "right" : "left"}
+            />
+          ))}
+        </div>
+      )}
+    </TooltipProvider>
+  );
+
+  if (variant === "floating") {
+    const insets = resolveDesignerWorkspaceInsets(floatingInset, 16);
+
+    return (
+      <nav
+        aria-label="Editor tools"
+        data-side={side}
+        data-variant={variant}
+        className={cn(
+          "absolute z-30 flex w-12 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-natural",
+          className,
+        )}
+        style={{
+          top: insets.top,
+          bottom: insets.bottom,
+          [side]: insets[side],
+          ...style,
+        }}
+      >
+        {content}
+      </nav>
+    );
+  }
+
   return (
     <aside
+      data-side={side}
+      data-variant={variant}
       className={cn(
         "flex flex-col w-12 bg-card shrink-0",
         side === "left" ? "border-r" : "border-l",
         "border-border",
         className,
       )}
+      style={style}
     >
-      <TooltipProvider>
-        <div className="flex flex-col items-center gap-0.5 p-1.5">
-          {items.map((item) => (
-            <SidebarButton key={item.id} item={item} tooltipSide={side === "left" ? "right" : "left"} />
-          ))}
-        </div>
-
-        {children}
-
-        {bottomItems && bottomItems.length > 0 && (
-          <div className="mt-auto flex flex-col items-center gap-0.5 p-1.5">
-            {bottomItems.map((item) => (
-              <SidebarButton key={item.id} item={item} tooltipSide={side === "left" ? "right" : "left"} />
-            ))}
-          </div>
-        )}
-      </TooltipProvider>
+      {content}
     </aside>
   );
 }

@@ -968,6 +968,10 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "mobileSurface"
+      },
+      {
         "label": "Variant props",
         "description": "variant"
       },
@@ -1606,8 +1610,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Common HTML props",
-        "description": "type, placeholder, value, defaultValue, disabled, required"
+        "label": "Props",
+        "description": "density, mobileDensity, mobileSurface"
       }
     ],
     "exampleCode": "import { Input } from \"@hilum/ui\"\n\n<Input placeholder=\"Type something...\" />\n<Input type=\"email\" placeholder=\"you@example.com\" />\n<Input type=\"password\" placeholder=\"Password\" />\n<Input disabled placeholder=\"Disabled input\" />",
@@ -1853,7 +1857,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "NavigationMenuRoot, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink"
       }
     ],
-    "exampleCode": "import {\n  NavigationMenu, NavigationMenuList, NavigationMenuItem,\n  NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@hilum/ui\"\n\n<NavigationMenu>\n  <NavigationMenuList>\n    {/* Products — rich card dropdown */}\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Products</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <div className=\"grid w-[480px] grid-cols-3 gap-1 p-3\">\n          <ProductCard\n            icon={<Box size={16} />}\n            title=\"Components\"\n            description=\"Reusable UI building blocks\"\n          />\n// ...trimmed for docs",
+    "exampleCode": "import {\n  NavigationMenu, NavigationMenuList, NavigationMenuItem,\n  NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@hilum/ui\"\n\n<NavigationMenu>\n  <NavigationMenuList>\n    {/* Products — rich card dropdown */}\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Products</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <div className=\"grid w-[min(480px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-3\">\n          <ProductCard\n            icon={<Box size={16} />}\n            title=\"Components\"\n            description=\"Reusable UI building blocks\"\n          />\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/navigation-menu/",
     "summary": "Horizontal navigation with rich dropdown panels. Supports direct content dropdowns and animated viewport transitions.",
@@ -2540,7 +2544,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "children, containerClassName, index"
+        "description": "children, containerClassName, density, mobileDensity, mobileSurface, index"
       },
       {
         "label": "Key exports",
@@ -2632,8 +2636,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Common HTML props",
-        "description": "type, placeholder, value, defaultValue, disabled, required"
+        "label": "Props",
+        "description": "density, mobileDensity, mobileSurface"
       }
     ],
     "exampleCode": "import { Textarea } from \"@hilum/ui\"\n\n<Textarea placeholder=\"Write something...\" />\n<Textarea disabled placeholder=\"Disabled\" />",
@@ -3123,7 +3127,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Key building blocks",
-        "description": "DesignerShell, DesignerHeader, DesignerSidebar, DesignerPanel, DesignerPane, DesignerPaneTitle"
+        "description": "DesignerShell, DesignerWorkspace, DesignerWorkspaceViewport, DesignerHeader, DesignerSidebar, DesignerPanel"
       }
     ],
     "exampleCode": null,

@@ -3,6 +3,7 @@ import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { ShellProvider, useShellContext } from "../shell/ShellContext";
 import { DesignerShell } from "../components/DesignerShell";
+import { DesignerWorkspace, DesignerWorkspaceViewport } from "../components/DesignerWorkspace";
 import { DesignerHeader } from "../components/DesignerHeader";
 import { DesignerToolbar } from "../components/DesignerToolbar";
 import { DesignerSidebar } from "../components/DesignerSidebar";
@@ -131,6 +132,41 @@ describe("DesignerShell", () => {
 });
 
 /* ------------------------------------------------------------------ */
+/* DesignerWorkspace                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("DesignerWorkspace", () => {
+  it("creates a relative editor boundary with configurable safe insets", () => {
+    render(
+      <DesignerWorkspace safeInsets={{ top: 12, right: "18rem", bottom: 72, left: 320 }}>
+        <DesignerWorkspaceViewport>Visible canvas</DesignerWorkspaceViewport>
+      </DesignerWorkspace>,
+    );
+
+    const viewport = screen.getByText("Visible canvas");
+    const workspace = viewport.parentElement;
+
+    expect(workspace).toHaveAttribute("data-designer-workspace");
+    expect(workspace).toHaveClass("relative", "isolate", "overflow-hidden");
+    expect(workspace).toHaveStyle({
+      "--designer-workspace-inset-top": "12px",
+      "--designer-workspace-inset-right": "18rem",
+      "--designer-workspace-inset-bottom": "72px",
+      "--designer-workspace-inset-left": "320px",
+    });
+    expect(viewport).toHaveAttribute("data-designer-workspace-viewport");
+    expect(viewport.getAttribute("style")).toContain("top: var(--designer-workspace-inset-top)");
+    expect(viewport.getAttribute("style")).toContain(
+      "right: var(--designer-workspace-inset-right)",
+    );
+    expect(viewport.getAttribute("style")).toContain(
+      "bottom: var(--designer-workspace-inset-bottom)",
+    );
+    expect(viewport.getAttribute("style")).toContain("left: var(--designer-workspace-inset-left)");
+  });
+});
+
+/* ------------------------------------------------------------------ */
 /* DesignerHeader                                                       */
 /* ------------------------------------------------------------------ */
 
@@ -200,6 +236,29 @@ describe("DesignerToolbar", () => {
     );
     expect(screen.getByRole("toolbar")).toHaveClass("inset-x-3", "overflow-x-auto");
   });
+
+  it("can position a floating toolbar relative to its workspace", () => {
+    render(
+      <DesignerToolbar boundary="workspace">
+        <span>T</span>
+      </DesignerToolbar>,
+    );
+
+    expect(screen.getByRole("toolbar")).toHaveClass("absolute");
+    expect(screen.getByRole("toolbar")).not.toHaveClass("fixed");
+  });
+
+  it("can center a floating toolbar within the workspace safe area", () => {
+    render(
+      <DesignerToolbar boundary="workspace" center="safe-area">
+        <span>T</span>
+      </DesignerToolbar>,
+    );
+
+    expect(screen.getByRole("toolbar")).toHaveStyle({
+      left: "calc(var(--designer-workspace-inset-left) + (100% - var(--designer-workspace-inset-left) - var(--designer-workspace-inset-right)) / 2)",
+    });
+  });
 });
 
 /* ------------------------------------------------------------------ */
@@ -258,6 +317,20 @@ describe("DesignerSidebar", () => {
     );
     expect(screen.getByRole("button", { name: "Select" })).toHaveClass("size-11");
   });
+
+  it("renders a rounded floating desktop rail within the workspace", () => {
+    render(
+      <DesignerSidebar
+        variant="floating"
+        floatingInset={{ top: 12, bottom: 20, left: 16 }}
+        items={[{ id: "select", label: "Select", icon: MockIcon }]}
+      />,
+    );
+
+    const rail = screen.getByRole("navigation", { name: "Editor tools" });
+    expect(rail).toHaveClass("absolute", "rounded-xl", "shadow-natural");
+    expect(rail).toHaveStyle({ top: "12px", bottom: "20px", left: "16px" });
+  });
 });
 
 /* ------------------------------------------------------------------ */
@@ -296,6 +369,29 @@ describe("DesignerPanel", () => {
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     expect(screen.getByText("Properties")).toBeInTheDocument();
     expect(screen.getByText("Mobile panel content")).toBeInTheDocument();
+  });
+
+  it("renders an elevated floating panel on either workspace edge", () => {
+    render(
+      <DesignerPanel
+        side="left"
+        variant="floating"
+        width={280}
+        floatingInset={{ top: 12, bottom: 20, left: 76 }}
+      >
+        Floating panel
+      </DesignerPanel>,
+    );
+
+    const panel = screen.getByText("Floating panel").closest("aside");
+    expect(panel).toHaveAttribute("data-variant", "floating");
+    expect(panel).toHaveClass("absolute", "rounded-2xl", "shadow-natural");
+    expect(panel).toHaveStyle({
+      top: "12px",
+      bottom: "20px",
+      left: "76px",
+      width: "280px",
+    });
   });
 });
 

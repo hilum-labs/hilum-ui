@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode } from "react";
+import type { ComponentType, CSSProperties, ReactNode } from "react";
 import { cn, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@hilum/ui";
 
 /* ============================================================== *
@@ -9,24 +9,50 @@ interface DesignerToolbarProps {
   className?: string;
   /** Position. Default: 'floating' (centered, floating above content). */
   variant?: "floating" | "inline" | "dock";
+  /**
+   * Position floating chrome against the viewport or the nearest positioned
+   * workspace ancestor. Default: 'viewport'.
+   */
+  boundary?: "viewport" | "workspace";
+  /** Center against the full boundary or its configured workspace safe area. */
+  center?: "boundary" | "safe-area";
+  style?: CSSProperties;
   children: ReactNode;
 }
 
-function DesignerToolbar({ className, variant = "floating", children }: DesignerToolbarProps) {
+function DesignerToolbar({
+  className,
+  variant = "floating",
+  boundary = "viewport",
+  center = "boundary",
+  style,
+  children,
+}: DesignerToolbarProps) {
+  const positioned = boundary === "workspace" ? "absolute" : "fixed";
+  const safeAreaStyle: CSSProperties | undefined =
+    variant === "floating" && boundary === "workspace" && center === "safe-area"
+      ? {
+          left: "calc(var(--designer-workspace-inset-left) + (100% - var(--designer-workspace-inset-left) - var(--designer-workspace-inset-right)) / 2)",
+        }
+      : undefined;
+
   return (
     <TooltipProvider>
       <div
         role="toolbar"
         className={cn(
           "flex items-center gap-0.5 rounded-lg bg-card p-1 shadow-natural",
-          variant === "floating" && "fixed bottom-4 left-1/2 -translate-x-1/2 z-30",
-          variant === "dock" &&
-            [
-              "fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30",
-              "overflow-x-auto overscroll-x-contain rounded-xl",
-            ],
+          variant === "floating" && positioned,
+          variant === "floating" && "bottom-4 -translate-x-1/2 z-30",
+          variant === "floating" && center === "boundary" && "left-1/2",
+          variant === "dock" && [
+            positioned,
+            "inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30",
+            "overflow-x-auto overscroll-x-contain rounded-xl",
+          ],
           className,
         )}
+        style={{ ...safeAreaStyle, ...style }}
       >
         {children}
       </div>
