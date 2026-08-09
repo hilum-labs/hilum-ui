@@ -1,5 +1,10 @@
 # @hilum/designer-canvas
 
+## 3.8.3
+
+### Patch Changes
+
+- Automated AWS CodeCommit patch release from 147b990.
 ## 3.8.2
 
 ### Patch Changes
