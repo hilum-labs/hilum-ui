@@ -1,5 +1,10 @@
 # @hilum/app-shell
 
+## 3.8.2
+
+### Patch Changes
+
+- Automated AWS CodeCommit patch release from eba58b6.
 ## 3.8.1
 
 ### Patch Changes
