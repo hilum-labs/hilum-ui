@@ -392,6 +392,21 @@ function parseColor(input: string): { r: number; g: number; b: number; a: number
   return null;
 }
 
+function colorsRepresentSameValue(left: string, right: string): boolean {
+  if (left.trim().toLowerCase() === right.trim().toLowerCase()) return true;
+
+  const leftColor = parseColor(left);
+  const rightColor = parseColor(right);
+  if (!leftColor || !rightColor) return false;
+
+  return (
+    Math.abs(leftColor.r - rightColor.r) < 0.5 &&
+    Math.abs(leftColor.g - rightColor.g) < 0.5 &&
+    Math.abs(leftColor.b - rightColor.b) < 0.5 &&
+    Math.abs(leftColor.a - rightColor.a) < 0.5 / 255
+  );
+}
+
 function buildParsed(h: number, s: number, v: number, a: number): ParsedColor {
   const { r, g, b } = hsvToRgb(h, s, v);
   const hsl = rgbToHsl(r, g, b);
@@ -463,7 +478,7 @@ interface SaturationSquareProps {
 function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
   const ref = useRef<HTMLDivElement>(null);
   const dragging = useRef(false);
-  const hasMoved = useRef(false);
+  const [isDragging, setIsDragging] = useState(false);
   const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [cursorPos, setCursorPos] = useState<{ x: number; y: number } | null>(null);
@@ -494,7 +509,7 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
       if (e.pointerType === "mouse" && e.button !== 0) return;
       e.preventDefault();
       dragging.current = true;
-      hasMoved.current = false;
+      setIsDragging(true);
       (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
       updateFromPointer(e.clientX, e.clientY);
     },
@@ -505,7 +520,6 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
     (e: React.PointerEvent<HTMLDivElement>) => {
       updateCursorPos(e.clientX, e.clientY);
       if (!dragging.current) return;
-      hasMoved.current = true;
       updateFromPointer(e.clientX, e.clientY);
     },
     [updateFromPointer, updateCursorPos],
@@ -513,7 +527,7 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
 
   const onPointerUp = useCallback(() => {
     dragging.current = false;
-    hasMoved.current = false;
+    setIsDragging(false);
   }, []);
 
   const onKeyDown = useCallback(
@@ -556,6 +570,8 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+      onLostPointerCapture={onPointerUp}
       onKeyDown={onKeyDown}
       className={cn("relative w-full select-none touch-none cursor-none outline-none", shape.bg)}
       style={{
@@ -572,25 +588,25 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
           background: `linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(${h}, 100%, 50%))`,
         }}
       />
-      <motion.div
+      <div
+        data-slot="color-picker-thumb"
+        aria-hidden="true"
         className="absolute pointer-events-none rounded-full"
-        initial={false}
-        animate={{
+        style={{
           left: `${s * 100}%`,
           top: `${(1 - v) * 100}%`,
           width: 18,
           height: 18,
-        }}
-        transition={{ duration: 0 }}
-        style={{
           transform: "translate(-50%, -50%)",
           border: "1px solid white",
           boxShadow: "0 0 0 1px rgba(0,0,0,1)",
           backgroundColor: thumbColor,
         }}
       />
-      {hovered && !dragging.current && cursorPos && (
+      {hovered && !isDragging && cursorPos && (
         <div
+          data-slot="color-picker-hover"
+          aria-hidden="true"
           className="absolute pointer-events-none rounded-full"
           style={{
             left: `${cursorPos.x}%`,
@@ -1338,7 +1354,11 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
       if (!isControlled) return;
       const emitted = lastEmittedRef.current;
       const cur = value as string;
-      if (cur === emitted) return;
+      // Controlled consumers commonly normalize emitted hex strings (for
+      // example, Pappery uppercases them). Treat a formatting-only round trip
+      // as an acknowledgement of our last emission so the precise in-flight
+      // HSV position is not replaced with RGB-quantized coordinates mid-drag.
+      if (cur === emitted || colorsRepresentSameValue(cur, emitted)) return;
       const p = parseColor(cur);
       if (!p) return;
       oklchHueRef.current = null;
