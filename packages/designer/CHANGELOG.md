@@ -1,5 +1,10 @@
 # @hilum/designer
 
+## 3.8.5
+
+### Patch Changes
+
+- Automated AWS CodeCommit patch release from 57a07f0.
 ## 3.8.4
 
 ### Patch Changes
