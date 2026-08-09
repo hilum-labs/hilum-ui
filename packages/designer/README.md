@@ -15,8 +15,30 @@ For the actual canvas (pan/zoom viewport, layers, drag/resize), use `@hilum/desi
 ## Floating workspace
 
 Use the workspace primitives when desktop editor chrome should float over a
-full-bleed surface. `safeInsets` define the unobscured region used by the
-canvas for fit and center calculations.
+full-bleed surface. Without `safeInsets`, the viewport fills the workspace and
+floating panels overlay the canvas. Add `safeInsets` when an editor instead
+needs an unobscured region for fit and center calculations.
+
+```tsx
+<DesignerWorkspace>
+  <DesignerWorkspaceViewport>{canvas}</DesignerWorkspaceViewport>
+
+  <DesignerSidebar variant="floating" floatingInset={{ left: 0 }} items={tools} />
+  <DesignerPanel side="left" variant="floating" width={280} floatingInset={{ left: 60 }}>
+    {library}
+  </DesignerPanel>
+  <DesignerPanel side="right" variant="floating" width={304}>
+    {inspector}
+  </DesignerPanel>
+
+  <DesignerToolbar boundary="workspace" center="boundary">
+    {actions}
+  </DesignerToolbar>
+</DesignerWorkspace>
+```
+
+To reserve an unobscured canvas between the floating surfaces, configure safe
+insets and center the toolbar within the same region:
 
 ```tsx
 <DesignerWorkspace safeInsets={{ top: 16, right: 336, bottom: 72, left: 376 }}>

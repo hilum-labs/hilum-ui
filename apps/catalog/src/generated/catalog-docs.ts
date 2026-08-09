@@ -3133,7 +3133,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": null,
     "kind": "component",
     "path": "/designer/shell/",
-    "summary": "Engine-agnostic editor chrome with header, sidebar, toolbars, and contextual panels for authoring workflows.",
+    "summary": "Engine-agnostic editor chrome with floating sidebars, toolbars, and contextual panels layered over a full-bleed authoring canvas.",
     "title": "Shell",
     "whenNotToUse": [
       "Do not use Shell when the page structure is still exploratory; start with smaller primitives if the workflow is not stable yet.",

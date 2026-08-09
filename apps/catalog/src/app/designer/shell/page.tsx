@@ -14,6 +14,9 @@ import {
   Redo2,
   ZoomIn,
   ZoomOut,
+  ArrowLeft,
+  CircleHelp,
+  Moon,
 } from "lucide-react";
 import {
   DesignerShell,
@@ -60,8 +63,8 @@ function DesignerShellDemo() {
         </div>
         <h1 className="display mb-2 text-ground-900">Shell</h1>
         <p className="body max-w-2xl text-ground-500">
-          Engine-agnostic editor chrome with header, sidebar, toolbars, and contextual panels for
-          authoring workflows.
+          Engine-agnostic editor chrome with floating sidebars, toolbars, and contextual panels
+          layered over a full-bleed authoring canvas.
         </p>
       </div>
 
@@ -92,6 +95,7 @@ function Demo() {
   const [fill, setFill] = useState("#c100f1");
   const [name, setName] = useState("Hero text");
   const [zoom, setZoom] = useState(100);
+  const [headerMode, setHeaderMode] = useState<"edit" | "preview">("edit");
   const selected = selectedIds.includes("demo-1");
 
   const zoomScale = zoom / 100;
@@ -101,31 +105,75 @@ function Demo() {
       <DesignerHeader
         left={
           <>
+            <Button variant="ghost" size="icon-sm" aria-label="Back to projects">
+              <ArrowLeft size={16} />
+            </Button>
             <div className="flex size-6 items-center justify-center rounded-md bg-ground-900">
               <span className="caption-xs font-bold text-white">H</span>
             </div>
-            <span className="caption font-semibold text-ground-900">Untitled design</span>
-            <span className="caption-xs text-ground-300">/</span>
-            <span className="caption text-ground-500">Demo workspace</span>
+            <span className="caption truncate font-semibold text-ground-900">Untitled design</span>
           </>
         }
-        center={<span className="caption text-ground-400">Edited just now</span>}
+        center={
+          <div className="grid w-72 grid-cols-3 rounded-xl border border-border bg-muted p-0.5">
+            <button
+              type="button"
+              aria-pressed={headerMode === "edit"}
+              onClick={() => setHeaderMode("edit")}
+              className={cn(
+                "rounded-lg px-5 py-1.5 caption font-semibold",
+                headerMode === "edit"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              aria-pressed={headerMode === "preview"}
+              onClick={() => setHeaderMode("preview")}
+              className={cn(
+                "rounded-lg px-5 py-1.5 caption font-medium",
+                headerMode === "preview"
+                  ? "bg-foreground text-background"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              Preview
+            </button>
+            <button
+              type="button"
+              className="rounded-lg px-5 py-1.5 caption font-medium text-muted-foreground hover:text-foreground"
+            >
+              Export
+            </button>
+          </div>
+        }
         right={
           <>
-            <Button variant="ghost" size="sm">
-              Share
+            <Button variant="ghost" size="icon-sm" aria-label="Toggle theme">
+              <Moon size={16} />
             </Button>
-            <Button size="sm">Publish</Button>
+            <Button variant="ghost" size="icon-sm" aria-label="Open help">
+              <CircleHelp size={16} />
+            </Button>
+            <span className="h-5 w-px bg-border" aria-hidden="true" />
+            <button
+              type="button"
+              className="flex size-8 items-center justify-center rounded-full bg-primary caption font-semibold text-primary-foreground"
+              aria-label="Open account settings"
+            >
+              W
+            </button>
           </>
         }
       />
 
-      <DesignerWorkspace
-        safeInsets={{ top: 16, right: 292, bottom: 72, left: 312 }}
-        className="bg-ground-100"
-      >
+      <DesignerWorkspace className="bg-ground-100">
         <DesignerSidebar
           variant="floating"
+          floatingInset={{ left: 0 }}
           items={TOOLS.map((t) => ({
             id: t.id,
             label: t.label,
@@ -149,7 +197,7 @@ function Demo() {
                 aria-label="Select demo layer"
                 aria-pressed={selected}
                 onClick={() => setSelectedIds(["demo-1"])}
-                className="relative h-[520px] w-[620px] rounded-md bg-white shadow-elevated outline-none"
+                className="relative h-[520px] w-[620px] rounded-md bg-white shadow-natural outline-none"
                 style={{ transform: `scale(${zoomScale})` }}
               >
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -178,7 +226,7 @@ function Demo() {
           </main>
         </DesignerWorkspaceViewport>
 
-        <DesignerToolbar boundary="workspace" center="safe-area">
+        <DesignerToolbar boundary="workspace" center="boundary">
           <DesignerToolbarGroup>
             <DesignerToolbarButton
               label="Undo"
@@ -233,7 +281,7 @@ function Demo() {
           side="left"
           variant="floating"
           width={220}
-          floatingInset={{ top: 16, bottom: 16, left: 76 }}
+          floatingInset={{ top: 16, bottom: 16, left: 60 }}
         >
           <DesignerPane>
             <DesignerPaneTitle>Layers</DesignerPaneTitle>

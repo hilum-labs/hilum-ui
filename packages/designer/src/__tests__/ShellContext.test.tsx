@@ -188,6 +188,28 @@ describe("DesignerHeader", () => {
     render(<DesignerHeader />);
     expect(screen.getByRole("banner")).toBeInTheDocument();
   });
+
+  it("keeps the center slot centered independently of the side content", () => {
+    render(
+      <DesignerHeader
+        left={<span>Long document name</span>}
+        center={<span>Modes</span>}
+        right={<span>Account</span>}
+      />,
+    );
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("grid", "grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]");
+    expect(header.querySelector('[data-designer-header-slot="left"]')).toHaveClass(
+      "justify-self-start",
+    );
+    expect(header.querySelector('[data-designer-header-slot="center"]')).toHaveClass(
+      "justify-self-center",
+    );
+    expect(header.querySelector('[data-designer-header-slot="right"]')).toHaveClass(
+      "justify-self-end",
+    );
+  });
 });
 
 /* ------------------------------------------------------------------ */
