@@ -28,7 +28,7 @@ function DesignerHeader({
     <header
       data-designer-header
       className={cn(
-        "grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 border-b border-border bg-card px-3",
+        "grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 bg-card px-3",
         className,
       )}
       {...props}

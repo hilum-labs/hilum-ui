@@ -186,7 +186,9 @@ describe("DesignerHeader", () => {
 
   it("renders as a header element", () => {
     render(<DesignerHeader />);
-    expect(screen.getByRole("banner")).toBeInTheDocument();
+    const header = screen.getByRole("banner");
+    expect(header).toBeInTheDocument();
+    expect(header).not.toHaveClass("border-b", "border-border");
   });
 
   it("keeps the center slot centered independently of the side content", () => {
