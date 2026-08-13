@@ -1,5 +1,10 @@
 # @hilum/blocks
 
+## 3.8.6
+
+### Patch Changes
+
+- Automated AWS CodeCommit patch release from e2326ac.
 ## 3.8.5
 
 ### Patch Changes
