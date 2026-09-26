@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Toaster } from "@hilum/ui";
 import { MobileNavigation, Sidebar } from "@/components/catalog/sidebar";
+import { themeInitScript } from "@/components/catalog/theme-toggle";
 import appCss from "../styles/globals.css?url";
 
 const SITE_URL = "https://ui.hilum.dev";
@@ -61,6 +62,7 @@ export const Route = createRootRoute({
     ],
     links: [{ rel: "stylesheet", href: appCss }],
     scripts: [
+      { children: themeInitScript },
       {
         type: "application/ld+json",
         children: JSON.stringify(structuredData),
@@ -72,12 +74,12 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
       <body>
-        <div className="min-h-screen bg-white text-ground-900 antialiased lg:flex">
+        <div className="min-h-screen bg-background text-foreground antialiased lg:flex">
           <Sidebar />
           <div className="flex min-h-screen min-w-0 flex-1 flex-col">
             <MobileNavigation />

@@ -56,8 +56,8 @@ import { Bell } from "lucide-react"
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -68,26 +68,26 @@ function NotificationPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Notification</span>
+          <span className="body font-semibold text-foreground">Notification</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Notification</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Notification</h1>
+        <p className="body max-w-md text-muted-foreground">
           A toast-style notification panel for displaying transient feedback. Supports success,
           error, warning, and info variants with optional actions and close button.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Molecule</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Icon · Button</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Molecule</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Icon · Button</p>
         </div>
       </div>
 
@@ -162,7 +162,7 @@ function NotificationPage() {
                 ) : (
                   <button
                     onClick={() => setShow(true)}
-                    className="caption text-ground-400 hover:text-ground-700"
+                    className="caption text-muted-foreground hover:text-foreground"
                   >
                     Show again →
                   </button>

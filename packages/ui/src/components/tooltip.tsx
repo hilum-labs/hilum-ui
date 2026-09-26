@@ -80,7 +80,18 @@ function Tooltip({
   forceOpen,
   onOpenChange: onOpenChangeProp,
 }: TooltipProps) {
+  // All hooks run before the `content === undefined` early return so the hook
+  // order is stable if `content` toggles between defined and undefined.
   const [internalOpen, setInternalOpen] = useState(false);
+  const open = forceOpen ?? openProp ?? internalOpen;
+  const [mounted, setMounted] = useState(false);
+  const shape = useShape();
+  const portalContainer = useContext(TooltipPortalContainerContext);
+
+  useEffect(() => {
+    if (open) setMounted(true);
+  }, [open]);
+
   if (content === undefined) {
     return (
       <TooltipPrimitive.Root
@@ -91,14 +102,6 @@ function Tooltip({
       </TooltipPrimitive.Root>
     );
   }
-  const open = forceOpen ?? openProp ?? internalOpen;
-  const [mounted, setMounted] = useState(false);
-  const shape = useShape();
-  const portalContainer = useContext(TooltipPortalContainerContext);
-
-  useEffect(() => {
-    if (open) setMounted(true);
-  }, [open]);
 
   const handleExitComplete = () => {
     if (!open) setMounted(false);

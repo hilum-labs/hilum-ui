@@ -20,8 +20,8 @@ import quickViewLargeSizeVariantSource from "@/components/ecommerce/product-quic
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -29,21 +29,21 @@ function SectionHeading({ label }: { label: string }) {
 function ProductQuickviewsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <div className="mb-10 flex flex-col gap-5 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-10 flex flex-col gap-5 border-b border-border pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="#" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="#" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="#" className="hover:text-ground-700">
+            <a href="#" className="hover:text-foreground">
               Ecommerce
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Product Quickviews</span>
+            <span className="font-semibold text-foreground">Product Quickviews</span>
           </div>
-          <h1 className="display text-ground-900">Product Quickviews</h1>
-          <p className="body mt-3 text-ground-500">
+          <h1 className="display text-foreground">Product Quickviews</h1>
+          <p className="body mt-3 text-muted-foreground">
             Modal quick-view panels with color and size selectors.
           </p>
         </div>
@@ -61,7 +61,7 @@ function ProductQuickviewsPage() {
         code={quickViewSelectorsVariantSource}
         previewClassName="p-0"
       >
-        <div className="w-full bg-ground-50 p-6">
+        <div className="w-full bg-muted p-6">
           <QuickViewSelectorsVariant />
         </div>
       </PreviewBlock>
@@ -75,7 +75,7 @@ function ProductQuickviewsPage() {
         code={quickViewDetailsLinkVariantSource}
         previewClassName="p-0"
       >
-        <div className="w-full bg-ground-50 p-6">
+        <div className="w-full bg-muted p-6">
           <QuickViewDetailsLinkVariant />
         </div>
       </PreviewBlock>
@@ -89,7 +89,7 @@ function ProductQuickviewsPage() {
         code={quickViewDescriptionVariantSource}
         previewClassName="p-0"
       >
-        <div className="w-full bg-ground-50 p-6">
+        <div className="w-full bg-muted p-6">
           <QuickViewDescriptionVariant />
         </div>
       </PreviewBlock>
@@ -103,7 +103,7 @@ function ProductQuickviewsPage() {
         code={quickViewLargeSizeVariantSource}
         previewClassName="p-0"
       >
-        <div className="w-full bg-ground-50 p-6">
+        <div className="w-full bg-muted p-6">
           <QuickViewLargeSizeVariant />
         </div>
       </PreviewBlock>

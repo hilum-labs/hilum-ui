@@ -4,6 +4,7 @@ import * as React from "react";
 import { ContextMenu } from "radix-ui";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useDensityAttributes } from "../lib/density-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
@@ -26,6 +27,7 @@ const ContextMenuContent = React.forwardRef<
     <style>{mobilePopperSheetStyle}</style>
     <ContextMenu.Portal>
       <ContextMenu.Content
+        {...useDensityAttributes()}
         ref={ref}
         data-hilum-mobile-sheet="true"
         className={cn(
@@ -58,13 +60,13 @@ const ContextMenuItem = React.forwardRef<
   <ContextMenu.Item
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
       "body outline-none transition-colors",
       destructive
         ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
-        : "text-muted-foreground focus:bg-muted focus:text-foreground",
+        : "text-foreground focus:bg-active",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      inset && "pl-8",
+      inset && "pl-8 compact:pl-7",
       className,
     )}
     {...props}
@@ -79,9 +81,9 @@ const ContextMenuCheckboxItem = React.forwardRef<
   <ContextMenu.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5 compact:min-h-7 compact:py-1 compact:pl-7 compact:pr-2 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -104,9 +106,9 @@ const ContextMenuRadioItem = React.forwardRef<
   <ContextMenu.RadioItem
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5 compact:min-h-7 compact:py-1 compact:pl-7 compact:pr-2 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -130,7 +132,7 @@ const ContextMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <ContextMenu.Label
     ref={ref}
-    className={cn("px-2.5 py-1 label text-muted-foreground", inset && "pl-8", className)}
+    className={cn("px-2.5 py-1 label text-muted-foreground compact:px-2 compact:text-[11px]", inset && "pl-8 compact:pl-7", className)}
     {...props}
   />
 ));
@@ -142,7 +144,7 @@ const ContextMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ContextMenu.Separator
     ref={ref}
-    className={cn("mx-1 my-1 h-px bg-muted", className)}
+    className={cn("-mx-1 my-1 h-px bg-border", className)}
     {...props}
   />
 ));
@@ -157,10 +159,10 @@ const ContextMenuSubTrigger = React.forwardRef<
   <ContextMenu.SubTrigger
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground data-[state=open]:bg-muted",
-      inset && "pl-8",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground data-[state=open]:bg-active",
+      inset && "pl-8 compact:pl-7",
       className,
     )}
     {...props}
@@ -178,6 +180,7 @@ const ContextMenuSubContent = React.forwardRef<
   <>
     <style>{mobilePopperSheetStyle}</style>
     <ContextMenu.SubContent
+        {...useDensityAttributes()}
       ref={ref}
       data-hilum-mobile-sheet="true"
       className={cn(

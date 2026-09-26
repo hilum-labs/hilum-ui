@@ -256,7 +256,7 @@ function AppSidebarUserMenu({
           type="button"
           className={cn(
             "flex w-full items-center rounded-md text-left body-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             collapsed ? "size-9 justify-center" : "min-h-10 gap-2 px-2",
           )}
         >

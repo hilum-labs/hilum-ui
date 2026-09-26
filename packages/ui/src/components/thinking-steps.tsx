@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, forwardRef, type ReactNode, type HTMLAttributes } from "react";
+import { forwardRef, type ReactNode, type HTMLAttributes } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../lib/utils";
 import { useIcon } from "../lib/icon-context";
@@ -152,8 +152,8 @@ function ThinkingStep({
   label,
   description,
   status = "complete",
-  index,
-  delay = 0,
+  // `index` / `delay` are accepted for API compatibility but no longer drive
+  // the entrance animation, so they aren't destructured here.
   isLast = false,
   children,
   className,

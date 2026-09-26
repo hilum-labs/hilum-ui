@@ -2,10 +2,21 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { InputNumber } from "@hilum/ui";
+import { DensityProvider, InputNumber } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
+  labelPrefix: `import { DensityProvider, InputNumber } from "@hilum/ui"
+
+// Label-in-field prefix doubles as a scrub handle: drag it to change the value.
+<DensityProvider density="compact">
+  <div className="grid w-56 grid-cols-2 gap-1.5">
+    <InputNumber label="X" value={x} onChange={setX} className="w-full" />
+    <InputNumber label="Y" value={y} onChange={setY} className="w-full" />
+    <InputNumber label="W" value={w} onChange={setW} min={1} className="w-full" />
+    <InputNumber label="H" value={h} onChange={setH} min={1} className="w-full" />
+  </div>
+</DensityProvider>`,
   basic: `import { InputNumber } from "@hilum/ui"
 
 const [value, setValue] = React.useState(0)
@@ -24,8 +35,8 @@ const [value, setValue] = React.useState(0)
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -37,23 +48,24 @@ function InputNumberPage() {
   const [deg, setDeg] = React.useState(0);
   const [decimal, setDecimal] = React.useState(1.5);
   const [noSteppers, setNoSteppers] = React.useState(24);
+  const [pos, setPos] = React.useState({ x: 120, y: 80, w: 320, h: 180 });
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Input Number</span>
+          <span className="font-semibold text-foreground">Input Number</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Input Number</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Input Number</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Numeric input with up/down steppers, optional unit suffix, and arrow-key stepping (Shift =
           10×). Designed for designer property panels.
         </p>
@@ -94,6 +106,27 @@ function InputNumberPage() {
           code={CODE.noSteppers}
         >
           <InputNumber value={noSteppers} onChange={setNoSteppers} unit="px" hideSteppers />
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="Label prefix + compact density"
+          description="Inspector fields: 24px, left-aligned value, draggable label scrubs the value"
+          code={CODE.labelPrefix}
+        >
+          <DensityProvider density="compact">
+            <div className="grid w-56 grid-cols-2 gap-1.5">
+              {(["x", "y", "w", "h"] as const).map((key) => (
+                <InputNumber
+                  key={key}
+                  label={key.toUpperCase()}
+                  className="w-full"
+                  value={pos[key]}
+                  min={key === "w" || key === "h" ? 1 : undefined}
+                  onChange={(value) => setPos((prev) => ({ ...prev, [key]: value }))}
+                />
+              ))}
+            </div>
+          </DensityProvider>
         </PreviewBlock>
       </div>
     </div>

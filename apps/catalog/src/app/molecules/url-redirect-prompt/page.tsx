@@ -29,8 +29,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -42,19 +42,19 @@ function UrlRedirectPromptPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">URL Redirect Prompt</span>
+          <span className="font-semibold text-foreground">URL Redirect Prompt</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">URL Redirect Prompt</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">URL Redirect Prompt</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Redirect recommendation callout shown when an editable URL handle changes.
         </p>
       </div>
@@ -97,7 +97,7 @@ function UrlRedirectPromptPage() {
             code={CODE.unchanged}
             previewClassName="flex-col items-stretch"
           >
-            <div className="rounded-xl border border-dashed border-ground-200 bg-ground-50 px-4 py-6 text-center">
+            <div className="rounded-xl border border-dashed border-border bg-muted px-4 py-6 text-center">
               <UrlRedirectPrompt
                 originalHandle="linen-shirt"
                 nextHandle="linen-shirt"
@@ -105,7 +105,7 @@ function UrlRedirectPromptPage() {
                 checked={createRedirect}
                 onCheckedChange={setCreateRedirect}
               />
-              <p className="caption text-ground-400">No redirect prompt is rendered.</p>
+              <p className="caption text-muted-foreground">No redirect prompt is rendered.</p>
             </div>
           </PreviewBlock>
         </section>

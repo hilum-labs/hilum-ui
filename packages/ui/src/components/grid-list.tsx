@@ -80,7 +80,7 @@ function GridListCard({
       {href ? (
         <a
           href={href}
-          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 rounded-xl"
+          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
         >
           {inner}
         </a>
@@ -145,7 +145,7 @@ function GridListAccentCard({
       {href ? (
         <a
           href={href}
-          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 rounded-xl"
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
         >
           {inner}
         </a>

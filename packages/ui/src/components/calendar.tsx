@@ -34,7 +34,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         day_button: cn(
           "flex h-9 w-9 items-center justify-center rounded-full body font-normal",
           "text-foreground hover:bg-muted transition-colors",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         ),
         selected:
           "[&>button]:bg-brand-primary [&>button]:text-background [&>button]:hover:bg-brand-primary/90",

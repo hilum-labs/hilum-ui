@@ -27,7 +27,7 @@ PaginationItem.displayName = "PaginationItem";
 
 type PaginationLinkProps = React.ComponentProps<"a"> & { isActive?: boolean };
 
-const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) => (
+const PaginationLink = ({ className, isActive, children, ...props }: PaginationLinkProps) => (
   <a
     aria-current={isActive ? "page" : undefined}
     className={cn(
@@ -36,7 +36,9 @@ const PaginationLink = ({ className, isActive, ...props }: PaginationLinkProps) 
       className,
     )}
     {...props}
-  />
+  >
+    {children}
+  </a>
 );
 PaginationLink.displayName = "PaginationLink";
 

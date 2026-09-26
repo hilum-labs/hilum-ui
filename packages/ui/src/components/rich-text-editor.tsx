@@ -385,6 +385,7 @@ function RichTextEditor({
                 insertLink();
               }
             }}
+            // eslint-disable-next-line jsx-a11y/no-autofocus -- focuses the URL field when the link popover opens (dialog focus management)
             autoFocus
             aria-label="Link URL"
           />

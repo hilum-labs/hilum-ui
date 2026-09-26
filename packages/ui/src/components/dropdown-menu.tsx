@@ -4,6 +4,7 @@ import * as React from "react";
 import { DropdownMenu } from "radix-ui";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useDensityAttributes } from "../lib/density-context";
 import {
   menuItemActiveClasses,
   menuItemClasses,
@@ -32,6 +33,7 @@ const DropdownMenuContent = React.forwardRef<
     <style>{mobilePopperSheetStyle}</style>
     <DropdownMenu.Portal>
       <DropdownMenu.Content
+        {...useDensityAttributes()}
         ref={ref}
         data-hilum-mobile-sheet="true"
         sideOffset={sideOffset}
@@ -70,10 +72,10 @@ const DropdownMenuItem = React.forwardRef<
       pressClasses,
       destructive
         ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
-        : "text-muted-foreground focus:bg-muted focus:text-foreground",
+        : "text-foreground focus:bg-active",
       !destructive && menuItemActiveClasses,
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      inset && "pl-8",
+      inset && "pl-8 compact:pl-7",
       className,
     )}
     {...props}
@@ -90,7 +92,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     className={cn(
       menuItemClasses,
       menuItemActiveClasses,
-      "py-2 pl-8 pr-2.5 text-muted-foreground",
+      "py-2 pl-8 pr-2.5 text-foreground compact:pl-7 compact:pr-2",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -115,7 +117,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     className={cn(
       menuItemClasses,
       menuItemActiveClasses,
-      "py-2 pl-8 pr-2.5 text-muted-foreground",
+      "py-2 pl-8 pr-2.5 text-foreground compact:pl-7 compact:pr-2",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -139,7 +141,7 @@ const DropdownMenuLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <DropdownMenu.Label
     ref={ref}
-    className={cn("px-2.5 py-1 label text-muted-foreground", inset && "pl-8", className)}
+    className={cn("px-2.5 py-1 label text-muted-foreground compact:px-2 compact:text-[11px]", inset && "pl-8 compact:pl-7", className)}
     {...props}
   />
 ));
@@ -151,7 +153,7 @@ const DropdownMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DropdownMenu.Separator
     ref={ref}
-    className={cn("mx-1 my-1 h-px bg-muted", className)}
+    className={cn("-mx-1 my-1 h-px bg-border", className)}
     {...props}
   />
 ));
@@ -168,8 +170,8 @@ const DropdownMenuSubTrigger = React.forwardRef<
     className={cn(
       menuItemClasses,
       menuItemActiveClasses,
-      "text-muted-foreground data-[state=open]:bg-muted",
-      inset && "pl-8",
+      "text-foreground data-[state=open]:bg-active",
+      inset && "pl-8 compact:pl-7",
       className,
     )}
     {...props}
@@ -187,6 +189,7 @@ const DropdownMenuSubContent = React.forwardRef<
   <>
     <style>{mobilePopperSheetStyle}</style>
     <DropdownMenu.SubContent
+        {...useDensityAttributes()}
       ref={ref}
       data-hilum-mobile-sheet="true"
       className={cn(

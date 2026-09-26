@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { controlSurfaceClasses, focusRingClasses, motionClasses } from "../lib/interaction";
+import { controlSurfaceClasses, inputFocusClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import type { ControlDensity, ControlMobileSurface } from "./input";
 
@@ -49,9 +49,8 @@ function Textarea({
         "resize-none",
         controlSurfaceClasses,
         motionClasses,
-        focusRingClasses,
+        inputFocusClasses,
         textareaMobileSurfaceClasses[mobileSurface],
-        "focus-visible:border-brand-primary",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
         className,
       )}

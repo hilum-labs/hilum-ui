@@ -14,8 +14,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -24,19 +24,19 @@ function ProgressPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Progress</span>
+          <span className="font-semibold text-foreground">Progress</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Progress</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Progress</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Visual indicator of completion or loading progress.
         </p>
       </div>
@@ -53,7 +53,7 @@ function ProgressPage() {
           previewClassName="flex-col items-stretch"
         >
           <div className="w-full max-w-sm space-y-3">
-            <div className="flex justify-between text-xs text-ground-400 mb-1">
+            <div className="flex justify-between text-xs text-muted-foreground mb-1">
               <span>Uploading voice samples...</span>
               <span>65%</span>
             </div>

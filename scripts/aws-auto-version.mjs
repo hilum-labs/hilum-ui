@@ -1,4 +1,16 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+// Computes and applies the next Hilum UI release version.
+//
+// - Pending changesets (.changeset/*.md, excluding README.md) → `changeset version`
+//   consumes them: the fixed group bumps by the highest declared type (patch /
+//   minor / major), CHANGELOGs get the authored entries, and the .md files are
+//   deleted (the release commit stages those deletions).
+// - No pending changesets → automated patch bump for every package, with a
+//   generic CHANGELOG entry (the historical CodeCommit behaviour).
+//
+// Writes the resulting version to .aws-release/version and the strategy used
+// ("changesets" | "patch") to .aws-release/strategy.
+import { execFileSync } from 'node:child_process';
+import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 const releasePackages = [
@@ -39,6 +51,7 @@ function buildChangelogEntry(version, sourceSha) {
     '',
     `- Automated AWS CodeCommit patch release${sourceText}.`,
     '',
+    '', // blank line before the next "## x.y.z" heading
   ].join('\n');
 }
 
@@ -59,24 +72,60 @@ function insertChangelogEntry(changelog, version, sourceSha) {
   ].join('');
 }
 
+async function pendingChangesets() {
+  const entries = await readdir('.changeset').catch(() => []);
+  return entries.filter((name) => name.endsWith('.md') && name.toLowerCase() !== 'readme.md');
+}
+
+async function applyPatchBump(currentVersion, sourceSha) {
+  const nextVersion = nextPatchVersion(currentVersion);
+  for (const releasePackage of releasePackages) {
+    const packageJsonPath = path.join(releasePackage.dir, packageJsonFile);
+    const changelogPath = path.join(releasePackage.dir, changelogFile);
+    const packageJson = await readJson(packageJsonPath);
+
+    packageJson.version = nextVersion;
+    await writeJson(packageJsonPath, packageJson);
+
+    const changelog = await readFile(changelogPath, 'utf8');
+    await writeFile(changelogPath, insertChangelogEntry(changelog, nextVersion, sourceSha));
+  }
+  return nextVersion;
+}
+
+async function applyChangesets() {
+  execFileSync('pnpm', ['exec', 'changeset', 'version'], { stdio: 'inherit' });
+  const versions = new Set();
+  for (const releasePackage of releasePackages) {
+    const packageJson = await readJson(path.join(releasePackage.dir, packageJsonFile));
+    versions.add(packageJson.version);
+  }
+  if (versions.size !== 1) {
+    throw new Error(
+      `Expected the fixed release group to share one version after changeset version, got ${[...versions].join(', ')}`,
+    );
+  }
+  return [...versions][0];
+}
+
 const sourceSha = process.env.CODEBUILD_RESOLVED_SOURCE_VERSION || process.env.GIT_COMMIT || '';
 const baseline = await readJson(path.join(releasePackages[0].dir, packageJsonFile));
 const currentVersion = baseline.version;
-const nextVersion = nextPatchVersion(currentVersion);
 
-for (const releasePackage of releasePackages) {
-  const packageJsonPath = path.join(releasePackage.dir, packageJsonFile);
-  const changelogPath = path.join(releasePackage.dir, changelogFile);
-  const packageJson = await readJson(packageJsonPath);
+const changesets = await pendingChangesets();
+const strategy = changesets.length > 0 ? 'changesets' : 'patch';
+const nextVersion =
+  strategy === 'changesets' ? await applyChangesets() : await applyPatchBump(currentVersion, sourceSha);
 
-  packageJson.version = nextVersion;
-  await writeJson(packageJsonPath, packageJson);
-
-  const changelog = await readFile(changelogPath, 'utf8');
-  await writeFile(changelogPath, insertChangelogEntry(changelog, nextVersion, sourceSha));
+if (nextVersion === currentVersion) {
+  throw new Error(`Version did not change (${currentVersion}); refusing to release.`);
 }
 
 await mkdir(releaseDir, { recursive: true });
 await writeFile(path.join(releaseDir, 'version'), `${nextVersion}\n`);
+await writeFile(path.join(releaseDir, 'strategy'), `${strategy}\n`);
 
-console.log(`Prepared Hilum UI ${currentVersion} -> ${nextVersion}`);
+console.log(
+  `Prepared Hilum UI ${currentVersion} -> ${nextVersion} via ${strategy}` +
+    (strategy === 'changesets' ? ` (${changesets.join(', ')})` : ''),
+);

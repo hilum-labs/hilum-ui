@@ -87,7 +87,7 @@ function AppMobileNav({
             <DropdownMenuTrigger asChild>
               <button
                 type="button"
-                className="flex size-9 shrink-0 items-center justify-center rounded-md transition-[background-color,box-shadow,scale] hover:bg-muted active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+                className="flex size-9 shrink-0 items-center justify-center rounded-md transition-[background-color,box-shadow,scale] hover:bg-muted active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={accountMenuLabel}
               >
                 <Avatar size="xs">
@@ -148,7 +148,7 @@ function AppMobileNav({
                     aria-current={item.active ? "page" : undefined}
                     {...(item.onClick && { onClick: item.onClick })}
                     className={cn(
-                      "flex h-9 min-w-[76px] scroll-mx-3 items-center justify-center gap-1 rounded-md px-2.5 text-[11px] font-medium transition-[background-color,box-shadow,color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30",
+                      "flex h-9 min-w-[76px] scroll-mx-3 items-center justify-center gap-1 rounded-md px-2.5 text-[11px] font-medium transition-[background-color,box-shadow,color,scale] active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       item.active
                         ? "bg-brand-primary/10 text-brand-primary"
                         : item.disabled

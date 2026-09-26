@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Popover } from "radix-ui";
 import { cn } from "../lib/utils";
+import { useDensityAttributes } from "../lib/density-context";
 import { motionClasses } from "../lib/interaction";
 import {
   mobilePopperSheetMotionClassName,
@@ -24,6 +25,7 @@ const PopoverContent = React.forwardRef<
     <Popover.Portal>
       <Popover.Content
         ref={ref}
+        {...useDensityAttributes()}
         data-hilum-mobile-sheet="true"
         align={align}
         sideOffset={sideOffset}

@@ -252,7 +252,7 @@ const InputCopy = forwardRef<HTMLDivElement, InputCopyProps>(
         aria-label={copied ? "Copied" : "Copy to clipboard"}
         className={cn(
           "group flex items-center w-full cursor-pointer outline-none transition-all duration-80",
-          "focus-visible:ring-1 focus-visible:ring-[#6B97FF]",
+          "focus-visible:ring-2 focus-visible:ring-ring",
           shape.input,
         )}
       >

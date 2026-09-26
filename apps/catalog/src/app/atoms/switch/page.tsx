@@ -37,8 +37,8 @@ import { Label } from "@hilum/ui"
   withLeftDescription: `{settings.map((s) => (
   <div key={s.id} className="flex items-center justify-between gap-4">
     <div>
-      <Label htmlFor={s.id} className="body font-medium text-ground-900">{s.label}</Label>
-      <p className="caption text-ground-400 mt-0.5">{s.description}</p>
+      <Label htmlFor={s.id} className="body font-medium text-foreground">{s.label}</Label>
+      <p className="caption text-muted-foreground mt-0.5">{s.description}</p>
     </div>
     <Switch id={s.id} />
   </div>
@@ -47,8 +47,8 @@ import { Label } from "@hilum/ui"
   withRightLabel: `<div className="flex items-start gap-3">
   <Switch id="annual" defaultChecked className="mt-0.5" />
   <div>
-    <Label htmlFor="annual" className="body font-medium text-ground-900">Annual billing</Label>
-    <p className="caption text-ground-400 mt-0.5">Save 20% compared to monthly pricing.</p>
+    <Label htmlFor="annual" className="body font-medium text-foreground">Annual billing</Label>
+    <p className="caption text-muted-foreground mt-0.5">Save 20% compared to monthly pricing.</p>
   </div>
 </div>`,
 
@@ -65,8 +65,8 @@ import { Label } from "@hilum/ui"
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -81,19 +81,19 @@ function SwitchPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Switch</span>
+          <span className="font-semibold text-foreground">Switch</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Switch</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Switch</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Toggle between two states — on and off. Multiple label and description layout variants.
         </p>
       </div>
@@ -124,7 +124,7 @@ function SwitchPage() {
               </div>
               <div className="flex items-center gap-3">
                 <Switch id="sw-disabled" disabled />
-                <Label htmlFor="sw-disabled" className="text-ground-400">
+                <Label htmlFor="sw-disabled" className="text-muted-foreground">
                   Disabled option
                 </Label>
               </div>
@@ -146,11 +146,11 @@ function SwitchPage() {
                   <div>
                     <Label
                       htmlFor={s.id}
-                      className="body font-medium text-ground-900 cursor-pointer"
+                      className="body font-medium text-foreground cursor-pointer"
                     >
                       {s.label}
                     </Label>
-                    <p className="caption text-ground-400 mt-0.5">{s.description}</p>
+                    <p className="caption text-muted-foreground mt-0.5">{s.description}</p>
                   </div>
                   <Switch
                     id={s.id}
@@ -177,11 +177,11 @@ function SwitchPage() {
                 <div>
                   <Label
                     htmlFor="annual-billing"
-                    className="body font-medium text-ground-900 cursor-pointer"
+                    className="body font-medium text-foreground cursor-pointer"
                   >
                     Annual billing
                   </Label>
-                  <p className="caption text-ground-400 mt-0.5">
+                  <p className="caption text-muted-foreground mt-0.5">
                     Save 20% compared to monthly pricing.
                   </p>
                 </div>
@@ -191,11 +191,11 @@ function SwitchPage() {
                 <div>
                   <Label
                     htmlFor="marketing-emails"
-                    className="body font-medium text-ground-900 cursor-pointer"
+                    className="body font-medium text-foreground cursor-pointer"
                   >
                     Marketing emails
                   </Label>
-                  <p className="caption text-ground-400 mt-0.5">
+                  <p className="caption text-muted-foreground mt-0.5">
                     Receive product updates, announcements, and offers.
                   </p>
                 </div>
@@ -205,11 +205,11 @@ function SwitchPage() {
                 <div>
                   <Label
                     htmlFor="two-factor"
-                    className="body font-medium text-ground-900 cursor-pointer"
+                    className="body font-medium text-foreground cursor-pointer"
                   >
                     Two-factor authentication
                   </Label>
-                  <p className="caption text-ground-400 mt-0.5">
+                  <p className="caption text-muted-foreground mt-0.5">
                     Add an extra layer of security to your account.
                   </p>
                 </div>
@@ -226,7 +226,7 @@ function SwitchPage() {
             code={CODE.simpleList}
             previewClassName="flex-col items-start"
           >
-            <div className="w-full max-w-md rounded-xl border border-ground-100 bg-white shadow-natural divide-y divide-ground-100">
+            <div className="w-full max-w-md rounded-xl border border-border bg-background shadow-natural divide-y divide-border">
               {[
                 { id: "sw-2fa", label: "Two-factor auth", on: true },
                 { id: "sw-sess", label: "Session alerts", on: true },
@@ -234,7 +234,7 @@ function SwitchPage() {
                 { id: "sw-pub", label: "Public profile", on: false },
               ].map((item) => (
                 <div key={item.id} className="flex items-center justify-between gap-4 px-5 py-4">
-                  <Label htmlFor={item.id} className="body text-ground-700 cursor-pointer">
+                  <Label htmlFor={item.id} className="body text-foreground cursor-pointer">
                     {item.label}
                   </Label>
                   <Switch id={item.id} defaultChecked={item.on} />

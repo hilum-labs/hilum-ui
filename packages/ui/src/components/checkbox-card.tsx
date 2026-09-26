@@ -28,7 +28,7 @@ const CheckboxCard = React.forwardRef<HTMLLabelElement, CheckboxCardProps>(
           "group flex min-w-0 items-start gap-3 rounded-lg border border-border bg-card p-3",
           "text-sm text-foreground shadow-natural transition-[background-color,border-color,box-shadow,opacity,scale]",
           "hover:bg-muted/40 active:scale-[0.98]",
-          "has-[:focus-visible]:ring-1 has-[:focus-visible]:ring-[#6B97FF]",
+          "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring",
           "has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50",
           className,
         )}

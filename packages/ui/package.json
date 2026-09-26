@@ -1,6 +1,6 @@
 {
   "name": "@hilum/ui",
-  "version": "3.8.6",
+  "version": "3.9.0",
   "private": false,
   "description": "Hilum UI — design system primitives (Button, Input, Dialog, Combobox, …) + tokens + fonts + icons",
   "license": "MIT",
@@ -18,24 +18,25 @@
   ],
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./icons": {
-      "import": "./dist/icons.js",
-      "types": "./dist/icons.d.ts"
+      "types": "./dist/icons.d.ts",
+      "import": "./dist/icons.js"
     },
     "./tokens": {
-      "import": "./dist/tokens.js",
-      "types": "./dist/tokens.d.ts"
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js"
     },
     "./tokens.css": "./dist/tokens.css",
     "./fonts.css": "./dist/fonts.css",
     "./fonts/*": "./dist/fonts/*",
     "./create-theme": {
-      "import": "./dist/create-theme.js",
-      "types": "./dist/create-theme.d.ts"
-    }
+      "types": "./dist/create-theme.d.ts",
+      "import": "./dist/create-theme.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",

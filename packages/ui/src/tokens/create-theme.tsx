@@ -95,7 +95,8 @@ function oklchToHex(L: number, C: number, H: number): string {
     let hi = C;
     for (let i = 0; i < 20; i++) {
       const mid = (lo + hi) / 2;
-      inSrgbGamut(...oklchToLinearRgb(L, mid, H)) ? (lo = mid) : (hi = mid);
+      if (inSrgbGamut(...oklchToLinearRgb(L, mid, H))) lo = mid;
+      else hi = mid;
     }
     C = lo;
   }

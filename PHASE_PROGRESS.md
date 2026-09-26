@@ -1,5 +1,9 @@
 # Hilum UI — Phase Progress Tracker
 
+> **ARCHIVED / STALE (last meaningful update 2026-05-04).** This file tracked the initial build-out loop and is
+> no longer maintained. The paths below (`/Users/william/...`) point to the original author's machine, and the
+> repo now lives in AWS CodeCommit. See `RELEASING.md` for the current process, and the package CHANGELOGs for history.
+
 > Updated: 2026-05-04
 > Source of truth for "where are we in the plan." Each loop iteration reads this first to know where to continue.
 

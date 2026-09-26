@@ -9,12 +9,20 @@ export const springMotionClasses =
 export const pressClasses = "active:scale-[0.97] motion-reduce:active:scale-100";
 
 export const focusRingClasses =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30 focus-visible:ring-offset-1";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background";
+
+/** Focus treatment for text-entry fields: ring-token border + a soft 2px halo. */
+export const inputFocusClasses =
+  "focus-visible:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35";
+
+/** Same as inputFocusClasses for composite fields that wrap a native input. */
+export const inputFocusWithinClasses =
+  "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35";
 
 export const iconStrokeClasses =
   "[&_svg]:transition-[stroke-width,transform,color] [&_svg]:duration-150 [&_svg]:ease-out group-hover:[&_svg]:stroke-[2]";
 
-export const controlSurfaceClasses = "border border-border bg-background hover:border-ground-200";
+export const controlSurfaceClasses = "border border-border bg-background hover:border-border-strong";
 
 export const surfaceElevationClasses = {
   flat: "border border-border bg-card",
@@ -29,10 +37,10 @@ export const radiusClasses = {
 } as const;
 
 export const menuItemClasses =
-  "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 body outline-none transition-[background-color,color,box-shadow] duration-150 ease-out";
+  "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 body outline-none transition-[background-color,color,box-shadow] duration-150 ease-out compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]";
 
 export const menuItemActiveClasses =
-  "focus:bg-muted focus:text-foreground data-[highlighted]:bg-muted";
+  "focus:bg-active focus:text-foreground data-[highlighted]:bg-active";
 
 export function useProximityIndex<T extends HTMLElement>(axis: "x" | "y" = "y") {
   const containerRef = React.useRef<T | null>(null);

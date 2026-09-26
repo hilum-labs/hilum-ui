@@ -5,6 +5,12 @@
 > **Scope:** Monorepo setup, four shared packages (`@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas`), design catalog integration, publish to registry. Pappery integration is out of scope — see §14.  
 > **Audience:** Engineering team building on the shared platform
 
+> **Historical document.** This is the original May 2026 plan and is kept for its decision log (D1–D20…).
+> Parts are superseded. Hosting moved from GitHub to **AWS CodeCommit**, CI/CD is **CodeBuild**, packages
+> publish to **public npm** (not GitHub Packages), there are **five** packages including `@hilum/blocks`, and the
+> version line is **3.x**. For the current release process, see `RELEASING.md`. The GitHub, GitHub Actions and
+> GitHub Packages references below are historical.
+
 ### Project Metadata
 
 | | |

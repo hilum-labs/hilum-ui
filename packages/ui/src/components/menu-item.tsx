@@ -19,6 +19,15 @@ import { shapeMap } from "../lib/shape-context";
 // shape — see dropdown.tsx for the rationale.
 const shape = shapeMap.rounded;
 
+/** ARIA flavour of a menu row. */
+type MenuItemType = "item" | "radio" | "checkbox";
+
+const MENU_ITEM_ROLES: Record<MenuItemType, "menuitem" | "menuitemradio" | "menuitemcheckbox"> = {
+  item: "menuitem",
+  radio: "menuitemradio",
+  checkbox: "menuitemcheckbox",
+};
+
 interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
   /** Optional leading icon. When omitted, the row renders text-only with no
    *  reserved icon column. */
@@ -26,13 +35,34 @@ interface MenuItemProps extends HTMLAttributes<HTMLDivElement> {
   label?: string;
   index?: number;
   checked?: boolean;
+  /**
+   * ARIA semantics of the row:
+   * - `"item"` → `role="menuitem"` (a plain action, no `aria-checked`)
+   * - `"radio"` → `role="menuitemradio"` (one-of-many selection)
+   * - `"checkbox"` → `role="menuitemcheckbox"` (independent toggle)
+   *
+   * Defaults to `"radio"` when the row carries selection state — `checked` is
+   * passed or the parent `<Dropdown>` has a `checkedIndex` — otherwise `"item"`.
+   */
+  type?: MenuItemType;
   onSelect?: () => void;
   trailing?: ReactNode;
 }
 
 const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
   (
-    { icon: Icon, label, index = 0, checked, onSelect, trailing, className, children, ...props },
+    {
+      icon: Icon,
+      label,
+      index = 0,
+      checked,
+      type,
+      onSelect,
+      trailing,
+      className,
+      children,
+      ...props
+    },
     ref,
   ) => {
     const internalRef = useRef<HTMLDivElement>(null);
@@ -48,6 +78,9 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
       hasMounted.current = true;
     }, []);
 
+    const resolvedType: MenuItemType =
+      type ?? (checked !== undefined || checkedIndex !== undefined ? "radio" : "item");
+    const role = MENU_ITEM_ROLES[resolvedType];
     const isActive = activeIndex === index;
     const skipAnimation = !hasMounted.current;
 
@@ -60,8 +93,8 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
         }}
         data-proximity-index={index}
         tabIndex={index === (checkedIndex ?? 0) ? 0 : -1}
-        role="menuitemradio"
-        aria-checked={!!checked}
+        role={role}
+        aria-checked={resolvedType === "item" ? undefined : !!checked}
         aria-label={label ?? (typeof children === "string" ? children : undefined)}
         onClick={onSelect}
         onKeyDown={(e) => {
@@ -153,4 +186,5 @@ const MenuItem = forwardRef<HTMLDivElement, MenuItemProps>(
 MenuItem.displayName = "MenuItem";
 
 export { MenuItem };
+export type { MenuItemProps, MenuItemType };
 export default MenuItem;

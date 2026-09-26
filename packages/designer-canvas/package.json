@@ -1,6 +1,6 @@
 {
   "name": "@hilum/designer-canvas",
-  "version": "3.8.6",
+  "version": "3.9.0",
   "private": false,
   "description": "Generic free-positioned canvas engine — Layer model, pan/zoom, drag/resize, snap guides, marquee, 49 generic actions, pluggable renderers and services",
   "license": "MIT",
@@ -13,11 +13,13 @@
     "access": "public"
   },
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
@@ -38,11 +40,6 @@
     "lucide-react": ">=0.511.0 <1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
-  },
-  "peerDependenciesMeta": {
-    "lucide-react": {
-      "optional": true
-    }
   },
   "dependencies": {},
   "devDependencies": {

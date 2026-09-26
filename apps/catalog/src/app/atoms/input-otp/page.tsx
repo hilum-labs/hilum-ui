@@ -24,7 +24,7 @@ const [value, setValue] = useState("")
       ))}
     </InputOTPGroup>
   </InputOTP>
-  <p className="caption text-ground-400">
+  <p className="caption text-muted-foreground">
     {value ? \`Code: \${value}\` : "Enter your 6-digit code"}
   </p>
 </div>`,
@@ -52,7 +52,7 @@ const [value, setValue] = useState("")
 } from "@hilum/ui"
 
 <div className="flex flex-col items-center gap-3">
-  <p className="label text-ground-500">Enter your PIN</p>
+  <p className="label text-muted-foreground">Enter your PIN</p>
   <InputOTP maxLength={4}>
     <InputOTPGroup>
       {[0, 1, 2, 3].map((i) => (
@@ -92,8 +92,8 @@ const [value, setValue] = useState("")
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -109,7 +109,7 @@ function SixDigitDemo() {
           ))}
         </InputOTPGroup>
       </InputOTP>
-      <p className="caption text-ground-400">
+      <p className="caption text-muted-foreground">
         {value ? `Code: ${value}` : "Enter your 6-digit code"}
       </p>
     </div>
@@ -120,19 +120,19 @@ function InputOTPPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Input OTP</span>
+          <span className="font-semibold text-foreground">Input OTP</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Input OTP</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Input OTP</h1>
+        <p className="body max-w-lg text-muted-foreground">
           One-time password input with individual character slots — used for verification codes,
           PINs, and two-factor authentication.
         </p>
@@ -177,7 +177,7 @@ function InputOTPPage() {
           code={CODE.fourPin}
         >
           <div className="flex flex-col items-center gap-3">
-            <p className="label text-ground-500">Enter your PIN</p>
+            <p className="label text-muted-foreground">Enter your PIN</p>
             <InputOTP maxLength={4}>
               <InputOTPGroup>
                 {[0, 1, 2, 3].map((i) => (

@@ -91,7 +91,7 @@ function AppNotificationMenu({
           {items.length > 0 && onClear && (
             <button
               type="button"
-              className="caption min-h-10 rounded-md px-2 font-medium text-primary transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30"
+              className="caption min-h-10 rounded-md px-2 font-medium text-primary transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               onClick={onClear}
             >
               {clearLabel}

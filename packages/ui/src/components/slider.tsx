@@ -24,6 +24,7 @@ import { cn } from "../lib/utils";
 import { spring } from "../lib/springs";
 import { fontWeights } from "../lib/font-weight";
 import { useShape } from "../lib/shape-context";
+import { useDensity } from "../lib/density-context";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -53,19 +54,35 @@ interface SliderProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | 
   hideFill?: boolean;
   thumbColor?: string;
   thumbBorderColor?: string;
+  /**
+   * Track thickness in px. Default 4 (thin track + filled range). Thick tracks
+   * (≥ 8px, e.g. colour-picker hue / alpha strips) keep the thumb inside the
+   * rounded ends instead of overhanging them.
+   */
+  trackSize?: number;
 }
 
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
 
+// THUMB_SIZE is the thumb's layout / hit box; the visible knob is smaller.
 const THUMB_SIZE = 20;
-const THUMB_SIZE_REST = 16;
-const TRACK_BG_HEIGHT = 18;
+const THUMB_SIZE_REST = 14;
+const THUMB_SIZE_REST_COMPACT = 12;
+const THUMB_SIZE_ACTIVE = 16;
+// Thin 4px track (Figma / Linear style) with a filled range.
+const TRACK_BG_HEIGHT = 4;
 const DOT_SIZE = 4;
 const PIP_SIZE = 5;
-// Inset track BG so its rounded-end centers align with thumb centers at min/max
-const TRACK_INSET = (THUMB_SIZE - TRACK_BG_HEIGHT) / 2;
+// Step pips are only drawn when they stay legible; beyond this the track
+// turns into a dotted texture (e.g. 0–100 step 2 = 50 pips).
+const MAX_STEP_DOTS = 10;
+// Inset the track so its ends line up with the thumb centres at min / max.
+const TRACK_INSET = THUMB_SIZE / 2;
+// Vertical padding around the thumb box (hit-area slop) per density.
+const TRACK_PAD = 8;
+const TRACK_PAD_COMPACT = 4;
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -112,6 +129,7 @@ interface ValueDisplayProps {
   label?: string;
   isRange: boolean;
   isInteracting: boolean;
+  disabled?: boolean;
 }
 
 function ValueDisplay({
@@ -127,6 +145,7 @@ function ValueDisplay({
   label,
   isRange,
   isInteracting,
+  disabled,
 }: ValueDisplayProps) {
   const shape = useShape();
   const [inputValue, setInputValue] = useState("");
@@ -194,9 +213,17 @@ function ValueDisplay({
     }
 
     return (
-      <span className="cursor-text select-none" onClick={() => onStartEdit(index)}>
+      // A real button so the "click to type a value" affordance is also
+      // reachable by keyboard (Tab + Enter/Space), not just by pointer.
+      <button
+        type="button"
+        className="cursor-text select-none rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        aria-label={`Edit slider value${isRange ? (index === 0 ? " (start)" : " (end)") : ""}: ${formatValue(values[index])}`}
+        disabled={disabled}
+        onClick={() => onStartEdit(index)}
+      >
         {formatValue(values[index])}
-      </span>
+      </button>
     );
   };
 
@@ -308,11 +335,16 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
       hideFill = false,
       thumbColor,
       thumbBorderColor,
+      trackSize = TRACK_BG_HEIGHT,
       className,
       ...props
     },
     ref,
   ) => {
+    const trackHeight = Math.max(2, Math.min(THUMB_SIZE, trackSize));
+    // Thin tracks run centre-to-centre between the extreme thumb positions;
+    // thick tracks wrap the thumb so its centre sits in the rounded end cap.
+    const trackInset = trackHeight >= 8 ? (THUMB_SIZE - trackHeight) / 2 : TRACK_INSET;
     const [uncontrolledValue, setUncontrolledValue] = useState<SliderValue>(() => {
       const initial = defaultValue ?? [min];
       return initial.length > 1
@@ -338,6 +370,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
     const isRange = Array.isArray(resolvedValue);
     const values = toRadixValue(resolvedValue);
     const shape = useShape();
+    const compact = useDensity() === "compact";
+    const trackPad = compact ? TRACK_PAD_COMPACT : TRACK_PAD;
 
     // --- Refs ---
     const trackRef = useRef<HTMLDivElement>(null);
@@ -384,9 +418,9 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
 
     // --- Derived motion values for fill ---
     const fillLeft = useTransform(motionX0, (x) =>
-      isRange ? x + THUMB_SIZE / 2 - TRACK_INSET : 0,
+      isRange ? x + THUMB_SIZE / 2 - trackInset : 0,
     );
-    const fillWidthSingle = useTransform(motionX0, (x) => x + THUMB_SIZE / 2 - TRACK_INSET);
+    const fillWidthSingle = useTransform(motionX0, (x) => x + THUMB_SIZE / 2 - trackInset);
     const fillWidthRange = useTransform(
       [motionX0, motionX1] as MotionValue<number>[],
       ([x0, x1]) => (x1 as number) - (x0 as number),
@@ -650,16 +684,17 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
     }, []);
 
     // --- Step dots ---
+    const stepCount = step > 0 ? Math.round((max - min) / step) : 0;
     const stepDots = useMemo(
       () =>
-        showSteps
+        showSteps && stepCount > 0 && stepCount <= MAX_STEP_DOTS
           ? Array.from({ length: Math.round((max - min) / step) + 1 }, (_, i) => {
               const v = min + i * step;
               const percent = (v - min) / (max - min);
               return { value: v, percent };
             })
           : [],
-      [showSteps, min, max, step],
+      [showSteps, stepCount, min, max, step],
     );
 
     // --- Interaction state for tooltip ---
@@ -680,8 +715,11 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
         {...(label !== undefined ? { label } : {})}
         isRange={isRange}
         isInteracting={isInteracting}
+        disabled={disabled}
       />
     );
+
+    const thumbRest = compact ? THUMB_SIZE_REST_COMPACT : THUMB_SIZE_REST;
 
     // --- Render visual thumb (not Radix — purely visual) ---
     const renderVisualThumb = (index: number) => {
@@ -706,19 +744,19 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
             className="block rounded-full"
             initial={false}
             animate={{
-              width: THUMB_SIZE_REST,
-              height: THUMB_SIZE_REST,
+              width: isPressed ? THUMB_SIZE_ACTIVE : thumbRest,
+              height: isPressed ? THUMB_SIZE_ACTIVE : thumbRest,
             }}
             transition={spring.fast}
             style={{
-              backgroundColor: thumbColor ?? "white",
-              boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-              border: thumbBorderColor ? `1px solid ${thumbBorderColor}` : undefined,
+              backgroundColor: thumbColor ?? "#ffffff",
+              boxShadow: "0 1px 3px rgba(0,0,0,0.22), 0 0 0 0.5px rgba(0,0,0,0.06)",
+              border: `1px solid ${thumbBorderColor ?? "var(--border-strong)"}`,
             }}
           />
           {/* Focus ring */}
           <motion.span
-            className="absolute rounded-full border border-[#6B97FF] pointer-events-none"
+            className="absolute rounded-full border-2 border-ring pointer-events-none"
             initial={false}
             animate={{
               opacity: focusedThumb === index ? 1 : 0,
@@ -737,7 +775,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
         className={cn(
           "flex flex-col gap-0 w-full select-none touch-none overflow-visible",
           valuePosition === "left" || valuePosition === "right"
-            ? "flex-row items-center gap-2 mb-2"
+            ? "flex-row items-center gap-2 mb-2 compact:mb-0"
             : "flex-col",
           disabled && "opacity-50 pointer-events-none",
           className,
@@ -753,7 +791,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
           style={{
             height:
               valuePosition === "left" || valuePosition === "right"
-                ? THUMB_SIZE + 16
+                ? THUMB_SIZE + trackPad * 2
                 : THUMB_SIZE + (valuePosition === "tooltip" ? 16 : 0),
             paddingTop: valuePosition === "tooltip" ? 16 : 0,
           }}
@@ -838,8 +876,13 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
           {/* Visual track with pointer handlers */}
           <div
             ref={trackRef}
-            className="relative w-full cursor-ew-resize py-2"
-            style={{ height: THUMB_SIZE + 16, opacity: ready ? 1 : 0 }}
+            className="relative w-full cursor-ew-resize"
+            style={{
+              height: THUMB_SIZE + trackPad * 2,
+              paddingTop: trackPad,
+              paddingBottom: trackPad,
+              opacity: ready ? 1 : 0,
+            }}
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
@@ -883,20 +926,19 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
             {/* Track background */}
             <motion.div
               className={cn(
-                "absolute border border-border overflow-hidden rounded-full",
+                "absolute overflow-hidden rounded-full bg-foreground/[0.12]",
                 trackClassName,
               )}
               initial={false}
               animate={{
-                height: TRACK_BG_HEIGHT,
-                top: 8 + (THUMB_SIZE - TRACK_BG_HEIGHT) / 2,
+                height: trackHeight,
+                top: trackPad + (THUMB_SIZE - trackHeight) / 2,
               }}
               transition={spring.fast}
               style={
                 {
-                  left: TRACK_INSET,
-                  right: TRACK_INSET,
-                  backgroundColor: "transparent",
+                  left: trackInset,
+                  right: trackInset,
                   ...trackStyle,
                 } as any
               }
@@ -904,7 +946,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
               {/* Filled range */}
               {!hideFill && (
                 <motion.div
-                  className={cn("absolute h-full bg-selected/50 dark:bg-accent/40", fillClassName)}
+                  className={cn("absolute h-full rounded-full bg-foreground", fillClassName)}
                   style={
                     {
                       left: fillLeft,
@@ -926,13 +968,13 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
                   opacity: { duration: 0.15 },
                 }}
                 style={{
-                  left: hoverPreview ? hoverPreview.left - TRACK_INSET : 0,
+                  left: hoverPreview ? hoverPreview.left - trackInset : 0,
                   width: hoverPreview ? hoverPreview.width : 0,
                   borderRadius:
                     hoverPreview && hoverPreview.cursorX > hoverPreview.left
                       ? "0 9999px 9999px 0"
                       : "9999px 0 0 9999px",
-                  backgroundColor: "color-mix(in srgb, var(--color-accent) 40%, transparent)",
+                  backgroundColor: "color-mix(in srgb, var(--foreground) 22%, transparent)",
                 }}
               />
             </motion.div>
@@ -942,8 +984,8 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
               <motion.div
                 className="absolute left-0 right-0 pointer-events-none"
                 style={{
-                  top: 8 + (THUMB_SIZE - TRACK_BG_HEIGHT) / 2,
-                  height: TRACK_BG_HEIGHT,
+                  top: trackPad + (THUMB_SIZE - trackHeight) / 2,
+                  height: trackHeight,
                   WebkitMaskImage: stepDotsMask,
                   maskImage: stepDotsMask,
                 }}
@@ -969,7 +1011,7 @@ const Slider = forwardRef<HTMLDivElement, SliderProps>(
                       transition={spring.moderate}
                       style={{
                         backgroundColor: "var(--muted-foreground)",
-                        opacity: 0.3,
+                        opacity: 0.55,
                       }}
                     />
                   </div>
@@ -1346,7 +1388,7 @@ const SliderComfortable = forwardRef<HTMLDivElement, SliderComfortableProps>(
           )}
           initial={false}
           animate={{
-            outline: isFocused ? "1px solid #6B97FF" : "1px solid transparent",
+            outline: isFocused ? "2px solid var(--ring)" : "1px solid transparent",
           }}
           transition={spring.fast}
           style={style as any}
@@ -1388,12 +1430,12 @@ const SliderComfortable = forwardRef<HTMLDivElement, SliderComfortableProps>(
             style={{
               left: hoverPreview ? hoverPreview.left : 0,
               width: hoverPreview ? hoverPreview.width : 0,
-              backgroundColor: "color-mix(in srgb, var(--color-accent) 40%, transparent)",
+              backgroundColor: "var(--hover)",
             }}
           />
 
-          {/* Pips: dots layer — z-[1] */}
-          {variant === "pips" && (
+          {/* Pips: dots layer — z-[1]. Only drawn while pips stay legible. */}
+          {variant === "pips" && pipCount <= MAX_STEP_DOTS + 1 && (
             <motion.div
               className="absolute inset-0 flex justify-between items-center px-3 pointer-events-none z-[1]"
               style={{ WebkitMaskImage: pipsMaskStyle, maskImage: pipsMaskStyle }}

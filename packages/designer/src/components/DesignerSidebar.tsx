@@ -55,7 +55,7 @@ function DesignerSidebar({
         aria-label="Editor tools"
         className={cn(
           "fixed inset-x-3 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-40",
-          "rounded-xl border border-border bg-card p-1 shadow-natural",
+          "rounded-xl border border-border bg-card p-1 shadow-surface-3",
           className,
         )}
         style={style}
@@ -115,7 +115,7 @@ function DesignerSidebar({
         data-side={side}
         data-variant={variant}
         className={cn(
-          "absolute z-30 flex w-12 flex-col overflow-hidden rounded-lg bg-card shadow-natural",
+          "absolute z-30 flex w-12 flex-col overflow-hidden rounded-lg bg-card shadow-surface-3 compact:w-11",
           "[interpolate-size:allow-keywords] transition-[height,max-height,opacity,transform,box-shadow] duration-200 ease-out motion-reduce:transition-none",
           className,
         )}
@@ -175,11 +175,13 @@ function SidebarButton({
         aria-pressed={item.active}
         className={cn(
           "relative flex size-9 items-center justify-center rounded-md transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          "outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "compact:size-8 compact:rounded-[6px]",
           "[@media(pointer:coarse)]:size-11",
           touchTarget && "size-11 shrink-0",
           item.active
             ? "bg-foreground text-background"
-            : "text-muted-foreground hover:bg-muted hover:text-foreground",
+            : "text-muted-foreground hover:bg-hover hover:text-foreground active:bg-active",
           item.disabled && "opacity-50 cursor-not-allowed",
         )}
       >

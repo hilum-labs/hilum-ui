@@ -97,7 +97,7 @@ const CODE = {
     <RadioGroupItem value={plan.value} id={plan.value} className="mt-0.5" />
     <div>
       <Label htmlFor={plan.value}>{plan.label}</Label>
-      <p className="caption text-ground-400 mt-0.5">{plan.description}</p>
+      <p className="caption text-muted-foreground mt-0.5">{plan.description}</p>
     </div>
   </div>
 ))}`,
@@ -106,7 +106,7 @@ const CODE = {
   <div key={opt.value} className="flex items-center justify-between gap-4 py-4">
     <div>
       <Label htmlFor={opt.value}>{opt.label}</Label>
-      <p className="caption text-ground-400 mt-0.5">{opt.description}</p>
+      <p className="caption text-muted-foreground mt-0.5">{opt.description}</p>
     </div>
     <RadioGroupItem value={opt.value} id={opt.value} />
   </div>
@@ -119,7 +119,7 @@ const CODE = {
     aria-label={c.label}
     className={cn(
       "relative size-8 rounded-full ring-offset-2 transition-[box-shadow]",
-      selected === c.value && "ring-2 ring-ground-900"
+      selected === c.value && "ring-2 ring-foreground"
     )}
     style={{ backgroundColor: c.hex }}
     onClick={() => setSelected(c.value)}
@@ -133,15 +133,15 @@ const CODE = {
       className={cn(
         "flex items-start gap-4 rounded-xl border p-4 cursor-pointer transition-colors",
         value === plan.value
-          ? "border-ground-900 bg-ground-50"
-          : "border-ground-100 hover:bg-ground-50"
+          ? "border-foreground bg-muted"
+          : "border-border hover:bg-muted"
       )}
       onClick={() => setValue(plan.value)}
     >
       <RadioGroupItem value={plan.value} id={plan.value} />
       <div>
         <Label htmlFor={plan.value} className="cursor-pointer">{plan.label}</Label>
-        <p className="caption text-ground-400 mt-0.5">{plan.description}</p>
+        <p className="caption text-muted-foreground mt-0.5">{plan.description}</p>
       </div>
     </div>
   ))}
@@ -154,8 +154,8 @@ const CODE = {
       className={cn(
         "flex cursor-pointer items-center justify-center rounded-lg border px-3 py-2 caption font-medium transition-colors",
         value === opt.value
-          ? "border-ground-900 bg-ground-900 text-white"
-          : "border-ground-200 bg-white text-ground-700 hover:bg-ground-50"
+          ? "border-foreground bg-foreground text-background"
+          : "border-border bg-background text-foreground hover:bg-muted"
       )}
     >
       <RadioGroupItem value={opt.value} className="sr-only" />
@@ -167,23 +167,23 @@ const CODE = {
   table: `<RadioGroup value={value} onValueChange={setValue}>
   <table className="w-full">
     <thead>
-      <tr className="border-b border-ground-100">
-        <th className="pb-3 text-left caption text-ground-500 font-medium">Plan</th>
-        <th className="pb-3 text-left caption text-ground-500 font-medium">Users</th>
-        <th className="pb-3 text-left caption text-ground-500 font-medium">Storage</th>
-        <th className="pb-3 text-right caption text-ground-500 font-medium">Price</th>
+      <tr className="border-b border-border">
+        <th className="pb-3 text-left caption text-muted-foreground font-medium">Plan</th>
+        <th className="pb-3 text-left caption text-muted-foreground font-medium">Users</th>
+        <th className="pb-3 text-left caption text-muted-foreground font-medium">Storage</th>
+        <th className="pb-3 text-right caption text-muted-foreground font-medium">Price</th>
       </tr>
     </thead>
-    <tbody className="divide-y divide-ground-50">
+    <tbody className="divide-y divide-border">
       {rows.map((row) => (
-        <tr key={row.value} className="cursor-pointer hover:bg-ground-50" onClick={() => setValue(row.value)}>
+        <tr key={row.value} className="cursor-pointer hover:bg-muted" onClick={() => setValue(row.value)}>
           <td className="py-3 flex items-center gap-2.5">
             <RadioGroupItem value={row.value} id={row.value} />
             <Label htmlFor={row.value} className="cursor-pointer">{row.label}</Label>
           </td>
-          <td className="py-3 caption text-ground-500">{row.users}</td>
-          <td className="py-3 caption text-ground-500">{row.storage}</td>
-          <td className="py-3 caption text-ground-900 font-medium text-right">{row.price}</td>
+          <td className="py-3 caption text-muted-foreground">{row.users}</td>
+          <td className="py-3 caption text-muted-foreground">{row.storage}</td>
+          <td className="py-3 caption text-foreground font-medium text-right">{row.price}</td>
         </tr>
       ))}
     </tbody>
@@ -194,8 +194,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -209,19 +209,19 @@ function RadioGroupPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Radio Group</span>
+          <span className="font-semibold text-foreground">Radio Group</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Radio Group</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Radio Group</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Single selection from a set of mutually exclusive options. Multiple layout and visual
           variants.
         </p>
@@ -297,7 +297,7 @@ function RadioGroupPage() {
                       />
                       <div>
                         <Label htmlFor={`plan-${plan.value}`}>{plan.label}</Label>
-                        <p className="caption text-ground-400 mt-0.5">{plan.description}</p>
+                        <p className="caption text-muted-foreground mt-0.5">{plan.description}</p>
                       </div>
                     </div>
                   ))}
@@ -317,12 +317,12 @@ function RadioGroupPage() {
           >
             <div className="w-full max-w-md">
               <RadioGroup defaultValue="bank">
-                <div className="divide-y divide-ground-100 border-y border-ground-100">
+                <div className="divide-y divide-border border-y border-border">
                   {TRANSFER_OPTIONS.map((opt) => (
                     <div key={opt.value} className="flex items-center justify-between gap-4 py-4">
                       <div>
                         <Label htmlFor={`tf-${opt.value}`}>{opt.label}</Label>
-                        <p className="caption text-ground-400 mt-0.5">{opt.description}</p>
+                        <p className="caption text-muted-foreground mt-0.5">{opt.description}</p>
                       </div>
                       <RadioGroupItem value={opt.value} id={`tf-${opt.value}`} />
                     </div>
@@ -349,7 +349,7 @@ function RadioGroupPage() {
                   aria-label={c.label}
                   className={cn(
                     "relative size-8 rounded-full ring-offset-2 transition-[box-shadow]",
-                    colorVal === c.value && "ring-2 ring-ground-900",
+                    colorVal === c.value && "ring-2 ring-foreground",
                   )}
                   style={{ backgroundColor: c.hex }}
                   onClick={() => setColorVal(c.value)}
@@ -376,8 +376,8 @@ function RadioGroupPage() {
                       className={cn(
                         "flex items-start gap-4 rounded-xl border p-4 cursor-pointer transition-colors",
                         inPanel === plan.value
-                          ? "border-ground-900 bg-ground-50"
-                          : "border-ground-100 hover:bg-ground-50",
+                          ? "border-foreground bg-muted"
+                          : "border-border hover:bg-muted",
                       )}
                       onClick={() => setInPanel(plan.value)}
                     >
@@ -386,7 +386,7 @@ function RadioGroupPage() {
                         <Label htmlFor={`panel-${plan.value}`} className="cursor-pointer">
                           {plan.label}
                         </Label>
-                        <p className="caption text-ground-400 mt-0.5">{plan.description}</p>
+                        <p className="caption text-muted-foreground mt-0.5">{plan.description}</p>
                       </div>
                     </div>
                   ))}
@@ -416,8 +416,8 @@ function RadioGroupPage() {
                     className={cn(
                       "flex cursor-pointer items-center justify-center rounded-lg border px-3 py-2 caption font-medium transition-colors select-none",
                       smallCard === opt.value
-                        ? "border-ground-900 bg-ground-900 text-white"
-                        : "border-ground-200 bg-white text-ground-700 hover:bg-ground-50",
+                        ? "border-foreground bg-foreground text-background"
+                        : "border-border bg-background text-foreground hover:bg-muted",
                     )}
                   >
                     <RadioGroupItem value={opt.value} className="sr-only" />
@@ -441,20 +441,20 @@ function RadioGroupPage() {
               <RadioGroup value={tableVal} onValueChange={setTableVal}>
                 <table className="w-full">
                   <thead>
-                    <tr className="border-b border-ground-100">
-                      <th className="pb-3 text-left caption text-ground-500 font-medium">Plan</th>
-                      <th className="pb-3 text-left caption text-ground-500 font-medium">Users</th>
-                      <th className="pb-3 text-left caption text-ground-500 font-medium">
+                    <tr className="border-b border-border">
+                      <th className="pb-3 text-left caption text-muted-foreground font-medium">Plan</th>
+                      <th className="pb-3 text-left caption text-muted-foreground font-medium">Users</th>
+                      <th className="pb-3 text-left caption text-muted-foreground font-medium">
                         Storage
                       </th>
-                      <th className="pb-3 text-right caption text-ground-500 font-medium">Price</th>
+                      <th className="pb-3 text-right caption text-muted-foreground font-medium">Price</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-ground-50">
+                  <tbody className="divide-y divide-border">
                     {PRICING_ROWS.map((row) => (
                       <tr
                         key={row.value}
-                        className="cursor-pointer hover:bg-ground-50 transition-colors"
+                        className="cursor-pointer hover:bg-muted transition-colors"
                         onClick={() => setTableVal(row.value)}
                       >
                         <td className="py-3">
@@ -465,9 +465,9 @@ function RadioGroupPage() {
                             </Label>
                           </div>
                         </td>
-                        <td className="py-3 caption text-ground-500">{row.users}</td>
-                        <td className="py-3 caption text-ground-500">{row.storage}</td>
-                        <td className="py-3 caption font-medium text-ground-900 text-right">
+                        <td className="py-3 caption text-muted-foreground">{row.users}</td>
+                        <td className="py-3 caption text-muted-foreground">{row.storage}</td>
+                        <td className="py-3 caption font-medium text-foreground text-right">
                           {row.price}
                         </td>
                       </tr>

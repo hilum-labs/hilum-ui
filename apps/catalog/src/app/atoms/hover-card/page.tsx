@@ -20,19 +20,19 @@ const CODE = {
         <span className="label font-semibold text-brand-primary">AC</span>
       </div>
       <div className="min-w-0">
-        <p className="subheading text-ground-900">Alex Chen</p>
-        <p className="caption text-ground-400">@alexchen</p>
-        <p className="caption mt-2 text-ground-500">
+        <p className="subheading text-foreground">Alex Chen</p>
+        <p className="caption text-muted-foreground">@alexchen</p>
+        <p className="caption mt-2 text-muted-foreground">
           Product designer building design systems and tools.
         </p>
         <div className="mt-3 flex gap-4">
           <div>
-            <p className="label font-semibold text-ground-900">248</p>
-            <p className="caption-xs text-ground-400">Following</p>
+            <p className="label font-semibold text-foreground">248</p>
+            <p className="caption-xs text-muted-foreground">Following</p>
           </div>
           <div>
-            <p className="label font-semibold text-ground-900">1.4k</p>
-            <p className="caption-xs text-ground-400">Followers</p>
+            <p className="label font-semibold text-foreground">1.4k</p>
+            <p className="caption-xs text-muted-foreground">Followers</p>
           </div>
         </div>
       </div>
@@ -41,19 +41,19 @@ const CODE = {
 </HoverCard>`,
 
   linkPreview: `<HoverCard>
-  <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-ground-900">
+  <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-foreground">
     The Future of Design Systems
   </HoverCardTrigger>
   <HoverCardContent>
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-1.5">
         <div className="size-3.5 rounded-sm bg-brand-primary/20" />
-        <span className="caption-xs text-ground-400">designsystems.com</span>
+        <span className="caption-xs text-muted-foreground">designsystems.com</span>
       </div>
-      <p className="subheading text-ground-900 leading-snug">
+      <p className="subheading text-foreground leading-snug">
         The Future of Design Systems
       </p>
-      <p className="caption text-ground-500 leading-relaxed">
+      <p className="caption text-muted-foreground leading-relaxed">
         How component libraries are evolving to meet the demands of
         AI-assisted workflows and multi-platform delivery.
       </p>
@@ -71,18 +71,18 @@ const CODE = {
   {users.map((user) => (
     <HoverCard key={user.handle} openDelay={100}>
       <HoverCardTrigger asChild>
-        <button className="relative flex size-10 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110">
-          <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
+        <button className="relative flex size-10 items-center justify-center rounded-full border-2 border-white bg-muted cursor-pointer hover:z-10 transition-transform hover:scale-110">
+          <span className="caption-xs font-semibold text-muted-foreground">{user.initials}</span>
         </button>
       </HoverCardTrigger>
       <HoverCardContent side="top">
         <div className="flex items-center gap-3">
-          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ground-100">
-            <span className="caption-xs font-semibold text-ground-600">{user.initials}</span>
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted">
+            <span className="caption-xs font-semibold text-muted-foreground">{user.initials}</span>
           </div>
           <div>
-            <p className="body font-medium text-ground-900">{user.name}</p>
-            <p className="caption text-ground-400">{user.handle} · {user.followers} followers</p>
+            <p className="body font-medium text-foreground">{user.name}</p>
+            <p className="caption text-muted-foreground">{user.handle} · {user.followers} followers</p>
           </div>
         </div>
       </HoverCardContent>
@@ -100,8 +100,8 @@ const USERS = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -110,19 +110,19 @@ function HoverCardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Hover Card</span>
+          <span className="font-semibold text-foreground">Hover Card</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Hover Card</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Hover Card</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Rich floating card revealed on hover, for previewing user profiles, links, and contextual
           details.
         </p>
@@ -149,19 +149,19 @@ function HoverCardPage() {
                       <span className="label font-semibold text-brand-primary">AC</span>
                     </div>
                     <div className="min-w-0">
-                      <p className="subheading text-ground-900">Alex Chen</p>
-                      <p className="caption text-ground-400">@alexchen</p>
-                      <p className="caption mt-2 text-ground-500">
+                      <p className="subheading text-foreground">Alex Chen</p>
+                      <p className="caption text-muted-foreground">@alexchen</p>
+                      <p className="caption mt-2 text-muted-foreground">
                         Product designer building design systems and tools.
                       </p>
                       <div className="mt-3 flex gap-4">
                         <div>
-                          <p className="label font-semibold text-ground-900">248</p>
-                          <p className="caption-xs text-ground-400">Following</p>
+                          <p className="label font-semibold text-foreground">248</p>
+                          <p className="caption-xs text-muted-foreground">Following</p>
                         </div>
                         <div>
-                          <p className="label font-semibold text-ground-900">1.4k</p>
-                          <p className="caption-xs text-ground-400">Followers</p>
+                          <p className="label font-semibold text-foreground">1.4k</p>
+                          <p className="caption-xs text-muted-foreground">Followers</p>
                         </div>
                       </div>
                     </div>
@@ -176,19 +176,19 @@ function HoverCardPage() {
               code={CODE.linkPreview}
             >
               <HoverCard>
-                <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-ground-900">
+                <HoverCardTrigger className="underline-offset-4 hover:underline cursor-pointer body text-foreground">
                   The Future of Design Systems
                 </HoverCardTrigger>
                 <HoverCardContent>
                   <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-1.5">
                       <div className="size-3.5 rounded-sm bg-brand-primary/20" />
-                      <span className="caption-xs text-ground-400">designsystems.com</span>
+                      <span className="caption-xs text-muted-foreground">designsystems.com</span>
                     </div>
-                    <p className="subheading text-ground-900 leading-snug">
+                    <p className="subheading text-foreground leading-snug">
                       The Future of Design Systems
                     </p>
-                    <p className="caption text-ground-500 leading-relaxed">
+                    <p className="caption text-muted-foreground leading-relaxed">
                       How component libraries are evolving to meet the demands of AI-assisted
                       workflows and multi-platform delivery.
                     </p>
@@ -206,22 +206,22 @@ function HoverCardPage() {
                 {USERS.map((user) => (
                   <HoverCard key={user.handle} openDelay={100}>
                     <HoverCardTrigger asChild>
-                      <button className="relative flex size-10 items-center justify-center rounded-full border-2 border-white bg-ground-100 cursor-pointer hover:z-10 transition-transform hover:scale-110 focus:outline-none">
-                        <span className="caption-xs font-semibold text-ground-600">
+                      <button className="relative flex size-10 items-center justify-center rounded-full border-2 border-white bg-muted cursor-pointer hover:z-10 transition-transform hover:scale-110 focus:outline-none">
+                        <span className="caption-xs font-semibold text-muted-foreground">
                           {user.initials}
                         </span>
                       </button>
                     </HoverCardTrigger>
                     <HoverCardContent side="top">
                       <div className="flex items-center gap-3">
-                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-ground-100">
-                          <span className="caption-xs font-semibold text-ground-600">
+                        <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted">
+                          <span className="caption-xs font-semibold text-muted-foreground">
                             {user.initials}
                           </span>
                         </div>
                         <div>
-                          <p className="body font-medium text-ground-900">{user.name}</p>
-                          <p className="caption text-ground-400">
+                          <p className="body font-medium text-foreground">{user.name}</p>
+                          <p className="caption text-muted-foreground">
                             {user.handle} · {user.followers} followers
                           </p>
                         </div>

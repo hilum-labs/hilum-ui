@@ -460,7 +460,7 @@ const PANEL_WIDTH = 280;
 const SQUARE_HEIGHT = 156;
 const CHECKER_BG: CSSProperties = {
   backgroundImage:
-    "conic-gradient(var(--checker-a) 0 25%, var(--checker-b) 0 50%, var(--checker-a) 0 75%, var(--checker-b) 0)",
+    "conic-gradient(var(--checker-a, #ffffff) 0 25%, var(--checker-b, #e5e5e5) 0 50%, var(--checker-a, #ffffff) 0 75%, var(--checker-b, #e5e5e5) 0)",
   backgroundSize: "8px 8px",
 };
 
@@ -553,10 +553,12 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
   const thumbColor = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
 
   return (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- 2D saturation/brightness area: role=application + tabIndex with full arrow-key support (onKeyDown); no native 2D control exists
     <div
       ref={ref}
       role="application"
       aria-label="Saturation and brightness"
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- keyboard-operable 2D picker (see above)
       tabIndex={0}
       onFocus={(e) => {
         if (e.currentTarget.matches(":focus-visible")) setFocused(true);
@@ -576,7 +578,7 @@ function SaturationSquare({ h, s, v, onChange }: SaturationSquareProps) {
       className={cn("relative w-full select-none touch-none cursor-none outline-none", shape.bg)}
       style={{
         height: SQUARE_HEIGHT,
-        boxShadow: focused ? "0 0 0 2px #6B97FF" : undefined,
+        boxShadow: focused ? "0 0 0 2px var(--ring)" : undefined,
       }}
     >
       <div
@@ -639,7 +641,8 @@ function HueSlider({ h, onChange }: { h: number; onChange: (h: number) => void }
       showValue={false}
       hideFill
       thumbColor={hueColor}
-      thumbBorderColor="rgba(255,255,255,0.9)"
+      thumbBorderColor="rgba(255,255,255,0.95)"
+      trackSize={12}
       trackStyle={{
         background:
           "linear-gradient(to right, hsl(0,100%,50%), hsl(60,100%,50%), hsl(120,100%,50%), hsl(180,100%,50%), hsl(240,100%,50%), hsl(300,100%,50%), hsl(360,100%,50%))",
@@ -682,11 +685,11 @@ function AlphaSlider({
       showValue={false}
       hideFill
       thumbColor={solidColor}
-      thumbBorderColor="rgba(255,255,255,0.9)"
+      thumbBorderColor="rgba(255,255,255,0.95)"
+      trackSize={12}
       trackStyle={{
-        backgroundImage: `linear-gradient(to right, ${transparentColor} 0%, ${solidColor} 98%), conic-gradient(var(--checker-a) 0 25%, var(--checker-b) 0 50%, var(--checker-a) 0 75%, var(--checker-b) 0)`,
+        backgroundImage: `linear-gradient(to right, ${transparentColor} 0%, ${solidColor} 98%), conic-gradient(var(--checker-a, #ffffff) 0 25%, var(--checker-b, #e5e5e5) 0 50%, var(--checker-a, #ffffff) 0 75%, var(--checker-b, #e5e5e5) 0)`,
         backgroundSize: "100% 100%, 8px 8px",
-        borderWidth: 0,
       }}
       aria-label="Alpha"
     />
@@ -790,7 +793,6 @@ function FormatDropdown({
   };
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const shape = useShape();
   const portalContainer = useContext(ColorPickerPortalContainerContext);
   const [pos, setPos] = useState<
     | { mode: "fixed"; top: number; left: number; width: number }
@@ -860,15 +862,15 @@ function FormatDropdown({
         aria-haspopup="menu"
         aria-expanded={open}
         className={cn(
-          "flex items-center justify-between gap-2 h-9 px-3 text-[13px] bg-transparent hover:bg-hover hover:text-foreground transition-colors duration-80 outline-none focus-visible:ring-1 focus-visible:ring-[#6B97FF] cursor-pointer",
-          open ? "bg-active text-foreground" : "text-muted-foreground active:bg-active",
-          shape.input,
+          "flex items-center justify-between gap-1.5 h-6 min-w-[4.5rem] pl-2 pr-1.5 text-[12px] rounded-[5px] border border-border bg-background text-foreground",
+          "hover:border-border-strong transition-colors duration-80 outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
+          open && "border-border-strong bg-active",
         )}
         style={{ fontVariationSettings: fontWeights.medium }}
       >
         <span>{FORMAT_LABELS[value]}</span>
         <ChevronDownIcon
-          size={14}
+          size={12}
           strokeWidth={1.5}
           className={cn(
             "text-muted-foreground transition-transform duration-150",
@@ -976,7 +978,6 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
       scrubbing: boolean;
       pointerId: number;
     } | null>(null);
-    const shape = useShape();
 
     useEffect(() => {
       if (!interactingRef.current) setDraft(value);
@@ -1075,15 +1076,16 @@ const ColorInput = forwardRef<HTMLInputElement, ColorInputProps>(
         onPointerUp={onWrapperPointerUp}
         onPointerCancel={onWrapperPointerUp}
         className={cn(
-          "flex items-center h-9 px-2 bg-transparent hover:bg-hover active:bg-active transition-colors duration-80 focus-within:ring-1 focus-within:ring-[#6B97FF] select-none",
-          shape.input,
+          "flex h-6 min-w-0 items-center rounded-[5px] border border-border bg-background px-1.5 text-[12px] tabular-nums select-none",
+          "transition-[border-color,box-shadow] duration-80 hover:border-border-strong",
+          "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35",
           scrubbable && !editing && "cursor-ew-resize",
           className,
         )}
         style={{ width }}
       >
         {prefix && (
-          <span className="text-[12px] text-muted-foreground mr-1 select-none">{prefix}</span>
+          <span className="text-[11px] text-muted-foreground mr-1 select-none">{prefix}</span>
         )}
         <input
           ref={setInputRef}
@@ -1148,7 +1150,6 @@ interface EyeDropperGlobal {
 
 function EyeDropperButton({ onPick }: { onPick: (hex: string) => void }) {
   const [supported, setSupported] = useState(false);
-  const shape = useShape();
   const PipetteIcon = useIcon("pipette");
 
   useEffect(() => {
@@ -1174,11 +1175,10 @@ function EyeDropperButton({ onPick }: { onPick: (hex: string) => void }) {
       onClick={handleClick}
       aria-label="Pick color from screen"
       className={cn(
-        "flex items-center justify-center h-9 px-3 text-muted-foreground bg-transparent hover:bg-hover hover:text-foreground active:bg-active transition-colors duration-80 outline-none focus-visible:ring-1 focus-visible:ring-[#6B97FF] cursor-pointer",
-        shape.input,
+        "flex size-6 shrink-0 items-center justify-center rounded-[5px] text-muted-foreground bg-transparent hover:bg-hover hover:text-foreground active:bg-active transition-colors duration-80 outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
       )}
     >
-      <PipetteIcon size={16} strokeWidth={1.5} />
+      <PipetteIcon size={14} strokeWidth={1.5} />
     </button>
   );
 }
@@ -1221,7 +1221,7 @@ const ColorSwatch = forwardRef<HTMLButtonElement, ColorSwatchProps>(
     const shape = useShape();
     const [hovered, setHovered] = useState(false);
     const ring = selected
-      ? "inset 0 0 0 1px rgba(127,127,127,0.25), 0 0 0 2px var(--background), 0 0 0 4px #6B97FF"
+      ? "inset 0 0 0 1px rgba(127,127,127,0.25), 0 0 0 2px var(--background), 0 0 0 4px var(--ring)"
       : hovered
         ? "inset 0 0 0 1px rgba(127,127,127,0.25), 0 0 0 2px var(--background), 0 0 0 4px rgba(127,127,127,0.4)"
         : "inset 0 0 0 1px rgba(127,127,127,0.25)";
@@ -1278,7 +1278,8 @@ function SwatchStrip({
   }, [current]);
 
   return (
-    <div className="flex flex-wrap gap-2">
+    // Fixed 8-column grid (20px swatches) so rows never end in a lone orphan.
+    <div className="grid grid-cols-[repeat(8,20px)] justify-between gap-y-2 pt-1">
       {swatches.map((sw, i) => {
         const parsed = parseColor(sw);
         const normalized = parsed
@@ -1289,7 +1290,7 @@ function SwatchStrip({
           <ColorSwatch
             key={`${sw}-${i}`}
             color={sw}
-            size={28}
+            size={20}
             selected={isSelected}
             onClick={() => onPick(sw)}
           />
@@ -1319,6 +1320,7 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
       hideEyedropper,
       formatOpen,
       defaultFormatOpen,
+      disabled = false,
       className,
       ...props
     },
@@ -1456,10 +1458,15 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
         <div
           ref={ref}
           aria-label={ariaLabel}
+          aria-disabled={disabled || undefined}
+          data-disabled={disabled ? "" : undefined}
+          // `inert` removes the whole panel from pointer + keyboard interaction.
+          inert={disabled || undefined}
           className={cn(
             "flex flex-col gap-2 p-3",
             surfaceClasses(pickerLevel, 1),
             shape.container,
+            disabled && "pointer-events-none select-none opacity-50",
             className,
           )}
           style={{ width: PANEL_WIDTH }}
@@ -1472,7 +1479,9 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
             onChange={(s, v) => updateHsv({ s, v })}
           />
 
-          <div className="flex flex-col [&>*]:mb-0 [&>*+*]:-mt-px">
+          {/* Hue + alpha strips: slider boxes carry 8px hit slop top/bottom; the
+              negative margins collapse that so the strips sit 12px apart. */}
+          <div className="-my-2 flex flex-col [&>*]:mb-0 [&>*+*]:-mt-3">
             <HueSlider
               h={hsv.h}
               onChange={(h) => {
@@ -1490,7 +1499,7 @@ const ColorPicker = forwardRef<HTMLDivElement, ColorPickerProps>(
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex items-center justify-between gap-2">
             <FormatDropdown
               value={currentFormat}
               onChange={handleFormatChange}
@@ -1620,7 +1629,7 @@ function ColorInputsRow({
   if (format === "hex") {
     const hexNoHash = parsed.hex.replace(/^#/, "").toUpperCase();
     return (
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-[minmax(0,1fr)_4rem] gap-1.5">
         <ChannelTooltip label="Hex">
           <ColorInput
             value={hexNoHash}
@@ -1925,11 +1934,14 @@ const ColorPickerPopover = forwardRef<HTMLDivElement, ColorPickerPopoverProps>(
           ref={triggerRef}
           type="button"
           onClick={() => setOpen((o) => !o)}
+          disabled={pickerProps.disabled}
           aria-haspopup="dialog"
           aria-expanded={open}
           className={cn(
-            "flex items-center gap-2 h-9 px-2 border border-border bg-transparent hover:bg-hover transition-colors duration-80 outline-none focus-visible:ring-1 focus-visible:ring-[#6B97FF] cursor-pointer",
+            "flex items-center gap-2 h-9 px-2 border border-border bg-transparent hover:bg-hover hover:border-border-strong transition-colors duration-80 outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
+            "disabled:pointer-events-none disabled:opacity-50",
             shape.input,
+            "compact:h-6 compact:gap-1.5 compact:px-1 compact:rounded-[5px]",
             triggerClassName,
           )}
           style={{ fontVariationSettings: fontWeights.medium }}

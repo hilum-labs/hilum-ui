@@ -27,13 +27,13 @@ function PaneVisibilityDemo() {
   return (
     <div className="mx-auto max-w-5xl px-8 py-12">
       <div className="mb-10">
-        <h1 className="display text-ground-900">DesignerPane.showFor</h1>
-        <p className="body-lg text-ground-500 mt-3 max-w-2xl">
+        <h1 className="display text-foreground">DesignerPane.showFor</h1>
+        <p className="body-lg text-muted-foreground mt-3 max-w-2xl">
           Click below to "select" different kinds. The properties panel on the right rerenders only
           the panes whose{" "}
-          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">showFor</code>{" "}
+          <code className="font-mono caption bg-muted px-1.5 py-0.5 rounded">showFor</code>{" "}
           predicate matches. The shell itself doesn't know about layer kinds — apps wire a{" "}
-          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">resolveKind</code>{" "}
+          <code className="font-mono caption bg-muted px-1.5 py-0.5 rounded">resolveKind</code>{" "}
           function on <code className="font-mono caption">ShellContext</code>.
         </p>
       </div>
@@ -42,7 +42,7 @@ function PaneVisibilityDemo() {
 
       <div className="grid grid-cols-3 gap-6">
         <div className="col-span-2 flex flex-col gap-3">
-          <p className="caption-xs uppercase tracking-wider font-semibold text-ground-400">
+          <p className="caption-xs uppercase tracking-wider font-semibold text-muted-foreground">
             Click to select
           </p>
           <div className="grid grid-cols-2 gap-2">
@@ -59,7 +59,7 @@ function PaneVisibilityDemo() {
                   className={`flex items-center justify-between rounded-md border px-3 py-2 caption transition-colors ${
                     selected
                       ? "border-brand-primary bg-brand-primary/10 text-brand-primary"
-                      : "border-ground-200 text-ground-700 hover:bg-ground-50"
+                      : "border-border text-foreground hover:bg-muted"
                   }`}
                 >
                   <span className="font-medium">{k.label}</span>
@@ -115,14 +115,14 @@ function PaneVisibilityDemo() {
                   <DesignerPane showFor={["group"]} collapsible>
                     <DesignerPaneTitle>Group</DesignerPaneTitle>
                     <DesignerPaneContent>
-                      <p className="caption text-ground-500">{selectedIds.length} item(s)</p>
+                      <p className="caption text-muted-foreground">{selectedIds.length} item(s)</p>
                     </DesignerPaneContent>
                   </DesignerPane>
 
                   <DesignerPane collapsible>
                     <DesignerPaneTitle>Always</DesignerPaneTitle>
                     <DesignerPaneContent>
-                      <p className="caption text-ground-500">No showFor — visible regardless.</p>
+                      <p className="caption text-muted-foreground">No showFor — visible regardless.</p>
                     </DesignerPaneContent>
                   </DesignerPane>
                 </DesignerPanel>

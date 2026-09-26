@@ -406,6 +406,11 @@ resource "aws_codebuild_project" "release" {
   service_role  = aws_iam_role.codebuild_release[0].arn
   build_timeout = var.codebuild_timeout_minutes
 
+  # One release at a time: two overlapping builds would compute the same next
+  # version and race to push/publish it. Builds started while one is running
+  # are throttled; EventBridge retries them (see retry_policy on the target).
+  concurrent_build_limit = 1
+
   artifacts {
     type = "NO_ARTIFACTS"
   }
@@ -457,6 +462,9 @@ resource "aws_codebuild_project" "release" {
     buildspec       = "buildspec.aws-release.yml"
   }
 
+  # Default only — the EventBridge target overrides sourceVersion with the
+  # commit that triggered the event, so each build releases exactly the commit
+  # that was pushed (not whatever the branch tip is when the build starts).
   source_version = "refs/heads/${var.release_branch}"
 
   tags = local.common_tags
@@ -532,4 +540,22 @@ resource "aws_cloudwatch_event_target" "codebuild_release" {
   target_id = "codebuild-release"
   arn       = aws_codebuild_project.release[0].arn
   role_arn  = aws_iam_role.eventbridge_start_codebuild[0].arn
+
+  # Build the triggering commit. The target input is passed through as
+  # StartBuild parameters.
+  input_transformer {
+    input_paths = {
+      commitId = "$.detail.commitId"
+    }
+    input_template = <<-EOT
+      {"sourceVersion": <commitId>}
+    EOT
+  }
+
+  # StartBuild is throttled while another release is running
+  # (concurrent_build_limit = 1); keep retrying for up to an hour.
+  retry_policy {
+    maximum_event_age_in_seconds = 3600
+    maximum_retry_attempts       = 185
+  }
 }

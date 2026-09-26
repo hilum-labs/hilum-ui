@@ -117,7 +117,7 @@ function StatCardSlot({ onAddCard, className, label = "Add card" }: StatCardSlot
       className={cn(
         "flex min-h-28 w-full min-w-0 items-center justify-center rounded-xl border border-dashed border-border bg-card p-4 text-muted-foreground shadow-natural",
         "transition-[background-color,border-color,color,scale] duration-150 hover:border-ground-300 hover:bg-muted hover:text-foreground active:scale-[0.96]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         className,
       )}
       onClick={onAddCard}

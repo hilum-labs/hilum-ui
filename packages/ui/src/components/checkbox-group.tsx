@@ -138,6 +138,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
 
     return (
       <CheckboxGroupContext.Provider value={{ registerItem, activeIndex }}>
+        {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- roving-focus group: focus/key events bubble up from the focusable checkbox rows */}
         <div
           ref={(node) => {
             (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
@@ -230,7 +231,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           <AnimatePresence>
             {focusRect && (
               <motion.div
-                className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[#6B97FF]`}
+                className={`absolute ${shape.focusRing} pointer-events-none z-20 border-2 border-ring`}
                 initial={false}
                 animate={{
                   left: focusRect.left - 2,

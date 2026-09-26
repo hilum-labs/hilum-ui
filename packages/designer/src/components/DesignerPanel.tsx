@@ -1,5 +1,14 @@
 import type { CSSProperties, ReactNode } from "react";
-import { cn, Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription } from "@hilum/ui";
+import {
+  cn,
+  DensityProvider,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+  type Density,
+} from "@hilum/ui";
 import {
   getDesignerFloatingMaxHeight,
   resolveDesignerWorkspaceInsets,
@@ -27,6 +36,11 @@ interface DesignerPanelProps {
   /** Sheet edge. Defaults to `bottom` for mobile editor panels. */
   sheetSide?: "left" | "right" | "top" | "bottom";
   sheetClassName?: string;
+  /**
+   * Control density inside the panel. Inspector / layer panels default to
+   * `"compact"` editor sizing; pass `"default"` for standard Hilum sizing.
+   */
+  density?: Density;
   className?: string;
   style?: CSSProperties;
   children?: ReactNode;
@@ -49,6 +63,7 @@ function DesignerPanel({
   sheetDescription,
   sheetSide = "bottom",
   sheetClassName,
+  density = "compact",
   className,
   style,
   children,
@@ -61,8 +76,10 @@ function DesignerPanel({
     const resolvedSheetDescription = sheetDescription ?? "Editor panel controls";
 
     return (
+      <DensityProvider density={density} wrap={false}>
       <Sheet {...sheetProps}>
         <SheetContent
+          data-density={density}
           side={sheetSide}
           className={cn(
             "flex max-h-[min(86svh,44rem)] flex-col overflow-hidden p-0",
@@ -83,6 +100,7 @@ function DesignerPanel({
           </div>
         </SheetContent>
       </Sheet>
+      </DensityProvider>
     );
   }
 
@@ -101,15 +119,17 @@ function DesignerPanel({
       : { width, maxWidth: "100%", ...style };
 
   return (
+    <DensityProvider density={density} wrap={false}>
     <aside
       data-side={side}
       data-variant={variant}
+      data-density={density}
       className={cn(
-        "flex min-w-0 max-w-full shrink-0 flex-col overflow-hidden bg-card",
+        "flex min-w-0 max-w-full shrink-0 flex-col overflow-hidden bg-card text-foreground",
         variant === "inline" && bordered && (side === "left" ? "border-r" : "border-l"),
         variant === "inline" && bordered && "border-border",
         variant === "floating" && [
-          "absolute z-20 rounded-lg shadow-natural",
+          "absolute z-20 rounded-lg shadow-surface-3",
           "[interpolate-size:allow-keywords] transition-[height,max-height,opacity,transform,box-shadow] duration-200 ease-out motion-reduce:transition-none",
         ],
         className,
@@ -120,6 +140,7 @@ function DesignerPanel({
         {children}
       </div>
     </aside>
+    </DensityProvider>
   );
 }
 

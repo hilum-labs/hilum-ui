@@ -27,8 +27,10 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, React.ComponentProps<"li"
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = React.forwardRef<HTMLAnchorElement, React.ComponentProps<"a">>(
-  ({ className, ...props }, ref) => (
-    <a ref={ref} className={cn("transition-colors hover:text-foreground", className)} {...props} />
+  ({ className, children, ...props }, ref) => (
+    <a ref={ref} className={cn("transition-colors hover:text-foreground", className)} {...props}>
+      {children}
+    </a>
   ),
 );
 BreadcrumbLink.displayName = "BreadcrumbLink";

@@ -9,7 +9,7 @@ const CODE = {
   slider: `import { Slider } from "@hilum/ui"
 
 <div className="flex flex-col gap-2">
-  <div className="flex justify-between text-xs text-ground-400">
+  <div className="flex justify-between text-xs text-muted-foreground">
     <span>Slower</span>
     <span>Faster</span>
   </div>
@@ -64,8 +64,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -80,19 +80,19 @@ function SliderPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Slider</span>
+          <span className="font-semibold text-foreground">Slider</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Slider</h1>
-        <p className="body max-w-lg text-ground-500">Range input for selecting a numeric value.</p>
+        <h1 className="display mb-2 text-foreground">Slider</h1>
+        <p className="body max-w-lg text-muted-foreground">Range input for selecting a numeric value.</p>
       </div>
 
       <PageDocs path="/atoms/slider/" />
@@ -107,9 +107,9 @@ function SliderPage() {
           previewClassName="flex-col items-stretch"
         >
           <div className="w-full max-w-xs">
-            <div className="mb-2 flex justify-between text-xs text-ground-400">
+            <div className="mb-2 flex justify-between text-xs text-muted-foreground">
               <span>Slower</span>
-              <span className="font-medium text-ground-700">Speed</span>
+              <span className="font-medium text-foreground">Speed</span>
               <span>Faster</span>
             </div>
             <Slider defaultValue={[50]} max={100} step={1} />

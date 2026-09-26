@@ -11,8 +11,8 @@ const CODE = `import { FileThumbnail } from "@hilum/ui"
 function FileThumbnailPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">File Thumbnail</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">File Thumbnail</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Compact file preview row with icon, type, and size metadata.
       </p>
       <PageDocs path="/atoms/file-thumbnail/" />

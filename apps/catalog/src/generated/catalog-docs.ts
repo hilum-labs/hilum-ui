@@ -705,7 +705,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Aspect Ratio keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
       }
     ],
-    "exampleCode": "import { AspectRatio } from \"@hilum/ui\"\n\n<div className=\"w-full max-w-sm\">\n  <AspectRatio ratio={16 / 9} className=\"bg-ground-100 rounded-xl flex items-center justify-center\">\n    <span className=\"label text-ground-400\">16 : 9</span>\n  </AspectRatio>\n</div>",
+    "exampleCode": "import { AspectRatio } from \"@hilum/ui\"\n\n<div className=\"w-full max-w-sm\">\n  <AspectRatio ratio={16 / 9} className=\"bg-muted rounded-xl flex items-center justify-center\">\n    <span className=\"label text-muted-foreground\">16 : 9</span>\n  </AspectRatio>\n</div>",
     "kind": "component",
     "path": "/atoms/aspect-ratio/",
     "summary": "Constrains content to a fixed width-to-height ratio — useful for images, videos, and media embeds.",
@@ -763,7 +763,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "avatars, max, size, className"
       }
     ],
-    "exampleCode": "import { AvatarStack } from \"@hilum/ui\"\n\n<AvatarStack\n  avatars={[\n    { name: \"Sofia P.\", fallback: \"SP\", colorClass: \"bg-brand-primary text-white\" },\n    { name: \"Marcus K.\", fallback: \"MK\", colorClass: \"bg-brand-secondary text-ground-900\" },\n    { name: \"Rachel T.\", fallback: \"RT\", colorClass: \"bg-brand-secondary text-ground-900\" },\n    { name: \"James W.\", fallback: \"JW\", colorClass: \"bg-ground-900 text-white\" },\n  ]}\n/>",
+    "exampleCode": "import { AvatarStack } from \"@hilum/ui\"\n\n<AvatarStack\n  avatars={[\n    { name: \"Sofia P.\", fallback: \"SP\", colorClass: \"bg-brand-primary text-white\" },\n    { name: \"Marcus K.\", fallback: \"MK\", colorClass: \"bg-brand-secondary text-ground-900\" },\n    { name: \"Rachel T.\", fallback: \"RT\", colorClass: \"bg-brand-secondary text-ground-900\" },\n    { name: \"James W.\", fallback: \"JW\", colorClass: \"bg-foreground text-background\" },\n  ]}\n/>",
     "kind": "component",
     "path": "/atoms/avatar-stack/",
     "summary": "Overlapping avatars for showing a group of users at a glance. Supports an overflow badge when the count exceeds a maximum.",
@@ -1150,7 +1150,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "CollapsibleRoot, CollapsibleTrigger, CollapsibleContent"
       }
     ],
-    "exampleCode": "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from \"@hilum/ui\"\n\n<Collapsible>\n  <CollapsibleTrigger className=\"flex w-full items-center justify-between py-2 text-sm font-medium\">\n    Voices\n    <ChevronDown size={14} />\n  </CollapsibleTrigger>\n  <CollapsibleContent>\n    <div className=\"flex flex-col gap-1 pb-2 pt-1\">\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50\">My voices</a>\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50\">Voice library</a>\n    </div>\n  </CollapsibleContent>\n</Collapsible>",
+    "exampleCode": "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from \"@hilum/ui\"\n\n<Collapsible>\n  <CollapsibleTrigger className=\"flex w-full items-center justify-between py-2 text-sm font-medium\">\n    Voices\n    <ChevronDown size={14} />\n  </CollapsibleTrigger>\n  <CollapsibleContent>\n    <div className=\"flex flex-col gap-1 pb-2 pt-1\">\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted\">My voices</a>\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted\">Voice library</a>\n    </div>\n  </CollapsibleContent>\n</Collapsible>",
     "kind": "component",
     "path": "/atoms/collapsible/",
     "summary": "Toggleable content region, building block for nav groups.",
@@ -1293,7 +1293,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "ContextMenuRoot, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem"
       }
     ],
-    "exampleCode": "import {\n  ContextMenu, ContextMenuTrigger, ContextMenuContent,\n  ContextMenuItem, ContextMenuSeparator,\n} from \"@hilum/ui\"\n\n<ContextMenu>\n  <ContextMenuTrigger className=\"flex items-center justify-center rounded-xl border border-dashed border-ground-200 bg-ground-50 p-8\">\n    <span className=\"body text-ground-400\">Right-click anywhere in this area</span>\n  </ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem>New Tab</ContextMenuItem>\n    <ContextMenuItem>New Window</ContextMenuItem>\n    <ContextMenuSeparator />\n    <ContextMenuItem>Copy</ContextMenuItem>\n    <ContextMenuItem>Paste</ContextMenuItem>\n    <ContextMenuSeparator />\n    <ContextMenuItem destructive>Delete</ContextMenuItem>\n  </ContextMenuContent>\n// ...trimmed for docs",
+    "exampleCode": "import {\n  ContextMenu, ContextMenuTrigger, ContextMenuContent,\n  ContextMenuItem, ContextMenuSeparator,\n} from \"@hilum/ui\"\n\n<ContextMenu>\n  <ContextMenuTrigger className=\"flex items-center justify-center rounded-xl border border-dashed border-border bg-muted p-8\">\n    <span className=\"body text-muted-foreground\">Right-click anywhere in this area</span>\n  </ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem>New Tab</ContextMenuItem>\n    <ContextMenuItem>New Window</ContextMenuItem>\n    <ContextMenuSeparator />\n    <ContextMenuItem>Copy</ContextMenuItem>\n    <ContextMenuItem>Paste</ContextMenuItem>\n    <ContextMenuSeparator />\n    <ContextMenuItem destructive>Delete</ContextMenuItem>\n  </ContextMenuContent>\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/context-menu/",
     "summary": "Contextual menu revealed on right-click, offering actions relevant to the target element.",
@@ -1320,7 +1320,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "columns, data, searchKey, searchPlaceholder, pageSize, showPagination"
       }
     ],
-    "exampleCode": "import { DataTable, createColumnHelper, type ColumnDef } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\ntype Transaction = {\n  id: string; company: string; type: string\n  amount: string; date: string; status: \"Paid\" | \"Pending\" | \"Overdue\"\n}\n\nconst helper = createColumnHelper<Transaction>()\n\nconst columns: ColumnDef<Transaction>[] = [\n  helper.accessor(\"id\", {\n    header: \"ID\",\n    cell: (info) => <span className=\"font-mono caption text-ground-400\">{info.getValue()}</span>,\n  }),\n  helper.accessor(\"company\", {\n    header: \"Company\",\n    cell: (info) => <span className=\"font-medium text-ground-900\">{info.getValue()}</span>,\n// ...trimmed for docs",
+    "exampleCode": "import { DataTable, createColumnHelper, type ColumnDef } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\ntype Transaction = {\n  id: string; company: string; type: string\n  amount: string; date: string; status: \"Paid\" | \"Pending\" | \"Overdue\"\n}\n\nconst helper = createColumnHelper<Transaction>()\n\nconst columns: ColumnDef<Transaction>[] = [\n  helper.accessor(\"id\", {\n    header: \"ID\",\n    cell: (info) => <span className=\"font-mono caption text-muted-foreground\">{info.getValue()}</span>,\n  }),\n  helper.accessor(\"company\", {\n    header: \"Company\",\n    cell: (info) => <span className=\"font-medium text-foreground\">{info.getValue()}</span>,\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/data-table/",
     "summary": "A generic, sortable, filterable, and paginated data table built on @tanstack/react-table v8. Define typed columns once and pass any data.",
@@ -1409,7 +1409,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "DrawerRoot, DrawerTrigger, DrawerPortal, DrawerClose, DrawerOverlay, DrawerContent"
       }
     ],
-    "exampleCode": "import {\n  Drawer, DrawerTrigger, DrawerContent,\n  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Drawer>\n  <DrawerTrigger asChild>\n    <Button variant=\"outline\">Open Drawer</Button>\n  </DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader>\n      <DrawerTitle>Edit profile</DrawerTitle>\n      <DrawerDescription>Update your name and bio.</DrawerDescription>\n    </DrawerHeader>\n    <div className=\"flex flex-col gap-4 px-6 pb-2\">\n      <div>\n        <p className=\"label text-ground-500 mb-1.5\">Name</p>\n// ...trimmed for docs",
+    "exampleCode": "import {\n  Drawer, DrawerTrigger, DrawerContent,\n  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Drawer>\n  <DrawerTrigger asChild>\n    <Button variant=\"outline\">Open Drawer</Button>\n  </DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader>\n      <DrawerTitle>Edit profile</DrawerTitle>\n      <DrawerDescription>Update your name and bio.</DrawerDescription>\n    </DrawerHeader>\n    <div className=\"flex flex-col gap-4 px-6 pb-2\">\n      <div>\n        <p className=\"label text-muted-foreground mb-1.5\">Name</p>\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/drawer/",
     "summary": "Bottom sheet panel that slides up from the screen edge — ideal for mobile-first interactions and contextual actions.",
@@ -1522,11 +1522,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "file, name, type, size, className"
+        "description": "file, name, type, size, className, pdfWorkerSrc"
       },
       {
         "label": "Key exports",
-        "description": "FileThumbnail, loadPdfjs, renderPdfFirstPage"
+        "description": "FileThumbnail, loadPdfjs, renderPdfFirstPage, setPdfWorkerSrc"
       }
     ],
     "exampleCode": null,
@@ -1587,7 +1587,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "HoverCardRoot, HoverCardTrigger, HoverCardContent"
       }
     ],
-    "exampleCode": "import {\n  HoverCard, HoverCardTrigger, HoverCardContent,\n} from \"@hilum/ui\"\n\n<HoverCard>\n  <HoverCardTrigger className=\"underline-offset-4 hover:underline cursor-pointer body text-brand-primary\">\n    @alexchen\n  </HoverCardTrigger>\n  <HoverCardContent>\n    <div className=\"flex items-start gap-3\">\n      <div className=\"flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10\">\n        <span className=\"label font-semibold text-brand-primary\">AC</span>\n      </div>\n      <div className=\"min-w-0\">\n        <p className=\"subheading text-ground-900\">Alex Chen</p>\n        <p className=\"caption text-ground-400\">@alexchen</p>\n        <p className=\"caption mt-2 text-ground-500\">\n          Product designer building design systems and tools.\n// ...trimmed for docs",
+    "exampleCode": "import {\n  HoverCard, HoverCardTrigger, HoverCardContent,\n} from \"@hilum/ui\"\n\n<HoverCard>\n  <HoverCardTrigger className=\"underline-offset-4 hover:underline cursor-pointer body text-brand-primary\">\n    @alexchen\n  </HoverCardTrigger>\n  <HoverCardContent>\n    <div className=\"flex items-start gap-3\">\n      <div className=\"flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10\">\n        <span className=\"label font-semibold text-brand-primary\">AC</span>\n      </div>\n      <div className=\"min-w-0\">\n        <p className=\"subheading text-foreground\">Alex Chen</p>\n        <p className=\"caption text-muted-foreground\">@alexchen</p>\n        <p className=\"caption mt-2 text-muted-foreground\">\n          Product designer building design systems and tools.\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/hover-card/",
     "summary": "Rich floating card revealed on hover, for previewing user profiles, links, and contextual details.",
@@ -1641,7 +1641,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "value, onChange, min, max, step, unit"
       }
     ],
-    "exampleCode": "import { InputNumber } from \"@hilum/ui\"\n\nconst [value, setValue] = React.useState(0)\n\n<InputNumber value={value} onChange={setValue} />",
+    "exampleCode": "import { DensityProvider, InputNumber } from \"@hilum/ui\"\n\n// Label-in-field prefix doubles as a scrub handle: drag it to change the value.\n<DensityProvider density=\"compact\">\n  <div className=\"grid w-56 grid-cols-2 gap-1.5\">\n    <InputNumber label=\"X\" value={x} onChange={setX} className=\"w-full\" />\n    <InputNumber label=\"Y\" value={y} onChange={setY} className=\"w-full\" />\n    <InputNumber label=\"W\" value={w} onChange={setW} min={1} className=\"w-full\" />\n    <InputNumber label=\"H\" value={h} onChange={setH} min={1} className=\"w-full\" />\n  </div>\n</DensityProvider>",
     "kind": "component",
     "path": "/atoms/input-number/",
     "summary": "Numeric input with up/down steppers, optional unit suffix, and arrow-key stepping (Shift = 10×). Designed for designer property panels.",
@@ -1668,7 +1668,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator"
       }
     ],
-    "exampleCode": "import { useState } from \"react\"\nimport {\n  InputOTP, InputOTPGroup, InputOTPSlot,\n} from \"@hilum/ui\"\n\nconst [value, setValue] = useState(\"\")\n\n<div className=\"flex flex-col items-center gap-3\">\n  <InputOTP maxLength={6} value={value} onChange={setValue}>\n    <InputOTPGroup>\n      {[0, 1, 2, 3, 4, 5].map((i) => (\n        <InputOTPSlot key={i} index={i} />\n      ))}\n    </InputOTPGroup>\n  </InputOTP>\n  <p className=\"caption text-ground-400\">\n    {value ? \\",
+    "exampleCode": "import { useState } from \"react\"\nimport {\n  InputOTP, InputOTPGroup, InputOTPSlot,\n} from \"@hilum/ui\"\n\nconst [value, setValue] = useState(\"\")\n\n<div className=\"flex flex-col items-center gap-3\">\n  <InputOTP maxLength={6} value={value} onChange={setValue}>\n    <InputOTPGroup>\n      {[0, 1, 2, 3, 4, 5].map((i) => (\n        <InputOTPSlot key={i} index={i} />\n      ))}\n    </InputOTPGroup>\n  </InputOTP>\n  <p className=\"caption text-muted-foreground\">\n    {value ? \\",
     "kind": "component",
     "path": "/atoms/input-otp/",
     "summary": "One-time password input with individual character slots — used for verification codes, PINs, and two-factor authentication.",
@@ -1695,7 +1695,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Kbd keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
       }
     ],
-    "exampleCode": "import { Kbd } from \"@hilum/ui\"\n\n<Kbd>⌘</Kbd>\n<Kbd>⌘K</Kbd>\n<Kbd>⇧⌘P</Kbd>\n<span className=\"flex items-center gap-1 text-sm text-ground-600\">\n  Save <Kbd>⌘</Kbd><Kbd>S</Kbd>\n</span>",
+    "exampleCode": "import { Kbd } from \"@hilum/ui\"\n\n<Kbd>⌘</Kbd>\n<Kbd>⌘K</Kbd>\n<Kbd>⇧⌘P</Kbd>\n<span className=\"flex items-center gap-1 text-sm text-muted-foreground\">\n  Save <Kbd>⌘</Kbd><Kbd>S</Kbd>\n</span>",
     "kind": "component",
     "path": "/atoms/kbd/",
     "summary": "Keyboard shortcut display using monospaced styling.",
@@ -1722,7 +1722,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Label keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
       }
     ],
-    "exampleCode": "import { Label } from \"@hilum/ui\"\n\n<Label>Full name</Label>\n<Label>\n  Email <span className=\"text-red-500\">*</span>\n</Label>\n<Label className=\"text-ground-400\">Optional field</Label>",
+    "exampleCode": "import { Label } from \"@hilum/ui\"\n\n<Label>Full name</Label>\n<Label>\n  Email <span className=\"text-red-500\">*</span>\n</Label>\n<Label className=\"text-muted-foreground\">Optional field</Label>",
     "kind": "component",
     "path": "/atoms/label/",
     "summary": "Accessible form label that associates with its control.",
@@ -1746,7 +1746,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "icon, label, index, checked, onSelect, trailing"
+        "description": "icon, label, index, checked, type, onSelect"
       }
     ],
     "exampleCode": null,
@@ -1967,7 +1967,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "PopoverRoot, PopoverTrigger, PopoverContent, PopoverClose"
       }
     ],
-    "exampleCode": "import {\n  Popover, PopoverTrigger, PopoverContent,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Popover>\n  <PopoverTrigger asChild>\n    <Button variant=\"outline\">Voice settings</Button>\n  </PopoverTrigger>\n  <PopoverContent>\n    <div className=\"flex flex-col gap-3\">\n      <p className=\"text-xs font-semibold uppercase tracking-widest text-ground-400\">\n        Stability\n      </p>\n      <Slider defaultValue={[65]} max={100} step={1} />\n      <p className=\"text-xs font-semibold uppercase tracking-widest text-ground-400 mt-1\">\n        Similarity\n      </p>\n// ...trimmed for docs",
+    "exampleCode": "import {\n  Popover, PopoverTrigger, PopoverContent,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Popover>\n  <PopoverTrigger asChild>\n    <Button variant=\"outline\">Voice settings</Button>\n  </PopoverTrigger>\n  <PopoverContent>\n    <div className=\"flex flex-col gap-3\">\n      <p className=\"text-xs font-semibold uppercase tracking-widest text-muted-foreground\">\n        Stability\n      </p>\n      <Slider defaultValue={[65]} max={100} step={1} />\n      <p className=\"text-xs font-semibold uppercase tracking-widest text-muted-foreground mt-1\">\n        Similarity\n      </p>\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/popover/",
     "summary": "Floating panel anchored to a trigger, for richer content.",
@@ -2052,7 +2052,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "ResizablePanelGroup, ResizablePanel, ResizableHandle"
       }
     ],
-    "exampleCode": "import {\n  ResizablePanelGroup,\n  ResizablePanel,\n  ResizableHandle,\n} from \"@hilum/ui\";\n\n<ResizablePanelGroup direction=\"horizontal\" className=\"h-[300px] rounded-xl border border-ground-100 overflow-hidden\">\n  <ResizablePanel defaultSize={50}>\n    <div className=\"flex h-full items-center justify-center bg-ground-50 p-4\">\n      <span className=\"label text-ground-400\">Left panel</span>\n    </div>\n  </ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel defaultSize={50}>\n    <div className=\"flex h-full items-center justify-center bg-white p-4\">\n      <span className=\"label text-ground-400\">Right panel</span>\n    </div>\n  </ResizablePanel>\n// ...trimmed for docs",
+    "exampleCode": "import {\n  ResizablePanelGroup,\n  ResizablePanel,\n  ResizableHandle,\n} from \"@hilum/ui\";\n\n<ResizablePanelGroup direction=\"horizontal\" className=\"h-[300px] rounded-xl border border-border overflow-hidden\">\n  <ResizablePanel defaultSize={50}>\n    <div className=\"flex h-full items-center justify-center bg-muted p-4\">\n      <span className=\"label text-muted-foreground\">Left panel</span>\n    </div>\n  </ResizablePanel>\n  <ResizableHandle />\n  <ResizablePanel defaultSize={50}>\n    <div className=\"flex h-full items-center justify-center bg-background p-4\">\n      <span className=\"label text-muted-foreground\">Right panel</span>\n    </div>\n  </ResizablePanel>\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/resizable/",
     "summary": "Draggable panel layouts for building resizable split-view interfaces.",
@@ -2106,7 +2106,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Scroll Area keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
       }
     ],
-    "exampleCode": "import { ScrollArea } from \"@hilum/ui\"\n\n<ScrollArea className=\"h-48 w-64 rounded-xl border border-ground-100 p-4\">\n  {items.map((item) => (\n    <div key={item} className=\"py-2 text-sm border-b border-ground-100 last:border-0\">\n      {item}\n    </div>\n  ))}\n</ScrollArea>",
+    "exampleCode": "import { ScrollArea } from \"@hilum/ui\"\n\n<ScrollArea className=\"h-48 w-64 rounded-xl border border-border p-4\">\n  {items.map((item) => (\n    <div key={item} className=\"py-2 text-sm border-b border-border last:border-0\">\n      {item}\n    </div>\n  ))}\n</ScrollArea>",
     "kind": "component",
     "path": "/atoms/scroll-area/",
     "summary": "Scrollable container with a styled custom scrollbar.",
@@ -2315,7 +2315,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Slider, SliderControl, SliderComfortable"
       }
     ],
-    "exampleCode": "import { Slider } from \"@hilum/ui\"\n\n<div className=\"flex flex-col gap-2\">\n  <div className=\"flex justify-between text-xs text-ground-400\">\n    <span>Slower</span>\n    <span>Faster</span>\n  </div>\n  <Slider defaultValue={[50]} max={100} step={1} />\n</div>",
+    "exampleCode": "import { Slider } from \"@hilum/ui\"\n\n<div className=\"flex flex-col gap-2\">\n  <div className=\"flex justify-between text-xs text-muted-foreground\">\n    <span>Slower</span>\n    <span>Faster</span>\n  </div>\n  <Slider defaultValue={[50]} max={100} step={1} />\n</div>",
     "kind": "component",
     "path": "/atoms/slider/",
     "summary": "Range input for selecting a numeric value.",
@@ -2551,7 +2551,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Table, TableHeader, TableBody, TableFooter, TableRow, TableHead"
       }
     ],
-    "exampleCode": "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\n<Table>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Voice</TableHead>\n      <TableHead>Text</TableHead>\n      <TableHead>Duration</TableHead>\n      <TableHead>Status</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    {rows.map((row) => (\n      <TableRow key={row.id}>\n        <TableCell className=\"font-medium text-ground-900\">{row.voice}</TableCell>\n        <TableCell className=\"max-w-[200px] truncate text-ground-500\">{row.text}</TableCell>\n        <TableCell>{row.duration}</TableCell>\n// ...trimmed for docs",
+    "exampleCode": "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\n<Table>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Voice</TableHead>\n      <TableHead>Text</TableHead>\n      <TableHead>Duration</TableHead>\n      <TableHead>Status</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    {rows.map((row) => (\n      <TableRow key={row.id}>\n        <TableCell className=\"font-medium text-foreground\">{row.voice}</TableCell>\n        <TableCell className=\"max-w-[200px] truncate text-muted-foreground\">{row.text}</TableCell>\n        <TableCell>{row.duration}</TableCell>\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/table/",
     "summary": "Structured data display with rows and columns. Supports striped rows, avatars, checkboxes, sorting, sticky headers, grouped rows, and summary footers.",
@@ -2582,7 +2582,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Tabs, TabsList, TabItem, TabPanel, TabsTrigger, TabsContent"
       }
     ],
-    "exampleCode": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@hilum/ui\"\n\n<Tabs defaultValue=\"settings\">\n  <TabsList>\n    <TabsTrigger value=\"settings\">Settings</TabsTrigger>\n    <TabsTrigger value=\"history\">History</TabsTrigger>\n    <TabsTrigger value=\"usage\">Usage</TabsTrigger>\n  </TabsList>\n  <TabsContent value=\"settings\">\n    <p className=\"text-sm text-ground-500\">Manage your account settings and preferences.</p>\n  </TabsContent>\n  <TabsContent value=\"history\">\n    <p className=\"text-sm text-ground-500\">View your generation history.</p>\n  </TabsContent>\n  <TabsContent value=\"usage\">\n    <p className=\"text-sm text-ground-500\">Track your API usage and credits.</p>\n  </TabsContent>\n</Tabs>",
+    "exampleCode": "import { Tabs, TabsList, TabsTrigger, TabsContent } from \"@hilum/ui\"\n\n<Tabs defaultValue=\"settings\">\n  <TabsList>\n    <TabsTrigger value=\"settings\">Settings</TabsTrigger>\n    <TabsTrigger value=\"history\">History</TabsTrigger>\n    <TabsTrigger value=\"usage\">Usage</TabsTrigger>\n  </TabsList>\n  <TabsContent className=\"mt-3\" value=\"settings\">\n    <p className=\"text-sm text-muted-foreground\">Manage your account settings and preferences.</p>\n  </TabsContent>\n  <TabsContent className=\"mt-3\" value=\"history\">\n    <p className=\"text-sm text-muted-foreground\">View your generation history.</p>\n  </TabsContent>\n  <TabsContent className=\"mt-3\" value=\"usage\">\n    <p className=\"text-sm text-muted-foreground\">Track your API usage and credits.</p>\n  </TabsContent>\n</Tabs>",
     "kind": "component",
     "path": "/atoms/tabs/",
     "summary": "Organises content into switchable panels.",
@@ -4864,7 +4864,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "events, className"
       }
     ],
-    "exampleCode": "import { ActivityFeed } from \"@hilum/ui\"\nimport type { FeedEvent } from \"@hilum/ui\"\nimport { User, Check } from \"lucide-react\"\n\nconst events: FeedEvent[] = [\n  {\n    id: 1,\n    content: <span>Applied to <a className=\"font-semibold text-ground-900\">Front End Developer</a></span>,\n    date: \"Sep 20\",\n    icon: <User size={14} />,\n    iconBgClass: \"bg-ground-200 text-ground-600\",\n  },\n  {\n    id: 2,\n    content: <span>Phone screening completed with <a className=\"font-semibold text-ground-900\">Martha</a></span>,\n    date: \"Sep 28\",\n    icon: <Check size={14} />,\n    iconBgClass: \"bg-brand-secondary text-ground-900\",\n// ...trimmed for docs",
+    "exampleCode": "import { ActivityFeed } from \"@hilum/ui\"\nimport type { FeedEvent } from \"@hilum/ui\"\nimport { User, Check } from \"lucide-react\"\n\nconst events: FeedEvent[] = [\n  {\n    id: 1,\n    content: <span>Applied to <a className=\"font-semibold text-foreground\">Front End Developer</a></span>,\n    date: \"Sep 20\",\n    icon: <User size={14} />,\n    iconBgClass: \"bg-ground-200 text-ground-600\",\n  },\n  {\n    id: 2,\n    content: <span>Phone screening completed with <a className=\"font-semibold text-foreground\">Martha</a></span>,\n    date: \"Sep 28\",\n    icon: <Check size={14} />,\n    iconBgClass: \"bg-brand-secondary text-ground-900\",\n// ...trimmed for docs",
     "kind": "component",
     "path": "/molecules/activity-feed/",
     "summary": "A vertical timeline of events. Each item has an icon, rich content, and an optional timestamp. Common in audit logs, changelogs, and pipelines.",
@@ -4918,7 +4918,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "title, description, actions, children, className"
       }
     ],
-    "exampleCode": "import { CardHeading } from \"@hilum/ui\"\n\n<div className=\"rounded-xl border border-ground-100\">\n  <CardHeading title=\"Job Postings\" />\n  <div className=\"p-5\">{/* card content */}</div>\n</div>",
+    "exampleCode": "import { CardHeading } from \"@hilum/ui\"\n\n<div className=\"rounded-xl border border-border\">\n  <CardHeading title=\"Job Postings\" />\n  <div className=\"p-5\">{/* card content */}</div>\n</div>",
     "kind": "component",
     "path": "/molecules/card-heading/",
     "summary": "A header row for cards and panels. Combines a title, optional description, leading slot (avatar/icon), and trailing actions.",
@@ -4969,7 +4969,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "open, onClose, items, placeholder, emptyText"
+        "description": "open, onClose, items, placeholder, emptyText, title"
       }
     ],
     "exampleCode": "import { CommandPalette } from \"@hilum/ui\"\nimport { LayoutDashboard, Users } from \"lucide-react\"\n\nconst commands = [\n  { id: 1, label: \"Dashboard\", icon: <LayoutDashboard size={15} />, category: \"Navigation\", href: \"/dashboard\" },\n  { id: 2, label: \"Team members\", icon: <Users size={15} />, category: \"Navigation\", href: \"/team\" },\n  { id: 3, label: \"New document\", icon: <FileText size={15} />, category: \"Actions\", onSelect: () => {} },\n]\n\nfunction Example() {\n  const [open, setOpen] = useState(false)\n\n  useEffect(() => {\n    function onKey(e: KeyboardEvent) {\n      if (e.key === \"k\" && (e.metaKey || e.ctrlKey)) {\n        e.preventDefault()\n        setOpen(true)\n      }\n// ...trimmed for docs",
@@ -5281,7 +5281,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "media, children, mediaPosition, align, gap, className"
       }
     ],
-    "exampleCode": "import { MediaObject } from \"@hilum/ui\"\n\n<MediaObject media={<img className=\"size-16 rounded-lg\" src=\"...\" alt=\"\" />}>\n  <h4 className=\"heading text-ground-900\">Lorem ipsum</h4>\n  <p className=\"mt-1 body text-ground-500\">\n    Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam\n    expedita quia omnis voluptatem.\n  </p>\n</MediaObject>",
+    "exampleCode": "import { MediaObject } from \"@hilum/ui\"\n\n<MediaObject media={<img className=\"size-16 rounded-lg\" src=\"...\" alt=\"\" />}>\n  <h4 className=\"heading text-foreground\">Lorem ipsum</h4>\n  <p className=\"mt-1 body text-muted-foreground\">\n    Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam\n    expedita quia omnis voluptatem.\n  </p>\n</MediaObject>",
     "kind": "component",
     "path": "/molecules/media-object/",
     "summary": "A layout primitive pairing a fixed media element (image, avatar, icon) with a flexible text block. The foundation of comment threads, feeds, and profile rows.",
@@ -5472,7 +5472,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "label, layout, labelWidth, labelAlign"
       }
     ],
-    "exampleCode": "import { PropertyRow, InputNumber } from \"@hilum/ui\"\n\n<PropertyRow label=\"Width\">\n  <InputNumber value={width} onChange={setWidth} unit=\"px\" />\n</PropertyRow>\n\n<PropertyRow label=\"Opacity\">\n  <Slider value={[opacity]} onValueChange={([v]) => setOpacity(v)} min={0} max={100} />\n  <InputNumber value={opacity} onChange={setOpacity} unit=\"%\" min={0} max={100} className=\"w-16 shrink-0\" />\n</PropertyRow>",
+    "exampleCode": "import { PropertyRow, InputNumber } from \"@hilum/ui\"\n\n<PropertyRow layout=\"inline\" labelWidth={64} label=\"Width\">\n  <InputNumber value={width} onChange={setWidth} unit=\"px\" />\n</PropertyRow>\n\n<PropertyRow layout=\"inline\" labelWidth={64} label=\"Opacity\">\n  <Slider value={[opacity]} onValueChange={([v]) => setOpacity(v)} min={0} max={100} />\n  <InputNumber value={opacity} onChange={setOpacity} unit=\"%\" min={0} max={100} className=\"w-[72px] shrink-0\" />\n</PropertyRow>",
     "kind": "component",
     "path": "/molecules/property-row/",
     "summary": "Horizontal label + control row for designer inspector panels. Left-aligned label, right-aligned controls, single visual row. Differs from Field, which is a vertical form field with hint/error text.",
@@ -5557,7 +5557,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "StackedList, StackedListItem"
       }
     ],
-    "exampleCode": "import { StackedList, StackedListItem } from \"@hilum/ui\"\n\n<StackedList>\n  <StackedListItem href=\"#\">\n    <p className=\"body font-medium text-ground-900\">Ricardo Cooper</p>\n    <p className=\"caption text-ground-400\">Backend Developer</p>\n  </StackedListItem>\n  <StackedListItem href=\"#\">\n    <p className=\"body font-medium text-ground-900\">Kristen Ramos</p>\n    <p className=\"caption text-ground-400\">Product Manager</p>\n  </StackedListItem>\n</StackedList>",
+    "exampleCode": "import { StackedList, StackedListItem } from \"@hilum/ui\"\n\n<StackedList>\n  <StackedListItem href=\"#\">\n    <p className=\"body font-medium text-foreground\">Ricardo Cooper</p>\n    <p className=\"caption text-muted-foreground\">Backend Developer</p>\n  </StackedListItem>\n  <StackedListItem href=\"#\">\n    <p className=\"body font-medium text-foreground\">Kristen Ramos</p>\n    <p className=\"caption text-muted-foreground\">Product Manager</p>\n  </StackedListItem>\n</StackedList>",
     "kind": "component",
     "path": "/molecules/stacked-list/",
     "summary": "A vertically stacked list of rows, each with consistent padding and optional hover/link behavior. The composition of StackedList and StackedListItem.",

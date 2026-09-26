@@ -8,6 +8,7 @@ import { DesignerHeader } from "../components/DesignerHeader";
 import { DesignerToolbar } from "../components/DesignerToolbar";
 import { DesignerSidebar } from "../components/DesignerSidebar";
 import { DesignerPanel } from "../components/DesignerPanel";
+import { TwoValueControl } from "../components/DesignerValueControls";
 import { DesignerPane } from "../components/DesignerPane";
 import {
   DesignerPropertyControls,
@@ -235,7 +236,7 @@ describe("DesignerToolbar", () => {
       </DesignerToolbar>,
     );
 
-    expect(screen.getByRole("toolbar")).toHaveClass("bg-card", "shadow-natural");
+    expect(screen.getByRole("toolbar")).toHaveClass("bg-card", "shadow-surface-3");
     expect(screen.getByRole("toolbar")).not.toHaveClass("border", "border-border");
   });
 
@@ -374,7 +375,7 @@ describe("DesignerSidebar", () => {
 
     const rail = screen.getByRole("navigation", { name: "Editor tools" });
     const itemList = rail.querySelector("[data-designer-sidebar-items]");
-    expect(rail).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-natural");
+    expect(rail).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-surface-3");
     expect(rail).toHaveClass("duration-200", "ease-out", "motion-reduce:transition-none");
     expect(rail).not.toHaveClass("border", "border-border");
     expect(rail).toHaveStyle({
@@ -441,7 +442,7 @@ describe("DesignerPanel", () => {
 
     const panel = screen.getByText("Floating panel").closest("aside");
     expect(panel).toHaveAttribute("data-variant", "floating");
-    expect(panel).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-natural");
+    expect(panel).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-surface-3");
     expect(panel).toHaveClass("duration-200", "ease-out", "motion-reduce:transition-none");
     expect(panel).not.toHaveClass("border", "border-border");
     expect(panel).toHaveStyle({
@@ -555,5 +556,79 @@ describe("DesignerPropertyRow", () => {
 
     expect(screen.getByText("Effects")).toBeInTheDocument();
     expect(screen.getByText("Opacity")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Density                                                              */
+/* ------------------------------------------------------------------ */
+
+describe("editor density", () => {
+  it("DesignerShell defaults to compact density", () => {
+    const { container } = render(
+      <DesignerShell>
+        <div>content</div>
+      </DesignerShell>,
+    );
+    expect(container.firstElementChild).toHaveAttribute("data-density", "compact");
+    expect(container.firstElementChild).toHaveClass("bg-canvas");
+  });
+
+  it("DesignerShell can opt back into default density", () => {
+    const { container } = render(
+      <DesignerShell density="default">
+        <div>content</div>
+      </DesignerShell>,
+    );
+    expect(container.firstElementChild).toHaveAttribute("data-density", "default");
+  });
+
+  it("DesignerPanel defaults to compact density and supports opting out", () => {
+    const { rerender } = render(<DesignerPanel side="right">Panel content</DesignerPanel>);
+    expect(screen.getByText("Panel content").closest("aside")).toHaveAttribute(
+      "data-density",
+      "compact",
+    );
+    rerender(
+      <DesignerPanel side="right" density="default">
+        Panel content
+      </DesignerPanel>,
+    );
+    expect(screen.getByText("Panel content").closest("aside")).toHaveAttribute(
+      "data-density",
+      "default",
+    );
+  });
+
+  it("DesignerPropertyRow supports an inline label column", () => {
+    render(
+      <DesignerPropertyRow label="Opacity" layout="inline" labelWidth={48}>
+        <input aria-label="opacity" />
+      </DesignerPropertyRow>,
+    );
+    const label = screen.getByText("Opacity");
+    expect(label).toHaveStyle({ width: "48px" });
+    expect(label.parentElement).toHaveAttribute("data-layout", "inline");
+    expect(label.parentElement).toHaveClass("flex-row");
+  });
+});
+
+describe("TwoValueControl", () => {
+  it("renders label-in-field inputs in a two-column grid", () => {
+    render(
+      <TwoValueControl
+        values={{ x: 10, y: 20 }}
+        items={[
+          { key: "x", label: "X", ariaLabel: "X position" },
+          { key: "y", label: "Y" },
+        ]}
+        onChange={() => {}}
+      />,
+    );
+    expect(screen.getByRole("textbox", { name: "X position" })).toHaveValue("10");
+    // Falls back to the string label for the accessible name.
+    const y = screen.getByRole("textbox", { name: "Y" });
+    expect(y).toHaveValue("20");
+    expect(y.closest(".grid")).toHaveClass("grid-cols-2");
   });
 });

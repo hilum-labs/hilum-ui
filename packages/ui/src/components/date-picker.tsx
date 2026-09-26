@@ -50,6 +50,7 @@ function DatePicker({
           mode="single"
           {...(value !== undefined && { selected: value })}
           {...(onChange !== undefined && { onSelect: onChange })}
+          // eslint-disable-next-line jsx-a11y/no-autofocus -- moves focus into the calendar when the popover opens (dialog focus management)
           autoFocus
         />
       </PopoverContent>

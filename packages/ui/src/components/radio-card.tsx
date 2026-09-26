@@ -44,7 +44,7 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
             className={cn(
               "relative flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-left transition-[background-color,border-color,box-shadow,opacity,scale]",
               "active:scale-[0.96]",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               "disabled:cursor-not-allowed disabled:opacity-50",
               isSelected
                 ? "border-brand-primary bg-card shadow-natural"

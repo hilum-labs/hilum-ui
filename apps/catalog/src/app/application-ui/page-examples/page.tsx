@@ -19,8 +19,8 @@ import centeredSettingsScreenSource from "@/components/application-ui/page-examp
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -29,25 +29,25 @@ function PageExamplesPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/application-ui" className="hover:text-ground-700">
+          <a href="/application-ui" className="hover:text-foreground">
             Application UI
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Page Examples</span>
+          <span className="font-semibold text-foreground">Page Examples</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Page Examples</h1>
-        <p className="body max-w-2xl text-ground-400">
+        <h1 className="display mb-2 text-foreground">Page Examples</h1>
+        <p className="body max-w-2xl text-muted-foreground">
           Complete application page layouts — home dashboards, detail views, and settings screens.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Pages</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">16 variants</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Pages</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">16 variants</p>
         </div>
       </div>
 

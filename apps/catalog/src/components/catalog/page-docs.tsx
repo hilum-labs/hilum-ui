@@ -2,12 +2,12 @@ import { pageDocs } from "@/generated/catalog-docs";
 import type { CatalogDocApiItem, CatalogDocLink, CatalogPageDoc } from "@/lib/catalog-docs";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
-  return <h2 className="label text-ground-400">{children}</h2>;
+  return <h2 className="label text-muted-foreground">{children}</h2>;
 }
 
 function Card({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-w-0 rounded-xl border border-ground-100 bg-white p-6 shadow-natural">
+    <div className="min-w-0 rounded-xl border border-border bg-background p-6 shadow-natural">
       {children}
     </div>
   );
@@ -17,7 +17,7 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-2">
       {items.map((item) => (
-        <li key={item} className="body text-ground-600">
+        <li key={item} className="body text-muted-foreground">
           {item}
         </li>
       ))}
@@ -32,11 +32,11 @@ function LinkList({ items }: { items: CatalogDocLink[] }) {
         <a
           key={`${item.href}-${item.label}`}
           href={item.href}
-          className="rounded-xl border border-ground-100 bg-ground-50 px-4 py-3 transition-colors hover:border-ground-200 hover:bg-white"
+          className="rounded-xl border border-border bg-muted px-4 py-3 transition-colors hover:border-border hover:bg-background"
         >
-          <p className="body font-medium text-ground-900">{item.label}</p>
+          <p className="body font-medium text-foreground">{item.label}</p>
           {item.description ? (
-            <p className="caption mt-1 text-ground-500">{item.description}</p>
+            <p className="caption mt-1 text-muted-foreground">{item.description}</p>
           ) : null}
         </a>
       ))}
@@ -50,10 +50,10 @@ function ApiList({ items }: { items: CatalogDocApiItem[] }) {
       {items.map((item) => (
         <div
           key={item.label}
-          className="min-w-0 rounded-xl border border-ground-100 bg-ground-50 px-4 py-3"
+          className="min-w-0 rounded-xl border border-border bg-muted px-4 py-3"
         >
-          <p className="body font-medium text-ground-900">{item.label}</p>
-          <p className="caption mt-1 break-words text-ground-500">{item.description}</p>
+          <p className="body font-medium text-foreground">{item.label}</p>
+          <p className="caption mt-1 break-words text-muted-foreground">{item.description}</p>
         </div>
       ))}
     </div>
@@ -130,7 +130,7 @@ function CollectionDocBlock({
             <SectionLabel>How To Use This Page</SectionLabel>
             <div className="mt-3 space-y-3">
               {doc.intro.map((paragraph) => (
-                <p key={paragraph} className="body text-ground-600">
+                <p key={paragraph} className="body text-muted-foreground">
                   {paragraph}
                 </p>
               ))}

@@ -10,6 +10,7 @@ export { cn } from "./lib/utils";
 export * from "./lib/icon-context";
 export * from "./lib/shape-context";
 export * from "./lib/surface-context";
+export * from "./lib/density-context";
 
 // Components (alphabetical)
 export * from "./components/account-menu";

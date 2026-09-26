@@ -12,8 +12,8 @@ const CODE = `import { NavMenu } from "@hilum/ui"
 function NavMenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Nav Menu</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Nav Menu</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Vertical navigation list with proximity-aware row activation.
       </p>
       <PageDocs path="/molecules/nav-menu/" />

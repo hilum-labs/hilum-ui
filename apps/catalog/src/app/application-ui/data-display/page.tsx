@@ -26,29 +26,29 @@ import calendarSmallWithMeetingsSource from "@/components/application-ui/data-di
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
 
 function DataDisplayPage() {
   return (
-    <div className="min-h-screen bg-ground-50">
+    <div className="min-h-screen bg-muted">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <p className="caption mb-2 text-ground-400">
+          <p className="caption mb-2 text-muted-foreground">
             Design System / Application UI / Data Display
           </p>
-          <h1 className="display mb-2 text-ground-900">Data Display</h1>
-          <p className="body mb-4 text-ground-500">
+          <h1 className="display mb-2 text-foreground">Data Display</h1>
+          <p className="body mb-4 text-muted-foreground">
             Stats cards, description lists, and calendar views.
           </p>
           <Badge variant="outline">Data · 16 variants</Badge>
         </div>
 
         <PageDocs path="/application-ui/data-display/" />
-        <div className="mb-10 h-px bg-ground-100" />
+        <div className="mb-10 h-px bg-border" />
 
         <div className="space-y-10">
           <section>

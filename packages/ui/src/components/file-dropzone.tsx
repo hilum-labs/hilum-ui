@@ -83,6 +83,7 @@ function FileDropzone({
   return (
     <label
       htmlFor={resolvedId}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role -- label for the hidden file input, made a focusable button with Enter/Space handling (onKeyDown) so it also works as a drop target
       role="button"
       tabIndex={isUnavailable ? -1 : (tabIndex ?? 0)}
       aria-disabled={isUnavailable || undefined}
@@ -91,7 +92,7 @@ function FileDropzone({
         "group flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card p-6 text-center shadow-natural",
         "transition-[background-color,border-color,box-shadow,scale] duration-150",
         "hover:border-brand-primary/50 hover:bg-muted/40 active:scale-[0.96]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         "data-[dragging=true]:border-brand-primary data-[dragging=true]:bg-brand-secondary/25",
         isUnavailable && "pointer-events-none cursor-not-allowed opacity-60 active:scale-100",
         className,

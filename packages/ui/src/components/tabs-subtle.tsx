@@ -127,6 +127,7 @@ const TabsSubtle = forwardRef<HTMLDivElement, TabsSubtleProps>(
       <TabsSubtleContext.Provider
         value={{ registerTab, hoveredIndex, selectedIndex, onSelect, idPrefix, activeLabel }}
       >
+        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus -- roving tabindex per WAI-ARIA APG: the tabs are focusable, the tablist container is not */}
         <div
           ref={(node) => {
             (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
@@ -242,7 +243,7 @@ const TabsSubtle = forwardRef<HTMLDivElement, TabsSubtleProps>(
             {focusRect && (
               <motion.div
                 className={cn(
-                  "absolute pointer-events-none z-20 border border-[#6B97FF]",
+                  "absolute pointer-events-none z-20 border-2 border-ring",
                   shape.focusRing,
                 )}
                 initial={false}

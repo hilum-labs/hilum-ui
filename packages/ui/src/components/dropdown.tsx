@@ -29,6 +29,9 @@ interface DropdownContextValue {
   checkedIndex?: number;
 }
 
+// Every menu-item flavour participates in arrow-key navigation.
+const MENU_ITEM_SELECTOR = '[role="menuitem"], [role="menuitemradio"], [role="menuitemcheckbox"]';
+
 const DropdownContext = createContext<DropdownContextValue | null>(null);
 
 export function useDropdown() {
@@ -101,7 +104,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           }}
           onKeyDown={(e) => {
             const items = Array.from(
-              containerRef.current?.querySelectorAll('[role="menuitemradio"]') ?? [],
+              containerRef.current?.querySelectorAll(MENU_ITEM_SELECTOR) ?? [],
             ) as HTMLElement[];
             const currentIdx = items.indexOf(e.target as HTMLElement);
             if (currentIdx === -1) return;
@@ -182,7 +185,7 @@ const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
           <AnimatePresence>
             {focusRect && (
               <motion.div
-                className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[#6B97FF]`}
+                className={`absolute ${shape.focusRing} pointer-events-none z-20 border-2 border-ring`}
                 initial={false}
                 animate={{
                   left: focusRect.left - 2,
@@ -233,7 +236,7 @@ const DropdownSeparator = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivEleme
     <div
       ref={ref}
       role="separator"
-      className={cn("my-1 -mx-1 h-px bg-border/60", className)}
+      className={cn("my-1 -mx-1 h-px bg-border", className)}
       {...props}
     />
   ),

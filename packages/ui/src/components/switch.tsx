@@ -163,6 +163,7 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>(
     }, [checked, setChecked, motionX, thumbTransition]);
 
     return (
+      // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- pointer/drag convenience on the row; the switch button inside is the keyboard-accessible control
       <div
         ref={ref}
         className={cn(
@@ -196,18 +197,18 @@ const Switch = forwardRef<HTMLDivElement, SwitchProps>(
           className={cn(
             "relative shrink-0 rounded-full outline-none cursor-pointer",
             "transition-colors duration-80",
-            "focus-visible:ring-1 focus-visible:ring-[#6B97FF] focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+            "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           )}
           style={{
             width: TRACK_WIDTH,
             height: TRACK_HEIGHT,
             backgroundColor: checked
               ? hovered
-                ? "#5C89F2"
-                : "#6B97FF"
+                ? "color-mix(in oklab, var(--primary), var(--foreground) 12%)"
+                : "var(--primary)"
               : hovered
-                ? "color-mix(in oklab, var(--accent), rgb(var(--overlay)) 10%)"
-                : "var(--accent)",
+                ? "color-mix(in oklab, var(--foreground) 22%, transparent)"
+                : "color-mix(in oklab, var(--foreground) 15%, transparent)",
           }}
           onClick={(e) => e.stopPropagation()}
         >

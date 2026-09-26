@@ -125,6 +125,7 @@ const CommandList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDi
     };
 
     return (
+      // eslint-disable-next-line jsx-a11y/interactive-supports-focus -- focus lives on the options (roving tabindex); the listbox only delegates Arrow keys
       <div
         ref={combinedRef}
         role="listbox"
@@ -197,6 +198,7 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
     };
 
     return (
+      // eslint-disable-next-line jsx-a11y/interactive-supports-focus -- enabled options get tabIndex=0; disabled options are intentionally unfocusable
       <div
         ref={ref}
         role="option"
@@ -205,10 +207,10 @@ const CommandItem = React.forwardRef<HTMLDivElement, CommandItemProps>(
         data-cmd-item
         tabIndex={disabled ? undefined : 0}
         className={cn(
-          "relative mx-1 flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
+          "relative mx-1 flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
           "body text-muted-foreground outline-none transition-colors",
           "hover:bg-muted hover:text-foreground",
-          "focus:bg-muted focus:text-foreground",
+          "focus:bg-active focus:text-foreground",
           disabled && "pointer-events-none opacity-40",
           className,
         )}
@@ -230,7 +232,7 @@ CommandItem.displayName = "CommandItem";
 
 const CommandSeparator = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn("my-1 h-px bg-muted", className)} {...props} />
+    <div ref={ref} className={cn("my-1 h-px bg-border", className)} {...props} />
   ),
 );
 CommandSeparator.displayName = "CommandSeparator";

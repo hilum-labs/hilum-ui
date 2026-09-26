@@ -141,23 +141,23 @@ const helper = createColumnHelper<Transaction>();
 const ALL_COLUMNS: ColumnDef<Transaction, any>[] = [
   helper.accessor("id", {
     header: "ID",
-    cell: (info) => <span className="font-mono caption text-ground-400">{info.getValue()}</span>,
+    cell: (info) => <span className="font-mono caption text-muted-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("company", {
     header: "Company",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("type", {
     header: "Type",
-    cell: (info) => <span className="text-ground-500">{info.getValue()}</span>,
+    cell: (info) => <span className="text-muted-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("amount", {
     header: "Amount",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("date", {
     header: "Date",
-    cell: (info) => <span className="text-ground-500">{info.getValue()}</span>,
+    cell: (info) => <span className="text-muted-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("status", {
     header: "Status",
@@ -171,11 +171,11 @@ const ALL_COLUMNS: ColumnDef<Transaction, any>[] = [
 const SIMPLE_COLUMNS: ColumnDef<Transaction, any>[] = [
   helper.accessor("company", {
     header: "Company",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("amount", {
     header: "Amount",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("status", {
     header: "Status",
@@ -201,7 +201,7 @@ const SEARCHABLE_COLUMNS: SearchableTableColumn<Transaction>[] = [
     label: "Company",
     sortable: true,
     render: (transaction) => (
-      <span className="font-medium text-ground-900">{transaction.company}</span>
+      <span className="font-medium text-foreground">{transaction.company}</span>
     ),
   },
   {
@@ -214,7 +214,7 @@ const SEARCHABLE_COLUMNS: SearchableTableColumn<Transaction>[] = [
     label: "Amount",
     sortAccessor: (transaction) => Number(transaction.amount.replace(/[$,]/g, "")),
     render: (transaction) => (
-      <span className="font-medium tabular-nums text-ground-900">{transaction.amount}</span>
+      <span className="font-medium tabular-nums text-foreground">{transaction.amount}</span>
     ),
   },
   {
@@ -244,23 +244,23 @@ const helper = createColumnHelper<Transaction>()
 const columns: ColumnDef<Transaction>[] = [
   helper.accessor("id", {
     header: "ID",
-    cell: (info) => <span className="font-mono caption text-ground-400">{info.getValue()}</span>,
+    cell: (info) => <span className="font-mono caption text-muted-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("company", {
     header: "Company",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("type", {
     header: "Type",
-    cell: (info) => <span className="text-ground-500">{info.getValue()}</span>,
+    cell: (info) => <span className="text-muted-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("amount", {
     header: "Amount",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("date", {
     header: "Date",
-    cell: (info) => <span className="text-ground-500">{info.getValue()}</span>,
+    cell: (info) => <span className="text-muted-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("status", {
     header: "Status",
@@ -287,11 +287,11 @@ const columns: ColumnDef<Transaction>[] = [
 const columns: ColumnDef<Transaction>[] = [
   helper.accessor("company", {
     header: "Company",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("amount", {
     header: "Amount",
-    cell: (info) => <span className="font-medium text-ground-900">{info.getValue()}</span>,
+    cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
   }),
   helper.accessor("status", {
     header: "Status",
@@ -351,8 +351,8 @@ function Example() {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -395,19 +395,19 @@ function DataTablePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Data Table</span>
+          <span className="font-semibold text-foreground">Data Table</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Data Table</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Data Table</h1>
+        <p className="body max-w-lg text-muted-foreground">
           A generic, sortable, filterable, and paginated data table built on @tanstack/react-table
           v8. Define typed columns once and pass any data.
         </p>

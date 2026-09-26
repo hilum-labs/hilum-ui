@@ -336,7 +336,7 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
             {focusRect && (
               <motion.div
                 className={cn(
-                  "absolute pointer-events-none z-20 border border-[#6B97FF]",
+                  "absolute pointer-events-none z-20 border-2 border-ring",
                   shape.focusRing,
                 )}
                 initial={false}

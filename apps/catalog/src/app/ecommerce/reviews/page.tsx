@@ -20,8 +20,8 @@ import overallRatingWithFeaturedReviewsSource from "@/components/ecommerce/revie
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -30,22 +30,22 @@ function ReviewsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/ecommerce" className="hover:text-ground-700">
+          <a href="/ecommerce" className="hover:text-foreground">
             Ecommerce
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Reviews</span>
+          <span className="body font-semibold text-foreground">Reviews</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Reviews</h1>
-        <p className="body max-w-2xl text-ground-400">
+        <h1 className="display mb-2 text-foreground">Reviews</h1>
+        <p className="body max-w-2xl text-muted-foreground">
           Customer review sections with star ratings, avatars, and summary charts.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
           <Badge variant="secondary">Social Proof · 4 variants</Badge>
         </div>
       </div>

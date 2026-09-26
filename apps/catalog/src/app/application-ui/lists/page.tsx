@@ -16,8 +16,8 @@ import feedsSource from "@/components/application-ui/lists/feeds?raw";
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -25,24 +25,24 @@ function SectionHeading({ label }: { label: string }) {
 function ListsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <div className="mb-10 flex flex-col gap-6 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-10 flex flex-col gap-6 border-b border-border pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="/" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="/application-ui" className="hover:text-ground-700">
+            <a href="/application-ui" className="hover:text-foreground">
               Application UI
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Lists</span>
+            <span className="font-semibold text-foreground">Lists</span>
           </div>
-          <h1 className="display mb-2 text-ground-900">Lists</h1>
-          <p className="body max-w-2xl text-ground-400">
+          <h1 className="display mb-2 text-foreground">Lists</h1>
+          <p className="body max-w-2xl text-muted-foreground">
             Tables, stacked lists, grid lists, and activity feeds.
           </p>
-          <p className="caption mt-5 text-ground-400">Data · 34 variants</p>
+          <p className="caption mt-5 text-muted-foreground">Data · 34 variants</p>
         </div>
         <div className="flex items-center gap-3">
           <Button variant="outline" size="sm">

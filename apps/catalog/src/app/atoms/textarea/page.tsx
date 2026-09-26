@@ -35,13 +35,13 @@ const CODE = {
     <AvatarFallback className="bg-brand-primary text-white">TC</AvatarFallback>
   </Avatar>
   <div className="flex-1">
-    <Textarea placeholder="Add a comment..." className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-ground-200" />
-    <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-ground-200 bg-ground-50 px-3 py-2">
+    <Textarea placeholder="Add a comment..." className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-border" />
+    <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-border bg-muted px-3 py-2">
       <div className="flex items-center gap-1">
-        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><Smile size={16} /></button>
-        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><Paperclip size={16} /></button>
-        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><AtSign size={16} /></button>
-        <button type="button" className="p-1 text-ground-400 hover:text-ground-700 rounded"><Link2 size={16} /></button>
+        <button type="button" className="p-1 text-muted-foreground hover:text-foreground rounded"><Smile size={16} /></button>
+        <button type="button" className="p-1 text-muted-foreground hover:text-foreground rounded"><Paperclip size={16} /></button>
+        <button type="button" className="p-1 text-muted-foreground hover:text-foreground rounded"><AtSign size={16} /></button>
+        <button type="button" className="p-1 text-muted-foreground hover:text-foreground rounded"><Link2 size={16} /></button>
       </div>
       <Button size="sm">Post</Button>
     </div>
@@ -49,9 +49,9 @@ const CODE = {
 </div>`,
 
   withPreview: `// Write/Preview tab interface with formatting toolbar
-<div className="rounded-lg border border-ground-200 overflow-hidden">
+<div className="rounded-lg border border-border overflow-hidden">
   <Tabs defaultValue="write">
-    <div className="flex items-center border-b border-ground-200 bg-ground-50 px-3">
+    <div className="flex items-center border-b border-border bg-muted px-3">
       <TabsList className="bg-transparent">
         <TabsTrigger value="write">Write</TabsTrigger>
         <TabsTrigger value="preview">Preview</TabsTrigger>
@@ -61,7 +61,7 @@ const CODE = {
       <Textarea className="rounded-none border-0 focus-visible:ring-0" rows={6} />
     </TabsContent>
     <TabsContent value="preview">
-      <div className="min-h-[120px] p-3 caption text-ground-400">Nothing to preview</div>
+      <div className="min-h-[120px] p-3 caption text-muted-foreground">Nothing to preview</div>
     </TabsContent>
   </Tabs>
 </div>`,
@@ -70,13 +70,13 @@ const CODE = {
 <div>
   <Textarea
     placeholder="Add your note..."
-    className="rounded-none border-0 border-b border-ground-200 px-0 focus-visible:ring-0 focus-visible:border-ground-900"
+    className="rounded-none border-0 border-b border-border px-0 focus-visible:ring-0 focus-visible:border-foreground"
   />
   <div className="mt-2 flex justify-between">
     <div className="flex gap-1">
-      <button className="p-1.5 rounded text-ground-400 hover:bg-ground-100 hover:text-ground-700"><Bold size={15} /></button>
-      <button className="p-1.5 rounded text-ground-400 hover:bg-ground-100 hover:text-ground-700"><Italic size={15} /></button>
-      <button className="p-1.5 rounded text-ground-400 hover:bg-ground-100 hover:text-ground-700"><List size={15} /></button>
+      <button className="p-1.5 rounded text-muted-foreground hover:bg-muted hover:text-foreground"><Bold size={15} /></button>
+      <button className="p-1.5 rounded text-muted-foreground hover:bg-muted hover:text-foreground"><Italic size={15} /></button>
+      <button className="p-1.5 rounded text-muted-foreground hover:bg-muted hover:text-foreground"><List size={15} /></button>
     </div>
     <div className="flex gap-2">
       <Button variant="outline" size="sm">Cancel</Button>
@@ -86,15 +86,15 @@ const CODE = {
 </div>`,
 
   titleAndPills: `// Title input + body textarea + pill action buttons
-<div className="rounded-lg border border-ground-200 overflow-hidden">
-  <input placeholder="Title" className="w-full border-b border-ground-200 px-4 py-3 body font-medium text-ground-900 placeholder:text-ground-400 focus:outline-none" />
+<div className="rounded-lg border border-border overflow-hidden">
+  <input placeholder="Title" className="w-full border-b border-border px-4 py-3 body font-medium text-foreground placeholder:text-muted-foreground focus:outline-none" />
   <Textarea placeholder="Write a description..." className="rounded-none border-0 focus-visible:ring-0" rows={4} />
-  <div className="flex items-center gap-2 border-t border-ground-100 px-3 py-2 bg-ground-50 flex-wrap">
+  <div className="flex items-center gap-2 border-t border-border px-3 py-2 bg-muted flex-wrap">
     {pillActions.map((p) => (
-      <button key={p.label} className="flex items-center gap-1.5 rounded-full border border-ground-200 bg-white px-3 py-1 caption text-ground-600 hover:bg-ground-50">
+      <button key={p.label} className="flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 caption text-muted-foreground hover:bg-muted">
         <p.icon size={12} />
         {p.label}
-        <ChevronDown size={10} className="text-ground-400" />
+        <ChevronDown size={10} className="text-muted-foreground" />
       </button>
     ))}
   </div>
@@ -104,8 +104,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -122,19 +122,19 @@ function TextareaPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Textarea</span>
+          <span className="font-semibold text-foreground">Textarea</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Textarea</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Textarea</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Multi-line text input. Multiple composition variants for comment boxes, editors, and note
           fields.
         </p>
@@ -175,15 +175,15 @@ function TextareaPage() {
                   <Textarea
                     placeholder="Add a comment..."
                     rows={3}
-                    className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-ground-200 resize-none"
+                    className="rounded-b-none border-b-0 focus-visible:ring-0 focus-visible:border-border resize-none"
                   />
-                  <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-ground-200 bg-ground-50 px-3 py-2">
+                  <div className="flex items-center justify-between rounded-b-lg border border-t-0 border-border bg-muted px-3 py-2">
                     <div className="flex items-center gap-1">
                       {[Smile, Paperclip, AtSign, Link2].map((Icon, i) => (
                         <button
                           key={i}
                           type="button"
-                          className="rounded p-1 text-ground-400 hover:bg-ground-100 hover:text-ground-700 transition-colors"
+                          className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                         >
                           <Icon size={15} />
                         </button>
@@ -205,19 +205,19 @@ function TextareaPage() {
             code={CODE.withPreview}
             previewClassName="items-start"
           >
-            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-ground-200">
+            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-border">
               <Tabs defaultValue="write">
-                <div className="flex items-center gap-2 border-b border-ground-200 bg-ground-50 px-3 pt-2">
+                <div className="flex items-center gap-2 border-b border-border bg-muted px-3 pt-2">
                   <TabsList className="h-8 bg-transparent p-0 gap-0">
                     <TabsTrigger
                       value="write"
-                      className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-ground-200 data-[state=active]:bg-white caption px-3 h-8"
+                      className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-border data-[state=active]:bg-background caption px-3 h-8"
                     >
                       Write
                     </TabsTrigger>
                     <TabsTrigger
                       value="preview"
-                      className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-ground-200 data-[state=active]:bg-white caption px-3 h-8"
+                      className="rounded-none rounded-t-md border-x border-t border-transparent data-[state=active]:border-border data-[state=active]:bg-background caption px-3 h-8"
                     >
                       Preview
                     </TabsTrigger>
@@ -227,7 +227,7 @@ function TextareaPage() {
                       <button
                         key={i}
                         type="button"
-                        className="rounded p-1 text-ground-400 hover:bg-ground-100 hover:text-ground-700 transition-colors"
+                        className="rounded p-1 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                       >
                         <Icon size={13} />
                       </button>
@@ -247,7 +247,7 @@ function TextareaPage() {
                   <div
                     className={cn(
                       "min-h-[144px] p-3 body",
-                      previewContent ? "text-ground-900 whitespace-pre-wrap" : "text-ground-400",
+                      previewContent ? "text-foreground whitespace-pre-wrap" : "text-muted-foreground",
                     )}
                   >
                     {previewContent || "Nothing to preview yet."}
@@ -269,7 +269,7 @@ function TextareaPage() {
             <div className="w-full max-w-lg">
               <Textarea
                 placeholder="Add your note..."
-                className="rounded-none border-0 border-b border-ground-200 px-0 focus-visible:ring-0 focus-visible:border-ground-900 resize-none"
+                className="rounded-none border-0 border-b border-border px-0 focus-visible:ring-0 focus-visible:border-foreground resize-none"
                 rows={3}
               />
               <div className="mt-2 flex items-center justify-between">
@@ -278,7 +278,7 @@ function TextareaPage() {
                     <button
                       key={i}
                       type="button"
-                      className="rounded p-1.5 text-ground-400 hover:bg-ground-100 hover:text-ground-700 transition-colors"
+                      className="rounded p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                     >
                       <Icon size={14} />
                     </button>
@@ -303,27 +303,27 @@ function TextareaPage() {
             code={CODE.titleAndPills}
             previewClassName="items-start"
           >
-            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-ground-200">
+            <div className="w-full max-w-lg overflow-hidden rounded-lg border border-border">
               <input
                 placeholder="New issue title..."
-                className="w-full border-b border-ground-200 px-4 py-3 body font-medium text-ground-900 placeholder:text-ground-400 focus:outline-none bg-white"
+                className="w-full border-b border-border px-4 py-3 body font-medium text-foreground placeholder:text-muted-foreground focus:outline-none bg-background"
               />
               <Textarea
                 placeholder="Add a description..."
                 className="rounded-none border-0 focus-visible:ring-0 resize-none"
                 rows={4}
               />
-              <div className="flex items-center gap-2 border-t border-ground-100 bg-ground-50 px-3 py-2 flex-wrap justify-between">
+              <div className="flex items-center gap-2 border-t border-border bg-muted px-3 py-2 flex-wrap justify-between">
                 <div className="flex items-center gap-2 flex-wrap">
                   {PILL_ACTIONS.map((p) => (
                     <button
                       key={p.label}
                       type="button"
-                      className="flex items-center gap-1.5 rounded-full border border-ground-200 bg-white px-3 py-1 caption text-ground-600 hover:bg-ground-50 transition-colors"
+                      className="flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1 caption text-muted-foreground hover:bg-muted transition-colors"
                     >
                       <p.icon size={12} />
                       {p.label}
-                      <ChevronDown size={10} className="text-ground-400" />
+                      <ChevronDown size={10} className="text-muted-foreground" />
                     </button>
                   ))}
                 </div>

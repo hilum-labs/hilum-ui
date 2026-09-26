@@ -4,6 +4,7 @@ import * as React from "react";
 import { Menubar } from "radix-ui";
 import { Check, ChevronRight, Circle } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useDensityAttributes } from "../lib/density-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
@@ -43,8 +44,8 @@ const MenubarTrigger = React.forwardRef<
     className={cn(
       "flex min-h-8 cursor-default items-center rounded-md px-3 py-1 body font-medium text-muted-foreground select-none outline-none",
       "hover:bg-muted",
-      "data-[state=open]:bg-muted data-[state=open]:text-foreground",
-      "focus:bg-muted",
+      "data-[state=open]:bg-active data-[state=open]:text-foreground",
+      "focus:bg-active",
       className,
     )}
     {...props}
@@ -60,6 +61,7 @@ const MenubarContent = React.forwardRef<
     <style>{mobilePopperSheetStyle}</style>
     <Menubar.Portal>
       <Menubar.Content
+        {...useDensityAttributes()}
         ref={ref}
         data-hilum-mobile-sheet="true"
         align={align}
@@ -94,11 +96,11 @@ const MenubarItem = React.forwardRef<
   <Menubar.Item
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      inset && "pl-8",
+      inset && "pl-8 compact:pl-7",
       className,
     )}
     {...props}
@@ -113,9 +115,9 @@ const MenubarCheckboxItem = React.forwardRef<
   <Menubar.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5 compact:min-h-7 compact:py-1 compact:pl-7 compact:pr-2 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -138,9 +140,9 @@ const MenubarRadioItem = React.forwardRef<
   <Menubar.RadioItem
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md py-2 pl-8 pr-2.5 compact:min-h-7 compact:py-1 compact:pl-7 compact:pr-2 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className,
     )}
@@ -164,7 +166,7 @@ const MenubarLabel = React.forwardRef<
 >(({ className, inset, ...props }, ref) => (
   <Menubar.Label
     ref={ref}
-    className={cn("px-2.5 py-1 label text-muted-foreground", inset && "pl-8", className)}
+    className={cn("px-2.5 py-1 label text-muted-foreground compact:px-2 compact:text-[11px]", inset && "pl-8 compact:pl-7", className)}
     {...props}
   />
 ));
@@ -174,7 +176,7 @@ const MenubarSeparator = React.forwardRef<
   React.ComponentRef<typeof Menubar.Separator>,
   React.ComponentPropsWithoutRef<typeof Menubar.Separator>
 >(({ className, ...props }, ref) => (
-  <Menubar.Separator ref={ref} className={cn("mx-1 my-1 h-px bg-muted", className)} {...props} />
+  <Menubar.Separator ref={ref} className={cn("-mx-1 my-1 h-px bg-border", className)} {...props} />
 ));
 MenubarSeparator.displayName = "MenubarSeparator";
 
@@ -187,10 +189,10 @@ const MenubarSubTrigger = React.forwardRef<
   <Menubar.SubTrigger
     ref={ref}
     className={cn(
-      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2",
-      "body text-muted-foreground outline-none transition-colors",
-      "focus:bg-muted focus:text-foreground data-[state=open]:bg-muted",
-      inset && "pl-8",
+      "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
+      "body text-foreground outline-none transition-colors",
+      "focus:bg-active focus:text-foreground data-[state=open]:bg-active",
+      inset && "pl-8 compact:pl-7",
       className,
     )}
     {...props}
@@ -208,6 +210,7 @@ const MenubarSubContent = React.forwardRef<
   <>
     <style>{mobilePopperSheetStyle}</style>
     <Menubar.SubContent
+        {...useDensityAttributes()}
       ref={ref}
       data-hilum-mobile-sheet="true"
       className={cn(

@@ -94,8 +94,8 @@ function Example() {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -110,26 +110,26 @@ function ComboboxPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Combobox</span>
+          <span className="body font-semibold text-foreground">Combobox</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Combobox</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Combobox</h1>
+        <p className="body max-w-md text-muted-foreground">
           A searchable select input. Users can type to filter the option list. Supports
           descriptions, avatars, status indicators, and composing inside a Field.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Atom</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Input · Select</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Atom</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Input · Select</p>
         </div>
       </div>
 

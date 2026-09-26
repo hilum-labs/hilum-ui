@@ -90,6 +90,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
     };
 
     const content = (
+      // eslint-disable-next-line jsx-a11y/interactive-supports-focus -- roving tabindex per WAI-ARIA APG: the radios are focusable, the radiogroup container is not
       <div
         ref={(node) => {
           (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
@@ -194,7 +195,7 @@ const RadioGroup = forwardRef<HTMLDivElement, RadioGroupProps>(
         <AnimatePresence>
           {focusRect && (
             <motion.div
-              className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[#6B97FF]`}
+              className={`absolute ${shape.focusRing} pointer-events-none z-20 border-2 border-ring`}
               initial={false}
               animate={{
                 left: focusRect.left - 2,

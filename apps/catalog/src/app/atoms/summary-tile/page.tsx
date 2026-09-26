@@ -24,8 +24,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -34,19 +34,19 @@ function SummaryTilePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Summary Tile</span>
+          <span className="font-semibold text-foreground">Summary Tile</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Summary Tile</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Summary Tile</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Compact metric tiles for dashboard summaries, status snapshots, and dense product panels.
         </p>
       </div>

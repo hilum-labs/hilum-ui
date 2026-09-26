@@ -13,7 +13,15 @@ export interface ComboboxOption {
   avatar?: string;
 }
 
-interface ComboboxProps {
+/** ARIA attributes the combobox manages itself and therefore doesn't accept. */
+type ManagedAria =
+  | "aria-expanded"
+  | "aria-controls"
+  | "aria-activedescendant"
+  | "aria-autocomplete"
+  | "aria-haspopup";
+
+interface ComboboxProps extends Omit<React.AriaAttributes, ManagedAria> {
   options: ComboboxOption[];
   value?: string;
   onValueChange?: (value: string) => void;
@@ -21,17 +29,31 @@ interface ComboboxProps {
   searchPlaceholder?: string;
   emptyText?: string;
   className?: string;
+  /** id of the text input (e.g. for a `<label htmlFor>`). */
+  id?: string;
+  /** Form field name. Submits the selected option's `value` via a hidden input. */
+  name?: string;
+  disabled?: boolean;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 }
 
-function Combobox({
-  options,
-  value,
-  onValueChange,
-  placeholder = "Select...",
-  searchPlaceholder = "Search...",
-  emptyText = "No results found.",
-  className,
-}: ComboboxProps) {
+const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Combobox(
+  {
+    options,
+    value,
+    onValueChange,
+    placeholder = "Select...",
+    searchPlaceholder = "Search...",
+    emptyText = "No results found.",
+    className,
+    id,
+    name,
+    disabled = false,
+    onBlur,
+    ...ariaProps
+  },
+  ref,
+) {
   const shape = useShape();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
@@ -39,6 +61,7 @@ function Combobox({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const listboxId = React.useId();
+  React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, []);
 
   const selectedOption = options.find((o) => o.value === value);
 
@@ -55,6 +78,22 @@ function Combobox({
   React.useEffect(() => {
     setActiveIndex(-1);
   }, [filtered.length, open]);
+
+  // Keep the keyboard-active option visible in the scrollable list.
+  React.useEffect(() => {
+    if (!open || activeIndex < 0) return;
+    document
+      .getElementById(`${listboxId}-option-${activeIndex}`)
+      ?.scrollIntoView?.({ block: "nearest" });
+  }, [open, activeIndex, listboxId]);
+
+  // Close when disabled while open.
+  React.useEffect(() => {
+    if (disabled) {
+      setOpen(false);
+      setQuery("");
+    }
+  }, [disabled]);
 
   // Close on outside click
   React.useEffect(() => {
@@ -123,9 +162,12 @@ function Combobox({
           />
         )}
         <input
+          {...ariaProps}
           ref={inputRef}
+          id={id}
           type="text"
           role="combobox"
+          disabled={disabled}
           aria-expanded={open}
           aria-haspopup="listbox"
           aria-controls={open ? listboxId : undefined}
@@ -137,7 +179,7 @@ function Combobox({
             "flex h-10 w-full border border-border bg-background pr-10 body text-foreground",
             shape.input,
             "placeholder:text-muted-foreground",
-            "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30",
+            "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             "disabled:cursor-not-allowed disabled:opacity-50",
             selectedOption?.avatar && !open
               ? "pl-8"
@@ -155,11 +197,14 @@ function Combobox({
             setOpen(true);
             setQuery("");
           }}
+          onBlur={onBlur}
           onKeyDown={handleInputKeyDown}
         />
+        {name !== undefined && <input type="hidden" name={name} value={value ?? ""} />}
         <button
           type="button"
           tabIndex={-1}
+          disabled={disabled}
           aria-label={open ? "Close" : "Open"}
           className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-muted-foreground hover:text-muted-foreground transition-colors"
           onClick={() => {
@@ -204,6 +249,7 @@ function Combobox({
                   const isSelected = option.value === value;
                   const isActive = idx === activeIndex;
                   return (
+                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events -- aria-activedescendant listbox: keyboard selection is handled by the input (Arrow/Enter), options are pointer targets only
                     <li
                       key={option.value}
                       id={`${listboxId}-option-${idx}`}
@@ -267,8 +313,9 @@ function Combobox({
       )}
     </div>
   );
-}
+});
 
 Combobox.displayName = "Combobox";
 
 export { Combobox };
+export type { ComboboxProps };

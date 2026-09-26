@@ -32,10 +32,12 @@ import {
   DesignerToolbarButton,
   DesignerToolbarGroup,
   DesignerToolbarSeparator,
+  DesignerPropertyRow,
   ShellProvider,
+  TwoValueControl,
   useShellContext,
 } from "@hilum/designer";
-import { Button, Input, Label, PropertyRow, InputNumber, ColorInput, Slider, cn } from "@hilum/ui";
+import { Button, Input, ColorInput, Slider, cn } from "@hilum/ui";
 
 const TOOLS = [
   { id: "select", label: "Select", icon: MousePointer2 },
@@ -50,19 +52,19 @@ function DesignerShellDemo() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/designer" className="hover:text-ground-700">
+          <a href="/designer" className="hover:text-foreground">
             Designer
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Shell</span>
+          <span className="font-semibold text-foreground">Shell</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Shell</h1>
-        <p className="body max-w-2xl text-ground-500">
+        <h1 className="display mb-2 text-foreground">Shell</h1>
+        <p className="body max-w-2xl text-muted-foreground">
           Engine-agnostic editor chrome with floating sidebars, toolbars, and contextual panels
           layered over a full-bleed authoring canvas.
         </p>
@@ -70,8 +72,8 @@ function DesignerShellDemo() {
 
       <PageDocs path="/designer/shell/" />
 
-      <section className="overflow-hidden rounded-2xl border border-ground-100 shadow-natural">
-        <div className="h-[720px] bg-white">
+      <section className="overflow-hidden rounded-2xl border border-border shadow-natural">
+        <div className="h-[720px] bg-background">
           <ShellProvider
             initialSelectedIds={["demo-1"]}
             initialTool="select"
@@ -108,10 +110,10 @@ function Demo() {
             <Button variant="ghost" size="icon-sm" aria-label="Back to projects">
               <ArrowLeft size={16} />
             </Button>
-            <div className="flex size-6 items-center justify-center rounded-md bg-ground-900">
-              <span className="caption-xs font-bold text-white">H</span>
+            <div className="flex size-6 items-center justify-center rounded-md bg-foreground">
+              <span className="caption-xs font-bold text-background">H</span>
             </div>
-            <span className="caption truncate font-semibold text-ground-900">Untitled design</span>
+            <span className="caption truncate font-semibold text-foreground">Untitled design</span>
           </>
         }
         center={
@@ -170,7 +172,7 @@ function Demo() {
         }
       />
 
-      <DesignerWorkspace className="bg-ground-100">
+      <DesignerWorkspace safeInsets={{ left: 280, right: 276 }}>
         <DesignerSidebar
           variant="floating"
           floatingInset={{ left: 0 }}
@@ -184,27 +186,27 @@ function Demo() {
         />
 
         <DesignerWorkspaceViewport>
-          <main className="relative flex-1 overflow-hidden bg-ground-100">
-            <div className="absolute left-4 top-4 rounded-md border border-ground-200 bg-white px-2.5 py-1 shadow-natural">
-              <span className="caption-xs font-mono text-ground-500">
+          <main className="relative flex-1 overflow-hidden">
+            <div className="absolute left-1/2 top-4 -translate-x-1/2 rounded-md border border-border bg-background px-2.5 py-1 shadow-natural">
+              <span className="caption-xs font-mono text-muted-foreground">
                 {activeTool} · {zoom}%
               </span>
             </div>
 
-            <div className="absolute inset-0 flex items-center justify-center p-8">
+            <div className="absolute inset-0 flex items-center justify-center">
               <button
                 type="button"
                 aria-label="Select demo layer"
                 aria-pressed={selected}
                 onClick={() => setSelectedIds(["demo-1"])}
-                className="relative h-[520px] w-[620px] rounded-md bg-white shadow-natural outline-none"
+                className="relative h-[440px] w-[540px] shrink-0 rounded-md bg-white shadow-natural outline-none"
                 style={{ transform: `scale(${zoomScale})` }}
               >
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#f5f5f5_1px,transparent_1px),linear-gradient(to_bottom,#f5f5f5_1px,transparent_1px)] bg-[size:24px_24px]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:24px_24px]" />
                 <div
                   className={cn(
                     "absolute flex items-center justify-center rounded-lg border-2 text-center transition-shadow",
-                    selected ? "border-brand-primary shadow-natural" : "border-ground-200",
+                    selected ? "border-brand-primary shadow-natural" : "border-border",
                     activeTool === "hand" ? "cursor-grab" : "cursor-pointer",
                   )}
                   style={{
@@ -216,7 +218,7 @@ function Demo() {
                     opacity: opacity / 100,
                   }}
                 >
-                  <div className={cn("px-4", opacity < 35 ? "text-ground-900" : "text-white")}>
+                  <div className={cn("px-4", opacity < 35 ? "text-foreground" : "text-white")}>
                     <p className="heading">{name}</p>
                     <p className="caption mt-1">Move, resize, recolor, and fade this layer.</p>
                   </div>
@@ -285,16 +287,18 @@ function Demo() {
         >
           <DesignerPane>
             <DesignerPaneTitle>Layers</DesignerPaneTitle>
-            <DesignerPaneContent className="gap-1">
+            <DesignerPaneContent className="gap-px px-1.5 pb-1.5">
               {["Hero text", "Background", "Decoration"].map((layer, index) => (
                 <button
                   key={layer}
                   type="button"
+                  aria-pressed={index === 0}
                   className={cn(
-                    "flex items-center gap-2 rounded-md px-2 py-2 text-left caption",
+                    "flex h-7 items-center gap-2 rounded-[5px] px-2 text-left text-[12px] outline-none",
+                    "focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
                     index === 0
-                      ? "bg-ground-100 font-medium text-ground-900"
-                      : "text-ground-500 hover:bg-ground-50",
+                      ? "bg-active font-medium text-foreground"
+                      : "text-foreground/80 hover:bg-hover hover:text-foreground",
                   )}
                   onClick={() => index === 0 && setSelectedIds(["demo-1"])}
                 >
@@ -310,51 +314,56 @@ function Demo() {
           <DesignerPane>
             <DesignerPaneTitle>Layer</DesignerPaneTitle>
             <DesignerPaneContent>
-              <Label htmlFor="layer-name" className="caption text-ground-500">
-                Name
-              </Label>
-              <Input id="layer-name" value={name} onChange={(e) => setName(e.target.value)} />
+              <DesignerPropertyRow label="Name" labelFor="layer-name" layout="inline" labelWidth={48}>
+                <Input id="layer-name" value={name} onChange={(e) => setName(e.target.value)} />
+              </DesignerPropertyRow>
             </DesignerPaneContent>
           </DesignerPane>
 
           <DesignerPane collapsible defaultOpen>
             <DesignerPaneTitle>Position</DesignerPaneTitle>
             <DesignerPaneContent>
-              <PropertyRow label="X">
-                <InputNumber value={x} onChange={setX} unit="px" />
-              </PropertyRow>
-              <PropertyRow label="Y">
-                <InputNumber value={y} onChange={setY} unit="px" />
-              </PropertyRow>
-              <PropertyRow label="W">
-                <InputNumber value={width} onChange={setWidth} unit="px" />
-              </PropertyRow>
-              <PropertyRow label="H">
-                <InputNumber value={height} onChange={setHeight} unit="px" />
-              </PropertyRow>
+              <TwoValueControl
+                values={{ x, y }}
+                items={[
+                  { key: "x", label: "X", ariaLabel: "X position" },
+                  { key: "y", label: "Y", ariaLabel: "Y position" },
+                ]}
+                onChange={(key, value) => (key === "x" ? setX(value) : setY(value))}
+              />
+              <TwoValueControl
+                values={{ w: width, h: height }}
+                items={[
+                  { key: "w", label: "W", ariaLabel: "Width", min: 1 },
+                  { key: "h", label: "H", ariaLabel: "Height", min: 1 },
+                ]}
+                onChange={(key, value) => (key === "w" ? setWidth(value) : setHeight(value))}
+              />
             </DesignerPaneContent>
           </DesignerPane>
 
           <DesignerPane collapsible showFor={["text"]}>
-            <DesignerPaneTitle action={<ChevronsUpDown size={12} className="text-ground-300" />}>
+            <DesignerPaneTitle action={<ChevronsUpDown size={12} className="text-muted-foreground/70" />}>
               Appearance
             </DesignerPaneTitle>
             <DesignerPaneContent>
-              <PropertyRow label="Fill">
+              <DesignerPropertyRow label="Fill" layout="inline" labelWidth={48}>
                 <ColorInput value={fill} onChange={setFill} />
-              </PropertyRow>
-              <PropertyRow label="Opacity">
+              </DesignerPropertyRow>
+              <DesignerPropertyRow label="Opacity" layout="inline" labelWidth={48}>
                 <Slider
                   value={[opacity]}
                   min={0}
                   max={100}
                   step={1}
+                  showValue={false}
+                  label="Opacity"
                   onValueChange={(v) => setOpacity(v[0] ?? 0)}
                 />
-                <span className="caption-xs tabular-nums text-ground-400 w-9 text-right">
+                <span className="w-8 shrink-0 text-right text-[11px] tabular-nums text-muted-foreground">
                   {opacity}%
                 </span>
-              </PropertyRow>
+              </DesignerPropertyRow>
             </DesignerPaneContent>
           </DesignerPane>
         </DesignerPanel>

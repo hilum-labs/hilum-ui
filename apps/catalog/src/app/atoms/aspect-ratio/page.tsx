@@ -8,27 +8,27 @@ const CODE = {
   wide: `import { AspectRatio } from "@hilum/ui"
 
 <div className="w-full max-w-sm">
-  <AspectRatio ratio={16 / 9} className="bg-ground-100 rounded-xl flex items-center justify-center">
-    <span className="label text-ground-400">16 : 9</span>
+  <AspectRatio ratio={16 / 9} className="bg-muted rounded-xl flex items-center justify-center">
+    <span className="label text-muted-foreground">16 : 9</span>
   </AspectRatio>
 </div>`,
 
   classic: `<div className="w-full max-w-sm">
-  <AspectRatio ratio={4 / 3} className="bg-ground-100 rounded-xl flex items-center justify-center">
-    <span className="label text-ground-400">4 : 3</span>
+  <AspectRatio ratio={4 / 3} className="bg-muted rounded-xl flex items-center justify-center">
+    <span className="label text-muted-foreground">4 : 3</span>
   </AspectRatio>
 </div>`,
 
   square: `<div className="w-full max-w-sm">
-  <AspectRatio ratio={1} className="bg-ground-100 rounded-xl flex items-center justify-center">
-    <span className="label text-ground-400">1 : 1</span>
+  <AspectRatio ratio={1} className="bg-muted rounded-xl flex items-center justify-center">
+    <span className="label text-muted-foreground">1 : 1</span>
   </AspectRatio>
 </div>`,
 
   portrait: `<div className="w-full max-w-sm">
   <AspectRatio ratio={2 / 3} className="rounded-xl overflow-hidden">
     <div className="h-full w-full bg-gradient-to-b from-ground-100 to-ground-200 flex items-center justify-center">
-      <span className="label text-ground-500">2 : 3 Portrait</span>
+      <span className="label text-muted-foreground">2 : 3 Portrait</span>
     </div>
   </AspectRatio>
 </div>`,
@@ -37,8 +37,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -47,19 +47,19 @@ function AspectRatioPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Aspect Ratio</span>
+          <span className="font-semibold text-foreground">Aspect Ratio</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Aspect Ratio</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Aspect Ratio</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Constrains content to a fixed width-to-height ratio — useful for images, videos, and media
           embeds.
         </p>
@@ -79,9 +79,9 @@ function AspectRatioPage() {
               <div className="w-full max-w-sm">
                 <AspectRatio
                   ratio={16 / 9}
-                  className="rounded-xl bg-ground-100 flex items-center justify-center"
+                  className="rounded-xl bg-muted flex items-center justify-center"
                 >
-                  <span className="label text-ground-400">16 : 9</span>
+                  <span className="label text-muted-foreground">16 : 9</span>
                 </AspectRatio>
               </div>
             </PreviewBlock>
@@ -94,9 +94,9 @@ function AspectRatioPage() {
               <div className="w-full max-w-sm">
                 <AspectRatio
                   ratio={4 / 3}
-                  className="rounded-xl bg-ground-100 flex items-center justify-center"
+                  className="rounded-xl bg-muted flex items-center justify-center"
                 >
-                  <span className="label text-ground-400">4 : 3</span>
+                  <span className="label text-muted-foreground">4 : 3</span>
                 </AspectRatio>
               </div>
             </PreviewBlock>
@@ -109,9 +109,9 @@ function AspectRatioPage() {
               <div className="w-full max-w-sm">
                 <AspectRatio
                   ratio={1}
-                  className="rounded-xl bg-ground-100 flex items-center justify-center"
+                  className="rounded-xl bg-muted flex items-center justify-center"
                 >
-                  <span className="label text-ground-400">1 : 1</span>
+                  <span className="label text-muted-foreground">1 : 1</span>
                 </AspectRatio>
               </div>
             </PreviewBlock>
@@ -124,7 +124,7 @@ function AspectRatioPage() {
               <div className="w-full max-w-sm">
                 <AspectRatio ratio={2 / 3} className="rounded-xl overflow-hidden">
                   <div className="h-full w-full bg-gradient-to-b from-ground-100 to-ground-200 flex items-center justify-center">
-                    <span className="label text-ground-500">2 : 3 Portrait</span>
+                    <span className="label text-muted-foreground">2 : 3 Portrait</span>
                   </div>
                 </AspectRatio>
               </div>

@@ -11,8 +11,8 @@ const CODE = `import { ThinkingIndicator } from "@hilum/ui"
 function ThinkingIndicatorPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Thinking Indicator</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Thinking Indicator</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Compact animated status indicator for pending assistant or system work.
       </p>
       <PageDocs path="/atoms/thinking-indicator/" />

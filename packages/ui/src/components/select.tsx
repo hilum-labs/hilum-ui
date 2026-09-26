@@ -6,6 +6,7 @@ import {
   useEffect,
   useState,
   useCallback,
+  useId,
   createContext,
   useContext,
   Children,
@@ -19,6 +20,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { IconComponent } from "../lib/icon-context";
 import { cn } from "../lib/utils";
+import { useDensityAttributes } from "../lib/density-context";
 import { spring } from "../lib/springs";
 import { useProximityHover } from "../hooks/use-proximity-hover";
 import { useShape } from "../lib/shape-context";
@@ -37,6 +39,10 @@ interface SelectContextValue {
   setOpen: (open: boolean) => void;
   disabled: boolean;
   triggerRef: React.RefObject<HTMLButtonElement | null>;
+  /** Ref callback that attaches the trigger node to `triggerRef`. */
+  registerTrigger: (node: HTMLButtonElement | null) => void;
+  /** id of the listbox, referenced by the trigger's aria-controls. */
+  listboxId: string;
   labelMap: React.MutableRefObject<Map<string, string>>;
 }
 
@@ -85,6 +91,10 @@ function Select({
   const currentValue = value !== undefined ? value : internalValue;
   const triggerRef = useRef<HTMLButtonElement>(null);
   const labelMap = useRef(new Map<string, string>());
+  const listboxId = useId();
+  const registerTrigger = useCallback((node: HTMLButtonElement | null) => {
+    triggerRef.current = node;
+  }, []);
 
   const onChange = useCallback(
     (v: string) => {
@@ -105,6 +115,8 @@ function Select({
         setOpen,
         disabled,
         triggerRef,
+        registerTrigger,
+        listboxId,
         labelMap,
       }}
     >
@@ -126,12 +138,14 @@ const triggerVariants = cva(
     "text-[13px] h-9 px-3 min-w-[160px]",
     "transition-all duration-80",
     "disabled:opacity-50 disabled:pointer-events-none",
-    "focus-visible:ring-1 focus-visible:ring-[#6B97FF]",
+    "focus-visible:ring-2 focus-visible:ring-ring",
+    "compact:h-6 compact:min-w-0 compact:gap-1 compact:px-2 compact:text-[12px] compact:rounded-[5px]",
   ],
   {
     variants: {
       variant: {
-        bordered: "border border-border bg-transparent text-foreground hover:bg-hover",
+        bordered:
+          "border border-border bg-transparent text-foreground hover:bg-hover hover:border-border-strong",
         borderless: "border border-transparent bg-transparent text-foreground hover:bg-hover",
       },
     },
@@ -183,7 +197,8 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     },
     ref,
   ) => {
-    const { value, open, setOpen, disabled, triggerRef, labelMap } = useSelectContext();
+    const { value, open, setOpen, disabled, registerTrigger, listboxId, labelMap } =
+      useSelectContext();
     const shape = useShape();
     const label = value ? (labelMap.current.get(value) ?? value) : undefined;
 
@@ -191,13 +206,14 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
       <div className="flex flex-col gap-1">
         <button
           ref={(node) => {
-            (triggerRef as React.MutableRefObject<HTMLButtonElement | null>).current = node;
+            registerTrigger(node);
             if (typeof ref === "function") ref(node);
             else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
           }}
           type="button"
           role="combobox"
           aria-expanded={open}
+          aria-controls={open ? listboxId : undefined}
           aria-haspopup="listbox"
           disabled={disabled}
           onClick={() => setOpen(!open)}
@@ -274,8 +290,9 @@ interface SelectContentProps {
 
 const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
   ({ className, children, scrollFade = true }, ref) => {
-    const { open, setOpen, value, triggerRef } = useSelectContext();
+    const { open, setOpen, value, triggerRef, listboxId } = useSelectContext();
     const shape = useShape();
+    const densityAttributes = useDensityAttributes();
     const containerRef = useRef<HTMLDivElement>(null);
     const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
 
@@ -311,9 +328,8 @@ const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
     useEffect(() => {
       if (!open || !triggerRect) return;
       // Double rAF: first waits for React commit, second for layout
-      let outer: number;
       let inner: number;
-      outer = requestAnimationFrame(() => {
+      const outer = requestAnimationFrame(() => {
         inner = requestAnimationFrame(() => {
           measureItems();
           const container = containerRef.current;
@@ -437,6 +453,7 @@ const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
         }
       >
         <div
+          {...densityAttributes}
           style={{
             position: "fixed",
             top: triggerRect.bottom + 6,
@@ -459,6 +476,7 @@ const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
                 if (typeof ref === "function") ref(node);
                 else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
               }}
+              id={listboxId}
               role="listbox"
               data-hilum-mobile-sheet="true"
               tabIndex={-1}
@@ -544,7 +562,7 @@ const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
               <AnimatePresence>
                 {focusRect && (
                   <motion.div
-                    className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[#6B97FF]`}
+                    className={`absolute ${shape.focusRing} pointer-events-none z-20 border-2 border-ring`}
                     initial={false}
                     animate={{
                       left: focusRect.left - 2,
@@ -644,6 +662,7 @@ const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
         }}
         className={cn(
           `relative z-10 flex items-center gap-2 ${shape.item} px-2 py-2 text-[13px] cursor-pointer outline-none select-none`,
+          "compact:min-h-7 compact:py-1 compact:rounded-[4px]",
           "transition-[color] duration-80",
           isActive || isChecked ? "text-foreground" : "text-muted-foreground",
           disabled && "opacity-50 pointer-events-none",
@@ -731,7 +750,7 @@ const SelectSeparator = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement
     <div
       ref={ref}
       role="separator"
-      className={cn("my-1 -mx-1 h-px bg-border/60", className)}
+      className={cn("my-1 -mx-1 h-px bg-border", className)}
       {...props}
     />
   ),

@@ -26,8 +26,8 @@ import persistentMobileNavSource from "@/components/ecommerce/store-navigation/p
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -36,22 +36,22 @@ function StoreNavigationPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/ecommerce" className="hover:text-ground-700">
+          <a href="/ecommerce" className="hover:text-foreground">
             Ecommerce
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Store Navigation</span>
+          <span className="body font-semibold text-foreground">Store Navigation</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Store Navigation</h1>
-        <p className="body max-w-2xl text-ground-400">
+        <h1 className="display mb-2 text-foreground">Store Navigation</h1>
+        <p className="body max-w-2xl text-muted-foreground">
           Full storefront navigation with mega menus, featured categories, and mobile drawers.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
           <Badge variant="secondary">Navigation · 9 variants</Badge>
         </div>
       </div>

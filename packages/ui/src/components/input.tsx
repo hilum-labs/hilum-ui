@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { controlSurfaceClasses, focusRingClasses, motionClasses } from "../lib/interaction";
+import { controlSurfaceClasses, inputFocusClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 
 type ControlDensity = "default" | "compact";
@@ -52,11 +52,13 @@ function Input({
         "body text-foreground placeholder:text-muted-foreground",
         controlSurfaceClasses,
         motionClasses,
-        focusRingClasses,
+        inputFocusClasses,
         controlMobileSurfaceClasses[mobileSurface],
-        "focus-visible:border-brand-primary",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
         "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",
+        // Editor-chrome density (data-density="compact" ancestor).
+        "compact:h-6 compact:px-2 compact:py-0 compact:text-[12px] compact:rounded-[5px]",
+        type === "number" && "tabular-nums",
         className,
       )}
       {...props}

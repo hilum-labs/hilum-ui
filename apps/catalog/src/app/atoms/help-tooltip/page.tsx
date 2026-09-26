@@ -25,8 +25,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -35,19 +35,19 @@ function HelpTooltipPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Help Tooltip</span>
+          <span className="font-semibold text-foreground">Help Tooltip</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Help Tooltip</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Help Tooltip</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Inline help trigger with tooltip content and optional learn-more link.
         </p>
       </div>
@@ -80,7 +80,7 @@ function HelpTooltipPage() {
             description="Use the learn-more link for policies or concepts that need longer explanation."
             code={CODE.learnMore}
           >
-            <span className="body inline-flex items-center text-ground-700">
+            <span className="body inline-flex items-center text-foreground">
               Redirect behavior
               <HelpTooltip
                 placement="right"

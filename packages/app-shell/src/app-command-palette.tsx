@@ -189,7 +189,7 @@ function AppCommandPalette({
       if (onNavigate) {
         onNavigate(item.href);
       } else if (typeof window !== "undefined") {
-        window.location.href = item.href;
+        window.location.assign(item.href);
       }
     }
   };

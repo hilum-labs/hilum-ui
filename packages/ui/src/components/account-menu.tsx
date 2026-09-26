@@ -71,7 +71,7 @@ const AccountMenuItem = React.forwardRef<
       "group",
       destructive
         ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
-        : "text-foreground focus:bg-muted focus:text-foreground",
+        : "text-foreground focus:bg-active focus:text-foreground",
       "data-[disabled]:opacity-40",
       "[&_svg:not([class*='size-'])]:size-4",
       className,

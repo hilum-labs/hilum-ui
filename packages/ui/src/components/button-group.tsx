@@ -30,7 +30,7 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
       className={cn(
         "relative inline-flex min-h-8 items-center justify-center gap-1 rounded-[10px] px-3 py-1 body-sm font-medium",
         "transition-[background-color,box-shadow,color,opacity,scale] active:scale-[0.96]",
-        "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30",
+        "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         active
           ? "bg-card text-foreground shadow-natural"
           : "text-muted-foreground hover:text-foreground",

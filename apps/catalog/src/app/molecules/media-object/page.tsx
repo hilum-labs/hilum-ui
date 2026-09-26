@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const IMG_PLACEHOLDER = (
-  <div className="flex size-16 items-center justify-center rounded-lg border border-ground-200 bg-ground-50 text-ground-300">
+  <div className="flex size-16 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground/70">
     <ImageIcon size={24} />
   </div>
 );
@@ -17,8 +17,8 @@ const CODE = {
   basic: `import { MediaObject } from "@hilum/ui"
 
 <MediaObject media={<img className="size-16 rounded-lg" src="..." alt="" />}>
-  <h4 className="heading text-ground-900">Lorem ipsum</h4>
-  <p className="mt-1 body text-ground-500">
+  <h4 className="heading text-foreground">Lorem ipsum</h4>
+  <p className="mt-1 body text-muted-foreground">
     Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam
     expedita quia omnis voluptatem.
   </p>
@@ -30,8 +30,8 @@ const CODE = {
   media={<img className="size-16 rounded-lg" src="..." alt="" />}
   mediaPosition="right"
 >
-  <h4 className="heading text-ground-900">Media on right</h4>
-  <p className="mt-1 body text-ground-500">Content on the left, image on the right.</p>
+  <h4 className="heading text-foreground">Media on right</h4>
+  <p className="mt-1 body text-muted-foreground">Content on the left, image on the right.</p>
 </MediaObject>`,
 
   center: `import { MediaObject } from "@hilum/ui"
@@ -41,8 +41,8 @@ const CODE = {
   align="center"
   gap="sm"
 >
-  <p className="body font-semibold text-ground-900">Sofia P.</p>
-  <p className="caption text-ground-400">sofia@example.com</p>
+  <p className="body font-semibold text-foreground">Sofia P.</p>
+  <p className="caption text-muted-foreground">sofia@example.com</p>
 </MediaObject>`,
 
   comment: `import { MediaObject } from "@hilum/ui"
@@ -50,9 +50,9 @@ const CODE = {
 <div className="flex flex-col gap-4">
   {comments.map((c) => (
     <MediaObject key={c.id} media={<Avatar size="sm">...</Avatar>} align="top" gap="sm">
-      <p className="body font-medium text-ground-900">{c.author}</p>
-      <p className="caption text-ground-400">{c.time}</p>
-      <p className="mt-1 body text-ground-600">{c.text}</p>
+      <p className="body font-medium text-foreground">{c.author}</p>
+      <p className="caption text-muted-foreground">{c.time}</p>
+      <p className="mt-1 body text-muted-foreground">{c.text}</p>
     </MediaObject>
   ))}
 </div>`,
@@ -61,8 +61,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -90,7 +90,7 @@ const COMMENTS = [
     time: "10 minutes ago",
     text: "Shipped to staging! Let me know if there are any issues.",
     initials: "MG",
-    color: "bg-ground-900 text-white",
+    color: "bg-foreground text-background",
   },
 ];
 
@@ -98,26 +98,26 @@ function MediaObjectPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Media Object</span>
+          <span className="body font-semibold text-foreground">Media Object</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Media Object</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Media Object</h1>
+        <p className="body max-w-md text-muted-foreground">
           A layout primitive pairing a fixed media element (image, avatar, icon) with a flexible
           text block. The foundation of comment threads, feeds, and profile rows.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Molecule</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Avatar · Icon</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Molecule</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Avatar · Icon</p>
         </div>
       </div>
 
@@ -134,8 +134,8 @@ function MediaObjectPage() {
           >
             <div className="w-full max-w-lg">
               <MediaObject media={IMG_PLACEHOLDER}>
-                <h4 className="heading text-ground-900">Lorem ipsum</h4>
-                <p className="mt-1 body text-ground-500">
+                <h4 className="heading text-foreground">Lorem ipsum</h4>
+                <p className="mt-1 body text-muted-foreground">
                   Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam expedita quia
                   omnis voluptatem.
                 </p>
@@ -154,8 +154,8 @@ function MediaObjectPage() {
           >
             <div className="w-full max-w-lg">
               <MediaObject media={IMG_PLACEHOLDER} mediaPosition="right">
-                <h4 className="heading text-ground-900">Media on the right</h4>
-                <p className="mt-1 body text-ground-500">
+                <h4 className="heading text-foreground">Media on the right</h4>
+                <p className="mt-1 body text-muted-foreground">
                   Content flows on the left, with the image anchored to the right side.
                 </p>
               </MediaObject>
@@ -183,8 +183,8 @@ function MediaObjectPage() {
                   align="center"
                   gap="sm"
                 >
-                  <p className="body font-semibold text-ground-900">{c.author}</p>
-                  <p className="caption text-ground-400">{c.time}</p>
+                  <p className="body font-semibold text-foreground">{c.author}</p>
+                  <p className="caption text-muted-foreground">{c.time}</p>
                 </MediaObject>
               ))}
             </div>
@@ -212,10 +212,10 @@ function MediaObjectPage() {
                   gap="sm"
                 >
                   <div className="flex items-baseline gap-2">
-                    <p className="body font-semibold text-ground-900">{c.author}</p>
-                    <span className="caption text-ground-400">{c.time}</span>
+                    <p className="body font-semibold text-foreground">{c.author}</p>
+                    <span className="caption text-muted-foreground">{c.time}</span>
                   </div>
-                  <p className="mt-1 body text-ground-600">{c.text}</p>
+                  <p className="mt-1 body text-muted-foreground">{c.text}</p>
                 </MediaObject>
               ))}
             </div>

@@ -1,41 +1,65 @@
 # Releasing
 
-Hilum UI publishes the five packages to **npm** in **lockstep** — one version covers all five (D4 in `PLATFORM_PLAN.md`).
+Hilum UI publishes five packages to **npm** in **lockstep**: `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas` and `@hilum/blocks`. One version covers all five (the Changesets `fixed` group in `.changeset/config.json`; D4 in `PLATFORM_PLAN.md`). The current line is **3.x**.
 
-## Workflow
+## Pipeline
 
-CodeCommit is the source of truth. Every non-release push to `main` starts the AWS CodeBuild release job.
+CodeCommit is the source of truth. **Every push to `main` releases.** There is no manual gate, so check your work before pushing.
 
-1. **Make changes.** Edit code and verify locally.
+```
+push to CodeCommit main
+  → EventBridge (referenceUpdated on main, passes the pushed commit id)
+  → CodeBuild project `*-release` (concurrent_build_limit = 1, builds that exact commit)
+  → scripts/aws-release-and-deploy.sh
+```
 
-   ```bash
-   pnpm typecheck
-   pnpm test
-   pnpm build
-   ```
+The script (`buildspec.aws-release.yml` → `scripts/aws-release-and-deploy.sh`):
 
-2. **Push to CodeCommit `main`.**
+1. Skips if the commit is itself a `chore: release hilum <version>` commit, so the pipeline doesn't loop.
+2. **Versions** (`scripts/aws-auto-version.mjs`):
+   - with pending changesets (`.changeset/*.md`), runs `changeset version`: the group bumps by the highest declared type, the changelogs get your entries, and the changeset files are deleted;
+   - with none, does an automatic **patch** bump for all five packages and writes a generic changelog entry.
+3. **Guard:** aborts if that version already exists on npm for any package.
+4. Runs `pnpm release:preflight` (lint, typecheck, tests, package builds) and builds the catalog.
+5. **Commit, tag and push first:** commits `chore: release hilum <version>`, tags `@hilum/<pkg>@<version>`, and runs `git push --atomic` for the branch and the tags. If `main` moved on in the meantime, the push is rejected and the build stops before anything is published. The newer commit's own build then does the release.
+6. **Publishes** with `changeset publish --no-git-tag`. This only publishes versions npm doesn't have yet.
+7. **Deploys the catalog** to S3 + CloudFront. New hashed assets go up first, then other files, then HTML. Only after that does a `--delete` pass remove stale objects, and then CloudFront is invalidated.
 
-   ```bash
-   git push codecommit main
-   ```
+## Day-to-day workflow
 
-3. **AWS publishes automatically.** The CodeBuild job:
+```bash
+pnpm lint && pnpm typecheck && pnpm test && pnpm build   # = what CI runs
+```
 
-   - bumps the lockstep patch version (`x.y.z` -> `x.y.z+1`);
-   - runs typecheck, tests, and package builds;
-   - publishes all five packages to npm;
-   - commits `chore: release hilum <version>` back to CodeCommit;
-   - creates per-package tags such as `@hilum/ui@3.8.1`;
-   - builds and deploys the catalog to S3 + CloudFront.
+- **Patch-level change:** just push. The pipeline patch-bumps automatically.
+- **Minor/major change,** or when you want a real changelog entry: add a changeset before pushing:
 
-Release commits are detected and skipped by the release job, so the pipeline does not loop forever.
+  ```bash
+  pnpm changeset          # pick any package in the group, choose patch/minor/major, write the note
+  git add .changeset && git commit
+  git push codecommit main
+  ```
+
+  Changesets are consumed by the next release. Delete stale changesets whose change has already shipped, or they'll trigger a surprise bump.
+
+## Recovery
+
+- **Publish failed after the push** (the release commit and tags exist, npm doesn't have the version): the next push won't retry, because the release commit is skipped. From the release commit, run the following with npm credentials:
+
+  ```bash
+  pnpm install --frozen-lockfile && pnpm build:packages
+  pnpm exec changeset publish --no-git-tag
+  ```
+
+  It publishes only the missing versions.
+- **Guard tripped** ("already exists on npm"): the repo's version is behind npm. Bump the package versions to the latest published version in a commit, then push again.
+- **Deploy failed after publish:** re-run the CodeBuild build for the release commit's parent, or deploy `apps/catalog/dist/client` by hand with the same `aws s3 sync` sequence as the script.
 
 ## AWS setup
 
-Terraform for the catalog/release stack lives in `infra/terraform/catalog`.
+Terraform for the catalog/release stack lives in `infra/terraform/catalog`. It covers the S3 bucket, CloudFront, the CodeBuild project, the EventBridge rule and target, and IAM.
 
-The pipeline requires the npm automation token to be stored as a plain secret string:
+The pipeline requires the npm automation token as a plain secret string:
 
 ```bash
 aws secretsmanager put-secret-value \
@@ -43,44 +67,38 @@ aws secretsmanager put-secret-value \
   --secret-string '<npm automation token>'
 ```
 
-The CodeBuild role reads this secret and uses it only for `npm publish`.
+The CodeBuild role reads this secret and uses it only for npm.
 
 ## Local publish (escape hatch)
 
-If you ever need to publish without going through CI:
+Avoid this. It bypasses the push-first ordering. If you must:
 
 ```bash
-# Authenticate to npm once (writes ~/.npmrc).
 npm login
-
-# Bump package versions manually if needed.
-node scripts/aws-auto-version.mjs
-
-# Build and publish.
-pnpm release:publish
+node scripts/aws-auto-version.mjs   # consumes changesets or patch-bumps
+pnpm release:preflight
+git commit -am "chore: release hilum $(cat .aws-release/version)" && git push codecommit HEAD:main
+pnpm exec changeset publish
 ```
 
-Make sure your npm account has publish access to the `@hilum` org.
+Your npm account needs publish access to the `@hilum` org.
 
 ## Consumer setup
 
-Apps that consume Hilum UI install directly from npm — no `.npmrc` configuration needed:
-
+Apps install directly from npm, with no `.npmrc` configuration:
 
 ```bash
-pnpm add @hilum/ui @hilum/app-shell
-# or all four for an editor app:
-pnpm add @hilum/ui @hilum/app-shell @hilum/designer @hilum/designer-canvas
+pnpm add @hilum/ui @hilum/app-shell lucide-react
+# editor apps:
+pnpm add @hilum/ui @hilum/app-shell @hilum/designer @hilum/designer-canvas lucide-react
 ```
 
-## Versioning policy
+`lucide-react` is a required peer of `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer` and `@hilum/designer-canvas`. For Tailwind `@source` setup, see `packages/ui/README.md`.
 
-- **patch** — bug fixes, type-only changes, internal refactors with no API surface change.
-- **minor** — new components, new props with backwards-compatible defaults, new optional services.
-- **major** — breaking API changes, removed exports, renamed props without aliases.
+## Versioning policy (semver, 3.x)
 
-The AWS mainline release job always emits an automatic patch release. Manual minor/major releases should be handled intentionally by editing package versions/changelogs or by reintroducing a one-off Changesets version step before pushing.
+- **patch:** bug fixes, type-only changes, internal refactors with no API surface change.
+- **minor:** new components, new props with backwards-compatible defaults, new optional services.
+- **major:** breaking API changes, removed exports, or renamed props without aliases.
 
-We are pre-1.0 (`0.x`). Until 1.0.0:
-- Minor versions can include breaking changes (semver convention for 0.x).
-- Major version 1.0.0 will be cut once Pappery successfully consumes all four packages and proves the API.
+Because all five packages share one version, a major bump in any package bumps all of them.

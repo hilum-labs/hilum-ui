@@ -9,7 +9,7 @@ const AVATARS = [
   { name: "Sofia P.", fallback: "SP", colorClass: "bg-brand-primary text-white" },
   { name: "Marcus K.", fallback: "MK", colorClass: "bg-brand-secondary text-ground-900" },
   { name: "Rachel T.", fallback: "RT", colorClass: "bg-brand-secondary text-ground-900" },
-  { name: "James W.", fallback: "JW", colorClass: "bg-ground-900 text-white" },
+  { name: "James W.", fallback: "JW", colorClass: "bg-foreground text-background" },
   { name: "Anna L.", fallback: "AL", colorClass: "bg-ground-400 text-white" },
   { name: "David M.", fallback: "DM", colorClass: "bg-brand-primary text-white" },
 ];
@@ -22,7 +22,7 @@ const CODE = {
     { name: "Sofia P.", fallback: "SP", colorClass: "bg-brand-primary text-white" },
     { name: "Marcus K.", fallback: "MK", colorClass: "bg-brand-secondary text-ground-900" },
     { name: "Rachel T.", fallback: "RT", colorClass: "bg-brand-secondary text-ground-900" },
-    { name: "James W.", fallback: "JW", colorClass: "bg-ground-900 text-white" },
+    { name: "James W.", fallback: "JW", colorClass: "bg-foreground text-background" },
   ]}
 />`,
 
@@ -44,8 +44,8 @@ const CODE = {
 
 <div className="flex items-center gap-3">
   <AvatarStack avatars={avatars} max={4} />
-  <p className="body text-ground-500">
-    <span className="font-semibold text-ground-900">Sofia</span> and 3 others are viewing
+  <p className="body text-muted-foreground">
+    <span className="font-semibold text-foreground">Sofia</span> and 3 others are viewing
   </p>
 </div>`,
 };
@@ -53,8 +53,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -63,26 +63,26 @@ function AvatarStackPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Avatar Stack</span>
+          <span className="body font-semibold text-foreground">Avatar Stack</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Avatar Stack</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Avatar Stack</h1>
+        <p className="body max-w-md text-muted-foreground">
           Overlapping avatars for showing a group of users at a glance. Supports an overflow badge
           when the count exceeds a maximum.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Atom</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Avatar</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Atom</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Avatar</p>
         </div>
       </div>
 
@@ -131,8 +131,8 @@ function AvatarStackPage() {
           >
             <div className="flex items-center gap-3">
               <AvatarStack avatars={AVATARS} max={4} />
-              <p className="body text-ground-500">
-                <span className="font-semibold text-ground-900">Sofia</span> and 2 others are
+              <p className="body text-muted-foreground">
+                <span className="font-semibold text-foreground">Sofia</span> and 2 others are
                 viewing
               </p>
             </div>

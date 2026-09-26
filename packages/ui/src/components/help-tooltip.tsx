@@ -50,7 +50,7 @@ function HelpTooltip({
               className={cn(
                 "relative ml-1 inline-flex size-5 items-center justify-center rounded-full text-muted-foreground",
                 "transition-[color,scale] duration-150 hover:text-foreground active:scale-[0.96]",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 "before:absolute before:-inset-2.5 before:content-['']",
               )}
               aria-label="Help"

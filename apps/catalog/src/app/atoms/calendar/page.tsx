@@ -10,8 +10,8 @@ import type { DateRange } from "react-day-picker";
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -77,19 +77,19 @@ function CalendarPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Calendar</span>
+          <span className="font-semibold text-foreground">Calendar</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Calendar</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Calendar</h1>
+        <p className="body max-w-lg text-muted-foreground">
           A date selection component built on react-day-picker v9. Supports single dates, ranges,
           multiple months, and custom disabled states.
         </p>
@@ -106,10 +106,10 @@ function CalendarPage() {
             code={CODE.single}
           >
             <div className="flex flex-col items-center gap-3">
-              <div className="inline-block rounded-xl border border-ground-100 bg-white shadow-natural">
+              <div className="inline-block rounded-xl border border-border bg-background shadow-natural">
                 <Calendar mode="single" selected={singleDate} onSelect={setSingleDate} />
               </div>
-              <p className="caption text-ground-400">
+              <p className="caption text-muted-foreground">
                 {singleDate ? `Selected: ${formatDate(singleDate)}` : "No date selected"}
               </p>
             </div>
@@ -124,17 +124,17 @@ function CalendarPage() {
             code={CODE.range}
           >
             <div className="flex flex-col items-center gap-3">
-              <div className="inline-block rounded-xl border border-ground-100 bg-white shadow-natural">
+              <div className="inline-block rounded-xl border border-border bg-background shadow-natural">
                 <Calendar mode="range" selected={range} onSelect={setRange} />
               </div>
-              <p className="caption text-ground-400">
+              <p className="caption text-muted-foreground">
                 From:{" "}
-                <span className="text-ground-700">
+                <span className="text-foreground">
                   {range?.from ? formatDate(range.from) : "—"}
                 </span>
                 {"  ·  "}
                 To:{" "}
-                <span className="text-ground-700">{range?.to ? formatDate(range.to) : "—"}</span>
+                <span className="text-foreground">{range?.to ? formatDate(range.to) : "—"}</span>
               </p>
             </div>
           </PreviewBlock>
@@ -148,7 +148,7 @@ function CalendarPage() {
             code={CODE.multiMonth}
           >
             <div className="flex flex-col items-center gap-3">
-              <div className="inline-block rounded-xl border border-ground-100 bg-white shadow-natural">
+              <div className="inline-block rounded-xl border border-border bg-background shadow-natural">
                 <Calendar
                   mode="single"
                   numberOfMonths={2}
@@ -156,7 +156,7 @@ function CalendarPage() {
                   onSelect={setMultiDate}
                 />
               </div>
-              <p className="caption text-ground-400">
+              <p className="caption text-muted-foreground">
                 {multiDate ? `Selected: ${formatDate(multiDate)}` : "No date selected"}
               </p>
             </div>
@@ -171,7 +171,7 @@ function CalendarPage() {
             code={CODE.disabled}
           >
             <div className="flex flex-col items-center gap-3">
-              <div className="inline-block rounded-xl border border-ground-100 bg-white shadow-natural">
+              <div className="inline-block rounded-xl border border-border bg-background shadow-natural">
                 <Calendar
                   mode="single"
                   selected={disabledDate}
@@ -179,7 +179,7 @@ function CalendarPage() {
                   disabled={(date) => date.getDay() === 0 || date.getDay() === 6}
                 />
               </div>
-              <p className="caption text-ground-400">
+              <p className="caption text-muted-foreground">
                 {disabledDate
                   ? `Selected: ${formatDate(disabledDate)}`
                   : "Weekends are unavailable"}

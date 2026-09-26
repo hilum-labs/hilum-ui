@@ -65,13 +65,15 @@ const CardHeader = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>
 CardHeader.displayName = "CardHeader";
 
 const CardTitle = React.forwardRef<HTMLHeadingElement, React.ComponentProps<"h3">>(
-  ({ className, ...props }, ref) => (
+  ({ className, children, ...props }, ref) => (
     <h3
       ref={ref}
       data-slot="card-title"
       className={cn("subheading text-balance text-foreground", className)}
       {...props}
-    />
+    >
+      {children}
+    </h3>
   ),
 );
 CardTitle.displayName = "CardTitle";

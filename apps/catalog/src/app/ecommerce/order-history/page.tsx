@@ -22,8 +22,8 @@ import invoiceTableSource from "@/components/ecommerce/order-history/invoice-tab
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -36,38 +36,38 @@ function OrderHistoryPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/ecommerce" className="hover:text-ground-700">
+          <a href="/ecommerce" className="hover:text-foreground">
             Ecommerce
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Order History</span>
+          <span className="font-semibold text-foreground">Order History</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Order History</h1>
-        <p className="body max-w-2xl text-ground-500">
+        <h1 className="display mb-2 text-foreground">Order History</h1>
+        <p className="body max-w-2xl text-muted-foreground">
           Order list views as tables, panels, and invoice lists with quick actions.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Account</p>
-          <div className="h-3 w-px bg-ground-100" />
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Account</p>
+          <div className="h-3 w-px bg-border" />
           <Badge variant="outline">Account · 4 variants</Badge>
         </div>
       </div>
 
       <PageDocs path="/ecommerce/order-history/" />
 
-      <div className="mb-10 rounded-[28px] border border-ground-200 bg-ground-50 p-5">
+      <div className="mb-10 rounded-[28px] border border-border bg-muted p-5">
         <div className="grid gap-4 lg:grid-cols-[1.2fr_220px_220px_auto]">
           <div className="space-y-2">
             <Label htmlFor="order-search">Search orders</Label>
             <div className="relative">
               <Search
                 size={14}
-                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ground-400"
+                className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
               />
               <Input
                 id="order-search"

@@ -56,8 +56,8 @@ function TabsSubtlePage() {
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Tabs Subtle</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Tabs Subtle</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Tab navigation with smooth pill animations.
       </p>
       <PageDocs path="/atoms/tabs-subtle/" />
@@ -78,7 +78,7 @@ function TabsSubtlePage() {
               selectedIndex={basicSelected}
               idPrefix="tabs-subtle-basic"
             >
-              <p className="caption px-3 text-ground-400">
+              <p className="caption px-3 text-muted-foreground">
                 {basicTabs[basicSelected]} content goes here.
               </p>
             </TabsSubtlePanel>
@@ -95,7 +95,7 @@ function TabsSubtlePage() {
                 <TabsSubtleItem key={tab.label} index={index} icon={tab.icon} label={tab.label} />
               ))}
             </TabsSubtle>
-            <p className="caption px-3 text-ground-400">
+            <p className="caption px-3 text-muted-foreground">
               {iconTabs[iconsSelected]?.label} content goes here.
             </p>
           </div>
@@ -116,7 +116,7 @@ function TabsSubtlePage() {
                 <TabsSubtleItem key={tab.label} index={index} icon={tab.icon} label={tab.label} />
               ))}
             </TabsSubtle>
-            <p className="caption px-3 text-ground-400">
+            <p className="caption px-3 text-muted-foreground">
               {iconTabs[activeLabelSelected]?.label} content goes here.
             </p>
           </div>

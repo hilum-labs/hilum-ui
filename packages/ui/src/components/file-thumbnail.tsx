@@ -3,27 +3,54 @@
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
+import type * as Pdfjs from "pdfjs-dist";
 
 // ─── Lazy pdfjs loader ────────────────────────────────────────────────────
-// Imports pdfjs-dist on first PDF, caches the module, and points the worker
-// at the matching CDN build. Consumers don't need bundler-side worker config.
-type PdfjsModule = typeof import("pdfjs-dist");
+// Imports pdfjs-dist on first PDF and caches the module. pdf.js needs a worker
+// script; where it comes from, in order of precedence:
+//   1. `pdfWorkerSrc` prop on <FileThumbnail> (or the arg to loadPdfjs)
+//   2. setPdfWorkerSrc(url) — app-wide, call once at startup
+//   3. GlobalWorkerOptions.workerSrc already set by the app on pdfjs-dist
+//   4. Fallback: the matching build on cdn.jsdelivr.net. Convenient, but it's a
+//      third-party request at runtime — apps with a strict CSP or offline
+//      requirements should self-host the worker via 1 or 2, e.g. with Vite:
+//        import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+//        setPdfWorkerSrc(workerSrc);
+// Type-only import: erased at build time, so pdfjs stays out of the main bundle.
+type PdfjsModule = typeof Pdfjs;
 let pdfjsPromise: Promise<PdfjsModule> | null = null;
+let configuredWorkerSrc: string | undefined;
 
-async function loadPdfjs(): Promise<PdfjsModule> {
-  if (!pdfjsPromise) {
-    pdfjsPromise = import("pdfjs-dist").then((mod) => {
-      if (!mod.GlobalWorkerOptions.workerSrc) {
-        mod.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${mod.version}/build/pdf.worker.min.mjs`;
-      }
-      return mod;
-    });
+const cdnWorkerSrc = (version: string) =>
+  `https://cdn.jsdelivr.net/npm/pdfjs-dist@${version}/build/pdf.worker.min.mjs`;
+
+function applyWorkerSrc(mod: PdfjsModule, workerSrc?: string) {
+  const explicit = workerSrc ?? configuredWorkerSrc;
+  if (explicit) mod.GlobalWorkerOptions.workerSrc = explicit;
+  else if (!mod.GlobalWorkerOptions.workerSrc) {
+    mod.GlobalWorkerOptions.workerSrc = cdnWorkerSrc(mod.version);
   }
-  return pdfjsPromise;
 }
 
-async function renderPdfFirstPage(file: File, targetWidth: number): Promise<string> {
-  const pdfjs = await loadPdfjs();
+/** Set the pdf.js worker URL used by FileThumbnail PDF previews (app-wide). */
+function setPdfWorkerSrc(workerSrc: string | undefined) {
+  configuredWorkerSrc = workerSrc;
+  void pdfjsPromise?.then((mod) => applyWorkerSrc(mod));
+}
+
+async function loadPdfjs(workerSrc?: string): Promise<PdfjsModule> {
+  if (!pdfjsPromise) pdfjsPromise = import("pdfjs-dist");
+  const mod = await pdfjsPromise;
+  applyWorkerSrc(mod, workerSrc);
+  return mod;
+}
+
+async function renderPdfFirstPage(
+  file: File,
+  targetWidth: number,
+  workerSrc?: string,
+): Promise<string> {
+  const pdfjs = await loadPdfjs(workerSrc);
   const buffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: buffer }).promise;
   const page = await pdf.getPage(1);
@@ -50,9 +77,21 @@ interface FileThumbnailProps {
   /** Side length of the square thumbnail in pixels. */
   size?: number | string;
   className?: string;
+  /**
+   * URL of the pdf.js worker used for PDF previews. Overrides
+   * setPdfWorkerSrc(); when neither is set, the worker loads from jsDelivr.
+   */
+  pdfWorkerSrc?: string;
 }
 
-function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnailProps) {
+function FileThumbnail({
+  file,
+  name,
+  type,
+  size = 48,
+  className,
+  pdfWorkerSrc,
+}: FileThumbnailProps) {
   const shape = useShape();
   const numericSize = typeof size === "number" ? size : 48;
 
@@ -78,6 +117,32 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
     );
   }
 
+  // Previews own their hooks in a child component so the no-file branch above
+  // never changes this component's hook order.
+  return (
+    <FilePreview
+      file={file}
+      size={numericSize}
+      className={className}
+      pdfWorkerSrc={pdfWorkerSrc}
+      shapeClassName={shape.bg}
+    />
+  );
+}
+
+function FilePreview({
+  file,
+  size: numericSize,
+  className,
+  pdfWorkerSrc,
+  shapeClassName,
+}: {
+  file: File;
+  size: number;
+  className?: string | undefined;
+  pdfWorkerSrc?: string | undefined;
+  shapeClassName: string;
+}) {
   const isImage = file.type.startsWith("image/");
   const isPdf = file.type === "application/pdf";
 
@@ -104,7 +169,7 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
   useEffect(() => {
     if (!isPdf) return;
     let cancelled = false;
-    renderPdfFirstPage(file, numericSize)
+    renderPdfFirstPage(file, numericSize, pdfWorkerSrc)
       .then((url) => {
         if (!cancelled) setPdfUrl(url);
       })
@@ -114,7 +179,7 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
     return () => {
       cancelled = true;
     };
-  }, [file, isPdf, numericSize]);
+  }, [file, isPdf, numericSize, pdfWorkerSrc]);
 
   const previewUrl = imageUrl ?? pdfUrl;
 
@@ -122,13 +187,12 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
     <div
       className={cn(
         "relative shrink-0 overflow-hidden bg-accent border border-border",
-        shape.bg,
+        shapeClassName,
         className,
       )}
       style={{ width: numericSize, height: numericSize }}
     >
       {previewUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={previewUrl}
           alt={file.name}
@@ -152,5 +216,5 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
   );
 }
 
-export { FileThumbnail, loadPdfjs, renderPdfFirstPage };
+export { FileThumbnail, loadPdfjs, renderPdfFirstPage, setPdfWorkerSrc };
 export type { FileThumbnailProps };

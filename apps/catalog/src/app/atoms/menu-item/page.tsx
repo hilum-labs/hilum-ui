@@ -13,8 +13,8 @@ import { Copy } from "lucide-react"
 function MenuItemPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Menu Item</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Menu Item</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Reusable command row for menus, lists, and product navigation.
       </p>
       <PageDocs path="/atoms/menu-item/" />

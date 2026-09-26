@@ -66,7 +66,7 @@ function MediaAssetCard({
           "relative flex shrink-0 items-center justify-center overflow-hidden bg-muted text-left",
           "transition-[background-color,box-shadow,scale] duration-150",
           isInteractive &&
-            "cursor-pointer active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+            "cursor-pointer active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           isList && "size-16 rounded-lg",
           isGrid && "aspect-square w-full",
           orientation === "responsive" &&

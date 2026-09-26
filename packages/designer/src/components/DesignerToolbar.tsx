@@ -41,7 +41,7 @@ function DesignerToolbar({
       <div
         role="toolbar"
         className={cn(
-          "flex items-center gap-0.5 rounded-lg bg-card p-1 shadow-natural",
+          "flex items-center gap-0.5 rounded-lg bg-card p-1 shadow-surface-3",
           "transition-[opacity,transform,box-shadow] duration-200 ease-out motion-reduce:transition-none",
           variant === "floating" && positioned,
           variant === "floating" && "bottom-4 -translate-x-1/2 z-30",
@@ -83,7 +83,13 @@ interface DesignerToolbarSeparatorProps {
 }
 
 function DesignerToolbarSeparator({ className }: DesignerToolbarSeparatorProps) {
-  return <div className={cn("mx-1 h-5 w-px bg-muted", className)} role="separator" />;
+  return (
+    <div
+      className={cn("mx-1 h-5 w-px bg-border compact:h-4", className)}
+      role="separator"
+      aria-orientation="vertical"
+    />
+  );
 }
 
 /* ============================================================== *
@@ -134,12 +140,14 @@ function DesignerToolbarButton({
         aria-label={label}
         aria-pressed={active}
         className={cn(
-          "flex h-9 min-w-9 items-center justify-center gap-1 rounded-md px-2 caption transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          "flex h-9 min-w-9 items-center justify-center gap-1 rounded-md px-2 caption tabular-nums transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          "outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          "compact:h-8 compact:min-w-8 compact:rounded-[6px] compact:px-1.5 compact:text-[12px]",
           "[@media(pointer:coarse)]:h-11 [@media(pointer:coarse)]:min-w-11",
           size === "touch" && "h-11 min-w-11",
           active
             ? "bg-foreground text-background"
-            : "text-muted-foreground hover:bg-muted hover:text-foreground",
+            : "text-muted-foreground hover:bg-hover hover:text-foreground active:bg-active",
           disabled && "opacity-50 cursor-not-allowed",
           className,
         )}

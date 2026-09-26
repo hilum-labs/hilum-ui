@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { motionClasses } from "../lib/interaction";
+import { inputFocusWithinClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { ColorPickerPopover } from "./color-picker";
 import type { ControlMobileSurface } from "./input";
@@ -53,9 +53,10 @@ function ColorInput({
   return (
     <div
       className={cn(
-        "inline-flex h-8 items-stretch gap-0 overflow-hidden border border-border bg-background",
+        "inline-flex h-8 items-stretch gap-0 overflow-hidden border border-border bg-background hover:border-border-strong",
         shape.input,
-        "focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20",
+        "compact:h-6 compact:rounded-[5px]",
+        inputFocusWithinClasses,
         motionClasses,
         mobileSurfaceClass,
         disabled && "opacity-50 pointer-events-none",
@@ -69,7 +70,7 @@ function ColorInput({
         {...(disabled !== undefined && { disabled })}
         triggerShowValue={false}
         hideEyedropper
-        triggerClassName="h-full w-8 border-0 rounded-none bg-transparent px-1 hover:bg-hover focus-visible:ring-0"
+        triggerClassName="h-full w-8 border-0 rounded-none bg-transparent px-1 hover:bg-hover focus-visible:ring-0 compact:h-full compact:w-6 compact:px-0 compact:justify-center compact:rounded-none compact:[&>span]:!size-4"
       />
       <input
         type="text"
@@ -81,7 +82,8 @@ function ColorInput({
             commitHex("#" + (e.target as HTMLInputElement).value.replace(/^#/, ""));
         }}
         spellCheck={false}
-        className="w-[5.5rem] caption text-foreground px-2 bg-transparent border-l border-border focus:outline-none uppercase"
+        aria-label="Hex colour"
+        className="w-[5.5rem] caption tabular-nums text-foreground px-2 bg-transparent border-l border-border focus:outline-none uppercase compact:w-[4.5rem] compact:px-1.5 compact:text-[12px]"
       />
       {typeof opacity === "number" && onOpacityChange && (
         <div className="relative flex items-center border-l border-border">
@@ -91,7 +93,8 @@ function ColorInput({
             max={100}
             value={Math.round(opacity)}
             onChange={(e) => onOpacityChange(Number(e.target.value))}
-            className="w-12 caption text-foreground px-2 bg-transparent focus:outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            aria-label="Opacity"
+            className="w-12 caption tabular-nums text-foreground px-2 bg-transparent focus:outline-none text-right compact:w-10 compact:px-1.5 compact:text-[12px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
           <span aria-hidden className="caption-xs text-muted-foreground pr-2">
             %

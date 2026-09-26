@@ -254,6 +254,7 @@ const AskUserQuestions = forwardRef<HTMLDivElement, AskUserQuestionsProps>(
     // height morph and the footer move together. A ResizeObserver keeps the
     // target in sync across question swaps, shape changes, and text wrapping.
     const contentMeasureRef = useRef<HTMLDivElement>(null);
+    const hasQuestion = question != null;
     const [contentHeight, setContentHeight] = useState<number | "auto">("auto");
     useEffect(() => {
       const el = contentMeasureRef.current;
@@ -263,7 +264,9 @@ const AskUserQuestions = forwardRef<HTMLDivElement, AskUserQuestionsProps>(
       const ro = new ResizeObserver(update);
       ro.observe(el);
       return () => ro.disconnect();
-    }, []);
+      // hasQuestion: the measured node only mounts once there is a question
+      // to render, so re-attach when it appears (e.g. questions load async).
+    }, [hasQuestion]);
 
     const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
@@ -527,22 +530,6 @@ const AskUserQuestions = forwardRef<HTMLDivElement, AskUserQuestionsProps>(
       if (hasAnswer) handleMultiNext();
     };
 
-    if (!question) {
-      return (
-        <div
-          ref={ref}
-          className={cn(
-            "w-full max-w-[520px] p-5 bg-card border border-border",
-            shape.container,
-            className,
-          )}
-          {...rest}
-        >
-          <p className="text-[13px] text-muted-foreground">No questions.</p>
-        </div>
-      );
-    }
-
     // ── Layout calculations for hover/focus indicators ───────────
     const activeRect = activeIndex !== null ? itemRects[activeIndex] : null;
     // The blue morphing focus ring is intentionally suppressed for the Other
@@ -616,11 +603,30 @@ const AskUserQuestions = forwardRef<HTMLDivElement, AskUserQuestionsProps>(
     // use shape.bg, so corners animate around its radius.
     const blocks = useMergeSplitBlocks(selectedGroups, itemRects, shape.bgRadius);
 
+    // Empty state. Kept below every hook call so the hook order stays stable
+    // when `questions` goes from [] to populated (e.g. loaded async).
+    if (!question) {
+      return (
+        <div
+          ref={ref}
+          className={cn(
+            "w-full max-w-[520px] p-5 bg-card border border-border",
+            shape.container,
+            className,
+          )}
+          {...rest}
+        >
+          <p className="text-[13px] text-muted-foreground">No questions.</p>
+        </div>
+      );
+    }
+
     const showBack = total > 1 && safeIndex > 0;
     const showSkip = total > 1 && isSkippable;
     const showFooter = showBack || showSkip || isMulti;
 
     return (
+      // eslint-disable-next-line jsx-a11y/no-static-element-interactions -- delegated Cmd/Ctrl+Enter handler for keys bubbling from the focusable rows/buttons inside; the card itself isn't a control
       <div
         ref={ref}
         className={cn(
@@ -770,7 +776,7 @@ const AskUserQuestions = forwardRef<HTMLDivElement, AskUserQuestionsProps>(
                     <motion.div
                       aria-hidden
                       className={cn(
-                        "absolute pointer-events-none border border-[#6B97FF] z-20",
+                        "absolute pointer-events-none border-2 border-ring z-20",
                         shape.focusRing,
                       )}
                       initial={{

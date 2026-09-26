@@ -446,7 +446,7 @@ function SidebarGroupAction({
       className={cn(
         "absolute right-2 top-2 flex size-8 items-center justify-center",
         "rounded-md text-muted-foreground hover:bg-muted hover:text-foreground",
-        "outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+        "outline-none focus-visible:ring-2 focus-visible:ring-ring",
         className,
       )}
       {...props}
@@ -509,7 +509,7 @@ function SidebarMenuButton({
         "outline-none ring-ring",
         "transition-[width,height,padding] duration-150",
         "hover:bg-muted hover:text-foreground",
-        "focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+        "focus-visible:ring-2 focus-visible:ring-ring",
         "active:bg-muted",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&>svg]:size-4 [&>svg]:shrink-0",
@@ -580,7 +580,7 @@ function SidebarMenuAction({
       className={cn(
         "absolute right-1 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center",
         "rounded-md text-muted-foreground hover:bg-muted hover:text-foreground",
-        "outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+        "outline-none focus-visible:ring-2 focus-visible:ring-ring",
         showOnHover && [
           "opacity-0 transition-opacity",
           "group-hover/menu-item:opacity-100",
@@ -699,7 +699,7 @@ function SidebarMenuSubButton({
         "body text-muted-foreground outline-none",
         "transition-colors duration-150",
         "hover:text-foreground hover:bg-muted",
-        "focus-visible:ring-2 focus-visible:ring-brand-primary/30",
+        "focus-visible:ring-2 focus-visible:ring-ring",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&>svg]:size-3.5 [&>svg]:shrink-0",
         isActive && "text-brand-primary hover:text-brand-primary",

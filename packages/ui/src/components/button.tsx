@@ -20,31 +20,34 @@ const buttonVariants = cva(
     "text-box-trim-both text-box-edge-cap-alphabetic",
     "transition-colors duration-80",
     "disabled:opacity-50 disabled:pointer-events-none",
-    "focus-visible:ring-1 focus-visible:ring-[#6B97FF]",
+    "compact:rounded-[5px]",
+    "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
   ],
   {
     variants: {
       variant: {
         default: "text-background",
         primary: "text-background",
-        brand: "text-background",
+        brand: "text-primary-foreground",
         secondary: "text-foreground",
-        outline: "border border-border text-foreground",
-        tertiary: "border border-border text-foreground",
+        outline: "border border-border text-foreground hover:border-border-strong",
+        tertiary: "border border-border text-foreground hover:border-border-strong",
         destructive: "text-destructive border border-destructive/30",
         ghost: "text-muted-foreground hover:text-foreground",
         link: "text-foreground underline-offset-4 hover:underline",
       },
+      // `compact:` classes apply under data-density="compact" (editor chrome):
+      // 24px controls, 12px text, 8–10px padding, 5px radius.
       size: {
-        xs: "h-6 px-2.5 text-[11px] gap-1",
-        sm: "h-7 px-3 text-[12px] gap-1",
-        default: "h-8 px-4 text-[13px] gap-1.5",
-        md: "h-8 px-4 text-[13px] gap-1.5",
-        lg: "h-9 px-5 text-[14px] gap-1.5",
-        "icon-xs": "h-7 w-7 p-0 [&_svg]:h-3 [&_svg]:w-3",
-        "icon-sm": "h-8 w-8 p-0 [&_svg]:h-3.5 [&_svg]:w-3.5",
-        icon: "h-9 w-9 p-0 [&_svg]:h-4 [&_svg]:w-4",
-        "icon-lg": "h-10 w-10 p-0 [&_svg]:h-5 [&_svg]:w-5",
+        xs: "h-6 px-2.5 text-[11px] gap-1 compact:px-2",
+        sm: "h-7 px-3 text-[12px] gap-1 compact:h-6 compact:px-2",
+        default: "h-8 px-4 text-[13px] gap-1.5 compact:h-6 compact:px-2.5 compact:text-[12px]",
+        md: "h-8 px-4 text-[13px] gap-1.5 compact:h-6 compact:px-2.5 compact:text-[12px]",
+        lg: "h-9 px-5 text-[14px] gap-1.5 compact:h-7 compact:px-3 compact:text-[12px]",
+        "icon-xs": "h-7 w-7 p-0 [&_svg]:h-3 [&_svg]:w-3 compact:h-6 compact:w-6",
+        "icon-sm": "h-8 w-8 p-0 [&_svg]:h-3.5 [&_svg]:w-3.5 compact:h-6 compact:w-6",
+        icon: "h-9 w-9 p-0 [&_svg]:h-4 [&_svg]:w-4 compact:h-7 compact:w-7",
+        "icon-lg": "h-10 w-10 p-0 [&_svg]:h-5 [&_svg]:w-5 compact:h-8 compact:w-8",
       },
       iconLeft: { true: "" },
       iconRight: { true: "" },
@@ -76,27 +79,32 @@ interface ButtonProps
   active?: boolean;
 }
 
+// Variant fills. Neutral variants tint with `foreground` alpha rather than a
+// fixed palette colour so they mean the same thing in light, mid and dark:
+// primary = inverted foreground, secondary = soft neutral fill, outline /
+// tertiary / ghost = transparent with a neutral hover wash.
 const bgVariants: Record<string, string> = {
   default: "bg-foreground group-hover:bg-foreground/90 group-active:bg-foreground/80",
   primary: "bg-foreground group-hover:bg-foreground/90 group-active:bg-foreground/80",
-  brand: "bg-brand group-hover:bg-brand/90 group-active:bg-brand/80",
-  secondary: "bg-accent group-hover:bg-accent/80 group-active:bg-accent",
-  outline: "bg-transparent group-hover:bg-hover group-active:bg-active",
-  tertiary: "bg-transparent group-hover:bg-hover group-active:bg-active",
+  brand: "bg-primary group-hover:bg-primary/90 group-active:bg-primary/80",
+  secondary:
+    "bg-foreground/[0.07] group-hover:bg-foreground/[0.11] group-active:bg-foreground/[0.15]",
+  outline: "bg-transparent group-hover:bg-foreground/[0.05] group-active:bg-foreground/[0.09]",
+  tertiary: "bg-transparent group-hover:bg-foreground/[0.05] group-active:bg-foreground/[0.09]",
   destructive: "bg-destructive/10 group-hover:bg-destructive/15 group-active:bg-destructive/20",
-  ghost: "bg-transparent group-hover:bg-hover group-active:bg-active",
+  ghost: "bg-transparent group-hover:bg-foreground/[0.06] group-active:bg-foreground/[0.1]",
   link: "bg-transparent",
 };
 
 const activeBgVariants: Record<string, string> = {
   default: "bg-foreground/80",
   primary: "bg-foreground/80",
-  brand: "bg-brand/80",
-  secondary: "bg-accent",
-  outline: "bg-active",
-  tertiary: "bg-active",
+  brand: "bg-primary/80",
+  secondary: "bg-foreground/[0.15]",
+  outline: "bg-foreground/[0.09]",
+  tertiary: "bg-foreground/[0.09]",
   destructive: "bg-destructive/20",
-  ghost: "bg-active",
+  ghost: "bg-foreground/[0.1]",
   link: "bg-transparent",
 };
 

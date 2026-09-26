@@ -105,9 +105,9 @@ function StaticFrameDemo() {
   return (
     <div className="mx-auto max-w-5xl px-8 py-12">
       <div className="mb-10">
-        <h1 className="display text-ground-900">Static frame</h1>
-        <p className="body-lg text-ground-500 mt-3 max-w-2xl">
-          <code className="font-mono caption bg-ground-50 px-1.5 py-0.5 rounded">
+        <h1 className="display text-foreground">Static frame</h1>
+        <p className="body-lg text-muted-foreground mt-3 max-w-2xl">
+          <code className="font-mono caption bg-muted px-1.5 py-0.5 rounded">
             DesignerStaticFrame
           </code>{" "}
           renders a canvas read-only — no interactivity, no overlays. Use it for dashboard
@@ -141,8 +141,8 @@ function StaticFrameDemo() {
                 <DesignerStaticFrame />
               </Designer>
             </CardContent>
-            <div className="px-4 py-3 border-t border-ground-100">
-              <p className="caption font-medium text-ground-900">{s.title}</p>
+            <div className="px-4 py-3 border-t border-border">
+              <p className="caption font-medium text-foreground">{s.title}</p>
             </div>
           </Card>
         ))}

@@ -245,7 +245,7 @@ const InputField = forwardRef<HTMLLabelElement, InputFieldProps>(
       bgClass = "bg-transparent";
       ringClass = "ring-border";
     } else if (error) {
-      bgClass = isFocused ? "bg-card" : isActive ? "bg-destructive-light/60" : "bg-transparent";
+      bgClass = isFocused ? "bg-card" : isActive ? "bg-destructive/10" : "bg-transparent";
       ringClass = isFocused || isActive ? "ring-destructive/50" : "ring-transparent";
     } else if (isFocused) {
       bgClass = "bg-card";

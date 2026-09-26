@@ -102,22 +102,22 @@ function ApplicationUIPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Application UI</span>
+          <span className="font-semibold text-foreground">Application UI</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Application UI</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Application UI</h1>
+        <p className="body max-w-md text-muted-foreground">
           Interface patterns for web applications. Shells, forms, navigation, data lists, overlays,
           and full-page layouts — adapted to the brand.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">{SECTIONS.length} section types</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">{TOTAL_VARIANTS} variants total</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">{SECTIONS.length} section types</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">{TOTAL_VARIANTS} variants total</p>
         </div>
       </div>
 
@@ -134,10 +134,10 @@ function ApplicationUIPage() {
                 <Badge variant="secondary" className="caption-xs">
                   {section.category}
                 </Badge>
-                <span className="caption-xs text-ground-400">{section.variants} variants</span>
+                <span className="caption-xs text-muted-foreground">{section.variants} variants</span>
               </div>
-              <CardTitle className="subheading text-ground-900">{section.name}</CardTitle>
-              <CardDescription className="caption leading-relaxed text-ground-400">
+              <CardTitle className="subheading text-foreground">{section.name}</CardTitle>
+              <CardDescription className="caption leading-relaxed text-muted-foreground">
                 {section.description}
               </CardDescription>
             </CardHeader>
@@ -146,7 +146,7 @@ function ApplicationUIPage() {
                 asChild
                 variant="ghost"
                 size="sm"
-                className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
+                className="h-auto px-0 py-0 text-muted-foreground hover:text-foreground hover:bg-transparent"
               >
                 <a href={`/application-ui/${section.slug}`}>View section →</a>
               </Button>

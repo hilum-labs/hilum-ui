@@ -26,34 +26,34 @@ import newsletterWithParagraphOnDarkFullWidthSource from "@/components/marketing
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
 
 function NewsletterSectionsPage() {
   return (
-    <div className="h-full overflow-y-auto bg-white">
+    <div className="h-full overflow-y-auto bg-background">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="/" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="/marketing" className="hover:text-ground-700">
+            <a href="/marketing" className="hover:text-foreground">
               Marketing
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Newsletter Sections</span>
+            <span className="font-semibold text-foreground">Newsletter Sections</span>
           </div>
           <div className="mb-4 flex items-center gap-3">
             <Badge variant="secondary">Conversion</Badge>
-            <span className="caption text-ground-400">6 variants</span>
+            <span className="caption text-muted-foreground">6 variants</span>
           </div>
-          <h1 className="display mb-2 text-ground-900">Newsletter Sections</h1>
-          <p className="body max-w-2xl text-ground-400">
+          <h1 className="display mb-2 text-foreground">Newsletter Sections</h1>
+          <p className="body max-w-2xl text-muted-foreground">
             Email capture patterns that range from quiet inline forms to full-width brand moments,
             all styled with the system input and button primitives.
           </p>
@@ -67,7 +67,7 @@ function NewsletterSectionsPage() {
           <PreviewBlock
             title="Simple with description"
             code={newsletterSimpleWithDescriptionSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <NewsletterSimpleWithDescription />
           </PreviewBlock>
@@ -75,7 +75,7 @@ function NewsletterSectionsPage() {
           <PreviewBlock
             title="Simple stacked"
             code={newsletterSimpleStackedSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <NewsletterSimpleStacked />
           </PreviewBlock>
@@ -83,7 +83,7 @@ function NewsletterSectionsPage() {
           <PreviewBlock
             title="Centered card with graphic"
             code={newsletterCenteredCardWithGraphicSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <NewsletterCenteredCardWithGraphic />
           </PreviewBlock>
@@ -91,7 +91,7 @@ function NewsletterSectionsPage() {
           <PreviewBlock
             title="With description on brand card"
             code={newsletterWithDescriptionOnBrandCardSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <NewsletterWithDescriptionOnBrandCard />
           </PreviewBlock>
@@ -99,7 +99,7 @@ function NewsletterSectionsPage() {
           <PreviewBlock
             title="With paragraph on dark"
             code={newsletterWithParagraphOnDarkSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <NewsletterWithParagraphOnDark />
           </PreviewBlock>
@@ -107,7 +107,7 @@ function NewsletterSectionsPage() {
           <PreviewBlock
             title="With paragraph on dark full-width"
             code={newsletterWithParagraphOnDarkFullWidthSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <NewsletterWithParagraphOnDarkFullWidth />
           </PreviewBlock>

@@ -124,10 +124,10 @@ function DesignerValueField<K extends string>({
 }) {
   return (
     <div className="relative min-w-0">
-      <span className="caption-xs pointer-events-none absolute left-2 top-1/2 z-10 -translate-y-1/2 select-none font-semibold uppercase text-muted-foreground">
-        {item.label}
-      </span>
+      {/* Label-in-field prefix doubles as a scrub handle (drag to change). */}
       <InputNumber
+        label={<span className="uppercase">{item.label}</span>}
+        scrubLabel={item.ariaLabel}
         value={value}
         onChange={onChange}
         min={item.min ?? min}
@@ -140,9 +140,9 @@ function DesignerValueField<K extends string>({
         hideSteppers={hideSteppers}
         disabled={disabled || item.disabled}
         readOnly={readOnly}
-        aria-label={item.ariaLabel}
+        aria-label={item.ariaLabel ?? (typeof item.label === "string" ? item.label : undefined)}
         onBlur={onCommit}
-        className={cn("h-9 w-full bg-muted/60", inputClassName)}
+        className={cn("h-8 w-full compact:h-6", inputClassName)}
         inputMode="decimal"
       />
     </div>
@@ -194,11 +194,16 @@ function DesignerValueControl<K extends string>({
   };
 
   return (
-    <div className={cn("flex min-w-0 flex-col gap-1.5", className)}>
+    <div className={cn("flex min-w-0 flex-col gap-1.5 compact:gap-1", className)}>
       {(label || hasLinkControl) && (
         <div className="flex min-w-0 items-center justify-between gap-2">
           {label && (
-            <div className={cn("caption select-none text-muted-foreground", labelClassName)}>
+            <div
+              className={cn(
+                "caption select-none text-muted-foreground compact:text-[11px]",
+                labelClassName,
+              )}
+            >
               {label}
             </div>
           )}
@@ -240,7 +245,7 @@ function DesignerValueControl<K extends string>({
       ) : (
         <div
           className={cn(
-            "grid min-w-0 gap-2",
+            "grid min-w-0 gap-2 compact:gap-1.5",
             items.length === 2 ? "grid-cols-2" : "grid-cols-2",
             controlsClassName,
           )}

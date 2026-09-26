@@ -15,8 +15,8 @@ import { FolderKanban } from "lucide-react"
 function NavItemPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Nav Item</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Nav Item</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Single navigation row with icon, active state, and trailing content.
       </p>
       <PageDocs path="/atoms/nav-item/" />

@@ -19,7 +19,7 @@ const NativeSelect = React.forwardRef<
           "peer h-10 w-full appearance-none border border-border bg-background pl-3 pr-8",
           shape.input,
           "body text-foreground",
-          "focus:border-border focus:outline-none focus:ring-2 focus:ring-ring/30",
+          "focus:border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "aria-[invalid=true]:border-destructive aria-[invalid=true]:focus:ring-destructive/20",
           className,

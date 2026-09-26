@@ -49,19 +49,19 @@ function CheckboxCardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Checkbox Card</span>
+          <span className="font-semibold text-foreground">Checkbox Card</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Checkbox Card</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Checkbox Card</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Clickable card-style checkbox option for settings, filters, and compact binary choices.
         </p>
       </div>

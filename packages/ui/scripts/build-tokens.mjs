@@ -15,7 +15,8 @@
 //   3. `@theme inline` — semantic mappings that reference the dynamic :root vars.
 //   4. `:root` — light-mode defaults for all semantic tokens.
 //   5. `@media (prefers-color-scheme: dark)` AND `[data-theme="dark"]` — dark overrides (D7).
-//   6. Global keyframes + base typography utilities.
+//   6. Density tiers (`--density-*` vars) + `compact:` variant for data-density="compact".
+//   7. Global keyframes + base typography utilities.
 
 import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -67,47 +68,66 @@ lines.push("@theme inline {");
 for (const k of Object.keys(tokens.semantic.light)) {
   lines.push(`  --color-${kebab(k)}: var(--${kebab(k)});`);
 }
+// Surface elevation ladder → bg-surface-N / shadow-surface-N utilities
+// (emitted by lib/surface-classes.ts). Values are per-theme :root vars below.
+const surfaceLevels = tokens.surfaces.light.bg.map((_, i) => i + 1);
+for (const n of surfaceLevels) lines.push(`  --color-surface-${n}: var(--surface-${n});`);
+for (const n of surfaceLevels) lines.push(`  --shadow-surface-${n}: var(--surface-shadow-${n});`);
 lines.push("}");
 lines.push("");
 
+// All per-theme custom properties: semantic colours + the surface ladder.
+const themeVars = (theme) => {
+  const vars = Object.entries(tokens.semantic[theme]).map(([k, v]) => [`--${kebab(k)}`, v]);
+  const surfaces = tokens.surfaces[theme];
+  if (surfaces) {
+    surfaces.bg.forEach((v, i) => vars.push([`--surface-${i + 1}`, v]));
+    surfaces.shadow.forEach((v, i) => vars.push([`--surface-shadow-${i + 1}`, v]));
+  }
+  return vars;
+};
+const themeBlock = (selector, theme, indent = "") => {
+  lines.push(`${indent}${selector} {`);
+  for (const [k, v] of themeVars(theme)) lines.push(`${indent}  ${k}: ${v};`);
+  lines.push(`${indent}}`);
+};
+
 /* ---------------- :root — light defaults ---------------- */
-lines.push(":root {");
-for (const [k, v] of Object.entries(tokens.semantic.light)) {
-  lines.push(`  --${kebab(k)}: ${v};`);
-}
-lines.push("}");
+themeBlock(":root", "light");
 lines.push("");
 
 /* ---------------- dark mode (D7) ---------------- */
-const darkBlock = (selector) => {
-  lines.push(`${selector} {`);
-  for (const [k, v] of Object.entries(tokens.semantic.dark)) {
-    lines.push(`  --${kebab(k)}: ${v};`);
-  }
-  lines.push("}");
-  lines.push("");
-};
 // Auto: prefers-color-scheme.
 lines.push("@media (prefers-color-scheme: dark) {");
-lines.push('  :root:not([data-theme="light"]) {');
-for (const [k, v] of Object.entries(tokens.semantic.dark)) {
-  lines.push(`    --${kebab(k)}: ${v};`);
-}
-lines.push("  }");
+themeBlock(':root:not([data-theme="light"])', "dark", "  ");
 lines.push("}");
 lines.push("");
 // Explicit: data-theme="dark".
-darkBlock('[data-theme="dark"]');
+themeBlock('[data-theme="dark"]', "dark");
+lines.push("");
 
 // Mid theme — explicit opt-in only (no prefers-color-scheme auto).
 if (tokens.semantic.mid) {
-  lines.push('[data-theme="mid"] {');
-  for (const [k, v] of Object.entries(tokens.semantic.mid)) {
-    lines.push(`  --${kebab(k)}: ${v};`);
-  }
-  lines.push("}");
+  themeBlock('[data-theme="mid"]', "mid");
   lines.push("");
 }
+
+/* ---------------- density tiers ---------------- */
+// Default tier on :root; compact tier on any [data-density="compact"] subtree.
+const densityBlock = (selector, tier) => {
+  lines.push(`${selector} {`);
+  for (const [k, v] of Object.entries(tokens.density[tier])) lines.push(`  --density-${kebab(k)}: ${v};`);
+  lines.push("}");
+};
+densityBlock(":root", "default");
+densityBlock('[data-density="compact"]', "compact");
+lines.push("");
+// `compact:` variant — components opt their compact sizing in with e.g.
+// `compact:h-6`. Matches the element carrying the attribute and descendants.
+lines.push(
+  '@custom-variant compact (&:where([data-density="compact"], [data-density="compact"] *));',
+);
+lines.push("");
 
 /* ---------------- @custom-variant dark ---------------- */
 lines.push(
@@ -159,19 +179,23 @@ lines.push(`@keyframes accordion-down {
 `);
 
 /* ---------------- Base body / box-sizing ---------------- */
-lines.push(`*,
-::before,
-::after {
-  box-sizing: border-box;
-  border-color: var(--border);
-}
+// Inside @layer base so border-{color} / bg utilities (layer utilities) win;
+// unlayered, this rule silently overrode every border colour utility.
+lines.push(`@layer base {
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
 
-html,
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  html,
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 `);
 
