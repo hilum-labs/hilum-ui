@@ -12,6 +12,8 @@ import {
   PaginationEllipsis,
 } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { PaginationBar } from "@hilum/ui";
+import { useState as usePageState } from "react";
 
 const CODE = {
   pagination: `import {
@@ -31,6 +33,21 @@ const CODE = {
   </PaginationContent>
 </Pagination>`,
 };
+
+const BAR_CODE = `import { PaginationBar } from "@hilum/ui"
+
+// "Showing 21–40 of 124 orders" + Previous / Next. Cursor APIs: omit total, pass hasNextPage.
+<PaginationBar page={page} pageSize={20} total={124} itemLabel="order" onPageChange={setPage} />`;
+
+function PaginationBarDemo() {
+  const [page, setPage] = usePageState(2);
+  return (
+    <div className="w-full max-w-xl">
+      <PaginationBar page={page} pageSize={20} total={124} itemLabel="order" onPageChange={setPage} />
+    </div>
+  );
+}
+
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -99,6 +116,19 @@ function PaginationPage() {
             </PaginationContent>
           </Pagination>
         </PreviewBlock>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Pagination Bar</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Summary + previous/next"
+            description="Compact list footer with a pluralized, localized summary."
+            code={BAR_CODE}
+          >
+            <PaginationBarDemo />
+          </PreviewBlock>
+        </section>
       </div>
     </div>
   );

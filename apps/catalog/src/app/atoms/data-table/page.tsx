@@ -13,6 +13,7 @@ import {
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { EmptyState } from "@hilum/ui";
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */
@@ -230,6 +231,19 @@ const SEARCHABLE_COLUMNS: SearchableTableColumn<Transaction>[] = [
 /*  Code snippets                                                      */
 /* ------------------------------------------------------------------ */
 
+const EMPTY_TABLE_CODE = `import { DataTable, EmptyState } from "@hilum/ui"
+
+<DataTable
+  columns={columns}
+  data={orders}
+  itemLabel="order"                         // "1 order" · "12 orders"
+  onRowClick={(order) => navigate(\`/orders/\${order.id}\`)}
+  emptyState={<EmptyState title="No orders yet" action={{ label: "Create order", href: "/orders/new" }} />}
+/>`;
+
+type EmptyRow = { id: string; name: string };
+const EMPTY_COLUMNS: ColumnDef<EmptyRow>[] = [{ accessorKey: "name", header: "Order" }];
+
 const CODE = {
   withSearch: `import { DataTable, createColumnHelper, type ColumnDef } from "@hilum/ui"
 import { Badge } from "@hilum/ui"
@@ -314,6 +328,8 @@ const columns: SearchableTableColumn<Transaction>[] = [
   { key: "amount", label: "Amount", sortAccessor: row => Number(row.amount.replace(/[$,]/g, "")) },
   { key: "status", label: "Status", render: row => <Badge>{row.status}</Badge> },
 ]
+
+
 
 function Example() {
   const [searchTerm, setSearchTerm] = useState("")
@@ -470,6 +486,32 @@ function DataTablePage() {
             previewClassName="flex-col items-stretch"
           >
             <SearchableTableDemo />
+          </PreviewBlock>
+        </section>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Empty state and row clicks</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Actionable empty table"
+            description="Custom empty state with a CTA, pluralized counts and clickable rows."
+            code={EMPTY_TABLE_CODE}
+          >
+            <div className="w-full">
+              <DataTable
+                columns={EMPTY_COLUMNS}
+                data={[]}
+                itemLabel="order"
+                emptyState={
+                  <EmptyState
+                    title="No orders yet"
+                    action={{ label: "Create order", href: "#" }}
+                    size="sm"
+                  />
+                }
+              />
+            </div>
           </PreviewBlock>
         </section>
       </div>

@@ -3,7 +3,7 @@
 import * as React from "react";
 import { ArrowDown, ArrowUp, ChevronsUpDown, Filter, Search } from "lucide-react";
 import { Button } from "./button";
-import { EmptyState } from "./empty-state";
+import { EmptyState, type EmptyStateProps } from "./empty-state";
 import { InputGroup } from "./input-group";
 import {
   Pagination,
@@ -48,16 +48,14 @@ interface SearchableTableProps<T extends { id: string | number }> {
       placeholder: string;
     }
   >;
-  emptyState?: {
-    icon?: React.ReactNode;
-    title: string;
-    description: string;
-    action?: {
-      label: string;
-      href?: string;
-      onClick?: () => void;
-    };
-  };
+  /**
+   * Shown when there are no rows. Give first-run states a primary `action`
+   * ("Add product"); give filtered-empty states a "Clear filters" action.
+   */
+  emptyState?: Pick<
+    EmptyStateProps,
+    "icon" | "title" | "description" | "action" | "secondaryAction"
+  >;
   actions?: (item: T) => React.ReactNode;
   mobileCard?: (item: T) => React.ReactNode;
   tableClassName?: string;
@@ -182,6 +180,7 @@ function SearchableTable<T extends { id: string | number }>({
       {...(className ? { className } : {})}
       {...(emptyState?.icon ? { icon: normalizeEmptyStateIcon(emptyState.icon) } : {})}
       {...(emptyState?.action ? { action: emptyState.action } : {})}
+      {...(emptyState?.secondaryAction ? { secondaryAction: emptyState.secondaryAction } : {})}
     />
   );
 

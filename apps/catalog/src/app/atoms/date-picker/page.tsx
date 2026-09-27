@@ -5,6 +5,23 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import * as React from "react";
 import { DatePicker, formatDate } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { DateRangePicker, type DateRange } from "@hilum/ui";
+
+const RANGE_PICKER_CODE = `import { DateRangePicker, toISODate, type DateRange } from "@hilum/ui"
+
+const [range, setRange] = useState<DateRange | undefined>()
+
+// Replaces pairs of <input type="date">; presets for reporting filters.
+<DateRangePicker value={range} onChange={setRange} clearable maxDate={new Date()} />
+
+// API speaks "YYYY-MM-DD"?
+fetchOrders({ from: toISODate(range?.from), to: toISODate(range?.to) })`;
+
+function RangePickerDemo() {
+  const [range, setRange] = React.useState<DateRange | undefined>();
+  return <DateRangePicker value={range} onChange={setRange} clearable maxDate={new Date()} />;
+}
+
 
 function Heading({ label }: { label: string }) {
   return (
@@ -131,6 +148,19 @@ function DatePickerPage() {
             </div>
           </PreviewBlock>
         </div>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Date Range Picker</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Range with presets"
+            description="Collapsed range label, preset shortcuts, min/max bounds and a clear button."
+            code={RANGE_PICKER_CODE}
+          >
+            <RangePickerDemo />
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

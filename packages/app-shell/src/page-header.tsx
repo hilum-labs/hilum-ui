@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@hilum/ui";
+import { ChevronLeft } from "lucide-react";
+import { useLink } from "./link-context";
 
 interface PageHeaderProps {
   /** Page title — typically rendered as h1. */
@@ -12,8 +14,23 @@ interface PageHeaderProps {
   icon?: ReactNode;
   /** Optional eyebrow above the title (e.g. category, breadcrumb summary). */
   eyebrow?: ReactNode;
+  /**
+   * Let long titles wrap instead of truncating when an `icon` is present
+   * (recommended on mobile). Default: false.
+   */
+  wrapTitle?: boolean;
   /** Heading level (default: 1). */
   level?: 1 | 2 | 3;
+  /**
+   * Back link for detail pages ("‹ Orders"). Renders through the app's
+   * injected link component. Prefer this over page-level breadcrumbs when the
+   * AppHeader already shows the breadcrumb trail — never render both.
+   */
+  back?: { href: string; label: string };
+  /** Inline badges next to the title (e.g. `<StatusBadge status="paid" />`). */
+  badges?: ReactNode;
+  /** Secondary metadata row under the title/description ("Created Sep 26, 2026 · Online Store"). */
+  meta?: ReactNode;
   actionsClassName?: string;
   className?: string;
 }
@@ -47,16 +64,21 @@ function PageHeader({
   icon,
   eyebrow,
   level = 1,
+  back,
+  badges,
+  meta,
+  wrapTitle = false,
   actionsClassName,
   className,
 }: PageHeaderProps) {
+  const Link = useLink();
   const Tag = `h${level}` as const;
   const headingTitle = icon ? (
-    <span className="flex min-w-0 items-center gap-3">
+    <span className={cn("flex min-w-0 gap-3", wrapTitle ? "items-start" : "items-center")}>
       <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-secondary/30 text-ground-700 ring-1 ring-border [&_svg]:size-5">
         {icon}
       </span>
-      <span className="min-w-0 truncate">{title}</span>
+      <span className={cn("min-w-0", wrapTitle ? "break-words" : "truncate")}>{title}</span>
     </span>
   ) : (
     title
@@ -70,25 +92,49 @@ function PageHeader({
       )}
     >
       <div className="min-w-0">
+        {back && (
+          <Link
+            href={back.href}
+            className="caption -ml-1 mb-2 inline-flex items-center gap-0.5 rounded-md px-1 py-0.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <ChevronLeft className="size-3.5" aria-hidden="true" />
+            {back.label}
+          </Link>
+        )}
         {eyebrow && (
           <div className="caption-xs uppercase tracking-wider font-semibold text-muted-foreground mb-1.5">
             {eyebrow}
           </div>
         )}
-        <Tag
-          className={cn(
-            "text-balance",
-            level === 1
-              ? "heading-xl text-foreground"
-              : level === 2
-                ? "heading text-foreground"
-                : "subheading text-foreground",
+        <div className={cn(badges && "flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1.5")}>
+          <Tag
+            className={cn(
+              "min-w-0 text-balance",
+              level === 1
+                ? "heading-xl text-foreground"
+                : level === 2
+                  ? "heading text-foreground"
+                  : "subheading text-foreground",
+            )}
+          >
+            {headingTitle}
+          </Tag>
+          {badges && (
+            <div className="flex shrink-0 flex-wrap items-center gap-1.5" data-slot="page-header-badges">
+              {badges}
+            </div>
           )}
-        >
-          {headingTitle}
-        </Tag>
+        </div>
         {description && (
           <p className="body mt-2 max-w-2xl text-pretty text-muted-foreground">{description}</p>
+        )}
+        {meta && (
+          <div
+            className="caption mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-muted-foreground"
+            data-slot="page-header-meta"
+          >
+            {meta}
+          </div>
         )}
       </div>
       {actions &&

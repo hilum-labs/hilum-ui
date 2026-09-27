@@ -306,6 +306,9 @@ export const tokens = {
       lineHeight: "1.625",
       textWrap: "pretty",
     },
+    /** 11px — dense metadata (table sub-lines, chips, editor hints). Use instead of text-[11px]. */
+    "caption-sm": { family: "sans", size: "0.6875rem", weight: 400, lineHeight: "1.5" },
+    /** 10px — the floor. Use instead of text-[10px]; keep to non-essential metadata. */
     "caption-xs": { family: "sans", size: "0.625rem", weight: 400, lineHeight: "1.625" },
 
     /* --- "Eyebrow" family — uppercase tracked label used above headlines, --- *

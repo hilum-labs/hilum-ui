@@ -674,8 +674,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "trigger, open, onOpenChange, title, description, confirmLabel"
+      },
+      {
         "label": "Key exports",
-        "description": "AlertDialogRoot, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader"
+        "description": "ConfirmDialog, AlertDialogRoot, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay, AlertDialogContent"
       }
     ],
     "exampleCode": "import {\n  AlertDialog, AlertDialogTrigger, AlertDialogContent,\n  AlertDialogHeader, AlertDialogFooter, AlertDialogTitle,\n  AlertDialogDescription, AlertDialogAction, AlertDialogCancel,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<AlertDialog>\n  <AlertDialogTrigger asChild>\n    <Button variant=\"outline\">Open dialog</Button>\n  </AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Are you sure?</AlertDialogTitle>\n      <AlertDialogDescription>\n        This action cannot be undone. This will permanently change your account settings.\n      </AlertDialogDescription>\n    </AlertDialogHeader>\n// ...trimmed for docs",
@@ -787,7 +791,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "color"
+        "description": "color, tone"
       },
       {
         "label": "Variant props",
@@ -795,7 +799,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "Key exports",
-        "description": "Badge, badgeVariants, badgeColors"
+        "description": "Badge, badgeVariants, badgeColors, STATUS_TONE_BADGE"
       }
     ],
     "exampleCode": "import { Badge } from \"@hilum/ui\"\n\n<Badge color=\"violet\">Fiction</Badge>\n<Badge color=\"amber\">Science</Badge>\n<Badge color=\"green\">Philosophy</Badge>\n<Badge color=\"blue\">History</Badge>\n<Badge color=\"rose\">Poetry</Badge>",
@@ -1138,6 +1142,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/atoms/code-block/": {
+    "accessibility": [
+      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
+      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
+      "Use status, selection, and disabled states that remain understandable without color alone."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "children, language, maxHeight, copy, wrap, className"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/code-block/",
+    "summary": "Styled, scrollable pre with copy-to-clipboard for API keys, webhook payloads, snippets and logs.",
+    "title": "Code Block",
+    "whenNotToUse": [
+      "Do not use Code Block just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Code Block when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
   "/atoms/collapsible/": {
     "accessibility": [
       "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
@@ -1344,11 +1375,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "value, onChange, placeholder, disabled, className"
+        "description": "placeholder, disabled, minDate, maxDate, clearable, locale"
       },
       {
         "label": "Key exports",
-        "description": "DatePicker, formatDate"
+        "description": "DatePicker, DateRangePicker, DEFAULT_DATE_RANGE_PRESETS"
       }
     ],
     "exampleCode": "import { DatePicker } from \"@hilum/ui\"\n\nconst [date, setDate] = React.useState<Date | undefined>()\n\n<DatePicker value={date} onChange={setDate} />",
@@ -1362,6 +1393,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Date Picker when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/date-text/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, format, locale, timeZone, fallback, updateInterval"
+      },
+      {
+        "label": "Key exports",
+        "description": "DateText, RelativeTime"
+      }
+    ],
+    "exampleCode": "import { DateText } from \"@hilum/ui\"\n\n<DateText value={order.createdAt} />                  // Sep 26, 2026\n<DateText value={order.createdAt} format=\"datetime\" /> // Sep 26, 2026, 3:04 PM\n<DateText value={order.createdAt} format=\"monthDay\" /> // Sep 26\n<DateText value={order.processedAt} fallback=\"Not processed\" />",
+    "kind": "component",
+    "path": "/atoms/date-text/",
+    "summary": "Locale-aware dates, relative times, money and counts. DateText renders a semantic time element; the Intl-based helpers keep every screen on one format convention.",
+    "title": "Date Text",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Date Text when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
@@ -1936,8 +1998,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Props",
+        "description": "page, pageSize, total, hasNextPage, onPageChange, itemLabel"
+      },
+      {
         "label": "Key exports",
-        "description": "Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext"
+        "description": "PaginationBar, Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious"
       }
     ],
     "exampleCode": "import {\n  Pagination, PaginationContent, PaginationItem,\n  PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis,\n} from \"@hilum/ui\"\n\n<Pagination>\n  <PaginationContent>\n    <PaginationItem><PaginationPrevious href=\"#\" /></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\">1</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\" isActive>2</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\">3</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationEllipsis /></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\">8</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationNext href=\"#\" /></PaginationItem>\n  </PaginationContent>\n</Pagination>",
@@ -2040,6 +2106,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/atoms/rating/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, max, onValueChange, size, showValue, count"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/rating/",
+    "summary": "Star rating. Read-only with partial stars for reviews and product cards, or an accessible radio-group input.",
+    "title": "Rating",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Rating when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/atoms/resizable/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -2119,6 +2212,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Scroll Area when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
       "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
       "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
+  "/atoms/search-input/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "value, onValueChange, loading, containerClassName"
+      }
+    ],
+    "exampleCode": "import { SearchInput } from \"@hilum/ui\"\n\nconst [query, setQuery] = useState(\"\")\n\n<SearchInput\n  value={query}\n  onValueChange={setQuery}\n  placeholder=\"Search orders\"\n  containerClassName=\"max-w-sm\"\n/>",
+    "kind": "component",
+    "path": "/atoms/search-input/",
+    "summary": "Search field with a leading icon, clear button, Escape-to-clear and a loading state. Replaces inputs with hand-positioned search icons.",
+    "title": "Search Input",
+    "whenNotToUse": [
+      "Do not use a button when plain text, static status, or passive decoration would communicate the state just as well.",
+      "Do not overload a single view with too many equally prominent buttons; reduce or demote secondary actions first."
+    ],
+    "whenToUse": [
+      "Use buttons for explicit user-triggered actions such as submit, save, continue, or open.",
+      "Choose the variant and size that matches the action hierarchy in the surrounding view.",
+      "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
     ]
   },
   "/atoms/searchable-table/": {
@@ -2338,11 +2458,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Toast keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Key exports",
+        "description": "Toaster, toast, useSonner"
       }
     ],
-    "exampleCode": "import { toast } from \"sonner\"\n\n// Toaster is already in the root layout\ntoast(\"Event has been created\")",
+    "exampleCode": "import { toast } from \"@hilum/ui\"\n\n// Toaster is already in the root layout\ntoast(\"Event has been created\")",
     "kind": "component",
     "path": "/atoms/sonner/",
     "summary": "Non-blocking notification messages that appear briefly and dismiss automatically.",
@@ -2397,11 +2517,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "status, label, variant, variantMap, labelMap, icon"
+        "description": "status, label, tone, toneMap, variant, variantMap"
       },
       {
         "label": "Key exports",
-        "description": "StatusBadge, statusBadgeVariantFor, statusLabel"
+        "description": "StatusBadge, statusBadgeVariantFor, statusLabel, statusToneFor, DEFAULT_STATUS_TONE"
       }
     ],
     "exampleCode": "import { StatusBadge } from \"@hilum/ui\"\n\n<StatusBadge status=\"active\" showDot />\n<StatusBadge status=\"pending\" showDot />\n<StatusBadge status=\"draft\" showDot />\n<StatusBadge status=\"failed\" showDot />",
@@ -2575,7 +2695,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "value, onValueChange, selectedIndex, onSelect, icon, label"
+        "description": "value, onValueChange, selectedIndex, onSelect, scrollable, icon"
       },
       {
         "label": "Key exports",
@@ -4987,6 +5107,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Review the examples below to compare trigger styles, content density, and dismissal expectations."
     ]
   },
+  "/molecules/contextual-save-bar/": {
+    "accessibility": [
+      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
+      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
+      "Use status, selection, and disabled states that remain understandable without color alone."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "open, message, onSave, onDiscard, saveLabel, discardLabel"
+      },
+      {
+        "label": "Key exports",
+        "description": "ContextualSaveBar, useUnsavedChangesWarning"
+      }
+    ],
+    "exampleCode": "import { ContextualSaveBar, useUnsavedChangesWarning } from \"@hilum/ui\"\n\nconst [saved, setSaved] = useState(\"Linen shirt\")\nconst [title, setTitle] = useState(saved)\nconst dirty = title !== saved\nuseUnsavedChangesWarning(dirty)\n\n<Input value={title} onChange={(e) => setTitle(e.target.value)} />\n<ContextualSaveBar\n  open={dirty}\n  position=\"sticky\"\n  onDiscard={() => setTitle(saved)}\n  onSave={() => setSaved(title)}\n/>",
+    "kind": "component",
+    "path": "/molecules/contextual-save-bar/",
+    "summary": "Unsaved-changes strip with Save and Discard for edit screens. Replaces per-card save buttons, binds ⌘S / Ctrl+S, and pairs with useUnsavedChangesWarning to guard reloads.",
+    "title": "Contextual Save Bar",
+    "whenNotToUse": [
+      "Do not use a button when plain text, static status, or passive decoration would communicate the state just as well.",
+      "Do not overload a single view with too many equally prominent buttons; reduce or demote secondary actions first."
+    ],
+    "whenToUse": [
+      "Use buttons for explicit user-triggered actions such as submit, save, continue, or open.",
+      "Choose the variant and size that matches the action hierarchy in the surrounding view.",
+      "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
+    ]
+  },
   "/molecules/data-transfer-controls/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -5050,7 +5201,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "icon, title, description, action, label, href"
+        "description": "icon, title, description, action, secondaryAction, variant"
       }
     ],
     "exampleCode": "import { EmptyState } from \"@hilum/ui\"\nimport { Inbox } from \"lucide-react\"\n\n<EmptyState\n  icon={<Inbox size={20} />}\n  title=\"No messages yet\"\n  description=\"When you receive messages, they'll appear here.\"\n/>",
@@ -5093,6 +5244,33 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Field when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/molecules/filter-bar/": {
+    "accessibility": [
+      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
+      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
+      "Use status, selection, and disabled states that remain understandable without color alone."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "search, children, active, onClear, clearLabel, actions"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/filter-bar/",
+    "summary": "List toolbar with search, filters, a clear action and trailing actions. Stacks on mobile with a horizontally scrolling filter row.",
+    "title": "Filter Bar",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Filter Bar when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
   "/molecules/grid-list/": {
@@ -5514,6 +5692,37 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/molecules/resource-item/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "Props",
+        "description": "title, subtitle, media, badge, href, className"
+      },
+      {
+        "label": "Key exports",
+        "description": "ResourceCell, ResourceItem"
+      }
+    ],
+    "exampleCode": "import { ResourceCell, DateText, StatusBadge, formatCurrency, pluralize } from \"@hilum/ui\"\n\n<TableCell>\n  <ResourceCell\n    title=\"#1042\"                          // primary — strongest\n    subtitle={pluralize(3, \"item\")}        // secondary — muted, smaller\n    href=\"/orders/1042\"\n  />\n</TableCell>\n<TableCell><DateText value={order.createdAt} /></TableCell>\n<TableCell><StatusBadge status={order.financialStatus} /></TableCell>\n<TableCell className=\"text-right tabular-nums\">{formatCurrency(order.total)}</TableCell>",
+    "kind": "component",
+    "path": "/molecules/resource-item/",
+    "summary": "Primary/secondary text hierarchy for resource tables and lists. ResourceCell is the first table column; ResourceItem is the full-row mobile list equivalent.",
+    "title": "Resource Item",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Resource Item when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/molecules/section-heading/": {
     "accessibility": [
       "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
@@ -5581,11 +5790,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Props",
-        "description": "label, title, value, variant, trend, direction"
+        "description": "label, title, value, variant, trend, description"
       },
       {
         "label": "Key exports",
-        "description": "StatCard, StatCardGrid, StatCardSlot, type StatCardProps, type StatCardGridProps, type StatCardSlotProps"
+        "description": "StatCard, StatCardGrid, StatCardSlot, StatGrid, type StatCardProps, type StatCardTrend"
       }
     ],
     "exampleCode": "import { StatCard } from \"@hilum/ui\"\n\n<StatCard label=\"Total users\" value=\"24,521\" />",

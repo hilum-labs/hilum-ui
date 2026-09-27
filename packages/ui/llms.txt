@@ -5,10 +5,10 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.8.6
-- Component modules: 104
-- Atom components: 73
-- Molecule components: 31
+- Package version: 3.9.0
+- Component modules: 111
+- Atom components: 77
+- Molecule components: 34
 - Docs site: https://ui.hilum.dev
 - Source repository: https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
@@ -172,6 +172,13 @@ Primary exports:
 - Toggle (/atoms/toggle/) — Two-state press button for toolbars and filter controls.
 - Tooltip (/atoms/tooltip/) — Brief label that appears on hover or focus to clarify an element.
 - URL Redirect Prompt (/molecules/url-redirect-prompt/) — Redirect recommendation callout shown when an editable URL handle changes. Composes: Callout · Switch.
+- Contextual Save Bar (/molecules/contextual-save-bar/) — Unsaved-changes bar with Save and Discard for edit screens, with ⌘S and unload guarding. Composes: Button · Icon.
+- Date Text (/atoms/date-text/) — Locale-aware dates and relative times, plus Intl helpers for money, numbers and plurals.
+- Resource Item (/molecules/resource-item/) — Primary/secondary text hierarchy for resource table cells and full-row mobile list items. Composes: Stacked List · Table.
+- Search Input (/atoms/search-input/) — Search field with leading icon, clear button, Escape-to-clear and loading state. Composes: Input · Spinner.
+- Filter Bar (/molecules/filter-bar/) — List toolbar with search, filters, clear action and trailing actions; responsive. Composes: Search Input · Select · Button.
+- Rating (/atoms/rating/) — Read-only star rating with partial stars, or an accessible radio-group input.
+- Code Block (/atoms/code-block/) — Styled scrollable pre with language label and copy-to-clipboard.
 
 ## Structured Data
 

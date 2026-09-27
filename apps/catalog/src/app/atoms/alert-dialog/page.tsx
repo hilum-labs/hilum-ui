@@ -15,6 +15,7 @@ import {
 } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { ConfirmDialog } from "@hilum/ui";
 
 const CODE = {
   default: `import {
@@ -63,6 +64,22 @@ import { Button } from "@hilum/ui"
   </AlertDialogContent>
 </AlertDialog>`,
 };
+
+const CONFIRM_CODE = `import { ConfirmDialog, Button, toast } from "@hilum/ui"
+
+// One call replaces hand-built "Delete X" dialogs. Async onConfirm keeps the
+// dialog open with a pending button until it settles.
+<ConfirmDialog
+  trigger={<Button variant="destructive">Delete product</Button>}
+  title="Delete Linen shirt?"
+  description="This permanently deletes the product and its variants."
+  confirmLabel="Delete product"
+  destructive
+  onConfirm={() =>
+    deleteProduct(id).then(() => toast.success("Product deleted"))
+  }
+/>`;
+
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -150,6 +167,26 @@ function AlertDialogPage() {
             </AlertDialogContent>
           </AlertDialog>
         </PreviewBlock>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Confirm Dialog</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="One-call confirmation"
+            description="Trigger, copy and an async-aware confirm handler."
+            code={CONFIRM_CODE}
+          >
+            <ConfirmDialog
+              trigger={<Button variant="destructive">Delete product</Button>}
+              title="Delete Linen shirt?"
+              description="This permanently deletes the product and its variants."
+              confirmLabel="Delete product"
+              destructive
+              onConfirm={() => new Promise((resolve) => window.setTimeout(resolve, 800))}
+            />
+          </PreviewBlock>
+        </section>
       </div>
     </div>
   );

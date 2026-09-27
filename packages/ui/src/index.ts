@@ -11,6 +11,13 @@ export * from "./lib/icon-context";
 export * from "./lib/shape-context";
 export * from "./lib/surface-context";
 export * from "./lib/density-context";
+export * from "./lib/format";
+export {
+  useScrollEdges,
+  horizontalEdgeMask,
+  useHorizontalOverflowMask,
+  scrollStripItemIntoView,
+} from "./lib/scroll-fade";
 
 // Components (alphabetical)
 export * from "./components/account-menu";
@@ -38,15 +45,18 @@ export * from "./components/checkbox";
 export * from "./components/checkbox-card";
 export * from "./components/checkbox-group";
 export * from "./components/collapsible";
+export * from "./components/code-block";
 export * from "./components/color-input";
 export * from "./components/color-picker";
 export * from "./components/combobox";
 export * from "./components/command-palette";
 export * from "./components/command";
 export * from "./components/context-menu";
+export * from "./components/contextual-save-bar";
 export * from "./components/data-table";
 export * from "./components/data-transfer-controls";
 export * from "./components/date-picker";
+export * from "./components/date-text";
 export * from "./components/description-list";
 export * from "./components/dialog";
 export * from "./components/drawer";
@@ -55,6 +65,7 @@ export * from "./components/dropdown-menu";
 export * from "./components/empty-state";
 export * from "./components/field";
 export * from "./components/file-thumbnail";
+export * from "./components/filter-bar";
 export * from "./components/file-dropzone";
 export * from "./components/grid-list";
 export * from "./components/help-tooltip";
@@ -84,11 +95,14 @@ export * from "./components/popover";
 export * from "./components/progress";
 export * from "./components/property-row";
 export * from "./components/radio-card";
+export * from "./components/rating";
 export * from "./components/radio-group";
 export * from "./components/resizable";
+export * from "./components/resource-item";
 export * from "./components/rich-text-editor";
 export * from "./components/scroll-area";
 export * from "./components/section-heading";
+export * from "./components/search-input";
 export * from "./components/searchable-table";
 export * from "./components/select";
 export * from "./components/separator";

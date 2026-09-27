@@ -27,6 +27,30 @@ const badgeColors = {
 
 type BadgeColor = keyof typeof badgeColors;
 
+/**
+ * Semantic tones — the convention every product surface should use instead
+ * of picking badge colours by hand:
+ *
+ * - `success`   — finished and healthy: paid, fulfilled, active, delivered.
+ * - `info`      — in motion, nothing to do yet: processing, shipped, scheduled.
+ * - `attention` — needs a merchant action soon: unfulfilled, partially paid, on hold.
+ * - `warning`   — at risk / waiting on someone else: pending, past due, expiring.
+ * - `critical`  — failed or blocked: failed, cancelled, suspended, declined.
+ * - `neutral`   — inactive or terminal-but-fine: draft, archived, refunded, closed.
+ */
+type StatusTone = "success" | "info" | "attention" | "warning" | "critical" | "neutral";
+
+type ToneBadgeVariant = "success" | "brand" | "warning" | "destructive" | "secondary";
+
+const STATUS_TONE_BADGE: Record<StatusTone, { variant: ToneBadgeVariant; color?: BadgeColor }> = {
+  success: { variant: "success" },
+  info: { variant: "brand", color: "blue" },
+  attention: { variant: "warning", color: "orange" },
+  warning: { variant: "warning" },
+  critical: { variant: "destructive" },
+  neutral: { variant: "secondary" },
+};
+
 const badgeVariants = cva("inline-flex items-center font-medium whitespace-nowrap", {
   variants: {
     variant: {
@@ -55,11 +79,19 @@ const badgeVariants = cva("inline-flex items-center font-medium whitespace-nowra
 interface BadgeProps
   extends Omit<HTMLAttributes<HTMLSpanElement>, "color">, VariantProps<typeof badgeVariants> {
   color?: BadgeColor;
+  /** Semantic tone — wins over `variant`/`color`. See `StatusTone`. */
+  tone?: StatusTone;
 }
 
 const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ className, variant = "solid", size = "md", color, children, style, ...props }, ref) => {
+  (
+    { className, variant: variantProp = "solid", size = "md", color: colorProp, tone, children, style, ...props },
+    ref,
+  ) => {
     const shape = useShape();
+    const toneBadge = tone ? STATUS_TONE_BADGE[tone] : undefined;
+    const variant = toneBadge?.variant ?? variantProp;
+    const color = toneBadge?.color ?? colorProp;
     const resolvedColor =
       color ??
       (variant === "brand"
@@ -90,6 +122,7 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
       <span
         ref={ref}
         className={cn(badgeVariants({ variant, size }), shape.item, className)}
+        {...(tone ? { "data-tone": tone } : {})}
         style={{ ...colorStyle, ...style }}
         {...props}
       >
@@ -111,5 +144,5 @@ const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
 
 Badge.displayName = "Badge";
 
-export { Badge, badgeVariants, badgeColors };
-export type { BadgeProps, BadgeColor };
+export { Badge, badgeVariants, badgeColors, STATUS_TONE_BADGE };
+export type { BadgeProps, BadgeColor, StatusTone };

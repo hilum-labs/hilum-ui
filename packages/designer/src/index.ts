@@ -7,6 +7,7 @@ export * from "./components/DesignerWorkspace";
 export * from "./components/DesignerHeader";
 export * from "./components/DesignerSidebar";
 export * from "./components/DesignerPanel";
+export * from "./components/DesignerPanelHeader";
 export * from "./components/DesignerPane";
 export * from "./components/DesignerPropertyRow";
 export * from "./components/DesignerToolbar";

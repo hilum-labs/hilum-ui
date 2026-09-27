@@ -2,12 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { toast } from "sonner";
+import { toast } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
-  default: `import { toast } from "sonner"
+  default: `import { toast } from "@hilum/ui"
 
 // Toaster is already in the root layout
 toast("Event has been created")`,

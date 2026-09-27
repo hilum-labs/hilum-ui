@@ -680,3 +680,83 @@ describe("useLink", () => {
     expect(screen.getByRole("link", { name: "Default link" })).toHaveAttribute("href", "/test");
   });
 });
+
+/* ------------------------------------------------------------------ */
+/* Shop-parity extensions                                               */
+/* ------------------------------------------------------------------ */
+
+describe("PageHeader detail-page props", () => {
+  it("renders a back link, inline badges and meta row", () => {
+    render(
+      <PageHeader
+        back={{ href: "/orders", label: "Orders" }}
+        title="#1042"
+        badges={<span>Paid</span>}
+        meta={<span>Sep 26, 2026</span>}
+      />,
+    );
+    expect(screen.getByRole("link", { name: "Orders" })).toHaveAttribute("href", "/orders");
+    expect(screen.getByRole("heading", { level: 1, name: "#1042" })).toBeInTheDocument();
+    expect(screen.getByText("Paid").closest("[data-slot='page-header-badges']")).not.toBeNull();
+    expect(screen.getByText("Sep 26, 2026").closest("[data-slot='page-header-meta']")).not.toBeNull();
+  });
+});
+
+describe("DetailScreen header + responsive meta", () => {
+  it("renders the header above both columns and a full-width stacked meta column", () => {
+    render(
+      <DetailScreen header={<h1>Order #1042</h1>} meta={<div>Customer</div>} metaWidth={360}>
+        <div>Line items</div>
+      </DetailScreen>,
+    );
+    expect(screen.getByRole("heading", { name: "Order #1042" })).toBeInTheDocument();
+    const aside = screen.getByText("Customer").closest("aside")!;
+    expect(aside).toHaveClass("w-full", "lg:w-(--detail-meta-width)");
+    expect(aside.style.getPropertyValue("--detail-meta-width")).toBe("360px");
+  });
+});
+
+describe("SettingsScreen mobile nav", () => {
+  it("marks the active section with aria-current and a labelled nav", () => {
+    render(
+      <SettingsScreen
+        sections={[
+          { id: "general", label: "General" },
+          { id: "checkout", label: "Checkout" },
+        ]}
+        activeId="checkout"
+      >
+        <div>Checkout settings</div>
+      </SettingsScreen>,
+    );
+    expect(screen.getByRole("navigation", { name: "Settings sections" })).toHaveClass(
+      "overflow-x-auto",
+    );
+    expect(screen.getByRole("link", { name: "Checkout" })).toHaveAttribute("aria-current", "page");
+    expect(screen.getByRole("link", { name: "General" })).not.toHaveAttribute("aria-current");
+  });
+});
+
+describe("AppMobileNav avatar size and overflow scroller", () => {
+  it("renders the account avatar and a scrollable tab strip", () => {
+    const { container } = render(
+      <AppMobileNav
+        brand="Hilum Admin"
+        sections={[{ items: [{ label: "Merchants", href: "/merchants", active: true }] }]}
+        user={{ name: "Ada Lovelace", initials: "AL" }}
+        avatarSize="md"
+      />,
+    );
+    expect(screen.getByText("AL")).toBeInTheDocument();
+    expect(container.querySelector("[data-slot='app-mobile-nav-scroller']")).toHaveClass(
+      "overflow-x-auto",
+    );
+  });
+});
+
+describe("PageHeader wrapTitle", () => {
+  it("wraps instead of truncating when requested", () => {
+    render(<PageHeader title="A very long merchant name" icon={<svg />} wrapTitle />);
+    expect(screen.getByText("A very long merchant name")).toHaveClass("break-words");
+  });
+});

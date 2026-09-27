@@ -5,6 +5,7 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { FileX, Inbox, Search, Users, FolderOpen } from "lucide-react";
 import { EmptyState } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { Package } from "lucide-react";
 
 const CODE = {
   basic: `import { EmptyState } from "@hilum/ui"
@@ -56,6 +57,22 @@ import { FolderOpen } from "lucide-react"
   />
 </div>`,
 };
+
+const CTA_CODE = `import { EmptyState } from "@hilum/ui"
+
+// First-run empty states always get a primary action.
+<EmptyState
+  variant="card"
+  icon={<Package size={16} />}
+  title="Add your first product"
+  description="Products you add appear here and in your online store."
+  action={{ label: "Add product", href: "/products/new" }}
+  secondaryAction={{ label: "Import CSV", onClick: openImport }}
+/>
+
+// Router links: pass an element.
+<EmptyState title="No discounts" action={<Button asChild><Link to="/discounts/new">Create discount</Link></Button>} />`;
+
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -178,6 +195,28 @@ function EmptyStatePage() {
             </div>
           </PreviewBlock>
         </div>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Primary + secondary actions</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="First-run empty state"
+            description="Every first-run state needs a CTA; filtered-empty states offer Clear filters."
+            code={CTA_CODE}
+          >
+            <div className="w-full max-w-lg">
+              <EmptyState
+                variant="card"
+                icon={<Package size={16} />}
+                title="Add your first product"
+                description="Products you add appear here and in your online store."
+                action={{ label: "Add product", href: "#" }}
+                secondaryAction={{ label: "Import CSV", href: "#" }}
+              />
+            </div>
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

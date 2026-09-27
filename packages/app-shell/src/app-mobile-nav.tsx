@@ -1,4 +1,12 @@
-import { Fragment, useEffect, useRef, type ReactNode } from "react";
+import {
+  Fragment,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import {
   Avatar,
   AvatarFallback,
@@ -32,7 +40,37 @@ interface AppMobileNavProps {
   accountLabel?: ReactNode;
   accountMenuLabel?: string;
   getItemLabel?: (item: NavItem) => ReactNode;
+  /** Account avatar size. Default: `sm` (fits two-letter initials). */
+  avatarSize?: "xs" | "sm" | "md";
   className?: string;
+}
+
+/** Edge fade while the tab strip hides items (kept local: works with any @hilum/ui 3.x peer). */
+function useOverflowFade(ref: RefObject<HTMLElement | null>): CSSProperties | undefined {
+  const [edges, setEdges] = useState({ left: false, right: false });
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const update = () => {
+      const overflowing = el.scrollWidth - el.clientWidth > 1;
+      const left = overflowing && el.scrollLeft > 1;
+      const right = overflowing && el.scrollLeft + el.clientWidth < el.scrollWidth - 1;
+      setEdges((prev) => (prev.left === left && prev.right === right ? prev : { left, right }));
+    };
+    update();
+    el.addEventListener("scroll", update, { passive: true });
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(update) : null;
+    ro?.observe(el);
+    return () => {
+      el.removeEventListener("scroll", update);
+      ro?.disconnect();
+    };
+  }, [ref]);
+  if (!edges.left && !edges.right) return undefined;
+  const start = edges.left ? "transparent 0, #000 24px" : "#000 0";
+  const end = edges.right ? "#000 calc(100% - 24px), transparent 100%" : "#000 100%";
+  const mask = `linear-gradient(to right, ${start}, ${end})`;
+  return { maskImage: mask, WebkitMaskImage: mask };
 }
 
 const DEFAULT_USER_MENU: AppMobileNavMenuItem[] = [
@@ -51,10 +89,14 @@ function AppMobileNav({
   accountLabel = user?.email,
   accountMenuLabel = "Open account menu",
   getItemLabel = (item) => item.mobileLabel ?? item.label,
+  avatarSize = "sm",
   className,
 }: AppMobileNavProps) {
   const Link = useLink();
   const activeItemRef = useRef<HTMLLIElement | null>(null);
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  // Fade whichever edge still hides tabs, so overflow reads as scrollable at 390px.
+  const overflowMask = useOverflowFade(scrollerRef);
   const navItems = sections.flatMap((section) => section.items);
 
   useEffect(() => {
@@ -90,7 +132,7 @@ function AppMobileNav({
                 className="flex size-9 shrink-0 items-center justify-center rounded-md transition-[background-color,box-shadow,scale] hover:bg-muted active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 aria-label={accountMenuLabel}
               >
-                <Avatar size="xs">
+                <Avatar size={avatarSize}>
                   {user.avatarUrl && <AvatarImage src={user.avatarUrl} alt={user.name} />}
                   <AvatarFallback className="bg-brand-primary text-background">
                     {user.initials ?? user.name.slice(0, 2).toUpperCase()}
@@ -132,7 +174,12 @@ function AppMobileNav({
           </DropdownMenu>
         )}
       </div>
-      <div className="-mx-3 mt-2 overflow-x-auto scroll-px-3 px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <div
+        ref={scrollerRef}
+        data-slot="app-mobile-nav-scroller"
+        style={overflowMask}
+        className="-mx-3 mt-2 overflow-x-auto overscroll-x-contain scroll-px-3 px-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
         <nav aria-label="Mobile sections">
           <ul className="flex w-max min-w-full gap-1.5 pr-3">
             {navItems.map((item, index) => {

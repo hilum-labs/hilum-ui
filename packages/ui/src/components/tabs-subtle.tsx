@@ -19,6 +19,7 @@ import { spring } from "../lib/springs";
 import { fontWeights } from "../lib/font-weight";
 import { useShape } from "../lib/shape-context";
 import { useProximityHover } from "../hooks/use-proximity-hover";
+import { scrollStripItemIntoView, useHorizontalOverflowMask } from "../lib/scroll-fade";
 
 interface TabsSubtleContextValue {
   registerTab: (index: number, element: HTMLElement | null) => void;
@@ -55,11 +56,16 @@ const TabsSubtle = forwardRef<HTMLDivElement, TabsSubtleProps>(
       idPrefix: idPrefixProp,
       activeLabel = false,
       className,
+      style,
       ...props
     },
     ref,
   ) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const maskStyle = useHorizontalOverflowMask(containerRef);
+    useEffect(() => {
+      scrollStripItemIntoView(containerRef.current, selectedIndex);
+    }, [selectedIndex]);
     const isMouseInside = useRef(false);
     const generatedId = useId();
     const shape = useShape();
@@ -174,9 +180,10 @@ const TabsSubtle = forwardRef<HTMLDivElement, TabsSubtleProps>(
             }
           }}
           className={cn(
-            "relative flex items-center gap-0.5 select-none overflow-x-auto max-w-full scrollbar-hide -my-1 py-1",
+            "relative flex items-center gap-0.5 select-none overflow-x-auto max-w-full overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden -my-1 py-1 [&>[role=tab]]:shrink-0",
             className,
           )}
+          style={maskStyle ? { ...maskStyle, ...style } : style}
           role="tablist"
           {...props}
         >

@@ -24,6 +24,7 @@ import { useShape } from "../lib/shape-context";
 import { useSurface } from "../lib/surface-context";
 import { surfaceClasses } from "../lib/surface-classes";
 import { useProximityHover } from "../hooks/use-proximity-hover";
+import { scrollStripItemIntoView, useHorizontalOverflowMask } from "../lib/scroll-fade";
 
 /* ─────────────────────── Contexts ─────────────────────── */
 
@@ -128,10 +129,18 @@ Tabs.displayName = "Tabs";
 
 /* ─────────────────────── TabsList ─────────────────────── */
 
-type TabsListProps = ComponentPropsWithoutRef<typeof TabsPrimitive.List>;
+interface TabsListProps extends ComponentPropsWithoutRef<typeof TabsPrimitive.List> {
+  /**
+   * Let the strip scroll horizontally instead of clipping when the tabs are
+   * wider than their container (settings tabs on mobile, narrow panels).
+   * Edges fade while more tabs are hidden and the active tab is scrolled into
+   * view. Default: `true`.
+   */
+  scrollable?: boolean;
+}
 
 const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
-  ({ children, className, ...props }, ref) => {
+  ({ children, className, scrollable = true, style, ...props }, ref) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const isMouseInside = useRef(false);
     const shape = useShape();
@@ -211,6 +220,13 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
       setOptimisticIdx(selectedIdx >= 0 ? selectedIdx : null);
     }, [selectedIdx]);
 
+    const maskStyle = useHorizontalOverflowMask(containerRef, scrollable);
+
+    // Keep the active tab visible when the strip overflows.
+    useEffect(() => {
+      if (scrollable) scrollStripItemIntoView(containerRef.current, selectedIdx);
+    }, [scrollable, selectedIdx]);
+
     const activeSelectedIdx = optimisticIdx;
     const selectedRect = activeSelectedIdx !== null ? itemRects[activeSelectedIdx] : null;
     const hoverRect = hoveredIndex !== null ? itemRects[hoveredIndex] : null;
@@ -259,11 +275,15 @@ const TabsList = forwardRef<HTMLDivElement, TabsListProps>(
             if (isMouseInside.current) return;
             setHoveredIndex(null);
           }}
+          data-scrollable={scrollable ? "" : undefined}
           className={cn(
             "relative inline-flex items-center gap-0.5 p-1 select-none bg-muted",
+            scrollable &&
+              "max-w-full overflow-x-auto overflow-y-hidden overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [&>[role=tab]]:shrink-0",
             shape.container,
             className,
           )}
+          style={maskStyle ? { ...maskStyle, ...style } : style}
           {...props}
         >
           {/* Active segment indicator */}

@@ -5,6 +5,7 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { Users, ShoppingCart, TrendingUp, DollarSign, Activity } from "lucide-react";
 import { StatCard } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { StatGrid } from "@hilum/ui";
 
 const CODE = {
   basic: `import { StatCard } from "@hilum/ui"
@@ -54,6 +55,19 @@ import { Users, DollarSign, ShoppingCart, Activity } from "lucide-react"
     trend={{ value: "stable", direction: "neutral" }} icon={<Activity size={15} />} />
 </div>`,
 };
+
+const GRID_CODE = `import { StatCard, StatGrid } from "@hilum/ui"
+
+// One stat design for every dashboard: label, value, trend, description.
+<StatGrid columns={4}>
+  <StatCard label="Total sales" value="$12,480" trend={{ value: "+8.1%", direction: "up" }}
+    description="Last 30 days" href="/analytics/sales" />
+  <StatCard label="Orders" value="312" description="24 to fulfil" />
+  <StatCard label="Refunds" value="$640" trend={{ value: "+2.4%", direction: "up", tone: "negative" }}
+    description="Up is bad here" />
+  <StatCard label="Conversion" loading />
+</StatGrid>`;
+
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -191,6 +205,26 @@ function StatCardPage() {
             </div>
           </PreviewBlock>
         </div>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Stat Grid</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Responsive stat grid"
+            description="columns preset, description line, tone-aware trends, loading skeletons and drill-in links."
+            code={GRID_CODE}
+          >
+            <div className="w-full">
+              <StatGrid columns={4}>
+                <StatCard label="Total sales" value="$12,480" trend={{ value: "+8.1%", direction: "up" }} description="Last 30 days" href="#" />
+                <StatCard label="Orders" value="312" description="24 to fulfil" />
+                <StatCard label="Refunds" value="$640" trend={{ value: "+2.4%", direction: "up", tone: "negative" }} description="Up is bad here" />
+                <StatCard label="Conversion" loading />
+              </StatGrid>
+            </div>
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

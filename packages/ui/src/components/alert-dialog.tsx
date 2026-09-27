@@ -143,7 +143,113 @@ const AlertDialogCancel = React.forwardRef<
 ));
 AlertDialogCancel.displayName = "AlertDialogCancel";
 
+/* ─────────────────────── ConfirmDialog ─────────────────────── */
+
+interface ConfirmDialogProps {
+  /** Element that opens the dialog (e.g. a "Delete" Button). Optional when controlled. */
+  trigger?: React.ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+  title: React.ReactNode;
+  description?: React.ReactNode;
+  confirmLabel?: React.ReactNode;
+  cancelLabel?: React.ReactNode;
+  /** Red confirm button for irreversible actions (delete, cancel order). */
+  destructive?: boolean;
+  /**
+   * Runs on confirm. If it returns a promise the confirm button shows a
+   * pending state and the dialog stays open until it resolves; a rejection
+   * keeps the dialog open so the caller can surface the error (e.g. toast).
+   */
+  onConfirm: () => void | Promise<unknown>;
+  /** Extra content between the description and the footer. */
+  children?: React.ReactNode;
+  className?: string;
+}
+
+/**
+ * One-call confirmation dialog — replaces hand-built "Delete X" dialogs.
+ *
+ *   <ConfirmDialog
+ *     trigger={<Button variant="destructive">Delete</Button>}
+ *     title="Delete product?"
+ *     description="This can't be undone."
+ *     confirmLabel="Delete product"
+ *     destructive
+ *     onConfirm={() => deleteProduct(id)}
+ *   />
+ */
+function ConfirmDialog({
+  trigger,
+  open: openProp,
+  onOpenChange,
+  title,
+  description,
+  confirmLabel = "Confirm",
+  cancelLabel = "Cancel",
+  destructive = false,
+  onConfirm,
+  children,
+  className,
+}: ConfirmDialogProps) {
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
+  const [pending, setPending] = React.useState(false);
+  const open = openProp ?? uncontrolledOpen;
+  const setOpen = (next: boolean) => {
+    if (pending && !next) return;
+    if (openProp === undefined) setUncontrolledOpen(next);
+    onOpenChange?.(next);
+  };
+
+  const handleConfirm = async (event: React.MouseEvent) => {
+    event.preventDefault();
+    const result = onConfirm();
+    if (result && typeof (result as Promise<unknown>).then === "function") {
+      setPending(true);
+      try {
+        await result;
+        setPending(false);
+        if (openProp === undefined) setUncontrolledOpen(false);
+        onOpenChange?.(false);
+      } catch {
+        setPending(false);
+      }
+      return;
+    }
+    setOpen(false);
+  };
+
+  return (
+    <AlertDialogRoot open={open} onOpenChange={setOpen}>
+      {trigger && <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>}
+      <AlertDialogContent className={className}>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{title}</AlertDialogTitle>
+          {description && <AlertDialogDescription>{description}</AlertDialogDescription>}
+        </AlertDialogHeader>
+        {children}
+        <AlertDialogFooter>
+          <AlertDialogCancel disabled={pending}>{cancelLabel}</AlertDialogCancel>
+          <AlertDialogAction
+            onClick={handleConfirm}
+            disabled={pending}
+            aria-busy={pending || undefined}
+            className={cn(
+              destructive &&
+                "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80",
+            )}
+          >
+            {confirmLabel}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialogRoot>
+  );
+}
+ConfirmDialog.displayName = "ConfirmDialog";
+
 export {
+  ConfirmDialog,
   AlertDialogRoot as AlertDialog,
   AlertDialogTrigger,
   AlertDialogPortal,
@@ -156,3 +262,4 @@ export {
   AlertDialogAction,
   AlertDialogCancel,
 };
+export type { ConfirmDialogProps };

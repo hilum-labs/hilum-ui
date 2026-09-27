@@ -135,6 +135,10 @@ const typeSamples: Record<string, { sample: string; usage: string }> = {
     usage: "Dense UI and designer panels",
   },
   caption: { sample: "Enroll: 8,000+ classes", usage: "Captions, metadata, helper text" },
+  "caption-sm": {
+    sample: "SKU-1042 · 3 variants",
+    usage: "Table sub-lines, chips, editor hints (replaces text-[11px])",
+  },
   "caption-xs": { sample: "Soon · v2.0.0 · 2px", usage: "Tiny metadata, badges, sidebar chips" },
   eyebrow: { sample: "STUDENT PROFILES", usage: "Canonical uppercase label" },
   "eyebrow-sm": { sample: "PRO · BETA · NEW", usage: "Compact uppercase label" },

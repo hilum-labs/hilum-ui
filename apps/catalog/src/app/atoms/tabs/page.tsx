@@ -5,6 +5,7 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
+
 const CODE = {
   tabs: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hilum/ui"
 
@@ -25,6 +26,21 @@ const CODE = {
   </TabsContent>
 </Tabs>`,
 };
+
+const OVERFLOW_CODE = `import { Tabs, TabsList, TabsTrigger } from "@hilum/ui"
+
+// TabsList scrolls horizontally (with edge fades) instead of clipping,
+// and keeps the active tab in view. Opt out with scrollable={false}.
+<Tabs defaultValue="general">
+  <TabsList>
+    <TabsTrigger value="general">General</TabsTrigger>
+    <TabsTrigger value="checkout">Checkout</TabsTrigger>
+    …
+  </TabsList>
+</Tabs>`;
+
+const OVERFLOW_TABS = ["General", "Checkout", "Payments", "Shipping", "Taxes", "Notifications", "Domains", "Policies"];
+
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -86,6 +102,29 @@ function TabsPage() {
             </Tabs>
           </div>
         </PreviewBlock>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Overflow</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Scrollable tab strip"
+            description="Narrow containers (mobile settings, editor panels) scroll instead of clipping."
+            code={OVERFLOW_CODE}
+          >
+            <div className="w-72 max-w-full">
+              <Tabs defaultValue="Taxes">
+                <TabsList>
+                  {OVERFLOW_TABS.map((tab) => (
+                    <TabsTrigger key={tab} value={tab}>
+                      {tab}
+                    </TabsTrigger>
+                  ))}
+                </TabsList>
+              </Tabs>
+            </div>
+          </PreviewBlock>
+        </section>
       </div>
     </div>
   );

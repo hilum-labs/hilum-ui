@@ -17,6 +17,7 @@ import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from ".
 import { Button } from "./button";
 import { Input } from "./input";
 import { cn } from "../lib/utils";
+import { pluralize, useFormatter } from "../lib/format";
 
 interface DataTableProps<TData> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -26,6 +27,12 @@ interface DataTableProps<TData> {
   searchPlaceholder?: string;
   pageSize?: number;
   showPagination?: boolean;
+  /** Rendered in the table body when there are no rows (e.g. an `<EmptyState>` with an action). */
+  emptyState?: React.ReactNode;
+  /** Make rows clickable (e.g. open the detail page). Enter/Space activate focused rows. */
+  onRowClick?: (row: TData) => void;
+  /** Noun for the result count — "12 orders". Default: "result". */
+  itemLabel?: string;
 }
 
 function DataTable<TData>({
@@ -35,7 +42,11 @@ function DataTable<TData>({
   searchPlaceholder = "Search...",
   pageSize = 10,
   showPagination = true,
+  emptyState,
+  onRowClick,
+  itemLabel = "result",
 }: DataTableProps<TData>) {
+  const fmt = useFormatter();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
 
@@ -107,7 +118,23 @@ function DataTable<TData>({
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
+              <TableRow
+                key={row.id}
+                {...(onRowClick
+                  ? {
+                      tabIndex: 0,
+                      className:
+                        "cursor-pointer focus-visible:outline-none focus-visible:bg-muted hover:bg-muted",
+                      onClick: () => onRowClick(row.original),
+                      onKeyDown: (event: React.KeyboardEvent<HTMLTableRowElement>) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          onRowClick(row.original);
+                        }
+                      },
+                    }
+                  : {})}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -119,9 +146,9 @@ function DataTable<TData>({
             <TableRow>
               <TableCell
                 colSpan={columns.length}
-                className="h-24 text-center text-muted-foreground"
+                className={cn(!emptyState && "h-24 text-center text-muted-foreground")}
               >
-                No results.
+                {emptyState ?? "No results."}
               </TableCell>
             </TableRow>
           )}
@@ -130,8 +157,9 @@ function DataTable<TData>({
       {showPagination && (
         <div className="flex items-center justify-between">
           <p className="caption tabular-nums text-muted-foreground">
-            {table.getFilteredRowModel().rows.length} result
-            {table.getFilteredRowModel().rows.length !== 1 ? "s" : ""}
+            {pluralize(table.getFilteredRowModel().rows.length, itemLabel, {
+              ...(fmt.locale ? { locale: fmt.locale } : {}),
+            })}
           </p>
           <div className="flex items-center gap-2">
             <span className="caption tabular-nums text-muted-foreground">
@@ -161,5 +189,6 @@ function DataTable<TData>({
 }
 
 export { DataTable };
+export type { DataTableProps };
 export { createColumnHelper } from "@tanstack/react-table";
 export type { ColumnDef };
