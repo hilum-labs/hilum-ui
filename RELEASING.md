@@ -69,7 +69,7 @@ For **each** of `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/desi
 - Workflow filename: `release.yml`
 - Environment: leave empty
 
-Then, under **Publishing access**, choose "Require two-factor authentication and disallow tokens" and revoke any old automation tokens. Trusted publishing needs npm CLI ≥ 11.5.1 (the workflow installs `npm@latest`), and each package's `repository.url` must be `git+https://github.com/hilum-labs/hilum-ui.git`, as it already is.
+Then, under **Publishing access**, choose "Require two-factor authentication and disallow tokens" and revoke any old automation tokens. Trusted publishing needs npm CLI ≥ 11.5.1 (the workflow installs `npm@11`; npm 12 rejects the `--git-checks` flag pnpm passes through), and each package's `repository.url` must be `git+https://github.com/hilum-labs/hilum-ui.git`, as it already is.
 
 ### GitHub repository
 
