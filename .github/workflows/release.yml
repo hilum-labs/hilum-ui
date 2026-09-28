@@ -34,7 +34,9 @@ jobs:
           cache: pnpm
 
       # Trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
-      - run: npm install -g npm@latest
+      # Not npm 12: it rejects the --git-checks flag pnpm 9 passes through
+      # to `npm publish` (npm 11 only warns).
+      - run: npm install -g npm@11
 
       - run: pnpm install --frozen-lockfile
 
