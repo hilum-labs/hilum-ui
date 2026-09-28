@@ -3,13 +3,7 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [
-    [
-      "@hilum/ui",
-      "@hilum/app-shell",
-      "@hilum/designer",
-      "@hilum/designer-canvas",
-      "@hilum/blocks"
-    ]
+    ["@hilum/ui", "@hilum/app-shell", "@hilum/designer", "@hilum/designer-canvas", "@hilum/blocks"]
   ],
   "linked": [],
   "access": "public",

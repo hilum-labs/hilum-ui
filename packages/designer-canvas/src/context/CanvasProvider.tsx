@@ -1,6 +1,7 @@
-import { useMemo, useReducer, useRef, type ReactNode } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from "react";
 import { ShellProvider } from "@hilum/designer";
 import { CanvasContextProvider } from "./CanvasContext";
+import { CanvasHistoryProvider } from "./CanvasHistory";
 import { canvasReducer } from "./reducer";
 import { createInitialState } from "./state";
 import type { CanvasState } from "./state";
@@ -16,12 +17,15 @@ interface CanvasProviderProps<TData = Record<string, unknown>> {
   readOnly?: boolean;
   /** Receive every state transition. Useful for syncing to external storage. */
   onChange?: (state: CanvasState<TData>) => void;
+  /** Maximum undo depth of the shared layer history. Default: 100. */
+  historyLimit?: number;
   children: ReactNode;
 }
 
 /**
- * Mounts both ShellContext (from @hilum/designer) and CanvasContext.
- * Selection lives in ShellContext; layers / viewport / artboard live here.
+ * Mounts ShellContext (from @hilum/designer), CanvasContext and the shared
+ * layer history. Selection lives in ShellContext; layers / viewport /
+ * artboard live here; undo / redo is read with `useHistoryActions()`.
  *
  * The reducer is generic on TData; apps narrow it by passing a typed
  * `initial.layerTypes` array.
@@ -31,21 +35,27 @@ export function CanvasProvider<TData = Record<string, unknown>>({
   services = {},
   readOnly = false,
   onChange,
+  historyLimit,
   children,
 }: CanvasProviderProps<TData>) {
-  const initialState = useMemo(
-    () => createInitialState<TData>({ ...initial, readOnly }),
-    [], // initial state captured once at mount
-  );
+  // Initial state is captured once at mount.
+  const [initialState] = useState(() => createInitialState<TData>({ ...initial, readOnly }));
 
   const reducer = canvasReducer as (
     s: CanvasState<TData>,
     a: CanvasAction<TData>,
   ) => CanvasState<TData>;
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const revisionRef = useRef(0);
-  if (state !== initialState) revisionRef.current += 0; // touched on every render
+  // `revision` counts committed state transitions. It lives in the reducer
+  // state (rather than a ref bumped during render) so it's always consistent
+  // with the `state` it's published alongside. No-op actions (reducer returns
+  // the same object) don't bump it.
+  const [{ state, revision }, dispatch] = useReducer(
+    (current: { state: CanvasState<TData>; revision: number }, action: CanvasAction<TData>) => {
+      const next = reducer(current.state, action);
+      return next === current.state ? current : { state: next, revision: current.revision + 1 };
+    },
+    { state: initialState, revision: 0 },
+  );
 
   // Map `Layer.id → Layer.type` so DesignerPane.showFor works without the
   // shell knowing about the canvas. See @hilum/designer/ShellContext.
@@ -55,20 +65,31 @@ export function CanvasProvider<TData = Record<string, unknown>>({
     return (id: string) => map.get(id);
   }, [state.layers]);
 
-  // Notify on changes (effect-style; useReducer commits before).
-  if (onChange) {
-    // Avoid scheduling effects for every dispatch — call inline. Idempotent.
-    onChange(state);
-  }
+  // Notify after each committed state (including the initial one). Calling
+  // onChange during render would run a parent's setState mid-render and fire
+  // for renders that didn't change state; an effect keyed on `state` fires
+  // exactly once per transition. The latest callback is read through a ref so
+  // an inline `onChange` doesn't re-trigger the notification.
+  const onChangeRef = useRef(onChange);
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  });
+  useEffect(() => {
+    onChangeRef.current?.(state);
+  }, [state]);
 
   const value = useMemo(
-    () => ({ state, dispatch, services, revision: revisionRef.current }),
-    [state, dispatch, services],
+    () => ({ state, dispatch, services, revision }),
+    [state, dispatch, services, revision],
   );
 
   return (
     <ShellProvider readOnly={readOnly} resolveKind={resolveKind}>
-      <CanvasContextProvider value={value as never}>{children}</CanvasContextProvider>
+      <CanvasContextProvider value={value as never}>
+        <CanvasHistoryProvider {...(historyLimit !== undefined && { limit: historyLimit })}>
+          {children}
+        </CanvasHistoryProvider>
+      </CanvasContextProvider>
     </ShellProvider>
   );
 }

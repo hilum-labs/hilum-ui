@@ -16,22 +16,23 @@ interface NavMenuProps extends React.HTMLAttributes<HTMLElement> {
 }
 
 function NavMenu({ items, className, ...props }: NavMenuProps) {
-  const proximity = useProximityIndex<HTMLElement>("y");
+  const { containerRef, handlers, registerItem, activeIndex } = useProximityIndex<HTMLElement>("y");
 
   return (
     <nav
-      ref={proximity.containerRef}
+      ref={containerRef}
+      data-slot="nav-menu"
       className={cn("grid gap-1", className)}
-      {...proximity.handlers}
+      {...handlers}
       {...props}
     >
       {items.map((item, index) => (
         <NavItem
           key={item.href}
-          ref={(node) => proximity.registerItem(index, node)}
+          ref={(node) => registerItem(index, node)}
           href={item.href}
           icon={item.icon}
-          active={item.active || proximity.activeIndex === index}
+          active={item.active || activeIndex === index}
           trailing={item.trailing}
         >
           {item.label}

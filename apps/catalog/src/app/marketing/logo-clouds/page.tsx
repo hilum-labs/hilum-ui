@@ -18,34 +18,34 @@ import logoCloudSplitSource from "@/components/marketing/logo-clouds/logo-cloud-
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
 
 function LogoCloudsPage() {
   return (
-    <div className="h-full overflow-y-auto bg-white">
+    <div className="h-full overflow-y-auto bg-background">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="/" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="/marketing" className="hover:text-ground-700">
+            <a href="/marketing" className="hover:text-foreground">
               Marketing
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Logo Clouds</span>
+            <span className="font-semibold text-foreground">Logo Clouds</span>
           </div>
           <div className="mb-4 flex items-center gap-3">
             <Badge variant="secondary">Social Proof</Badge>
-            <span className="caption text-ground-400">5 variants</span>
+            <span className="caption text-muted-foreground">5 variants</span>
           </div>
-          <h1 className="display mb-2 text-ground-900">Logo Clouds</h1>
-          <p className="body max-w-2xl text-ground-400">
+          <h1 className="display mb-2 text-foreground">Logo Clouds</h1>
+          <p className="body max-w-2xl text-muted-foreground">
             A compact catalog of logo cloud layouts for trust-building moments, from quiet white
             sections to stronger brand-backed treatments.
           </p>
@@ -59,7 +59,7 @@ function LogoCloudsPage() {
           <PreviewBlock
             title="Simple"
             code={logoCloudSimpleSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <LogoCloudSimple />
           </PreviewBlock>
@@ -67,7 +67,7 @@ function LogoCloudsPage() {
           <PreviewBlock
             title="Simple with heading"
             code={logoCloudWithHeadingSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <LogoCloudWithHeading />
           </PreviewBlock>
@@ -75,7 +75,7 @@ function LogoCloudsPage() {
           <PreviewBlock
             title="Simple with heading on brand"
             code={logoCloudBrandHeadingSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <LogoCloudBrandHeading />
           </PreviewBlock>
@@ -83,7 +83,7 @@ function LogoCloudsPage() {
           <PreviewBlock
             title="Off-white grid"
             code={logoCloudGridSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <LogoCloudGrid />
           </PreviewBlock>
@@ -91,7 +91,7 @@ function LogoCloudsPage() {
           <PreviewBlock
             title="Split with grid on right"
             code={logoCloudSplitSource}
-            previewClassName="block bg-white p-0"
+            previewClassName="block bg-background p-0"
           >
             <LogoCloudSplit />
           </PreviewBlock>

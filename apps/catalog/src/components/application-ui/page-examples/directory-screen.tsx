@@ -63,7 +63,7 @@ const DIRECTORY_ACTIONS = [
   { label: "Adjust permissions", icon: Settings },
 ];
 
-function ExampleFrame({ children }: { children: any }) {
+function ExampleFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}
@@ -74,6 +74,7 @@ function ExampleFrame({ children }: { children: any }) {
 export default function DirectoryScreen() {
   const [selectedPersonId, setSelectedPersonId] = useState("ben");
   const selectedPerson = PEOPLE.find((person) => person.id === selectedPersonId) ?? PEOPLE[0];
+  if (!selectedPerson) return null;
 
   return (
     <ExampleFrame>

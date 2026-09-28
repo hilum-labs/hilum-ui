@@ -4,10 +4,11 @@ import { fetchRegistry, type Block } from "../lib/registry.js";
 export const listCommand = new Command("list")
   .description("list available blocks")
   .argument("[category]", "filter by category")
-  .action(async (categoryArg?: string) => {
+  .option("--registry <url>", "registry URL (default: $HILUM_REGISTRY_URL or the Hilum registry)")
+  .action(async (categoryArg: string | undefined, opts: { registry?: string }) => {
     let registry;
     try {
-      registry = await fetchRegistry();
+      registry = await fetchRegistry({ url: opts.registry });
     } catch (err) {
       console.error((err as Error).message);
       process.exit(1);

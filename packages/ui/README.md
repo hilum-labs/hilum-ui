@@ -1,6 +1,6 @@
 # @hilum/ui
 
-UI primitives for the Hilum design system — Button, Input, Dialog, Combobox, and 85 components total, plus brand tokens, fonts, and a curated icon set.
+UI primitives for the Hilum design system — Button, Input, Dialog, Combobox, and 118 component modules total (112 on the main entry, 6 AI/chat modules on `@hilum/ui/ai`), plus brand tokens, fonts, and a curated icon set.
 
 ## Install
 
@@ -18,7 +18,27 @@ In your app's `globals.css`:
 @import "@hilum/ui/fonts.css";
 ```
 
-That's the whole setup — palette, typography, fonts, light/dark theming, and Tailwind class scanning are handled by these imports.
+These imports provide the palette, typography, fonts, light/dark theming and the surface elevation ladder (`bg-surface-1…8`, `shadow-surface-1…8`).
+
+### Tailwind class scanning (`@source`)
+
+Tailwind v4 only generates utilities for class names it finds in scanned files, and it doesn't scan `node_modules` by default.
+
+- **`@hilum/ui`**: `tokens.css` contains `@source "../src";`, resolved relative to the file itself (`node_modules/@hilum/ui/dist/tokens.css` → `node_modules/@hilum/ui/src`, which ships in the package). This only works when your Tailwind build resolves `@import "@hilum/ui/tokens.css"` to the real file, which `@tailwindcss/vite`, `@tailwindcss/postcss` and the CLI all do. If components come out unstyled, add the path yourself (relative to your CSS file):
+
+  ```css
+  @source "../node_modules/@hilum/ui/src";
+  ```
+
+- **`@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas`**: these don't ship `src`, and `tokens.css` doesn't cover them. Add an `@source` for each one you use, pointing at its `dist`:
+
+  ```css
+  @source "../node_modules/@hilum/app-shell/dist";
+  @source "../node_modules/@hilum/designer/dist";
+  @source "../node_modules/@hilum/designer-canvas/dist";
+  ```
+
+In a monorepo with hoisted dependencies, adjust the relative path (for example `../../../node_modules/...`).
 
 ## Usage
 
@@ -31,6 +51,104 @@ import { tokens } from "@hilum/ui/tokens";
 ```
 
 See the live catalog at [ui.hilum.dev](https://ui.hilum.dev) for component docs, props, and examples.
+
+## Entry points
+
+| Import                                        | Contents                                                                                                                                                                               |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@hilum/ui`                                   | Components, providers, hooks and utilities (`cn`, `HilumProvider`, `LinkProvider`, `IconProvider`, …). Marked `"use client"`.                                                          |
+| `@hilum/ui/ai`                                | AI / chat surfaces: `AskUserQuestions`, `ChatMessage`, `InputMessage`, `ThinkingIndicator`, `ThinkingSteps`, `UrlRedirectPrompt`.                                                      |
+| `@hilum/ui/form`                              | react-hook-form bindings: `Form`, `FormField`, `FormItem`, `FormLabel`, `FormControl`, `FormDescription`, `FormMessage`, `useFormField`. Requires the optional peer `react-hook-form`. |
+| `@hilum/ui/icon-libraries`                    | Alternative icon sets for `IconProvider` (`iconLibraries`, `phosphorIcons`, `tablerIcons`, `hugeiconsIcons`, `untitleduiIcons`). Requires the matching optional icon peers.            |
+| `@hilum/ui/icons`                             | Curated lucide re-exports. Server-safe.                                                                                                                                                |
+| `@hilum/ui/tokens`                            | JS design tokens. Server-safe.                                                                                                                                                         |
+| `@hilum/ui/create-theme`                      | `createTheme`, `applyTheme`, `ThemeProvider`.                                                                                                                                          |
+| `@hilum/ui/tokens.css`, `@hilum/ui/fonts.css` | Stylesheets (see Setup).                                                                                                                                                               |
+
+### AI components (`@hilum/ui/ai`)
+
+Since 4.0 the conversational components ship from their own subpath, so apps without a chat UI don't bundle them:
+
+```tsx
+import { ChatMessage, InputMessage, ThinkingIndicator } from "@hilum/ui/ai";
+```
+
+Migrating from 3.x: move `AskUserQuestions`, `ChatMessage`, `InputMessage`, `ThinkingIndicator`, `ThinkingSteps` (and its `ThinkingStep*` parts), `UrlRedirectPrompt` (and `hasUrlHandleChanged` / `normalizeUrlHandle` / `urlResourcePath`), plus their prop types, from `@hilum/ui` to `@hilum/ui/ai`. Their user-facing strings can be localized with a `labels` prop (English defaults are exported, e.g. `INPUT_MESSAGE_DEFAULT_LABELS`).
+
+### Forms (`@hilum/ui/form`)
+
+```tsx
+import { useForm } from "react-hook-form";
+import { Input } from "@hilum/ui";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@hilum/ui/form";
+
+const form = useForm({ defaultValues: { email: "" } });
+
+<Form {...form}>
+  <form onSubmit={form.handleSubmit(onSubmit)}>
+    <FormField
+      control={form.control}
+      name="email"
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel>Email</FormLabel>
+          <FormControl>
+            <Input type="email" {...field} />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  </form>
+</Form>;
+```
+
+### Icon libraries (`@hilum/ui/icon-libraries`)
+
+The main entry only depends on `lucide-react`. To let components render another icon set, install its package and register it:
+
+```tsx
+import { IconProvider } from "@hilum/ui";
+import { phosphorIcons } from "@hilum/ui/icon-libraries";
+
+<IconProvider libraries={{ phosphor: phosphorIcons }} defaultLibrary="phosphor">
+  <App />
+</IconProvider>;
+```
+
+## Providers
+
+All providers are optional; components work without them.
+
+### `HilumProvider` (reduced motion)
+
+Hilum components follow the OS `prefers-reduced-motion` setting by default (movement becomes instant; opacity and colour still fade). Wrap your app in `HilumProvider` to change the policy or to extend it to your own framer-motion animations:
+
+```tsx
+import { HilumProvider } from "@hilum/ui";
+
+<HilumProvider reducedMotion="user">
+  {/* "user" (default) | "always" | "never" */}
+  <App />
+</HilumProvider>;
+```
+
+`MotionProvider` is an alias. `usePrefersReducedMotion()` returns the effective setting for imperative animations.
+
+### `LinkProvider` (client-side routing)
+
+Components that render links (breadcrumbs, nav items, pagination, …) use a plain `<a>` by default. Inject your router's link so they navigate client-side:
+
+```tsx
+import { LinkProvider } from "@hilum/ui";
+import { Link } from "@tanstack/react-router";
+
+<LinkProvider value={({ href, ...rest }) => <Link to={href} {...rest} />}>
+  <App />
+</LinkProvider>;
+```
+
+(`@hilum/app-shell`'s `<AppShell linkComponent={Link}>` sets this for you.)
 
 ## Brand
 
@@ -46,6 +164,17 @@ import { tokens } from "@hilum/ui/tokens";
 tokens.brand.primary; // "#C100F1"
 tokens.brand.secondary; // "#FFF5BF"
 tokens.ground[500]; // "#737373"
+```
+
+## PDF previews (`FileThumbnail`)
+
+PDF thumbnails use pdf.js, which needs a worker script. By default it loads from jsDelivr (matching the installed `pdfjs-dist` version). To self-host (strict CSP, offline apps), set it once at startup, or per component with the `pdfWorkerSrc` prop:
+
+```ts
+import { setPdfWorkerSrc } from "@hilum/ui";
+import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url"; // Vite
+
+setPdfWorkerSrc(workerSrc);
 ```
 
 ## Theming

@@ -11,7 +11,10 @@ export default function BannerHeader() {
             <strong className="font-semibold">New version out</strong>
             <span className="mx-2 text-ground-400">·</span>
             Version 2.0 ships with a redesigned dashboard and 3× faster rendering.{" "}
-            <a href="#" className="font-semibold text-brand-secondary underline underline-offset-2">
+            <a
+              href="#read-the-changelog"
+              className="font-semibold text-brand-secondary underline underline-offset-2"
+            >
               Read the changelog →
             </a>
           </p>

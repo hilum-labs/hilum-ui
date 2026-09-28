@@ -52,11 +52,11 @@ export default function HeroWithSignUpAndMedia() {
           <div className="rounded-[1.75rem] bg-ground-900 p-6 text-white shadow-elevated">
             <p className="caption text-ground-400">What customers say</p>
             <p className="heading mt-3 text-white">
-              "We replaced three disconnected tools in our first rollout."
+              “We replaced three disconnected tools in our first rollout.”
             </p>
             <p className="body mt-4 text-ground-300">
-              "Before Beacon, launch week meant chasing updates in Slack and rebuilding status decks
-              at midnight. Now every stakeholder sees the same picture."
+              “Before Beacon, launch week meant chasing updates in Slack and rebuilding status decks
+              at midnight. Now every stakeholder sees the same picture.”
             </p>
             <div className="mt-8 flex items-center gap-3">
               <div className="flex size-11 items-center justify-center rounded-full bg-white/10">

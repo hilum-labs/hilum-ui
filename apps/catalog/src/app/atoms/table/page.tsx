@@ -84,7 +84,7 @@ const members = [
     status: "Active",
     initials: "GL",
     color: "bg-brand-secondary",
-    textColor: "text-ground-900",
+    textColor: "text-foreground",
   },
   {
     id: 3,
@@ -95,7 +95,7 @@ const members = [
     status: "On leave",
     initials: "AP",
     color: "bg-brand-secondary",
-    textColor: "text-ground-900",
+    textColor: "text-foreground",
   },
   {
     id: 4,
@@ -212,8 +212,8 @@ import { Badge } from "@hilum/ui"
   <TableBody>
     {rows.map((row) => (
       <TableRow key={row.id}>
-        <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-        <TableCell className="max-w-[200px] truncate text-ground-500">{row.text}</TableCell>
+        <TableCell className="font-medium text-foreground">{row.voice}</TableCell>
+        <TableCell className="max-w-[200px] truncate text-muted-foreground">{row.text}</TableCell>
         <TableCell>{row.duration}</TableCell>
         <TableCell><Badge variant={statusVariant[row.status]}>{row.status}</Badge></TableCell>
       </TableRow>
@@ -224,7 +224,7 @@ import { Badge } from "@hilum/ui"
   striped: `// Alternate row background using className on TableRow
 <TableBody>
   {rows.map((row, i) => (
-    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-ground-50" : ""}>
+    <TableRow key={row.id} className={i % 2 !== 0 ? "bg-muted" : ""}>
       ...
     </TableRow>
   ))}
@@ -241,14 +241,14 @@ import { Badge } from "@hilum/ui"
             <AvatarFallback className={cn(m.color, m.textColor, "font-semibold")}>{m.initials}</AvatarFallback>
           </Avatar>
           <div>
-            <p className="font-medium text-ground-900">{m.name}</p>
-            <p className="caption text-ground-400">{m.email}</p>
+            <p className="font-medium text-foreground">{m.name}</p>
+            <p className="caption text-muted-foreground">{m.email}</p>
           </div>
         </div>
       </TableCell>
       <TableCell>
-        <p className="body text-ground-900">{m.role}</p>
-        <p className="caption text-ground-400">{m.dept}</p>
+        <p className="body text-foreground">{m.role}</p>
+        <p className="caption text-muted-foreground">{m.dept}</p>
       </TableCell>
       <TableCell><Badge variant={statusVariant[m.status]}>{m.status}</Badge></TableCell>
     </TableRow>
@@ -294,7 +294,7 @@ const toggle = (id: number) =>
   {Object.entries(grouped).map(([group, rows]) => (
     <Fragment key={group}>
       <TableRow className="hover:bg-transparent">
-        <TableHead colSpan={4} className="bg-ground-50 py-2">{group}</TableHead>
+        <TableHead colSpan={4} className="bg-muted py-2">{group}</TableHead>
       </TableRow>
       {rows.map((row) => (
         <TableRow key={row.id}>...</TableRow>
@@ -307,10 +307,10 @@ const toggle = (id: number) =>
 const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(null)
 
 <TableHead>
-  <button className="flex items-center gap-1 hover:text-ground-700"
+  <button className="flex items-center gap-1 hover:text-foreground"
     onClick={() => setSort(s => s?.col === "name" ? { col: "name", dir: s.dir === "asc" ? "desc" : "asc" } : { col: "name", dir: "asc" })}>
     Name
-    <ChevronsUpDown size={12} className="text-ground-300" />
+    <ChevronsUpDown size={12} className="text-muted-foreground/70" />
   </button>
 </TableHead>`,
 
@@ -318,7 +318,7 @@ const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(nu
 // Add sticky positioning to the thead
 <div className="h-56 overflow-auto rounded-xl">
   <Table>
-    <TableHeader className="sticky top-0 z-10 bg-white/90 backdrop-blur-sm">
+    <TableHeader className="sticky top-0 z-10 bg-background/90 backdrop-blur-sm">
       ...
     </TableHeader>
     <TableBody>...</TableBody>
@@ -331,7 +331,7 @@ const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(nu
   <TableBody>
     {lines.map((line) => (
       <TableRow key={line.description}>
-        <TableCell className="font-medium text-ground-900">{line.description}</TableCell>
+        <TableCell className="font-medium text-foreground">{line.description}</TableCell>
         <TableCell className="text-right">{line.hrs}h</TableCell>
         <TableCell className="text-right">{line.rate}/hr</TableCell>
         <TableCell className="text-right font-medium">{line.amount.toLocaleString()}</TableCell>
@@ -340,12 +340,12 @@ const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(nu
   </TableBody>
   <TableFooter>
     <TableRow>
-      <TableCell colSpan={3} className="text-right font-medium text-ground-500">Subtotal</TableCell>
-      <TableCell className="text-right font-semibold text-ground-900">${subtotal.toLocaleString()}</TableCell>
+      <TableCell colSpan={3} className="text-right font-medium text-muted-foreground">Subtotal</TableCell>
+      <TableCell className="text-right font-semibold text-foreground">${subtotal.toLocaleString()}</TableCell>
     </TableRow>
     <TableRow>
-      <TableCell colSpan={3} className="text-right font-medium text-ground-500">Total</TableCell>
-      <TableCell className="text-right font-semibold text-ground-900">${total.toLocaleString()}</TableCell>
+      <TableCell colSpan={3} className="text-right font-medium text-muted-foreground">Total</TableCell>
+      <TableCell className="text-right font-semibold text-foreground">${total.toLocaleString()}</TableCell>
     </TableRow>
   </TableFooter>
 </Table>`,
@@ -365,8 +365,8 @@ function CheckboxTable() {
   return (
     <div className="w-full">
       {selected.length > 0 && (
-        <div className="mb-2 flex items-center gap-2 rounded-lg bg-ground-50 px-4 py-2">
-          <span className="body text-ground-600">{selected.length} selected</span>
+        <div className="mb-2 flex items-center gap-2 rounded-lg bg-muted px-4 py-2">
+          <span className="body text-muted-foreground">{selected.length} selected</span>
           <div className="flex-1" />
           <Button size="sm" variant="ghost" className="text-red-500 hover:text-red-600">
             <Trash2 size={13} /> Delete
@@ -393,7 +393,7 @@ function CheckboxTable() {
             <TableRow
               key={m.id}
               data-state={selected.includes(m.id) ? "selected" : undefined}
-              className={cn(selected.includes(m.id) && "bg-ground-50")}
+              className={cn(selected.includes(m.id) && "bg-muted")}
             >
               <TableCell>
                 <Checkbox checked={selected.includes(m.id)} onCheckedChange={() => toggle(m.id)} />
@@ -406,12 +406,12 @@ function CheckboxTable() {
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="body font-medium text-ground-900">{m.name}</p>
-                    <p className="caption text-ground-400">{m.email}</p>
+                    <p className="body font-medium text-foreground">{m.name}</p>
+                    <p className="caption text-muted-foreground">{m.email}</p>
                   </div>
                 </div>
               </TableCell>
-              <TableCell className="body text-ground-700">{m.role}</TableCell>
+              <TableCell className="body text-foreground">{m.role}</TableCell>
               <TableCell>
                 <Badge variant={statusVariant[m.status]}>{m.status}</Badge>
               </TableCell>
@@ -423,8 +423,6 @@ function CheckboxTable() {
   );
 }
 
-type SortDir = "asc" | "desc" | null;
-
 function SortableTable() {
   const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(null);
 
@@ -434,7 +432,7 @@ function SortableTable() {
     );
 
   const SortIcon = ({ col }: { col: string }) => {
-    if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-ground-300" />;
+    if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-muted-foreground/70" />;
     return sort.dir === "asc" ? <ChevronUp size={12} /> : <ChevronDown size={12} />;
   };
 
@@ -464,8 +462,8 @@ function SortableTable() {
               <button
                 onClick={() => cycleSort(key)}
                 className={cn(
-                  "flex items-center gap-1 transition-colors hover:text-ground-700",
-                  sort?.col === key && "text-ground-900",
+                  "flex items-center gap-1 transition-colors hover:text-foreground",
+                  sort?.col === key && "text-foreground",
                 )}
               >
                 {label}
@@ -478,10 +476,10 @@ function SortableTable() {
       <TableBody>
         {sorted.map((t) => (
           <TableRow key={t.id}>
-            <TableCell className="font-mono text-xs text-ground-400">{t.id}</TableCell>
-            <TableCell className="font-medium text-ground-900">{t.company}</TableCell>
-            <TableCell className="text-ground-500">{t.date}</TableCell>
-            <TableCell className="font-medium text-ground-900">{t.amount}</TableCell>
+            <TableCell className="font-mono text-xs text-muted-foreground">{t.id}</TableCell>
+            <TableCell className="font-medium text-foreground">{t.company}</TableCell>
+            <TableCell className="text-muted-foreground">{t.date}</TableCell>
+            <TableCell className="font-medium text-foreground">{t.amount}</TableCell>
             <TableCell>
               <Badge variant={statusVariant[t.status] ?? "secondary"}>{t.status}</Badge>
             </TableCell>
@@ -499,8 +497,8 @@ function SortableTable() {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -509,19 +507,19 @@ function TablePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Table</span>
+          <span className="font-semibold text-foreground">Table</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Table</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Table</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Structured data display with rows and columns. Supports striped rows, avatars, checkboxes,
           sorting, sticky headers, grouped rows, and summary footers.
         </p>
@@ -553,8 +551,8 @@ function TablePage() {
                 <TableBody>
                   {generations.map((row) => (
                     <TableRow key={row.id}>
-                      <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-ground-500">
+                      <TableCell className="font-medium text-foreground">{row.voice}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-muted-foreground">
                         {row.text}
                       </TableCell>
                       <TableCell>{row.duration}</TableCell>
@@ -586,10 +584,10 @@ function TablePage() {
                   {generations.map((row, i) => (
                     <TableRow
                       key={row.id}
-                      className={i % 2 !== 0 ? "bg-ground-50 hover:bg-ground-100/50" : ""}
+                      className={i % 2 !== 0 ? "bg-muted hover:bg-muted/50" : ""}
                     >
-                      <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-                      <TableCell className="max-w-[200px] truncate text-ground-500">
+                      <TableCell className="font-medium text-foreground">{row.voice}</TableCell>
+                      <TableCell className="max-w-[200px] truncate text-muted-foreground">
                         {row.text}
                       </TableCell>
                       <TableCell>{row.duration}</TableCell>
@@ -622,17 +620,17 @@ function TablePage() {
                 <TableBody>
                   {transactions.map((t) => (
                     <TableRow key={t.id}>
-                      <TableCell className="py-1.5 font-mono text-xs text-ground-400">
+                      <TableCell className="py-1.5 font-mono text-xs text-muted-foreground">
                         {t.id}
                       </TableCell>
-                      <TableCell className="py-1.5 font-medium text-ground-900">
+                      <TableCell className="py-1.5 font-medium text-foreground">
                         {t.company}
                       </TableCell>
-                      <TableCell className="py-1.5 text-ground-500">{t.type}</TableCell>
-                      <TableCell className="py-1.5 font-medium text-ground-900">
+                      <TableCell className="py-1.5 text-muted-foreground">{t.type}</TableCell>
+                      <TableCell className="py-1.5 font-medium text-foreground">
                         {t.amount}
                       </TableCell>
-                      <TableCell className="py-1.5 text-ground-500">{t.date}</TableCell>
+                      <TableCell className="py-1.5 text-muted-foreground">{t.date}</TableCell>
                       <TableCell className="py-1.5">
                         <Badge variant={statusVariant[t.status] ?? "secondary"}>{t.status}</Badge>
                       </TableCell>
@@ -672,14 +670,14 @@ function TablePage() {
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <p className="body font-medium text-ground-900">{m.name}</p>
-                          <p className="caption text-ground-400">{m.email}</p>
+                          <p className="body font-medium text-foreground">{m.name}</p>
+                          <p className="caption text-muted-foreground">{m.email}</p>
                         </div>
                       </div>
                     </TableCell>
                     <TableCell>
-                      <p className="body text-ground-900">{m.role}</p>
-                      <p className="caption text-ground-400">{m.dept}</p>
+                      <p className="body text-foreground">{m.role}</p>
+                      <p className="caption text-muted-foreground">{m.dept}</p>
                     </TableCell>
                     <TableCell>
                       <Badge variant={statusVariant[m.status]}>{m.status}</Badge>
@@ -729,16 +727,19 @@ function TablePage() {
                   return (
                     <Fragment key={group}>
                       <TableRow className="hover:bg-transparent">
-                        <TableCell colSpan={4} className="bg-ground-50 py-2 label text-ground-500">
+                        <TableCell
+                          colSpan={4}
+                          className="bg-muted py-2 label text-muted-foreground"
+                        >
                           {group}
                         </TableCell>
                       </TableRow>
                       {rows.map((t) => (
                         <TableRow key={t.id}>
-                          <TableCell className="font-medium text-ground-900">{t.company}</TableCell>
-                          <TableCell className="text-ground-500">{t.type}</TableCell>
-                          <TableCell className="font-medium text-ground-900">{t.amount}</TableCell>
-                          <TableCell className="text-ground-500">{t.date}</TableCell>
+                          <TableCell className="font-medium text-foreground">{t.company}</TableCell>
+                          <TableCell className="text-muted-foreground">{t.type}</TableCell>
+                          <TableCell className="font-medium text-foreground">{t.amount}</TableCell>
+                          <TableCell className="text-muted-foreground">{t.date}</TableCell>
                         </TableRow>
                       ))}
                     </Fragment>
@@ -771,8 +772,8 @@ function TablePage() {
             code={CODE.sticky}
             previewClassName="flex-col items-stretch"
           >
-            <Table containerClassName="max-h-56 overflow-auto rounded-xl border border-ground-100 bg-white">
-              <TableHeader className="sticky top-0 z-10 bg-white/90 backdrop-blur-sm">
+            <Table containerClassName="max-h-56 overflow-auto rounded-xl border border-border bg-background">
+              <TableHeader className="sticky top-0 z-10 bg-background/90 backdrop-blur-sm">
                 <TableRow>
                   <TableHead>Voice</TableHead>
                   <TableHead>Text</TableHead>
@@ -783,8 +784,8 @@ function TablePage() {
               <TableBody>
                 {[...generations, ...generations].map((row, i) => (
                   <TableRow key={i}>
-                    <TableCell className="font-medium text-ground-900">{row.voice}</TableCell>
-                    <TableCell className="max-w-[200px] truncate text-ground-500">
+                    <TableCell className="font-medium text-foreground">{row.voice}</TableCell>
+                    <TableCell className="max-w-[200px] truncate text-muted-foreground">
                       {row.text}
                     </TableCell>
                     <TableCell>{row.duration}</TableCell>
@@ -819,12 +820,14 @@ function TablePage() {
               <TableBody>
                 {invoiceLines.map((line) => (
                   <TableRow key={line.description}>
-                    <TableCell className="font-medium text-ground-900">
+                    <TableCell className="font-medium text-foreground">
                       {line.description}
                     </TableCell>
-                    <TableCell className="text-right text-ground-500">{line.hrs}h</TableCell>
-                    <TableCell className="text-right text-ground-500">${line.rate}/hr</TableCell>
-                    <TableCell className="text-right font-medium text-ground-900">
+                    <TableCell className="text-right text-muted-foreground">{line.hrs}h</TableCell>
+                    <TableCell className="text-right text-muted-foreground">
+                      ${line.rate}/hr
+                    </TableCell>
+                    <TableCell className="text-right font-medium text-foreground">
                       ${line.amount.toLocaleString()}
                     </TableCell>
                   </TableRow>
@@ -832,26 +835,26 @@ function TablePage() {
               </TableBody>
               <TableFooter>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right text-ground-500">
+                  <TableCell colSpan={3} className="text-right text-muted-foreground">
                     Subtotal
                   </TableCell>
-                  <TableCell className="text-right font-semibold text-ground-900">
+                  <TableCell className="text-right font-semibold text-foreground">
                     ${subtotal.toLocaleString()}
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right text-ground-500">
+                  <TableCell colSpan={3} className="text-right text-muted-foreground">
                     Tax (20%)
                   </TableCell>
-                  <TableCell className="text-right font-semibold text-ground-900">
+                  <TableCell className="text-right font-semibold text-foreground">
                     ${tax.toLocaleString()}
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={3} className="text-right font-semibold text-ground-900">
+                  <TableCell colSpan={3} className="text-right font-semibold text-foreground">
                     Total
                   </TableCell>
-                  <TableCell className="text-right font-semibold text-ground-900">
+                  <TableCell className="text-right font-semibold text-foreground">
                     ${total.toLocaleString()}
                   </TableCell>
                 </TableRow>

@@ -1,13 +1,17 @@
 {
   "name": "@hilum/blocks",
-  "version": "3.8.0",
+  "version": "4.0.0",
   "private": false,
   "description": "Hilum UI CLI — add marketing blocks to your project",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
+    "url": "git+https://github.com/hilum-labs/hilum-ui.git",
     "directory": "packages/blocks"
+  },
+  "homepage": "https://ui.hilum.dev",
+  "bugs": {
+    "url": "https://github.com/hilum-labs/hilum-ui/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -25,15 +29,15 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src",
+    "lint": "eslint src --max-warnings 0",
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {
     "commander": "^12.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^26.1.0",
     "tsup": "^8.3.0",
-    "typescript": "^5.7.0"
+    "typescript": "^6.0.3"
   }
 }

@@ -62,7 +62,7 @@ export default function FeatureSideBySideImages() {
               <h3 className="heading mt-3 text-ground-900">{card.title}</h3>
               <p className="body mt-3 text-ground-500">{card.description}</p>
               <a
-                href="#"
+                href={`#${card.cta.toLowerCase().replace(/\s+/g, "-")}`}
                 className="subheading mt-6 inline-flex items-center gap-2 text-ground-900 transition-colors hover:text-brand-primary"
               >
                 {card.cta}

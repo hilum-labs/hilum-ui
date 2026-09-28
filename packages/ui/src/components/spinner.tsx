@@ -20,18 +20,22 @@ const spinnerVariants = cva(
   },
 );
 
-interface SpinnerProps
-  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof spinnerVariants> {}
+interface SpinnerProps extends React.ComponentProps<"span">, VariantProps<typeof spinnerVariants> {
+  /** Accessible name announced to screen readers. Defaults to "Loading". */
+  label?: string;
+}
 
-function Spinner({ className, size, ...props }: SpinnerProps) {
+function Spinner({ className, size, label = "Loading", ...props }: SpinnerProps) {
   return (
     <span
+      data-slot="spinner"
       role="status"
-      aria-label="Loading"
+      aria-label={label}
       className={cn(spinnerVariants({ size }), className)}
       {...props}
     />
   );
 }
+Spinner.displayName = "Spinner";
 
 export { Spinner, spinnerVariants };

@@ -5,12 +5,12 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.6.12
-- Component modules: 104
-- Atom components: 73
-- Molecule components: 31
+- Package version: 3.9.0
+- Component modules: 118
+- Atom components: 79
+- Molecule components: 39
 - Docs site: https://ui.hilum.dev
-- GitHub repository: https://github.com/hilum-labs/hilum-ui
+- Source repository: https://github.com/hilum-labs/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
 - Machine-readable marketing blocks registry: https://ui.hilum.dev/registry.json
 - Stack: React 19, Tailwind CSS v4, Radix UI primitives, TanStack Start, TanStack Router
@@ -52,6 +52,33 @@ Primary exports:
 - `createTheme({ primary, secondary })` returns `{ css, palette }`
 - `applyTheme({ primary, secondary })` injects theme CSS in the browser
 - `<ThemeProvider primary secondary>` applies theme CSS from React
+
+## Entry Points
+
+- `@hilum/ui` — components, providers, hooks and utilities (client components)
+- `@hilum/ui/ai` — AI / chat components: AskUserQuestions, ChatMessage, InputMessage, ThinkingIndicator, ThinkingSteps (+ ThinkingStep* parts), UrlRedirectPrompt. Moved off the main entry in 4.0 — import them from here.
+- `@hilum/ui/form` — react-hook-form bindings (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, useFormField); needs the optional peer `react-hook-form`
+- `@hilum/ui/icon-libraries` — alternative icon sets for IconProvider (iconLibraries, phosphorIcons, tablerIcons, hugeiconsIcons, untitleduiIcons); needs the matching optional icon peers
+- `@hilum/ui/icons` — curated lucide icons (server-safe)
+- `@hilum/ui/tokens` — JS design tokens (server-safe)
+- `@hilum/ui/create-theme` — createTheme, applyTheme, ThemeProvider
+- `@hilum/ui/tokens.css`, `@hilum/ui/fonts.css` — stylesheets
+
+```tsx
+import { Button, Input } from "@hilum/ui"
+import { ChatMessage, InputMessage } from "@hilum/ui/ai"
+import { Form, FormField } from "@hilum/ui/form"
+```
+
+AI components accept a `labels` prop to localize their built-in strings; English defaults are exported (e.g. `INPUT_MESSAGE_DEFAULT_LABELS`).
+
+## Providers
+
+All optional; components work without them.
+
+- `<HilumProvider reducedMotion="user" | "always" | "never">` — reduced-motion policy for every Hilum animation (default `"user"` follows the OS `prefers-reduced-motion`; movement becomes instant, opacity/colour still fade). `MotionProvider` is an alias; `usePrefersReducedMotion()` reads the effective setting.
+- `<LinkProvider value={Link}>` — router link component used by link-rendering components (breadcrumbs, nav items, pagination, …) so they navigate client-side. Receives `{ href, className, children, … }`; react-router users pass `({ href, ...rest }) => <Link to={href} {...rest} />`.
+- `<IconProvider libraries defaultLibrary>` — switch the icon set (see `@hilum/ui/icon-libraries`).
 
 ## Documentation
 
@@ -99,7 +126,7 @@ Primary exports:
 - Command Palette (/molecules/command-palette/) — Modal search dialog for navigating and executing grouped commands. Composes: Dialog · Input · Icon · Kbd.
 - Command (/atoms/command/) — Composable command menu with search, groups, keyboard navigation, and shortcuts.
 - Context Menu (/atoms/context-menu/) — Right-click menu with nested sub-menus and keyboard support.
-- Data Table (/atoms/data-table/) — Sortable, filterable table powered by TanStack Table.
+- Data Table (/atoms/data-table/) — TanStack Table with sorting, filtering, row selection, bulk actions, server-side mode, pinning, resizing and virtualization.
 - Data Transfer Controls (/molecules/data-transfer-controls/) — Import and export control cluster with optional scope selector and compact menu mode. Composes: Select · Button Group · Dropdown Menu.
 - Date Picker (/atoms/date-picker/) — Date input pattern combining a trigger field with a calendar popover.
 - Description List (/molecules/description-list/) — Key-value pairs for structured details in profiles and settings panels. Composes: Badge · Button.
@@ -172,6 +199,20 @@ Primary exports:
 - Toggle (/atoms/toggle/) — Two-state press button for toolbars and filter controls.
 - Tooltip (/atoms/tooltip/) — Brief label that appears on hover or focus to clarify an element.
 - URL Redirect Prompt (/molecules/url-redirect-prompt/) — Redirect recommendation callout shown when an editable URL handle changes. Composes: Callout · Switch.
+- Contextual Save Bar (/molecules/contextual-save-bar/) — Unsaved-changes bar with Save and Discard for edit screens, with ⌘S and unload guarding. Composes: Button · Icon.
+- Date Text (/atoms/date-text/) — Locale-aware dates and relative times, plus Intl helpers for money, numbers and plurals.
+- Resource Item (/molecules/resource-item/) — Primary/secondary text hierarchy for resource table cells and full-row mobile list items. Composes: Stacked List · Table.
+- Search Input (/atoms/search-input/) — Search field with leading icon, clear button, Escape-to-clear and loading state. Composes: Input · Spinner.
+- Filter Bar (/molecules/filter-bar/) — List toolbar with saved views, search, filters, removable applied-filter pills, clear action and trailing actions; responsive. Composes: Search Input · Select · Button.
+- Rating (/atoms/rating/) — Read-only star rating with partial stars, or an accessible radio-group input.
+- Code Block (/atoms/code-block/) — Styled scrollable pre with language label and copy-to-clipboard.
+- Tree View (/atoms/tree-view/) — Accessible hierarchical list with keyboard navigation, typeahead, single/multi selection, tri-state checkboxes and lazy children.
+- Sortable (/molecules/sortable/) — Drag-and-drop reorderable list with drag handles, keyboard sorting and screen-reader announcements. Composes: dnd-kit · Button.
+- Time Picker (/atoms/time-picker/) — Segmented hour/minute/AM-PM time field with locale hour cycle, minute steps and min/max.
+- Date Time Picker (/molecules/date-time-picker/) — Single date-and-time value composed from the date picker and time picker. Composes: Date Picker · Time Picker.
+- Page Layout (/molecules/layout/) — Admin page grid with primary/secondary, half and third sections plus annotated settings sections.
+- Form Layout (/molecules/form-layout/) — Form spacing with responsive field groups and a condensed row variant. Composes: Field.
+- Skeleton Page (/molecules/skeleton-page/) — Loading templates for whole admin pages plus body text, display text and thumbnail placeholders. Composes: Skeleton.
 
 ## Structured Data
 

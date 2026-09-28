@@ -2,9 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { Users, ShoppingCart, TrendingUp, DollarSign, Activity } from "lucide-react";
+import { Users, ShoppingCart, DollarSign, Activity } from "lucide-react";
 import { StatCard } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { StatGrid } from "@hilum/ui";
 
 const CODE = {
   basic: `import { StatCard } from "@hilum/ui"
@@ -55,11 +56,23 @@ import { Users, DollarSign, ShoppingCart, Activity } from "lucide-react"
 </div>`,
 };
 
+const GRID_CODE = `import { StatCard, StatGrid } from "@hilum/ui"
+
+// One stat design for every dashboard: label, value, trend, description.
+<StatGrid columns={4}>
+  <StatCard label="Total sales" value="$12,480" trend={{ value: "+8.1%", direction: "up" }}
+    description="Last 30 days" href="/analytics/sales" />
+  <StatCard label="Orders" value="312" description="24 to fulfil" />
+  <StatCard label="Refunds" value="$640" trend={{ value: "+2.4%", direction: "up", tone: "negative" }}
+    description="Up is bad here" />
+  <StatCard label="Conversion" loading />
+</StatGrid>`;
+
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -68,26 +81,26 @@ function StatCardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Stat Card</span>
+          <span className="body font-semibold text-foreground">Stat Card</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Stat Card</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Stat Card</h1>
+        <p className="body max-w-md text-muted-foreground">
           A metric display card. Composes a label, a large value, an optional trend indicator, and
           an optional icon.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Molecule</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Card · Badge · Icon</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Molecule</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Card · Badge · Icon</p>
         </div>
       </div>
 
@@ -191,6 +204,37 @@ function StatCardPage() {
             </div>
           </PreviewBlock>
         </div>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Stat Grid</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Responsive stat grid"
+            description="columns preset, description line, tone-aware trends, loading skeletons and drill-in links."
+            code={GRID_CODE}
+          >
+            <div className="w-full">
+              <StatGrid columns={4}>
+                <StatCard
+                  label="Total sales"
+                  value="$12,480"
+                  trend={{ value: "+8.1%", direction: "up" }}
+                  description="Last 30 days"
+                  href="#"
+                />
+                <StatCard label="Orders" value="312" description="24 to fulfil" />
+                <StatCard
+                  label="Refunds"
+                  value="$640"
+                  trend={{ value: "+2.4%", direction: "up", tone: "negative" }}
+                  description="Up is bad here"
+                />
+                <StatCard label="Conversion" loading />
+              </StatGrid>
+            </div>
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

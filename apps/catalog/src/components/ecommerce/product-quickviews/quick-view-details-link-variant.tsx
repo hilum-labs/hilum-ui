@@ -107,7 +107,7 @@ function SizeSelector({
     <div>
       <div className="flex items-center justify-between gap-4">
         <p className="label text-ground-900">Size</p>
-        <a href="#" className="caption text-brand-primary hover:opacity-80">
+        <a href="#size-guide" className="caption text-brand-primary hover:opacity-80">
           Size guide
         </a>
       </div>
@@ -155,7 +155,7 @@ export default function QuickViewDetailsLinkVariant() {
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Button className="min-w-40">Add to bag</Button>
           <a
-            href="#"
+            href="#view-full-details"
             className="inline-flex items-center gap-2 label text-brand-primary transition-opacity hover:opacity-80"
           >
             View full details

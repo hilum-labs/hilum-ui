@@ -23,8 +23,8 @@ import tieredImagesVariantSource from "@/components/ecommerce/product-overviews/
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -32,21 +32,21 @@ function SectionHeading({ label }: { label: string }) {
 function ProductOverviewsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <div className="mb-10 flex flex-col gap-5 border-b border-ground-100 pb-6 lg:flex-row lg:items-end lg:justify-between">
+      <div className="mb-10 flex flex-col gap-5 border-b border-border pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="#" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="#" className="hover:text-ground-700">
+            <a href="/ecommerce" className="hover:text-foreground">
               Ecommerce
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Product Overviews</span>
+            <span className="font-semibold text-foreground">Product Overviews</span>
           </div>
-          <h1 className="display text-ground-900">Product Overviews</h1>
-          <p className="body mt-3 text-ground-500">
+          <h1 className="display text-foreground">Product Overviews</h1>
+          <p className="body mt-3 text-muted-foreground">
             Detailed product pages with image galleries, color/size selectors, and tabbed details.
           </p>
         </div>

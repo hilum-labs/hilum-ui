@@ -15,6 +15,7 @@ import {
 } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { ConfirmDialog } from "@hilum/ui";
 
 const CODE = {
   default: `import {
@@ -64,11 +65,26 @@ import { Button } from "@hilum/ui"
 </AlertDialog>`,
 };
 
+const CONFIRM_CODE = `import { ConfirmDialog, Button, toast } from "@hilum/ui"
+
+// One call replaces hand-built "Delete X" dialogs. Async onConfirm keeps the
+// dialog open with a pending button until it settles.
+<ConfirmDialog
+  trigger={<Button variant="destructive">Delete product</Button>}
+  title="Delete Linen shirt?"
+  description="This permanently deletes the product and its variants."
+  confirmLabel="Delete product"
+  destructive
+  onConfirm={() =>
+    deleteProduct(id).then(() => toast.success("Product deleted"))
+  }
+/>`;
+
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -77,19 +93,19 @@ function AlertDialogPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Alert Dialog</span>
+          <span className="font-semibold text-foreground">Alert Dialog</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Alert Dialog</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Alert Dialog</h1>
+        <p className="body max-w-lg text-muted-foreground">
           A modal dialog that requires user acknowledgment before a critical or irreversible action
           proceeds.
         </p>
@@ -150,6 +166,26 @@ function AlertDialogPage() {
             </AlertDialogContent>
           </AlertDialog>
         </PreviewBlock>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Confirm Dialog</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="One-call confirmation"
+            description="Trigger, copy and an async-aware confirm handler."
+            code={CONFIRM_CODE}
+          >
+            <ConfirmDialog
+              trigger={<Button variant="destructive">Delete product</Button>}
+              title="Delete Linen shirt?"
+              description="This permanently deletes the product and its variants."
+              confirmLabel="Delete product"
+              destructive
+              onConfirm={() => new Promise((resolve) => window.setTimeout(resolve, 800))}
+            />
+          </PreviewBlock>
+        </section>
       </div>
     </div>
   );

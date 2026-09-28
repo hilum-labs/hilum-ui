@@ -22,8 +22,72 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { Separator } from "./separator";
 import { cn } from "../lib/utils";
+import {
+  isSafeImageUrl,
+  isSafeUrl,
+  plainTextToHtml,
+  sanitizeRichTextHtml,
+} from "../lib/sanitize-html";
 
 type RichTextImageUrlHandler = () => string | null | undefined | Promise<string | null | undefined>;
+
+/** Localizable strings. Every entry has an English default. */
+interface RichTextEditorLabels {
+  /** Accessible name of the toolbar. */
+  toolbar: string;
+  bold: string;
+  italic: string;
+  underline: string;
+  strikethrough: string;
+  heading1: string;
+  heading2: string;
+  heading3: string;
+  bulletList: string;
+  numberedList: string;
+  blockquote: string;
+  codeBlock: string;
+  insertLink: string;
+  insertImage: string;
+  horizontalRule: string;
+  clearFormatting: string;
+  /** Accessible name of the link URL field. */
+  linkUrl: string;
+  /** Placeholder of the link URL field. */
+  linkUrlPlaceholder: string;
+  /** Confirm button of the link field. */
+  insert: string;
+  /** Cancel button of the link field. */
+  cancel: string;
+  /** `window.prompt` message used when `onRequestImageUrl` is not set. */
+  imageUrlPrompt: string;
+  /** Accessible name of the editable area when `aria-label` is not set. */
+  editor: string;
+}
+
+const RICH_TEXT_EDITOR_DEFAULT_LABELS: RichTextEditorLabels = {
+  toolbar: "Text formatting",
+  bold: "Bold (Ctrl+B)",
+  italic: "Italic (Ctrl+I)",
+  underline: "Underline (Ctrl+U)",
+  strikethrough: "Strikethrough",
+  heading1: "Heading 1",
+  heading2: "Heading 2",
+  heading3: "Heading 3",
+  bulletList: "Bullet list",
+  numberedList: "Numbered list",
+  blockquote: "Blockquote",
+  codeBlock: "Code block",
+  insertLink: "Insert link",
+  insertImage: "Insert image",
+  horizontalRule: "Horizontal rule",
+  clearFormatting: "Clear formatting",
+  linkUrl: "Link URL",
+  linkUrlPlaceholder: "https://...",
+  insert: "Insert",
+  cancel: "Cancel",
+  imageUrlPrompt: "Image URL:",
+  editor: "Content editor",
+};
 
 interface RichTextEditorProps {
   value: string;
@@ -36,6 +100,8 @@ interface RichTextEditorProps {
   editorClassName?: string;
   toolbarClassName?: string;
   onRequestImageUrl?: RichTextImageUrlHandler;
+  /** Localizable strings; unspecified keys fall back to English. */
+  labels?: Partial<RichTextEditorLabels>;
 }
 
 interface ToolbarButtonConfig {
@@ -137,6 +203,74 @@ function insertElement(element: HTMLElement) {
   selection.addRange(nextRange);
 }
 
+function insertHtmlAtRange(root: HTMLElement, html: string, range?: Range | null) {
+  const selection = window.getSelection();
+  let target = range ?? (selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : null);
+  if (!target || !root.contains(target.commonAncestorContainer)) {
+    // No caret inside the editor — append at the end.
+    target = document.createRange();
+    target.selectNodeContents(root);
+    target.collapse(false);
+  }
+
+  const template = document.createElement("template");
+  template.innerHTML = html;
+  const fragment = template.content;
+  const last = fragment.lastChild;
+
+  target.deleteContents();
+  target.insertNode(fragment);
+
+  if (selection) {
+    const nextRange = document.createRange();
+    if (last && last.parentNode) nextRange.setStartAfter(last);
+    else nextRange.setStart(target.startContainer, target.startOffset);
+    nextRange.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(nextRange);
+  }
+}
+
+/** Caret position as a character offset into the editor's text content. */
+function getCaretOffset(root: HTMLElement): number | null {
+  const selection = window.getSelection();
+  if (!selection || selection.rangeCount === 0) return null;
+  const range = selection.getRangeAt(0);
+  if (!root.contains(range.endContainer)) return null;
+  const pre = document.createRange();
+  pre.selectNodeContents(root);
+  pre.setEnd(range.endContainer, range.endOffset);
+  return pre.toString().length;
+}
+
+function setCaretOffset(root: HTMLElement, offset: number) {
+  const selection = window.getSelection();
+  if (!selection) return;
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let remaining = offset;
+  let node = walker.nextNode();
+  const range = document.createRange();
+  while (node) {
+    const length = node.textContent?.length ?? 0;
+    if (remaining <= length) {
+      range.setStart(node, remaining);
+      range.collapse(true);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      return;
+    }
+    remaining -= length;
+    node = walker.nextNode();
+  }
+  range.selectNodeContents(root);
+  range.collapse(false);
+  selection.removeAllRanges();
+  selection.addRange(range);
+}
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
 function removeFormat() {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0 || selection.isCollapsed) return;
@@ -163,21 +297,86 @@ function RichTextEditor({
   editorClassName,
   toolbarClassName,
   onRequestImageUrl,
+  labels: labelsProp,
 }: RichTextEditorProps) {
+  const labels = { ...RICH_TEXT_EDITOR_DEFAULT_LABELS, ...labelsProp };
   const editorRef = React.useRef<HTMLDivElement>(null);
   const savedRangeRef = React.useRef<Range | null>(null);
   const [showLinkInput, setShowLinkInput] = React.useState(false);
   const [linkUrl, setLinkUrl] = React.useState("");
 
-  React.useEffect(() => {
+  // The last HTML we emitted through onChange. When the parent echoes it back
+  // as `value`, the DOM already holds it — touching innerHTML would reset the
+  // caret, so we skip.
+  const lastEmittedRef = React.useRef<string | null>(null);
+
+  // Controlled contentEditable: React never owns the children (no
+  // dangerouslySetInnerHTML, which would re-apply markup on every render). We
+  // write sanitized HTML imperatively, and only when the external value
+  // actually differs from what is in the DOM.
+  useIsomorphicLayoutEffect(() => {
     const editor = editorRef.current;
-    if (!editor || document.activeElement === editor || editor.innerHTML === value) return;
-    editor.innerHTML = value;
+    if (!editor) return;
+    if (value === lastEmittedRef.current && editor.innerHTML === value) return;
+    const safe = sanitizeRichTextHtml(value);
+    if (editor.innerHTML === safe) return;
+    const focused = document.activeElement === editor;
+    const caret = focused ? getCaretOffset(editor) : null;
+    editor.innerHTML = safe;
+    lastEmittedRef.current = null;
+    if (focused && caret != null) setCaretOffset(editor, caret);
   }, [value]);
 
   const emitChange = React.useCallback(() => {
-    if (editorRef.current) onChange(editorRef.current.innerHTML);
+    const editor = editorRef.current;
+    if (!editor) return;
+    const html = editor.innerHTML;
+    // Output is sanitized too, as defence in depth (e.g. markup that slipped in
+    // via drag-and-drop or browser extensions).
+    const safe = sanitizeRichTextHtml(html);
+    if (safe !== html) {
+      const caret = getCaretOffset(editor);
+      editor.innerHTML = safe;
+      if (caret != null) setCaretOffset(editor, caret);
+    }
+    lastEmittedRef.current = safe;
+    onChange(safe);
   }, [onChange]);
+
+  const handlePaste = React.useCallback(
+    (event: React.ClipboardEvent<HTMLDivElement>) => {
+      const editor = editorRef.current;
+      if (!editor) return;
+      event.preventDefault();
+      const html = event.clipboardData.getData("text/html");
+      const text = event.clipboardData.getData("text/plain");
+      const safe = html ? sanitizeRichTextHtml(html) : plainTextToHtml(text);
+      if (!safe) return;
+      insertHtmlAtRange(editor, safe);
+      emitChange();
+    },
+    [emitChange],
+  );
+
+  const handleDrop = React.useCallback(
+    (event: React.DragEvent<HTMLDivElement>) => {
+      const editor = editorRef.current;
+      const data = event.dataTransfer;
+      if (!editor || !data) return;
+      const html = data.getData("text/html");
+      const text = data.getData("text/plain");
+      // Let files etc. fall through untouched; only intercept markup/text.
+      if (!html && !text) return;
+      event.preventDefault();
+      const doc = document as Document & {
+        caretRangeFromPoint?: (x: number, y: number) => Range | null;
+      };
+      const range = doc.caretRangeFromPoint?.(event.clientX, event.clientY) ?? null;
+      insertHtmlAtRange(editor, html ? sanitizeRichTextHtml(html) : plainTextToHtml(text), range);
+      emitChange();
+    },
+    [emitChange],
+  );
 
   const saveSelection = React.useCallback(() => {
     const selection = window.getSelection();
@@ -238,10 +437,10 @@ function RichTextEditor({
 
   const insertLink = React.useCallback(() => {
     const url = linkUrl.trim();
-    if (!url) return;
+    if (!url || !isSafeUrl(url)) return;
 
     restoreSelection();
-    wrapSelectionInline("a", { href: url });
+    wrapSelectionInline("a", { href: url, rel: "noopener noreferrer" });
     editorRef.current?.focus();
     setLinkUrl("");
     setShowLinkInput(false);
@@ -251,9 +450,9 @@ function RichTextEditor({
   const insertImage = React.useCallback(async () => {
     const url =
       (await onRequestImageUrl?.()) ??
-      (typeof window !== "undefined" ? window.prompt("Image URL:") : null);
+      (typeof window !== "undefined" ? window.prompt(labels.imageUrlPrompt) : null);
 
-    if (!url) return;
+    if (!url || !isSafeImageUrl(url)) return;
 
     const image = document.createElement("img");
     image.src = url;
@@ -261,25 +460,25 @@ function RichTextEditor({
     editorRef.current?.focus();
     insertElement(image);
     emitChange();
-  }, [emitChange, onRequestImageUrl]);
+  }, [emitChange, onRequestImageUrl, labels.imageUrlPrompt]);
 
   const toolbarGroups: ToolbarButtonConfig[][] = [
     [
-      { icon: Bold, command: "bold", title: "Bold (Ctrl+B)" },
-      { icon: Italic, command: "italic", title: "Italic (Ctrl+I)" },
-      { icon: Underline, command: "underline", title: "Underline (Ctrl+U)" },
-      { icon: Strikethrough, command: "strikeThrough", title: "Strikethrough" },
+      { icon: Bold, command: "bold", title: labels.bold },
+      { icon: Italic, command: "italic", title: labels.italic },
+      { icon: Underline, command: "underline", title: labels.underline },
+      { icon: Strikethrough, command: "strikeThrough", title: labels.strikethrough },
     ],
     [
-      { icon: Heading1, command: "formatBlock", title: "Heading 1", value: "h1" },
-      { icon: Heading2, command: "formatBlock", title: "Heading 2", value: "h2" },
-      { icon: Heading3, command: "formatBlock", title: "Heading 3", value: "h3" },
+      { icon: Heading1, command: "formatBlock", title: labels.heading1, value: "h1" },
+      { icon: Heading2, command: "formatBlock", title: labels.heading2, value: "h2" },
+      { icon: Heading3, command: "formatBlock", title: labels.heading3, value: "h3" },
     ],
     [
-      { icon: List, command: "insertUnorderedList", title: "Bullet list" },
-      { icon: ListOrdered, command: "insertOrderedList", title: "Numbered list" },
-      { icon: AlignLeft, command: "formatBlock", title: "Blockquote", value: "blockquote" },
-      { icon: FileText, command: "formatBlock", title: "Code block", value: "pre" },
+      { icon: List, command: "insertUnorderedList", title: labels.bulletList },
+      { icon: ListOrdered, command: "insertOrderedList", title: labels.numberedList },
+      { icon: AlignLeft, command: "formatBlock", title: labels.blockquote, value: "blockquote" },
+      { icon: FileText, command: "formatBlock", title: labels.codeBlock, value: "pre" },
     ],
   ];
 
@@ -290,7 +489,7 @@ function RichTextEditor({
     value: commandValue,
   }: ToolbarButtonConfig) => (
     <Button
-      key={`${command}-${title}`}
+      key={`${command}-${commandValue ?? ""}`}
       type="button"
       variant="ghost"
       size="icon"
@@ -321,7 +520,7 @@ function RichTextEditor({
           toolbarClassName,
         )}
         role="toolbar"
-        aria-label="Text formatting"
+        aria-label={labels.toolbar}
       >
         {toolbarGroups.map((group, index) => (
           <React.Fragment key={`toolbar-group-${index}`}>
@@ -335,8 +534,8 @@ function RichTextEditor({
           variant="ghost"
           size="icon"
           className="size-9 text-muted-foreground hover:text-foreground"
-          title="Insert link"
-          aria-label="Insert link"
+          title={labels.insertLink}
+          aria-label={labels.insertLink}
           onMouseDown={(event) => {
             event.preventDefault();
             saveSelection();
@@ -350,8 +549,8 @@ function RichTextEditor({
           variant="ghost"
           size="icon"
           className="size-9 text-muted-foreground hover:text-foreground"
-          title="Insert image"
-          aria-label="Insert image"
+          title={labels.insertImage}
+          aria-label={labels.insertImage}
           onMouseDown={(event) => {
             event.preventDefault();
             void insertImage();
@@ -362,12 +561,12 @@ function RichTextEditor({
         {renderToolbarButton({
           icon: Minus,
           command: "insertHorizontalRule",
-          title: "Horizontal rule",
+          title: labels.horizontalRule,
         })}
         {renderToolbarButton({
           icon: XCircle,
           command: "removeFormat",
-          title: "Clear formatting",
+          title: labels.clearFormatting,
         })}
       </div>
 
@@ -377,7 +576,7 @@ function RichTextEditor({
             type="url"
             value={linkUrl}
             onChange={(event) => setLinkUrl(event.target.value)}
-            placeholder="https://..."
+            placeholder={labels.linkUrlPlaceholder}
             className="h-10 flex-1 bg-background"
             onKeyDown={(event) => {
               if (event.key === "Enter") {
@@ -385,12 +584,13 @@ function RichTextEditor({
                 insertLink();
               }
             }}
+            // eslint-disable-next-line jsx-a11y/no-autofocus -- focuses the URL field when the link popover opens (dialog focus management)
             autoFocus
-            aria-label="Link URL"
+            aria-label={labels.linkUrl}
           />
           <div className="grid grid-cols-2 gap-2 sm:flex sm:shrink-0">
             <Button type="button" size="sm" className="h-10" onClick={insertLink}>
-              Insert
+              {labels.insert}
             </Button>
             <Button
               type="button"
@@ -399,7 +599,7 @@ function RichTextEditor({
               className="h-10"
               onClick={() => setShowLinkInput(false)}
             >
-              Cancel
+              {labels.cancel}
             </Button>
           </div>
         </div>
@@ -409,18 +609,20 @@ function RichTextEditor({
         ref={editorRef}
         id={id}
         contentEditable
+        tabIndex={0}
         role="textbox"
         aria-multiline="true"
-        aria-label={ariaLabel ?? "Content editor"}
+        aria-label={ariaLabel ?? labels.editor}
         className={cn(
           "rich-text-editor-content min-w-0 px-4 py-3 text-sm leading-6 text-foreground outline-none",
           "empty:before:pointer-events-none empty:before:text-muted-foreground empty:before:content-[attr(data-placeholder)]",
           editorClassName,
         )}
         style={{ minHeight }}
-        dangerouslySetInnerHTML={{ __html: value }}
         onInput={emitChange}
         onBlur={emitChange}
+        onPaste={handlePaste}
+        onDrop={handleDrop}
         data-placeholder={placeholder}
         suppressContentEditableWarning
       />
@@ -429,13 +631,13 @@ function RichTextEditor({
         .rich-text-editor-content h1 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; margin: 0.75rem 0 0.5rem; text-wrap: balance; }
         .rich-text-editor-content h2 { font-size: 1.25rem; font-weight: 650; line-height: 1.25; margin: 0.75rem 0 0.5rem; text-wrap: balance; }
         .rich-text-editor-content h3 { font-size: 1.1rem; font-weight: 650; line-height: 1.3; margin: 0.5rem 0 0.25rem; text-wrap: balance; }
-        .rich-text-editor-content blockquote { border-left: 3px solid var(--border); color: var(--muted-foreground); margin: 0.75rem 0; padding-left: 1rem; text-wrap: pretty; }
+        .rich-text-editor-content blockquote { border-inline-start: 3px solid var(--border); color: var(--muted-foreground); margin: 0.75rem 0; padding-inline-start: 1rem; text-wrap: pretty; }
         .rich-text-editor-content pre { background: var(--muted); border-radius: 0.5rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; margin: 0.75rem 0; overflow-x: auto; padding: 0.75rem; }
         .rich-text-editor-content a { color: var(--brand-primary); text-decoration: underline; text-underline-offset: 3px; }
         .rich-text-editor-content img { border-radius: 0.5rem; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); height: auto; margin: 0.5rem 0; max-width: 100%; }
         .dark .rich-text-editor-content img { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1); }
         .rich-text-editor-content hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
-        .rich-text-editor-content ul, .rich-text-editor-content ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+        .rich-text-editor-content ul, .rich-text-editor-content ol { margin: 0.5rem 0; padding-inline-start: 1.5rem; }
         .rich-text-editor-content li { margin: 0.25rem 0; }
       `}</style>
     </div>
@@ -444,5 +646,5 @@ function RichTextEditor({
 
 RichTextEditor.displayName = "RichTextEditor";
 
-export { RichTextEditor };
-export type { RichTextEditorProps, RichTextImageUrlHandler };
+export { RichTextEditor, RICH_TEXT_EDITOR_DEFAULT_LABELS };
+export type { RichTextEditorProps, RichTextEditorLabels, RichTextImageUrlHandler };

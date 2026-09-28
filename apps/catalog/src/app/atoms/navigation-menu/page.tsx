@@ -3,7 +3,7 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
 import * as React from "react";
-import { Box, Code2, FileText, Globe, LayoutDashboard, Layers, Zap } from "lucide-react";
+import { Box, Layers, Zap } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -35,15 +35,15 @@ function ProductCard({ icon, title, description, href = "#" }: ProductCardProps)
       href={href}
       className={cn(
         "flex select-none flex-col gap-1 rounded-xl p-3",
-        "hover:bg-ground-50 outline-none transition-colors",
+        "hover:bg-muted outline-none transition-colors",
         "no-underline",
       )}
     >
       <div className="mb-1 flex h-8 w-8 items-center justify-center rounded-md bg-brand-primary/10 text-brand-primary">
         {icon}
       </div>
-      <p className="subheading text-ground-900">{title}</p>
-      <p className="caption text-ground-400">{description}</p>
+      <p className="subheading text-foreground">{title}</p>
+      <p className="caption text-muted-foreground">{description}</p>
     </NavigationMenuLink>
   );
 }
@@ -60,12 +60,12 @@ function DevLink({ title, description, href = "#" }: DevLinkProps) {
       href={href}
       className={cn(
         "flex select-none flex-col gap-0.5 rounded-md p-2.5",
-        "hover:bg-ground-50 outline-none transition-colors",
+        "hover:bg-muted outline-none transition-colors",
         "no-underline",
       )}
     >
-      <p className="body font-medium text-ground-900">{title}</p>
-      <p className="caption text-ground-400">{description}</p>
+      <p className="body font-medium text-foreground">{title}</p>
+      <p className="caption text-muted-foreground">{description}</p>
     </NavigationMenuLink>
   );
 }
@@ -188,8 +188,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -340,19 +340,19 @@ function NavigationMenuPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-8">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Navigation Menu</span>
+          <span className="font-semibold text-foreground">Navigation Menu</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Navigation Menu</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Navigation Menu</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Horizontal navigation with rich dropdown panels. Supports direct content dropdowns and
           animated viewport transitions.
         </p>

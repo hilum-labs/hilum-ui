@@ -34,3 +34,7 @@ pnpm-debug.log*
 
 # Misc
 .cache/
+
+
+# TanStack Start dev cache
+.tanstack/

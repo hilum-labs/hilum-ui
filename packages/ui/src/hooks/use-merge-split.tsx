@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "../lib/motion";
 import type { ItemRect } from "./use-proximity-hover";
 
 // Run the layout effect on the client (where it must fire before paint, so a
@@ -42,6 +42,55 @@ export interface SelBlock extends Rect {
 // can morph it across renders rather than exit+re-enter.
 export type Run = { start: number; end: number; id: number };
 
+// Group `indices` into contiguous runs, reusing an id from `prevIds` (index →
+// run id from the previous grouping) when any member overlaps, so a
+// growing/shrinking run keeps its identity instead of exit+re-entering.
+function assignRunIds(
+  indices: number[],
+  prevIds: ReadonlyMap<number, number>,
+  counter: number,
+): { runs: Run[]; ids: Map<number, number>; counter: number } {
+  const spans: { start: number; end: number }[] = [];
+  for (const idx of indices) {
+    const last = spans[spans.length - 1];
+    if (last && idx === last.end + 1) last.end = idx;
+    else spans.push({ start: idx, end: idx });
+  }
+  const used = new Set<number>();
+  const ids = new Map<number, number>();
+  const runs = spans.map((span) => {
+    let id: number | undefined;
+    for (let i = span.start; i <= span.end && id === undefined; i++) {
+      const prev = prevIds.get(i);
+      if (prev !== undefined && !used.has(prev)) id = prev;
+    }
+    id ??= ++counter;
+    used.add(id);
+    for (let i = span.start; i <= span.end; i++) ids.set(i, id);
+    return { ...span, id };
+  });
+  return { runs, ids, counter };
+}
+
+/**
+ * Contiguous runs of the selected `indices`, each with an id that stays stable
+ * across selection changes (see assignRunIds). The previous grouping lives in
+ * state and is advanced during render when the selection changes — React's
+ * "adjust state while rendering" pattern — so no ref is read during render.
+ */
+export function useStableRuns(indices: Iterable<number>): Run[] {
+  const sorted = [...new Set(indices)].sort((a, b) => a - b);
+  const sig = sorted.join(",");
+  const [state, setState] = useState(() => ({
+    sig,
+    ...assignRunIds(sorted, new Map(), 0),
+  }));
+  if (state.sig === sig) return state.runs;
+  const next = { sig, ...assignRunIds(sorted, state.ids, state.counter) };
+  setState(next);
+  return next.runs;
+}
+
 // One in-flight merge or split; geometry is recomputed from the live runs each
 // render so rapid toggles redirect instead of freezing.
 interface Boundary {
@@ -59,8 +108,8 @@ function bridgePair(outer: Run, runs: Run[]) {
   const inside = runs
     .filter((r) => r.start >= outer.start && r.end <= outer.end)
     .sort((a, b) => a.start - b.start);
-  if (inside.length !== 2) return null;
-  const [up, lo] = inside;
+  const [up, lo, extra] = inside;
+  if (!up || !lo || extra) return null;
   return lo.start === up.end + 2 ? { up, lo, gap: up.end + 1 } : null;
 }
 
@@ -77,7 +126,10 @@ function bridgePair(outer: Run, runs: Run[]) {
 // currently mid merge/split. Render them with <SelectionBackgrounds>.
 export function useMergeSplitBlocks(runs: Run[], itemRects: ItemRect[], R: number): SelBlock[] {
   const [boundaries, setBoundaries] = useState<Boundary[]>([]);
-  const prevRunsRef = useRef<Run[]>([]);
+  // The runs as of the last layout-effect pass (the previous selection until
+  // the effect below acknowledges the current one). State rather than a ref so
+  // the render-time split safety net can read it.
+  const [prevRuns, setPrevRuns] = useState<Run[]>([]);
   const tidRef = useRef(0);
   const timersRef = useRef(new Map<number, ReturnType<typeof setTimeout>>());
   const runsSig = runs.map((g) => `${g.id}:${g.start}-${g.end}`).join("|");
@@ -86,7 +138,7 @@ export function useMergeSplitBlocks(runs: Run[], itemRects: ItemRect[], R: numbe
   // halves) and drop any boundary the latest selection invalidated (e.g. the
   // bridge row was toggled again mid-flight).
   useIsoLayoutEffect(() => {
-    const prev = prevRunsRef.current;
+    const prev = prevRuns;
     const cur = runs;
     const found: Boundary[] = [];
     for (const c of cur) {
@@ -113,7 +165,7 @@ export function useMergeSplitBlocks(runs: Run[], itemRects: ItemRect[], R: numbe
           phase: "splitIn",
         });
     }
-    prevRunsRef.current = cur.map((r) => ({ ...r }));
+    setPrevRuns(cur.map((r) => ({ ...r })));
     // Resolve each new boundary after its motion window (merge → swap to one
     // block; split → drop), so an interrupted animation can't strand a half.
     for (const b of found) {
@@ -271,7 +323,7 @@ export function useMergeSplitBlocks(runs: Run[], itemRects: ItemRect[], R: numbe
   // snap. Detecting the split here (previous runs vs current) and pinning both
   // halves at the seam guarantees the lower mounts on the seam regardless of
   // render/paint timing (the cause of the rapid-toggle snap).
-  for (const p of prevRunsRef.current) {
+  for (const p of prevRuns) {
     const c = bridgePair(p, runs);
     const gap = c && itemRects[c.gap];
     if (!c || !gap) continue;

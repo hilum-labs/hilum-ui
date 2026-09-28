@@ -1,5 +1,3 @@
-import { Users, TrendingUp, MousePointerClick } from "lucide-react";
-
 const stats = [
   { label: "Total Subscribers", value: "71,897", change: "+12%", up: true },
   { label: "Avg. Open Rate", value: "58.16%", change: "+5.4%", up: true },

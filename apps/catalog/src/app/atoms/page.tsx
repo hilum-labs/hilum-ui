@@ -1,8 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { Link } from "@tanstack/react-router";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import {
@@ -37,22 +36,22 @@ function AtomsPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Atoms</span>
+          <span className="font-semibold text-foreground">Atoms</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Atoms</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Atoms</h1>
+        <p className="body max-w-md text-muted-foreground">
           The smallest functional units of the design system. These primitives are the foundation
           for all molecules and blocks.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">{totalComponents} components</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Based on shadcn/ui · Radix UI</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">{totalComponents} components</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Based on shadcn/ui · Radix UI</p>
         </div>
       </div>
 
@@ -64,8 +63,8 @@ function AtomsPage() {
           <section key={group.label}>
             {/* Section heading */}
             <div className="mb-6 flex items-center gap-3">
-              <h2 className="label text-ground-400">{group.label}</h2>
-              <div className="h-px flex-1 bg-ground-100" />
+              <h2 className="label text-muted-foreground">{group.label}</h2>
+              <div className="h-px flex-1 bg-border" />
             </div>
 
             {/* Component grid */}
@@ -81,8 +80,8 @@ function AtomsPage() {
                         {CATEGORY_LABEL[component.category]}
                       </Badge>
                     </div>
-                    <CardTitle className="subheading text-ground-900">{component.name}</CardTitle>
-                    <CardDescription className="caption leading-relaxed text-ground-400">
+                    <CardTitle className="subheading text-foreground">{component.name}</CardTitle>
+                    <CardDescription className="caption leading-relaxed text-muted-foreground">
                       {component.description}
                     </CardDescription>
                   </CardHeader>
@@ -91,7 +90,7 @@ function AtomsPage() {
                       asChild
                       variant="ghost"
                       size="sm"
-                      className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
+                      className="h-auto px-0 py-0 text-muted-foreground hover:text-foreground hover:bg-transparent"
                     >
                       <a href={`/atoms/${component.slug}`}>View component →</a>
                     </Button>

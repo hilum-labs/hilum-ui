@@ -26,33 +26,33 @@ import splitImagesSource from "@/components/ecommerce/category-previews/split-im
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
 
 function CategoryPreviewsPage() {
   return (
-    <div className="h-full overflow-y-auto bg-white">
+    <div className="h-full overflow-y-auto bg-background">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="/" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="/ecommerce" className="hover:text-ground-700">
+            <a href="/ecommerce" className="hover:text-foreground">
               Ecommerce
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Category Previews</span>
+            <span className="font-semibold text-foreground">Category Previews</span>
           </div>
           <div className="mb-4 flex items-center gap-3">
             <Badge variant="secondary">Browsing · 6 variants</Badge>
           </div>
-          <h1 className="display mb-2 text-ground-900">Category Previews</h1>
-          <p className="body max-w-2xl text-ground-400">
+          <h1 className="display mb-2 text-foreground">Category Previews</h1>
+          <p className="body max-w-2xl text-muted-foreground">
             Category landing sections with image cards, scrolling carousels, and split layouts.
           </p>
         </div>

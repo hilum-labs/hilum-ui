@@ -61,7 +61,7 @@ function FooterLinks({
         {links.map((link, index) => (
           <li key={link}>
             <a
-              href="#"
+              href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
               className={`body transition-colors ${
                 active && index === 0
                   ? "text-brand-primary"

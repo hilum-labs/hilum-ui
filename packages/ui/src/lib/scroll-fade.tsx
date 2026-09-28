@@ -239,3 +239,42 @@ export function ScrollEdgeCue({
     </div>
   );
 }
+
+// ---------------------------------------------------------------------------
+// Horizontal overflow helpers (tab strips, chip rows)
+// ---------------------------------------------------------------------------
+
+const EDGE_FADE_PX = 24;
+
+/**
+ * CSS mask that fades whichever horizontal edges still hide content. Works on
+ * any background (unlike a surface-coloured gradient), so it suits tab tracks.
+ */
+export function horizontalEdgeMask(left: boolean, right: boolean): string | undefined {
+  if (!left && !right) return undefined;
+  const start = left ? `transparent 0, #000 ${EDGE_FADE_PX}px` : "#000 0";
+  const end = right ? `#000 calc(100% - ${EDGE_FADE_PX}px), transparent 100%` : "#000 100%";
+  return `linear-gradient(to right, ${start}, ${end})`;
+}
+
+/** Style for a horizontally scrolling strip: edge fades while content is hidden. */
+export function useHorizontalOverflowMask(
+  ref: RefObject<HTMLElement | null>,
+  enabled = true,
+): CSSProperties | undefined {
+  const edges = useScrollEdges(ref, { axis: "horizontal", enabled });
+  const mask = enabled ? horizontalEdgeMask(edges.left, edges.right) : undefined;
+  return mask ? { maskImage: mask, WebkitMaskImage: mask } : undefined;
+}
+
+/** Scroll `index`'s `[data-proximity-index]` child into view inside a horizontal strip. */
+export function scrollStripItemIntoView(container: HTMLElement | null, index: number) {
+  if (!container || index < 0 || container.scrollWidth <= container.clientWidth) return;
+  const el = container.querySelector<HTMLElement>(`[data-proximity-index="${index}"]`);
+  if (!el) return;
+  const left = el.offsetLeft;
+  const right = left + el.offsetWidth;
+  if (left < container.scrollLeft) container.scrollLeft = Math.max(0, left - EDGE_FADE_PX);
+  else if (right > container.scrollLeft + container.clientWidth)
+    container.scrollLeft = right - container.clientWidth + EDGE_FADE_PX;
+}

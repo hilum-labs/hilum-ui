@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { X } from "lucide-react";
 import { Button } from "@hilum/ui";
 
 export default function BannerStickyFooter() {
@@ -16,7 +15,10 @@ export default function BannerStickyFooter() {
         <div className="absolute inset-x-0 bottom-0 flex flex-col items-center justify-between gap-3 border-t border-ground-100 bg-white px-5 py-3 sm:flex-row">
           <p className="caption text-ground-600">
             We use cookies to improve your experience and analyze site traffic.{" "}
-            <a href="#" className="font-medium text-ground-900 underline underline-offset-2">
+            <a
+              href="#read-our-policy"
+              className="font-medium text-ground-900 underline underline-offset-2"
+            >
               Read our policy
             </a>
           </p>

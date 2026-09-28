@@ -33,16 +33,28 @@ export default function HeroWithSignIn() {
           </div>
           <form className="space-y-4">
             <div className="space-y-2">
-              <label className="label uppercase tracking-[0.18em] text-ground-400">Email</label>
+              <label
+                htmlFor="hero-sign-in-email"
+                className="label uppercase tracking-[0.18em] text-ground-400"
+              >
+                Email
+              </label>
               <input
+                id="hero-sign-in-email"
                 type="email"
                 placeholder="team@beacon.so"
                 className="h-11 w-full rounded-md border border-ground-200 bg-white px-3 body text-ground-900 outline-none placeholder:text-ground-400 focus:border-ground-300"
               />
             </div>
             <div className="space-y-2">
-              <label className="label uppercase tracking-[0.18em] text-ground-400">Password</label>
+              <label
+                htmlFor="hero-sign-in-password"
+                className="label uppercase tracking-[0.18em] text-ground-400"
+              >
+                Password
+              </label>
               <input
+                id="hero-sign-in-password"
                 type="password"
                 placeholder="Enter your password"
                 className="h-11 w-full rounded-md border border-ground-200 bg-white px-3 body text-ground-900 outline-none placeholder:text-ground-400 focus:border-ground-300"

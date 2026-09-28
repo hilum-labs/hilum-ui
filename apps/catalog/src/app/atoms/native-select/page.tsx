@@ -61,8 +61,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -71,26 +71,26 @@ function NativeSelectPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Native Select</span>
+          <span className="font-semibold text-foreground">Native Select</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Native Select</h1>
-        <p className="body max-w-lg text-ground-500">
-          Styled native HTML select. No JavaScript overhead — uses the browser's built-in dropdown.
+        <h1 className="display mb-2 text-foreground">Native Select</h1>
+        <p className="body max-w-lg text-muted-foreground">
+          Styled native HTML select. No JavaScript overhead — uses the browser’s built-in dropdown.
           Best for mobile forms and performance-sensitive contexts.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Atom</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Form · Input</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Atom</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Form · Input</p>
         </div>
       </div>
 
@@ -163,7 +163,7 @@ function NativeSelectPage() {
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                   <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
                 </NativeSelect>
-                <p className="caption mt-1 text-ground-400">Default</p>
+                <p className="caption mt-1 text-muted-foreground">Default</p>
               </div>
               <div>
                 <NativeSelect defaultValue="us" disabled>
@@ -171,7 +171,7 @@ function NativeSelectPage() {
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                   <NativeSelectOption value="gb">United Kingdom</NativeSelectOption>
                 </NativeSelect>
-                <p className="caption mt-1 text-ground-400">Disabled</p>
+                <p className="caption mt-1 text-muted-foreground">Disabled</p>
               </div>
               <div>
                 <NativeSelect aria-invalid="true" defaultValue="">
@@ -181,7 +181,7 @@ function NativeSelectPage() {
                   <NativeSelectOption value="us">United States</NativeSelectOption>
                   <NativeSelectOption value="ca">Canada</NativeSelectOption>
                 </NativeSelect>
-                <p className="caption mt-1 text-ground-400">Invalid</p>
+                <p className="caption mt-1 text-muted-foreground">Invalid</p>
               </div>
             </div>
           </PreviewBlock>

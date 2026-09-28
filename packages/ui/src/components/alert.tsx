@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 
 const alertVariants = cva(
-  "relative w-full rounded-xl px-4 py-3.5 body [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-3.5 [&>svg~*]:pl-6",
+  "relative w-full rounded-xl px-4 py-3.5 body [&>svg]:absolute [&>svg]:start-4 [&>svg]:top-3.5 [&>svg~*]:ps-6",
   {
     variants: {
       variant: {
@@ -20,29 +20,38 @@ const alertVariants = cva(
 
 interface AlertProps extends React.ComponentProps<"div">, VariantProps<typeof alertVariants> {}
 
-const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ className, variant, ...props }, ref) => (
-    <div ref={ref} role="alert" className={cn(alertVariants({ variant }), className)} {...props} />
-  ),
-);
+function Alert({ className, variant, ...props }: AlertProps) {
+  return (
+    <div
+      role="alert"
+      data-slot="alert"
+      className={cn(alertVariants({ variant }), className)}
+      {...props}
+    />
+  );
+}
 Alert.displayName = "Alert";
 
-const AlertTitle = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
-  ({ className, ...props }, ref) => (
+function AlertTitle({ className, ...props }: React.ComponentProps<"p">) {
+  return (
     <p
-      ref={ref}
+      data-slot="alert-title"
       className={cn("mb-0.5 body font-semibold leading-tight text-balance", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 AlertTitle.displayName = "AlertTitle";
 
-const AlertDescription = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
-  ({ className, ...props }, ref) => (
-    <p ref={ref} className={cn("body text-pretty opacity-90", className)} {...props} />
-  ),
-);
+function AlertDescription({ className, ...props }: React.ComponentProps<"p">) {
+  return (
+    <p
+      data-slot="alert-description"
+      className={cn("body text-pretty opacity-90", className)}
+      {...props}
+    />
+  );
+}
 AlertDescription.displayName = "AlertDescription";
 
 export { Alert, AlertTitle, AlertDescription };

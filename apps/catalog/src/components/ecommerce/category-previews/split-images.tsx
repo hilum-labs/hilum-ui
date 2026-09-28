@@ -21,7 +21,10 @@ export default function SplitImages() {
           />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-6 text-white">
             <p className="subheading">Travel</p>
-            <a href="#" className="body mt-3 inline-flex min-h-10 items-center gap-2 text-white">
+            <a
+              href="#shop"
+              className="body mt-3 inline-flex min-h-10 items-center gap-2 text-white"
+            >
               Shop <ArrowRight className="size-4" />
             </a>
           </div>
@@ -37,7 +40,7 @@ export default function SplitImages() {
             <div className="p-5">
               <p className="subheading text-ground-900">Desk and Office</p>
               <a
-                href="#"
+                href="#shop"
                 className="body mt-3 inline-flex min-h-10 items-center gap-2 text-brand-primary"
               >
                 Shop <ArrowRight className="size-4" />
@@ -53,7 +56,7 @@ export default function SplitImages() {
             <div className="p-5">
               <p className="subheading text-ground-900">Accessories</p>
               <a
-                href="#"
+                href="#shop"
                 className="body mt-3 inline-flex min-h-10 items-center gap-2 text-brand-primary"
               >
                 Shop <ArrowRight className="size-4" />

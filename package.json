@@ -6,7 +6,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git"
+    "url": "git+https://github.com/hilum-labs/hilum-ui.git"
+  },
+  "homepage": "https://ui.hilum.dev",
+  "bugs": {
+    "url": "https://github.com/hilum-labs/hilum-ui/issues"
   },
   "type": "module",
   "engines": {
@@ -18,13 +22,22 @@
     "dev": "turbo dev",
     "build": "turbo build",
     "build:packages": "turbo build --filter=./packages/*",
-    "release:version": "changeset version",
-    "release:preflight": "pnpm typecheck && pnpm test && pnpm build:packages",
-    "release:publish": "pnpm release:preflight && changeset publish",
+    "release:version": "changeset version && pnpm install --lockfile-only",
+    "release:preflight": "pnpm lint && pnpm typecheck && pnpm typecheck:tests && pnpm test && pnpm build:packages && pnpm check:packages",
+    "check:packages": "bash scripts/check-packages.sh",
+    "release:publish": "pnpm build:packages && pnpm check:packages && changeset publish",
+    "verify": "pnpm verify:ci && pnpm changeset:status",
+    "verify:ci": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm typecheck:tests && pnpm test:coverage && pnpm build:packages && pnpm check:packages && pnpm size",
     "changeset": "changeset",
+    "changeset:status": "changeset status --since=origin/${DESTINATION_BRANCH:-main}",
     "typecheck": "turbo typecheck",
+    "typecheck:tests": "tsc -p tests",
     "test": "vitest run",
-    "lint": "turbo lint",
+    "test:coverage": "vitest run --coverage",
+    "test:browser": "vitest run --config vitest.browser.config.ts",
+    "test:a11y": "vitest run tests/a11y",
+    "size": "size-limit",
+    "lint": "turbo lint && eslint tests .size-limit.js --max-warnings 0",
     "lint:fix": "eslint packages apps --fix",
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
@@ -32,11 +45,17 @@
     "catalog": "pnpm --filter @hilum/catalog dev"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.31.0",
-    "@testing-library/jest-dom": "^6.9.1",
+    "@changesets/cli": "^2.31.1",
+    "@size-limit/file": "^14.1.0",
+    "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
-    "@vitest/ui": "^3.2.4",
+    "@testing-library/user-event": "^14.6.3",
+    "@types/node": "^26.1.0",
+    "@vitest/browser": "4.1.11",
+    "@vitest/browser-playwright": "4.1.11",
+    "@vitest/coverage-v8": "4.1.11",
+    "@vitest/ui": "^4.1.11",
+    "axe-core": "^4.13.0",
     "eslint": "^9",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-import-x": "^4.16.2",
@@ -44,11 +63,13 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "happy-dom": "^20.9.0",
+    "playwright": "^1.63.0",
     "prettier": "^3.8.3",
+    "size-limit": "^14.1.0",
     "tsup": "^8.3.0",
-    "turbo": "^2.3.0",
-    "typescript": "^5.7.0",
+    "turbo": "^2.10.9",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.11"
   }
 }

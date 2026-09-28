@@ -78,6 +78,7 @@ function ActionPanel({
 
   return (
     <div
+      data-slot="action-panel"
       className={cn(
         "rounded-xl border px-5 py-5",
         variant === "muted" ? "border-border bg-muted" : "border-border bg-card shadow-natural",

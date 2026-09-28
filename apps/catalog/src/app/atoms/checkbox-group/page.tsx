@@ -36,8 +36,8 @@ function CheckboxGroupPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Checkbox Group</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Checkbox Group</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Checkbox group with merged backgrounds for contiguous selections.
       </p>
       <PageDocs path="/atoms/checkbox-group/" />

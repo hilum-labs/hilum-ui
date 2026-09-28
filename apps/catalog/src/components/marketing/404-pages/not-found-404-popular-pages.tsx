@@ -32,7 +32,7 @@ export default function NotFound404PopularPages() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <a
-                    href="#"
+                    href={`#${link.title.toLowerCase().replace(/\s+/g, "-")}`}
                     className="body font-semibold text-ground-900 before:absolute before:inset-0"
                   >
                     {link.title}
@@ -48,7 +48,7 @@ export default function NotFound404PopularPages() {
           </ul>
           <div className="mt-6">
             <a
-              href="#"
+              href="/"
               className="body font-semibold text-brand-primary hover:text-brand-primary/80"
             >
               Or go back home →

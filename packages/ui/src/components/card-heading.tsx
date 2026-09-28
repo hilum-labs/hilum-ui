@@ -20,6 +20,7 @@ interface CardHeadingProps {
 function CardHeading({ title, description, actions, children, className }: CardHeadingProps) {
   return (
     <div
+      data-slot="card-heading"
       className={cn(
         "flex items-start justify-between gap-4 border-b border-border px-5 py-4",
         className,

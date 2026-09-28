@@ -128,19 +128,19 @@ function CanvasDemo() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/designer" className="hover:text-ground-700">
+          <a href="/designer" className="hover:text-foreground">
             Designer
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Canvas demo</span>
+          <span className="font-semibold text-foreground">Canvas demo</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Canvas demo</h1>
-        <p className="body max-w-2xl text-ground-500">
+        <h1 className="display mb-2 text-foreground">Canvas demo</h1>
+        <p className="body max-w-2xl text-muted-foreground">
           Live <code className="font-mono">@hilum/designer-canvas</code> surface with draggable
           layers, selection, and toolbar actions.
         </p>
@@ -148,17 +148,17 @@ function CanvasDemo() {
 
       <PageDocs path="/designer/canvas/" />
 
-      <section className="overflow-hidden rounded-2xl border border-ground-100 bg-ground-50 shadow-natural">
-        <div className="flex items-center justify-between border-b border-ground-100 bg-white px-6 py-4">
+      <section className="overflow-hidden rounded-2xl border border-border bg-muted shadow-natural">
+        <div className="flex items-center justify-between border-b border-border bg-background px-6 py-4">
           <div>
-            <p className="subheading text-ground-900">Live canvas preview</p>
-            <p className="caption mt-0.5 text-ground-500">
+            <p className="subheading text-foreground">Live canvas preview</p>
+            <p className="caption mt-0.5 text-muted-foreground">
               Drag layers, marquee-select, and zoom with Cmd+wheel.
             </p>
           </div>
         </div>
 
-        <div className="relative h-[720px]">
+        <div className="relative flex h-[720px] flex-col overflow-hidden">
           <Designer
             initial={{
               layers: initialLayers,
@@ -167,13 +167,13 @@ function CanvasDemo() {
             }}
             renderers={renderers}
           >
-            <DesignerCanvas>
+            <DesignerCanvas className="bg-muted">
               <div className="absolute inset-0 flex items-center justify-center">
                 <DesignerFrame />
               </div>
             </DesignerCanvas>
 
-            <DesignerToolbar>
+            <DesignerToolbar boundary="workspace">
               <ActionTool />
               <DesignerToolbarSeparator />
               <ActionAddLayer />

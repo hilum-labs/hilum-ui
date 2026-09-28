@@ -32,6 +32,7 @@ function MediaObject({
 }: MediaObjectProps) {
   return (
     <div
+      data-slot="media-object"
       className={cn(
         "flex",
         mediaPosition === "right" && "flex-row-reverse",

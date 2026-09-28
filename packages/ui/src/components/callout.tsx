@@ -44,8 +44,7 @@ const calloutIconVariants = cva(
 );
 
 interface CalloutProps
-  extends Omit<React.ComponentProps<"div">, "title">,
-    VariantProps<typeof calloutVariants> {
+  extends Omit<React.ComponentProps<"div">, "title">, VariantProps<typeof calloutVariants> {
   title?: React.ReactNode;
   description?: React.ReactNode;
   icon?: React.ReactNode;
@@ -69,6 +68,7 @@ function Callout({
   return (
     <div
       role={resolvedRole}
+      data-slot="callout"
       className={cn(calloutVariants({ tone, compact }), className)}
       {...props}
     >

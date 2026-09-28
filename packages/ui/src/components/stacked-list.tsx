@@ -18,6 +18,7 @@ function StackedList({
 }: StackedListProps) {
   return (
     <ul
+      data-slot="stacked-list"
       role="list"
       className={cn(
         "overflow-hidden rounded-xl bg-card",
@@ -45,7 +46,7 @@ function StackedListItem({ children, href, onClick, className }: StackedListItem
 
   if (href) {
     return (
-      <li>
+      <li data-slot="stacked-list-item">
         <a href={href} className="block hover:bg-muted transition-colors">
           {inner}
         </a>
@@ -55,10 +56,10 @@ function StackedListItem({ children, href, onClick, className }: StackedListItem
 
   if (onClick) {
     return (
-      <li>
+      <li data-slot="stacked-list-item">
         <button
           type="button"
-          className="w-full text-left hover:bg-muted transition-colors"
+          className="w-full text-start hover:bg-muted transition-colors"
           onClick={onClick}
         >
           {inner}
@@ -67,7 +68,7 @@ function StackedListItem({ children, href, onClick, className }: StackedListItem
     );
   }
 
-  return <li>{inner}</li>;
+  return <li data-slot="stacked-list-item">{inner}</li>;
 }
 
 export { StackedList, StackedListItem };

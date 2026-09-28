@@ -199,7 +199,7 @@ describe("Slider", () => {
 describe("InputNumber", () => {
   it("renders an input with the given value", () => {
     render(<InputNumber value={42} onChange={() => {}} />);
-    expect(screen.getByRole("textbox")).toHaveValue("42");
+    expect(screen.getByRole("spinbutton")).toHaveValue("42");
   });
 
   it("displays unit suffix", () => {
@@ -238,7 +238,7 @@ describe("InputNumber", () => {
 
   it("renders with precision", () => {
     render(<InputNumber value={3.14} onChange={() => {}} precision={2} />);
-    expect(screen.getByRole("textbox")).toHaveValue("3.14");
+    expect(screen.getByRole("spinbutton")).toHaveValue("3.14");
   });
 });
 
@@ -268,7 +268,7 @@ describe("InputGroup", () => {
     );
 
     expect(screen.getByRole("button", { name: "Submit" })).toBeInTheDocument();
-    expect(container.querySelector("input")).toHaveClass("pr-16");
+    expect(container.querySelector("input")).toHaveClass("pe-16");
     expect(screen.getByRole("button", { name: "Submit" }).parentElement).toHaveClass(
       "top-1/2",
       "-translate-y-1/2",

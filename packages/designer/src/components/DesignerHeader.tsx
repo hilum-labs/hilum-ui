@@ -1,7 +1,7 @@
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 import { cn } from "@hilum/ui";
 
-interface DesignerHeaderProps {
+interface DesignerHeaderProps extends Omit<ComponentPropsWithoutRef<"header">, "children"> {
   /** Left-aligned content — file name, breadcrumbs, project switcher. */
   left?: ReactNode;
   /** Center content — typically the active document title. */
@@ -16,17 +16,41 @@ interface DesignerHeaderProps {
  * Top bar of an editor app. Slot-driven — the chrome doesn't know what
  * goes in each region. Use <DesignerHeader left={...} center={...} right={...} />.
  */
-function DesignerHeader({ left, center, right, className, children }: DesignerHeaderProps) {
+function DesignerHeader({
+  left,
+  center,
+  right,
+  className,
+  children,
+  ...props
+}: DesignerHeaderProps) {
   return (
     <header
+      data-designer-header
       className={cn(
-        "flex h-12 items-center justify-between gap-3 border-b border-border bg-card px-3 shrink-0",
+        "grid h-12 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3 bg-card px-3",
         className,
       )}
+      {...props}
     >
-      <div className="flex items-center gap-2 min-w-0">{left}</div>
-      {center && <div className="flex items-center gap-2 min-w-0">{center}</div>}
-      <div className="flex items-center gap-2 min-w-0">{right}</div>
+      <div
+        data-designer-header-slot="left"
+        className="flex min-w-0 items-center gap-2 justify-self-start"
+      >
+        {left}
+      </div>
+      <div
+        data-designer-header-slot="center"
+        className="flex min-w-0 items-center gap-2 justify-self-center"
+      >
+        {center}
+      </div>
+      <div
+        data-designer-header-slot="right"
+        className="flex min-w-0 items-center gap-2 justify-self-end"
+      >
+        {right}
+      </div>
       {children}
     </header>
   );

@@ -28,10 +28,7 @@ export default function Toggles() {
     <div className="bg-white px-8 py-10">
       <div className="grid gap-5 lg:grid-cols-3">
         <VariantCard title="1. Simple toggle">
-          <label className="flex items-center gap-3">
-            <Switch checked={emailUpdates} onCheckedChange={setEmailUpdates} />
-            <span className="body text-ground-700">Email updates</span>
-          </label>
+          <Switch label="Email updates" checked={emailUpdates} onCheckedChange={setEmailUpdates} />
         </VariantCard>
 
         <VariantCard title="2. With left label and description">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Trash2 } from "lucide-react";
 import { Button } from "@hilum/ui";
 
-function ExampleFrame({ children }: { children: any }) {
+function ExampleFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}
@@ -73,24 +73,33 @@ export default function CenteredSettingsScreen() {
               <p className="subheading text-ground-900">Personal Info</p>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="label text-ground-400">First name</label>
+                  <label htmlFor="settings-first-name" className="label text-ground-400">
+                    First name
+                  </label>
                   <input
+                    id="settings-first-name"
                     type="text"
                     defaultValue="Tom"
                     className="mt-2 h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                   />
                 </div>
                 <div>
-                  <label className="label text-ground-400">Last name</label>
+                  <label htmlFor="settings-last-name" className="label text-ground-400">
+                    Last name
+                  </label>
                   <input
+                    id="settings-last-name"
                     type="text"
                     defaultValue="Cook"
                     className="mt-2 h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"
                   />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="label text-ground-400">Email</label>
+                  <label htmlFor="settings-email" className="label text-ground-400">
+                    Email
+                  </label>
                   <input
+                    id="settings-email"
                     type="email"
                     defaultValue="tom@example.com"
                     className="mt-2 h-10 w-full rounded-xl border border-ground-200 bg-white px-3 body text-ground-900 outline-none"

@@ -2,9 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { FileX, Inbox, Search, Users, FolderOpen } from "lucide-react";
+import { Inbox, Search, Users, FolderOpen } from "lucide-react";
 import { EmptyState } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { Package } from "lucide-react";
 
 const CODE = {
   basic: `import { EmptyState } from "@hilum/ui"
@@ -47,7 +48,7 @@ import { Search } from "lucide-react"
 import { FolderOpen } from "lucide-react"
 
 // Inside a bordered container
-<div className="rounded-xl border border-ground-100">
+<div className="rounded-xl border border-border">
   <EmptyState
     icon={<FolderOpen size={20} />}
     title="This folder is empty"
@@ -57,11 +58,26 @@ import { FolderOpen } from "lucide-react"
 </div>`,
 };
 
+const CTA_CODE = `import { EmptyState } from "@hilum/ui"
+
+// First-run empty states always get a primary action.
+<EmptyState
+  variant="card"
+  icon={<Package size={16} />}
+  title="Add your first product"
+  description="Products you add appear here and in your online store."
+  action={{ label: "Add product", href: "/products/new" }}
+  secondaryAction={{ label: "Import CSV", onClick: openImport }}
+/>
+
+// Router links: pass an element.
+<EmptyState title="No discounts" action={<Button asChild><Link to="/discounts/new">Create discount</Link></Button>} />`;
+
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -70,26 +86,26 @@ function EmptyStatePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Empty State</span>
+          <span className="body font-semibold text-foreground">Empty State</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Empty State</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Empty State</h1>
+        <p className="body max-w-md text-muted-foreground">
           A placeholder for empty lists, zero-data views, and no-results scenarios. Composes an
           icon, heading, description, and optional CTA.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">Molecule</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Button · Icon</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">Molecule</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Button · Icon</p>
         </div>
       </div>
 
@@ -167,7 +183,7 @@ function EmptyStatePage() {
             code={CODE.inContext}
           >
             <div className="w-full max-w-sm">
-              <div className="rounded-xl border border-ground-100">
+              <div className="rounded-xl border border-border">
                 <EmptyState
                   icon={<FolderOpen size={20} />}
                   title="This folder is empty"
@@ -178,6 +194,28 @@ function EmptyStatePage() {
             </div>
           </PreviewBlock>
         </div>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Primary + secondary actions</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="First-run empty state"
+            description="Every first-run state needs a CTA; filtered-empty states offer Clear filters."
+            code={CTA_CODE}
+          >
+            <div className="w-full max-w-lg">
+              <EmptyState
+                variant="card"
+                icon={<Package size={16} />}
+                title="Add your first product"
+                description="Products you add appear here and in your online store."
+                action={{ label: "Add product", href: "#" }}
+                secondaryAction={{ label: "Import CSV", href: "#" }}
+              />
+            </div>
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

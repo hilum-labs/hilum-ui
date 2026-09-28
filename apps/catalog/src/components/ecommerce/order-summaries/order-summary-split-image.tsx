@@ -64,8 +64,8 @@ export default function OrderSummarySplitImage() {
         <div className="hidden bg-ground-100 lg:block">
           <div className="flex h-full items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(255,77,1,0.18),transparent_40%),linear-gradient(180deg,_rgba(235,231,223,0.6),rgba(235,231,223,0.95))] p-10">
             <img
-              src={ORDER.products[0].img}
-              alt={ORDER.products[0].name}
+              src={ORDER.products[0]!.img}
+              alt={ORDER.products[0]!.name}
               className="h-full max-h-[520px] w-full rounded-[32px] object-cover shadow-elevated"
             />
           </div>
@@ -116,7 +116,7 @@ export default function OrderSummarySplitImage() {
               </p>
             </div>
             <p className="caption mt-2 text-ground-500">
-              You'll receive delivery updates by {updateChannel.toLowerCase()}.
+              You’ll receive delivery updates by {updateChannel.toLowerCase()}.
             </p>
           </div>
           <TotalsCard />

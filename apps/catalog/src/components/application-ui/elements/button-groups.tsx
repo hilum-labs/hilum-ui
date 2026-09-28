@@ -67,8 +67,9 @@ export default function ButtonGroups() {
         <VariantCard title="3. With checkbox and dropdown">
           <DropdownMenu>
             <div className="inline-flex items-center overflow-hidden rounded-md border border-ground-200 bg-white shadow-natural">
-              <label className="flex items-center gap-2 px-3 py-2">
+              <label htmlFor="button-group-assigned" className="flex items-center gap-2 px-3 py-2">
                 <Checkbox
+                  id="button-group-assigned"
                   checked={filterChecked}
                   onCheckedChange={(checked) => setFilterChecked(checked === true)}
                 />

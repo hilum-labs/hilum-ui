@@ -1,17 +1,5 @@
 import { useState } from "react";
-import {
-  LayoutDashboard,
-  Users,
-  FolderOpen,
-  BarChart2,
-  Bell,
-  Menu,
-  X,
-  ChevronDown,
-  Settings,
-  LogOut,
-  User,
-} from "lucide-react";
+import { Bell, Menu, X, ChevronDown, Settings, LogOut, User } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
@@ -135,7 +123,7 @@ export default function StackedShell() {
       {/* Page */}
       <main className="p-6">
         <h1 className="heading font-semibold text-ground-900 mb-1">Dashboard</h1>
-        <p className="caption text-ground-400 mb-6">Here's what's happening today.</p>
+        <p className="caption text-ground-400 mb-6">Here’s what’s happening today.</p>
         <div className="grid grid-cols-4 gap-3 mb-6">
           {[
             { label: "Revenue", value: "$32,450", delta: "+4.6%" },

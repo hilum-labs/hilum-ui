@@ -56,7 +56,10 @@ function NavItemLink({
       : "text-ground-500 hover:text-ground-900";
 
   return (
-    <a href="#" className={`rounded-lg px-3 py-2 text-sm transition-colors ${className}`}>
+    <a
+      href={`#${label.toLowerCase().replace(/\s+/g, "-")}`}
+      className={`rounded-lg px-3 py-2 text-sm transition-colors ${className}`}
+    >
       {label}
     </a>
   );

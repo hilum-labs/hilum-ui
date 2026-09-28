@@ -13,8 +13,8 @@ const CODE = `import { MobileDrawer, NavItem } from "@hilum/ui"
 function MobileDrawerPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Mobile Drawer</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Mobile Drawer</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Mobile navigation drawer wrapper with trigger, sheet content, and title.
       </p>
       <PageDocs path="/molecules/mobile-drawer/" />

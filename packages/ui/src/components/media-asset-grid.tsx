@@ -19,6 +19,7 @@ function MediaAssetGrid({ children, columns = 5, className, ...props }: MediaAss
   return (
     <ul
       role="list"
+      data-slot="media-asset-grid"
       className={cn(
         "divide-y divide-border border-y border-border",
         "sm:grid sm:gap-4 sm:divide-y-0 sm:border-y-0",
@@ -33,7 +34,7 @@ function MediaAssetGrid({ children, columns = 5, className, ...props }: MediaAss
 }
 
 function MediaAssetGridItem({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) {
-  return <li className={cn("min-w-0", className)} {...props} />;
+  return <li data-slot="media-asset-grid-item" className={cn("min-w-0", className)} {...props} />;
 }
 
 MediaAssetGrid.displayName = "MediaAssetGrid";

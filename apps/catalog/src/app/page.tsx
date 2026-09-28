@@ -324,13 +324,13 @@ function HomePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
-      <div className="mb-10 -mx-8 px-8 py-8 rounded-2xl bg-brand-secondary/30">
+      <div className="mb-10 -mx-8 px-8 py-8 rounded-2xl bg-brand-secondary/30 dark:bg-warning">
         <div className="mb-4 flex items-center gap-2">
           <Badge variant="secondary">packages v{packageVersions["@hilum/ui"]}</Badge>
           <Badge variant="outline">catalog v0.1.1</Badge>
         </div>
-        <h1 className="display mb-3 text-ground-900">Design System</h1>
-        <p className="body max-w-md text-ground-500">
+        <h1 className="display mb-3 text-foreground">Design System</h1>
+        <p className="body max-w-md text-muted-foreground">
           The visual language powering every interface we build. Consistent, accessible, and
           beautifully crafted components for every team.
         </p>
@@ -342,8 +342,8 @@ function HomePage() {
       <div className="mb-10">
         <div className="mb-4 flex items-end justify-between gap-4">
           <div>
-            <p className="mb-2 label text-ground-400">Packages</p>
-            <h2 className="heading text-ground-900">Install and use Hilum packages</h2>
+            <p className="mb-2 label text-muted-foreground">Packages</p>
+            <h2 className="heading text-foreground">Install and use Hilum packages</h2>
           </div>
           <Badge variant="outline">5 packages</Badge>
         </div>
@@ -355,7 +355,7 @@ function HomePage() {
       </div>
 
       {/* Stats bar */}
-      <div className="mb-10 flex items-center gap-6 border-y border-ground-100 py-4">
+      <div className="mb-10 flex items-center gap-6 border-y border-border py-4">
         <Stat label="Atoms" value="41" active />
         <Separator orientation="vertical" className="h-8" />
         <Stat label="Molecules" value="16" active />
@@ -367,7 +367,7 @@ function HomePage() {
 
       {/* Categories */}
       <div className="mb-10">
-        <p className="mb-4 label text-ground-400">Categories</p>
+        <p className="mb-4 label text-muted-foreground">Categories</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {categories.map((cat) =>
             cat.comingSoon ? (
@@ -381,14 +381,14 @@ function HomePage() {
 
       {/* Getting started */}
       <div>
-        <p className="mb-4 label text-ground-400">Getting started</p>
+        <p className="mb-4 label text-muted-foreground">Getting started</p>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle className="subheading">Install the package</CardTitle>
               <CardDescription className="body">
-                Add <code className="font-mono text-ground-600">@hilum/ui</code> to your project,
-                import the tokens CSS, and start using components.
+                Add <code className="font-mono text-muted-foreground">@hilum/ui</code> to your
+                project, import the tokens CSS, and start using components.
               </CardDescription>
             </CardHeader>
             <CardContent className="px-0 pb-0">
@@ -401,10 +401,10 @@ function HomePage() {
                     <span className="text-ground-500">{`/* globals.css */`}</span>
                     {"\n"}
                     <span className="text-brand-secondary">@import</span>
-                    <span className="text-ground-300"> "@hilum/ui/tokens.css";</span>
+                    <span className="text-ground-300"> &quot;@hilum/ui/tokens.css&quot;;</span>
                     {"\n"}
                     <span className="text-brand-secondary">@import</span>
-                    <span className="text-ground-300"> "@hilum/ui/fonts.css";</span>
+                    <span className="text-ground-300"> &quot;@hilum/ui/fonts.css&quot;;</span>
                   </code>
                 </pre>
               </div>
@@ -458,7 +458,7 @@ function ActiveCard({ cat }: { cat: Category }) {
           <div className="flex size-8 items-center justify-center rounded-lg bg-brand-primary">
             <cat.icon size={15} strokeWidth={1.75} className="text-white" />
           </div>
-          <span className="caption font-medium text-ground-400">{cat.count} items</span>
+          <span className="caption font-medium text-muted-foreground">{cat.count} items</span>
         </div>
         <CardTitle className="subheading">{cat.label}</CardTitle>
         <CardDescription className="body">{cat.description}</CardDescription>
@@ -477,7 +477,7 @@ function ActiveCard({ cat }: { cat: Category }) {
         )}
         <div className="flex flex-wrap gap-1">
           {cat.items.map((item) => (
-            <Badge key={item} variant="secondary" className="caption-xs text-ground-400">
+            <Badge key={item} variant="secondary" className="caption-xs text-muted-foreground">
               {item}
             </Badge>
           ))}
@@ -509,20 +509,24 @@ function PackageCard({ pkg }: { pkg: PackageDoc }) {
               <CardDescription className="caption">v{pkg.version}</CardDescription>
             </div>
           </div>
-          <Package size={16} strokeWidth={1.75} className="mt-1 shrink-0 text-ground-300" />
+          <Package
+            size={16}
+            strokeWidth={1.75}
+            className="mt-1 shrink-0 text-muted-foreground/70"
+          />
         </div>
         <CardDescription className="body">{pkg.description}</CardDescription>
       </CardHeader>
 
       <CardContent className="flex flex-1 flex-col gap-4">
         <div>
-          <p className="mb-2 caption font-medium text-ground-500">Install</p>
+          <p className="mb-2 caption font-medium text-muted-foreground">Install</p>
           <CodeBlock>{pkg.install}</CodeBlock>
         </div>
 
         <div>
-          <p className="mb-2 caption font-medium text-ground-500">Setup</p>
-          <p className="body text-ground-500">{pkg.setup}</p>
+          <p className="mb-2 caption font-medium text-muted-foreground">Setup</p>
+          <p className="body text-muted-foreground">{pkg.setup}</p>
           {pkg.setupCode && (
             <div className="mt-2">
               <CodeBlock>{pkg.setupCode}</CodeBlock>
@@ -531,13 +535,13 @@ function PackageCard({ pkg }: { pkg: PackageDoc }) {
         </div>
 
         <div>
-          <p className="mb-2 caption font-medium text-ground-500">Use</p>
+          <p className="mb-2 caption font-medium text-muted-foreground">Use</p>
           <CodeBlock>{pkg.usage}</CodeBlock>
         </div>
 
         <div className="flex flex-wrap gap-1">
           {pkg.bestFor.map((item) => (
-            <Badge key={item} variant="secondary" className="caption-xs text-ground-400">
+            <Badge key={item} variant="secondary" className="caption-xs text-muted-foreground">
               {item}
             </Badge>
           ))}
@@ -545,7 +549,7 @@ function PackageCard({ pkg }: { pkg: PackageDoc }) {
       </CardContent>
 
       <CardFooter>
-        <p className="caption text-ground-400">{pkg.dependencies}</p>
+        <p className="caption text-muted-foreground">{pkg.dependencies}</p>
       </CardFooter>
     </Card>
   );
@@ -566,8 +570,8 @@ function ComingSoonCard({ cat }: { cat: Category }) {
     <Card variant="muted" className="flex flex-col opacity-50">
       <CardHeader>
         <div className="mb-2 flex items-center justify-between">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-ground-100">
-            <cat.icon size={15} strokeWidth={1.75} className="text-ground-400" />
+          <div className="flex size-8 items-center justify-center rounded-lg bg-muted">
+            <cat.icon size={15} strokeWidth={1.75} className="text-muted-foreground" />
           </div>
           <Badge variant="outline">Soon</Badge>
         </div>
@@ -578,7 +582,7 @@ function ComingSoonCard({ cat }: { cat: Category }) {
       <CardContent className="flex-1">
         <div className="flex flex-wrap gap-1">
           {cat.items.map((item) => (
-            <Badge key={item} variant="secondary" className="caption-xs text-ground-400">
+            <Badge key={item} variant="secondary" className="caption-xs text-muted-foreground">
               {item}
             </Badge>
           ))}
@@ -591,11 +595,19 @@ function ComingSoonCard({ cat }: { cat: Category }) {
 function Stat({ label, value, active }: { label: string; value: string; active: boolean }) {
   return (
     <div>
-      <p className={cn("heading font-medium", active ? "text-ground-900" : "text-ground-300")}>
+      <p
+        className={cn(
+          "heading font-medium",
+          active ? "text-foreground" : "text-muted-foreground/70",
+        )}
+      >
         {value}
       </p>
       <p
-        className={cn("mt-0.5 caption font-medium", active ? "text-ground-400" : "text-ground-300")}
+        className={cn(
+          "mt-0.5 caption font-medium",
+          active ? "text-muted-foreground" : "text-muted-foreground/70",
+        )}
       >
         {label}
       </p>

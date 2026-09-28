@@ -55,7 +55,10 @@ function NavItemLink({
       : "text-ground-500 hover:text-ground-900";
 
   return (
-    <a href="#" className={`rounded-lg px-3 py-2 text-sm transition-colors ${className}`}>
+    <a
+      href={`#${label.toLowerCase().replace(/\s+/g, "-")}`}
+      className={`rounded-lg px-3 py-2 text-sm transition-colors ${className}`}
+    >
       {label}
     </a>
   );
@@ -123,7 +126,7 @@ export default function NavbarSimpleDark() {
               {navItems.map((item) => (
                 <a
                   key={item}
-                  href="#"
+                  href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
                   className={`block rounded-lg px-3 py-2 text-sm ${
                     item === "Dashboard"
                       ? "bg-white/10 text-white font-medium"

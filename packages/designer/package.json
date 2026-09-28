@@ -1,23 +1,29 @@
 {
   "name": "@hilum/designer",
-  "version": "3.8.0",
+  "version": "4.0.0",
   "private": false,
   "description": "Engine-agnostic canvas-editor chrome — DesignerShell, Toolbar, Panel, Pane + generic useHistory and useKeybindings hooks",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hilum-labs/hilum-ui.git",
+    "url": "git+https://github.com/hilum-labs/hilum-ui.git",
     "directory": "packages/designer"
+  },
+  "homepage": "https://ui.hilum.dev",
+  "bugs": {
+    "url": "https://github.com/hilum-labs/hilum-ui/issues"
   },
   "publishConfig": {
     "access": "public"
   },
   "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
@@ -28,12 +34,12 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src",
+    "lint": "eslint src --max-warnings 0",
     "clean": "rm -rf dist .turbo"
   },
   "//": "Tests for this package live in src/**/*.test.ts and run from the root via `pnpm test`.",
   "peerDependencies": {
-    "@hilum/ui": "^3.3.4",
+    "@hilum/ui": "^4.0.0",
     "lucide-react": ">=0.511.0 <1.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -41,11 +47,11 @@
   "dependencies": {},
   "devDependencies": {
     "@hilum/ui": "workspace:*",
-    "@types/react": "^19.0.0",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.0.0",
     "lucide-react": "^0.542.0",
     "tailwindcss": "^4.2.0",
     "tsup": "^8.3.0",
-    "typescript": "^5.7.0"
+    "typescript": "^6.0.3"
   }
 }

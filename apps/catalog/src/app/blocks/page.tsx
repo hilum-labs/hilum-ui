@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { Link } from "@tanstack/react-router";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -65,22 +64,22 @@ function BlocksPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Blocks</span>
+          <span className="font-semibold text-foreground">Blocks</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Blocks</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Blocks</h1>
+        <p className="body max-w-md text-muted-foreground">
           Full page sections assembled from atoms and molecules. Copy the code and drop it directly
           into any layout.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">{BLOCKS.length} blocks</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">Built on Molecules + Atoms</p>
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">{BLOCKS.length} blocks</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">Built on Molecules + Atoms</p>
         </div>
       </div>
 
@@ -98,8 +97,8 @@ function BlocksPage() {
                   {block.category}
                 </Badge>
               </div>
-              <CardTitle className="subheading text-ground-900">{block.name}</CardTitle>
-              <CardDescription className="caption leading-relaxed text-ground-400">
+              <CardTitle className="subheading text-foreground">{block.name}</CardTitle>
+              <CardDescription className="caption leading-relaxed text-muted-foreground">
                 {block.description}
               </CardDescription>
             </CardHeader>
@@ -108,7 +107,7 @@ function BlocksPage() {
                 asChild
                 variant="ghost"
                 size="sm"
-                className="h-auto px-0 py-0 text-ground-500 hover:text-ground-900 hover:bg-transparent"
+                className="h-auto px-0 py-0 text-muted-foreground hover:text-foreground hover:bg-transparent"
               >
                 <a href={`/blocks/${block.slug}`}>View block →</a>
               </Button>

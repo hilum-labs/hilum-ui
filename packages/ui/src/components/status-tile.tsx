@@ -1,6 +1,7 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { StatusBadge, type StatusBadgeVariant } from "./status-badge";
+import type { StatusTone } from "./badge";
 
 interface StatusTileGridProps extends React.HTMLAttributes<HTMLDivElement> {
   columns?: 2 | 3 | 4;
@@ -13,6 +14,10 @@ interface StatusTileProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "ti
   meta?: React.ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
   labelMap?: Record<string, React.ReactNode>;
+  /** Semantic tone override for the badge. */
+  tone?: StatusTone;
+  /** Per-app status → tone overrides. */
+  toneMap?: Record<string, StatusTone>;
   variantMap?: Record<string, StatusBadgeVariant>;
   iconMap?: Record<string, React.ComponentType<{ className?: string }>>;
 }
@@ -44,6 +49,8 @@ function StatusTile({
   meta,
   icon: Icon,
   labelMap,
+  tone,
+  toneMap,
   variantMap,
   iconMap,
   className,
@@ -66,14 +73,14 @@ function StatusTile({
         <StatusBadge
           status={status}
           {...(labelMap ? { labelMap } : {})}
+          {...(tone ? { tone } : {})}
+          {...(toneMap ? { toneMap } : {})}
           {...(variantMap ? { variantMap } : {})}
           {...(iconMap ? { iconMap } : {})}
           className="shrink-0"
         />
       </div>
-      {description ? (
-        <p className="body-sm mt-3 text-muted-foreground">{description}</p>
-      ) : null}
+      {description ? <p className="body-sm mt-3 text-muted-foreground">{description}</p> : null}
       {meta ? <div className="mt-3 min-w-0 text-muted-foreground">{meta}</div> : null}
     </div>
   );

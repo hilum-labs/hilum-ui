@@ -189,8 +189,8 @@ const categoryData = [
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -204,19 +204,19 @@ function ChartPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Chart</span>
+          <span className="font-semibold text-foreground">Chart</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Chart</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Chart</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Brand-styled chart components built on Recharts. Includes bar, line, area, and pie
           variants with a consistent design language.
         </p>
@@ -234,8 +234,8 @@ function ChartPage() {
           code={CODE.barChart}
           previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
-            <p className="subheading mb-4 text-ground-900">Monthly Revenue</p>
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-border bg-background p-4 shadow-natural sm:p-6">
+            <p className="subheading mb-4 text-foreground">Monthly Revenue</p>
             <ChartContainer height={280} className="min-w-0">
               <BarChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f2eeea" />
@@ -255,8 +255,8 @@ function ChartPage() {
           code={CODE.lineChart}
           previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
-            <p className="subheading mb-4 text-ground-900">User Growth</p>
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-border bg-background p-4 shadow-natural sm:p-6">
+            <p className="subheading mb-4 text-foreground">User Growth</p>
             <ChartContainer height={280} className="min-w-0">
               <LineChart data={monthlyData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f2eeea" />
@@ -283,8 +283,8 @@ function ChartPage() {
           code={CODE.areaChart}
           previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
-            <p className="subheading mb-4 text-ground-900">Weekly Traffic</p>
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-border bg-background p-4 shadow-natural sm:p-6">
+            <p className="subheading mb-4 text-foreground">Weekly Traffic</p>
             <ChartContainer height={280} className="min-w-0">
               <AreaChart data={weeklyData}>
                 <defs>
@@ -328,8 +328,8 @@ function ChartPage() {
           code={CODE.pieChart}
           previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
-            <p className="subheading mb-4 text-ground-900">Team Breakdown</p>
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-border bg-background p-4 shadow-natural sm:p-6">
+            <p className="subheading mb-4 text-foreground">Team Breakdown</p>
             <ChartContainer height={220} className="min-w-0">
               <PieChart>
                 <Pie
@@ -356,8 +356,8 @@ function ChartPage() {
                     className="inline-block h-2 w-2 rounded-full"
                     style={{ backgroundColor: entry.color }}
                   />
-                  <span className="caption text-ground-500">{entry.name}</span>
-                  <span className="caption font-medium text-ground-900">{entry.value}%</span>
+                  <span className="caption text-muted-foreground">{entry.name}</span>
+                  <span className="caption font-medium text-foreground">{entry.value}%</span>
                 </div>
               ))}
             </div>
@@ -371,8 +371,8 @@ function ChartPage() {
           code={CODE.multiBar}
           previewClassName="p-3 sm:p-6"
         >
-          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-ground-100 bg-white p-4 shadow-natural sm:p-6">
-            <p className="subheading mb-4 text-ground-900">Revenue vs Conversions</p>
+          <div className="w-full min-w-0 overflow-hidden rounded-xl border border-border bg-background p-4 shadow-natural sm:p-6">
+            <p className="subheading mb-4 text-foreground">Revenue vs Conversions</p>
             <ChartContainer height={280} className="min-w-0">
               <BarChart data={monthlyData} barSize={10}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#f2eeea" />

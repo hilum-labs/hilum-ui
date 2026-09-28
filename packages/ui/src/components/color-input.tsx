@@ -2,10 +2,22 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { motionClasses } from "../lib/interaction";
+import { inputFocusWithinClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { ColorPickerPopover } from "./color-picker";
 import type { ControlMobileSurface } from "./input";
+
+interface ColorInputLabels {
+  /** Accessible name of the hex text field. */
+  hex: string;
+  /** Accessible name of the opacity field. */
+  opacity: string;
+}
+
+const DEFAULT_LABELS: ColorInputLabels = {
+  hex: "Hex colour",
+  opacity: "Opacity",
+};
 
 interface ColorInputProps {
   value: string;
@@ -17,6 +29,8 @@ interface ColorInputProps {
   disabled?: boolean;
   presets?: string[];
   mobileSurface?: ControlMobileSurface;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<ColorInputLabels>;
 }
 
 /**
@@ -32,8 +46,10 @@ function ColorInput({
   disabled,
   presets,
   mobileSurface = "default",
+  labels: labelsProp,
 }: ColorInputProps) {
   const shape = useShape();
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [hex, setHex] = React.useState(value);
 
   React.useEffect(() => {
@@ -52,10 +68,12 @@ function ColorInput({
 
   return (
     <div
+      data-slot="color-input"
       className={cn(
-        "inline-flex h-8 items-stretch gap-0 overflow-hidden border border-border bg-background",
+        "inline-flex h-8 items-stretch gap-0 overflow-hidden border border-border bg-background hover:border-border-strong",
         shape.input,
-        "focus-within:border-brand-primary focus-within:ring-2 focus-within:ring-brand-primary/20",
+        "compact:h-6 compact:rounded-[5px]",
+        inputFocusWithinClasses,
         motionClasses,
         mobileSurfaceClass,
         disabled && "opacity-50 pointer-events-none",
@@ -69,7 +87,7 @@ function ColorInput({
         {...(disabled !== undefined && { disabled })}
         triggerShowValue={false}
         hideEyedropper
-        triggerClassName="h-full w-8 border-0 rounded-none bg-transparent px-1 hover:bg-hover focus-visible:ring-0"
+        triggerClassName="h-full w-8 border-0 rounded-none bg-transparent px-1 hover:bg-hover focus-visible:ring-0 compact:h-full compact:w-6 compact:px-0 compact:justify-center compact:rounded-none compact:[&>span]:!size-4"
       />
       <input
         type="text"
@@ -81,19 +99,21 @@ function ColorInput({
             commitHex("#" + (e.target as HTMLInputElement).value.replace(/^#/, ""));
         }}
         spellCheck={false}
-        className="w-[5.5rem] caption text-foreground px-2 bg-transparent border-l border-border focus:outline-none uppercase"
+        aria-label={labels.hex}
+        className="w-[5.5rem] caption tabular-nums text-foreground px-2 bg-transparent border-s border-border focus:outline-none uppercase compact:w-[4.5rem] compact:px-1.5 compact:text-[12px]"
       />
       {typeof opacity === "number" && onOpacityChange && (
-        <div className="relative flex items-center border-l border-border">
+        <div className="relative flex items-center border-s border-border">
           <input
             type="number"
             min={0}
             max={100}
             value={Math.round(opacity)}
             onChange={(e) => onOpacityChange(Number(e.target.value))}
-            className="w-12 caption text-foreground px-2 bg-transparent focus:outline-none text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            aria-label={labels.opacity}
+            className="w-12 caption tabular-nums text-foreground px-2 bg-transparent focus:outline-none text-end compact:w-10 compact:px-1.5 compact:text-[12px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
-          <span aria-hidden className="caption-xs text-muted-foreground pr-2">
+          <span aria-hidden className="caption-xs text-muted-foreground pe-2">
             %
           </span>
         </div>
@@ -104,5 +124,5 @@ function ColorInput({
 
 ColorInput.displayName = "ColorInput";
 
-export { ColorInput };
-export type { ColorInputProps };
+export { ColorInput, DEFAULT_LABELS as COLOR_INPUT_DEFAULT_LABELS };
+export type { ColorInputProps, ColorInputLabels };

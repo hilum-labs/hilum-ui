@@ -136,10 +136,10 @@ export default function SingleColumnCart() {
             <CartRow
               key={item.id}
               item={item}
-              quantity={cartOne[item.id]}
+              quantity={cartOne[item.id] ?? item.qty}
               quantityControl={
                 <QuantityStepper
-                  value={cartOne[item.id]}
+                  value={cartOne[item.id] ?? item.qty}
                   onChange={(next) => setCartOne((current) => ({ ...current, [item.id]: next }))}
                 />
               }

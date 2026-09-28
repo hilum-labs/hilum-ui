@@ -69,17 +69,21 @@ function Carousel({
     emblaApi?.scrollNext();
   }, [emblaApi]);
 
+  // Embla's `direction: "rtl"` mirrors the track, so the arrow keys follow.
+  const isRtl = opts?.direction === "rtl";
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (event.key === "ArrowLeft") {
         event.preventDefault();
-        scrollPrev();
+        if (isRtl) scrollNext();
+        else scrollPrev();
       } else if (event.key === "ArrowRight") {
         event.preventDefault();
-        scrollNext();
+        if (isRtl) scrollPrev();
+        else scrollNext();
       }
     },
-    [scrollPrev, scrollNext],
+    [scrollPrev, scrollNext, isRtl],
   );
 
   React.useEffect(() => {
@@ -113,6 +117,7 @@ function Carousel({
     >
       <div
         onKeyDownCapture={handleKeyDown}
+        data-slot="carousel"
         className={cn("relative", className)}
         role="region"
         aria-roledescription="carousel"
@@ -128,9 +133,9 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="overflow-hidden" data-slot="carousel-content">
       <div
-        className={cn("flex", orientation === "vertical" ? "-mt-4 flex-col" : "-ml-4", className)}
+        className={cn("flex", orientation === "vertical" ? "-mt-4 flex-col" : "-ms-4", className)}
         {...props}
       />
     </div>
@@ -144,9 +149,10 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
     <div
       role="group"
       aria-roledescription="slide"
+      data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "vertical" ? "pt-4" : "pl-4",
+        orientation === "vertical" ? "pt-4" : "ps-4",
         className,
       )}
       {...props}
@@ -158,27 +164,32 @@ function CarouselPrevious({
   className,
   variant = "outline",
   size = "icon",
+  label = "Previous slide",
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof Button> & {
+  /** Screen-reader label. Default: "Previous slide". */
+  label?: string;
+}) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
   return (
     <Button
+      data-slot="carousel-previous"
       variant={variant}
       size={size}
       className={cn(
         "absolute h-9 w-9 rounded-full",
         orientation === "vertical"
           ? "-top-12 left-1/2 -translate-x-1/2 rotate-90"
-          : "-left-12 top-1/2 -translate-y-1/2",
+          : "-start-12 top-1/2 -translate-y-1/2",
         className,
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
     >
-      <ArrowLeft className="size-4" />
-      <span className="sr-only">Previous slide</span>
+      <ArrowLeft className={cn("size-4", orientation === "horizontal" && "rtl:-scale-x-100")} />
+      <span className="sr-only">{label}</span>
     </Button>
   );
 }
@@ -187,27 +198,32 @@ function CarouselNext({
   className,
   variant = "outline",
   size = "icon",
+  label = "Next slide",
   ...props
-}: React.ComponentProps<typeof Button>) {
+}: React.ComponentProps<typeof Button> & {
+  /** Screen-reader label. Default: "Next slide". */
+  label?: string;
+}) {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
 
   return (
     <Button
+      data-slot="carousel-next"
       variant={variant}
       size={size}
       className={cn(
         "absolute h-9 w-9 rounded-full",
         orientation === "vertical"
           ? "-bottom-12 left-1/2 -translate-x-1/2 rotate-90"
-          : "-right-12 top-1/2 -translate-y-1/2",
+          : "-end-12 top-1/2 -translate-y-1/2",
         className,
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
     >
-      <ArrowRight className="size-4" />
-      <span className="sr-only">Next slide</span>
+      <ArrowRight className={cn("size-4", orientation === "horizontal" && "rtl:-scale-x-100")} />
+      <span className="sr-only">{label}</span>
     </Button>
   );
 }

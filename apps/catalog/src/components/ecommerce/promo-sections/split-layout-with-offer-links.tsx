@@ -26,7 +26,7 @@ const offerRows = [
 ];
 
 export default function SplitLayoutWithOfferLinks() {
-  const [selectedOffer, setSelectedOffer] = useState(offerRows[0].name);
+  const [selectedOffer, setSelectedOffer] = useState(offerRows[0]!.name);
 
   return (
     <div className="grid min-h-[340px] w-full overflow-hidden rounded-xl border border-ground-100 bg-white md:grid-cols-[1.05fr_0.95fr]">

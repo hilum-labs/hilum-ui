@@ -52,7 +52,7 @@ export default function InlinePriceCta() {
               <p className="body text-ground-500">{product.price}</p>
             </div>
             <a
-              href="#"
+              href="#view-product"
               className="inline-flex items-center gap-2 label text-brand-primary transition-opacity hover:opacity-80"
             >
               View product

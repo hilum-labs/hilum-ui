@@ -1,7 +1,6 @@
 import type { ReactNode } from "react";
 import { AlertTriangle, CheckCircle2, Info, LoaderCircle, X } from "lucide-react";
-import { Button, cn } from "@hilum/ui";
-import { useLink } from "./link-context";
+import { Button, cn, useLink } from "@hilum/ui";
 
 type AppStatusBannerTone = "neutral" | "info" | "success" | "warning" | "danger";
 

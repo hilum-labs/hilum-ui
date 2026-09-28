@@ -5,12 +5,28 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import * as React from "react";
 import { DatePicker, formatDate } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
+import { DateRangePicker, type DateRange } from "@hilum/ui";
+
+const RANGE_PICKER_CODE = `import { DateRangePicker, toISODate, type DateRange } from "@hilum/ui"
+
+const [range, setRange] = useState<DateRange | undefined>()
+
+// Replaces pairs of <input type="date">; presets for reporting filters.
+<DateRangePicker value={range} onChange={setRange} clearable maxDate={new Date()} />
+
+// API speaks "YYYY-MM-DD"?
+fetchOrders({ from: toISODate(range?.from), to: toISODate(range?.to) })`;
+
+function RangePickerDemo() {
+  const [range, setRange] = React.useState<DateRange | undefined>();
+  return <DateRangePicker value={range} onChange={setRange} clearable maxDate={new Date()} />;
+}
 
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -29,12 +45,12 @@ const [to, setTo] = React.useState<Date | undefined>()
 
 <div className="flex items-end gap-3">
   <div className="flex flex-col gap-1.5">
-    <span className="label text-ground-400">From</span>
+    <span className="label text-muted-foreground">From</span>
     <DatePicker value={from} onChange={setFrom} placeholder="Start date" />
   </div>
-  <span className="body text-ground-400 pb-1.5">—</span>
+  <span className="body text-muted-foreground pb-1.5">—</span>
   <div className="flex flex-col gap-1.5">
-    <span className="label text-ground-400">To</span>
+    <span className="label text-muted-foreground">To</span>
     <DatePicker value={to} onChange={setTo} placeholder="End date" />
   </div>
 </div>`,
@@ -52,19 +68,19 @@ function DatePickerPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Date Picker</span>
+          <span className="font-semibold text-foreground">Date Picker</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Date Picker</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Date Picker</h1>
+        <p className="body max-w-lg text-muted-foreground">
           A composable date picker combining Calendar with a Popover trigger. Supports single dates,
           date ranges, and disabled states.
         </p>
@@ -82,9 +98,9 @@ function DatePickerPage() {
           >
             <div className="flex flex-col items-center gap-3">
               <DatePicker value={date} onChange={setDate} />
-              <p className="caption text-ground-400">
+              <p className="caption text-muted-foreground">
                 Selected:{" "}
-                <span className="text-ground-700">{date ? formatDate(date) : "None"}</span>
+                <span className="text-foreground">{date ? formatDate(date) : "None"}</span>
               </p>
             </div>
           </PreviewBlock>
@@ -100,19 +116,19 @@ function DatePickerPage() {
             <div className="flex flex-col items-center gap-4">
               <div className="flex items-end gap-3">
                 <div className="flex flex-col gap-1.5">
-                  <span className="label text-ground-400">From</span>
+                  <span className="label text-muted-foreground">From</span>
                   <DatePicker value={from} onChange={setFrom} placeholder="Start date" />
                 </div>
-                <span className="body text-ground-400 pb-1.5">—</span>
+                <span className="body text-muted-foreground pb-1.5">—</span>
                 <div className="flex flex-col gap-1.5">
-                  <span className="label text-ground-400">To</span>
+                  <span className="label text-muted-foreground">To</span>
                   <DatePicker value={to} onChange={setTo} placeholder="End date" />
                 </div>
               </div>
-              <p className="caption text-ground-400">
-                From: <span className="text-ground-700">{from ? formatDate(from) : "—"}</span>
+              <p className="caption text-muted-foreground">
+                From: <span className="text-foreground">{from ? formatDate(from) : "—"}</span>
                 {"  ·  "}
-                To: <span className="text-ground-700">{to ? formatDate(to) : "—"}</span>
+                To: <span className="text-foreground">{to ? formatDate(to) : "—"}</span>
               </p>
             </div>
           </PreviewBlock>
@@ -127,10 +143,23 @@ function DatePickerPage() {
           >
             <div className="flex flex-col items-center gap-3">
               <DatePicker disabled placeholder="Pick a date" />
-              <p className="caption text-ground-400">This field is currently unavailable.</p>
+              <p className="caption text-muted-foreground">This field is currently unavailable.</p>
             </div>
           </PreviewBlock>
         </div>
+        <section className="mt-10">
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Date Range Picker</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Range with presets"
+            description="Collapsed range label, preset shortcuts, min/max bounds and a clear button."
+            code={RANGE_PICKER_CODE}
+          >
+            <RangePickerDemo />
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

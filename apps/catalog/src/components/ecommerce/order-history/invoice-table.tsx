@@ -98,7 +98,7 @@ export default function InvoiceTable() {
                 </td>
                 <td className="px-6 py-5 text-right">
                   <a
-                    href="#"
+                    href="#manage"
                     className="caption font-medium text-brand-primary transition-colors hover:text-brand-primary/80"
                   >
                     Manage

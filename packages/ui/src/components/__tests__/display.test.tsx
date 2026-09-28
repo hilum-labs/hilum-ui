@@ -636,8 +636,7 @@ describe("ChartTooltip", () => {
   });
 
   it("renders payload entries when active", () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const payload = [{ name: "Revenue", value: 1200, color: "#c100f1" }] as any;
+    const payload = [{ name: "Revenue", value: 1200, color: "#c100f1" }];
     render(<ChartTooltip active payload={payload} label="Jan" />);
     expect(screen.getByText("Revenue")).toBeInTheDocument();
     expect(screen.getByText("1,200")).toBeInTheDocument();

@@ -3,10 +3,12 @@ import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { ShellProvider, useShellContext } from "../shell/ShellContext";
 import { DesignerShell } from "../components/DesignerShell";
+import { DesignerWorkspace, DesignerWorkspaceViewport } from "../components/DesignerWorkspace";
 import { DesignerHeader } from "../components/DesignerHeader";
 import { DesignerToolbar } from "../components/DesignerToolbar";
 import { DesignerSidebar } from "../components/DesignerSidebar";
 import { DesignerPanel } from "../components/DesignerPanel";
+import { TwoValueControl } from "../components/DesignerValueControls";
 import { DesignerPane } from "../components/DesignerPane";
 import {
   DesignerPropertyControls,
@@ -131,6 +133,41 @@ describe("DesignerShell", () => {
 });
 
 /* ------------------------------------------------------------------ */
+/* DesignerWorkspace                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("DesignerWorkspace", () => {
+  it("creates a relative editor boundary with configurable safe insets", () => {
+    render(
+      <DesignerWorkspace safeInsets={{ top: 12, right: "18rem", bottom: 72, left: 320 }}>
+        <DesignerWorkspaceViewport>Visible canvas</DesignerWorkspaceViewport>
+      </DesignerWorkspace>,
+    );
+
+    const viewport = screen.getByText("Visible canvas");
+    const workspace = viewport.parentElement;
+
+    expect(workspace).toHaveAttribute("data-designer-workspace");
+    expect(workspace).toHaveClass("relative", "isolate", "overflow-hidden");
+    expect(workspace).toHaveStyle({
+      "--designer-workspace-inset-top": "12px",
+      "--designer-workspace-inset-right": "18rem",
+      "--designer-workspace-inset-bottom": "72px",
+      "--designer-workspace-inset-left": "320px",
+    });
+    expect(viewport).toHaveAttribute("data-designer-workspace-viewport");
+    expect(viewport.getAttribute("style")).toContain("top: var(--designer-workspace-inset-top)");
+    expect(viewport.getAttribute("style")).toContain(
+      "right: var(--designer-workspace-inset-right)",
+    );
+    expect(viewport.getAttribute("style")).toContain(
+      "bottom: var(--designer-workspace-inset-bottom)",
+    );
+    expect(viewport.getAttribute("style")).toContain("left: var(--designer-workspace-inset-left)");
+  });
+});
+
+/* ------------------------------------------------------------------ */
 /* DesignerHeader                                                       */
 /* ------------------------------------------------------------------ */
 
@@ -150,7 +187,31 @@ describe("DesignerHeader", () => {
 
   it("renders as a header element", () => {
     render(<DesignerHeader />);
-    expect(screen.getByRole("banner")).toBeInTheDocument();
+    const header = screen.getByRole("banner");
+    expect(header).toBeInTheDocument();
+    expect(header).not.toHaveClass("border-b", "border-border");
+  });
+
+  it("keeps the center slot centered independently of the side content", () => {
+    render(
+      <DesignerHeader
+        left={<span>Long document name</span>}
+        center={<span>Modes</span>}
+        right={<span>Account</span>}
+      />,
+    );
+
+    const header = screen.getByRole("banner");
+    expect(header).toHaveClass("grid", "grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]");
+    expect(header.querySelector('[data-designer-header-slot="left"]')).toHaveClass(
+      "justify-self-start",
+    );
+    expect(header.querySelector('[data-designer-header-slot="center"]')).toHaveClass(
+      "justify-self-center",
+    );
+    expect(header.querySelector('[data-designer-header-slot="right"]')).toHaveClass(
+      "justify-self-end",
+    );
   });
 });
 
@@ -175,7 +236,7 @@ describe("DesignerToolbar", () => {
       </DesignerToolbar>,
     );
 
-    expect(screen.getByRole("toolbar")).toHaveClass("bg-card", "shadow-natural");
+    expect(screen.getByRole("toolbar")).toHaveClass("bg-card", "shadow-surface-3");
     expect(screen.getByRole("toolbar")).not.toHaveClass("border", "border-border");
   });
 
@@ -200,6 +261,29 @@ describe("DesignerToolbar", () => {
     );
     expect(screen.getByRole("toolbar")).toHaveClass("inset-x-3", "overflow-x-auto");
   });
+
+  it("can position a floating toolbar relative to its workspace", () => {
+    render(
+      <DesignerToolbar boundary="workspace">
+        <span>T</span>
+      </DesignerToolbar>,
+    );
+
+    expect(screen.getByRole("toolbar")).toHaveClass("absolute");
+    expect(screen.getByRole("toolbar")).not.toHaveClass("fixed");
+  });
+
+  it("can center a floating toolbar within the workspace safe area", () => {
+    render(
+      <DesignerToolbar boundary="workspace" center="safe-area">
+        <span>T</span>
+      </DesignerToolbar>,
+    );
+
+    expect(screen.getByRole("toolbar")).toHaveStyle({
+      left: "calc(var(--designer-workspace-inset-left) + (100% - var(--designer-workspace-inset-left) - var(--designer-workspace-inset-right)) / 2)",
+    });
+  });
 });
 
 /* ------------------------------------------------------------------ */
@@ -222,6 +306,18 @@ describe("DesignerSidebar", () => {
     );
     expect(screen.getByRole("button", { name: "Select" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Pan" })).toBeInTheDocument();
+  });
+
+  it("renders item tooltips as designed floating surfaces", async () => {
+    const user = userEvent.setup();
+    render(<DesignerSidebar items={[{ id: "select", label: "Select", icon: MockIcon }]} />);
+
+    await user.hover(screen.getByRole("button", { name: "Select" }));
+
+    const tooltip = await screen.findByRole("tooltip", { name: "Select" });
+    const surface = screen.getAllByText("Select")[0]?.closest("div");
+    expect(tooltip).toBeInTheDocument();
+    expect(surface).toHaveClass("rounded-lg", "bg-foreground", "text-background", "shadow-natural");
   });
 
   it("renders on left and right sides without error", () => {
@@ -257,6 +353,31 @@ describe("DesignerSidebar", () => {
       "inset-x-3",
     );
     expect(screen.getByRole("button", { name: "Select" })).toHaveClass("size-11");
+  });
+
+  it("renders a rounded floating desktop rail within the workspace", () => {
+    render(
+      <DesignerSidebar
+        variant="floating"
+        floatingInset={{ top: 12, bottom: 20, left: 16 }}
+        items={[{ id: "select", label: "Select", icon: MockIcon }]}
+      />,
+    );
+
+    const rail = screen.getByRole("navigation", { name: "Editor tools" });
+    const itemList = rail.querySelector("[data-designer-sidebar-items]");
+    expect(rail).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-surface-3");
+    expect(rail).toHaveClass("duration-200", "ease-out", "motion-reduce:transition-none");
+    expect(rail).not.toHaveClass("border", "border-border");
+    expect(rail).toHaveStyle({
+      top: "12px",
+      left: "16px",
+      height: "fit-content",
+      maxHeight: "calc(100% - 12px - 20px)",
+    });
+    expect(rail.style.bottom).toBe("");
+    expect(itemList).toHaveClass("flex-initial");
+    expect(itemList).not.toHaveClass("flex-1");
   });
 });
 
@@ -296,6 +417,33 @@ describe("DesignerPanel", () => {
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     expect(screen.getByText("Properties")).toBeInTheDocument();
     expect(screen.getByText("Mobile panel content")).toBeInTheDocument();
+  });
+
+  it("renders an elevated floating panel on either workspace edge", () => {
+    render(
+      <DesignerPanel
+        side="left"
+        variant="floating"
+        width={280}
+        floatingInset={{ top: 12, bottom: 20, left: 76 }}
+      >
+        Floating panel
+      </DesignerPanel>,
+    );
+
+    const panel = screen.getByText("Floating panel").closest("aside");
+    expect(panel).toHaveAttribute("data-variant", "floating");
+    expect(panel).toHaveClass("absolute", "rounded-lg", "bg-card", "shadow-surface-3");
+    expect(panel).toHaveClass("duration-200", "ease-out", "motion-reduce:transition-none");
+    expect(panel).not.toHaveClass("border", "border-border");
+    expect(panel).toHaveStyle({
+      top: "12px",
+      left: "76px",
+      width: "280px",
+      height: "fit-content",
+      maxHeight: "calc(100% - 12px - 20px)",
+    });
+    expect(panel?.style.bottom).toBe("");
   });
 });
 
@@ -399,5 +547,79 @@ describe("DesignerPropertyRow", () => {
 
     expect(screen.getByText("Effects")).toBeInTheDocument();
     expect(screen.getByText("Opacity")).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Density                                                              */
+/* ------------------------------------------------------------------ */
+
+describe("editor density", () => {
+  it("DesignerShell defaults to compact density", () => {
+    const { container } = render(
+      <DesignerShell>
+        <div>content</div>
+      </DesignerShell>,
+    );
+    expect(container.firstElementChild).toHaveAttribute("data-density", "compact");
+    expect(container.firstElementChild).toHaveClass("bg-canvas");
+  });
+
+  it("DesignerShell can opt back into default density", () => {
+    const { container } = render(
+      <DesignerShell density="default">
+        <div>content</div>
+      </DesignerShell>,
+    );
+    expect(container.firstElementChild).toHaveAttribute("data-density", "default");
+  });
+
+  it("DesignerPanel defaults to compact density and supports opting out", () => {
+    const { rerender } = render(<DesignerPanel side="right">Panel content</DesignerPanel>);
+    expect(screen.getByText("Panel content").closest("aside")).toHaveAttribute(
+      "data-density",
+      "compact",
+    );
+    rerender(
+      <DesignerPanel side="right" density="default">
+        Panel content
+      </DesignerPanel>,
+    );
+    expect(screen.getByText("Panel content").closest("aside")).toHaveAttribute(
+      "data-density",
+      "default",
+    );
+  });
+
+  it("DesignerPropertyRow supports an inline label column", () => {
+    render(
+      <DesignerPropertyRow label="Opacity" layout="inline" labelWidth={48}>
+        <input aria-label="opacity" />
+      </DesignerPropertyRow>,
+    );
+    const label = screen.getByText("Opacity");
+    expect(label).toHaveStyle({ width: "48px" });
+    expect(label.parentElement).toHaveAttribute("data-layout", "inline");
+    expect(label.parentElement).toHaveClass("flex-row");
+  });
+});
+
+describe("TwoValueControl", () => {
+  it("renders label-in-field inputs in a two-column grid", () => {
+    render(
+      <TwoValueControl
+        values={{ x: 10, y: 20 }}
+        items={[
+          { key: "x", label: "X", ariaLabel: "X position" },
+          { key: "y", label: "Y" },
+        ]}
+        onChange={() => {}}
+      />,
+    );
+    expect(screen.getByRole("spinbutton", { name: "X position" })).toHaveValue("10");
+    // Falls back to the string label for the accessible name.
+    const y = screen.getByRole("spinbutton", { name: "Y" });
+    expect(y).toHaveValue("20");
+    expect(y.closest(".grid")).toHaveClass("grid-cols-2");
   });
 });

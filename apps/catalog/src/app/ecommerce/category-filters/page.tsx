@@ -23,33 +23,33 @@ import inlineActionsSidebarSource from "@/components/ecommerce/category-filters/
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
 
 function CategoryFiltersPage() {
   return (
-    <div className="h-full overflow-y-auto bg-white">
+    <div className="h-full overflow-y-auto bg-background">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-            <a href="/" className="hover:text-ground-700">
+          <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="/ecommerce" className="hover:text-ground-700">
+            <a href="/ecommerce" className="hover:text-foreground">
               Ecommerce
             </a>
             <span>/</span>
-            <span className="font-semibold text-ground-900">Category Filters</span>
+            <span className="font-semibold text-foreground">Category Filters</span>
           </div>
           <div className="mb-4 flex items-center gap-3">
             <Badge variant="secondary">Browsing · 5 variants</Badge>
           </div>
-          <h1 className="display mb-2 text-ground-900">Category Filters</h1>
-          <p className="body max-w-2xl text-ground-400">
+          <h1 className="display mb-2 text-foreground">Category Filters</h1>
+          <p className="body max-w-2xl text-muted-foreground">
             Sidebar and dropdown filter panels for browsing product categories.
           </p>
         </div>

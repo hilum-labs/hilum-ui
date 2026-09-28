@@ -134,10 +134,10 @@ export default function ExtendedSummaryCart() {
             <div key={item.id} className="rounded-[24px] border border-ground-100 p-5">
               <CartRow
                 item={item}
-                quantity={cartThree[item.id]}
+                quantity={cartThree[item.id] ?? item.qty}
                 quantityControl={
                   <QuantityStepper
-                    value={cartThree[item.id]}
+                    value={cartThree[item.id] ?? item.qty}
                     onChange={(next) =>
                       setCartThree((current) => ({ ...current, [item.id]: next }))
                     }

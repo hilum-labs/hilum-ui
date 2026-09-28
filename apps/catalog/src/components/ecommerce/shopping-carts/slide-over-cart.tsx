@@ -135,11 +135,11 @@ export default function SlideOverCart() {
             <div key={item.id} className="rounded-[22px] border border-ground-100 p-4">
               <CartRow
                 item={item}
-                quantity={cartFour[item.id]}
+                quantity={cartFour[item.id] ?? item.qty}
                 compact
                 quantityControl={
                   <QuantityStepper
-                    value={cartFour[item.id]}
+                    value={cartFour[item.id] ?? item.qty}
                     onChange={(next) => setCartFour((current) => ({ ...current, [item.id]: next }))}
                   />
                 }

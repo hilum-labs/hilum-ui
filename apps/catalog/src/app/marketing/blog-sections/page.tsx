@@ -13,8 +13,8 @@ import blogSectionNewsletterSource from "@/components/marketing/blog-sections/bl
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -23,15 +23,15 @@ function BlogSectionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10 max-w-2xl">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/marketing" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/marketing" className="hover:text-foreground">
             Marketing
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Blog Sections</span>
+          <span className="font-semibold text-foreground">Blog Sections</span>
         </div>
-        <h1 className="display text-ground-900">Blog Sections</h1>
-        <p className="body mt-3 text-ground-500">
+        <h1 className="display text-foreground">Blog Sections</h1>
+        <p className="body mt-3 text-muted-foreground">
           Editorial layouts for article indexes, compact story lists, and newsletter-led content
           pages.
         </p>

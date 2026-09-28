@@ -55,8 +55,8 @@ function InputCopyPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Input Copy</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Input Copy</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Read-only input with a copy-to-clipboard button and animated check feedback.
       </p>
       <PageDocs path="/molecules/input-copy/" />
@@ -115,7 +115,7 @@ function InputCopyPage() {
               value="https://fluidfunctionalism.com/r/input-copy"
               onCopy={() => setCopyCount((count) => count + 1)}
             />
-            <p className="caption px-1 text-ground-400">
+            <p className="caption px-1 text-muted-foreground">
               Copied {copyCount} {copyCount === 1 ? "time" : "times"}
             </p>
           </div>

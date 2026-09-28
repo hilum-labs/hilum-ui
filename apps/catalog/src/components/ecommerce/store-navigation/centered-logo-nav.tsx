@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronDown, Search, ShoppingBag } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
 type CategoryName = "Women" | "Men";
@@ -104,7 +104,7 @@ function FeaturedColumnsMenu({ category }: { category: NavCategory }) {
             {section.links.map((link) => (
               <a
                 key={link}
-                href="#"
+                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
                 className="block body text-ground-600 transition-colors hover:text-ground-900"
               >
                 {link}
@@ -119,7 +119,7 @@ function FeaturedColumnsMenu({ category }: { category: NavCategory }) {
           {pages.map((page) => (
             <a
               key={page}
-              href="#"
+              href={`#${page.toLowerCase().replace(/\s+/g, "-")}`}
               className="block body text-ground-600 transition-colors hover:text-ground-900"
             >
               {page}
@@ -135,7 +135,7 @@ export default function CenteredLogoNav() {
   const [centeredMenu, setCenteredMenu] = useState<CategoryName>("Women");
 
   const centeredCategory =
-    categories.find((category) => category.name === centeredMenu) ?? categories[0];
+    categories.find((category) => category.name === centeredMenu) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">
@@ -156,7 +156,7 @@ export default function CenteredLogoNav() {
                   {category.name}
                 </button>
               ))}
-              <a href="#" className="px-3 py-2 body text-ground-500 hover:text-ground-900">
+              <a href="#company" className="px-3 py-2 body text-ground-500 hover:text-ground-900">
                 Company
               </a>
             </div>

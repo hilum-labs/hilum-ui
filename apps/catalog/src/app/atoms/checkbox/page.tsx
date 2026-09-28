@@ -45,14 +45,14 @@ import { Label } from "@hilum/ui"
 </div>`,
 
   withDescription: `<fieldset>
-  <legend className="body font-semibold text-ground-900">Notifications</legend>
+  <legend className="body font-semibold text-foreground">Notifications</legend>
   <div className="mt-3 flex flex-col gap-4">
     {items.map((item) => (
       <div key={item.id} className="flex gap-3">
         <Checkbox id={item.id} className="mt-0.5" />
         <div>
           <Label htmlFor={item.id}>{item.label}</Label>
-          <p className="caption text-ground-400 mt-0.5">{item.description}</p>
+          <p className="caption text-muted-foreground mt-0.5">{item.description}</p>
         </div>
       </div>
     ))}
@@ -60,14 +60,14 @@ import { Label } from "@hilum/ui"
 </fieldset>`,
 
   withInlineDescription: `<fieldset>
-  <legend className="body font-semibold text-ground-900">By email</legend>
+  <legend className="body font-semibold text-foreground">By email</legend>
   <div className="mt-3 flex flex-col gap-3">
     {items.map((item) => (
       <div key={item.id} className="flex items-start gap-3">
         <Checkbox id={item.id} className="mt-0.5" />
         <Label htmlFor={item.id}>
           {item.label}{" "}
-          <span className="font-normal text-ground-400">{item.description}</span>
+          <span className="font-normal text-muted-foreground">{item.description}</span>
         </Label>
       </div>
     ))}
@@ -75,13 +75,13 @@ import { Label } from "@hilum/ui"
 </fieldset>`,
 
   rightSide: `<fieldset>
-  <legend className="body font-semibold text-ground-900">Mailing lists</legend>
-  <div className="mt-3 divide-y divide-ground-100 border-y border-ground-100">
+  <legend className="body font-semibold text-foreground">Mailing lists</legend>
+  <div className="mt-3 divide-y divide-border border-y border-border">
     {items.map((item) => (
       <div key={item.id} className="flex items-center justify-between gap-4 py-4">
         <div>
           <Label htmlFor={item.id}>{item.label}</Label>
-          <p className="caption text-ground-400 mt-0.5">{item.description}</p>
+          <p className="caption text-muted-foreground mt-0.5">{item.description}</p>
         </div>
         <Checkbox id={item.id} />
       </div>
@@ -90,7 +90,7 @@ import { Label } from "@hilum/ui"
 </fieldset>`,
 
   simpleHeading: `<fieldset>
-  <legend className="body font-semibold text-ground-900">Export options</legend>
+  <legend className="body font-semibold text-foreground">Export options</legend>
   <div className="mt-3 flex flex-col gap-2.5">
     {options.map((opt) => (
       <div key={opt.id} className="flex items-center justify-between gap-3 py-1">
@@ -105,8 +105,8 @@ import { Label } from "@hilum/ui"
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -121,19 +121,19 @@ function CheckboxPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Checkbox</span>
+          <span className="font-semibold text-foreground">Checkbox</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Checkbox</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Checkbox</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Binary selection control with label, description, and group layout variants.
         </p>
       </div>
@@ -164,7 +164,7 @@ function CheckboxPage() {
               </div>
               <div className="flex items-center gap-2">
                 <Checkbox id="disabled-cb" disabled />
-                <Label htmlFor="disabled-cb" className="text-ground-400">
+                <Label htmlFor="disabled-cb" className="text-muted-foreground">
                   Unavailable option
                 </Label>
               </div>
@@ -182,14 +182,14 @@ function CheckboxPage() {
           >
             <div className="w-full max-w-lg">
               <fieldset>
-                <legend className="body font-semibold text-ground-900">Notifications</legend>
+                <legend className="body font-semibold text-foreground">Notifications</legend>
                 <div className="mt-3 flex flex-col gap-4">
                   {NOTIFICATION_TYPES.map((item) => (
                     <div key={item.id} className="flex gap-3">
                       <Checkbox id={`desc-${item.id}`} className="mt-0.5" />
                       <div>
                         <Label htmlFor={`desc-${item.id}`}>{item.label}</Label>
-                        <p className="caption text-ground-400 mt-0.5">{item.description}</p>
+                        <p className="caption text-muted-foreground mt-0.5">{item.description}</p>
                       </div>
                     </div>
                   ))}
@@ -209,14 +209,16 @@ function CheckboxPage() {
           >
             <div className="w-full max-w-lg">
               <fieldset>
-                <legend className="body font-semibold text-ground-900">By email</legend>
+                <legend className="body font-semibold text-foreground">By email</legend>
                 <div className="mt-3 flex flex-col gap-3">
                   {NOTIFICATION_TYPES.map((item) => (
                     <div key={item.id} className="flex items-start gap-3">
                       <Checkbox id={`inline-${item.id}`} className="mt-0.5" />
                       <Label htmlFor={`inline-${item.id}`} className="leading-snug">
                         {item.label}{" "}
-                        <span className="font-normal text-ground-400">{item.description}</span>
+                        <span className="font-normal text-muted-foreground">
+                          {item.description}
+                        </span>
                       </Label>
                     </div>
                   ))}
@@ -236,17 +238,17 @@ function CheckboxPage() {
           >
             <div className="w-full max-w-lg">
               <fieldset>
-                <legend className="body font-semibold text-ground-900 mb-3">Mailing lists</legend>
-                <div className="divide-y divide-ground-100 border-y border-ground-100">
+                <legend className="body font-semibold text-foreground mb-3">Mailing lists</legend>
+                <div className="divide-y divide-border border-y border-border">
                   {MAILING_LISTS.map((item) => (
                     <div key={item.id} className="flex items-center justify-between gap-4 py-4">
                       <div>
                         <Label htmlFor={`right-${item.id}`}>{item.label}</Label>
-                        <p className="caption text-ground-400 mt-0.5">{item.description}</p>
+                        <p className="caption text-muted-foreground mt-0.5">{item.description}</p>
                       </div>
                       <Checkbox
                         id={`right-${item.id}`}
-                        checked={rightSide[item.id]}
+                        checked={rightSide[item.id] ?? false}
                         onCheckedChange={(v) =>
                           setRightSide((prev) => ({ ...prev, [item.id]: !!v }))
                         }
@@ -269,7 +271,7 @@ function CheckboxPage() {
           >
             <div className="w-full max-w-sm">
               <fieldset>
-                <legend className="body font-semibold text-ground-900">Export options</legend>
+                <legend className="body font-semibold text-foreground">Export options</legend>
                 <div className="mt-3 flex flex-col gap-1">
                   {[
                     { id: "pdf", label: "PDF document", checked: true },

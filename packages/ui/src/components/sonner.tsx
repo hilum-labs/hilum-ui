@@ -1,14 +1,27 @@
 "use client";
 
 import * as React from "react";
-import { Toaster as SonnerToaster } from "sonner";
+import { Toaster as SonnerToaster, toast, useSonner } from "sonner";
 
 type ToasterProps = React.ComponentProps<typeof SonnerToaster>;
+type ToastOptions = NonNullable<Parameters<typeof toast>[1]>;
 
-function Toaster({ ...props }: ToasterProps) {
+/**
+ * Toast host. Mount once near the app root; fire toasts with the re-exported
+ * `toast()` API so apps never import `sonner` directly:
+ *
+ *   import { Toaster, toast } from "@hilum/ui";
+ *   toast.success("Product saved");
+ *   toast.promise(save(), { loading: "Saving…", success: "Saved", error: "Could not save" });
+ *
+ * Colours come from Hilum tokens, so the default `theme="system"` only
+ * affects Sonner's built-in icons and close button.
+ */
+function Toaster({ theme = "system", position = "bottom-right", ...props }: ToasterProps) {
   return (
     <SonnerToaster
-      theme="light"
+      theme={theme}
+      position={position}
       className="toaster group"
       toastOptions={{
         classNames: {
@@ -32,4 +45,5 @@ function Toaster({ ...props }: ToasterProps) {
   );
 }
 
-export { Toaster };
+export { Toaster, toast, useSonner };
+export type { ToasterProps, ToastOptions };

@@ -36,7 +36,7 @@ export default function OffsetWithSupportingText() {
             Use this treatment when the FAQ sits next to contact guidance or additional service
             context.
           </p>
-          <a href="#" className="body inline-block font-semibold text-brand-primary">
+          <a href="#contact-support" className="body inline-block font-semibold text-brand-primary">
             Contact support &rarr;
           </a>
         </div>

@@ -13,10 +13,19 @@ interface NavItemProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   trailing?: React.ReactNode;
 }
 
-const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
-  ({ icon, active, trailing, className, children, ...props }, ref) => (
+function NavItem({
+  ref,
+  icon,
+  active,
+  trailing,
+  className,
+  children,
+  ...props
+}: NavItemProps & { ref?: React.Ref<HTMLAnchorElement> }) {
+  return (
     <a
       ref={ref}
+      data-slot="nav-item"
       aria-current={active ? "page" : undefined}
       className={cn(
         "group flex min-h-10 items-center gap-2 rounded-xl px-3 body font-medium",
@@ -35,8 +44,8 @@ const NavItem = React.forwardRef<HTMLAnchorElement, NavItemProps>(
       <span className="min-w-0 flex-1 truncate">{children}</span>
       {trailing && <span className="shrink-0 text-muted-foreground">{trailing}</span>}
     </a>
-  ),
-);
+  );
+}
 NavItem.displayName = "NavItem";
 
 export { NavItem };

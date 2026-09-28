@@ -15,7 +15,10 @@ export default function SignInCard() {
         <h1 className="heading text-ground-900">Sign in to your account</h1>
         <p className="mt-1 body text-ground-400">
           Or{" "}
-          <a href="#" className="font-medium text-ground-900 underline underline-offset-2">
+          <a
+            href="#start-your-free-trial"
+            className="font-medium text-ground-900 underline underline-offset-2"
+          >
             start your free trial
           </a>
         </p>
@@ -43,7 +46,10 @@ export default function SignInCard() {
               <Checkbox id="remember" />
               <Label htmlFor="remember">Remember me</Label>
             </div>
-            <a href="#" className="caption font-medium text-ground-500 hover:text-ground-900">
+            <a
+              href="#forgot-password"
+              className="caption font-medium text-ground-500 hover:text-ground-900"
+            >
               Forgot password?
             </a>
           </div>
@@ -64,7 +70,7 @@ export default function SignInCard() {
       </div>
       <p className="mt-6 text-center caption text-ground-400">
         Don&apos;t have an account?{" "}
-        <a href="#" className="font-semibold text-ground-900 hover:underline">
+        <a href="#sign-up" className="font-semibold text-ground-900 hover:underline">
           Sign up
         </a>
       </p>

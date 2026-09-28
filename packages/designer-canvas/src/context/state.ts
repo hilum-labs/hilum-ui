@@ -36,7 +36,7 @@ export interface CanvasState<TData = Record<string, unknown>> {
   /** Theme — chrome reads from here, components reference Hilum semantic vars. */
   uiColor: SurfaceTheme;
   canvasColor: SurfaceTheme;
-  /** Editor accent (selection handles, snap guides). Defaults to Hilum brand-primary via CSS var. */
+  /** Editor accent (selection outlines). Defaults to Hilum brand-primary via CSS var. */
   accentColor: string;
 
   /** Renderer registry: descriptors for the layer kinds the app supports. */

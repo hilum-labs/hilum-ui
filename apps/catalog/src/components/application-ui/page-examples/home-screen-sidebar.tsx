@@ -1,5 +1,4 @@
 import {
-  Bell,
   Calendar,
   ChevronRight,
   FolderKanban,
@@ -43,7 +42,7 @@ const ACTIVITY_FEED = [
   },
 ];
 
-function ExampleFrame({ children }: { children: any }) {
+function ExampleFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}
@@ -104,7 +103,7 @@ export default function HomeScreenSidebar() {
               <div>
                 <p className="heading text-ground-900">Good morning, Tom</p>
                 <p className="caption mt-1 text-ground-400">
-                  Here's what changed across the business since yesterday.
+                  Here’s what changed across the business since yesterday.
                 </p>
               </div>
               <Button size="sm">

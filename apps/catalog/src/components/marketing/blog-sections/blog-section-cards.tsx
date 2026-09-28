@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
 const POSTS = [

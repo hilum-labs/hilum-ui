@@ -135,6 +135,10 @@ const typeSamples: Record<string, { sample: string; usage: string }> = {
     usage: "Dense UI and designer panels",
   },
   caption: { sample: "Enroll: 8,000+ classes", usage: "Captions, metadata, helper text" },
+  "caption-sm": {
+    sample: "SKU-1042 · 3 variants",
+    usage: "Table sub-lines, chips, editor hints (replaces text-[11px])",
+  },
   "caption-xs": { sample: "Soon · v2.0.0 · 2px", usage: "Tiny metadata, badges, sidebar chips" },
   eyebrow: { sample: "STUDENT PROFILES", usage: "Canonical uppercase label" },
   "eyebrow-sm": { sample: "PRO · BETA · NEW", usage: "Compact uppercase label" },
@@ -221,20 +225,20 @@ function FoundationsPage() {
     <div className="mx-auto max-w-7xl px-8 py-10">
       {/* Header */}
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
           <span>Design System</span>
           <span>/</span>
-          <span className="body font-semibold text-ground-900">Foundations</span>
+          <span className="body font-semibold text-foreground">Foundations</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Foundations</h1>
-        <p className="body max-w-md text-ground-400">
+        <h1 className="display mb-2 text-foreground">Foundations</h1>
+        <p className="body max-w-md text-muted-foreground">
           The raw design decisions that every component is built on. Understand these and the whole
           system becomes predictable.
         </p>
-        <div className="mt-5 flex items-center gap-4 border-t border-ground-100 pt-5">
-          <p className="caption text-ground-400">8 token groups</p>
-          <div className="h-3 w-px bg-ground-100" />
-          <p className="caption text-ground-400">
+        <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
+          <p className="caption text-muted-foreground">8 token groups</p>
+          <div className="h-3 w-px bg-border" />
+          <p className="caption text-muted-foreground">
             Colors · Typography · Spacing · Radius · Shadows · Z-index · Animation · Fonts
           </p>
         </div>
@@ -257,14 +261,14 @@ function FoundationsPage() {
               {brandHeroes.map((c) => (
                 <div key={c.token} className="flex flex-col gap-2">
                   <div
-                    className="h-24 w-full rounded-xl border border-ground-100"
+                    className="h-24 w-full rounded-xl border border-border"
                     style={{ backgroundColor: c.hex }}
                   />
                   <div>
-                    <p className="subheading text-ground-900">{c.name}</p>
-                    <p className="font-mono caption font-semibold text-ground-500">{c.hex}</p>
-                    <p className="caption text-ground-400">{c.token}</p>
-                    <p className="caption-xs mt-0.5 text-ground-300">{c.role}</p>
+                    <p className="subheading text-foreground">{c.name}</p>
+                    <p className="font-mono caption font-semibold text-muted-foreground">{c.hex}</p>
+                    <p className="caption text-muted-foreground">{c.token}</p>
+                    <p className="caption-xs mt-0.5 text-muted-foreground/70">{c.role}</p>
                   </div>
                 </div>
               ))}
@@ -355,22 +359,16 @@ function FoundationsPage() {
             />
             <div className="mt-4 grid gap-4 lg:grid-cols-3">
               {semanticModes.map(({ mode, rows }) => (
-                <div key={mode} className="overflow-hidden rounded-xl border border-ground-100">
-                  <div className="border-b border-ground-100 bg-ground-50 px-4 py-2">
-                    <p className="label text-ground-500">{mode}</p>
+                <div key={mode} className="overflow-hidden rounded-xl border border-border">
+                  <div className="border-b border-border bg-muted px-4 py-2">
+                    <p className="label text-muted-foreground">{mode}</p>
                   </div>
                   {rows.map((t, i) => (
                     <div
                       key={t.token}
-                      className={cn(i !== rows.length - 1 && "border-b border-ground-100")}
+                      className={cn(i !== rows.length - 1 && "border-b border-border")}
                     >
-                      <TokenRow
-                        token={t.token}
-                        value={t.value}
-                        hex={t.hex}
-                        usage={t.usage}
-                        lightText={t.lightText}
-                      />
+                      <TokenRow token={t.token} value={t.value} hex={t.hex} usage={t.usage} />
                     </div>
                   ))}
                 </div>
@@ -391,12 +389,14 @@ function FoundationsPage() {
             />
             <div className="mt-4 grid gap-3 md:grid-cols-3">
               {fontFamilies.map((f) => (
-                <div key={f.name} className="rounded-xl border border-ground-100 p-5">
-                  <p className="label mb-3 text-ground-400">{f.name}</p>
-                  <p className="body-lg text-ground-900" style={{ fontFamily: f.value }}>
+                <div key={f.name} className="rounded-xl border border-border p-5">
+                  <p className="label mb-3 text-muted-foreground">{f.name}</p>
+                  <p className="body-lg text-foreground" style={{ fontFamily: f.value }}>
                     The quick brown fox jumps over the lazy dog.
                   </p>
-                  <p className="mt-3 break-words font-mono caption-xs text-ground-400">{f.value}</p>
+                  <p className="mt-3 break-words font-mono caption-xs text-muted-foreground">
+                    {f.value}
+                  </p>
                 </div>
               ))}
             </div>
@@ -408,37 +408,39 @@ function FoundationsPage() {
               name="Type scale"
               description="Every type utility emitted by tokens.css. Use only these steps for catalog and product UI."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
-              <div className="hidden grid-cols-[140px_1fr_260px] border-b border-ground-100 bg-ground-50 px-5 py-2 md:grid">
-                <p className="label text-ground-400">Step</p>
-                <p className="label text-ground-400">Sample</p>
-                <p className="label text-ground-400">Spec</p>
+            <div className="mt-4 overflow-hidden rounded-xl border border-border">
+              <div className="hidden grid-cols-[140px_1fr_260px] border-b border-border bg-muted px-5 py-2 md:grid">
+                <p className="label text-muted-foreground">Step</p>
+                <p className="label text-muted-foreground">Sample</p>
+                <p className="label text-muted-foreground">Spec</p>
               </div>
               {typeScale.map((step, i) => (
                 <div
                   key={step.label}
                   className={cn(
                     "grid items-center gap-4 px-5 py-4 md:grid-cols-[140px_1fr_260px]",
-                    i !== typeScale.length - 1 && "border-b border-ground-100",
+                    i !== typeScale.length - 1 && "border-b border-border",
                   )}
                 >
                   <div>
-                    <p className="font-mono text-[11px] font-semibold text-ground-500">
+                    <p className="font-mono text-[11px] font-semibold text-muted-foreground">
                       {step.label}
                     </p>
                   </div>
-                  <p className={cn("text-ground-900 leading-tight truncate", step.className)}>
+                  <p className={cn("text-foreground leading-tight truncate", step.className)}>
                     {step.sample}
                   </p>
                   <div className="hidden md:block">
-                    <p className="font-mono caption-xs text-ground-400">{step.size}</p>
-                    <p className="font-mono caption-xs text-ground-300">
+                    <p className="font-mono caption-xs text-muted-foreground">{step.size}</p>
+                    <p className="font-mono caption-xs text-muted-foreground/70">
                       weight {step.weight} · {step.font} · line {step.lineHeight}
                     </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-ground-300">
+                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
                       tracking {step.letterSpacing} · transform {step.transform}
                     </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-ground-300">{step.usage}</p>
+                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
+                      {step.usage}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -451,7 +453,7 @@ function FoundationsPage() {
               name="Weights"
               description="Inter is variable across 100-900. Gabarito ships regular through black for display use."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+            <div className="mt-4 overflow-hidden rounded-xl border border-border">
               {[
                 {
                   weight: "400",
@@ -476,22 +478,24 @@ function FoundationsPage() {
                   key={w.weight}
                   className={cn(
                     "flex items-center gap-6 px-5 py-4",
-                    i !== 2 && "border-b border-ground-100",
+                    i !== 2 && "border-b border-border",
                   )}
                 >
                   <div className="w-24 shrink-0">
-                    <p className="font-mono text-[11px] font-semibold text-ground-500">
+                    <p className="font-mono text-[11px] font-semibold text-muted-foreground">
                       {w.tailwind}
                     </p>
-                    <p className="font-mono caption-xs text-ground-300">{w.weight}</p>
+                    <p className="font-mono caption-xs text-muted-foreground/70">{w.weight}</p>
                   </div>
                   <p
-                    className={cn("flex-1 body-lg text-ground-900", w.tailwind)}
+                    className={cn("flex-1 body-lg text-foreground", w.tailwind)}
                     style={{ fontWeight: w.weight }}
                   >
                     {w.name} — The quick brown fox jumps over the lazy dog
                   </p>
-                  <p className="hidden shrink-0 caption-xs text-ground-300 md:block">{w.usage}</p>
+                  <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">
+                    {w.usage}
+                  </p>
                 </div>
               ))}
             </div>
@@ -503,7 +507,7 @@ function FoundationsPage() {
               name="Letter spacing"
               description="Tokenized letter spacing appears only inside the type utilities above. Body and heading utilities use normal tracking."
             />
-            <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+            <div className="mt-4 overflow-hidden rounded-xl border border-border">
               {typeScale
                 .filter((t) => t.letterSpacing !== "0")
                 .map((t, i, rows) => (
@@ -511,17 +515,21 @@ function FoundationsPage() {
                     key={t.label}
                     className={cn(
                       "flex items-center gap-6 px-5 py-4",
-                      i !== rows.length - 1 && "border-b border-ground-100",
+                      i !== rows.length - 1 && "border-b border-border",
                     )}
                   >
                     <div className="w-36 shrink-0">
-                      <p className="font-mono text-[11px] font-semibold text-ground-500">
+                      <p className="font-mono text-[11px] font-semibold text-muted-foreground">
                         {t.label}
                       </p>
-                      <p className="font-mono caption-xs text-ground-300">{t.letterSpacing}</p>
+                      <p className="font-mono caption-xs text-muted-foreground/70">
+                        {t.letterSpacing}
+                      </p>
                     </div>
-                    <p className={cn("flex-1 text-ground-900 truncate", t.className)}>{t.sample}</p>
-                    <p className="hidden shrink-0 caption-xs text-ground-300 md:block">{t.usage}</p>
+                    <p className={cn("flex-1 text-foreground truncate", t.className)}>{t.sample}</p>
+                    <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">
+                      {t.usage}
+                    </p>
                   </div>
                 ))}
             </div>
@@ -535,27 +543,27 @@ function FoundationsPage() {
             name="Scale"
             description="Tailwind's 4px base unit. Stick to these steps — consistency comes from constraint."
           />
-          <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
-            <div className="grid grid-cols-[60px_60px_1fr_160px] border-b border-ground-100 bg-ground-50 px-5 py-2">
-              <p className="label text-ground-400">Token</p>
-              <p className="label text-ground-400">px</p>
-              <p className="label text-ground-400">Visual</p>
-              <p className="label text-ground-400">Used for</p>
+          <div className="mt-4 overflow-hidden rounded-xl border border-border">
+            <div className="grid grid-cols-[60px_60px_1fr_160px] border-b border-border bg-muted px-5 py-2">
+              <p className="label text-muted-foreground">Token</p>
+              <p className="label text-muted-foreground">px</p>
+              <p className="label text-muted-foreground">Visual</p>
+              <p className="label text-muted-foreground">Used for</p>
             </div>
             {spacingScale.map((s, i) => (
               <div
                 key={s.token}
                 className={cn(
                   "grid grid-cols-[60px_60px_1fr_160px] items-center px-5 py-2.5",
-                  i !== spacingScale.length - 1 && "border-b border-ground-100",
+                  i !== spacingScale.length - 1 && "border-b border-border",
                 )}
               >
-                <p className="font-mono caption font-semibold text-ground-700">{s.token}</p>
-                <p className="font-mono caption text-ground-400">{s.px}</p>
+                <p className="font-mono caption font-semibold text-foreground">{s.token}</p>
+                <p className="font-mono caption text-muted-foreground">{s.px}</p>
                 <div className="flex items-center">
-                  <div className="h-3 rounded-sm bg-ground-900" style={{ width: s.px }} />
+                  <div className="h-3 rounded-sm bg-foreground" style={{ width: s.px }} />
                 </div>
-                <p className="caption-xs text-ground-300">{s.usage}</p>
+                <p className="caption-xs text-muted-foreground/70">{s.usage}</p>
               </div>
             ))}
           </div>
@@ -572,13 +580,15 @@ function FoundationsPage() {
             {radii.map((r) => (
               <div key={r.name} className="flex flex-col items-center gap-3">
                 <div
-                  className="size-14 border-2 border-ground-900 bg-ground-50"
+                  className="size-14 border-2 border-foreground bg-muted"
                   style={{ borderRadius: r.value }}
                 />
                 <div className="text-center">
-                  <p className="font-mono text-[11px] font-semibold text-ground-700">{r.name}</p>
-                  <p className="font-mono caption-xs text-ground-400">{r.value}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-ground-300">{r.usage}</p>
+                  <p className="font-mono text-[11px] font-semibold text-foreground">{r.name}</p>
+                  <p className="font-mono caption-xs text-muted-foreground">{r.value}</p>
+                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
+                    {r.usage}
+                  </p>
                 </div>
               </div>
             ))}
@@ -597,16 +607,18 @@ function FoundationsPage() {
               <div key={s.name} className="flex flex-col gap-3">
                 <div
                   className={cn(
-                    "flex h-20 items-center justify-center rounded-xl bg-white",
+                    "flex h-20 items-center justify-center rounded-xl bg-background",
                     s.className,
                   )}
                 >
-                  <div className="h-8 w-12 rounded-md bg-ground-100" />
+                  <div className="h-8 w-12 rounded-md bg-muted" />
                 </div>
                 <div>
-                  <p className="font-mono text-[11px] font-semibold text-ground-700">{s.name}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-ground-400">{s.usage}</p>
-                  <p className="mt-1 font-mono text-[9px] leading-tight text-ground-300">{s.css}</p>
+                  <p className="font-mono text-[11px] font-semibold text-foreground">{s.name}</p>
+                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{s.usage}</p>
+                  <p className="mt-1 font-mono text-[9px] leading-tight text-muted-foreground/70">
+                    {s.css}
+                  </p>
                 </div>
               </div>
             ))}
@@ -620,17 +632,17 @@ function FoundationsPage() {
             name="Layering"
             description="Semantic layering tokens for overlays, sticky UI, popovers, and tooltips."
           />
-          <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+          <div className="mt-4 overflow-hidden rounded-xl border border-border">
             {zIndexTokens.map((z, i) => (
               <div
                 key={z.name}
                 className={cn(
                   "grid grid-cols-[140px_1fr] items-center px-5 py-3",
-                  i !== zIndexTokens.length - 1 && "border-b border-ground-100",
+                  i !== zIndexTokens.length - 1 && "border-b border-border",
                 )}
               >
-                <p className="font-mono caption font-semibold text-ground-700">z-{z.name}</p>
-                <p className="font-mono caption text-ground-400">{z.value}</p>
+                <p className="font-mono caption font-semibold text-foreground">z-{z.name}</p>
+                <p className="font-mono caption text-muted-foreground">{z.value}</p>
               </div>
             ))}
           </div>
@@ -643,17 +655,17 @@ function FoundationsPage() {
             name="Motion"
             description="Named animation tokens emitted as Tailwind utility values."
           />
-          <div className="mt-4 overflow-hidden rounded-xl border border-ground-100">
+          <div className="mt-4 overflow-hidden rounded-xl border border-border">
             {animationTokens.map((a, i) => (
               <div
                 key={a.name}
                 className={cn(
                   "grid gap-3 px-5 py-3 md:grid-cols-[180px_1fr]",
-                  i !== animationTokens.length - 1 && "border-b border-ground-100",
+                  i !== animationTokens.length - 1 && "border-b border-border",
                 )}
               >
-                <p className="font-mono caption font-semibold text-ground-700">animate-{a.name}</p>
-                <p className="break-words font-mono caption text-ground-400">{a.value}</p>
+                <p className="font-mono caption font-semibold text-foreground">animate-{a.name}</p>
+                <p className="break-words font-mono caption text-muted-foreground">{a.value}</p>
               </div>
             ))}
           </div>
@@ -672,8 +684,8 @@ function FoundationsPage() {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-6 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -681,8 +693,8 @@ function SectionHeading({ label }: { label: string }) {
 function PaletteLabel({ name, description }: { name: string; description: string }) {
   return (
     <div>
-      <p className="subheading text-ground-900">{name}</p>
-      <p className="caption mt-0.5 text-ground-400">{description}</p>
+      <p className="subheading text-foreground">{name}</p>
+      <p className="caption mt-0.5 text-muted-foreground">{description}</p>
     </div>
   );
 }

@@ -108,7 +108,7 @@ function DoubleColumnMenu({ category }: { category: NavCategory }) {
               {section.links.map((link) => (
                 <a
                   key={link}
-                  href="#"
+                  href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
                   className="block body text-ground-600 transition-colors hover:text-ground-900"
                 >
                   {link}
@@ -140,7 +140,7 @@ export default function PersistentMobileNav() {
   const [persistentMenu, setPersistentMenu] = useState<CategoryName>("Men");
 
   const persistentCategory =
-    categories.find((category) => category.name === persistentMenu) ?? categories[0];
+    categories.find((category) => category.name === persistentMenu) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">

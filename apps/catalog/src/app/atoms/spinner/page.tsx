@@ -20,7 +20,7 @@ const CODE = {
   spinnerColors: `import { Spinner } from "@hilum/ui"
 
 <div className="flex items-center gap-6">
-  <Spinner className="text-ground-400" />
+  <Spinner className="text-muted-foreground" />
   <Spinner className="text-brand-primary" />
   <Spinner className="text-red-500" />
   <Spinner className="text-green-500" />
@@ -43,15 +43,15 @@ import { Spinner } from "@hilum/ui"
 
 <div className="flex flex-col items-center gap-3 py-8">
   <Spinner size="lg" className="text-brand-primary" />
-  <p className="caption text-ground-400">Loading data...</p>
+  <p className="caption text-muted-foreground">Loading data...</p>
 </div>`,
 };
 
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -60,19 +60,19 @@ function SpinnerPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Spinner</span>
+          <span className="font-semibold text-foreground">Spinner</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Spinner</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Spinner</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Animated loading indicator for async operations and pending states.
         </p>
       </div>
@@ -102,7 +102,7 @@ function SpinnerPage() {
           code={CODE.spinnerColors}
         >
           <div className="flex items-center gap-6">
-            <Spinner className="text-ground-400" />
+            <Spinner className="text-muted-foreground" />
             <Spinner className="text-brand-primary" />
             <Spinner className="text-red-500" />
             <Spinner className="text-green-500" />
@@ -133,7 +133,7 @@ function SpinnerPage() {
         >
           <div className="flex flex-col items-center gap-3 py-8">
             <Spinner size="lg" className="text-brand-primary" />
-            <p className="caption text-ground-400">Loading data...</p>
+            <p className="caption text-muted-foreground">Loading data...</p>
           </div>
         </PreviewBlock>
       </div>

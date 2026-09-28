@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AskUserQuestions } from "@hilum/ui";
+import { AskUserQuestions } from "@hilum/ui/ai";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { createCatalogPageHead } from "@/lib/seo";
 
-const CODE = `import { AskUserQuestions } from "@hilum/ui"
+const CODE = `import { AskUserQuestions } from "@hilum/ui/ai"
 
 <AskUserQuestions
   questions={[
@@ -22,8 +22,8 @@ const CODE = `import { AskUserQuestions } from "@hilum/ui"
 function AskUserQuestionsPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
-      <h1 className="display mb-2 text-ground-900">Ask User Questions</h1>
-      <p className="body mb-8 max-w-lg text-ground-500">
+      <h1 className="display mb-2 text-foreground">Ask User Questions</h1>
+      <p className="body mb-8 max-w-lg text-muted-foreground">
         Question prompt panel for clarifications, answers, and review decisions.
       </p>
       <PageDocs path="/molecules/ask-user-questions/" />

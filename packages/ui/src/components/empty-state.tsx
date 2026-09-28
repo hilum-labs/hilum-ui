@@ -1,43 +1,113 @@
+"use client";
+
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { useLink, type LinkComponent } from "../lib/link-context";
 import { Button } from "./button";
+
+interface EmptyStateAction {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+  /** Optional leading icon. */
+  icon?: React.ReactNode;
+}
 
 interface EmptyStateProps {
   icon?: React.ReactNode;
   title: string;
-  description?: string;
-  action?: {
-    label: string;
-    href?: string;
-    onClick?: () => void;
-  };
+  description?: React.ReactNode;
+  /**
+   * Primary call to action — every first-run empty state should have one
+   * ("Add product", "Create discount"). `href` actions render through the
+   * `LinkProvider` link component; pass an element for full control.
+   */
+  action?: EmptyStateAction | React.ReactElement;
+  /** Secondary, lower-emphasis action (e.g. "Import CSV", "Learn more"). */
+  secondaryAction?: EmptyStateAction | React.ReactElement;
+  /**
+   * `plain` (default) — sits inside an existing card/table.
+   * `card` — standalone bordered surface for a whole page section.
+   */
+  variant?: "plain" | "card";
+  /** `sm` for inline table/list bodies, `md` (default) for page sections. */
+  size?: "sm" | "md";
+  /** Extra content below the actions (e.g. a help link or illustration). */
+  children?: React.ReactNode;
   className?: string;
 }
 
-function EmptyState({ icon, title, description, action, className }: EmptyStateProps) {
-  return (
-    <div className={cn("flex flex-col items-center gap-4 px-6 py-14 text-center", className)}>
+function renderAction(
+  action: EmptyStateAction | React.ReactElement,
+  variant: "primary" | "outline",
+  Link: LinkComponent,
+) {
+  if (React.isValidElement(action)) return action;
+  const { label, href, onClick, icon } = action as EmptyStateAction;
+  const content = (
+    <>
       {icon && (
-        <div className="flex size-9 items-center justify-center rounded-md bg-brand-secondary/20 text-muted-foreground">
+        <span className="inline-flex shrink-0 [&_svg]:size-3.5" aria-hidden="true">
+          {icon}
+        </span>
+      )}
+      {label}
+    </>
+  );
+  return href ? (
+    <Button size="sm" variant={variant} asChild>
+      <Link href={href}>{content}</Link>
+    </Button>
+  ) : (
+    <Button size="sm" variant={variant} onClick={onClick}>
+      {content}
+    </Button>
+  );
+}
+
+function EmptyState({
+  icon,
+  title,
+  description,
+  action,
+  secondaryAction,
+  variant = "plain",
+  size = "md",
+  children,
+  className,
+}: EmptyStateProps) {
+  const Link = useLink();
+  return (
+    <div
+      data-slot="empty-state"
+      className={cn(
+        "flex flex-col items-center gap-4 text-center",
+        size === "sm" ? "px-4 py-8" : "px-6 py-14",
+        variant === "card" && "rounded-xl border border-dashed border-border bg-card",
+        className,
+      )}
+    >
+      {icon && (
+        <div
+          className="flex size-9 items-center justify-center rounded-md bg-brand-secondary/20 text-muted-foreground"
+          aria-hidden="true"
+        >
           {icon}
         </div>
       )}
       <div className="flex flex-col gap-1.5">
         <p className="body text-balance font-semibold text-foreground">{title}</p>
         {description && (
-          <p className="body max-w-xs text-pretty text-muted-foreground">{description}</p>
+          <p className="body max-w-sm text-pretty text-muted-foreground">{description}</p>
         )}
       </div>
-      {action &&
-        (action.href ? (
-          <Button size="sm" asChild>
-            <a href={action.href}>{action.label}</a>
-          </Button>
-        ) : (
-          <Button size="sm" onClick={action.onClick}>
-            {action.label}
-          </Button>
-        ))}
+      {(action || secondaryAction) && (
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          {action && renderAction(action, "primary", Link)}
+          {secondaryAction && renderAction(secondaryAction, "outline", Link)}
+        </div>
+      )}
+      {children}
     </div>
   );
 }
@@ -45,3 +115,4 @@ function EmptyState({ icon, title, description, action, className }: EmptyStateP
 EmptyState.displayName = "EmptyState";
 
 export { EmptyState };
+export type { EmptyStateProps, EmptyStateAction };

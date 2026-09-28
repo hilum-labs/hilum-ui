@@ -26,7 +26,11 @@ const gapMap = {
 
 function GridList({ children, columns = 3, gap = "md", className }: GridListProps) {
   return (
-    <ul role="list" className={cn("grid", colMap[columns], gapMap[gap], className)}>
+    <ul
+      role="list"
+      data-slot="grid-list"
+      className={cn("grid", colMap[columns], gapMap[gap], className)}
+    >
       {children}
     </ul>
   );
@@ -76,11 +80,11 @@ function GridListCard({
   );
 
   return (
-    <li>
+    <li data-slot="grid-list-card">
       {href ? (
         <a
           href={href}
-          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 rounded-xl"
+          className="block h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
         >
           {inner}
         </a>
@@ -130,22 +134,22 @@ function GridListAccentCard({
       >
         {initials}
       </div>
-      <div className="flex flex-1 items-center justify-between truncate border-l border-border px-4 py-3">
+      <div className="flex flex-1 items-center justify-between truncate border-s border-border px-4 py-3">
         <div className="min-w-0">
           <p className="body font-semibold text-foreground truncate text-balance">{title}</p>
           {meta && <p className="caption text-muted-foreground">{meta}</p>}
         </div>
-        {trailing && <div className="shrink-0 pl-2">{trailing}</div>}
+        {trailing && <div className="shrink-0 ps-2">{trailing}</div>}
       </div>
     </div>
   );
 
   return (
-    <li>
+    <li data-slot="grid-list-accent-card">
       {href ? (
         <a
           href={href}
-          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30 rounded-xl"
+          className="block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-xl"
         >
           {inner}
         </a>

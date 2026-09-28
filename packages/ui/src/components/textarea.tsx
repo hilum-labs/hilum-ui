@@ -2,8 +2,9 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { controlSurfaceClasses, focusRingClasses, motionClasses } from "../lib/interaction";
+import { controlSurfaceClasses, inputFocusClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
+import { useFieldControl } from "../lib/field-context";
 import type { ControlDensity, ControlMobileSurface } from "./input";
 
 interface TextareaProps extends React.ComponentProps<"textarea"> {
@@ -13,7 +14,7 @@ interface TextareaProps extends React.ComponentProps<"textarea"> {
 }
 
 const textareaDensityClasses: Record<ControlDensity, string> = {
-  default: "min-h-[80px] px-3 py-2",
+  default: "min-h-20 px-3 py-2",
   compact: "min-h-16 px-2.5 py-1.5",
 };
 
@@ -33,13 +34,26 @@ function Textarea({
   density = "default",
   mobileDensity = "default",
   mobileSurface = "default",
+  id,
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
   ...props
 }: TextareaProps) {
   const shape = useShape();
+  const fieldProps = useFieldControl({
+    id,
+    disabled,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
+  });
 
   return (
     <textarea
       data-slot="textarea"
+      {...fieldProps}
       className={cn(
         "flex w-full",
         textareaDensityClasses[density],
@@ -49,9 +63,8 @@ function Textarea({
         "resize-none",
         controlSurfaceClasses,
         motionClasses,
-        focusRingClasses,
+        inputFocusClasses,
         textareaMobileSurfaceClasses[mobileSurface],
-        "focus-visible:border-brand-primary",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
         className,
       )}

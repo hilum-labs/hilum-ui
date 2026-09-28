@@ -91,7 +91,9 @@ function DesignerPaneTitle({ className, children, action }: DesignerPaneTitlePro
       className={cn(
         "flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left",
         "caption-xs uppercase tracking-wider font-semibold text-muted-foreground",
-        collapsible && "hover:text-foreground transition-colors",
+        "compact:min-h-8 compact:py-1.5 compact:text-[10px]",
+        collapsible &&
+          "hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
         className,
       )}
     >
@@ -115,7 +117,7 @@ function DesignerPaneContent({ className, children }: DesignerPaneContentProps) 
   return (
     <div
       className={cn(
-        "flex min-w-0 max-w-full flex-col gap-2 overflow-x-hidden px-3 pb-3",
+        "flex min-w-0 max-w-full flex-col gap-2 overflow-x-hidden px-3 pb-3 compact:gap-1.5",
         className,
       )}
     >

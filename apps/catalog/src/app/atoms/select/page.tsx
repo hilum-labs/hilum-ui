@@ -51,7 +51,7 @@ const CODE = {
 </Select>`,
 
   native: `<select
-  className="h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900
+  className="h-9 w-full rounded-lg border border-border bg-background px-3 body text-foreground
     focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
 >
   <option value="">Select a country</option>
@@ -78,8 +78,8 @@ const CODE = {
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -88,19 +88,19 @@ function SelectPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Select</span>
+          <span className="font-semibold text-foreground">Select</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Select</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Select</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Dropdown list for choosing a single option. Custom Radix-based component with grouped and
           native variants.
         </p>
@@ -178,7 +178,7 @@ function SelectPage() {
           >
             <div className="flex flex-col gap-3 w-64">
               <select
-                className="h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
+                className="h-9 w-full rounded-lg border border-border bg-background px-3 body text-foreground focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -192,7 +192,7 @@ function SelectPage() {
                 <option value="fr">France</option>
               </select>
               <select
-                className="h-9 w-full rounded-lg border border-ground-200 bg-white px-3 body text-ground-900 focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
+                className="h-9 w-full rounded-lg border border-border bg-background px-3 body text-foreground focus:outline-none focus:ring-2 focus:ring-ground-400/30 focus:border-ground-400"
                 defaultValue=""
                 disabled
               >

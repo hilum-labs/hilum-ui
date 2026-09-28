@@ -34,8 +34,8 @@ const CODE = `import { MediaAssetCard, MediaAssetGrid, MediaAssetGridItem } from
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -44,21 +44,21 @@ function MediaAssetGridPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Media Asset Grid</span>
+          <span className="font-semibold text-foreground">Media Asset Grid</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Media Asset Grid</h1>
-        <p className="body max-w-lg text-ground-500">
-          Responsive media asset container that keeps compact divided rows on mobile and switches
-          to a grid on larger screens.
+        <h1 className="display mb-2 text-foreground">Media Asset Grid</h1>
+        <p className="body max-w-lg text-muted-foreground">
+          Responsive media asset container that keeps compact divided rows on mobile and switches to
+          a grid on larger screens.
         </p>
       </div>
 
@@ -82,7 +82,11 @@ function MediaAssetGridPage() {
                     mediaType={asset.mediaType}
                     meta={asset.meta}
                     actions={
-                      <Button size="icon-sm" variant="ghost" aria-label={`Actions for ${asset.name}`}>
+                      <Button
+                        size="icon-sm"
+                        variant="ghost"
+                        aria-label={`Actions for ${asset.name}`}
+                      >
                         <MoreHorizontal className="size-4" aria-hidden="true" />
                       </Button>
                     }

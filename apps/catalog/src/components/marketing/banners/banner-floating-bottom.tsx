@@ -19,12 +19,12 @@ export default function BannerFloatingBottom() {
               <Megaphone size={15} />
             </div>
             <p className="body text-ground-700">
-              <strong className="font-semibold text-ground-900">We've just launched v3.</strong> See
-              what's new in the latest release.
+              <strong className="font-semibold text-ground-900">We’ve just launched v3.</strong> See
+              what’s new in the latest release.
             </p>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <Button size="sm">See what's new</Button>
+            <Button size="sm">See what’s new</Button>
             <button
               type="button"
               className="rounded-md p-1 text-ground-400 hover:text-ground-700"

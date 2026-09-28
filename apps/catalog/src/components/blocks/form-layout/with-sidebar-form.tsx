@@ -15,7 +15,8 @@ export default function WithSidebarForm() {
           {SIDEBAR_NAV.map((item, i) => (
             <li key={item}>
               <a
-                href="#"
+                href={`#settings-${item.toLowerCase()}`}
+                aria-current={i === 0 ? "page" : undefined}
                 className={`flex rounded-lg px-3 py-2 caption transition-colors ${
                   i === 0
                     ? "bg-brand-primary/10 font-semibold text-brand-primary"

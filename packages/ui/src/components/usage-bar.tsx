@@ -56,7 +56,11 @@ function UsageBar({
   ...props
 }: UsageBarProps) {
   const resolvedPercent = clampPercent(
-    typeof percent === "number" ? percent : max && max > 0 && typeof value === "number" ? (value / max) * 100 : 0,
+    typeof percent === "number"
+      ? percent
+      : max && max > 0 && typeof value === "number"
+        ? (value / max) * 100
+        : 0,
   );
   const resolvedTone = tone ?? inferTone(resolvedPercent);
   const resolvedValueLabel = valueLabel ?? formatUsageValue(value, max);
@@ -64,11 +68,19 @@ function UsageBar({
 
   const bar = (
     <div
-      className={cn("h-2 w-full overflow-hidden rounded-full bg-muted", layout === "inline" && "w-28", barClassName)}
+      className={cn(
+        "h-2 w-full overflow-hidden rounded-full bg-muted",
+        layout === "inline" && "w-28",
+        barClassName,
+      )}
       aria-hidden="true"
     >
       <div
-        className={cn("h-full rounded-full transition-all", toneClassName[resolvedTone], indicatorClassName)}
+        className={cn(
+          "h-full rounded-full transition-all",
+          toneClassName[resolvedTone],
+          indicatorClassName,
+        )}
         style={{ width: `${resolvedPercent}%` }}
       />
     </div>
@@ -76,21 +88,31 @@ function UsageBar({
 
   if (layout === "inline") {
     return (
-      <div className={cn("flex min-w-0 items-center gap-2", className)} {...props}>
+      <div
+        data-slot="usage-bar"
+        className={cn("flex min-w-0 items-center gap-2", className)}
+        {...props}
+      >
         {label ? <span className="caption shrink-0 text-muted-foreground">{label}</span> : null}
         {bar}
         {showPercent !== false ? (
-          <span className="w-10 shrink-0 text-xs tabular-nums text-muted-foreground">{percentLabel}</span>
+          <span className="w-10 shrink-0 text-xs tabular-nums text-muted-foreground">
+            {percentLabel}
+          </span>
         ) : null}
       </div>
     );
   }
 
   return (
-    <div className={cn("space-y-1.5", className)} {...props}>
+    <div data-slot="usage-bar" className={cn("space-y-1.5", className)} {...props}>
       {(label || resolvedValueLabel || showPercent) && (
         <div className="flex min-w-0 items-center justify-between gap-3 text-sm">
-          {label ? <span className="min-w-0 truncate text-muted-foreground">{label}</span> : <span />}
+          {label ? (
+            <span className="min-w-0 truncate text-muted-foreground">{label}</span>
+          ) : (
+            <span />
+          )}
           <span className="shrink-0 font-medium tabular-nums text-foreground">
             {resolvedValueLabel ?? (showPercent ? percentLabel : null)}
           </span>

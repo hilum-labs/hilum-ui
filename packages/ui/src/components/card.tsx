@@ -36,103 +36,105 @@ interface CardProps extends React.ComponentProps<"div">, VariantProps<typeof car
   mobileSurface?: CardMobileSurface;
 }
 
-const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, mobileSurface = "default", ...props }, ref) => (
+function Card({ ref, className, variant, mobileSurface = "default", ...props }: CardProps) {
+  return (
     <div
       ref={ref}
       data-slot="card"
       className={cn(cardVariants({ variant }), cardMobileSurfaceClasses[mobileSurface], className)}
       {...props}
     />
-  ),
-);
+  );
+}
 Card.displayName = "Card";
 
 /* ------------------------------------------------------------------ */
 /*  Card sub-components                                                */
 /* ------------------------------------------------------------------ */
 
-const CardHeader = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  ({ className, ...props }, ref) => (
+function CardHeader({ ref, className, ...props }: React.ComponentProps<"div">) {
+  return (
     <div
       ref={ref}
       data-slot="card-header"
       className={cn("flex flex-col gap-1.5 p-5", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 CardHeader.displayName = "CardHeader";
 
-const CardTitle = React.forwardRef<HTMLHeadingElement, React.ComponentProps<"h3">>(
-  ({ className, ...props }, ref) => (
+function CardTitle({ ref, className, children, ...props }: React.ComponentProps<"h3">) {
+  return (
     <h3
       ref={ref}
       data-slot="card-title"
       className={cn("subheading text-balance text-foreground", className)}
       {...props}
-    />
-  ),
-);
+    >
+      {children}
+    </h3>
+  );
+}
 CardTitle.displayName = "CardTitle";
 
-const CardDescription = React.forwardRef<HTMLParagraphElement, React.ComponentProps<"p">>(
-  ({ className, ...props }, ref) => (
+function CardDescription({ ref, className, ...props }: React.ComponentProps<"p">) {
+  return (
     <p
       ref={ref}
       data-slot="card-description"
       className={cn("caption text-pretty text-muted-foreground", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 CardDescription.displayName = "CardDescription";
 
-const CardContent = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  ({ className, ...props }, ref) => (
+function CardContent({ ref, className, ...props }: React.ComponentProps<"div">) {
+  return (
     <div ref={ref} data-slot="card-content" className={cn("p-5 pt-0", className)} {...props} />
-  ),
-);
+  );
+}
 CardContent.displayName = "CardContent";
 
-const CardFooter = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  ({ className, ...props }, ref) => (
+function CardFooter({ ref, className, ...props }: React.ComponentProps<"div">) {
+  return (
     <div
       ref={ref}
       data-slot="card-footer"
       className={cn("flex items-center p-5 pt-0", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 CardFooter.displayName = "CardFooter";
 
-const CardAction = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  ({ className, ...props }, ref) => (
+function CardAction({ ref, className, ...props }: React.ComponentProps<"div">) {
+  return (
     <div
       ref={ref}
       data-slot="card-action"
       className={cn("col-start-2 row-span-2 row-start-1 self-start justify-self-end", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 CardAction.displayName = "CardAction";
 
 /* ------------------------------------------------------------------ */
 /*  CardMedia — full-bleed image/gradient header                       */
 /* ------------------------------------------------------------------ */
 
-const CardMedia = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  ({ className, ...props }, ref) => (
+function CardMedia({ ref, className, ...props }: React.ComponentProps<"div">) {
+  return (
     <div
       ref={ref}
       data-slot="card-media"
       className={cn("relative overflow-hidden", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 CardMedia.displayName = "CardMedia";
 
 export {

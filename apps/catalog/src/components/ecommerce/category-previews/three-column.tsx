@@ -56,7 +56,7 @@ export default function ThreeColumn() {
             <div className="p-5">
               <p className="subheading text-ground-900">{category.name}</p>
               <a
-                href="#"
+                href="#shop-now"
                 className="body mt-3 inline-flex min-h-10 items-center gap-2 text-brand-primary"
               >
                 Shop now <ArrowRight className="size-4" />

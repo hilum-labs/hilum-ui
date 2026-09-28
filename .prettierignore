@@ -1,0 +1,8 @@
+# Generated
+pnpm-lock.yaml
+**/CHANGELOG.md
+apps/catalog/src/routeTree.gen.ts
+apps/catalog/src/generated/
+apps/catalog/public/
+packages/ui/llms.txt
+coverage/

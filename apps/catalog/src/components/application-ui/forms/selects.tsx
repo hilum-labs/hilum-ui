@@ -5,7 +5,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 type PersonId = "tom" | "ana" | "mila";
 
-const people: Array<{ id: PersonId; name: string; role: string; initials: string }> = [
+type Person = { id: PersonId; name: string; role: string; initials: string };
+
+const people: [Person, ...Person[]] = [
   { id: "tom", name: "Tom Cook", role: "Product Design", initials: "TC" },
   { id: "ana", name: "Ana Portillo", role: "Design Ops", initials: "AP" },
   { id: "mila", name: "Mila Foster", role: "Customer Success", initials: "MF" },

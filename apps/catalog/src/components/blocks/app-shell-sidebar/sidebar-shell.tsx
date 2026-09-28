@@ -39,8 +39,11 @@ export default function SidebarShell() {
     <div className="relative flex h-[520px] overflow-hidden rounded-xl border border-ground-100 bg-ground-50 shadow-natural">
       {/* Mobile overlay */}
       {sidebarOpen && (
-        <div
-          className="absolute inset-0 z-40 bg-black/20 lg:hidden"
+        <button
+          type="button"
+          aria-label="Close sidebar"
+          tabIndex={-1}
+          className="absolute inset-0 z-40 cursor-default bg-black/20 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

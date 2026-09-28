@@ -26,6 +26,7 @@ function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
+      data-slot="section-heading"
       className={cn(
         "flex flex-col gap-1 pb-4 sm:flex-row sm:items-start sm:justify-between",
         border && "border-b border-border",

@@ -15,6 +15,8 @@ interface NotificationProps {
   variant?: "default" | "success" | "error" | "warning" | "info";
   actions?: NotificationAction[];
   onClose?: () => void;
+  /** Accessible name of the close button. */
+  closeLabel?: string;
   className?: string;
 }
 
@@ -39,6 +41,7 @@ function Notification({
   variant = "default",
   actions,
   onClose,
+  closeLabel = "Close",
   className,
 }: NotificationProps) {
   const config = variantConfig[variant];
@@ -48,6 +51,7 @@ function Notification({
 
   return (
     <div
+      data-slot="notification"
       className={cn(
         "pointer-events-auto w-full max-w-sm overflow-hidden rounded-xl border border-border bg-card shadow-elevated",
         className,
@@ -95,9 +99,9 @@ function Notification({
               <button
                 type="button"
                 onClick={onClose}
-                className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-[color,scale] hover:text-muted-foreground active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/30"
+                className="flex size-9 items-center justify-center rounded-md text-muted-foreground transition-[color,scale] hover:text-muted-foreground active:scale-[0.96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
-                <span className="sr-only">Close</span>
+                <span className="sr-only">{closeLabel}</span>
                 <X size={16} />
               </button>
             </div>

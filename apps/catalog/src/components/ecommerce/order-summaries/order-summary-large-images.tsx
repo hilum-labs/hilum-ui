@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import { Badge } from "@hilum/ui";
 
@@ -76,7 +75,7 @@ function ProgressTracker({ activeStep }: { activeStep: number }) {
 }
 
 export default function OrderSummaryLargeImages() {
-  const [activeStep, setActiveStep] = useState(2);
+  const activeStep = 2;
 
   return (
     <div className="w-full bg-white p-6">

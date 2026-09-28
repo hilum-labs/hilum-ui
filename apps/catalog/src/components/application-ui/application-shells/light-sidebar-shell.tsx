@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FolderKanban, LayoutDashboard, Menu, Plus, Settings, Users, X } from "lucide-react";
+import { Menu, Plus, X } from "lucide-react";
 import { Button } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 
@@ -20,7 +20,7 @@ const CONTENT_ROWS = [
   },
 ];
 
-function ShellFrame({ children }: { children: any }) {
+function ShellFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-[480px] overflow-hidden rounded-xl border border-ground-100">
       {children}

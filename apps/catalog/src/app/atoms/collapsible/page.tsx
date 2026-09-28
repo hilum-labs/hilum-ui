@@ -16,8 +16,8 @@ const CODE = {
   </CollapsibleTrigger>
   <CollapsibleContent>
     <div className="flex flex-col gap-1 pb-2 pt-1">
-      <a className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50">My voices</a>
-      <a className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50">Voice library</a>
+      <a className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted">My voices</a>
+      <a className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted">Voice library</a>
     </div>
   </CollapsibleContent>
 </Collapsible>`,
@@ -26,8 +26,8 @@ const CODE = {
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -36,19 +36,19 @@ function CollapsiblePage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/atoms" className="hover:text-ground-700">
+          <a href="/atoms" className="hover:text-foreground">
             Atoms
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Collapsible</span>
+          <span className="font-semibold text-foreground">Collapsible</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Collapsible</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Collapsible</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Toggleable content region, building block for nav groups.
         </p>
       </div>
@@ -64,29 +64,29 @@ function CollapsiblePage() {
           code={CODE.collapsible}
           previewClassName="flex-col items-stretch"
         >
-          <div className="w-full max-w-xs rounded-xl border border-ground-100 px-3 py-1">
+          <div className="w-full max-w-xs rounded-xl border border-border px-3 py-1">
             <Collapsible defaultOpen>
-              <CollapsibleTrigger className="flex w-full items-center justify-between py-2 text-sm font-medium text-ground-900 hover:text-ground-700">
+              <CollapsibleTrigger className="flex w-full items-center justify-between py-2 text-sm font-medium text-foreground hover:text-foreground">
                 Voices
-                <ChevronDown size={14} className="text-ground-400" />
+                <ChevronDown size={14} className="text-muted-foreground" />
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <div className="flex flex-col gap-0.5 pb-2">
                   <a
-                    href="#"
-                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50"
+                    href="#my-voices"
+                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted"
                   >
                     My voices
                   </a>
                   <a
-                    href="#"
-                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50"
+                    href="#voice-library"
+                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted"
                   >
                     Voice library
                   </a>
                   <a
-                    href="#"
-                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-ground-600 hover:bg-ground-50"
+                    href="#voice-design"
+                    className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted"
                   >
                     Voice design
                   </a>

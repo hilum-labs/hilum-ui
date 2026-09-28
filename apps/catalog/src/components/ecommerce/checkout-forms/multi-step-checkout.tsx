@@ -199,7 +199,7 @@ export default function MultiStepCheckout() {
             Back
           </Button>
           <div className="flex items-center gap-3">
-            <Badge variant="secondary">{STEPS[currentStep].label}</Badge>
+            <Badge variant="secondary">{STEPS[currentStep]?.label}</Badge>
             <Button onClick={() => setCurrentStep((step) => Math.min(STEPS.length - 1, step + 1))}>
               {currentStep === STEPS.length - 1 ? "Pay now" : "Continue"}
               {currentStep === STEPS.length - 1 ? null : <ChevronRight size={16} />}

@@ -27,7 +27,7 @@ function AvatarStack({ avatars, max, size = "md", className }: AvatarStackProps)
   const s = sizeMap[size];
 
   return (
-    <div className={cn("flex -space-x-2", className)}>
+    <div data-slot="avatar-stack" className={cn("flex -space-x-2", className)}>
       {shown.map((avatar, i) => (
         <span
           key={i}

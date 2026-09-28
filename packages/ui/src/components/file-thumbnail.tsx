@@ -3,27 +3,54 @@
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
+import type * as Pdfjs from "pdfjs-dist";
 
 // ─── Lazy pdfjs loader ────────────────────────────────────────────────────
-// Imports pdfjs-dist on first PDF, caches the module, and points the worker
-// at the matching CDN build. Consumers don't need bundler-side worker config.
-type PdfjsModule = typeof import("pdfjs-dist");
+// Imports pdfjs-dist on first PDF and caches the module. pdf.js needs a worker
+// script; where it comes from, in order of precedence:
+//   1. `pdfWorkerSrc` prop on <FileThumbnail> (or the arg to loadPdfjs)
+//   2. setPdfWorkerSrc(url) — app-wide, call once at startup
+//   3. GlobalWorkerOptions.workerSrc already set by the app on pdfjs-dist
+//   4. Fallback: the matching build on cdn.jsdelivr.net. Convenient, but it's a
+//      third-party request at runtime — apps with a strict CSP or offline
+//      requirements should self-host the worker via 1 or 2, e.g. with Vite:
+//        import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+//        setPdfWorkerSrc(workerSrc);
+// Type-only import: erased at build time, so pdfjs stays out of the main bundle.
+type PdfjsModule = typeof Pdfjs;
 let pdfjsPromise: Promise<PdfjsModule> | null = null;
+let configuredWorkerSrc: string | undefined;
 
-async function loadPdfjs(): Promise<PdfjsModule> {
-  if (!pdfjsPromise) {
-    pdfjsPromise = import("pdfjs-dist").then((mod) => {
-      if (!mod.GlobalWorkerOptions.workerSrc) {
-        mod.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${mod.version}/build/pdf.worker.min.mjs`;
-      }
-      return mod;
-    });
+const cdnWorkerSrc = (version: string) =>
+  `https://cdn.jsdelivr.net/npm/pdfjs-dist@${version}/build/pdf.worker.min.mjs`;
+
+function applyWorkerSrc(mod: PdfjsModule, workerSrc?: string) {
+  const explicit = workerSrc ?? configuredWorkerSrc;
+  if (explicit) mod.GlobalWorkerOptions.workerSrc = explicit;
+  else if (!mod.GlobalWorkerOptions.workerSrc) {
+    mod.GlobalWorkerOptions.workerSrc = cdnWorkerSrc(mod.version);
   }
-  return pdfjsPromise;
 }
 
-async function renderPdfFirstPage(file: File, targetWidth: number): Promise<string> {
-  const pdfjs = await loadPdfjs();
+/** Set the pdf.js worker URL used by FileThumbnail PDF previews (app-wide). */
+function setPdfWorkerSrc(workerSrc: string | undefined) {
+  configuredWorkerSrc = workerSrc;
+  void pdfjsPromise?.then((mod) => applyWorkerSrc(mod));
+}
+
+async function loadPdfjs(workerSrc?: string): Promise<PdfjsModule> {
+  if (!pdfjsPromise) pdfjsPromise = import("pdfjs-dist");
+  const mod = await pdfjsPromise;
+  applyWorkerSrc(mod, workerSrc);
+  return mod;
+}
+
+async function renderPdfFirstPage(
+  file: File,
+  targetWidth: number,
+  workerSrc?: string,
+): Promise<string> {
+  const pdfjs = await loadPdfjs(workerSrc);
   const buffer = await file.arrayBuffer();
   const pdf = await pdfjs.getDocument({ data: buffer }).promise;
   const page = await pdf.getPage(1);
@@ -43,6 +70,21 @@ async function renderPdfFirstPage(file: File, targetWidth: number): Promise<stri
 // resolving a spinner is shown. Self-contained (border + surface + sizing) so
 // it can be reused both inside the composer's preview row and to render
 // already-sent attachments in a chat transcript.
+interface FileThumbnailLabels {
+  /** Type badge / meta line when no `type` is given. */
+  file: string;
+  /** Name shown when no `name` is given. */
+  untitled: string;
+  /** Spinner accessible name while a preview renders. */
+  loadingPreview: string;
+}
+
+const DEFAULT_LABELS: FileThumbnailLabels = {
+  file: "File",
+  untitled: "Untitled file",
+  loadingPreview: "Loading preview",
+};
+
 interface FileThumbnailProps {
   file?: File;
   name?: string;
@@ -50,15 +92,34 @@ interface FileThumbnailProps {
   /** Side length of the square thumbnail in pixels. */
   size?: number | string;
   className?: string;
+  /**
+   * URL of the pdf.js worker used for PDF previews. Overrides
+   * setPdfWorkerSrc(); when neither is set, the worker loads from jsDelivr.
+   */
+  pdfWorkerSrc?: string;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<FileThumbnailLabels>;
 }
 
-function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnailProps) {
+function FileThumbnail({
+  file,
+  name,
+  type,
+  size = 48,
+  className,
+  pdfWorkerSrc,
+  labels: labelsProp,
+}: FileThumbnailProps) {
   const shape = useShape();
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const numericSize = typeof size === "number" ? size : 48;
 
   if (!file) {
     return (
-      <div className={cn("flex items-center gap-3 rounded-lg border border-border p-2", className)}>
+      <div
+        data-slot="file-thumbnail"
+        className={cn("flex items-center gap-3 rounded-lg border border-border p-2", className)}
+      >
         <div
           className={cn(
             "flex shrink-0 items-center justify-center bg-accent text-[11px] text-muted-foreground",
@@ -66,18 +127,47 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
           )}
           style={{ width: numericSize, height: numericSize }}
         >
-          {type ?? "File"}
+          {type ?? labels.file}
         </div>
         <div className="min-w-0">
-          <div className="truncate text-[13px] text-foreground">{name ?? "Untitled file"}</div>
+          <div className="truncate text-[13px] text-foreground">{name ?? labels.untitled}</div>
           <div className="text-[12px] text-muted-foreground">
-            {typeof size === "string" ? size : (type ?? "File")}
+            {typeof size === "string" ? size : (type ?? labels.file)}
           </div>
         </div>
       </div>
     );
   }
 
+  // Previews own their hooks in a child component so the no-file branch above
+  // never changes this component's hook order.
+  return (
+    <FilePreview
+      file={file}
+      size={numericSize}
+      className={className}
+      pdfWorkerSrc={pdfWorkerSrc}
+      shapeClassName={shape.bg}
+      loadingLabel={labels.loadingPreview}
+    />
+  );
+}
+
+function FilePreview({
+  file,
+  size: numericSize,
+  className,
+  pdfWorkerSrc,
+  shapeClassName,
+  loadingLabel,
+}: {
+  file: File;
+  size: number;
+  className?: string | undefined;
+  pdfWorkerSrc?: string | undefined;
+  shapeClassName: string;
+  loadingLabel: string;
+}) {
   const isImage = file.type.startsWith("image/");
   const isPdf = file.type === "application/pdf";
 
@@ -104,7 +194,7 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
   useEffect(() => {
     if (!isPdf) return;
     let cancelled = false;
-    renderPdfFirstPage(file, numericSize)
+    renderPdfFirstPage(file, numericSize, pdfWorkerSrc)
       .then((url) => {
         if (!cancelled) setPdfUrl(url);
       })
@@ -114,21 +204,21 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
     return () => {
       cancelled = true;
     };
-  }, [file, isPdf, numericSize]);
+  }, [file, isPdf, numericSize, pdfWorkerSrc]);
 
   const previewUrl = imageUrl ?? pdfUrl;
 
   return (
     <div
+      data-slot="file-thumbnail"
       className={cn(
         "relative shrink-0 overflow-hidden bg-accent border border-border",
-        shape.bg,
+        shapeClassName,
         className,
       )}
       style={{ width: numericSize, height: numericSize }}
     >
       {previewUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={previewUrl}
           alt={file.name}
@@ -143,7 +233,7 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
         <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="w-6 h-6 rounded-full border-2 border-border border-t-muted-foreground animate-spin"
-            aria-label="Loading preview"
+            aria-label={loadingLabel}
             role="status"
           />
         </div>
@@ -152,5 +242,11 @@ function FileThumbnail({ file, name, type, size = 48, className }: FileThumbnail
   );
 }
 
-export { FileThumbnail, loadPdfjs, renderPdfFirstPage };
-export type { FileThumbnailProps };
+export {
+  FileThumbnail,
+  loadPdfjs,
+  renderPdfFirstPage,
+  setPdfWorkerSrc,
+  DEFAULT_LABELS as FILE_THUMBNAIL_DEFAULT_LABELS,
+};
+export type { FileThumbnailProps, FileThumbnailLabels };

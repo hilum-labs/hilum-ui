@@ -10,8 +10,8 @@
     "url": "https://ui.hilum.dev"
   },
   "codeRepository": "https://github.com/hilum-labs/hilum-ui",
-  "dateModified": "2026-06-29T15:27:25.834Z",
-  "numberOfItems": 169,
+  "dateModified": "2026-09-28T10:45:03.526Z",
+  "numberOfItems": 183,
   "sections": [
     {
       "name": "Application UI",
@@ -23,7 +23,7 @@
       "name": "Atoms",
       "path": "/atoms",
       "url": "https://ui.hilum.dev/atoms/",
-      "count": 74
+      "count": 80
     },
     {
       "name": "Blocks",
@@ -65,7 +65,7 @@
       "name": "Molecules",
       "path": "/molecules",
       "url": "https://ui.hilum.dev/molecules/",
-      "count": 32
+      "count": 40
     },
     {
       "name": "Theming",
@@ -400,6 +400,16 @@
       "position": 33,
       "item": {
         "@type": "WebPage",
+        "name": "Code Block",
+        "url": "https://ui.hilum.dev/atoms/code-block/",
+        "description": "Code Block reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 34,
+      "item": {
+        "@type": "WebPage",
         "name": "Collapsible",
         "url": "https://ui.hilum.dev/atoms/collapsible/",
         "description": "Collapsible reference in the Atoms section of Hilum UI."
@@ -407,7 +417,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 34,
+      "position": 35,
       "item": {
         "@type": "WebPage",
         "name": "Color Input",
@@ -417,7 +427,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 35,
+      "position": 36,
       "item": {
         "@type": "WebPage",
         "name": "Color Picker",
@@ -427,7 +437,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 36,
+      "position": 37,
       "item": {
         "@type": "WebPage",
         "name": "Combobox",
@@ -437,7 +447,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 37,
+      "position": 38,
       "item": {
         "@type": "WebPage",
         "name": "Command",
@@ -447,7 +457,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 38,
+      "position": 39,
       "item": {
         "@type": "WebPage",
         "name": "Context Menu",
@@ -457,7 +467,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 39,
+      "position": 40,
       "item": {
         "@type": "WebPage",
         "name": "Data Table",
@@ -467,7 +477,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 40,
+      "position": 41,
       "item": {
         "@type": "WebPage",
         "name": "Date Picker",
@@ -477,7 +487,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 41,
+      "position": 42,
+      "item": {
+        "@type": "WebPage",
+        "name": "Date Text",
+        "url": "https://ui.hilum.dev/atoms/date-text/",
+        "description": "Date Text reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 43,
       "item": {
         "@type": "WebPage",
         "name": "Dialog",
@@ -487,7 +507,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 42,
+      "position": 44,
       "item": {
         "@type": "WebPage",
         "name": "Drawer",
@@ -497,7 +517,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 43,
+      "position": 45,
       "item": {
         "@type": "WebPage",
         "name": "Dropdown",
@@ -507,7 +527,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 44,
+      "position": 46,
       "item": {
         "@type": "WebPage",
         "name": "Dropdown Menu",
@@ -517,7 +537,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 45,
+      "position": 47,
       "item": {
         "@type": "WebPage",
         "name": "File Dropzone",
@@ -527,7 +547,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 46,
+      "position": 48,
       "item": {
         "@type": "WebPage",
         "name": "File Thumbnail",
@@ -537,7 +557,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 47,
+      "position": 49,
       "item": {
         "@type": "WebPage",
         "name": "Help Tooltip",
@@ -547,7 +567,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 48,
+      "position": 50,
       "item": {
         "@type": "WebPage",
         "name": "Hover Card",
@@ -557,7 +577,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 49,
+      "position": 51,
       "item": {
         "@type": "WebPage",
         "name": "Input",
@@ -567,7 +587,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 50,
+      "position": 52,
       "item": {
         "@type": "WebPage",
         "name": "Input Number",
@@ -577,7 +597,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 51,
+      "position": 53,
       "item": {
         "@type": "WebPage",
         "name": "Input Otp",
@@ -587,7 +607,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 52,
+      "position": 54,
       "item": {
         "@type": "WebPage",
         "name": "Kbd",
@@ -597,7 +617,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 53,
+      "position": 55,
       "item": {
         "@type": "WebPage",
         "name": "Label",
@@ -607,7 +627,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 54,
+      "position": 56,
       "item": {
         "@type": "WebPage",
         "name": "Menu Item",
@@ -617,7 +637,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 55,
+      "position": 57,
       "item": {
         "@type": "WebPage",
         "name": "Menubar",
@@ -627,7 +647,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 56,
+      "position": 58,
       "item": {
         "@type": "WebPage",
         "name": "Native Select",
@@ -637,7 +657,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 57,
+      "position": 59,
       "item": {
         "@type": "WebPage",
         "name": "Nav Item",
@@ -647,7 +667,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 58,
+      "position": 60,
       "item": {
         "@type": "WebPage",
         "name": "Navigation Menu",
@@ -657,7 +677,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 59,
+      "position": 61,
       "item": {
         "@type": "WebPage",
         "name": "Pagination",
@@ -667,7 +687,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 60,
+      "position": 62,
       "item": {
         "@type": "WebPage",
         "name": "Popover",
@@ -677,7 +697,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 61,
+      "position": 63,
       "item": {
         "@type": "WebPage",
         "name": "Progress",
@@ -687,7 +707,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 62,
+      "position": 64,
       "item": {
         "@type": "WebPage",
         "name": "Radio Group",
@@ -697,7 +717,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 63,
+      "position": 65,
+      "item": {
+        "@type": "WebPage",
+        "name": "Rating",
+        "url": "https://ui.hilum.dev/atoms/rating/",
+        "description": "Rating reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 66,
       "item": {
         "@type": "WebPage",
         "name": "Resizable",
@@ -707,7 +737,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 64,
+      "position": 67,
       "item": {
         "@type": "WebPage",
         "name": "Rich Text Editor",
@@ -717,7 +747,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 65,
+      "position": 68,
       "item": {
         "@type": "WebPage",
         "name": "Scroll Area",
@@ -727,7 +757,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 66,
+      "position": 69,
+      "item": {
+        "@type": "WebPage",
+        "name": "Search Input",
+        "url": "https://ui.hilum.dev/atoms/search-input/",
+        "description": "Search Input reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 70,
       "item": {
         "@type": "WebPage",
         "name": "Searchable Table",
@@ -737,7 +777,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 67,
+      "position": 71,
       "item": {
         "@type": "WebPage",
         "name": "Select",
@@ -747,7 +787,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 68,
+      "position": 72,
       "item": {
         "@type": "WebPage",
         "name": "Separator",
@@ -757,7 +797,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 69,
+      "position": 73,
       "item": {
         "@type": "WebPage",
         "name": "Sheet",
@@ -767,7 +807,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 70,
+      "position": 74,
       "item": {
         "@type": "WebPage",
         "name": "Sidebar",
@@ -777,7 +817,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 71,
+      "position": 75,
       "item": {
         "@type": "WebPage",
         "name": "Skeleton",
@@ -787,7 +827,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 72,
+      "position": 76,
       "item": {
         "@type": "WebPage",
         "name": "Slider",
@@ -797,7 +837,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 73,
+      "position": 77,
       "item": {
         "@type": "WebPage",
         "name": "Sonner",
@@ -807,7 +847,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 74,
+      "position": 78,
       "item": {
         "@type": "WebPage",
         "name": "Spinner",
@@ -817,7 +857,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 75,
+      "position": 79,
       "item": {
         "@type": "WebPage",
         "name": "Status Badge",
@@ -827,7 +867,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 76,
+      "position": 80,
       "item": {
         "@type": "WebPage",
         "name": "Status Tile",
@@ -837,7 +877,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 77,
+      "position": 81,
       "item": {
         "@type": "WebPage",
         "name": "Steps",
@@ -847,7 +887,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 78,
+      "position": 82,
       "item": {
         "@type": "WebPage",
         "name": "Summary Tile",
@@ -857,7 +897,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 79,
+      "position": 83,
       "item": {
         "@type": "WebPage",
         "name": "Switch",
@@ -867,7 +907,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 80,
+      "position": 84,
       "item": {
         "@type": "WebPage",
         "name": "Table",
@@ -877,7 +917,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 81,
+      "position": 85,
       "item": {
         "@type": "WebPage",
         "name": "Tabs",
@@ -887,7 +927,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 82,
+      "position": 86,
       "item": {
         "@type": "WebPage",
         "name": "Tabs Subtle",
@@ -897,7 +937,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 83,
+      "position": 87,
       "item": {
         "@type": "WebPage",
         "name": "Textarea",
@@ -907,7 +947,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 84,
+      "position": 88,
       "item": {
         "@type": "WebPage",
         "name": "Thinking Indicator",
@@ -917,7 +957,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 85,
+      "position": 89,
+      "item": {
+        "@type": "WebPage",
+        "name": "Time Picker",
+        "url": "https://ui.hilum.dev/atoms/time-picker/",
+        "description": "Time Picker reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 90,
       "item": {
         "@type": "WebPage",
         "name": "Toggle",
@@ -927,7 +977,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 86,
+      "position": 91,
       "item": {
         "@type": "WebPage",
         "name": "Toggle Group",
@@ -937,7 +987,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 87,
+      "position": 92,
       "item": {
         "@type": "WebPage",
         "name": "Tooltip",
@@ -947,7 +997,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 88,
+      "position": 93,
+      "item": {
+        "@type": "WebPage",
+        "name": "Tree View",
+        "url": "https://ui.hilum.dev/atoms/tree-view/",
+        "description": "Tree View reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 94,
       "item": {
         "@type": "WebPage",
         "name": "Blocks",
@@ -957,7 +1017,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 89,
+      "position": 95,
       "item": {
         "@type": "WebPage",
         "name": "App Shell Sidebar",
@@ -967,7 +1027,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 90,
+      "position": 96,
       "item": {
         "@type": "WebPage",
         "name": "App Shell Stacked",
@@ -977,7 +1037,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 91,
+      "position": 97,
       "item": {
         "@type": "WebPage",
         "name": "Detail Screen",
@@ -987,7 +1047,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 92,
+      "position": 98,
       "item": {
         "@type": "WebPage",
         "name": "Form Layout",
@@ -997,7 +1057,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 93,
+      "position": 99,
       "item": {
         "@type": "WebPage",
         "name": "Navbar",
@@ -1007,7 +1067,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 94,
+      "position": 100,
       "item": {
         "@type": "WebPage",
         "name": "Settings Screen",
@@ -1017,7 +1077,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 95,
+      "position": 101,
       "item": {
         "@type": "WebPage",
         "name": "Sign In",
@@ -1027,7 +1087,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 96,
+      "position": 102,
       "item": {
         "@type": "WebPage",
         "name": "Designer",
@@ -1037,7 +1097,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 97,
+      "position": 103,
       "item": {
         "@type": "WebPage",
         "name": "Canvas",
@@ -1047,7 +1107,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 98,
+      "position": 104,
       "item": {
         "@type": "WebPage",
         "name": "Pane Visibility",
@@ -1057,7 +1117,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 99,
+      "position": 105,
       "item": {
         "@type": "WebPage",
         "name": "Shell",
@@ -1067,7 +1127,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 100,
+      "position": 106,
       "item": {
         "@type": "WebPage",
         "name": "Static Frame",
@@ -1077,7 +1137,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 101,
+      "position": 107,
       "item": {
         "@type": "WebPage",
         "name": "Ecommerce",
@@ -1087,7 +1147,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 102,
+      "position": 108,
       "item": {
         "@type": "WebPage",
         "name": "Category Filters",
@@ -1097,7 +1157,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 103,
+      "position": 109,
       "item": {
         "@type": "WebPage",
         "name": "Category Previews",
@@ -1107,7 +1167,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 104,
+      "position": 110,
       "item": {
         "@type": "WebPage",
         "name": "Checkout Forms",
@@ -1117,7 +1177,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 105,
+      "position": 111,
       "item": {
         "@type": "WebPage",
         "name": "Incentives",
@@ -1127,7 +1187,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 106,
+      "position": 112,
       "item": {
         "@type": "WebPage",
         "name": "Order History",
@@ -1137,7 +1197,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 107,
+      "position": 113,
       "item": {
         "@type": "WebPage",
         "name": "Order Summaries",
@@ -1147,7 +1207,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 108,
+      "position": 114,
       "item": {
         "@type": "WebPage",
         "name": "Product Features",
@@ -1157,7 +1217,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 109,
+      "position": 115,
       "item": {
         "@type": "WebPage",
         "name": "Product Lists",
@@ -1167,7 +1227,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 110,
+      "position": 116,
       "item": {
         "@type": "WebPage",
         "name": "Product Overviews",
@@ -1177,7 +1237,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 111,
+      "position": 117,
       "item": {
         "@type": "WebPage",
         "name": "Product Quickviews",
@@ -1187,7 +1247,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 112,
+      "position": 118,
       "item": {
         "@type": "WebPage",
         "name": "Promo Sections",
@@ -1197,7 +1257,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 113,
+      "position": 119,
       "item": {
         "@type": "WebPage",
         "name": "Reviews",
@@ -1207,7 +1267,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 114,
+      "position": 120,
       "item": {
         "@type": "WebPage",
         "name": "Shopping Carts",
@@ -1217,7 +1277,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 115,
+      "position": 121,
       "item": {
         "@type": "WebPage",
         "name": "Store Navigation",
@@ -1227,7 +1287,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 116,
+      "position": 122,
       "item": {
         "@type": "WebPage",
         "name": "Foundations",
@@ -1237,7 +1297,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 117,
+      "position": 123,
       "item": {
         "@type": "WebPage",
         "name": "Marketing",
@@ -1247,7 +1307,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 118,
+      "position": 124,
       "item": {
         "@type": "WebPage",
         "name": "404 Pages",
@@ -1257,7 +1317,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 119,
+      "position": 125,
       "item": {
         "@type": "WebPage",
         "name": "Banners",
@@ -1267,7 +1327,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 120,
+      "position": 126,
       "item": {
         "@type": "WebPage",
         "name": "Blog Sections",
@@ -1277,7 +1337,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 121,
+      "position": 127,
       "item": {
         "@type": "WebPage",
         "name": "Contact Sections",
@@ -1287,7 +1347,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 122,
+      "position": 128,
       "item": {
         "@type": "WebPage",
         "name": "Content Sections",
@@ -1297,7 +1357,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 123,
+      "position": 129,
       "item": {
         "@type": "WebPage",
         "name": "Cta Sections",
@@ -1307,7 +1367,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 124,
+      "position": 130,
       "item": {
         "@type": "WebPage",
         "name": "Faq Sections",
@@ -1317,7 +1377,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 125,
+      "position": 131,
       "item": {
         "@type": "WebPage",
         "name": "Feature Sections",
@@ -1327,7 +1387,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 126,
+      "position": 132,
       "item": {
         "@type": "WebPage",
         "name": "Flyout Menus",
@@ -1337,7 +1397,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 127,
+      "position": 133,
       "item": {
         "@type": "WebPage",
         "name": "Footers",
@@ -1347,7 +1407,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 128,
+      "position": 134,
       "item": {
         "@type": "WebPage",
         "name": "Header",
@@ -1357,7 +1417,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 129,
+      "position": 135,
       "item": {
         "@type": "WebPage",
         "name": "Heroes",
@@ -1367,7 +1427,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 130,
+      "position": 136,
       "item": {
         "@type": "WebPage",
         "name": "Logo Clouds",
@@ -1377,7 +1437,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 131,
+      "position": 137,
       "item": {
         "@type": "WebPage",
         "name": "Nav Headers",
@@ -1387,7 +1447,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 132,
+      "position": 138,
       "item": {
         "@type": "WebPage",
         "name": "Newsletter Sections",
@@ -1397,7 +1457,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 133,
+      "position": 139,
       "item": {
         "@type": "WebPage",
         "name": "Pricing",
@@ -1407,7 +1467,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 134,
+      "position": 140,
       "item": {
         "@type": "WebPage",
         "name": "Stats Sections",
@@ -1417,7 +1477,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 135,
+      "position": 141,
       "item": {
         "@type": "WebPage",
         "name": "Team Sections",
@@ -1427,7 +1487,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 136,
+      "position": 142,
       "item": {
         "@type": "WebPage",
         "name": "Testimonials",
@@ -1437,7 +1497,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 137,
+      "position": 143,
       "item": {
         "@type": "WebPage",
         "name": "Molecules",
@@ -1447,7 +1507,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 138,
+      "position": 144,
       "item": {
         "@type": "WebPage",
         "name": "Account Menu",
@@ -1457,7 +1517,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 139,
+      "position": 145,
       "item": {
         "@type": "WebPage",
         "name": "Action Panel",
@@ -1467,7 +1527,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 140,
+      "position": 146,
       "item": {
         "@type": "WebPage",
         "name": "Activity Feed",
@@ -1477,7 +1537,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 141,
+      "position": 147,
       "item": {
         "@type": "WebPage",
         "name": "Ask User Questions",
@@ -1487,7 +1547,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 142,
+      "position": 148,
       "item": {
         "@type": "WebPage",
         "name": "Card Heading",
@@ -1497,7 +1557,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 143,
+      "position": 149,
       "item": {
         "@type": "WebPage",
         "name": "Chat Message",
@@ -1507,7 +1567,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 144,
+      "position": 150,
       "item": {
         "@type": "WebPage",
         "name": "Command Palette",
@@ -1517,7 +1577,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 145,
+      "position": 151,
+      "item": {
+        "@type": "WebPage",
+        "name": "Contextual Save Bar",
+        "url": "https://ui.hilum.dev/molecules/contextual-save-bar/",
+        "description": "Contextual Save Bar reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 152,
       "item": {
         "@type": "WebPage",
         "name": "Data Transfer Controls",
@@ -1527,7 +1597,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 146,
+      "position": 153,
+      "item": {
+        "@type": "WebPage",
+        "name": "Date Time Picker",
+        "url": "https://ui.hilum.dev/molecules/date-time-picker/",
+        "description": "Date Time Picker reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 154,
       "item": {
         "@type": "WebPage",
         "name": "Description List",
@@ -1537,7 +1617,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 147,
+      "position": 155,
       "item": {
         "@type": "WebPage",
         "name": "Empty State",
@@ -1547,7 +1627,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 148,
+      "position": 156,
       "item": {
         "@type": "WebPage",
         "name": "Field",
@@ -1557,7 +1637,27 @@
     },
     {
       "@type": "ListItem",
-      "position": 149,
+      "position": 157,
+      "item": {
+        "@type": "WebPage",
+        "name": "Filter Bar",
+        "url": "https://ui.hilum.dev/molecules/filter-bar/",
+        "description": "Filter Bar reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 158,
+      "item": {
+        "@type": "WebPage",
+        "name": "Form Layout",
+        "url": "https://ui.hilum.dev/molecules/form-layout/",
+        "description": "Form Layout reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 159,
       "item": {
         "@type": "WebPage",
         "name": "Grid List",
@@ -1567,7 +1667,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 150,
+      "position": 160,
       "item": {
         "@type": "WebPage",
         "name": "Input Copy",
@@ -1577,7 +1677,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 151,
+      "position": 161,
       "item": {
         "@type": "WebPage",
         "name": "Input Group",
@@ -1587,7 +1687,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 152,
+      "position": 162,
       "item": {
         "@type": "WebPage",
         "name": "Input Message",
@@ -1597,7 +1697,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 153,
+      "position": 163,
+      "item": {
+        "@type": "WebPage",
+        "name": "Layout",
+        "url": "https://ui.hilum.dev/molecules/layout/",
+        "description": "Layout reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 164,
       "item": {
         "@type": "WebPage",
         "name": "Media Asset Card",
@@ -1607,7 +1717,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 154,
+      "position": 165,
       "item": {
         "@type": "WebPage",
         "name": "Media Asset Grid",
@@ -1617,7 +1727,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 155,
+      "position": 166,
       "item": {
         "@type": "WebPage",
         "name": "Media Object",
@@ -1627,7 +1737,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 156,
+      "position": 167,
       "item": {
         "@type": "WebPage",
         "name": "Mobile Drawer",
@@ -1637,7 +1747,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 157,
+      "position": 168,
       "item": {
         "@type": "WebPage",
         "name": "Nav Menu",
@@ -1647,7 +1757,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 158,
+      "position": 169,
       "item": {
         "@type": "WebPage",
         "name": "Notification",
@@ -1657,7 +1767,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 159,
+      "position": 170,
       "item": {
         "@type": "WebPage",
         "name": "Page Heading",
@@ -1667,7 +1777,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 160,
+      "position": 171,
       "item": {
         "@type": "WebPage",
         "name": "Property Row",
@@ -1677,7 +1787,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 161,
+      "position": 172,
       "item": {
         "@type": "WebPage",
         "name": "Radio Card",
@@ -1687,7 +1797,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 162,
+      "position": 173,
+      "item": {
+        "@type": "WebPage",
+        "name": "Resource Item",
+        "url": "https://ui.hilum.dev/molecules/resource-item/",
+        "description": "Resource Item reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 174,
       "item": {
         "@type": "WebPage",
         "name": "Section Heading",
@@ -1697,7 +1817,27 @@
     },
     {
       "@type": "ListItem",
-      "position": 163,
+      "position": 175,
+      "item": {
+        "@type": "WebPage",
+        "name": "Skeleton Page",
+        "url": "https://ui.hilum.dev/molecules/skeleton-page/",
+        "description": "Skeleton Page reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 176,
+      "item": {
+        "@type": "WebPage",
+        "name": "Sortable",
+        "url": "https://ui.hilum.dev/molecules/sortable/",
+        "description": "Sortable reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 177,
       "item": {
         "@type": "WebPage",
         "name": "Stacked List",
@@ -1707,7 +1847,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 164,
+      "position": 178,
       "item": {
         "@type": "WebPage",
         "name": "Stat Card",
@@ -1717,7 +1857,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 165,
+      "position": 179,
       "item": {
         "@type": "WebPage",
         "name": "Thinking Steps",
@@ -1727,7 +1867,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 166,
+      "position": 180,
       "item": {
         "@type": "WebPage",
         "name": "Titled Card",
@@ -1737,7 +1877,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 167,
+      "position": 181,
       "item": {
         "@type": "WebPage",
         "name": "Url Redirect Prompt",
@@ -1747,7 +1887,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 168,
+      "position": 182,
       "item": {
         "@type": "WebPage",
         "name": "Usage Bar",
@@ -1757,7 +1897,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 169,
+      "position": 183,
       "item": {
         "@type": "WebPage",
         "name": "Theming",
@@ -2024,6 +2164,14 @@
       "sourcePath": "src/app/atoms/checkbox-group/page.tsx"
     },
     {
+      "path": "/atoms/code-block",
+      "url": "https://ui.hilum.dev/atoms/code-block/",
+      "title": "Code Block",
+      "description": "Code Block reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/code-block/page.tsx"
+    },
+    {
       "path": "/atoms/collapsible",
       "url": "https://ui.hilum.dev/atoms/collapsible/",
       "title": "Collapsible",
@@ -2086,6 +2234,14 @@
       "description": "Date Picker reference in the Atoms section of Hilum UI.",
       "section": "Atoms",
       "sourcePath": "src/app/atoms/date-picker/page.tsx"
+    },
+    {
+      "path": "/atoms/date-text",
+      "url": "https://ui.hilum.dev/atoms/date-text/",
+      "title": "Date Text",
+      "description": "Date Text reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/date-text/page.tsx"
     },
     {
       "path": "/atoms/dialog",
@@ -2264,6 +2420,14 @@
       "sourcePath": "src/app/atoms/radio-group/page.tsx"
     },
     {
+      "path": "/atoms/rating",
+      "url": "https://ui.hilum.dev/atoms/rating/",
+      "title": "Rating",
+      "description": "Rating reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/rating/page.tsx"
+    },
+    {
       "path": "/atoms/resizable",
       "url": "https://ui.hilum.dev/atoms/resizable/",
       "title": "Resizable",
@@ -2286,6 +2450,14 @@
       "description": "Scroll Area reference in the Atoms section of Hilum UI.",
       "section": "Atoms",
       "sourcePath": "src/app/atoms/scroll-area/page.tsx"
+    },
+    {
+      "path": "/atoms/search-input",
+      "url": "https://ui.hilum.dev/atoms/search-input/",
+      "title": "Search Input",
+      "description": "Search Input reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/search-input/page.tsx"
     },
     {
       "path": "/atoms/searchable-table",
@@ -2440,6 +2612,14 @@
       "sourcePath": "src/app/atoms/thinking-indicator/page.tsx"
     },
     {
+      "path": "/atoms/time-picker",
+      "url": "https://ui.hilum.dev/atoms/time-picker/",
+      "title": "Time Picker",
+      "description": "Time Picker reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/time-picker/page.tsx"
+    },
+    {
       "path": "/atoms/toggle",
       "url": "https://ui.hilum.dev/atoms/toggle/",
       "title": "Toggle",
@@ -2462,6 +2642,14 @@
       "description": "Tooltip reference in the Atoms section of Hilum UI.",
       "section": "Atoms",
       "sourcePath": "src/app/atoms/tooltip/page.tsx"
+    },
+    {
+      "path": "/atoms/tree-view",
+      "url": "https://ui.hilum.dev/atoms/tree-view/",
+      "title": "Tree View",
+      "description": "Tree View reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/tree-view/page.tsx"
     },
     {
       "path": "/blocks",
@@ -2920,12 +3108,28 @@
       "sourcePath": "src/app/molecules/command-palette/page.tsx"
     },
     {
+      "path": "/molecules/contextual-save-bar",
+      "url": "https://ui.hilum.dev/molecules/contextual-save-bar/",
+      "title": "Contextual Save Bar",
+      "description": "Contextual Save Bar reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/contextual-save-bar/page.tsx"
+    },
+    {
       "path": "/molecules/data-transfer-controls",
       "url": "https://ui.hilum.dev/molecules/data-transfer-controls/",
       "title": "Data Transfer Controls",
       "description": "Data Transfer Controls reference in the Molecules section of Hilum UI.",
       "section": "Molecules",
       "sourcePath": "src/app/molecules/data-transfer-controls/page.tsx"
+    },
+    {
+      "path": "/molecules/date-time-picker",
+      "url": "https://ui.hilum.dev/molecules/date-time-picker/",
+      "title": "Date Time Picker",
+      "description": "Date Time Picker reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/date-time-picker/page.tsx"
     },
     {
       "path": "/molecules/description-list",
@@ -2950,6 +3154,22 @@
       "description": "Field reference in the Molecules section of Hilum UI.",
       "section": "Molecules",
       "sourcePath": "src/app/molecules/field/page.tsx"
+    },
+    {
+      "path": "/molecules/filter-bar",
+      "url": "https://ui.hilum.dev/molecules/filter-bar/",
+      "title": "Filter Bar",
+      "description": "Filter Bar reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/filter-bar/page.tsx"
+    },
+    {
+      "path": "/molecules/form-layout",
+      "url": "https://ui.hilum.dev/molecules/form-layout/",
+      "title": "Form Layout",
+      "description": "Form Layout reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/form-layout/page.tsx"
     },
     {
       "path": "/molecules/grid-list",
@@ -2982,6 +3202,14 @@
       "description": "Input Message reference in the Molecules section of Hilum UI.",
       "section": "Molecules",
       "sourcePath": "src/app/molecules/input-message/page.tsx"
+    },
+    {
+      "path": "/molecules/layout",
+      "url": "https://ui.hilum.dev/molecules/layout/",
+      "title": "Layout",
+      "description": "Layout reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/layout/page.tsx"
     },
     {
       "path": "/molecules/media-asset-card",
@@ -3056,12 +3284,36 @@
       "sourcePath": "src/app/molecules/radio-card/page.tsx"
     },
     {
+      "path": "/molecules/resource-item",
+      "url": "https://ui.hilum.dev/molecules/resource-item/",
+      "title": "Resource Item",
+      "description": "Resource Item reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/resource-item/page.tsx"
+    },
+    {
       "path": "/molecules/section-heading",
       "url": "https://ui.hilum.dev/molecules/section-heading/",
       "title": "Section Heading",
       "description": "Section Heading reference in the Molecules section of Hilum UI.",
       "section": "Molecules",
       "sourcePath": "src/app/molecules/section-heading/page.tsx"
+    },
+    {
+      "path": "/molecules/skeleton-page",
+      "url": "https://ui.hilum.dev/molecules/skeleton-page/",
+      "title": "Skeleton Page",
+      "description": "Skeleton Page reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/skeleton-page/page.tsx"
+    },
+    {
+      "path": "/molecules/sortable",
+      "url": "https://ui.hilum.dev/molecules/sortable/",
+      "title": "Sortable",
+      "description": "Sortable reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/sortable/page.tsx"
     },
     {
       "path": "/molecules/stacked-list",

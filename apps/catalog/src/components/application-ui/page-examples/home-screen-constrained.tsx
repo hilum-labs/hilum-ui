@@ -48,7 +48,7 @@ const TEAM = [
   { name: "Jules Kim", initials: "JK", role: "Ops" },
 ];
 
-function ExampleFrame({ children }: { children: any }) {
+function ExampleFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-[600px] overflow-hidden rounded-xl border border-ground-100 bg-white">
       {children}

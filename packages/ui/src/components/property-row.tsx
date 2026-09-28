@@ -37,11 +37,15 @@ function PropertyRow({
 
   return (
     <div
+      data-slot="property-row"
       className={cn(
-        "flex w-full min-w-0 py-1",
+        "flex w-full min-w-0 py-1 compact:py-0.5",
         inline
-          ? cn("gap-3", labelAlign === "center" ? "items-center" : "items-start")
-          : "flex-col items-stretch gap-1.5",
+          ? cn(
+              "gap-3 compact:min-h-7 compact:gap-2",
+              labelAlign === "center" ? "items-center" : "items-start",
+            )
+          : "flex-col items-stretch gap-1.5 compact:gap-1",
         className,
       )}
       {...rest}
@@ -49,7 +53,7 @@ function PropertyRow({
       {label !== undefined && (
         <div
           className={cn(
-            "caption select-none text-muted-foreground",
+            "caption select-none text-muted-foreground compact:text-[11px] compact:leading-4",
             inline ? "shrink-0" : "w-full",
           )}
           style={

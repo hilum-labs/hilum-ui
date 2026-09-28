@@ -4,7 +4,7 @@
 // selection accept an explicit `targetLayerIds: string[]` payload. This
 // decouples the reducer from ShellContext's selection store.
 
-import type { GridContainer, GridItem, Layer } from "../types";
+import type { GridContainer, Layer } from "../types";
 import type { CanvasState } from "./state";
 
 /* ============================================================== *

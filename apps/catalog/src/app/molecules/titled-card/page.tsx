@@ -29,8 +29,8 @@ import { BarChart3, Plus } from "lucide-react"
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">
-      <h2 className="label text-ground-400">{label}</h2>
-      <div className="h-px flex-1 bg-ground-100" />
+      <h2 className="label text-muted-foreground">{label}</h2>
+      <div className="h-px flex-1 bg-border" />
     </div>
   );
 }
@@ -39,19 +39,19 @@ function TitledCardPage() {
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
-        <div className="caption mb-4 flex items-center gap-1.5 text-ground-400">
-          <a href="/" className="hover:text-ground-700">
+        <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
+          <a href="/" className="hover:text-foreground">
             Design System
           </a>
           <span>/</span>
-          <a href="/molecules" className="hover:text-ground-700">
+          <a href="/molecules" className="hover:text-foreground">
             Molecules
           </a>
           <span>/</span>
-          <span className="font-semibold text-ground-900">Titled Card</span>
+          <span className="font-semibold text-foreground">Titled Card</span>
         </div>
-        <h1 className="display mb-2 text-ground-900">Titled Card</h1>
-        <p className="body max-w-lg text-ground-500">
+        <h1 className="display mb-2 text-foreground">Titled Card</h1>
+        <p className="body max-w-lg text-muted-foreground">
           Responsive card wrapper with title, subtitle, actions, and mobile-flattened layout.
         </p>
       </div>
@@ -80,15 +80,15 @@ function TitledCardPage() {
             >
               <div className="grid gap-3 sm:grid-cols-3">
                 <div>
-                  <p className="caption text-ground-400">Revenue</p>
-                  <p className="heading text-ground-900">$84.2k</p>
+                  <p className="caption text-muted-foreground">Revenue</p>
+                  <p className="heading text-foreground">$84.2k</p>
                 </div>
                 <div>
-                  <p className="caption text-ground-400">Conversion</p>
-                  <p className="heading text-ground-900">7.8%</p>
+                  <p className="caption text-muted-foreground">Conversion</p>
+                  <p className="heading text-foreground">7.8%</p>
                 </div>
                 <div>
-                  <p className="caption text-ground-400">State</p>
+                  <p className="caption text-muted-foreground">State</p>
                   <StatusBadge status="active" showDot />
                 </div>
               </div>
@@ -105,7 +105,7 @@ function TitledCardPage() {
             previewClassName="flex-col items-stretch"
           >
             <TitledCard title="Publishing checklist" subtitle="Required before launch.">
-              <ul className="body list-disc space-y-1 pl-5 text-ground-600">
+              <ul className="body list-disc space-y-1 pl-5 text-muted-foreground">
                 <li>SEO metadata completed</li>
                 <li>Redirects confirmed</li>
                 <li>Preview approved by the brand team</li>

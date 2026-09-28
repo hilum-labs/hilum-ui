@@ -39,8 +39,8 @@ const FEED = [
     iconBgClass: "bg-brand-secondary text-ground-900",
     content: (
       <p className="caption text-ground-600">
-        <span className="font-semibold text-ground-900">Sophie Chen</span> left a comment: "Tom has
-        been leading the platform migration with exceptional clarity."
+        <span className="font-semibold text-ground-900">Sophie Chen</span> left a comment: “Tom has
+        been leading the platform migration with exceptional clarity.”
       </p>
     ),
     date: "2h ago",
