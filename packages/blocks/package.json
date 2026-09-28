@@ -33,7 +33,7 @@
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {
-    "commander": "^12.0.0"
+    "commander": "^15.0.0"
   },
   "devDependencies": {
     "@types/node": "^26.1.0",
