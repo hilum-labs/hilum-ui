@@ -5,6 +5,7 @@ import React, { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { Badge, Button, Input, Separator } from "@hilum/ui";
 import { createTheme } from "@hilum/ui/create-theme";
+import { IconLibraryDemo } from "@/components/catalog/icon-library-demo";
 
 /* ------------------------------------------------------------------ *
  *  Code snippets                                                       *
@@ -96,18 +97,8 @@ function PaletteGenerator() {
     <div className="flex flex-col gap-6">
       {/* Color pickers */}
       <div className="flex flex-wrap items-end gap-6">
-        <ColorPicker
-          label="Primary"
-          value={primary}
-          onChange={setPrimary}
-          palette={palette.primary}
-        />
-        <ColorPicker
-          label="Secondary"
-          value={secondary}
-          onChange={setSecondary}
-          palette={palette.secondary}
-        />
+        <ColorPicker label="Primary" value={primary} onChange={setPrimary} />
+        <ColorPicker label="Secondary" value={secondary} onChange={setSecondary} />
       </div>
 
       {/* Palette swatches */}
@@ -143,18 +134,17 @@ function ColorPicker({
   label,
   value,
   onChange,
-  palette,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
-  palette: Record<string, string>;
 }) {
   return (
     <div className="flex flex-col gap-2">
       <p className="caption font-medium text-muted-foreground">{label}</p>
       <div className="flex items-center gap-2">
         <label className="relative cursor-pointer">
+          <span className="sr-only">{label} color</span>
           <div
             className="size-9 rounded-md border border-border shadow-natural"
             style={{ backgroundColor: value }}
@@ -177,7 +167,9 @@ function ColorPicker({
           className="h-9 w-28 rounded-md border border-border bg-background px-3 font-mono caption text-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
         />
       </div>
-      <p className="caption-xs text-muted-foreground/70">{label}-500 anchor · 11 shades generated</p>
+      <p className="caption-xs text-muted-foreground/70">
+        {label}-500 anchor · 11 shades generated
+      </p>
     </div>
   );
 }
@@ -189,7 +181,6 @@ function PaletteRow({ label, shades }: { label: string; shades: Record<string, s
       <div className="flex gap-1">
         {SHADE_KEYS.map((k) => {
           const hex = shades[k];
-          const isDark = relativeLuminance(hex) <= 0.179;
           return (
             <div key={k} className="flex flex-1 flex-col items-center gap-1">
               <div className="h-8 w-full rounded-md" style={{ backgroundColor: hex }} title={hex} />
@@ -226,7 +217,9 @@ function CodeBlock({ code, language = "tsx" }: { code: string; language?: string
         {copied ? "Copied!" : "Copy"}
       </button>
       <pre className="overflow-x-auto bg-ground-950 px-5 py-5 caption leading-relaxed">
-        <code className="font-mono text-ground-300">{code}</code>
+        <code className="font-mono text-ground-300" data-language={language}>
+          {code}
+        </code>
       </pre>
     </div>
   );
@@ -409,8 +402,8 @@ function ThemingPage() {
             <p className="caption mt-1 text-muted-foreground">
               <code className="font-mono text-muted-foreground">react@^19</code> and{" "}
               <code className="font-mono text-muted-foreground">react-dom@^19</code> are required.
-              <code className="font-mono text-muted-foreground ml-2">tailwindcss@^4</code> is required in
-              any app that uses the token utilities.
+              <code className="font-mono text-muted-foreground ml-2">tailwindcss@^4</code> is
+              required in any app that uses the token utilities.
             </p>
           </div>
         </section>
@@ -473,12 +466,29 @@ function ThemingPage() {
             <div>
               <p className="subheading mb-1 text-foreground">Manual CSS override</p>
               <p className="caption mb-3 text-muted-foreground">
-                For non-React consumers or when full palette generation isn't needed. Import after{" "}
+                For non-React consumers or when full palette generation isn’t needed. Import after{" "}
                 <code className="font-mono text-muted-foreground">tokens.css</code>.
               </p>
               <CodeBlock code={USAGE_MANUAL_CSS} language="css" />
             </div>
           </div>
+        </section>
+
+        {/* ── Icon libraries & shape ──────────────────────────────── */}
+        <section id="icon-libraries">
+          <SectionHeading label="Icon libraries & shape" />
+          <p className="body mb-4 max-w-lg text-muted-foreground">
+            Lucide ships with the main entry. Tabler, Phosphor, Hugeicons and Untitled UI are
+            optional peer dependencies registered from{" "}
+            <code className="font-mono text-muted-foreground">@hilum/ui/icon-libraries</code> via{" "}
+            <code className="font-mono text-muted-foreground">
+              {"<IconProvider libraries={iconLibraries}>"}
+            </code>
+            . Keyboard shortcuts are opt-in through{" "}
+            <code className="font-mono text-muted-foreground">useIconLibraryCycleShortcut</code> and{" "}
+            <code className="font-mono text-muted-foreground">useShapeCycleShortcut</code>.
+          </p>
+          <IconLibraryDemo />
         </section>
 
         {/* ── What gets overridden ──────────────────────────────────── */}
@@ -487,8 +497,8 @@ function ThemingPage() {
           <p className="body mb-4 max-w-lg text-muted-foreground">
             The generated CSS overrides CSS custom properties that back Tailwind v4 utilities.
             Unlayered <code className="font-mono text-muted-foreground">:root</code> rules beat{" "}
-            <code className="font-mono text-muted-foreground">@layer theme</code>, so the override takes
-            effect without rebuilding Tailwind.
+            <code className="font-mono text-muted-foreground">@layer theme</code>, so the override
+            takes effect without rebuilding Tailwind.
           </p>
           <div className="overflow-hidden rounded-xl border border-border">
             <div className="grid grid-cols-[200px_160px_1fr] border-b border-border bg-muted px-5 py-2">

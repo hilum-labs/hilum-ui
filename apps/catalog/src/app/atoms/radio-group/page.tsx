@@ -128,22 +128,23 @@ const CODE = {
 
   inPanel: `<RadioGroup value={value} onValueChange={setValue}>
   {plans.map((plan) => (
-    <div
+    // The whole card is the radio's <label>, so clicking anywhere selects it.
+    <label
       key={plan.value}
+      htmlFor={plan.value}
       className={cn(
         "flex items-start gap-4 rounded-xl border p-4 cursor-pointer transition-colors",
         value === plan.value
           ? "border-foreground bg-muted"
           : "border-border hover:bg-muted"
       )}
-      onClick={() => setValue(plan.value)}
     >
       <RadioGroupItem value={plan.value} id={plan.value} />
       <div>
-        <Label htmlFor={plan.value} className="cursor-pointer">{plan.label}</Label>
+        <span className="body font-medium leading-none text-muted-foreground">{plan.label}</span>
         <p className="caption text-muted-foreground mt-0.5">{plan.description}</p>
       </div>
-    </div>
+    </label>
   ))}
 </RadioGroup>`,
 
@@ -264,8 +265,11 @@ function RadioGroupPage() {
             previewClassName="flex-col items-start"
           >
             <RadioGroup defaultValue="monthly" className="flex gap-6">
-              {["Monthly", "Quarterly", "Annual (save 20%)"].map((label, i) => {
-                const value = ["monthly", "quarterly", "annual"][i];
+              {[
+                { label: "Monthly", value: "monthly" },
+                { label: "Quarterly", value: "quarterly" },
+                { label: "Annual (save 20%)", value: "annual" },
+              ].map(({ label, value }) => {
                 return (
                   <div key={value} className="flex items-center gap-2">
                     <RadioGroupItem value={value} id={`billing-${value}`} />
@@ -371,24 +375,24 @@ function RadioGroupPage() {
               <RadioGroup value={inPanel} onValueChange={setInPanel}>
                 <div className="flex flex-col gap-2">
                   {PLAN_OPTIONS.slice(0, 3).map((plan) => (
-                    <div
+                    <label
                       key={plan.value}
+                      htmlFor={`panel-${plan.value}`}
                       className={cn(
                         "flex items-start gap-4 rounded-xl border p-4 cursor-pointer transition-colors",
                         inPanel === plan.value
                           ? "border-foreground bg-muted"
                           : "border-border hover:bg-muted",
                       )}
-                      onClick={() => setInPanel(plan.value)}
                     >
                       <RadioGroupItem value={plan.value} id={`panel-${plan.value}`} />
                       <div>
-                        <Label htmlFor={`panel-${plan.value}`} className="cursor-pointer">
+                        <span className="body font-medium leading-none text-muted-foreground">
                           {plan.label}
-                        </Label>
+                        </span>
                         <p className="caption text-muted-foreground mt-0.5">{plan.description}</p>
                       </div>
-                    </div>
+                    </label>
                   ))}
                 </div>
               </RadioGroup>
@@ -442,12 +446,18 @@ function RadioGroupPage() {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b border-border">
-                      <th className="pb-3 text-left caption text-muted-foreground font-medium">Plan</th>
-                      <th className="pb-3 text-left caption text-muted-foreground font-medium">Users</th>
+                      <th className="pb-3 text-left caption text-muted-foreground font-medium">
+                        Plan
+                      </th>
+                      <th className="pb-3 text-left caption text-muted-foreground font-medium">
+                        Users
+                      </th>
                       <th className="pb-3 text-left caption text-muted-foreground font-medium">
                         Storage
                       </th>
-                      <th className="pb-3 text-right caption text-muted-foreground font-medium">Price</th>
+                      <th className="pb-3 text-right caption text-muted-foreground font-medium">
+                        Price
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-border">

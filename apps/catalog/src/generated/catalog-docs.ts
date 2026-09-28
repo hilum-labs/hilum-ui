@@ -612,8 +612,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, type, collapsible, defaultValue, value, onValueChange"
+        "label": "children",
+        "description": "ReactNode · required"
+      },
+      {
+        "label": "type",
+        "description": "\"single\" | \"multiple\" · default \"single\""
+      },
+      {
+        "label": "collapsible",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "defaultValue",
+        "description": "string | string[]"
+      },
+      {
+        "label": "value",
+        "description": "string | string[]"
+      },
+      {
+        "label": "onValueChange",
+        "description": "((value: string) => void) | ((value: string[]) => void)"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       },
       {
         "label": "Key exports",
@@ -643,8 +667,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Variant props",
-        "description": "variant"
+        "label": "variant",
+        "description": "\"default\" | \"info\" | \"success\" | \"warning\" | \"destructive\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       },
       {
         "label": "Key exports",
@@ -674,12 +702,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "trigger, open, onOpenChange, title, description, confirmLabel"
+        "label": "Inherited props",
+        "description": "Also accepts Radix dialog props (4)."
       },
       {
         "label": "Key exports",
-        "description": "ConfirmDialog, AlertDialogRoot, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay, AlertDialogContent"
+        "description": "ConfirmDialog, AlertDialog, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, …"
       }
     ],
     "exampleCode": "import {\n  AlertDialog, AlertDialogTrigger, AlertDialogContent,\n  AlertDialogHeader, AlertDialogFooter, AlertDialogTitle,\n  AlertDialogDescription, AlertDialogAction, AlertDialogCancel,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<AlertDialog>\n  <AlertDialogTrigger asChild>\n    <Button variant=\"outline\">Open dialog</Button>\n  </AlertDialogTrigger>\n  <AlertDialogContent>\n    <AlertDialogHeader>\n      <AlertDialogTitle>Are you sure?</AlertDialogTitle>\n      <AlertDialogDescription>\n        This action cannot be undone. This will permanently change your account settings.\n      </AlertDialogDescription>\n    </AlertDialogHeader>\n// ...trimmed for docs",
@@ -705,8 +733,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Aspect Ratio keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278), Radix aspect-ratio props (1), Radix primitive props (1)."
       }
     ],
     "exampleCode": "import { AspectRatio } from \"@hilum/ui\"\n\n<div className=\"w-full max-w-sm\">\n  <AspectRatio ratio={16 / 9} className=\"bg-muted rounded-xl flex items-center justify-center\">\n    <span className=\"label text-muted-foreground\">16 : 9</span>\n  </AspectRatio>\n</div>",
@@ -732,8 +760,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "size, status"
+        "label": "size",
+        "description": "\"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" · default \"md\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278), Radix primitive props (1)."
       },
       {
         "label": "Key exports",
@@ -763,8 +795,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "avatars, max, size, className"
+        "label": "avatars",
+        "description": "AvatarStackItem[] · required"
+      },
+      {
+        "label": "max",
+        "description": "number"
+      },
+      {
+        "label": "size",
+        "description": "\"sm\" | \"md\" | \"lg\" · default \"md\""
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { AvatarStack } from \"@hilum/ui\"\n\n<AvatarStack\n  avatars={[\n    { name: \"Sofia P.\", fallback: \"SP\", colorClass: \"bg-brand-primary text-white\" },\n    { name: \"Marcus K.\", fallback: \"MK\", colorClass: \"bg-brand-secondary text-ground-900\" },\n    { name: \"Rachel T.\", fallback: \"RT\", colorClass: \"bg-brand-secondary text-ground-900\" },\n    { name: \"James W.\", fallback: \"JW\", colorClass: \"bg-foreground text-background\" },\n  ]}\n/>",
@@ -790,16 +834,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "color, tone"
+        "label": "color",
+        "description": "\"gray\" | \"red\" | \"orange\" | \"amber\" | \"yellow\" | \"lime\" | \"green\" | \"emerald\" | \"teal\" | \"cyan\" | \"blue\" | \"indigo\" | \"violet\" | \"purple\" | \"fuchsia\" | \"pink\" …"
       },
       {
-        "label": "Variant props",
-        "description": "variant, size"
+        "label": "tone",
+        "description": "\"info\" | \"success\" | \"warning\" | \"attention\" | \"critical\" | \"neutral\" — Semantic tone — wins over `variant`/`color`. See `StatusTone`."
       },
       {
-        "label": "Key exports",
-        "description": "Badge, badgeVariants, badgeColors, STATUS_TONE_BADGE"
+        "label": "variant",
+        "description": "\"default\" | \"success\" | \"warning\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"solid\" | \"dot\" · default \"solid\""
+      },
+      {
+        "label": "size",
+        "description": "\"sm\" | \"md\" | \"lg\" · default \"md\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       }
     ],
     "exampleCode": "import { Badge } from \"@hilum/ui\"\n\n<Badge color=\"violet\">Fiction</Badge>\n<Badge color=\"amber\">Science</Badge>\n<Badge color=\"green\">Philosophy</Badge>\n<Badge color=\"blue\">History</Badge>\n<Badge color=\"rose\">Poetry</Badge>",
@@ -825,8 +877,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "separator",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
+      },
+      {
         "label": "Key exports",
-        "description": "Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator"
+        "description": "Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis"
       }
     ],
     "exampleCode": "import {\n  Breadcrumb, BreadcrumbList, BreadcrumbItem,\n  BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator,\n} from \"@hilum/ui\"\n\n<Breadcrumb>\n  <BreadcrumbList>\n    <BreadcrumbItem><BreadcrumbLink href=\"/\">Home</BreadcrumbLink></BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem><BreadcrumbLink href=\"/atoms\">Atoms</BreadcrumbLink></BreadcrumbItem>\n    <BreadcrumbSeparator />\n    <BreadcrumbItem><BreadcrumbPage>Breadcrumb</BreadcrumbPage></BreadcrumbItem>\n  </BreadcrumbList>\n</Breadcrumb>",
@@ -852,12 +912,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "asChild, loading, leadingIcon, trailingIcon, active"
+        "label": "asChild",
+        "description": "boolean · default false"
       },
       {
-        "label": "Key exports",
-        "description": "Button, buttonVariants"
+        "label": "loading",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "leadingIcon",
+        "description": "IconComponent"
+      },
+      {
+        "label": "trailingIcon",
+        "description": "IconComponent"
+      },
+      {
+        "label": "active",
+        "description": "boolean · default false — Force the visual pressed/held state. Useful when the button drives an external open piece of UI (a popover, dropdown, etc.) so it reads as engaged while the menu is showing."
+      },
+      {
+        "label": "variant",
+        "description": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" · default \"primary\""
+      },
+      {
+        "label": "size",
+        "description": "\"default\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"icon-xs\" | \"icon-sm\" | \"icon\" | \"icon-lg\" · default \"md\""
+      },
+      {
+        "label": "iconLeft",
+        "description": "boolean"
+      },
+      {
+        "label": "iconRight",
+        "description": "boolean"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (288)."
       }
     ],
     "exampleCode": "import { Button } from \"@hilum/ui\"\n\n<Button variant=\"primary\">Primary</Button>\n<Button variant=\"secondary\">Secondary</Button>\n<Button variant=\"tertiary\">Tertiary</Button>\n<Button variant=\"ghost\">Ghost</Button>",
@@ -883,8 +975,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, className, active"
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "className",
+        "description": "string"
       },
       {
         "label": "Key exports",
@@ -914,8 +1010,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Calendar keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts react-day-picker props (84)."
       }
     ],
     "exampleCode": "import { Calendar } from \"@hilum/ui\"\n\nconst [date, setDate] = React.useState<Date | undefined>()\n\n<Calendar\n  mode=\"single\"\n  selected={date}\n  onSelect={setDate}\n/>",
@@ -941,12 +1037,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, icon, actions"
+        "label": "title",
+        "description": "React.ReactNode"
       },
       {
-        "label": "Variant props",
-        "description": "tone, compact"
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "icon",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "actions",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "tone",
+        "description": "\"default\" | \"info\" | \"success\" | \"warning\" | \"destructive\" · default \"default\""
+      },
+      {
+        "label": "compact",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       }
     ],
     "exampleCode": "import { Callout } from \"@hilum/ui\"\nimport { AlertTriangle, CheckCircle2, Info } from \"lucide-react\"\n\n<Callout\n  tone=\"info\"\n  icon={<Info aria-hidden=\"true\" />}\n  title=\"Review recommended\"\n  description=\"This workflow has unsaved changes in two sections.\"\n/>\n<Callout\n  tone=\"success\"\n  icon={<CheckCircle2 aria-hidden=\"true\" />}\n  title=\"Import complete\"\n  description=\"148 records were added to the workspace.\"\n/>\n<Callout\n  tone=\"warning\"\n  icon={<AlertTriangle aria-hidden=\"true\" />}\n// ...trimmed for docs",
@@ -972,16 +1088,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "mobileSurface"
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flat\" | \"flush\" · default \"default\""
       },
       {
-        "label": "Variant props",
-        "description": "variant"
+        "label": "variant",
+        "description": "\"default\" | \"ghost\" | \"outlined\" | \"elevated\" | \"muted\" | \"responsive\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       },
       {
         "label": "Key exports",
-        "description": "Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter"
+        "description": "Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction, CardMedia"
       }
     ],
     "exampleCode": "import {\n  Card, CardContent, CardDescription,\n  CardHeader, CardTitle,\n} from \"@hilum/ui\"\nimport { Avatar, AvatarFallback } from \"@hilum/ui\"\n\n<Card className=\"w-72\">\n  <CardHeader>\n    <CardTitle>Student Profile</CardTitle>\n    <CardDescription>\n      Manage student information and track progress.\n    </CardDescription>\n  </CardHeader>\n  <CardContent>\n    <div className=\"flex items-center gap-3\">\n      <Avatar>\n        <AvatarFallback className=\"bg-brand-primary text-white font-semibold\">\n          SP\n// ...trimmed for docs",
@@ -1007,12 +1127,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "opts, plugins, orientation, setApi"
+        "label": "opts",
+        "description": "CarouselOptions"
+      },
+      {
+        "label": "plugins",
+        "description": "CarouselPlugin"
+      },
+      {
+        "label": "orientation",
+        "description": "\"horizontal\" | \"vertical\" · default \"horizontal\""
+      },
+      {
+        "label": "setApi",
+        "description": "(api: CarouselApi) => void"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       },
       {
         "label": "Key exports",
-        "description": "type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext"
+        "description": "Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext"
       }
     ],
     "exampleCode": "import {\n  Carousel,\n  CarouselContent,\n  CarouselItem,\n  CarouselNext,\n  CarouselPrevious,\n} from \"@hilum/ui\";\n\n<div className=\"w-full px-12\">\n  <Carousel opts={{ loop: true }}>\n    <CarouselContent>\n      {slides.map((slide, i) => (\n        <CarouselItem key={i}>\n          <div className={\\",
@@ -1038,8 +1174,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "children",
+        "description": "React.ComponentProps<typeof RechartsPrimitive.ResponsiveContainer>[\"children\"] · required"
+      },
+      {
+        "label": "config",
+        "description": "ChartConfig · default {}"
+      },
+      {
+        "label": "height",
+        "description": "number"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
+      },
+      {
         "label": "Key exports",
-        "description": "ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle"
+        "description": "ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent, ChartStyle, BarChart, Bar, …"
       }
     ],
     "exampleCode": "import {\n  ChartContainer, ChartTooltip, CHART_COLORS,\n  BarChart, Bar, CartesianGrid, XAxis, YAxis, RechartsTooltip,\n} from \"@hilum/ui\";\n\n<ChartContainer height={280}>\n  <BarChart data={monthlyData}>\n    <CartesianGrid strokeDasharray=\"3 3\" stroke=\"#f2eeea\" />\n    <XAxis dataKey=\"month\" tick={{ fill: \"#a8978a\", fontSize: 12 }} axisLine={false} tickLine={false} />\n    <YAxis tick={{ fill: \"#a8978a\", fontSize: 12 }} axisLine={false} tickLine={false} />\n    <RechartsTooltip content={<ChartTooltip />} />\n    <Bar dataKey=\"revenue\" fill={CHART_COLORS.primary} radius={[4, 4, 0, 0]} />\n  </BarChart>\n</ChartContainer>",
@@ -1065,8 +1217,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Checkbox keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (287), Radix checkbox props (4), Radix primitive props (1)."
       }
     ],
     "exampleCode": "import { Checkbox } from \"@hilum/ui\"\nimport { Label } from \"@hilum/ui\"\n\n<div className=\"flex items-center gap-2\">\n  <Checkbox id=\"mp3\" defaultChecked />\n  <Label htmlFor=\"mp3\">MP3 output</Label>\n</div>\n<div className=\"flex items-center gap-2\">\n  <Checkbox id=\"normalize\" />\n  <Label htmlFor=\"normalize\">Normalize audio</Label>\n</div>",
@@ -1092,8 +1244,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "checked, disabled, label, description, onCheckedChange"
+        "label": "label",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "checked",
+        "description": "boolean | \"indeterminate\""
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "onCheckedChange",
+        "description": "(checked: boolean | \"indeterminate\") => void"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (279)."
       }
     ],
     "exampleCode": null,
@@ -1119,8 +1291,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, checkedIndices, options, value, onValueChange, label"
+        "label": "children",
+        "description": "ReactNode"
+      },
+      {
+        "label": "checkedIndices",
+        "description": "Set<number>"
+      },
+      {
+        "label": "options",
+        "description": "Array<{ value: string; label: string; disabled?: boolean }>"
+      },
+      {
+        "label": "value",
+        "description": "string[] · default []"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string[]) => void"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
@@ -1150,8 +1342,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, language, maxHeight, copy, wrap, className"
+        "label": "children",
+        "description": "string · required — Code as a string (copied verbatim)."
+      },
+      {
+        "label": "language",
+        "description": "string — Optional language / filename label in the header."
+      },
+      {
+        "label": "maxHeight",
+        "description": "number | string — Max height before the block scrolls, e.g. 320 or \"20rem\"."
+      },
+      {
+        "label": "copy",
+        "description": "boolean · default true — Show a copy button. Default: true."
+      },
+      {
+        "label": "wrap",
+        "description": "boolean · default false — Soft-wrap long lines instead of scrolling horizontally. Default: false."
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<CodeBlockLabels> — Override the English UI strings (i18n)."
       }
     ],
     "exampleCode": null,
@@ -1177,8 +1393,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278), Radix collapsible props (4), Radix primitive props (1)."
+      },
+      {
         "label": "Key exports",
-        "description": "CollapsibleRoot, CollapsibleTrigger, CollapsibleContent"
+        "description": "Collapsible, CollapsibleTrigger, CollapsibleContent"
       }
     ],
     "exampleCode": "import { Collapsible, CollapsibleTrigger, CollapsibleContent } from \"@hilum/ui\"\n\n<Collapsible>\n  <CollapsibleTrigger className=\"flex w-full items-center justify-between py-2 text-sm font-medium\">\n    Voices\n    <ChevronDown size={14} />\n  </CollapsibleTrigger>\n  <CollapsibleContent>\n    <div className=\"flex flex-col gap-1 pb-2 pt-1\">\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted\">My voices</a>\n      <a className=\"flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted\">Voice library</a>\n    </div>\n  </CollapsibleContent>\n</Collapsible>",
@@ -1204,8 +1424,40 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, onChange, opacity, onOpacityChange, className, disabled"
+        "label": "value",
+        "description": "string · required"
+      },
+      {
+        "label": "onChange",
+        "description": "(next: string) => void · required"
+      },
+      {
+        "label": "opacity",
+        "description": "number — Show an opacity slider (0–100). Pass `opacity` and `onOpacityChange`."
+      },
+      {
+        "label": "onOpacityChange",
+        "description": "(next: number) => void"
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "presets",
+        "description": "string[]"
+      },
+      {
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flush\" · default \"default\""
+      },
+      {
+        "label": "labels",
+        "description": "Partial<ColorInputLabels> — Override the English UI strings (i18n)."
       }
     ],
     "exampleCode": "import { ColorInput } from \"@hilum/ui\"\n\nconst [color, setColor] = React.useState(\"#c100f1\")\n\n<ColorInput value={color} onChange={setColor} />",
@@ -1231,12 +1483,64 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, defaultValue, onChange, onValueChange, ariaLabel, format"
+        "label": "value",
+        "description": "string"
+      },
+      {
+        "label": "defaultValue",
+        "description": "string · default \"#6B97FF\""
+      },
+      {
+        "label": "onChange",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string, parsed: ParsedColor) => void"
+      },
+      {
+        "label": "ariaLabel",
+        "description": "string"
+      },
+      {
+        "label": "format",
+        "description": "\"hex\" | \"rgb\" | \"hsl\" | \"oklch\""
+      },
+      {
+        "label": "defaultFormat",
+        "description": "\"hex\" | \"rgb\" | \"hsl\" | \"oklch\" · default \"hex\""
+      },
+      {
+        "label": "onFormatChange",
+        "description": "(format: ColorFormat) => void"
+      },
+      {
+        "label": "swatches",
+        "description": "string[]"
+      },
+      {
+        "label": "presets",
+        "description": "string[]"
+      },
+      {
+        "label": "hideEyedropper",
+        "description": "boolean"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "More props",
+        "description": "formatOpen, defaultFormatOpen, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       },
       {
         "label": "Key exports",
-        "description": "ColorPicker, ColorPickerPopover, ColorPickerPortalContainer, ColorSwatch, ColorTile, parseColor"
+        "description": "ColorPicker, ColorPickerPopover, ColorPickerPortalContainer, ColorSwatch, ColorTile"
       }
     ],
     "exampleCode": "import { ColorPicker } from \"@hilum/ui\"\n\nconst [color, setColor] = React.useState(\"#c100f1\")\n\n<ColorPicker value={color} onChange={setColor} />",
@@ -1262,8 +1566,56 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "options, value, onValueChange, placeholder, searchPlaceholder, emptyText"
+        "label": "options",
+        "description": "ComboboxOption[] · required"
+      },
+      {
+        "label": "value",
+        "description": "string"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "placeholder",
+        "description": "string · default \"Select...\""
+      },
+      {
+        "label": "searchPlaceholder",
+        "description": "string · default \"Search...\""
+      },
+      {
+        "label": "emptyText",
+        "description": "string · default \"No results found.\""
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "id",
+        "description": "string — id of the text input (e.g. for a `<label htmlFor>`)."
+      },
+      {
+        "label": "name",
+        "description": "string — Form field name. Submits the selected option's `value` via a hidden input."
+      },
+      {
+        "label": "disabled",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "onBlur",
+        "description": "React.FocusEventHandler<HTMLInputElement>"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<ComboboxLabels> — Override the English UI strings (i18n)."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (48)."
       }
     ],
     "exampleCode": "import { Combobox } from \"@hilum/ui\"\n\nconst frameworks = [\n  { value: \"next\", label: \"Next.js\" },\n  { value: \"remix\", label: \"Remix\" },\n  { value: \"astro\", label: \"Astro\" },\n]\n\nfunction Example() {\n  const [value, setValue] = useState(\"\")\n  return (\n    <Combobox\n      options={frameworks}\n      value={value}\n      onValueChange={setValue}\n      placeholder=\"Select framework...\"\n    />\n  )\n// ...trimmed for docs",
@@ -1289,12 +1641,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "onSelect, heading, value, keywords, disabled, title"
+        "label": "onSelect",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
-        "description": "Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup"
+        "description": "Command, CommandDialog, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, …"
       }
     ],
     "exampleCode": "import { Command, CommandInput, CommandList, CommandEmpty, CommandItem } from \"@hilum/ui\"\n\n<Command>\n  <CommandInput placeholder=\"Search...\" />\n  <CommandList>\n    <CommandItem value=\"calendar\" keywords={[\"calendar\"]}>Calendar</CommandItem>\n    <CommandItem value=\"settings\" keywords={[\"settings\"]}>Settings</CommandItem>\n    <CommandEmpty />\n  </CommandList>\n</Command>",
@@ -1320,8 +1676,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts Radix context-menu props (4)."
+      },
+      {
         "label": "Key exports",
-        "description": "ContextMenuRoot, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem"
+        "description": "ContextMenu, ContextMenuTrigger, ContextMenuContent, ContextMenuItem, ContextMenuCheckboxItem, ContextMenuRadioItem, ContextMenuRadioGroup, ContextMenuLabel, …"
       }
     ],
     "exampleCode": "import {\n  ContextMenu, ContextMenuTrigger, ContextMenuContent,\n  ContextMenuItem, ContextMenuSeparator,\n} from \"@hilum/ui\"\n\n<ContextMenu>\n  <ContextMenuTrigger className=\"flex items-center justify-center rounded-xl border border-dashed border-border bg-muted p-8\">\n    <span className=\"body text-muted-foreground\">Right-click anywhere in this area</span>\n  </ContextMenuTrigger>\n  <ContextMenuContent>\n    <ContextMenuItem>New Tab</ContextMenuItem>\n    <ContextMenuItem>New Window</ContextMenuItem>\n    <ContextMenuSeparator />\n    <ContextMenuItem>Copy</ContextMenuItem>\n    <ContextMenuItem>Paste</ContextMenuItem>\n    <ContextMenuSeparator />\n    <ContextMenuItem destructive>Delete</ContextMenuItem>\n  </ContextMenuContent>\n// ...trimmed for docs",
@@ -1341,29 +1701,77 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
   },
   "/atoms/data-table/": {
     "accessibility": [
-      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
-      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
-      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "columns, data, searchKey, searchPlaceholder, pageSize, showPagination"
+        "label": "columns",
+        "description": "ColumnDef<TData, any>[] · required"
+      },
+      {
+        "label": "data",
+        "description": "TData[] · required"
+      },
+      {
+        "label": "searchKey",
+        "description": "string"
+      },
+      {
+        "label": "searchPlaceholder",
+        "description": "string"
+      },
+      {
+        "label": "pageSize",
+        "description": "number · default 10"
+      },
+      {
+        "label": "showPagination",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "emptyState",
+        "description": "React.ReactNode — Rendered in the table body when there are no rows (e.g. an `<EmptyState>` with an action)."
+      },
+      {
+        "label": "onRowClick",
+        "description": "(row: TData) => void — Make rows clickable (e.g. open the detail page). Enter/Space activate focused rows. Clicks on checkboxes, links, buttons and form controls inside the row are ignored, as are clicks on anything marked `data-row-click-ignore`."
+      },
+      {
+        "label": "itemLabel",
+        "description": "string · default \"result\" — Noun for the result count — \"12 orders\". Default: \"result\"."
+      },
+      {
+        "label": "itemLabelPlural",
+        "description": "string — Plural noun when it isn't `${itemLabel}s`."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<DataTableLabels> — Localizable strings. Partial — unspecified keys fall back to English."
+      },
+      {
+        "label": "toolbar",
+        "description": "React.ReactNode — Extra content in the toolbar row (filters, export)."
+      },
+      {
+        "label": "More props",
+        "description": "className, getRowId, getRowLabel, enableRowSelection, rowSelection, defaultRowSelection, onRowSelectionChange, bulkActions, promotedBulkActions, totalCount, onSelectAllMatching, manualSorting, manualFiltering, manualPagination, pageCount, rowCount, sorting, defaultSorting, onSortingChange, pagination, onPaginationChange, columnFilters, onColumnFiltersChange, loading, loadingRowCount, stickyHeader, maxHeight, enableColumnVisibility, columnVisibility, defaultColumnVisibility, onColumnVisibilityChange, columnPinning, onColumnPinningChange, enableColumnResizing, columnSizing, onColumnSizingChange, dir, virtualize"
       }
     ],
-    "exampleCode": "import { DataTable, createColumnHelper, type ColumnDef } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\ntype Transaction = {\n  id: string; company: string; type: string\n  amount: string; date: string; status: \"Paid\" | \"Pending\" | \"Overdue\"\n}\n\nconst helper = createColumnHelper<Transaction>()\n\nconst columns: ColumnDef<Transaction>[] = [\n  helper.accessor(\"id\", {\n    header: \"ID\",\n    cell: (info) => <span className=\"font-mono caption text-muted-foreground\">{info.getValue()}</span>,\n  }),\n  helper.accessor(\"company\", {\n    header: \"Company\",\n    cell: (info) => <span className=\"font-medium text-foreground\">{info.getValue()}</span>,\n// ...trimmed for docs",
+    "exampleCode": "import { DataTable, createColumnHelper } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\ntype Transaction = {\n  id: string; company: string; type: string\n  amount: string; date: string; status: \"Paid\" | \"Pending\" | \"Overdue\"\n}\n\nconst helper = createColumnHelper<Transaction>()\n\nconst columns = [\n  helper.accessor(\"id\", {\n    header: \"ID\",\n    cell: (info) => <span className=\"font-mono caption text-muted-foreground\">{info.getValue()}</span>,\n  }),\n  helper.accessor(\"company\", {\n    header: \"Company\",\n    cell: (info) => <span className=\"font-medium text-foreground\">{info.getValue()}</span>,\n// ...trimmed for docs",
     "kind": "component",
     "path": "/atoms/data-table/",
-    "summary": "A generic, sortable, filterable, and paginated data table built on @tanstack/react-table v8. Define typed columns once and pass any data.",
+    "summary": "A generic, sortable, filterable, and paginated data table built on @tanstack/react-table v8 — with row selection, bulk actions, server-side mode, column visibility, pinning, resizing and virtualization for admin screens.",
     "title": "Data Table",
     "whenNotToUse": [
-      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
-      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
     ],
     "whenToUse": [
-      "Use Data Table when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
-      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
-      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+      "Use Data Table when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
   "/atoms/date-picker/": {
@@ -1374,12 +1782,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "placeholder, disabled, minDate, maxDate, clearable, locale"
+        "label": "value",
+        "description": "Date"
+      },
+      {
+        "label": "onChange",
+        "description": "(date: Date) => void"
+      },
+      {
+        "label": "placeholder",
+        "description": "string · default \"Pick a date\""
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "minDate",
+        "description": "Date — Earliest selectable day."
+      },
+      {
+        "label": "maxDate",
+        "description": "Date — Latest selectable day."
+      },
+      {
+        "label": "clearable",
+        "description": "boolean — Show a clear (×) button when a value is set."
+      },
+      {
+        "label": "locale",
+        "description": "string — BCP-47 locale for the trigger label. Defaults to FormatProvider."
+      },
+      {
+        "label": "fullWidth",
+        "description": "boolean — Stretch the trigger to its container (default, like Input). Pass `false` for an inline 15rem trigger, or size it with `containerClassName`."
+      },
+      {
+        "label": "containerClassName",
+        "description": "string — Classes for the trigger wrapper (width, margins). `className` targets the button."
+      },
+      {
+        "label": "id",
+        "description": "string"
+      },
+      {
+        "label": "name",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "aria-label, aria-invalid, className, labels"
       },
       {
         "label": "Key exports",
-        "description": "DatePicker, DateRangePicker, DEFAULT_DATE_RANGE_PRESETS"
+        "description": "DatePicker, DateRangePicker"
       }
     ],
     "exampleCode": "import { DatePicker } from \"@hilum/ui\"\n\nconst [date, setDate] = React.useState<Date | undefined>()\n\n<DatePicker value={date} onChange={setDate} />",
@@ -1405,8 +1861,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, format, locale, timeZone, fallback, updateInterval"
+        "label": "value",
+        "description": "DateInput · required — Date, ISO string, or epoch ms. Empty/invalid renders `fallback`."
+      },
+      {
+        "label": "format",
+        "description": "\"relative\" | DateFormatStyle · default \"date\" — Preset. `date`/`short` → \"Sep 26, 2026\" (default), `datetime` → \"Sep 26, 2026, 3:04 PM\", `monthDay` → \"Sep 26\", `long`, `month`, `time`, `iso`, or `relative` → \"3 hours ago\"."
+      },
+      {
+        "label": "locale",
+        "description": "string"
+      },
+      {
+        "label": "timeZone",
+        "description": "string"
+      },
+      {
+        "label": "fallback",
+        "description": "string · default \"—\" — Shown when `value` is empty or invalid. Default: \"—\"."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
@@ -1436,12 +1912,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "size, container"
+        "label": "Inherited props",
+        "description": "Also accepts Radix dialog props (5)."
       },
       {
         "label": "Key exports",
-        "description": "Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle"
+        "description": "Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose"
       }
     ],
     "exampleCode": "import {\n  Dialog, DialogTrigger, DialogContent,\n  DialogHeader, DialogFooter, DialogTitle, DialogDescription,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Dialog>\n  <DialogTrigger asChild>\n    <Button variant=\"outline\">Delete voice</Button>\n  </DialogTrigger>\n  <DialogContent>\n    <DialogHeader>\n      <DialogTitle>Delete voice clone?</DialogTitle>\n      <DialogDescription>\n        This action cannot be undone. The voice clone \"Roger\" will be\n        permanently removed from your library.\n      </DialogDescription>\n    </DialogHeader>\n// ...trimmed for docs",
@@ -1467,8 +1943,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts vaul props (29)."
+      },
+      {
         "label": "Key exports",
-        "description": "DrawerRoot, DrawerTrigger, DrawerPortal, DrawerClose, DrawerOverlay, DrawerContent"
+        "description": "Drawer, DrawerTrigger, DrawerPortal, DrawerClose, DrawerOverlay, DrawerContent, DrawerHeader, DrawerFooter, …"
       }
     ],
     "exampleCode": "import {\n  Drawer, DrawerTrigger, DrawerContent,\n  DrawerHeader, DrawerFooter, DrawerTitle, DrawerDescription, DrawerClose,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Drawer>\n  <DrawerTrigger asChild>\n    <Button variant=\"outline\">Open Drawer</Button>\n  </DrawerTrigger>\n  <DrawerContent>\n    <DrawerHeader>\n      <DrawerTitle>Edit profile</DrawerTitle>\n      <DrawerDescription>Update your name and bio.</DrawerDescription>\n    </DrawerHeader>\n    <div className=\"flex flex-col gap-4 px-6 pb-2\">\n      <div>\n        <p className=\"label text-muted-foreground mb-1.5\">Name</p>\n// ...trimmed for docs",
@@ -1494,12 +1974,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, checkedIndex"
+        "label": "children",
+        "description": "ReactNode · required"
+      },
+      {
+        "label": "checkedIndex",
+        "description": "number"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
-        "description": "Dropdown, DropdownLabel, DropdownSeparator, useDropdown"
+        "description": "Dropdown, DropdownLabel, DropdownSeparator"
       }
     ],
     "exampleCode": null,
@@ -1525,8 +2013,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts Radix dropdown-menu props (6)."
+      },
+      {
         "label": "Key exports",
-        "description": "DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem"
+        "description": "DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuRadioItem, DropdownMenuRadioGroup, DropdownMenuLabel, …"
       }
     ],
     "exampleCode": "import {\n  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,\n  DropdownMenuItem, DropdownMenuSeparator,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\nimport { ChevronDown } from \"lucide-react\"\n\n<DropdownMenu>\n  <DropdownMenuTrigger asChild>\n    <Button variant=\"outline\">Options <ChevronDown size={14} /></Button>\n  </DropdownMenuTrigger>\n  <DropdownMenuContent>\n    <DropdownMenuItem>Account settings</DropdownMenuItem>\n    <DropdownMenuItem>Support</DropdownMenuItem>\n    <DropdownMenuItem>License</DropdownMenuItem>\n    <DropdownMenuSeparator />\n    <DropdownMenuItem>Sign out</DropdownMenuItem>\n  </DropdownMenuContent>\n// ...trimmed for docs",
@@ -1552,12 +2044,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "accept, multiple, disabled, loading, loadingText, label"
+        "label": "accept",
+        "description": "string"
       },
       {
-        "label": "Key exports",
-        "description": "FileDropzone, formatFileSize"
+        "label": "multiple",
+        "description": "boolean"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "loading",
+        "description": "boolean"
+      },
+      {
+        "label": "loadingText",
+        "description": "React.ReactNode · default \"Uploading...\""
+      },
+      {
+        "label": "label",
+        "description": "React.ReactNode · default \"Drag files here or click to upload\""
+      },
+      {
+        "label": "activeLabel",
+        "description": "React.ReactNode · default \"Drop files to upload\""
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "icon",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "selectedFiles",
+        "description": "readonly FileDropzoneSelectedFile[]"
+      },
+      {
+        "label": "inputRef",
+        "description": "React.Ref<HTMLInputElement>"
+      },
+      {
+        "label": "inputClassName",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "inputName, onFilesSelected, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (273)."
       }
     ],
     "exampleCode": "import { FileDropzone } from \"@hilum/ui\"\n\nconst [files, setFiles] = React.useState([])\n\n<FileDropzone\n  accept=\"image/*\"\n  multiple\n  selectedFiles={files}\n  onFilesSelected={setFiles}\n  description=\"PNG, JPG, or WebP up to 10 MB each.\"\n/>",
@@ -1583,12 +2123,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "file, name, type, size, className, pdfWorkerSrc"
+        "label": "file",
+        "description": "File"
       },
       {
-        "label": "Key exports",
-        "description": "FileThumbnail, loadPdfjs, renderPdfFirstPage, setPdfWorkerSrc"
+        "label": "name",
+        "description": "string"
+      },
+      {
+        "label": "type",
+        "description": "string"
+      },
+      {
+        "label": "size",
+        "description": "number | string · default 48 — Side length of the square thumbnail in pixels."
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "pdfWorkerSrc",
+        "description": "string — URL of the pdf.js worker used for PDF previews. Overrides setPdfWorkerSrc(); when neither is set, the worker loads from jsDelivr."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<FileThumbnailLabels> — Override the English UI strings (i18n)."
       }
     ],
     "exampleCode": null,
@@ -1614,12 +2174,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "text, learnMoreUrl, learnMoreURL, placement, className, contentClassName"
+        "label": "text",
+        "description": "string · required"
       },
       {
-        "label": "Key exports",
-        "description": "HelpTooltip, type HelpTooltipProps"
+        "label": "learnMoreUrl",
+        "description": "string"
+      },
+      {
+        "label": "learnMoreURL",
+        "description": "string"
+      },
+      {
+        "label": "placement",
+        "description": "\"left\" | \"right\" | \"bottom\" | \"top\" · default \"top\""
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "contentClassName",
+        "description": "string"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<HelpTooltipLabels> — Override the English UI strings (i18n)."
       }
     ],
     "exampleCode": "import { HelpTooltip, Label, Input } from \"@hilum/ui\"\n\n<div className=\"grid gap-2\">\n  <Label htmlFor=\"slug\">\n    Public slug\n    <HelpTooltip text=\"This value is used in the public URL. Keep it short and stable.\" />\n  </Label>\n  <Input id=\"slug\" defaultValue=\"summer-drop\" />\n</div>",
@@ -1645,8 +2225,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts Radix hover-card props (6)."
+      },
+      {
         "label": "Key exports",
-        "description": "HoverCardRoot, HoverCardTrigger, HoverCardContent"
+        "description": "HoverCard, HoverCardTrigger, HoverCardContent"
       }
     ],
     "exampleCode": "import {\n  HoverCard, HoverCardTrigger, HoverCardContent,\n} from \"@hilum/ui\"\n\n<HoverCard>\n  <HoverCardTrigger className=\"underline-offset-4 hover:underline cursor-pointer body text-brand-primary\">\n    @alexchen\n  </HoverCardTrigger>\n  <HoverCardContent>\n    <div className=\"flex items-start gap-3\">\n      <div className=\"flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10\">\n        <span className=\"label font-semibold text-brand-primary\">AC</span>\n      </div>\n      <div className=\"min-w-0\">\n        <p className=\"subheading text-foreground\">Alex Chen</p>\n        <p className=\"caption text-muted-foreground\">@alexchen</p>\n        <p className=\"caption mt-2 text-muted-foreground\">\n          Product designer building design systems and tools.\n// ...trimmed for docs",
@@ -1672,8 +2256,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "density, mobileDensity, mobileSurface"
+        "label": "density",
+        "description": "\"default\" | \"compact\" · default \"default\""
+      },
+      {
+        "label": "mobileDensity",
+        "description": "\"default\" | \"compact\" · default \"default\""
+      },
+      {
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flush\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (308)."
       }
     ],
     "exampleCode": "import { Input } from \"@hilum/ui\"\n\n<Input placeholder=\"Type something...\" />\n<Input type=\"email\" placeholder=\"you@example.com\" />\n<Input type=\"password\" placeholder=\"Password\" />\n<Input disabled placeholder=\"Disabled input\" />",
@@ -1699,8 +2295,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, onChange, min, max, step, unit"
+        "label": "value",
+        "description": "number · required"
+      },
+      {
+        "label": "onChange",
+        "description": "(next: number) => void · required"
+      },
+      {
+        "label": "min",
+        "description": "number · default -Infinity"
+      },
+      {
+        "label": "max",
+        "description": "number · default Infinity"
+      },
+      {
+        "label": "step",
+        "description": "number · default 1"
+      },
+      {
+        "label": "unit",
+        "description": "string — Suffix shown after the number (e.g. \"px\", \"mm\", \"°\", \"%\")."
+      },
+      {
+        "label": "precision",
+        "description": "number · default 0 — Number of decimals to display. Default: 0."
+      },
+      {
+        "label": "mixedLabel",
+        "description": "string · default \"Mixed\" — Text shown when value is null. Useful for mixed multi-selection values."
+      },
+      {
+        "label": "commitOnChange",
+        "description": "boolean · default false — Calls onChange while typing instead of waiting for blur/Enter."
+      },
+      {
+        "label": "hideSteppers",
+        "description": "boolean · default true — Hides the up/down stepper buttons. Defaults to `true` under data-density=\"compact\" (editor chrome relies on arrow keys + label scrubbing there) and `false` otherwise."
+      },
+      {
+        "label": "label",
+        "description": "React.ReactNode — Short prefix label rendered inside the field (e.g. \"X\", \"W\", an icon). It doubles as a scrub handle: drag horizontally to change the value (Shift = 10×), like Figma's inspector fields."
+      },
+      {
+        "label": "scrubLabel",
+        "description": "string — Accessible name for the scrub handle when `label` is not plain text."
+      },
+      {
+        "label": "More props",
+        "description": "align, locale, formatOptions, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (302)."
       }
     ],
     "exampleCode": "import { DensityProvider, InputNumber } from \"@hilum/ui\"\n\n// Label-in-field prefix doubles as a scrub handle: drag it to change the value.\n<DensityProvider density=\"compact\">\n  <div className=\"grid w-56 grid-cols-2 gap-1.5\">\n    <InputNumber label=\"X\" value={x} onChange={setX} className=\"w-full\" />\n    <InputNumber label=\"Y\" value={y} onChange={setY} className=\"w-full\" />\n    <InputNumber label=\"W\" value={w} onChange={setW} min={1} className=\"w-full\" />\n    <InputNumber label=\"H\" value={h} onChange={setH} min={1} className=\"w-full\" />\n  </div>\n</DensityProvider>",
@@ -1725,6 +2373,14 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
     ],
     "api": [
+      {
+        "label": "index",
+        "description": "number · required"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
+      },
       {
         "label": "Key exports",
         "description": "InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator"
@@ -1753,8 +2409,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Kbd keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": "import { Kbd } from \"@hilum/ui\"\n\n<Kbd>⌘</Kbd>\n<Kbd>⌘K</Kbd>\n<Kbd>⇧⌘P</Kbd>\n<span className=\"flex items-center gap-1 text-sm text-muted-foreground\">\n  Save <Kbd>⌘</Kbd><Kbd>S</Kbd>\n</span>",
@@ -1780,8 +2436,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Label keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (280), Radix primitive props (1)."
       }
     ],
     "exampleCode": "import { Label } from \"@hilum/ui\"\n\n<Label>Full name</Label>\n<Label>\n  Email <span className=\"text-red-500\">*</span>\n</Label>\n<Label className=\"text-muted-foreground\">Optional field</Label>",
@@ -1807,8 +2463,36 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "icon, label, index, checked, type, onSelect"
+        "label": "icon",
+        "description": "IconComponent | ReactNode — Optional leading icon. When omitted, the row renders text-only with no reserved icon column."
+      },
+      {
+        "label": "label",
+        "description": "string"
+      },
+      {
+        "label": "index",
+        "description": "number · default 0"
+      },
+      {
+        "label": "checked",
+        "description": "boolean"
+      },
+      {
+        "label": "type",
+        "description": "\"checkbox\" | \"radio\" | \"item\" · default \"radio\" — ARIA semantics of the row: - `\"item\"` → `role=\"menuitem\"` (a plain action, no `aria-checked`) - `\"radio\"` → `role=\"menuitemradio\"` (one-of-many selection) - `\"checkbox\"` → `role=\"menuitemcheckbox\"` (independent toggle) Defaults to `\"radio\"` when the row carries selection state — `checked` is passed or the parent `<Dropdown>` has a `checkedIndex` — otherwise `\"item\"`."
+      },
+      {
+        "label": "onSelect",
+        "description": "() => void"
+      },
+      {
+        "label": "trailing",
+        "description": "ReactNode"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       }
     ],
     "exampleCode": null,
@@ -1834,8 +2518,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276), Radix menubar props (5), Radix primitive props (1)."
+      },
+      {
         "label": "Key exports",
-        "description": "MenubarRoot, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem"
+        "description": "Menubar, MenubarMenu, MenubarTrigger, MenubarContent, MenubarItem, MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem, …"
       }
     ],
     "exampleCode": "import {\n  Menubar, MenubarMenu, MenubarTrigger, MenubarContent,\n  MenubarItem, MenubarSeparator, MenubarShortcut,\n  MenubarCheckboxItem, MenubarRadioGroup, MenubarRadioItem, MenubarLabel,\n} from \"@hilum/ui\"\n\nfunction AppMenubar() {\n  const [showToolbar, setShowToolbar] = React.useState(true)\n  const [showSidebar, setShowSidebar] = React.useState(false)\n  const [zoom, setZoom] = React.useState(\"100\")\n\n  return (\n    <Menubar>\n      <MenubarMenu>\n        <MenubarTrigger>File</MenubarTrigger>\n        <MenubarContent>\n          <MenubarItem>New Tab <MenubarShortcut>⌘T</MenubarShortcut></MenubarItem>\n          <MenubarItem>New Window <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>\n// ...trimmed for docs",
@@ -1861,6 +2549,10 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (286)."
+      },
+      {
         "label": "Key exports",
         "description": "NativeSelect, NativeSelectOption, NativeSelectOptGroup"
       }
@@ -1868,7 +2560,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": "import { NativeSelect, NativeSelectOption } from \"@hilum/ui\"\n\n<NativeSelect defaultValue=\"\">\n  <NativeSelectOption value=\"\" disabled>Select a country...</NativeSelectOption>\n  <NativeSelectOption value=\"us\">United States</NativeSelectOption>\n  <NativeSelectOption value=\"ca\">Canada</NativeSelectOption>\n  <NativeSelectOption value=\"gb\">United Kingdom</NativeSelectOption>\n  <NativeSelectOption value=\"au\">Australia</NativeSelectOption>\n</NativeSelect>",
     "kind": "component",
     "path": "/atoms/native-select/",
-    "summary": "Styled native HTML select. No JavaScript overhead — uses the browser's built-in dropdown. Best for mobile forms and performance-sensitive contexts.",
+    "summary": "Styled native HTML select. No JavaScript overhead — uses the browser’s built-in dropdown. Best for mobile forms and performance-sensitive contexts.",
     "title": "Native Select",
     "whenNotToUse": [
       "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
@@ -1888,8 +2580,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "icon, active, trailing"
+        "label": "icon",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "active",
+        "description": "boolean"
+      },
+      {
+        "label": "trailing",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (286)."
       }
     ],
     "exampleCode": null,
@@ -1915,8 +2619,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276), Radix navigation-menu props (7), Radix primitive props (1)."
+      },
+      {
         "label": "Key exports",
-        "description": "NavigationMenuRoot, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink"
+        "description": "NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, NavigationMenuViewport, NavigationMenuIndicator"
       }
     ],
     "exampleCode": "import {\n  NavigationMenu, NavigationMenuList, NavigationMenuItem,\n  NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink,\n  navigationMenuTriggerStyle,\n} from \"@hilum/ui\"\n\n<NavigationMenu>\n  <NavigationMenuList>\n    {/* Products — rich card dropdown */}\n    <NavigationMenuItem>\n      <NavigationMenuTrigger>Products</NavigationMenuTrigger>\n      <NavigationMenuContent>\n        <div className=\"grid w-[min(480px,calc(100vw-3rem))] grid-cols-1 gap-1 p-3 sm:grid-cols-3\">\n          <ProductCard\n            icon={<Box size={16} />}\n            title=\"Components\"\n            description=\"Reusable UI building blocks\"\n          />\n// ...trimmed for docs",
@@ -1998,12 +2706,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "page, pageSize, total, hasNextPage, onPageChange, itemLabel"
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       },
       {
         "label": "Key exports",
-        "description": "PaginationBar, Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious"
+        "description": "PaginationBar, Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis"
       }
     ],
     "exampleCode": "import {\n  Pagination, PaginationContent, PaginationItem,\n  PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis,\n} from \"@hilum/ui\"\n\n<Pagination>\n  <PaginationContent>\n    <PaginationItem><PaginationPrevious href=\"#\" /></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\">1</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\" isActive>2</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\">3</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationEllipsis /></PaginationItem>\n    <PaginationItem><PaginationLink href=\"#\">8</PaginationLink></PaginationItem>\n    <PaginationItem><PaginationNext href=\"#\" /></PaginationItem>\n  </PaginationContent>\n</Pagination>",
@@ -2029,8 +2737,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "Inherited props",
+        "description": "Also accepts Radix popover props (5)."
+      },
+      {
         "label": "Key exports",
-        "description": "PopoverRoot, PopoverTrigger, PopoverContent, PopoverClose"
+        "description": "Popover, PopoverTrigger, PopoverContent, PopoverClose"
       }
     ],
     "exampleCode": "import {\n  Popover, PopoverTrigger, PopoverContent,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Popover>\n  <PopoverTrigger asChild>\n    <Button variant=\"outline\">Voice settings</Button>\n  </PopoverTrigger>\n  <PopoverContent>\n    <div className=\"flex flex-col gap-3\">\n      <p className=\"text-xs font-semibold uppercase tracking-widest text-muted-foreground\">\n        Stability\n      </p>\n      <Slider defaultValue={[65]} max={100} step={1} />\n      <p className=\"text-xs font-semibold uppercase tracking-widest text-muted-foreground mt-1\">\n        Similarity\n      </p>\n// ...trimmed for docs",
@@ -2056,8 +2768,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Progress keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278), Radix progress props (3), Radix primitive props (1)."
       }
     ],
     "exampleCode": "import { Progress } from \"@hilum/ui\"\n\n<Progress value={65} />",
@@ -2083,8 +2795,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, selectedIndex, value, defaultValue, onValueChange, label"
+        "label": "children",
+        "description": "ReactNode · required"
+      },
+      {
+        "label": "selectedIndex",
+        "description": "number"
+      },
+      {
+        "label": "value",
+        "description": "string"
+      },
+      {
+        "label": "defaultValue",
+        "description": "string"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "name",
+        "description": "string — Form field name. When set, the selected value is submitted with the surrounding native `<form>` (nothing is submitted while no item is selected, matching native radios). Value mode only."
+      },
+      {
+        "label": "required",
+        "description": "boolean · default false — Native constraint validation: the form won't submit until an item is selected."
+      },
+      {
+        "label": "disabled",
+        "description": "boolean · default false — Disables every item: not focusable, not selectable, excluded from submission."
+      },
+      {
+        "label": "form",
+        "description": "string — Associates the hidden form input with a `<form>` by id (native `form` attribute)."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (275)."
       },
       {
         "label": "Key exports",
@@ -2114,8 +2862,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, max, onValueChange, size, showValue, count"
+        "label": "value",
+        "description": "number · required — Current rating; fractional values render partial stars (read-only)."
+      },
+      {
+        "label": "max",
+        "description": "number · default 5 — Number of stars. Default: 5."
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: number) => void — When set, renders an interactive radio group (whole stars)."
+      },
+      {
+        "label": "size",
+        "description": "\"sm\" | \"md\" | \"lg\" · default \"md\""
+      },
+      {
+        "label": "showValue",
+        "description": "boolean · default false — Show \"4.5\" after the stars."
+      },
+      {
+        "label": "count",
+        "description": "number — Optional count after the value, e.g. \"(128)\"."
+      },
+      {
+        "label": "label",
+        "description": "string · default \"Rating\" — Accessible name for the interactive variant. Default: \"Rating\"."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<RatingLabels> — Localizable strings; unspecified keys fall back to English."
+      },
+      {
+        "label": "disabled",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": null,
@@ -2140,6 +2924,18 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
     ],
     "api": [
+      {
+        "label": "direction",
+        "description": "\"horizontal\" | \"vertical\" — Alias for `orientation` — matches the common shadcn/ui API."
+      },
+      {
+        "label": "orientation",
+        "description": "\"horizontal\" | \"vertical\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278), react-resizable-panels props (8)."
+      },
       {
         "label": "Key exports",
         "description": "ResizablePanelGroup, ResizablePanel, ResizableHandle"
@@ -2168,8 +2964,48 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, onChange, placeholder, minHeight, id, className"
+        "label": "value",
+        "description": "string · required"
+      },
+      {
+        "label": "onChange",
+        "description": "(html: string) => void · required"
+      },
+      {
+        "label": "placeholder",
+        "description": "string · default \"Start writing...\""
+      },
+      {
+        "label": "minHeight",
+        "description": "string | number · default \"200px\""
+      },
+      {
+        "label": "id",
+        "description": "string"
+      },
+      {
+        "label": "aria-label",
+        "description": "string"
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "editorClassName",
+        "description": "string"
+      },
+      {
+        "label": "toolbarClassName",
+        "description": "string"
+      },
+      {
+        "label": "onRequestImageUrl",
+        "description": "RichTextImageUrlHandler"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<RichTextEditorLabels> — Localizable strings; unspecified keys fall back to English."
       }
     ],
     "exampleCode": "import { RichTextEditor } from \"@hilum/ui\"\n\nconst [html, setHtml] = React.useState(\"<h2>Launch notes</h2><p>Draft the release summary.</p>\")\n\n<RichTextEditor\n  value={html}\n  onChange={setHtml}\n  placeholder=\"Write the update...\"\n  minHeight={220}\n/>",
@@ -2195,8 +3031,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Scroll Area keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277), Radix scroll-area props (3), Radix primitive props (1)."
       }
     ],
     "exampleCode": "import { ScrollArea } from \"@hilum/ui\"\n\n<ScrollArea className=\"h-48 w-64 rounded-xl border border-border p-4\">\n  {items.map((item) => (\n    <div key={item} className=\"py-2 text-sm border-b border-border last:border-0\">\n      {item}\n    </div>\n  ))}\n</ScrollArea>",
@@ -2222,8 +3058,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, onValueChange, loading, containerClassName"
+        "label": "value",
+        "description": "string · required"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string) => void · required — Called with the new string (not the event) on every keystroke and on clear."
+      },
+      {
+        "label": "loading",
+        "description": "boolean · default false — Show a spinner in place of the clear button (e.g. while results load)."
+      },
+      {
+        "label": "aria-label",
+        "description": "string — Accessible name when there is no visible label. Default: placeholder or \"Search\"."
+      },
+      {
+        "label": "containerClassName",
+        "description": "string — Classes for the wrapper (width, margins). `className` targets the input."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<SearchInputLabels> — Localizable strings; unspecified keys fall back to English."
+      },
+      {
+        "label": "density",
+        "description": "\"default\" | \"compact\""
+      },
+      {
+        "label": "mobileDensity",
+        "description": "\"default\" | \"compact\""
+      },
+      {
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flush\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (304)."
       }
     ],
     "exampleCode": "import { SearchInput } from \"@hilum/ui\"\n\nconst [query, setQuery] = useState(\"\")\n\n<SearchInput\n  value={query}\n  onValueChange={setQuery}\n  placeholder=\"Search orders\"\n  containerClassName=\"max-w-sm\"\n/>",
@@ -2249,8 +3121,52 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "id, data, columns, searchPlaceholder, searchTerm, onSearchChange"
+        "label": "data",
+        "description": "T[] · required"
+      },
+      {
+        "label": "columns",
+        "description": "SearchableTableColumn<T>[] · required"
+      },
+      {
+        "label": "searchTerm",
+        "description": "string · required"
+      },
+      {
+        "label": "onSearchChange",
+        "description": "(value: string) => void · required"
+      },
+      {
+        "label": "searchPlaceholder",
+        "description": "string · default \"Search...\""
+      },
+      {
+        "label": "filters",
+        "description": "Record< string, { value: string; onChange: (value: string) => void; options: SearchableTableFilterOption[]; placeholder: string; } > · default {}"
+      },
+      {
+        "label": "emptyState",
+        "description": "Pick< EmptyStateProps, \"icon\" | \"title\" | \"description\" | \"action\" | \"secondaryAction\" > — Shown when there are no rows. Give first-run states a primary `action` (\"Add product\"); give filtered-empty states a \"Clear filters\" action."
+      },
+      {
+        "label": "actions",
+        "description": "(item: T) => React.ReactNode"
+      },
+      {
+        "label": "mobileCard",
+        "description": "(item: T) => React.ReactNode"
+      },
+      {
+        "label": "tableClassName",
+        "description": "string"
+      },
+      {
+        "label": "pagination",
+        "description": "{ pageSize?: number; currentPage: number; onPageChange: (page: number) => void; }"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<SearchableTableLabels> — Localizable strings; unspecified keys fall back to English."
       }
     ],
     "exampleCode": "import { SearchableTable, StatusBadge, type SearchableTableColumn } from \"@hilum/ui\"\n\nconst columns: SearchableTableColumn<Campaign>[] = [\n  { key: \"name\", label: \"Campaign\", sortable: true },\n  { key: \"owner\", label: \"Owner\", sortable: true },\n  {\n    key: \"status\",\n    label: \"Status\",\n    render: (campaign) => <StatusBadge status={campaign.status} showDot />,\n  },\n]\n\n<SearchableTable\n  data={campaigns}\n  columns={columns}\n  searchTerm={searchTerm}\n  onSearchChange={setSearchTerm}\n/>",
@@ -2276,16 +3192,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, value, defaultValue, onValueChange, disabled, name"
-      },
-      {
-        "label": "Variant props",
-        "description": "variant"
+        "label": "Inherited props",
+        "description": "Also accepts Radix select props (13)."
       },
       {
         "label": "Key exports",
-        "description": "Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup"
+        "description": "Select, SelectTrigger, SelectContent, SelectItem, SelectValue, SelectGroup, SelectLabel, SelectSeparator"
       }
     ],
     "exampleCode": "import {\n  Select, SelectTrigger, SelectValue,\n  SelectContent, SelectItem, SelectLabel, SelectGroup,\n} from \"@hilum/ui\"\n\n<Select>\n  <SelectTrigger className=\"w-[200px]\">\n    <SelectValue placeholder=\"Select voice...\" />\n  </SelectTrigger>\n  <SelectContent>\n    <SelectItem value=\"roger\">Roger</SelectItem>\n    <SelectItem value=\"aria\">Aria</SelectItem>\n    <SelectItem value=\"sarah\">Sarah</SelectItem>\n  </SelectContent>\n</Select>",
@@ -2311,14 +3223,14 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Separator keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278), Radix separator props (2), Radix primitive props (1)."
       }
     ],
-    "exampleCode": null,
+    "exampleCode": "import { Separator } from \"@hilum/ui\"\n\n<div>\n  <p className=\"subheading text-foreground\">Hilum UI</p>\n  <p className=\"caption text-muted-foreground\">An open-source design system.</p>\n</div>\n<Separator className=\"my-4\" />\n<p className=\"body text-muted-foreground\">Components, tokens, and blocks.</p>",
     "kind": "component",
     "path": "/atoms/separator/",
-    "summary": "",
+    "summary": "Visual divider between sections, horizontal or vertical. Decorative by default, so assistive technology skips it unless it separates meaningful groups.",
     "title": "Separator",
     "whenNotToUse": [
       "Do not use Separator just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
@@ -2338,12 +3250,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Variant props",
-        "description": "side"
+        "label": "Inherited props",
+        "description": "Also accepts Radix dialog props (5)."
       },
       {
         "label": "Key exports",
-        "description": "SheetRoot, SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle"
+        "description": "Sheet, SheetTrigger, SheetContent, SheetHeader, SheetFooter, SheetTitle, SheetDescription, SheetClose"
       }
     ],
     "exampleCode": "import {\n  Sheet, SheetTrigger, SheetContent,\n  SheetHeader, SheetTitle, SheetDescription,\n} from \"@hilum/ui\"\nimport { Button } from \"@hilum/ui\"\n\n<Sheet>\n  <SheetTrigger asChild>\n    <Button variant=\"outline\">Open settings</Button>\n  </SheetTrigger>\n  <SheetContent>\n    <SheetHeader>\n      <SheetTitle>Voice settings</SheetTitle>\n      <SheetDescription>\n        Configure stability, similarity, and style for this voice.\n      </SheetDescription>\n    </SheetHeader>\n  </SheetContent>\n// ...trimmed for docs",
@@ -2369,12 +3281,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "defaultOpen, open, onOpenChange, side, variant, collapsible"
+        "label": "side",
+        "description": "\"left\" | \"right\" · default \"left\""
+      },
+      {
+        "label": "variant",
+        "description": "\"inset\" | \"sidebar\" | \"floating\" · default \"sidebar\""
+      },
+      {
+        "label": "collapsible",
+        "description": "\"none\" | \"icon\" | \"offcanvas\" · default \"icon\""
+      },
+      {
+        "label": "labels",
+        "description": "Partial<SidebarLabels> — Overrides the provider's labels for this sidebar (mobile sheet title/description)."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       },
       {
         "label": "Key exports",
-        "description": "SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction"
+        "description": "SidebarProvider, Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupAction, SidebarGroupContent, SidebarGroupLabel, …"
       }
     ],
     "exampleCode": null,
@@ -2400,8 +3328,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Composition surface",
-        "description": "Skeleton keeps the native HTML or Radix API surface, then layers in design-system styling and composition defaults."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": "import { Skeleton } from \"@hilum/ui\"\n\n<div className=\"flex items-center gap-3\">\n  <Skeleton className=\"size-10 rounded-full\" />\n  <div className=\"flex flex-col gap-2\">\n    <Skeleton className=\"h-3 w-32\" />\n    <Skeleton className=\"h-2.5 w-20\" />\n  </div>\n</div>\n<Skeleton className=\"mt-4 h-2 w-full\" />\n<Skeleton className=\"h-2 w-4/5\" />\n<Skeleton className=\"h-2 w-3/4\" />",
@@ -2427,8 +3355,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, defaultValue, onChange, onValueChange, min, max"
+        "label": "value",
+        "description": "SliderValue | number[]"
+      },
+      {
+        "label": "defaultValue",
+        "description": "number[]"
+      },
+      {
+        "label": "onChange",
+        "description": "(value: SliderValue) => void"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: number[]) => void"
+      },
+      {
+        "label": "min",
+        "description": "number · default 0"
+      },
+      {
+        "label": "max",
+        "description": "number · default 100"
+      },
+      {
+        "label": "step",
+        "description": "number · default 1"
+      },
+      {
+        "label": "showSteps",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "showValue",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "valuePosition",
+        "description": "\"tooltip\" | \"left\" | \"right\" | \"bottom\" | \"top\" · default \"left\""
+      },
+      {
+        "label": "formatValue",
+        "description": "(v: number) => string · default String"
+      },
+      {
+        "label": "label",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "disabled, trackClassName, trackStyle, fillClassName, fillStyle, hideFill, thumbColor, thumbBorderColor, trackSize, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       },
       {
         "label": "Key exports",
@@ -2458,8 +3438,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Key exports",
-        "description": "Toaster, toast, useSonner"
+        "label": "Inherited props",
+        "description": "Also accepts sonner props (20)."
       }
     ],
     "exampleCode": "import { toast } from \"@hilum/ui\"\n\n// Toaster is already in the root layout\ntoast(\"Event has been created\")",
@@ -2485,12 +3465,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Variant props",
-        "description": "size"
+        "label": "label",
+        "description": "string · default \"Loading\" — Accessible name announced to screen readers. Defaults to \"Loading\"."
       },
       {
-        "label": "Key exports",
-        "description": "Spinner, spinnerVariants"
+        "label": "size",
+        "description": "\"default\" | \"xs\" | \"sm\" | \"lg\" | \"xl\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": "import { Spinner } from \"@hilum/ui\"\n\n<div className=\"flex items-center gap-4\">\n  <Spinner size=\"xs\" />\n  <Spinner size=\"sm\" />\n  <Spinner />\n  <Spinner size=\"lg\" />\n  <Spinner size=\"xl\" />\n</div>",
@@ -2516,12 +3500,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "status, label, tone, toneMap, variant, variantMap"
+        "label": "status",
+        "description": "string"
       },
       {
-        "label": "Key exports",
-        "description": "StatusBadge, statusBadgeVariantFor, statusLabel, statusToneFor, DEFAULT_STATUS_TONE"
+        "label": "label",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "tone",
+        "description": "\"info\" | \"success\" | \"warning\" | \"attention\" | \"critical\" | \"neutral\" — Semantic tone. Wins over `variant` and the built-in status map. Prefer `tone` / `toneMap` over raw `variant` so colours stay consistent."
+      },
+      {
+        "label": "toneMap",
+        "description": "Record<string, StatusTone> — Per-app status → tone overrides, merged over the built-in convention."
+      },
+      {
+        "label": "variant",
+        "description": "\"default\" | \"success\" | \"warning\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"solid\" | \"dot\""
+      },
+      {
+        "label": "variantMap",
+        "description": "Record<string, StatusBadgeVariant>"
+      },
+      {
+        "label": "labelMap",
+        "description": "Record<string, React.ReactNode>"
+      },
+      {
+        "label": "icon",
+        "description": "StatusBadgeIcon"
+      },
+      {
+        "label": "iconMap",
+        "description": "Record<string, StatusBadgeIcon>"
+      },
+      {
+        "label": "iconClassName",
+        "description": "string"
+      },
+      {
+        "label": "showDot",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "dotClassName",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "color, size"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       }
     ],
     "exampleCode": "import { StatusBadge } from \"@hilum/ui\"\n\n<StatusBadge status=\"active\" showDot />\n<StatusBadge status=\"pending\" showDot />\n<StatusBadge status=\"draft\" showDot />\n<StatusBadge status=\"failed\" showDot />",
@@ -2547,12 +3579,52 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "columns, title, status, description, meta, icon"
+        "label": "title",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "status",
+        "description": "string · required"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "meta",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "icon",
+        "description": "React.ComponentType<{ className?: string }>"
+      },
+      {
+        "label": "labelMap",
+        "description": "Record<string, React.ReactNode>"
+      },
+      {
+        "label": "tone",
+        "description": "\"info\" | \"success\" | \"warning\" | \"attention\" | \"critical\" | \"neutral\" — Semantic tone override for the badge."
+      },
+      {
+        "label": "toneMap",
+        "description": "Record<string, StatusTone> — Per-app status → tone overrides."
+      },
+      {
+        "label": "variantMap",
+        "description": "Record<string, StatusBadgeVariant>"
+      },
+      {
+        "label": "iconMap",
+        "description": "Record<string, React.ComponentType<{ className?: string }>>"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
-        "description": "StatusTile, StatusTileGrid, type StatusTileProps, type StatusTileGridProps"
+        "description": "StatusTile, StatusTileGrid"
       }
     ],
     "exampleCode": "import { StatusTile, StatusTileGrid } from \"@hilum/ui\";\nimport { MonitorSmartphone } from \"@hilum/ui/icons\";\n\n<StatusTileGrid>\n  <StatusTile\n    title=\"Catalog\"\n    status=\"healthy\"\n    icon={MonitorSmartphone}\n    description=\"operational\"\n    meta={<p className=\"caption truncate\">https://catalog.internal/health</p>}\n  />\n  <StatusTile title=\"Checkout\" status=\"degraded\" description=\"carrier rates delayed\" />\n  <StatusTile title=\"Renderer\" status=\"critical\" description=\"origin checks failing\" />\n</StatusTileGrid>",
@@ -2578,8 +3650,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "steps, variant, className"
+        "label": "steps",
+        "description": "Step[] · required"
+      },
+      {
+        "label": "variant",
+        "description": "\"progress\" | \"circles\" | \"bullets\" · default \"circles\""
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<StepsLabels> — Override any of the English strings."
       }
     ],
     "exampleCode": "import { Steps } from \"@hilum/ui\"\nimport type { Step } from \"@hilum/ui\"\n\nconst steps: Step[] = [\n  { name: \"Details\", status: \"complete\" },\n  { name: \"Review\", status: \"complete\" },\n  { name: \"Confirm\", status: \"current\" },\n  { name: \"Payment\", status: \"upcoming\" },\n  { name: \"Done\", status: \"upcoming\" },\n]\n\n<Steps steps={steps} variant=\"circles\" />",
@@ -2605,12 +3689,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "columns, title, value, description"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "value",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
-        "description": "SummaryTile, SummaryTileGrid, type SummaryTileProps, type SummaryTileGridProps"
+        "description": "SummaryTile, SummaryTileGrid"
       }
     ],
     "exampleCode": "import { SummaryTile, SummaryTileGrid } from \"@hilum/ui\";\n\n<SummaryTileGrid>\n  <SummaryTile title=\"Revenue\" value=\"$48.2k\" description=\"+12% from last month\" />\n  <SummaryTile title=\"Active users\" value=\"2,841\" description=\"+5% this week\" />\n  <SummaryTile title=\"Conversion\" value=\"18.4%\" description=\"+2.1 points\" />\n</SummaryTileGrid>",
@@ -2636,8 +3732,36 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "label, checked, defaultChecked, onCheckedChange, onToggle, disabled"
+        "label": "label",
+        "description": "string"
+      },
+      {
+        "label": "checked",
+        "description": "boolean"
+      },
+      {
+        "label": "defaultChecked",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "onCheckedChange",
+        "description": "(checked: boolean) => void"
+      },
+      {
+        "label": "onToggle",
+        "description": "(checked: boolean) => void"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "thumbTransition",
+        "description": "Transition"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       }
     ],
     "exampleCode": "import { Switch } from \"@hilum/ui\"\nimport { Label } from \"@hilum/ui\"\n\n<div className=\"flex items-center gap-3\">\n  <Switch id=\"lang\" defaultChecked />\n  <Label htmlFor=\"lang\">Language override</Label>\n</div>",
@@ -2663,12 +3787,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, containerClassName, density, mobileDensity, mobileSurface, index"
+        "label": "children",
+        "description": "ReactNode · required"
+      },
+      {
+        "label": "containerClassName",
+        "description": "string"
+      },
+      {
+        "label": "density",
+        "description": "\"default\" | \"compact\" · default \"default\""
+      },
+      {
+        "label": "mobileDensity",
+        "description": "\"default\" | \"compact\" · default \"default\""
+      },
+      {
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flat\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
-        "description": "Table, TableHeader, TableBody, TableFooter, TableRow, TableHead"
+        "description": "Table, TableHeader, TableBody, TableFooter, TableRow, TableHead, TableCell, TableCaption"
       }
     ],
     "exampleCode": "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\n<Table>\n  <TableHeader>\n    <TableRow>\n      <TableHead>Voice</TableHead>\n      <TableHead>Text</TableHead>\n      <TableHead>Duration</TableHead>\n      <TableHead>Status</TableHead>\n    </TableRow>\n  </TableHeader>\n  <TableBody>\n    {rows.map((row) => (\n      <TableRow key={row.id}>\n        <TableCell className=\"font-medium text-foreground\">{row.voice}</TableCell>\n        <TableCell className=\"max-w-[200px] truncate text-muted-foreground\">{row.text}</TableCell>\n        <TableCell>{row.duration}</TableCell>\n// ...trimmed for docs",
@@ -2694,8 +3838,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, onValueChange, selectedIndex, onSelect, scrollable, icon"
+        "label": "value",
+        "description": "string — Controlled value (takes precedence over selectedIndex)."
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string) => void — Called when the active tab changes."
+      },
+      {
+        "label": "selectedIndex",
+        "description": "number — Index-based controlled alternative."
+      },
+      {
+        "label": "onSelect",
+        "description": "(index: number) => void — Called with the new index when the active tab changes."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (275), Radix tabs props (4), Radix primitive props (1)."
       },
       {
         "label": "Key exports",
@@ -2725,8 +3885,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, selectedIndex, onSelect, idPrefix, activeLabel, icon"
+        "label": "children",
+        "description": "ReactNode · required"
+      },
+      {
+        "label": "selectedIndex",
+        "description": "number · required"
+      },
+      {
+        "label": "onSelect",
+        "description": "(index: number) => void · required"
+      },
+      {
+        "label": "idPrefix",
+        "description": "string"
+      },
+      {
+        "label": "activeLabel",
+        "description": "boolean · default false — When true, only the selected tab shows its text label. Requires icons on tabs."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       },
       {
         "label": "Key exports",
@@ -2756,8 +3936,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "density, mobileDensity, mobileSurface"
+        "label": "density",
+        "description": "\"default\" | \"compact\" · default \"default\""
+      },
+      {
+        "label": "mobileDensity",
+        "description": "\"default\" | \"compact\" · default \"default\""
+      },
+      {
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flush\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (292)."
       }
     ],
     "exampleCode": "import { Textarea } from \"@hilum/ui\"\n\n<Textarea placeholder=\"Write something...\" />\n<Textarea disabled placeholder=\"Disabled\" />",
@@ -2783,8 +3975,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "label, showIcon"
+        "label": "label",
+        "description": "string — Fixed label. When set, the indicator stops cycling through `labels.phrases`."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<ThinkingIndicatorLabels> — Override the built-in English strings."
+      },
+      {
+        "label": "showIcon",
+        "description": "boolean · default true — Show the morphing circle⇄infinity glyph before the label. Set to `false` for a text-only indicator (e.g. inline before a streamed reply)."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": null,
@@ -2802,6 +4006,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/atoms/time-picker/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "value",
+        "description": "string — \"HH:mm\" in 24-hour time, or null/undefined when empty."
+      },
+      {
+        "label": "defaultValue",
+        "description": "string"
+      },
+      {
+        "label": "onChange",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "step",
+        "description": "number · default 1 — Minute increment for arrow keys; typed minutes snap to it. Default 1."
+      },
+      {
+        "label": "min",
+        "description": "string — Earliest time (\"HH:mm\"). Values are clamped into range."
+      },
+      {
+        "label": "max",
+        "description": "string — Latest time (\"HH:mm\")."
+      },
+      {
+        "label": "hourCycle",
+        "description": "\"h12\" | \"h23\" — Force 12- or 24-hour display. Defaults to the locale's preference."
+      },
+      {
+        "label": "locale",
+        "description": "string — BCP-47 locale. Defaults to FormatProvider, then the runtime."
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "clearable",
+        "description": "boolean · default false — Show a clear button when a value is set."
+      },
+      {
+        "label": "name",
+        "description": "string — Name for a hidden input so the value posts with native forms."
+      },
+      {
+        "label": "id",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, labels, className"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/time-picker/",
+    "summary": "Segmented time field with hour, minute and AM/PM spinbuttons. 12- or 24-hour display follows the locale; values are always “HH:mm”. Supports minute steps and min/max.",
+    "title": "Time Picker",
+    "whenNotToUse": [
+      "Do not use a button when plain text, static status, or passive decoration would communicate the state just as well.",
+      "Do not overload a single view with too many equally prominent buttons; reduce or demote secondary actions first."
+    ],
+    "whenToUse": [
+      "Use buttons for explicit user-triggered actions such as submit, save, continue, or open.",
+      "Choose the variant and size that matches the action hierarchy in the surrounding view.",
+      "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
+    ]
+  },
   "/atoms/toggle/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -2810,12 +4089,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Variant props",
-        "description": "variant, size"
+        "label": "variant",
+        "description": "\"default\" | \"outline\" | \"brand\" · default \"default\""
       },
       {
-        "label": "Key exports",
-        "description": "ToggleRoot, toggleVariants"
+        "label": "size",
+        "description": "\"default\" | \"sm\" | \"lg\" | \"icon-sm\" | \"icon\" | \"icon-lg\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (288), Radix toggle props (3), Radix primitive props (1)."
       }
     ],
     "exampleCode": "import { Toggle } from \"@hilum/ui\"\n\n<Toggle>Bold</Toggle>\n<Toggle>Italic</Toggle>\n<Toggle defaultPressed>Underline</Toggle>",
@@ -2841,8 +4124,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
+        "label": "variant",
+        "description": "\"default\" | \"outline\" | \"brand\" · default \"default\""
+      },
+      {
+        "label": "size",
+        "description": "\"default\" | \"sm\" | \"lg\" | \"icon-sm\" | \"icon\" | \"icon-lg\" · default \"default\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276), Radix toggle-group props (9), Radix primitive props (1)."
+      },
+      {
         "label": "Key exports",
-        "description": "ToggleGroupRoot, ToggleGroupItem"
+        "description": "ToggleGroup, ToggleGroupItem"
       }
     ],
     "exampleCode": "import { ToggleGroup, ToggleGroupItem } from \"@hilum/ui\"\nimport { AlignLeft, AlignCenter, AlignRight, AlignJustify } from \"lucide-react\"\n\n<ToggleGroup type=\"single\" defaultValue=\"left\">\n  <ToggleGroupItem value=\"left\">\n    <AlignLeft className=\"mr-2 h-4 w-4\" />\n    Left\n  </ToggleGroupItem>\n  <ToggleGroupItem value=\"center\">\n    <AlignCenter className=\"mr-2 h-4 w-4\" />\n    Center\n  </ToggleGroupItem>\n  <ToggleGroupItem value=\"right\">\n    <AlignRight className=\"mr-2 h-4 w-4\" />\n    Right\n  </ToggleGroupItem>\n  <ToggleGroupItem value=\"justify\">\n    <AlignJustify className=\"mr-2 h-4 w-4\" />\n// ...trimmed for docs",
@@ -2868,8 +4163,40 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "content, children, side, sideOffset, delayDuration, className"
+        "label": "children",
+        "description": "ReactNode · required"
+      },
+      {
+        "label": "content",
+        "description": "ReactNode"
+      },
+      {
+        "label": "side",
+        "description": "\"left\" | \"right\" | \"bottom\" | \"top\" · default \"top\""
+      },
+      {
+        "label": "sideOffset",
+        "description": "number · default 8"
+      },
+      {
+        "label": "delayDuration",
+        "description": "number · default 200"
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "open",
+        "description": "boolean"
+      },
+      {
+        "label": "forceOpen",
+        "description": "boolean — When true, forces the tooltip open. When false, forces it closed. When undefined, uses default hover/focus behavior."
+      },
+      {
+        "label": "onOpenChange",
+        "description": "(open: boolean) => void — Called when the tooltip's internal open state changes (before forceOpen is applied)."
       },
       {
         "label": "Key exports",
@@ -2891,6 +4218,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Review the examples below to compare trigger styles, content density, and dismissal expectations."
     ]
   },
+  "/atoms/tree-view/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "items",
+        "description": "TreeNode[] · required"
+      },
+      {
+        "label": "selectionMode",
+        "description": "\"single\" | \"multiple\" | \"none\" · default \"single\" — Default \"single\". `multiple` sets `aria-multiselectable`."
+      },
+      {
+        "label": "selected",
+        "description": "string[]"
+      },
+      {
+        "label": "defaultSelected",
+        "description": "string[]"
+      },
+      {
+        "label": "onSelectedChange",
+        "description": "(ids: string[]) => void"
+      },
+      {
+        "label": "expanded",
+        "description": "string[]"
+      },
+      {
+        "label": "defaultExpanded",
+        "description": "string[]"
+      },
+      {
+        "label": "onExpandedChange",
+        "description": "(ids: string[]) => void"
+      },
+      {
+        "label": "checkboxes",
+        "description": "boolean · default false — Render checkboxes (implies multiple selection). Checking a parent checks its loaded descendants; parents show a mixed state when partially checked."
+      },
+      {
+        "label": "loadChildren",
+        "description": "(node: TreeNode) => Promise<TreeNode[]> — Lazy children for nodes with `hasChildren`. Called once per node."
+      },
+      {
+        "label": "onAction",
+        "description": "(node: TreeNode) => void — Enter on an item, or double-click."
+      },
+      {
+        "label": "indent",
+        "description": "number · default 16 — Indent per level in px. Default 16."
+      },
+      {
+        "label": "More props",
+        "description": "labels, aria-label, aria-labelledby, className"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/atoms/tree-view/",
+    "summary": "Hierarchical list following the WAI-ARIA tree pattern: arrow keys, Home/End, typeahead, * to expand siblings, single or multiple selection, tri-state checkboxes and lazily loaded children.",
+    "title": "Tree View",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Tree View when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/blocks/app-shell-sidebar/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -2900,7 +4302,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Included examples",
-        "description": "Sidebar with user menu"
+        "description": "Sidebar with user menu, AppShell with nested navigation"
       },
       {
         "label": "Variation points",
@@ -2931,14 +4333,14 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "api": [
       {
         "label": "Included examples",
-        "description": "Top navbar with user menu"
+        "description": "Top navbar with user menu, AppShellStacked with mobile menu"
       },
       {
         "label": "Variation points",
         "description": "Compare layout, content density, and emphasis across the included examples before copying an implementation."
       }
     ],
-    "exampleCode": "import { useState } from \"react\";\nimport {\n  LayoutDashboard,\n  Users,\n  FolderOpen,\n  BarChart2,\n  Bell,\n  Menu,\n  X,\n  ChevronDown,\n  Settings,\n  LogOut,\n  User,\n} from \"lucide-react\";\nimport { Badge } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\nimport {\n// ...trimmed for docs",
+    "exampleCode": "import { useState } from \"react\";\nimport { Bell, Menu, X, ChevronDown, Settings, LogOut, User } from \"lucide-react\";\nimport { Badge } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Avatar, AvatarFallback } from \"@hilum/ui\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuSeparator,\n  DropdownMenuTrigger,\n} from \"@hilum/ui\";\nimport { cn } from \"@hilum/ui\";\n\nconst NAV_ITEMS = [\n  { label: \"Dashboard\", href: \"#\", active: true },\n  { label: \"Team\", href: \"#\", active: false },\n  { label: \"Projects\", href: \"#\", active: false },\n// ...trimmed for docs",
     "kind": "component",
     "path": "/blocks/app-shell-stacked/",
     "summary": "A top-navigation shell with logo, nav links, notification bell, and a user menu. Collapses to a hamburger on mobile.",
@@ -2992,12 +4394,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Included examples",
-        "description": "3-column grid: sidebar label + controls, Single-column vertical stack, Each section in its own card, Sidebar nav + main form area"
+        "label": "gap",
+        "description": "\"sm\" | \"md\" · default \"md\" — Space between rows. Default \"md\"."
       },
       {
-        "label": "Variation points",
-        "description": "Compare layout, content density, and emphasis across the included examples before copying an implementation."
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
+      },
+      {
+        "label": "Key exports",
+        "description": "FormLayout, FormLayoutGroup"
       }
     ],
     "exampleCode": "import { Field } from \"@hilum/ui\";\nimport { Input } from \"@hilum/ui\";\nimport { Textarea } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Switch } from \"@hilum/ui\";\nimport { Label } from \"@hilum/ui\";\n\nexport default function LabelsOnLeftForm() {\n  return (\n    <form className=\"flex flex-col divide-y divide-ground-100\" onSubmit={(e) => e.preventDefault()}>\n      <div className=\"grid grid-cols-3 gap-8 py-8\">\n        <div>\n          <p className=\"body font-semibold text-ground-900\">Profile</p>\n          <p className=\"mt-1 caption text-ground-400\">\n            This information will be displayed publicly.\n          </p>\n        </div>\n        <div className=\"col-span-2 flex flex-col gap-4\">\n// ...trimmed for docs",
@@ -3137,7 +4543,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "Compare layout, content density, and emphasis across the included examples before copying an implementation."
       }
     ],
-    "exampleCode": "import { Field } from \"@hilum/ui\";\nimport { Input } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Checkbox } from \"@hilum/ui\";\nimport { Separator } from \"@hilum/ui\";\nimport { Label } from \"@hilum/ui\";\n\nexport default function SignInCard() {\n  return (\n    <div className=\"mx-auto w-full max-w-sm\">\n      <div className=\"mb-8 text-center\">\n        <div className=\"mx-auto mb-4 flex size-10 items-center justify-center rounded-xl bg-brand-primary\">\n          <span className=\"body font-bold text-white\">D</span>\n        </div>\n        <h1 className=\"heading text-ground-900\">Sign in to your account</h1>\n        <p className=\"mt-1 body text-ground-400\">\n          Or{\" \"}\n          <a href=\"#\" className=\"font-medium text-ground-900 underline underline-offset-2\">\n// ...trimmed for docs",
+    "exampleCode": "import { Field } from \"@hilum/ui\";\nimport { Input } from \"@hilum/ui\";\nimport { Button } from \"@hilum/ui\";\nimport { Checkbox } from \"@hilum/ui\";\nimport { Separator } from \"@hilum/ui\";\nimport { Label } from \"@hilum/ui\";\n\nexport default function SignInCard() {\n  return (\n    <div className=\"mx-auto w-full max-w-sm\">\n      <div className=\"mb-8 text-center\">\n        <div className=\"mx-auto mb-4 flex size-10 items-center justify-center rounded-xl bg-brand-primary\">\n          <span className=\"body font-bold text-white\">D</span>\n        </div>\n        <h1 className=\"heading text-ground-900\">Sign in to your account</h1>\n        <p className=\"mt-1 body text-ground-400\">\n          Or{\" \"}\n          <a\n// ...trimmed for docs",
     "kind": "component",
     "path": "/blocks/sign-in/",
     "summary": "Authentication form layouts — card, compact stacked, and split-screen.",
@@ -3226,7 +4632,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "exampleCode": null,
     "kind": "component",
     "path": "/designer/pane-visibility/",
-    "summary": "Click below to \"select\" different kinds. The properties panel on the right rerenders only the panes whose showFor predicate matches. The shell itself doesn't know about layer kinds — apps wire a resolveKind function on ShellContext .",
+    "summary": "Click below to “select” different kinds. The properties panel on the right rerenders only the panes whose showFor predicate matches. The shell itself doesn’t know about layer kinds — apps wire a resolveKind function on ShellContext .",
     "title": "DesignerPane.showFor",
     "whenNotToUse": [
       "Do not use DesignerPane.showFor when the page structure is still exploratory; start with smaller primitives if the workflow is not stable yet.",
@@ -4922,8 +6328,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "name, email, avatarSrc, avatarAlt, fallback, icon"
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277), Radix popper props (11), Radix menu props (7), Radix primitive props (1)."
       },
       {
         "label": "Key exports",
@@ -4953,8 +6359,40 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, action, actions, link, variant"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "action",
+        "description": "ActionPanelAction"
+      },
+      {
+        "label": "actions",
+        "description": "ActionPanelAction[]"
+      },
+      {
+        "label": "link",
+        "description": "ActionPanelLink"
+      },
+      {
+        "label": "variant",
+        "description": "\"default\" | \"muted\" · default \"default\""
+      },
+      {
+        "label": "layout",
+        "description": "\"inline\" | \"stacked\" · default \"stacked\""
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { ActionPanel } from \"@hilum/ui\"\n\n<ActionPanel\n  title=\"Delete your account\"\n  description=\"Once you delete your account, you will lose all data.\"\n  action={{ label: \"Delete account\", variant: \"destructive\" }}\n/>",
@@ -4980,8 +6418,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "events, className"
+        "label": "events",
+        "description": "FeedEvent[] · required"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { ActivityFeed } from \"@hilum/ui\"\nimport type { FeedEvent } from \"@hilum/ui\"\nimport { User, Check } from \"lucide-react\"\n\nconst events: FeedEvent[] = [\n  {\n    id: 1,\n    content: <span>Applied to <a className=\"font-semibold text-foreground\">Front End Developer</a></span>,\n    date: \"Sep 20\",\n    icon: <User size={14} />,\n    iconBgClass: \"bg-ground-200 text-ground-600\",\n  },\n  {\n    id: 2,\n    content: <span>Phone screening completed with <a className=\"font-semibold text-foreground\">Martha</a></span>,\n    date: \"Sep 28\",\n    icon: <Check size={14} />,\n    iconBgClass: \"bg-brand-secondary text-ground-900\",\n// ...trimmed for docs",
@@ -5007,8 +6449,52 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "questions, currentIndex, defaultCurrentIndex, onCurrentIndexChange, answers, defaultAnswers"
+        "label": "questions",
+        "description": "AskUserQuestion[] · required"
+      },
+      {
+        "label": "currentIndex",
+        "description": "number"
+      },
+      {
+        "label": "defaultCurrentIndex",
+        "description": "number · default 0"
+      },
+      {
+        "label": "onCurrentIndexChange",
+        "description": "(index: number) => void"
+      },
+      {
+        "label": "answers",
+        "description": "Record<string, AskUserAnswer>"
+      },
+      {
+        "label": "defaultAnswers",
+        "description": "Record<string, AskUserAnswer>"
+      },
+      {
+        "label": "onAnswersChange",
+        "description": "(answers: Record<string, AskUserAnswer>) => void"
+      },
+      {
+        "label": "onComplete",
+        "description": "(answers: Record<string, AskUserAnswer>) => void"
+      },
+      {
+        "label": "onSkip",
+        "description": "(questionId: string, currentIndex: number) => void"
+      },
+      {
+        "label": "skipLabel",
+        "description": "string"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<AskUserQuestionsLabels> — Override the built-in English strings."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       }
     ],
     "exampleCode": null,
@@ -5034,8 +6520,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, actions, children, className"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "actions",
+        "description": "CardHeadingAction[]"
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { CardHeading } from \"@hilum/ui\"\n\n<div className=\"rounded-xl border border-border\">\n  <CardHeading title=\"Job Postings\" />\n  <div className=\"p-5\">{/* card content */}</div>\n</div>",
@@ -5061,8 +6563,32 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "from, files, thumbnailSize, time, actions, children"
+        "label": "from",
+        "description": "\"user\" | \"assistant\" · required — Who sent the message. Drives alignment and bubble colour: `user` → end-aligned accent bubble, `assistant` → start-aligned plain text (right/left in LTR, mirrored in RTL)."
+      },
+      {
+        "label": "files",
+        "description": "File[] — Optional attachments rendered as square thumbnails above the bubble."
+      },
+      {
+        "label": "thumbnailSize",
+        "description": "number · default 64 — Side length of each attachment thumbnail in pixels. Defaults to 64."
+      },
+      {
+        "label": "time",
+        "description": "ReactNode — Timestamp shown in the hover-revealed meta row, before the actions. User-message only — ignored on assistant replies. Caller pre-formats it (e.g. `\"Wednesday 6:08 PM\"`)."
+      },
+      {
+        "label": "actions",
+        "description": "ReactNode — Icon-only action buttons shown in the hover-revealed meta row (e.g. copy, edit, regenerate). Rendered next to the timestamp."
+      },
+      {
+        "label": "children",
+        "description": "ReactNode — Message body. When omitted the text bubble is dropped (attachment-only message)."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts unknown props (272), motion-dom props (63), framer-motion props (1)."
       }
     ],
     "exampleCode": null,
@@ -5088,8 +6614,40 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "open, onClose, items, placeholder, emptyText, title"
+        "label": "open",
+        "description": "boolean · required"
+      },
+      {
+        "label": "onClose",
+        "description": "() => void · required"
+      },
+      {
+        "label": "items",
+        "description": "CommandPaletteItem[] · required"
+      },
+      {
+        "label": "placeholder",
+        "description": "string · default \"Search...\""
+      },
+      {
+        "label": "emptyText",
+        "description": "string · default \"No results found.\""
+      },
+      {
+        "label": "title",
+        "description": "string · default \"Command palette\" — Accessible name of the dialog (visually hidden)."
+      },
+      {
+        "label": "description",
+        "description": "string · default \"Search for a command or page. Use the arrow keys to move and Enter to select.\" — Accessible description of the dialog (visually hidden)."
+      },
+      {
+        "label": "onNavigate",
+        "description": "(href: string) => void — Called for items with an `href` (instead of a full page load via `window.location`). Pass your router's navigate function for client-side routing. As before, an item's `href` takes precedence over its `onSelect`."
+      },
+      {
+        "label": "closeLabel",
+        "description": "string — Screen-reader label of the dialog's close button. Default: \"Close\"."
       }
     ],
     "exampleCode": "import { CommandPalette } from \"@hilum/ui\"\nimport { LayoutDashboard, Users } from \"lucide-react\"\n\nconst commands = [\n  { id: 1, label: \"Dashboard\", icon: <LayoutDashboard size={15} />, category: \"Navigation\", href: \"/dashboard\" },\n  { id: 2, label: \"Team members\", icon: <Users size={15} />, category: \"Navigation\", href: \"/team\" },\n  { id: 3, label: \"New document\", icon: <FileText size={15} />, category: \"Actions\", onSelect: () => {} },\n]\n\nfunction Example() {\n  const [open, setOpen] = useState(false)\n\n  useEffect(() => {\n    function onKey(e: KeyboardEvent) {\n      if (e.key === \"k\" && (e.metaKey || e.ctrlKey)) {\n        e.preventDefault()\n        setOpen(true)\n      }\n// ...trimmed for docs",
@@ -5115,12 +6673,56 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "open, message, onSave, onDiscard, saveLabel, discardLabel"
+        "label": "open",
+        "description": "boolean · required — Show the bar — usually `form.isDirty`."
       },
       {
-        "label": "Key exports",
-        "description": "ContextualSaveBar, useUnsavedChangesWarning"
+        "label": "message",
+        "description": "React.ReactNode · default \"Unsaved changes\" — Message on the leading edge. Default: \"Unsaved changes\"."
+      },
+      {
+        "label": "onSave",
+        "description": "() => void — Primary action."
+      },
+      {
+        "label": "onDiscard",
+        "description": "() => void — Secondary action — resets the form to its saved state."
+      },
+      {
+        "label": "saveLabel",
+        "description": "React.ReactNode · default \"Save\""
+      },
+      {
+        "label": "discardLabel",
+        "description": "React.ReactNode · default \"Discard\""
+      },
+      {
+        "label": "saving",
+        "description": "boolean · default false — Shows a spinner on Save and disables both actions."
+      },
+      {
+        "label": "saveDisabled",
+        "description": "boolean · default false — Disable Save (e.g. while the form is invalid)."
+      },
+      {
+        "label": "formId",
+        "description": "string — Wire the Save button to a `<form id>` instead of `onSave` — the button becomes `type=\"submit\" form={formId}` so native validation still runs."
+      },
+      {
+        "label": "position",
+        "description": "\"fixed\" | \"sticky\" · default \"fixed\" — `fixed` pins the bar to the viewport (default: top on desktop, bottom on mobile for thumb reach). `sticky` keeps it inside its scroll container — useful inside a settings pane or a dialog."
+      },
+      {
+        "label": "offsetTop",
+        "description": "number | string — Distance from the top of the viewport in `fixed` mode (desktop) or of the scroll container in `sticky` mode — e.g. your app header height. Defaults to the `--hilum-header-height` CSS variable (0 when unset), so apps with a fixed header can set it once on `:root`."
+      },
+      {
+        "label": "announcement",
+        "description": "string · default message — Text announced to screen readers when the bar appears. Defaults to `message` when it is a string, else \"Unsaved changes\"."
+      },
+      {
+        "label": "More props",
+        "description": "regionLabel, children, className"
       }
     ],
     "exampleCode": "import { ContextualSaveBar, useUnsavedChangesWarning } from \"@hilum/ui\"\n\nconst [saved, setSaved] = useState(\"Linen shirt\")\nconst [title, setTitle] = useState(saved)\nconst dirty = title !== saved\nuseUnsavedChangesWarning(dirty)\n\n<Input value={title} onChange={(e) => setTitle(e.target.value)} />\n<ContextualSaveBar\n  open={dirty}\n  position=\"sticky\"\n  onDiscard={() => setTitle(saved)}\n  onSave={() => setSaved(title)}\n/>",
@@ -5146,8 +6748,44 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "scopeValue, onScopeChange, scopeOptions, scopePlaceholder, actions, compact"
+        "label": "actions",
+        "description": "DataTransferAction[] · required"
+      },
+      {
+        "label": "scopeValue",
+        "description": "string"
+      },
+      {
+        "label": "onScopeChange",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "scopeOptions",
+        "description": "DataTransferScopeOption[] · default []"
+      },
+      {
+        "label": "scopePlaceholder",
+        "description": "string · default \"Scope\""
+      },
+      {
+        "label": "compact",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "compactLabel",
+        "description": "string · default \"Import and export actions\""
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "selectClassName",
+        "description": "string"
+      },
+      {
+        "label": "actionGroupClassName",
+        "description": "string"
       }
     ],
     "exampleCode": "import { DataTransferControls } from \"@hilum/ui\"\nimport { Download, Upload } from \"lucide-react\"\n\n<DataTransferControls\n  scopeValue={scope}\n  onScopeChange={setScope}\n  scopeOptions={[\n    { value: \"visible\", label: \"Visible rows\" },\n    { value: \"selected\", label: \"Selected rows\" },\n    { value: \"all\", label: \"All records\" },\n  ]}\n  actions={[\n    { label: \"Import CSV\", shortLabel: \"Import\", icon: <Upload />, onSelect: importCsv },\n    { label: \"Export CSV\", shortLabel: \"Export\", icon: <Download />, onSelect: exportCsv },\n  ]}\n/>",
@@ -5165,6 +6803,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/molecules/date-time-picker/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "value",
+        "description": "Date"
+      },
+      {
+        "label": "onChange",
+        "description": "(value: Date) => void"
+      },
+      {
+        "label": "defaultTime",
+        "description": "string · default \"09:00\" — Time applied when a date is picked before a time (\"HH:mm\"). Default \"09:00\"."
+      },
+      {
+        "label": "min",
+        "description": "Date — Earliest selectable moment. Limits both days and, on that day, times."
+      },
+      {
+        "label": "max",
+        "description": "Date — Latest selectable moment."
+      },
+      {
+        "label": "step",
+        "description": "number — Minute step for the time field."
+      },
+      {
+        "label": "hourCycle",
+        "description": "\"h12\" | \"h23\""
+      },
+      {
+        "label": "locale",
+        "description": "string"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "clearable",
+        "description": "boolean"
+      },
+      {
+        "label": "datePlaceholder",
+        "description": "string"
+      },
+      {
+        "label": "labels",
+        "description": "{ date?: string; time?: string; /** Clear (×) button of the date half. */ clearDate?: string; } & Partial<TimePickerLabels> — Accessible names. `date` / `time` label each half; the group uses `aria-label`."
+      },
+      {
+        "label": "More props",
+        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, className"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/date-time-picker/",
+    "summary": "One local Date from a DatePicker and a TimePicker side by side. Picking a day keeps the time; editing the time keeps the day. Min/max bound both.",
+    "title": "Date Time Picker",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Date Time Picker when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/molecules/description-list/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -5173,8 +6886,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, items, columns, striped, className"
+        "label": "items",
+        "description": "DescriptionItem[] · required"
+      },
+      {
+        "label": "title",
+        "description": "string"
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "columns",
+        "description": "1 | 2 · default 1"
+      },
+      {
+        "label": "striped",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { DescriptionList } from \"@hilum/ui\"\n\n<DescriptionList\n  title=\"Applicant Information\"\n  description=\"Personal details and application.\"\n  items={[\n    { term: \"Full name\", details: \"Margot Foster\" },\n    { term: \"Role\", details: \"Backend Developer\" },\n    { term: \"Email\", details: \"margot@example.com\" },\n    { term: \"Salary\", details: \"$120,000\" },\n  ]}\n/>",
@@ -5200,8 +6933,40 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "icon, title, description, action, secondaryAction, variant"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "icon",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "action",
+        "description": "EmptyStateAction | React.ReactElement — Primary call to action — every first-run empty state should have one (\"Add product\", \"Create discount\"). `href` actions render through the `LinkProvider` link component; pass an element for full control."
+      },
+      {
+        "label": "secondaryAction",
+        "description": "EmptyStateAction | React.ReactElement — Secondary, lower-emphasis action (e.g. \"Import CSV\", \"Learn more\")."
+      },
+      {
+        "label": "variant",
+        "description": "\"plain\" | \"card\" · default \"plain\" — `plain` (default) — sits inside an existing card/table. `card` — standalone bordered surface for a whole page section."
+      },
+      {
+        "label": "size",
+        "description": "\"sm\" | \"md\" · default \"md\" — `sm` for inline table/list bodies, `md` (default) for page sections."
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode — Extra content below the actions (e.g. a help link or illustration)."
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { EmptyState } from \"@hilum/ui\"\nimport { Inbox } from \"lucide-react\"\n\n<EmptyState\n  icon={<Inbox size={20} />}\n  title=\"No messages yet\"\n  description=\"When you receive messages, they'll appear here.\"\n/>",
@@ -5227,8 +6992,40 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "label, htmlFor, hint, error, required, cornerHint"
+        "label": "label",
+        "description": "string · required"
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "htmlFor",
+        "description": "string — id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context (Input, Textarea, Select, NativeSelect, InputNumber pick it up automatically). If the control has its own `id`, the label follows it."
+      },
+      {
+        "label": "hint",
+        "description": "string"
+      },
+      {
+        "label": "error",
+        "description": "string"
+      },
+      {
+        "label": "required",
+        "description": "boolean"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean — Disables the wrapped control (via context) unless it sets `disabled` itself."
+      },
+      {
+        "label": "cornerHint",
+        "description": "string"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { Field } from \"@hilum/ui\"\nimport { Input } from \"@hilum/ui\"\n\n<Field label=\"Email\">\n  <Input placeholder=\"you@example.com\" />\n</Field>",
@@ -5254,14 +7051,62 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "search, children, active, onClear, clearLabel, actions"
+        "label": "search",
+        "description": "FilterBarSearch — Built-in SearchInput. Omit for filter-only bars."
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode — Filter controls — Select, DateRangePicker, toggles. Scroll horizontally on mobile."
+      },
+      {
+        "label": "active",
+        "description": "boolean · default false — Whether any filter/search is applied; shows the clear action."
+      },
+      {
+        "label": "onClear",
+        "description": "() => void — Reset search and filters. Shown only while `active`."
+      },
+      {
+        "label": "clearLabel",
+        "description": "string · default \"Clear filters\""
+      },
+      {
+        "label": "actions",
+        "description": "React.ReactNode — Trailing actions (sort, export, view toggle) aligned to the end from `md`."
+      },
+      {
+        "label": "summary",
+        "description": "React.ReactNode — Result summary under the bar (\"24 orders\")."
+      },
+      {
+        "label": "appliedFilters",
+        "description": "FilterBarAppliedFilter[] — Removable pills for the filters currently applied."
+      },
+      {
+        "label": "onClearAll",
+        "description": "() => void — \"Clear all\" after the pills. Falls back to `onClear`."
+      },
+      {
+        "label": "views",
+        "description": "FilterBarView[] — Saved views rendered as tabs above the bar."
+      },
+      {
+        "label": "selectedView",
+        "description": "string"
+      },
+      {
+        "label": "onViewChange",
+        "description": "(id: string) => void"
+      },
+      {
+        "label": "More props",
+        "description": "onSaveView, mobileBleed, filtersClassName, labels, className"
       }
     ],
     "exampleCode": null,
     "kind": "component",
     "path": "/molecules/filter-bar/",
-    "summary": "List toolbar with search, filters, a clear action and trailing actions. Stacks on mobile with a horizontally scrolling filter row.",
+    "summary": "List toolbar with saved views, search, filters, removable applied-filter pills, a clear action and trailing actions. Stacks on mobile with a horizontally scrolling filter row.",
     "title": "Filter Bar",
     "whenNotToUse": [
       "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
@@ -5273,6 +7118,41 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/molecules/form-layout/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "gap",
+        "description": "\"sm\" | \"md\" · default \"md\" — Space between rows. Default \"md\"."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
+      },
+      {
+        "label": "Key exports",
+        "description": "FormLayout, FormLayoutGroup"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/form-layout/",
+    "summary": "Consistent vertical rhythm for forms, with FormLayout.Group rows that wrap responsively and a condensed variant for short fields. Pairs with Field or the @hilum/ui/form react-hook-form bindings.",
+    "title": "Form Layout",
+    "whenNotToUse": [
+      "Do not use Form Layout just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Form Layout when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
   "/molecules/grid-list/": {
     "accessibility": [
       "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
@@ -5281,8 +7161,20 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, columns, gap, className, title, description"
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "columns",
+        "description": "2 | 3 | 4 · default 3"
+      },
+      {
+        "label": "gap",
+        "description": "\"sm\" | \"md\" | \"lg\" · default \"md\""
+      },
+      {
+        "label": "className",
+        "description": "string"
       },
       {
         "label": "Key exports",
@@ -5312,8 +7204,36 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, label, onCopy, disabled, variant, align"
+        "label": "value",
+        "description": "string · required — The value to display and copy to clipboard."
+      },
+      {
+        "label": "label",
+        "description": "string — Optional label displayed above the input."
+      },
+      {
+        "label": "onCopy",
+        "description": "() => void — Callback fired after the value is copied."
+      },
+      {
+        "label": "disabled",
+        "description": "boolean — Whether the component is disabled."
+      },
+      {
+        "label": "variant",
+        "description": "\"button\" | \"icon\" · default \"icon\" — Display variant: icon-only with tooltip, or button with label."
+      },
+      {
+        "label": "align",
+        "description": "\"left\" | \"right\" · default \"right\" — Position of the copy action relative to the value."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<InputCopyLabels> — Localizable strings. Every entry has an English default."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
       }
     ],
     "exampleCode": null,
@@ -5339,8 +7259,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, placeholder, value, onChange, leadingAddon, trailingAddon"
+        "label": "children",
+        "description": "ReactNode"
+      },
+      {
+        "label": "placeholder",
+        "description": "string"
+      },
+      {
+        "label": "value",
+        "description": "string"
+      },
+      {
+        "label": "onChange",
+        "description": "ChangeEventHandler<HTMLInputElement>"
+      },
+      {
+        "label": "leadingAddon",
+        "description": "ReactNode"
+      },
+      {
+        "label": "trailingAddon",
+        "description": "ReactNode"
+      },
+      {
+        "label": "trailingAction",
+        "description": "ReactNode"
+      },
+      {
+        "label": "leadingIcon",
+        "description": "ReactNode"
+      },
+      {
+        "label": "trailingIcon",
+        "description": "ReactNode"
+      },
+      {
+        "label": "trailingButton",
+        "description": "ReactNode"
+      },
+      {
+        "label": "error",
+        "description": "boolean | string"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "More props",
+        "description": "wrapperClassName, pill, type, defaultValue, id"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (274)."
       },
       {
         "label": "Key exports",
@@ -5370,8 +7342,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "value, onValueChange, onSend, placeholder, leftSlot, rightSlot"
+        "label": "value",
+        "description": "string · required — Controlled textarea value."
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string) => void · required — Called with the new value on every textarea change."
+      },
+      {
+        "label": "onSend",
+        "description": "(value: string, files: File[], meta?: { queuedId?: string }) => void — Fired when the user submits (Enter or the send button) and when a queued message auto-dispatches. Receives the trimmed value, the attached files, and — for auto-dispatched queue items — `meta.queuedId` (the originating QueuedMessage id), so a consumer can e.g. morph the queued item into the sent message via a shared-layout (`layoutId`) transition."
+      },
+      {
+        "label": "placeholder",
+        "description": "string — Placeholder text shown when the value is empty."
+      },
+      {
+        "label": "leftSlot",
+        "description": "InputMessageSlot — Content rendered in the bottom-left action area. Can be a function that receives `{ openFilePicker, files }` to wire an attach button."
+      },
+      {
+        "label": "rightSlot",
+        "description": "InputMessageSlot — Content rendered in the bottom-right action area, before the built-in send button. Same render-fn shape as leftSlot."
+      },
+      {
+        "label": "disabled",
+        "description": "boolean — Disables the textarea, send button, and drag-and-drop."
+      },
+      {
+        "label": "minRows",
+        "description": "number · default 1 — Minimum visible rows before the textarea grows."
+      },
+      {
+        "label": "maxRows",
+        "description": "number · default 8 — Maximum visible rows before the textarea starts to scroll."
+      },
+      {
+        "label": "clickToFocus",
+        "description": "boolean · default true — When false, clicking the surrounding container won't refocus the textarea."
+      },
+      {
+        "label": "sendLabel",
+        "description": "string — Accessible label for the send button."
+      },
+      {
+        "label": "files",
+        "description": "File[] — Controlled list of attached files. When undefined, attachment behavior is disabled (no drag-drop, no file input)."
+      },
+      {
+        "label": "More props",
+        "description": "onFilesChange, accept, maxFiles, filePreviewSize, textareaProps, status, onStop, queue, onQueueChange, showQueue, history, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       }
     ],
     "exampleCode": null,
@@ -5389,6 +7413,41 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
+  "/molecules/layout/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "gap",
+        "description": "\"sm\" | \"md\" | \"lg\" · default \"md\" — Vertical/horizontal gap between sections. Default \"md\" (1rem; 1.25rem from `md`)."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
+      },
+      {
+        "label": "Key exports",
+        "description": "PageLayout, PageLayoutSection, AnnotatedSection"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/layout/",
+    "summary": "Admin page grid: PageLayout sections that sit side by side while there is room and wrap on small screens, plus AnnotatedSection for settings pages. Logical properties keep it correct in RTL.",
+    "title": "Page Layout",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Page Layout when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/molecules/media-asset-card/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -5397,8 +7456,48 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "name, src, alt, meta, details, actions"
+        "label": "name",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "src",
+        "description": "string"
+      },
+      {
+        "label": "alt",
+        "description": "string · default \"\""
+      },
+      {
+        "label": "meta",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "details",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "actions",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "selected",
+        "description": "boolean"
+      },
+      {
+        "label": "mediaType",
+        "description": "\"video\" | \"image\" | \"file\" | \"unknown\" · default src ? \"image\" : \"file\""
+      },
+      {
+        "label": "orientation",
+        "description": "\"grid\" | \"list\" | \"responsive\" · default \"responsive\""
+      },
+      {
+        "label": "onSelect",
+        "description": "() => void"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       }
     ],
     "exampleCode": "import { MediaAssetCard } from \"@hilum/ui\"\n\n<MediaAssetCard\n  name=\"campaign-cover.png\"\n  src={coverImage}\n  meta=\"PNG - 1.2 MB\"\n  details=\"Used by the summer campaign landing page.\"\n  selected\n/>",
@@ -5424,8 +7523,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "columns, children"
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "columns",
+        "description": "2 | 3 | 4 | 5 · default 5"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
@@ -5455,8 +7562,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "media, children, mediaPosition, align, gap, className"
+        "label": "media",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "mediaPosition",
+        "description": "\"left\" | \"right\" · default \"left\""
+      },
+      {
+        "label": "align",
+        "description": "\"center\" | \"bottom\" | \"top\" · default \"top\""
+      },
+      {
+        "label": "gap",
+        "description": "\"sm\" | \"md\" | \"lg\" · default \"md\""
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { MediaObject } from \"@hilum/ui\"\n\n<MediaObject media={<img className=\"size-16 rounded-lg\" src=\"...\" alt=\"\" />}>\n  <h4 className=\"heading text-foreground\">Lorem ipsum</h4>\n  <p className=\"mt-1 body text-muted-foreground\">\n    Repudiandae sint consequuntur vel. Amet ut nobis explicabo numquam\n    expedita quia omnis voluptatem.\n  </p>\n</MediaObject>",
@@ -5482,8 +7609,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, triggerLabel, children"
+        "label": "title",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "triggerLabel",
+        "description": "string · default \"Open menu\""
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts Radix dialog props (4)."
       }
     ],
     "exampleCode": null,
@@ -5509,8 +7652,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "items"
+        "label": "items",
+        "description": "NavMenuItem[] · required"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": null,
@@ -5536,8 +7683,36 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, icon, variant, actions, onClose"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "icon",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "variant",
+        "description": "\"default\" | \"info\" | \"success\" | \"warning\" | \"error\" · default \"default\""
+      },
+      {
+        "label": "actions",
+        "description": "NotificationAction[]"
+      },
+      {
+        "label": "onClose",
+        "description": "() => void"
+      },
+      {
+        "label": "closeLabel",
+        "description": "string · default \"Close\" — Accessible name of the close button."
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { Notification } from \"@hilum/ui\"\n\n<Notification\n  title=\"Successfully saved!\"\n  description=\"Anyone with a link can now view this file.\"\n/>",
@@ -5563,8 +7738,36 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, breadcrumbs, actions, meta, badge"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "breadcrumbs",
+        "description": "BreadcrumbItem[]"
+      },
+      {
+        "label": "actions",
+        "description": "PageHeadingAction[]"
+      },
+      {
+        "label": "meta",
+        "description": "PageHeadingMeta[]"
+      },
+      {
+        "label": "badge",
+        "description": "string | { label: string; variant?: \"default\" | \"secondary\" | \"outline\" | \"destructive\" }"
+      },
+      {
+        "label": "breadcrumbLabel",
+        "description": "string · default \"Breadcrumb\" — Accessible name of the breadcrumb nav."
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { PageHeading } from \"@hilum/ui\"\n\n<PageHeading title=\"Back End Developer\" />",
@@ -5646,8 +7849,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "label, layout, labelWidth, labelAlign"
+        "label": "label",
+        "description": "React.ReactNode — Optional label rendered on the left. Pass a string or any React node (icon + label, etc.)."
+      },
+      {
+        "label": "layout",
+        "description": "\"inline\" | \"stacked\" · default \"stacked\" — Label layout. Default: \"stacked\"."
+      },
+      {
+        "label": "labelWidth",
+        "description": "number | string · default 96 — Width of the label column when layout=\"inline\". Default: 96px."
+      },
+      {
+        "label": "labelAlign",
+        "description": "\"center\" | \"start\" · default \"center\" — Aligns label vertically with controls when layout=\"inline\". Default: \"center\"."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": "import { PropertyRow, InputNumber } from \"@hilum/ui\"\n\n<PropertyRow layout=\"inline\" labelWidth={64} label=\"Width\">\n  <InputNumber value={width} onChange={setWidth} unit=\"px\" />\n</PropertyRow>\n\n<PropertyRow layout=\"inline\" labelWidth={64} label=\"Opacity\">\n  <Slider value={[opacity]} onValueChange={([v]) => setOpacity(v)} min={0} max={100} />\n  <InputNumber value={opacity} onChange={setOpacity} unit=\"%\" min={0} max={100} className=\"w-[72px] shrink-0\" />\n</PropertyRow>",
@@ -5673,8 +7892,28 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "options, value, onValueChange, columns, className"
+        "label": "options",
+        "description": "RadioCardOption[] · required"
+      },
+      {
+        "label": "value",
+        "description": "string"
+      },
+      {
+        "label": "onValueChange",
+        "description": "(value: string) => void"
+      },
+      {
+        "label": "columns",
+        "description": "1 | 2 | 3 | 4 · default 3"
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (275)."
       }
     ],
     "exampleCode": "import { RadioCards } from \"@hilum/ui\"\n\nconst options = [\n  { value: \"newsletter\", label: \"Newsletter\", description: \"Last sent an hour ago\", meta: \"621 subscribers\" },\n  { value: \"customers\", label: \"Existing Customers\", description: \"Last sent 2 weeks ago\", meta: \"1,200 subscribers\" },\n  { value: \"trial\", label: \"Trial Users\", description: \"Last sent 4 days ago\", meta: \"2,740 subscribers\" },\n]\n\nfunction Example() {\n  const [value, setValue] = useState(\"newsletter\")\n  return <RadioCards options={options} value={value} onValueChange={setValue} />\n}",
@@ -5700,8 +7939,48 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, subtitle, media, badge, href, className"
+        "label": "title",
+        "description": "React.ReactNode · required — Primary line — the resource name / order number. Rendered strongest."
+      },
+      {
+        "label": "meta",
+        "description": "React.ReactNode — Row-level metadata under the subtitle (e.g. \"Sep 26, 2026 · 3 items\")."
+      },
+      {
+        "label": "trailing",
+        "description": "React.ReactNode — Right-aligned primary value (amount, count)."
+      },
+      {
+        "label": "trailingSecondary",
+        "description": "React.ReactNode — Right-aligned secondary value under `trailing` (date, status)."
+      },
+      {
+        "label": "href",
+        "description": "string — Make the whole row a link."
+      },
+      {
+        "label": "onClick",
+        "description": "() => void — Make the whole row a button. Ignored when `href` is set."
+      },
+      {
+        "label": "aria-label",
+        "description": "string — Accessible name when the row is interactive and `title` isn't plain text."
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "media",
+        "description": "React.ReactNode — Leading thumbnail / avatar (32px works best)."
+      },
+      {
+        "label": "subtitle",
+        "description": "React.ReactNode — Secondary line — email, SKU, \"3 items\", date. Rendered muted and smaller."
+      },
+      {
+        "label": "badge",
+        "description": "React.ReactNode — Inline trailing content on the title line (e.g. a StatusBadge)."
       },
       {
         "label": "Key exports",
@@ -5731,8 +8010,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, description, actions, border, className"
+        "label": "title",
+        "description": "string · required"
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "actions",
+        "description": "SectionHeadingAction[]"
+      },
+      {
+        "label": "border",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
     "exampleCode": "import { SectionHeading } from \"@hilum/ui\"\n\n<SectionHeading title=\"Job Postings\" />",
@@ -5750,6 +8045,132 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
     ]
   },
+  "/molecules/skeleton-page/": {
+    "accessibility": [
+      "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
+      "Ensure arrow-key or tab-key movement stays predictable when the pattern behaves like a composite widget.",
+      "Do not rely on icon-only navigation unless every control has a clear accessible name."
+    ],
+    "api": [
+      {
+        "label": "title",
+        "description": "React.ReactNode — Real title if already known; otherwise a skeleton title is shown."
+      },
+      {
+        "label": "backAction",
+        "description": "boolean · default false — Show a back-link placeholder above the title."
+      },
+      {
+        "label": "primaryAction",
+        "description": "boolean · default false — Show primary-action placeholder on the inline-end side of the header."
+      },
+      {
+        "label": "narrowWidth",
+        "description": "boolean · default false — Narrow, centered page (settings forms)."
+      },
+      {
+        "label": "fullWidth",
+        "description": "boolean · default false — Full width instead of the default max width."
+      },
+      {
+        "label": "label",
+        "description": "string · default \"Loading page\" — Announced to assistive tech. Default \"Loading page\"."
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode — Page body — defaults to a primary/secondary skeleton layout."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (276)."
+      },
+      {
+        "label": "Key exports",
+        "description": "SkeletonPage, SkeletonBodyText, SkeletonDisplayText, SkeletonThumbnail"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/skeleton-page/",
+    "summary": "Loading templates for admin pages: SkeletonPage with header placeholders and a primary/secondary card layout, plus SkeletonBodyText, SkeletonDisplayText and SkeletonThumbnail.",
+    "title": "Skeleton Page",
+    "whenNotToUse": [
+      "Do not use Skeleton Page just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Skeleton Page when you need a reusable molecules pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
+  "/molecules/sortable/": {
+    "accessibility": [
+      "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
+      "Use clear headings, summaries, and labels so assistive technologies can announce the data in context.",
+      "Do not rely on color alone to communicate trend, status, or state in charts and metric cards."
+    ],
+    "api": [
+      {
+        "label": "items",
+        "description": "T[] · required"
+      },
+      {
+        "label": "getItemId",
+        "description": "(item: T) => string · required — Stable id per item."
+      },
+      {
+        "label": "onReorder",
+        "description": "(items: T[], move: { id: string; from: number; to: number }) => void · required — Receives the reordered array after a drop."
+      },
+      {
+        "label": "children",
+        "description": "(item: T, index: number) => React.ReactNode · required — Renders each item — typically a `<SortableItem id=…>`."
+      },
+      {
+        "label": "getItemLabel",
+        "description": "(item: T) => string — Human name per item for screen-reader announcements. Default: the id."
+      },
+      {
+        "label": "orientation",
+        "description": "\"horizontal\" | \"vertical\" · default \"vertical\""
+      },
+      {
+        "label": "disabled",
+        "description": "boolean · default false"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<SortableLabels>"
+      },
+      {
+        "label": "aria-label",
+        "description": "string — Accessible name of the list."
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "Key exports",
+        "description": "SortableList, SortableItem, SortableHandle"
+      }
+    ],
+    "exampleCode": null,
+    "kind": "component",
+    "path": "/molecules/sortable/",
+    "summary": "Drag-and-drop reordering on dnd-kit with pointer, touch and keyboard support. Screen readers hear localized pick-up, move and drop announcements.",
+    "title": "Sortable",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Sortable when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/molecules/stacked-list/": {
     "accessibility": [
       "Preserve table semantics for tabular data and avoid flattening structured information into generic divs.",
@@ -5758,8 +8179,24 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "children, divided, bordered, surface, className, href"
+        "label": "children",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "divided",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "bordered",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "surface",
+        "description": "\"responsive\" | \"card\" · default \"card\""
+      },
+      {
+        "label": "className",
+        "description": "string"
       },
       {
         "label": "Key exports",
@@ -5789,12 +8226,60 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "label, title, value, variant, trend, description"
+        "label": "label",
+        "description": "string"
+      },
+      {
+        "label": "title",
+        "description": "string"
+      },
+      {
+        "label": "value",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "variant",
+        "description": "\"default\" | \"responsive\" | \"plain\" · default \"default\" — `default` — bordered card. `responsive` — flat on mobile, card from `sm`. `plain` — no surface; use inside an existing Card or a divided StatGrid."
+      },
+      {
+        "label": "trend",
+        "description": "StatCardTrend"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode — Secondary line under the value (e.g. \"32 orders\", \"Last 30 days\")."
+      },
+      {
+        "label": "loading",
+        "description": "boolean · default false — Render skeletons for the value and trend."
+      },
+      {
+        "label": "href",
+        "description": "string — Make the whole card a link (e.g. drill into the orders list)."
+      },
+      {
+        "label": "icon",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "actionButtons",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "containerClassName, titleClassName, valueClassName"
       },
       {
         "label": "Key exports",
-        "description": "StatCard, StatCardGrid, StatCardSlot, StatGrid, type StatCardProps, type StatCardTrend"
+        "description": "StatCard, StatCardGrid, StatCardSlot, StatGrid"
       }
     ],
     "exampleCode": "import { StatCard } from \"@hilum/ui\"\n\n<StatCard label=\"Total users\" value=\"24,521\" />",
@@ -5820,12 +8305,36 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "defaultOpen, open, onOpenChange, children, steps, label"
+        "label": "labels",
+        "description": "Partial<ThinkingStepsLabels> — Override the built-in English strings (used by the `steps` shorthand)."
+      },
+      {
+        "label": "defaultOpen",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "open",
+        "description": "boolean"
+      },
+      {
+        "label": "onOpenChange",
+        "description": "(open: boolean) => void"
+      },
+      {
+        "label": "children",
+        "description": "ReactNode"
+      },
+      {
+        "label": "steps",
+        "description": "Array<{ label: string; status?: ThinkingStepStatus | \"current\"; description?: string; }>"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
-        "description": "ThinkingSteps, ThinkingStepsHeader, ThinkingStepsContent, ThinkingStep, ThinkingStepDetails, ThinkingStepSources"
+        "description": "ThinkingSteps, ThinkingStepsHeader, ThinkingStepsContent, ThinkingStep, ThinkingStepDetails, ThinkingStepSources, ThinkingStepSource, ThinkingStepImage"
       }
     ],
     "exampleCode": null,
@@ -5851,12 +8360,48 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "title, subtitle, children, actionButtons, icon, contentPadding"
+        "label": "title",
+        "description": "string"
       },
       {
-        "label": "Key exports",
-        "description": "TitledCard, type TitledCardProps"
+        "label": "subtitle",
+        "description": "string"
+      },
+      {
+        "label": "children",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "actionButtons",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "icon",
+        "description": "React.ComponentType<{ className?: string }>"
+      },
+      {
+        "label": "contentPadding",
+        "description": "\"default\" | \"flush\" | \"flush-mobile\" · default \"default\""
+      },
+      {
+        "label": "mobileSurface",
+        "description": "\"default\" | \"flat\" | \"flush\" · default \"flush\""
+      },
+      {
+        "label": "className",
+        "description": "string"
+      },
+      {
+        "label": "contentClassName",
+        "description": "string"
+      },
+      {
+        "label": "containerClassName",
+        "description": "string"
+      },
+      {
+        "label": "titleClassName",
+        "description": "string"
       }
     ],
     "exampleCode": "import { Button, TitledCard } from \"@hilum/ui\"\nimport { BarChart3, Plus } from \"lucide-react\"\n\n<TitledCard\n  title=\"Campaign performance\"\n  subtitle=\"Live metrics from active acquisition campaigns.\"\n  icon={BarChart3}\n  actionButtons={<Button size=\"sm\"><Plus /> New report</Button>}\n>\n  <div>Card content</div>\n</TitledCard>",
@@ -5882,15 +8427,47 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "originalHandle, nextHandle, pathPrefix, checked, onCheckedChange, title"
+        "label": "pathPrefix",
+        "description": "string · required"
       },
       {
-        "label": "Key exports",
-        "description": "UrlRedirectPrompt, hasUrlHandleChanged, normalizeUrlHandle, urlResourcePath"
+        "label": "checked",
+        "description": "boolean · required"
+      },
+      {
+        "label": "onCheckedChange",
+        "description": "(checked: boolean) => void · required"
+      },
+      {
+        "label": "originalHandle",
+        "description": "string"
+      },
+      {
+        "label": "nextHandle",
+        "description": "string"
+      },
+      {
+        "label": "title",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "switchLabel",
+        "description": "string"
+      },
+      {
+        "label": "labels",
+        "description": "Partial<UrlRedirectPromptLabels> — Override the built-in English strings. `title` / `description` / `switchLabel` props take precedence over these."
+      },
+      {
+        "label": "className",
+        "description": "string"
       }
     ],
-    "exampleCode": "import { UrlRedirectPrompt } from \"@hilum/ui\"\n\n<UrlRedirectPrompt\n  originalHandle=\"linen-shirt\"\n  nextHandle={handle}\n  pathPrefix=\"products\"\n  checked={createRedirect}\n  onCheckedChange={setCreateRedirect}\n/>",
+    "exampleCode": "import { UrlRedirectPrompt } from \"@hilum/ui/ai\"\n\n<UrlRedirectPrompt\n  originalHandle=\"linen-shirt\"\n  nextHandle={handle}\n  pathPrefix=\"products\"\n  checked={createRedirect}\n  onCheckedChange={setCreateRedirect}\n/>",
     "kind": "component",
     "path": "/molecules/url-redirect-prompt/",
     "summary": "Redirect recommendation callout shown when an editable URL handle changes.",
@@ -5913,8 +8490,48 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "Props",
-        "description": "label, value, max, percent, valueLabel, showPercent"
+        "label": "label",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "value",
+        "description": "number"
+      },
+      {
+        "label": "max",
+        "description": "number"
+      },
+      {
+        "label": "percent",
+        "description": "number"
+      },
+      {
+        "label": "valueLabel",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "showPercent",
+        "description": "boolean"
+      },
+      {
+        "label": "layout",
+        "description": "\"inline\" | \"stacked\" · default \"stacked\""
+      },
+      {
+        "label": "tone",
+        "description": "\"success\" | \"warning\" | \"destructive\" | \"primary\" | \"muted\""
+      },
+      {
+        "label": "barClassName",
+        "description": "string"
+      },
+      {
+        "label": "indicatorClassName",
+        "description": "string"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (278)."
       }
     ],
     "exampleCode": "import { UsageBar } from \"@hilum/ui\"\n\n<UsageBar label=\"Products\" value={430} max={500} />\n<UsageBar label=\"Orders / month\" value={6200} max={10000} />\n<UsageBar label=\"Bandwidth (GB)\" value={82} max={100} />",

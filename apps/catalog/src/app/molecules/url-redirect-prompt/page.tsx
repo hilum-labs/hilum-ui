@@ -2,11 +2,12 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { Field, Input, UrlRedirectPrompt } from "@hilum/ui";
+import { Field, Input } from "@hilum/ui";
+import { UrlRedirectPrompt } from "@hilum/ui/ai";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
-  prompt: `import { UrlRedirectPrompt } from "@hilum/ui"
+  prompt: `import { UrlRedirectPrompt } from "@hilum/ui/ai"
 
 <UrlRedirectPrompt
   originalHandle="linen-shirt"

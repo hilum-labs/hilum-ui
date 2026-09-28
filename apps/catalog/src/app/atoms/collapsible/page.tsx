@@ -73,19 +73,19 @@ function CollapsiblePage() {
               <CollapsibleContent>
                 <div className="flex flex-col gap-0.5 pb-2">
                   <a
-                    href="#"
+                    href="#my-voices"
                     className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted"
                   >
                     My voices
                   </a>
                   <a
-                    href="#"
+                    href="#voice-library"
                     className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted"
                   >
                     Voice library
                   </a>
                   <a
-                    href="#"
+                    href="#voice-design"
                     className="flex min-h-10 items-center rounded-md px-2 text-sm text-muted-foreground hover:bg-muted"
                   >
                     Voice design

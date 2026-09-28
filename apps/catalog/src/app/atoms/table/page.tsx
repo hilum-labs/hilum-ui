@@ -423,8 +423,6 @@ function CheckboxTable() {
   );
 }
 
-type SortDir = "asc" | "desc" | null;
-
 function SortableTable() {
   const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(null);
 
@@ -729,7 +727,10 @@ function TablePage() {
                   return (
                     <Fragment key={group}>
                       <TableRow className="hover:bg-transparent">
-                        <TableCell colSpan={4} className="bg-muted py-2 label text-muted-foreground">
+                        <TableCell
+                          colSpan={4}
+                          className="bg-muted py-2 label text-muted-foreground"
+                        >
                           {group}
                         </TableCell>
                       </TableRow>
@@ -823,7 +824,9 @@ function TablePage() {
                       {line.description}
                     </TableCell>
                     <TableCell className="text-right text-muted-foreground">{line.hrs}h</TableCell>
-                    <TableCell className="text-right text-muted-foreground">${line.rate}/hr</TableCell>
+                    <TableCell className="text-right text-muted-foreground">
+                      ${line.rate}/hr
+                    </TableCell>
                     <TableCell className="text-right font-medium text-foreground">
                       ${line.amount.toLocaleString()}
                     </TableCell>

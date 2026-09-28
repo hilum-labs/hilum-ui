@@ -22,7 +22,8 @@ export const inputFocusWithinClasses =
 export const iconStrokeClasses =
   "[&_svg]:transition-[stroke-width,transform,color] [&_svg]:duration-150 [&_svg]:ease-out group-hover:[&_svg]:stroke-[2]";
 
-export const controlSurfaceClasses = "border border-border bg-background hover:border-border-strong";
+export const controlSurfaceClasses =
+  "border border-border bg-background hover:border-border-strong";
 
 export const surfaceElevationClasses = {
   flat: "border border-border bg-card",

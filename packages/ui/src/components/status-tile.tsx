@@ -80,9 +80,7 @@ function StatusTile({
           className="shrink-0"
         />
       </div>
-      {description ? (
-        <p className="body-sm mt-3 text-muted-foreground">{description}</p>
-      ) : null}
+      {description ? <p className="body-sm mt-3 text-muted-foreground">{description}</p> : null}
       {meta ? <div className="mt-3 min-w-0 text-muted-foreground">{meta}</div> : null}
     </div>
   );

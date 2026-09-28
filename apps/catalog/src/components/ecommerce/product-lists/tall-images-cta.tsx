@@ -37,7 +37,7 @@ export default function TallImagesCta() {
                 <p className="caption mt-1 text-ground-400">{product.price}</p>
               </div>
               <a
-                href="#"
+                href="#shop-now"
                 className="inline-flex items-center gap-2 label text-brand-primary transition-opacity hover:opacity-80"
               >
                 Shop now

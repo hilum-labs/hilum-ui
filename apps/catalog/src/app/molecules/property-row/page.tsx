@@ -87,7 +87,9 @@ function PropertyRowPage() {
             <PropertyRow layout="inline" labelWidth={64} label="Opacity">
               <Slider
                 value={[opacity]}
-                onValueChange={([v]) => setOpacity(v)}
+                onValueChange={([v]) => {
+                  if (v !== undefined) setOpacity(v);
+                }}
                 min={0}
                 max={100}
                 aria-label="Opacity"

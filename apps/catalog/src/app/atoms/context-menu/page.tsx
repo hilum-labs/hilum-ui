@@ -133,7 +133,9 @@ function ContextMenuPage() {
             >
               <ContextMenu>
                 <ContextMenuTrigger className="flex w-full max-w-sm cursor-default items-center justify-center rounded-xl border border-dashed border-border bg-muted p-8">
-                  <span className="body text-muted-foreground">Right-click anywhere in this area</span>
+                  <span className="body text-muted-foreground">
+                    Right-click anywhere in this area
+                  </span>
                 </ContextMenuTrigger>
                 <ContextMenuContent>
                   <ContextMenuItem>New Tab</ContextMenuItem>

@@ -387,8 +387,8 @@ function HomePage() {
             <CardHeader>
               <CardTitle className="subheading">Install the package</CardTitle>
               <CardDescription className="body">
-                Add <code className="font-mono text-muted-foreground">@hilum/ui</code> to your project,
-                import the tokens CSS, and start using components.
+                Add <code className="font-mono text-muted-foreground">@hilum/ui</code> to your
+                project, import the tokens CSS, and start using components.
               </CardDescription>
             </CardHeader>
             <CardContent className="px-0 pb-0">
@@ -401,10 +401,10 @@ function HomePage() {
                     <span className="text-ground-500">{`/* globals.css */`}</span>
                     {"\n"}
                     <span className="text-brand-secondary">@import</span>
-                    <span className="text-ground-300"> "@hilum/ui/tokens.css";</span>
+                    <span className="text-ground-300"> &quot;@hilum/ui/tokens.css&quot;;</span>
                     {"\n"}
                     <span className="text-brand-secondary">@import</span>
-                    <span className="text-ground-300"> "@hilum/ui/fonts.css";</span>
+                    <span className="text-ground-300"> &quot;@hilum/ui/fonts.css&quot;;</span>
                   </code>
                 </pre>
               </div>
@@ -509,7 +509,11 @@ function PackageCard({ pkg }: { pkg: PackageDoc }) {
               <CardDescription className="caption">v{pkg.version}</CardDescription>
             </div>
           </div>
-          <Package size={16} strokeWidth={1.75} className="mt-1 shrink-0 text-muted-foreground/70" />
+          <Package
+            size={16}
+            strokeWidth={1.75}
+            className="mt-1 shrink-0 text-muted-foreground/70"
+          />
         </div>
         <CardDescription className="body">{pkg.description}</CardDescription>
       </CardHeader>
@@ -591,11 +595,19 @@ function ComingSoonCard({ cat }: { cat: Category }) {
 function Stat({ label, value, active }: { label: string; value: string; active: boolean }) {
   return (
     <div>
-      <p className={cn("heading font-medium", active ? "text-foreground" : "text-muted-foreground/70")}>
+      <p
+        className={cn(
+          "heading font-medium",
+          active ? "text-foreground" : "text-muted-foreground/70",
+        )}
+      >
         {value}
       </p>
       <p
-        className={cn("mt-0.5 caption font-medium", active ? "text-muted-foreground" : "text-muted-foreground/70")}
+        className={cn(
+          "mt-0.5 caption font-medium",
+          active ? "text-muted-foreground" : "text-muted-foreground/70",
+        )}
       >
         {label}
       </p>

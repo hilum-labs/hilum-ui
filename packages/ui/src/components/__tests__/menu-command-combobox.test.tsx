@@ -24,8 +24,14 @@ describe("MenuItem roles", () => {
         <MenuItem index={1} label="B" checked />
       </Dropdown>,
     );
-    expect(screen.getByRole("menuitemradio", { name: "A" })).toHaveAttribute("aria-checked", "false");
-    expect(screen.getByRole("menuitemradio", { name: "B" })).toHaveAttribute("aria-checked", "true");
+    expect(screen.getByRole("menuitemradio", { name: "A" })).toHaveAttribute(
+      "aria-checked",
+      "false",
+    );
+    expect(screen.getByRole("menuitemradio", { name: "B" })).toHaveAttribute(
+      "aria-checked",
+      "true",
+    );
   });
 
   it("uses radio semantics when the Dropdown tracks a checkedIndex", () => {
@@ -34,7 +40,10 @@ describe("MenuItem roles", () => {
         <MenuItem index={0} label="A" />
       </Dropdown>,
     );
-    expect(screen.getByRole("menuitemradio", { name: "A" })).toHaveAttribute("aria-checked", "false");
+    expect(screen.getByRole("menuitemradio", { name: "A" })).toHaveAttribute(
+      "aria-checked",
+      "false",
+    );
   });
 
   it("honours an explicit type", () => {
@@ -44,7 +53,10 @@ describe("MenuItem roles", () => {
         <MenuItem index={1} label="Reset" type="item" checked />
       </Dropdown>,
     );
-    expect(screen.getByRole("menuitemcheckbox", { name: "Wrap" })).toHaveAttribute("aria-checked", "true");
+    expect(screen.getByRole("menuitemcheckbox", { name: "Wrap" })).toHaveAttribute(
+      "aria-checked",
+      "true",
+    );
     expect(screen.getByRole("menuitem", { name: "Reset" })).not.toHaveAttribute("aria-checked");
   });
 

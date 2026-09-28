@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { type LucideIcon, BarChart2, ChevronDown, Globe, Layers, Shield, Zap } from "lucide-react";
+import { type LucideIcon, BarChart2, ChevronDown, Layers, Shield, Zap } from "lucide-react";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { cn } from "@hilum/ui";

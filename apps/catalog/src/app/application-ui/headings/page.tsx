@@ -56,7 +56,9 @@ function HeadingsPage() {
     <div className="min-h-screen bg-muted">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <p className="caption mb-2 text-muted-foreground">Design System / Application UI / Headings</p>
+          <p className="caption mb-2 text-muted-foreground">
+            Design System / Application UI / Headings
+          </p>
           <h1 className="display mb-2 text-foreground">Headings</h1>
           <p className="body mb-4 text-muted-foreground">
             Card headings, page headings, and section headings with actions, avatars, and metadata.

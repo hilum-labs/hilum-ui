@@ -31,7 +31,7 @@ const SITE_NAME = "Hilum UI";
 const SITE_URL = "https://ui.hilum.dev";
 const SITE_DESCRIPTION =
   "Hilum UI design system documentation, component catalog, and theming reference.";
-const REPOSITORY_URL = "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui";
+const REPOSITORY_URL = "https://github.com/hilum-labs/hilum-ui";
 const UPDATED_AT = new Date().toISOString();
 
 // Known runtime dependencies a block might use
@@ -395,6 +395,33 @@ function buildLlmsTxt() {
     "- `createTheme({ primary, secondary })` returns `{ css, palette }`",
     "- `applyTheme({ primary, secondary })` injects theme CSS in the browser",
     "- `<ThemeProvider primary secondary>` applies theme CSS from React",
+    "",
+    "## Entry Points",
+    "",
+    "- `@hilum/ui` — components, providers, hooks and utilities (client components)",
+    "- `@hilum/ui/ai` — AI / chat components: AskUserQuestions, ChatMessage, InputMessage, ThinkingIndicator, ThinkingSteps (+ ThinkingStep* parts), UrlRedirectPrompt. Moved off the main entry in 4.0 — import them from here.",
+    "- `@hilum/ui/form` — react-hook-form bindings (Form, FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage, useFormField); needs the optional peer `react-hook-form`",
+    "- `@hilum/ui/icon-libraries` — alternative icon sets for IconProvider (iconLibraries, phosphorIcons, tablerIcons, hugeiconsIcons, untitleduiIcons); needs the matching optional icon peers",
+    "- `@hilum/ui/icons` — curated lucide icons (server-safe)",
+    "- `@hilum/ui/tokens` — JS design tokens (server-safe)",
+    "- `@hilum/ui/create-theme` — createTheme, applyTheme, ThemeProvider",
+    "- `@hilum/ui/tokens.css`, `@hilum/ui/fonts.css` — stylesheets",
+    "",
+    "```tsx",
+    'import { Button, Input } from "@hilum/ui"',
+    'import { ChatMessage, InputMessage } from "@hilum/ui/ai"',
+    'import { Form, FormField } from "@hilum/ui/form"',
+    "```",
+    "",
+    "AI components accept a `labels` prop to localize their built-in strings; English defaults are exported (e.g. `INPUT_MESSAGE_DEFAULT_LABELS`).",
+    "",
+    "## Providers",
+    "",
+    "All optional; components work without them.",
+    "",
+    '- `<HilumProvider reducedMotion="user" | "always" | "never">` — reduced-motion policy for every Hilum animation (default `"user"` follows the OS `prefers-reduced-motion`; movement becomes instant, opacity/colour still fade). `MotionProvider` is an alias; `usePrefersReducedMotion()` reads the effective setting.',
+    "- `<LinkProvider value={Link}>` — router link component used by link-rendering components (breadcrumbs, nav items, pagination, …) so they navigate client-side. Receives `{ href, className, children, … }`; react-router users pass `({ href, ...rest }) => <Link to={href} {...rest} />`.",
+    "- `<IconProvider libraries defaultLibrary>` — switch the icon set (see `@hilum/ui/icon-libraries`).",
     "",
     "## Documentation",
     "",

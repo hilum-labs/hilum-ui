@@ -247,7 +247,9 @@ function TextareaPage() {
                   <div
                     className={cn(
                       "min-h-[144px] p-3 body",
-                      previewContent ? "text-foreground whitespace-pre-wrap" : "text-muted-foreground",
+                      previewContent
+                        ? "text-foreground whitespace-pre-wrap"
+                        : "text-muted-foreground",
                     )}
                   >
                     {previewContent || "Nothing to preview yet."}

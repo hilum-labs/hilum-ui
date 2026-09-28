@@ -21,7 +21,8 @@ interface DesignerValueItem<K extends string> {
 interface DesignerValueControlBaseProps<K extends string> {
   label?: React.ReactNode;
   values: Record<K, DesignerControlValue>;
-  items: readonly DesignerValueItem<K>[];
+  /** Non-empty: the first item backs the single "All" input when linked. */
+  items: readonly [DesignerValueItem<K>, ...DesignerValueItem<K>[]];
   onChange: (key: K, value: number) => void;
   onChangeAll?: (value: number) => void;
   onCommit?: () => void;
@@ -45,13 +46,13 @@ interface DesignerValueControlBaseProps<K extends string> {
   unlinkLabel?: string;
 }
 
-interface TwoValueControlProps<K extends string = string>
-  extends DesignerValueControlBaseProps<K> {
+interface TwoValueControlProps<K extends string = string> extends DesignerValueControlBaseProps<K> {
   items: readonly [DesignerValueItem<K>, DesignerValueItem<K>];
 }
 
-interface FourValueControlProps<K extends string = string>
-  extends DesignerValueControlBaseProps<K> {
+interface FourValueControlProps<
+  K extends string = string,
+> extends DesignerValueControlBaseProps<K> {
   items: readonly [
     DesignerValueItem<K>,
     DesignerValueItem<K>,
@@ -83,7 +84,7 @@ type CornerRadiusControlProps = Omit<
 };
 
 function getSharedValue<K extends string>(
-  items: readonly DesignerValueItem<K>[],
+  items: readonly [DesignerValueItem<K>, ...DesignerValueItem<K>[]],
   values: Record<K, DesignerControlValue>,
 ) {
   const first = values[items[0].key];
@@ -318,12 +319,7 @@ function CornerRadiusControl(props: CornerRadiusControlProps) {
   return <FourValueControl {...props} items={cornerItems} min={props.min ?? 0} />;
 }
 
-export {
-  CornerRadiusControl,
-  FourValueControl,
-  SpacingControl,
-  TwoValueControl,
-};
+export { CornerRadiusControl, FourValueControl, SpacingControl, TwoValueControl };
 export type {
   CornerRadiusControlProps,
   CornerSide,

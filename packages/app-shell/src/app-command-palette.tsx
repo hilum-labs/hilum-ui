@@ -1,6 +1,7 @@
 import {
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ComponentProps,
   type MouseEvent,
@@ -19,6 +20,7 @@ import {
   cn,
 } from "@hilum/ui";
 import { Search } from "lucide-react";
+import { flattenNavItems } from "./nav-utils";
 import type { NavSection } from "./types";
 
 const APP_COMMAND_PALETTE_EVENT = "hilum:open-command-palette";
@@ -98,7 +100,7 @@ function AppCommandButton({
       {...props}
     >
       {icon ?? <Search className="size-3.5" />}
-      <span className="min-w-0 flex-1 truncate text-left">{label}</span>
+      <span className="min-w-0 flex-1 truncate text-start">{label}</span>
       {showShortcut && shortcut ? <Kbd>{shortcut}</Kbd> : null}
     </Button>
   );
@@ -129,6 +131,13 @@ function AppCommandPalette({
     onOpenChange?.(nextOpen);
   };
 
+  // Latest open state + setter for the global listeners, so they subscribe once
+  // instead of re-binding on every toggle or parent render.
+  const latest = useRef({ isOpen, setOpen });
+  useEffect(() => {
+    latest.current = { isOpen, setOpen };
+  });
+
   useEffect(() => {
     if (typeof window === "undefined" || typeof document === "undefined") return;
 
@@ -136,12 +145,12 @@ function AppCommandPalette({
       if (!listenForHotkey) return;
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        setOpen(!isOpen);
+        latest.current.setOpen(!latest.current.isOpen);
       }
     }
 
     function handleOpen() {
-      setOpen(true);
+      latest.current.setOpen(true);
     }
 
     document.addEventListener("keydown", handleKeyDown);
@@ -151,11 +160,11 @@ function AppCommandPalette({
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener(openEventName, handleOpen);
     };
-  }, [isOpen, listenForHotkey, openEventName]);
+  }, [listenForHotkey, openEventName]);
 
   const commandItems = useMemo(() => {
     const navigationItems = sections.flatMap((section) =>
-      section.items
+      flattenNavItems(section.items)
         .filter((item) => !item.disabled)
         .map<AppCommandPaletteItem>((item) => {
           const Icon = item.icon;
@@ -223,7 +232,7 @@ function AppCommandPalette({
                   className="cursor-pointer"
                 >
                   {item.icon && (
-                    <span className="mr-2 flex size-4 shrink-0 items-center justify-center text-muted-foreground">
+                    <span className="me-2 flex size-4 shrink-0 items-center justify-center text-muted-foreground">
                       {item.icon}
                     </span>
                   )}

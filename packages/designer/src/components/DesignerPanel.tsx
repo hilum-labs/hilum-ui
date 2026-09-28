@@ -77,29 +77,29 @@ function DesignerPanel({
 
     return (
       <DensityProvider density={density} wrap={false}>
-      <Sheet {...sheetProps}>
-        <SheetContent
-          data-density={density}
-          side={sheetSide}
-          className={cn(
-            "flex max-h-[min(86svh,44rem)] flex-col overflow-hidden p-0",
-            sheetSide === "bottom" && "rounded-t-2xl",
-            sheetClassName,
-          )}
-        >
-          <SheetHeader
-            className={cn(sheetTitle ? "mb-0 border-b border-border px-4 py-3" : "sr-only")}
+        <Sheet {...sheetProps}>
+          <SheetContent
+            data-density={density}
+            side={sheetSide}
+            className={cn(
+              "flex max-h-[min(86svh,44rem)] flex-col overflow-hidden p-0",
+              sheetSide === "bottom" && "rounded-t-2xl",
+              sheetClassName,
+            )}
           >
-            <SheetTitle>{sheetTitle ?? `${side} panel`}</SheetTitle>
-            <SheetDescription className={sheetDescription ? undefined : "sr-only"}>
-              {resolvedSheetDescription}
-            </SheetDescription>
-          </SheetHeader>
-          <div className="flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
-            {children}
-          </div>
-        </SheetContent>
-      </Sheet>
+            <SheetHeader
+              className={cn(sheetTitle ? "mb-0 border-b border-border px-4 py-3" : "sr-only")}
+            >
+              <SheetTitle>{sheetTitle ?? `${side} panel`}</SheetTitle>
+              <SheetDescription className={sheetDescription ? undefined : "sr-only"}>
+                {resolvedSheetDescription}
+              </SheetDescription>
+            </SheetHeader>
+            <div className="flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
+              {children}
+            </div>
+          </SheetContent>
+        </Sheet>
       </DensityProvider>
     );
   }
@@ -120,26 +120,26 @@ function DesignerPanel({
 
   return (
     <DensityProvider density={density} wrap={false}>
-    <aside
-      data-side={side}
-      data-variant={variant}
-      data-density={density}
-      className={cn(
-        "flex min-w-0 max-w-full shrink-0 flex-col overflow-hidden bg-card text-foreground",
-        variant === "inline" && bordered && (side === "left" ? "border-r" : "border-l"),
-        variant === "inline" && bordered && "border-border",
-        variant === "floating" && [
-          "absolute z-20 rounded-lg shadow-surface-3",
-          "[interpolate-size:allow-keywords] transition-[height,max-height,opacity,transform,box-shadow] duration-200 ease-out motion-reduce:transition-none",
-        ],
-        className,
-      )}
-      style={floatingStyle}
-    >
-      <div className="flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
-        {children}
-      </div>
-    </aside>
+      <aside
+        data-side={side}
+        data-variant={variant}
+        data-density={density}
+        className={cn(
+          "flex min-w-0 max-w-full shrink-0 flex-col overflow-hidden bg-card text-foreground",
+          variant === "inline" && bordered && (side === "left" ? "border-r" : "border-l"),
+          variant === "inline" && bordered && "border-border",
+          variant === "floating" && [
+            "absolute z-20 rounded-lg shadow-surface-3",
+            "[interpolate-size:allow-keywords] transition-[height,max-height,opacity,transform,box-shadow] duration-200 ease-out motion-reduce:transition-none",
+          ],
+          className,
+        )}
+        style={floatingStyle}
+      >
+        <div className="flex min-w-0 flex-1 flex-col overflow-x-hidden overflow-y-auto">
+          {children}
+        </div>
+      </aside>
     </DensityProvider>
   );
 }

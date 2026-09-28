@@ -5,7 +5,6 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
-
 const CODE = {
   tabs: `import { Tabs, TabsList, TabsTrigger, TabsContent } from "@hilum/ui"
 
@@ -39,8 +38,16 @@ const OVERFLOW_CODE = `import { Tabs, TabsList, TabsTrigger } from "@hilum/ui"
   </TabsList>
 </Tabs>`;
 
-const OVERFLOW_TABS = ["General", "Checkout", "Payments", "Shipping", "Taxes", "Notifications", "Domains", "Policies"];
-
+const OVERFLOW_TABS = [
+  "General",
+  "Checkout",
+  "Payments",
+  "Shipping",
+  "Taxes",
+  "Notifications",
+  "Domains",
+  "Policies",
+];
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -67,7 +74,9 @@ function TabsPage() {
           <span className="font-semibold text-foreground">Tabs</span>
         </div>
         <h1 className="display mb-2 text-foreground">Tabs</h1>
-        <p className="body max-w-lg text-muted-foreground">Organises content into switchable panels.</p>
+        <p className="body max-w-lg text-muted-foreground">
+          Organises content into switchable panels.
+        </p>
       </div>
 
       <PageDocs path="/atoms/tabs/" />

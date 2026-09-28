@@ -1,5 +1,5 @@
 // Shared types for @hilum/app-shell.
-import type { ComponentType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type { LucideIcon } from "lucide-react";
 
 export interface NavItem {
@@ -15,6 +15,14 @@ export interface NavItem {
   disabled?: boolean;
   /** Optional callback (e.g. to close a mobile drawer). */
   onClick?: (event: unknown) => void;
+  /**
+   * Nested sub-items. The sidebar and drawer navigation render them as a
+   * collapsible group under this item; it auto-expands while any descendant
+   * is `active`.
+   */
+  children?: NavItem[];
+  /** Initial expanded state for an item with `children` (default: expanded only when a descendant is active). */
+  defaultExpanded?: boolean;
 }
 
 export interface NavSection {
@@ -38,22 +46,11 @@ export interface User {
 
 /**
  * Component used to render anchors. Apps inject their router's link via
- * `<AppShell linkComponent={Link}>` — see D13 in PLATFORM_PLAN.md.
- *
- * The injected component must accept at minimum:
- *   - `href: string` (the URL)
- *   - `children: ReactNode`
- *   - `className?: string`
- *   - `onClick?: ...`
+ * `<AppShell linkComponent={Link}>` (or `@hilum/ui`'s `<LinkProvider>`) — see
+ * D13 in PLATFORM_PLAN.md. The context lives in `@hilum/ui`, so a single
+ * provider drives links in both `@hilum/ui` and `@hilum/app-shell`.
  *
  * `react-router-dom` users pass a small adapter:
  *   `linkComponent={({ href, ...rest }) => <Link to={href} {...rest} />}`
  */
-export type LinkComponentProps = {
-  href: string;
-  className?: string;
-  children?: ReactNode;
-  onClick?: (event: unknown) => void;
-  [key: string]: unknown;
-};
-export type LinkComponent = ComponentType<LinkComponentProps>;
+export type { LinkComponent, LinkComponentProps } from "@hilum/ui";

@@ -43,7 +43,8 @@ function CodeBlockPage() {
         </div>
         <h1 className="display mb-2 text-foreground">Code Block</h1>
         <p className="body max-w-lg text-muted-foreground">
-          Styled, scrollable pre with copy-to-clipboard for API keys, webhook payloads, snippets and logs.
+          Styled, scrollable pre with copy-to-clipboard for API keys, webhook payloads, snippets and
+          logs.
         </p>
       </div>
 
@@ -55,7 +56,11 @@ function CodeBlockPage() {
             <h2 className="label text-muted-foreground">Code Block</h2>
             <div className="h-px flex-1 bg-border" />
           </div>
-          <PreviewBlock title="Webhook payload" description="Language label, max height and copy button." code={CODE}>
+          <PreviewBlock
+            title="Webhook payload"
+            description="Language label, max height and copy button."
+            code={CODE}
+          >
             <Demo />
           </PreviewBlock>
         </section>

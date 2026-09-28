@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { Users, ShoppingCart, TrendingUp, DollarSign, Activity } from "lucide-react";
+import { Users, ShoppingCart, DollarSign, Activity } from "lucide-react";
 import { StatCard } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { StatGrid } from "@hilum/ui";
@@ -67,7 +67,6 @@ const GRID_CODE = `import { StatCard, StatGrid } from "@hilum/ui"
     description="Up is bad here" />
   <StatCard label="Conversion" loading />
 </StatGrid>`;
-
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -217,9 +216,20 @@ function StatCardPage() {
           >
             <div className="w-full">
               <StatGrid columns={4}>
-                <StatCard label="Total sales" value="$12,480" trend={{ value: "+8.1%", direction: "up" }} description="Last 30 days" href="#" />
+                <StatCard
+                  label="Total sales"
+                  value="$12,480"
+                  trend={{ value: "+8.1%", direction: "up" }}
+                  description="Last 30 days"
+                  href="#"
+                />
                 <StatCard label="Orders" value="312" description="24 to fulfil" />
-                <StatCard label="Refunds" value="$640" trend={{ value: "+2.4%", direction: "up", tone: "negative" }} description="Up is bad here" />
+                <StatCard
+                  label="Refunds"
+                  value="$640"
+                  trend={{ value: "+2.4%", direction: "up", tone: "negative" }}
+                  description="Up is bad here"
+                />
                 <StatCard label="Conversion" loading />
               </StatGrid>
             </div>

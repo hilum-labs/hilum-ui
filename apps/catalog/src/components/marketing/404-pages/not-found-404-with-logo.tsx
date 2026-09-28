@@ -12,7 +12,7 @@ export default function NotFound404WithLogo() {
         Sorry, we couldn&apos;t find the page you&apos;re looking for.
       </p>
       <div className="mt-8">
-        <a href="#" className="body font-semibold text-brand-primary hover:text-brand-primary/80">
+        <a href="/" className="body font-semibold text-brand-primary hover:text-brand-primary/80">
           Go back home <ArrowRight size={14} className="inline" />
         </a>
       </div>

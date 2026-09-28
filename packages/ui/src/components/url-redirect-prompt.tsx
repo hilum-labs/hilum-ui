@@ -22,7 +22,29 @@ function hasUrlHandleChanged(originalHandle?: string, nextHandle?: string): bool
   return Boolean(original && next && original !== next);
 }
 
+/** Localizable strings. Every entry has an English default. */
+interface UrlRedirectPromptLabels {
+  /** Callout title. */
+  title: React.ReactNode;
+  /** Accessible name of the redirect switch. */
+  switchLabel: string;
+  /** Default body copy; receives the normalized `/prefix/handle` paths, which
+   *  the default wraps in `<span>`s. */
+  description: (fromPath: React.ReactNode, toPath: React.ReactNode) => React.ReactNode;
+}
+
+const DEFAULT_LABELS: UrlRedirectPromptLabels = {
+  title: "Create URL redirect",
+  switchLabel: "Create URL redirect",
+  description: (fromPath, toPath) => (
+    <>
+      Preserve search rankings and old links by redirecting {fromPath} to {toPath}.
+    </>
+  ),
+};
+
 interface UrlRedirectPromptProps {
+  ref?: React.Ref<HTMLDivElement>;
   originalHandle?: string;
   nextHandle?: string;
   pathPrefix: string;
@@ -31,6 +53,9 @@ interface UrlRedirectPromptProps {
   title?: React.ReactNode;
   description?: React.ReactNode;
   switchLabel?: string;
+  /** Override the built-in English strings. `title` / `description` /
+   *  `switchLabel` props take precedence over these. */
+  labels?: Partial<UrlRedirectPromptLabels>;
   className?: string;
 }
 
@@ -40,33 +65,47 @@ function UrlRedirectPrompt({
   pathPrefix,
   checked,
   onCheckedChange,
-  title = "Create URL redirect",
+  title,
   description,
-  switchLabel = "Create URL redirect",
+  switchLabel,
+  labels: labelsProp,
   className,
+  ref,
 }: UrlRedirectPromptProps) {
   if (!hasUrlHandleChanged(originalHandle, nextHandle)) return null;
 
   const fromPath = urlResourcePath(pathPrefix, originalHandle || "");
   const toPath = urlResourcePath(pathPrefix, nextHandle || "");
   const calloutProps = className ? { className } : {};
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
 
   return (
     <Callout
+      ref={ref}
+      data-slot="url-redirect-prompt"
       tone="warning"
       compact
-      icon={<ArrowRight aria-hidden="true" />}
-      title={title}
+      icon={<ArrowRight aria-hidden="true" className="rtl:-scale-x-100" />}
+      title={title ?? labels.title}
       actions={
-        <Switch checked={checked} onCheckedChange={onCheckedChange} aria-label={switchLabel} />
+        <Switch
+          checked={checked}
+          onCheckedChange={onCheckedChange}
+          aria-label={switchLabel ?? labels.switchLabel}
+        />
       }
       {...calloutProps}
     >
       {description || (
         <p className="body-sm text-pretty text-muted-foreground">
-          Preserve search rankings and old links by redirecting{" "}
-          <span className="font-mono text-foreground">{fromPath}</span> to{" "}
-          <span className="font-mono text-foreground">{toPath}</span>.
+          {labels.description(
+            <span className="font-mono text-foreground" dir="ltr">
+              {fromPath}
+            </span>,
+            <span className="font-mono text-foreground" dir="ltr">
+              {toPath}
+            </span>,
+          )}
         </p>
       )}
     </Callout>
@@ -77,8 +116,9 @@ UrlRedirectPrompt.displayName = "UrlRedirectPrompt";
 
 export {
   UrlRedirectPrompt,
+  DEFAULT_LABELS as URL_REDIRECT_PROMPT_DEFAULT_LABELS,
   hasUrlHandleChanged,
   normalizeUrlHandle,
   urlResourcePath,
 };
-export type { UrlRedirectPromptProps };
+export type { UrlRedirectPromptProps, UrlRedirectPromptLabels };

@@ -33,7 +33,7 @@ function MobileDrawer({
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[min(22rem,calc(100vw-2rem))] p-4">
+      <SheetContent side="start" className="w-[min(22rem,calc(100vw-2rem))] p-4">
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
           {description && <SheetDescription>{description}</SheetDescription>}

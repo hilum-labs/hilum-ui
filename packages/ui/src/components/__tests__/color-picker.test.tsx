@@ -12,7 +12,7 @@ function UppercaseControlledPicker() {
 describe("ColorPicker", () => {
   it("tracks pointer coordinates exactly while a controlled value is normalized", async () => {
     const { container } = render(<UppercaseControlledPicker />);
-    const saturationSquare = screen.getByRole("application", {
+    const saturationSquare = screen.getByRole("slider", {
       name: "Saturation and brightness",
     });
     saturationSquare.getBoundingClientRect = () =>
@@ -69,7 +69,7 @@ describe("ColorPicker", () => {
 
   it("preserves the precise selector position when a controlled value only changes casing", async () => {
     const { container } = render(<UppercaseControlledPicker />);
-    const saturationSquare = screen.getByRole("application", {
+    const saturationSquare = screen.getByRole("slider", {
       name: "Saturation and brightness",
     });
 

@@ -1,0 +1,67 @@
+name: Deploy catalog
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - apps/catalog/**
+      - packages/**
+      - pnpm-lock.yaml
+      - .github/workflows/pages.yml
+  workflow_dispatch:
+
+# One deploy at a time; let an in-flight deploy finish, but skip queued stale runs.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build catalog
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build:packages
+
+      - run: pnpm --filter @hilum/catalog build
+
+      # Every route is prerendered to <route>/index.html. GitHub Pages serves
+      # 404.html for anything else; the client router then renders its
+      # not-found state for the real URL.
+      - name: Add 404 fallback
+        run: cp apps/catalog/dist/client/index.html apps/catalog/dist/client/404.html
+
+      - name: Check CNAME
+        run: test "$(cat apps/catalog/dist/client/CNAME)" = "ui.hilum.dev"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/catalog/dist/client
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

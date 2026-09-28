@@ -4,7 +4,6 @@ import { PageDocs } from "@/components/catalog/page-docs";
 
 import { CardHeading } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
-import { Badge } from "@hilum/ui";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -173,7 +172,11 @@ function CardHeadingPage() {
                   <div className="ml-auto">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" size="sm" className="size-8 p-0 text-muted-foreground">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          className="size-8 p-0 text-muted-foreground"
+                        >
                           <MoreHorizontal size={15} />
                         </Button>
                       </DropdownMenuTrigger>

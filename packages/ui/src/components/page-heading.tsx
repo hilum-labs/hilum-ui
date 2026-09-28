@@ -29,6 +29,8 @@ interface PageHeadingProps {
   actions?: PageHeadingAction[];
   meta?: PageHeadingMeta[];
   badge?: string | { label: string; variant?: "default" | "secondary" | "outline" | "destructive" };
+  /** Accessible name of the breadcrumb nav. */
+  breadcrumbLabel?: string;
   className?: string;
 }
 
@@ -39,16 +41,22 @@ function PageHeading({
   actions,
   meta,
   badge,
+  breadcrumbLabel = "Breadcrumb",
   className,
 }: PageHeadingProps) {
   return (
-    <div className={cn("border-b border-border pb-6", className)}>
+    <div data-slot="page-heading" className={cn("border-b border-border pb-6", className)}>
       {/* Breadcrumbs */}
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <nav className="mb-3 flex items-center gap-1.5" aria-label="Breadcrumb">
+        <nav className="mb-3 flex items-center gap-1.5" aria-label={breadcrumbLabel}>
           {breadcrumbs.map((crumb, i) => (
             <React.Fragment key={i}>
-              {i > 0 && <ChevronRight size={12} className="text-muted-foreground shrink-0" />}
+              {i > 0 && (
+                <ChevronRight
+                  size={12}
+                  className="text-muted-foreground shrink-0 rtl:-scale-x-100"
+                />
+              )}
               {crumb.href ? (
                 <a
                   href={crumb.href}

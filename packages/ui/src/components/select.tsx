@@ -1,129 +1,37 @@
 "use client";
 
-import {
-  forwardRef,
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
-  useId,
-  createContext,
-  useContext,
-  Children,
-  cloneElement,
-  isValidElement,
-  type ReactNode,
-  type HTMLAttributes,
-} from "react";
-import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import * as React from "react";
+import { Select as SelectPrimitive } from "radix-ui";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { IconComponent } from "../lib/icon-context";
 import { cn } from "../lib/utils";
 import { useDensityAttributes } from "../lib/density-context";
-import { spring } from "../lib/springs";
-import { useProximityHover } from "../hooks/use-proximity-hover";
 import { useShape } from "../lib/shape-context";
 import { useScrollEdges, ScrollEdgeCue } from "../lib/scroll-fade";
-import { Elevated } from "../lib/elevated";
+import { useFieldControl } from "../lib/field-context";
+import { surfaceClasses } from "../lib/surface-classes";
+import { SurfaceProvider, useSurface } from "../lib/surface-context";
+import {
+  mobilePopperSheetMotionClassName,
+  mobilePopperSheetPositionClassName,
+  mobilePopperSheetStyle,
+  mobilePopperSheetSurfaceClassName,
+} from "../lib/mobile-popper-sheet";
 import type { ControlDensity, ControlMobileSurface } from "./input";
 
-// ---------------------------------------------------------------------------
-// Select context
-// ---------------------------------------------------------------------------
-
-interface SelectContextValue {
-  value: string;
-  onChange: (value: string) => void;
-  open: boolean;
-  setOpen: (open: boolean) => void;
-  disabled: boolean;
-  triggerRef: React.RefObject<HTMLButtonElement | null>;
-  /** Ref callback that attaches the trigger node to `triggerRef`. */
-  registerTrigger: (node: HTMLButtonElement | null) => void;
-  /** id of the listbox, referenced by the trigger's aria-controls. */
-  listboxId: string;
-  labelMap: React.MutableRefObject<Map<string, string>>;
-}
-
-const SelectContext = createContext<SelectContextValue | null>(null);
-
-function useSelectContext() {
-  const ctx = useContext(SelectContext);
-  if (!ctx) throw new Error("Select compound components must be inside <Select>");
-  return ctx;
-}
-
-// Content context for proximity hover
-interface SelectContentContextValue {
-  registerItem: (index: number, element: HTMLElement | null) => void;
-  activeIndex: number | null;
-  checkedIndex?: number;
-}
-
-const SelectContentContext = createContext<SelectContentContextValue | null>(null);
+// Built on Radix Select: collision-aware popper positioning, typeahead,
+// full keyboard support, focus management, native form participation
+// (`name`, `required`, `form` via a hidden native <select>) and items that can
+// be wrapped in fragments / custom components.
 
 // ---------------------------------------------------------------------------
 // Select (root)
 // ---------------------------------------------------------------------------
 
-interface SelectProps {
-  children: ReactNode;
-  value?: string;
-  defaultValue?: string;
-  onValueChange?: (value: string) => void;
-  disabled?: boolean;
-  name?: string;
-  required?: boolean;
-}
+type SelectProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>;
 
-function Select({
-  children,
-  value,
-  defaultValue,
-  onValueChange,
-  disabled = false,
-  name,
-  required,
-}: SelectProps) {
-  const [internalValue, setInternalValue] = useState(defaultValue ?? "");
-  const [open, setOpen] = useState(false);
-  const currentValue = value !== undefined ? value : internalValue;
-  const triggerRef = useRef<HTMLButtonElement>(null);
-  const labelMap = useRef(new Map<string, string>());
-  const listboxId = useId();
-  const registerTrigger = useCallback((node: HTMLButtonElement | null) => {
-    triggerRef.current = node;
-  }, []);
-
-  const onChange = useCallback(
-    (v: string) => {
-      if (value === undefined) setInternalValue(v);
-      onValueChange?.(v);
-      setOpen(false);
-      requestAnimationFrame(() => triggerRef.current?.focus());
-    },
-    [value, onValueChange],
-  );
-
-  return (
-    <SelectContext.Provider
-      value={{
-        value: currentValue,
-        onChange,
-        open,
-        setOpen,
-        disabled,
-        triggerRef,
-        registerTrigger,
-        listboxId,
-        labelMap,
-      }}
-    >
-      {children}
-      {name && <input type="hidden" name={name} value={currentValue} required={required} />}
-    </SelectContext.Provider>
-  );
+function Select(props: SelectProps) {
+  return <SelectPrimitive.Root {...props} />;
 }
 
 Select.displayName = "Select";
@@ -135,8 +43,8 @@ Select.displayName = "Select";
 const triggerVariants = cva(
   [
     "group inline-flex items-center justify-between gap-2 outline-none cursor-pointer",
-    "text-[13px] h-9 px-3 min-w-[160px]",
-    "transition-all duration-80",
+    "text-[13px] h-9 px-3 min-w-40",
+    "transition-all duration-80 motion-reduce:transition-none",
     "disabled:opacity-50 disabled:pointer-events-none",
     "focus-visible:ring-2 focus-visible:ring-ring",
     "compact:h-6 compact:min-w-0 compact:gap-1 compact:px-2 compact:text-[12px] compact:rounded-[5px]",
@@ -172,87 +80,76 @@ const selectTriggerMobileSurfaceClasses: Record<ControlMobileSurface, string> = 
 };
 
 interface SelectTriggerProps
-  extends HTMLAttributes<HTMLButtonElement>, VariantProps<typeof triggerVariants> {
+  extends
+    React.ComponentProps<typeof SelectPrimitive.Trigger>,
+    VariantProps<typeof triggerVariants> {
   icon?: IconComponent;
+  /** Placeholder shown when no children are passed and nothing is selected. */
   placeholder?: string;
+  /** Error message rendered under the trigger; also sets aria-invalid. */
   error?: string;
   density?: ControlDensity;
   mobileDensity?: ControlDensity;
   mobileSurface?: ControlMobileSurface;
 }
 
-const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
-  (
-    {
-      className,
-      variant,
-      icon: Icon,
-      placeholder = "Select…",
-      error,
-      children,
-      density = "default",
-      mobileDensity = "default",
-      mobileSurface = "default",
-      ...props
-    },
-    ref,
-  ) => {
-    const { value, open, setOpen, disabled, registerTrigger, listboxId, labelMap } =
-      useSelectContext();
-    const shape = useShape();
-    const label = value ? (labelMap.current.get(value) ?? value) : undefined;
+function SelectTrigger({
+  ref,
+  className,
+  variant,
+  icon: Icon,
+  placeholder = "Select…",
+  error,
+  children,
+  density = "default",
+  mobileDensity = "default",
+  mobileSurface = "default",
+  id,
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
+  ...props
+}: SelectTriggerProps) {
+  const shape = useShape();
+  const errorId = React.useId();
+  const fieldProps = useFieldControl({
+    id,
+    disabled,
+    "aria-describedby": ariaDescribedBy ?? (error ? errorId : undefined),
+    "aria-invalid": ariaInvalid ?? (error ? true : undefined),
+    "aria-required": ariaRequired,
+  });
 
-    return (
-      <div className="flex flex-col gap-1">
-        <button
-          ref={(node) => {
-            registerTrigger(node);
-            if (typeof ref === "function") ref(node);
-            else if (ref) (ref as React.MutableRefObject<HTMLButtonElement | null>).current = node;
-          }}
-          type="button"
-          role="combobox"
-          aria-expanded={open}
-          aria-controls={open ? listboxId : undefined}
-          aria-haspopup="listbox"
-          disabled={disabled}
-          onClick={() => setOpen(!open)}
-          onKeyDown={(e) => {
-            if (
-              !open &&
-              (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "Enter" || e.key === " ")
-            ) {
-              e.preventDefault();
-              setOpen(true);
-            }
-          }}
-          aria-invalid={!!error || undefined}
-          className={cn(
-            triggerVariants({ variant }),
-            selectTriggerDensityClasses[density],
-            selectTriggerMobileDensityClasses[mobileDensity],
-            selectTriggerMobileSurfaceClasses[mobileSurface],
-            shape.input,
-            error && "border-destructive/50 hover:border-destructive/50",
-            className,
+  return (
+    <div className="flex flex-col gap-1">
+      <SelectPrimitive.Trigger
+        ref={ref}
+        data-slot="select-trigger"
+        {...fieldProps}
+        className={cn(
+          triggerVariants({ variant }),
+          selectTriggerDensityClasses[density],
+          selectTriggerMobileDensityClasses[mobileDensity],
+          selectTriggerMobileSurfaceClasses[mobileSurface],
+          shape.input,
+          error && "border-destructive/50 hover:border-destructive/50",
+          className,
+        )}
+        {...props}
+      >
+        <span className="flex items-center gap-2 min-w-0 flex-1">
+          {Icon && (
+            <Icon
+              size={16}
+              strokeWidth={1.5}
+              className="shrink-0 text-muted-foreground transition-[color,stroke-width] duration-80 group-hover:text-foreground group-hover:stroke-[2]"
+            />
           )}
-          {...props}
-        >
-          <span className="flex items-center gap-2 min-w-0 flex-1">
-            {Icon && (
-              <Icon
-                size={16}
-                strokeWidth={1.5}
-                className="shrink-0 text-muted-foreground transition-[color,stroke-width] duration-80 group-hover:text-foreground group-hover:stroke-[2]"
-              />
-            )}
-            {children ?? (
-              <span className="min-w-0 flex-1 text-left truncate">
-                {label ?? <span className="text-muted-foreground">{placeholder}</span>}
-              </span>
-            )}
-          </span>
+          {children ?? <SelectValue placeholder={placeholder} />}
+        </span>
 
+        <SelectPrimitive.Icon asChild>
           <svg
             width={16}
             height={16}
@@ -262,16 +159,21 @@ const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
+            aria-hidden="true"
             className="shrink-0 text-muted-foreground transition-colors duration-80 group-hover:text-foreground"
           >
             <path d="M6 9l6 6 6-6" />
           </svg>
-        </button>
-        {error && <span className="text-[12px] text-destructive pl-3">{error}</span>}
-      </div>
-    );
-  },
-);
+        </SelectPrimitive.Icon>
+      </SelectPrimitive.Trigger>
+      {error && (
+        <span id={errorId} className="text-[12px] text-destructive ps-3">
+          {error}
+        </span>
+      )}
+    </div>
+  );
+}
 
 SelectTrigger.displayName = "SelectTrigger";
 
@@ -279,321 +181,78 @@ SelectTrigger.displayName = "SelectTrigger";
 // SelectContent
 // ---------------------------------------------------------------------------
 
-interface SelectContentProps {
-  className?: string;
-  children: ReactNode;
+interface SelectContentProps extends React.ComponentProps<typeof SelectPrimitive.Content> {
   /** Show a fade + chevron cue at the scroll edges when the list overflows its
    *  max-height, signalling there's more to scroll. Auto-activates on overflow;
    *  set to `false` to disable. Defaults to `true`. */
   scrollFade?: boolean;
 }
 
-const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
-  ({ className, children, scrollFade = true }, ref) => {
-    const { open, setOpen, value, triggerRef, listboxId } = useSelectContext();
-    const shape = useShape();
-    const densityAttributes = useDensityAttributes();
-    const containerRef = useRef<HTMLDivElement>(null);
-    const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
+function SelectContent({
+  ref,
+  className,
+  children,
+  scrollFade = true,
+  position = "popper",
+  sideOffset = 6,
+  align = "start",
+  ...props
+}: SelectContentProps) {
+  const shape = useShape();
+  const densityAttributes = useDensityAttributes();
+  // Menus sit two steps above their substrate with a fixed shadow weight
+  // (same treatment as <Elevated offset={2} shadowLevel={3}>).
+  const level = Math.min(useSurface() + 2, 8);
+  const [viewport, setViewport] = React.useState<HTMLDivElement | null>(null);
+  const viewportRef = React.useMemo(() => ({ current: viewport }), [viewport]);
+  const edges = useScrollEdges(viewportRef, { enabled: scrollFade && viewport !== null });
 
-    // Scroll-edge cues show only when there's more content above/below the
-    // visible area. `triggerRect !== null` gates attachment until the portal
-    // (and thus containerRef.current) has mounted.
-    const edges = useScrollEdges(containerRef, {
-      enabled: open && scrollFade && triggerRect !== null,
-    });
-
-    const {
-      activeIndex,
-      setActiveIndex,
-      itemRects,
-      sessionRef,
-      handlers,
-      registerItem,
-      measureItems,
-    } = useProximityHover(containerRef);
-
-    const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
-    const [checkedIndex, setCheckedIndex] = useState<number | undefined>(undefined);
-
-    // Capture trigger rect synchronously when opening
-    useEffect(() => {
-      if (open && triggerRef.current) {
-        setTriggerRect(triggerRef.current.getBoundingClientRect());
-      }
-    }, [open, triggerRef]);
-
-    // Measure items + detect checked AFTER the portal has mounted
-    // triggerRect being set means the portal will render on the next commit
-    useEffect(() => {
-      if (!open || !triggerRect) return;
-      // Double rAF: first waits for React commit, second for layout
-      let inner: number;
-      const outer = requestAnimationFrame(() => {
-        inner = requestAnimationFrame(() => {
-          measureItems();
-          const container = containerRef.current;
-          if (container) {
-            const items = Array.from(
-              container.querySelectorAll("[data-proximity-index]"),
-            ) as HTMLElement[];
-            const idx = items.findIndex((el) => el.getAttribute("data-value") === value);
-            if (idx !== -1) setCheckedIndex(idx);
-            else setCheckedIndex(undefined);
-
-            // Focus the container so keyboard events work;
-            // don't focus an item directly to avoid showing a focus ring
-            containerRef.current?.focus({ preventScroll: true });
-          }
-        });
-      });
-      return () => {
-        cancelAnimationFrame(outer);
-        cancelAnimationFrame(inner);
-      };
-    }, [open, triggerRect, measureItems, value]);
-
-    // Close on escape
-    useEffect(() => {
-      if (!open) return;
-      const onKey = (e: KeyboardEvent) => {
-        if (e.key === "Escape") {
-          setOpen(false);
-          triggerRef.current?.focus();
-        }
-      };
-      document.addEventListener("keydown", onKey);
-      return () => document.removeEventListener("keydown", onKey);
-    }, [open, setOpen, triggerRef]);
-
-    // Close on click outside
-    useEffect(() => {
-      if (!open) return;
-      const onPointer = (e: MouseEvent) => {
-        if (
-          !containerRef.current?.contains(e.target as Node) &&
-          !triggerRef.current?.contains(e.target as Node)
-        ) {
-          setOpen(false);
-        }
-      };
-      document.addEventListener("mousedown", onPointer);
-      return () => document.removeEventListener("mousedown", onPointer);
-    }, [open, setOpen, triggerRef]);
-
-    // Close on scroll (instead of locking body scroll, which causes layout shift)
-    useEffect(() => {
-      if (!open) return;
-      const onScroll = () => setOpen(false);
-      window.addEventListener("scroll", onScroll, { passive: true });
-      return () => window.removeEventListener("scroll", onScroll);
-    }, [open, setOpen]);
-
-    // Keyboard nav inside content
-    const handleKeyDown = useCallback(
-      (e: React.KeyboardEvent) => {
-        const items = Array.from(
-          containerRef.current?.querySelectorAll('[role="option"]:not([data-disabled])') ?? [],
-        ) as HTMLElement[];
-        const currentIdx = items.indexOf(e.target as HTMLElement);
-
-        if (["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft"].includes(e.key)) {
-          e.preventDefault();
-          if (currentIdx === -1) {
-            // No item focused yet — focus checked or first item
-            const checked =
-              value !== "" ? items.find((item) => item.getAttribute("data-value") === value) : null;
-            (checked ?? items[0])?.focus();
-          } else {
-            const next = ["ArrowDown", "ArrowRight"].includes(e.key)
-              ? (currentIdx + 1) % items.length
-              : (currentIdx - 1 + items.length) % items.length;
-            items[next]?.focus();
-          }
-        } else if (e.key === "Home") {
-          e.preventDefault();
-          items[0]?.focus();
-        } else if (e.key === "End") {
-          e.preventDefault();
-          items[items.length - 1]?.focus();
-        }
-      },
-      [value],
-    );
-
-    const indexedChildren = Children.map(children, (child, index) => {
-      if (!isValidElement(child)) return child;
-      const childProps = child.props as { index?: number };
-      if (childProps.index !== undefined) return child;
-      return cloneElement(child, { index } as Record<string, unknown>);
-    });
-
-    // Render hidden when closed so items can register labels
-    if (!open) {
-      return (
-        <div hidden aria-hidden="true">
-          {indexedChildren}
-        </div>
-      );
-    }
-
-    if (!triggerRect) return null;
-
-    const activeRect = activeIndex !== null ? itemRects[activeIndex] : null;
-    const checkedRect = checkedIndex != null ? itemRects[checkedIndex] : null;
-    const focusRect = focusedIndex !== null ? itemRects[focusedIndex] : null;
-    const isHoveringOther = activeIndex !== null && activeIndex !== checkedIndex;
-
-    return createPortal(
-      <SelectContentContext.Provider
-        value={
-          checkedIndex === undefined
-            ? { registerItem, activeIndex }
-            : { registerItem, activeIndex, checkedIndex }
-        }
-      >
-        <div
+  return (
+    <SelectPrimitive.Portal>
+      <SurfaceProvider value={level}>
+        <style>{mobilePopperSheetStyle}</style>
+        <SelectPrimitive.Content
+          ref={ref}
+          data-slot="select-content"
           {...densityAttributes}
-          style={{
-            position: "fixed",
-            top: triggerRect.bottom + 6,
-            left: triggerRect.left,
-            minWidth: triggerRect.width,
-            zIndex: 50,
-          }}
+          data-hilum-mobile-sheet="true"
+          position={position}
+          {...(position === "popper" ? { sideOffset, align } : {})}
+          className={cn(
+            surfaceClasses(level, 3),
+            "relative z-50 min-w-[var(--radix-select-trigger-width)] overflow-hidden select-none outline-none",
+            position === "popper" &&
+              "max-h-[min(300px,var(--radix-select-content-available-height))]",
+            shape.container,
+            "data-[state=open]:animate-in data-[state=closed]:animate-out",
+            "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+            "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+            "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
+            "motion-reduce:animate-none",
+            mobilePopperSheetPositionClassName,
+            mobilePopperSheetSurfaceClassName,
+            mobilePopperSheetMotionClassName,
+            "max-md:!fixed max-md:rounded-2xl max-md:data-[state=open]:slide-in-from-bottom max-md:pt-4",
+            className,
+          )}
+          {...props}
         >
-          <motion.div
-            initial={{ opacity: 0, y: -4, scaleY: 0.96 }}
-            animate={{ opacity: 1, y: 0, scaleY: 1 }}
-            transition={spring.fast}
-            style={{ transformOrigin: "top center" }}
+          <SelectPrimitive.Viewport
+            ref={setViewport}
+            className="relative flex flex-col gap-0.5 p-1"
           >
-            <Elevated
-              offset={2}
-              shadowLevel={3}
-              ref={(node) => {
-                (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-                if (typeof ref === "function") ref(node);
-                else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
-              }}
-              id={listboxId}
-              role="listbox"
-              data-hilum-mobile-sheet="true"
-              tabIndex={-1}
-              onMouseEnter={() => {
-                handlers.onMouseEnter();
-                setFocusedIndex(null);
-              }}
-              onMouseMove={handlers.onMouseMove}
-              onMouseLeave={handlers.onMouseLeave}
-              onFocus={(e) => {
-                const indexAttr = (e.target as HTMLElement)
-                  .closest("[data-proximity-index]")
-                  ?.getAttribute("data-proximity-index");
-                if (indexAttr != null) {
-                  const idx = Number(indexAttr);
-                  setActiveIndex(idx);
-                  setFocusedIndex((e.target as HTMLElement).matches(":focus-visible") ? idx : null);
-                }
-              }}
-              onBlur={(e) => {
-                if (containerRef.current?.contains(e.relatedTarget as Node)) return;
-                setFocusedIndex(null);
-                setActiveIndex(null);
-              }}
-              onKeyDown={handleKeyDown}
-              className={cn(
-                `relative flex flex-col gap-0.5 max-h-[300px] overflow-y-auto ${shape.container} p-1 select-none outline-none max-md:!fixed max-md:rounded-2xl max-md:data-[state=open]:slide-in-from-bottom`,
-                className,
-              )}
-            >
-              {/* Selected background */}
-              <AnimatePresence>
-                {checkedRect && (
-                  <motion.div
-                    className={`absolute ${shape.bg} bg-active pointer-events-none`}
-                    initial={false}
-                    animate={{
-                      top: checkedRect.top,
-                      left: checkedRect.left,
-                      width: checkedRect.width,
-                      height: checkedRect.height,
-                      opacity: isHoveringOther ? 0.8 : 1,
-                    }}
-                    exit={{ opacity: 0, transition: spring.moderate.exit }}
-                    transition={{
-                      ...spring.moderate,
-                      opacity: { duration: 0.08 },
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* Hover background */}
-              <AnimatePresence>
-                {activeRect && (
-                  <motion.div
-                    key={sessionRef.current}
-                    className={`absolute ${shape.bg} bg-hover pointer-events-none`}
-                    initial={{
-                      opacity: 0,
-                      top: checkedRect?.top ?? activeRect.top,
-                      left: checkedRect?.left ?? activeRect.left,
-                      width: checkedRect?.width ?? activeRect.width,
-                      height: checkedRect?.height ?? activeRect.height,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      top: activeRect.top,
-                      left: activeRect.left,
-                      width: activeRect.width,
-                      height: activeRect.height,
-                    }}
-                    exit={{ opacity: 0, transition: spring.fast.exit }}
-                    transition={{
-                      ...spring.fast,
-                      opacity: { duration: 0.08 },
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* Focus ring */}
-              <AnimatePresence>
-                {focusRect && (
-                  <motion.div
-                    className={`absolute ${shape.focusRing} pointer-events-none z-20 border-2 border-ring`}
-                    initial={false}
-                    animate={{
-                      left: focusRect.left - 2,
-                      top: focusRect.top - 2,
-                      width: focusRect.width + 4,
-                      height: focusRect.height + 4,
-                    }}
-                    exit={{ opacity: 0, transition: spring.fast.exit }}
-                    transition={{
-                      ...spring.fast,
-                      opacity: { duration: 0.08 },
-                    }}
-                  />
-                )}
-              </AnimatePresence>
-
-              {/* Cues read the elevated surface level from Elevated's provider,
-                so the gradient matches the menu background at any depth. */}
-              {scrollFade && <ScrollEdgeCue edge="top" visible={edges.top} />}
-
-              {indexedChildren}
-
-              {scrollFade && <ScrollEdgeCue edge="bottom" visible={edges.bottom} />}
-            </Elevated>
-          </motion.div>
-        </div>
-      </SelectContentContext.Provider>,
-      document.body,
-    );
-  },
-);
+            {/* Sticky cues live inside the scroller; they read the surface
+                  level from the SurfaceProvider above so the gradient matches
+                  the menu background at any depth. */}
+            {scrollFade && <ScrollEdgeCue edge="top" visible={edges.top} />}
+            {children}
+            {scrollFade && <ScrollEdgeCue edge="bottom" visible={edges.bottom} />}
+          </SelectPrimitive.Viewport>
+        </SelectPrimitive.Content>
+      </SurfaceProvider>
+    </SelectPrimitive.Portal>
+  );
+}
 
 SelectContent.displayName = "SelectContent";
 
@@ -601,169 +260,132 @@ SelectContent.displayName = "SelectContent";
 // SelectItem
 // ---------------------------------------------------------------------------
 
-interface SelectItemProps extends HTMLAttributes<HTMLDivElement> {
+interface SelectItemProps extends React.ComponentProps<typeof SelectPrimitive.Item> {
   icon?: IconComponent;
+  /**
+   * @deprecated No longer needed — items are discovered by Radix regardless of
+   * nesting. Accepted and ignored for backward compatibility.
+   */
   index?: number;
-  value: string;
-  disabled?: boolean;
 }
 
-const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
-  ({ className, children, icon: Icon, value, index = 0, disabled = false, ...props }, ref) => {
-    const selectCtx = useSelectContext();
-    const contentCtx = useContext(SelectContentContext);
-    const internalRef = useRef<HTMLDivElement>(null);
-    const shape = useShape();
-    const hasMounted = useRef(false);
+function SelectItem({
+  ref,
+  className,
+  children,
+  icon: Icon,
+  index: _index,
+  ...props
+}: SelectItemProps) {
+  const shape = useShape();
 
-    useEffect(() => {
-      hasMounted.current = true;
-    }, []);
+  return (
+    <SelectPrimitive.Item
+      ref={ref}
+      data-slot="select-item"
+      className={cn(
+        `group/select-item relative z-10 flex items-center gap-2 ${shape.item} px-2 py-2 text-[13px] cursor-pointer outline-none select-none`,
+        "compact:min-h-7 compact:py-1 compact:rounded-[4px]",
+        "transition-[color,background-color] duration-80 motion-reduce:transition-none",
+        "text-muted-foreground data-[highlighted]:bg-hover data-[highlighted]:text-foreground",
+        "data-[state=checked]:bg-active data-[state=checked]:text-foreground",
+        "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
+        className,
+      )}
+      {...props}
+    >
+      {Icon && (
+        <Icon
+          size={16}
+          strokeWidth={1.5}
+          className="shrink-0 transition-[color,stroke-width] duration-80 group-data-[highlighted]/select-item:stroke-[2] group-data-[state=checked]/select-item:stroke-[2]"
+        />
+      )}
 
-    // Register label with root context
-    useEffect(() => {
-      if (typeof children === "string") {
-        selectCtx.labelMap.current.set(value, children);
-      }
-    }, [value, children, selectCtx.labelMap]);
+      <span className="flex-1 min-w-0 truncate">
+        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+      </span>
 
-    // Register with proximity hover (only when content context exists = open)
-    useEffect(() => {
-      contentCtx?.registerItem(index, internalRef.current);
-      return () => contentCtx?.registerItem(index, null);
-    }, [index, contentCtx]);
-
-    const isActive = contentCtx?.activeIndex === index;
-    const isChecked = selectCtx.value === value;
-    const skipAnimation = !hasMounted.current;
-
-    return (
-      <div
-        ref={(node) => {
-          (internalRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-          if (typeof ref === "function") ref(node);
-          else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
-        }}
-        data-proximity-index={index}
-        data-value={value}
-        data-disabled={disabled || undefined}
-        role="option"
-        aria-selected={isChecked}
-        aria-label={typeof children === "string" ? children : undefined}
-        tabIndex={isChecked ? 0 : index === (contentCtx?.checkedIndex ?? 0) ? 0 : -1}
-        onClick={() => {
-          if (!disabled) selectCtx.onChange(value);
-        }}
-        onKeyDown={(e) => {
-          if ((e.key === "Enter" || e.key === " ") && !disabled) {
-            e.preventDefault();
-            selectCtx.onChange(value);
-          }
-        }}
-        className={cn(
-          `relative z-10 flex items-center gap-2 ${shape.item} px-2 py-2 text-[13px] cursor-pointer outline-none select-none`,
-          "compact:min-h-7 compact:py-1 compact:rounded-[4px]",
-          "transition-[color] duration-80",
-          isActive || isChecked ? "text-foreground" : "text-muted-foreground",
-          disabled && "opacity-50 pointer-events-none",
-          className,
-        )}
-        {...props}
-      >
-        {Icon && (
-          <Icon
-            size={16}
-            strokeWidth={isActive || isChecked ? 2 : 1.5}
-            className="shrink-0 transition-[color,stroke-width] duration-80"
-          />
-        )}
-
-        <span className="flex-1 min-w-0 truncate">{children}</span>
-
-        <AnimatePresence>
-          {isChecked && (
-            <motion.svg
-              key="check"
-              width={16}
-              height={16}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="shrink-0 text-foreground"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 1 }}
-            >
-              <motion.path
-                d="M4 12L9 17L20 6"
-                initial={{ pathLength: skipAnimation ? 1 : 0 }}
-                animate={{
-                  pathLength: 1,
-                  transition: { duration: 0.08, ease: "easeOut" },
-                }}
-                exit={{
-                  pathLength: 0,
-                  transition: { duration: 0.04, ease: "easeIn" },
-                }}
-              />
-            </motion.svg>
-          )}
-        </AnimatePresence>
-      </div>
-    );
-  },
-);
+      <SelectPrimitive.ItemIndicator className="shrink-0 text-foreground">
+        <svg
+          width={16}
+          height={16}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M4 12L9 17L20 6" />
+        </svg>
+      </SelectPrimitive.ItemIndicator>
+    </SelectPrimitive.Item>
+  );
+}
 
 SelectItem.displayName = "SelectItem";
 
 // ---------------------------------------------------------------------------
-// SelectGroup + SelectLabel + SelectSeparator
+// SelectGroup + SelectLabel + SelectSeparator + SelectValue
 // ---------------------------------------------------------------------------
 
-function SelectGroup({ children, className, ...props }: HTMLAttributes<HTMLDivElement>) {
+// Radix requires Select.Label to sit inside Select.Group; the previous
+// hand-rolled SelectLabel worked anywhere, so track group membership and fall
+// back to a plain (aria-hidden, decorative) heading outside a group.
+const InSelectGroupContext = React.createContext(false);
+
+function SelectGroup(props: React.ComponentProps<typeof SelectPrimitive.Group>) {
   return (
-    <div role="group" className={className} {...props}>
-      {children}
-    </div>
+    <InSelectGroupContext.Provider value={true}>
+      <SelectPrimitive.Group data-slot="select-group" {...props} />
+    </InSelectGroupContext.Provider>
   );
 }
 
 SelectGroup.displayName = "SelectGroup";
 
-const SelectLabel = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      className={cn("px-2 py-1.5 text-[11px] text-muted-foreground", className)}
-      {...props}
-    />
-  ),
-);
+function SelectLabel({
+  className,
+  asChild: _asChild,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Label>) {
+  const inGroup = React.useContext(InSelectGroupContext);
+  const classes = cn("px-2 py-1.5 text-[11px] text-muted-foreground", className);
+  if (!inGroup)
+    return <div data-slot="select-label" aria-hidden="true" className={classes} {...props} />;
+  return <SelectPrimitive.Label data-slot="select-label" className={classes} {...props} />;
+}
 
 SelectLabel.displayName = "SelectLabel";
 
-const SelectSeparator = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div
-      ref={ref}
-      role="separator"
+function SelectSeparator({
+  className,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Separator>) {
+  return (
+    <SelectPrimitive.Separator
+      data-slot="select-separator"
       className={cn("my-1 -mx-1 h-px bg-border", className)}
       {...props}
     />
-  ),
-);
+  );
+}
 
 SelectSeparator.displayName = "SelectSeparator";
 
-function SelectValue({ placeholder }: { placeholder?: string }) {
-  const { value, labelMap } = useSelectContext();
-  const label = value ? (labelMap.current.get(value) ?? value) : undefined;
+type SelectValueProps = React.ComponentProps<typeof SelectPrimitive.Value>;
+
+function SelectValue({ className, placeholder, ...props }: SelectValueProps) {
   return (
-    <span className="min-w-0 flex-1 text-left truncate">
-      {label ?? <span className="text-muted-foreground">{placeholder}</span>}
+    <span className="min-w-0 flex-1 text-start truncate group-data-[placeholder]:text-muted-foreground">
+      <SelectPrimitive.Value
+        data-slot="select-value"
+        className={className}
+        placeholder={placeholder}
+        {...props}
+      />
     </span>
   );
 }
@@ -786,4 +408,10 @@ export {
   triggerVariants,
 };
 
-export type { SelectProps, SelectTriggerProps, SelectContentProps, SelectItemProps };
+export type {
+  SelectProps,
+  SelectTriggerProps,
+  SelectContentProps,
+  SelectItemProps,
+  SelectValueProps,
+};

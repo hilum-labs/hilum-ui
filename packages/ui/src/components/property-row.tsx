@@ -37,6 +37,7 @@ function PropertyRow({
 
   return (
     <div
+      data-slot="property-row"
       className={cn(
         "flex w-full min-w-0 py-1 compact:py-0.5",
         inline

@@ -37,7 +37,8 @@ function RatingPage() {
         </div>
         <h1 className="display mb-2 text-foreground">Rating</h1>
         <p className="body max-w-lg text-muted-foreground">
-          Star rating. Read-only with partial stars for reviews and product cards, or an accessible radio-group input.
+          Star rating. Read-only with partial stars for reviews and product cards, or an accessible
+          radio-group input.
         </p>
       </div>
 
@@ -49,7 +50,11 @@ function RatingPage() {
             <h2 className="label text-muted-foreground">Rating</h2>
             <div className="h-px flex-1 bg-border" />
           </div>
-          <PreviewBlock title="Display and input" description="Token colours; fractional values render partial stars." code={CODE}>
+          <PreviewBlock
+            title="Display and input"
+            description="Token colours; fractional values render partial stars."
+            code={CODE}
+          >
             <Demo />
           </PreviewBlock>
         </section>

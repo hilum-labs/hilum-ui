@@ -54,7 +54,7 @@ export default function FooterSimpleCentered() {
           {[...FOOTER_NAV.product, ...FOOTER_NAV.company.slice(0, 2)].map((link) => (
             <a
               key={link}
-              href="#"
+              href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
               className="body text-ground-500 transition-colors hover:text-ground-900"
             >
               {link}

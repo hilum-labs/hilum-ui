@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Calendar, FolderKanban, LayoutDashboard, Users } from "lucide-react";
 
-const tabItems = ["Overview", "Team", "Projects", "Calendar"] as const;
+type TabLabel = "Overview" | "Team" | "Projects" | "Calendar";
 
 export default function TabsUnderlineIcons() {
-  const [activeTab, setActiveTab] = useState<(typeof tabItems)[number]>("Overview");
+  const [activeTab, setActiveTab] = useState<TabLabel>("Overview");
   const tabs = [
     { label: "Overview", icon: LayoutDashboard },
     { label: "Team", icon: Users },

@@ -5,45 +5,59 @@ import { ScrollArea } from "radix-ui";
 import { cn } from "../lib/utils";
 import { motionClasses } from "../lib/interaction";
 
-const ScrollAreaRoot = React.forwardRef<
-  React.ComponentRef<typeof ScrollArea.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollArea.Root>
->(({ className, children, ...props }, ref) => (
-  <ScrollArea.Root ref={ref} className={cn("relative overflow-hidden", className)} {...props}>
-    <ScrollArea.Viewport className="h-full w-full rounded-[inherit]">
-      {children}
-    </ScrollArea.Viewport>
-    <ScrollAreaScrollbar orientation="vertical" />
-    <ScrollAreaScrollbar orientation="horizontal" />
-    <ScrollArea.Corner />
-  </ScrollArea.Root>
-));
+function ScrollAreaRoot({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof ScrollArea.Root>) {
+  return (
+    <ScrollArea.Root
+      data-slot="scroll-area"
+      className={cn("relative overflow-hidden", className)}
+      {...props}
+    >
+      <ScrollArea.Viewport
+        data-slot="scroll-area-viewport"
+        className="h-full w-full rounded-[inherit]"
+      >
+        {children}
+      </ScrollArea.Viewport>
+      <ScrollAreaScrollbar orientation="vertical" />
+      <ScrollAreaScrollbar orientation="horizontal" />
+      <ScrollArea.Corner />
+    </ScrollArea.Root>
+  );
+}
 ScrollAreaRoot.displayName = "ScrollArea";
 
-const ScrollAreaScrollbar = React.forwardRef<
-  React.ComponentRef<typeof ScrollArea.Scrollbar>,
-  React.ComponentPropsWithoutRef<typeof ScrollArea.Scrollbar>
->(({ className, orientation = "vertical", ...props }, ref) => (
-  <ScrollArea.Scrollbar
-    ref={ref}
-    orientation={orientation}
-    className={cn(
-      "flex touch-none select-none",
-      motionClasses,
-      orientation === "vertical" && "h-full w-2 border-l border-l-transparent p-px",
-      orientation === "horizontal" && "h-2 flex-col border-t border-t-transparent p-px",
-      className,
-    )}
-    {...props}
-  >
-    <ScrollArea.Thumb
+function ScrollAreaScrollbar({
+  className,
+  orientation = "vertical",
+  ...props
+}: React.ComponentProps<typeof ScrollArea.Scrollbar>) {
+  return (
+    <ScrollArea.Scrollbar
+      data-slot="scroll-area-scrollbar"
+      orientation={orientation}
       className={cn(
-        "relative flex-1 rounded-full bg-muted hover:bg-muted-foreground/30",
+        "flex touch-none select-none",
         motionClasses,
+        orientation === "vertical" && "h-full w-2 border-s border-s-transparent p-px",
+        orientation === "horizontal" && "h-2 flex-col border-t border-t-transparent p-px",
+        className,
       )}
-    />
-  </ScrollArea.Scrollbar>
-));
+      {...props}
+    >
+      <ScrollArea.Thumb
+        data-slot="scroll-area-thumb"
+        className={cn(
+          "relative flex-1 rounded-full bg-muted hover:bg-muted-foreground/30",
+          motionClasses,
+        )}
+      />
+    </ScrollArea.Scrollbar>
+  );
+}
 ScrollAreaScrollbar.displayName = "ScrollAreaScrollbar";
 
 export { ScrollAreaRoot as ScrollArea };

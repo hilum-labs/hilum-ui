@@ -4,6 +4,18 @@ import * as React from "react";
 import { Check, Copy } from "lucide-react";
 import { cn } from "../lib/utils";
 
+interface CodeBlockLabels {
+  /** Accessible name of the copy button. */
+  copy: string;
+  /** Accessible name of the copy button right after a successful copy. */
+  copied: string;
+}
+
+const DEFAULT_LABELS: CodeBlockLabels = {
+  copy: "Copy code",
+  copied: "Copied",
+};
+
 interface CodeBlockProps {
   /** Code as a string (copied verbatim). */
   children: string;
@@ -16,6 +28,8 @@ interface CodeBlockProps {
   /** Soft-wrap long lines instead of scrolling horizontally. Default: false. */
   wrap?: boolean;
   className?: string;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<CodeBlockLabels>;
 }
 
 /**
@@ -29,7 +43,9 @@ function CodeBlock({
   copy = true,
   wrap = false,
   className,
+  labels: labelsProp,
 }: CodeBlockProps) {
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [copied, setCopied] = React.useState(false);
   React.useEffect(() => {
     if (!copied) return;
@@ -61,7 +77,7 @@ function CodeBlock({
             <button
               type="button"
               onClick={onCopy}
-              aria-label={copied ? "Copied" : "Copy code"}
+              aria-label={copied ? labels.copied : labels.copy}
               className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-hover hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {copied ? (
@@ -95,5 +111,5 @@ function CodeBlock({
 
 CodeBlock.displayName = "CodeBlock";
 
-export { CodeBlock };
-export type { CodeBlockProps };
+export { CodeBlock, DEFAULT_LABELS as CODE_BLOCK_DEFAULT_LABELS };
+export type { CodeBlockProps, CodeBlockLabels };

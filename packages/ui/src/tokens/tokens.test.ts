@@ -3,12 +3,15 @@ import { tokens } from "./tokens";
 import { SURFACE_BG, SURFACE_SHADOW } from "../lib/surface-classes";
 
 describe("surface ladder tokens", () => {
-  it.each(["light", "mid", "dark"] as const)("%s defines every level surface-classes emits", (theme) => {
-    const levels = Object.keys(SURFACE_BG).length;
-    expect(Object.keys(SURFACE_SHADOW)).toHaveLength(levels);
-    expect(tokens.surfaces[theme].bg).toHaveLength(levels);
-    expect(tokens.surfaces[theme].shadow).toHaveLength(levels);
-  });
+  it.each(["light", "mid", "dark"] as const)(
+    "%s defines every level surface-classes emits",
+    (theme) => {
+      const levels = Object.keys(SURFACE_BG).length;
+      expect(Object.keys(SURFACE_SHADOW)).toHaveLength(levels);
+      expect(tokens.surfaces[theme].bg).toHaveLength(levels);
+      expect(tokens.surfaces[theme].shadow).toHaveLength(levels);
+    },
+  );
 
   it("level 1 matches the theme background", () => {
     for (const theme of ["light", "mid", "dark"] as const) {
@@ -18,7 +21,7 @@ describe("surface ladder tokens", () => {
 
   it("shadow weight grows monotonically with level", () => {
     const layers = tokens.surfaces.light.shadow.map((s) => s.split("px ").length);
-    for (let i = 1; i < layers.length; i++) expect(layers[i]).toBeGreaterThan(layers[i - 1]);
+    for (let i = 1; i < layers.length; i++) expect(layers[i]).toBeGreaterThan(layers[i - 1]!);
   });
 });
 
@@ -40,20 +43,27 @@ describe("semantic tokens", () => {
 
   // WCAG relative-luminance contrast between two #rrggbb colours.
   const luminance = (hex: string) => {
-    const [r, g, b] = [1, 3, 5].map((i) => {
+    const channel = (i: number) => {
       const c = parseInt(hex.slice(i, i + 2), 16) / 255;
       return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
-    });
+    };
+    const [r, g, b] = [channel(1), channel(3), channel(5)];
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   };
   const contrast = (a: string, b: string) => {
-    const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+    const la = luminance(a);
+    const lb = luminance(b);
+    const [hi, lo] = la >= lb ? [la, lb] : [lb, la];
     return (hi + 0.05) / (lo + 0.05);
   };
 
   it("borders stay visible against their theme background", () => {
-    expect(contrast(tokens.semantic.light.border, tokens.semantic.light.background)).toBeGreaterThan(1.2);
-    expect(contrast(tokens.semantic.dark.border, tokens.semantic.dark.background)).toBeGreaterThanOrEqual(2);
+    expect(
+      contrast(tokens.semantic.light.border, tokens.semantic.light.background),
+    ).toBeGreaterThan(1.2);
+    expect(
+      contrast(tokens.semantic.dark.border, tokens.semantic.dark.background),
+    ).toBeGreaterThanOrEqual(2);
     expect(contrast(tokens.semantic.mid.border, tokens.semantic.mid.card)).toBeGreaterThan(1.5);
     for (const theme of themes) {
       expect(tokens.semantic[theme].input).toBe(tokens.semantic[theme].border);
@@ -72,6 +82,8 @@ describe("density tokens", () => {
       menuText: "13px",
       paddingX: "8px",
     });
-    expect(Object.keys(tokens.density.compact).sort()).toEqual(Object.keys(tokens.density.default).sort());
+    expect(Object.keys(tokens.density.compact).sort()).toEqual(
+      Object.keys(tokens.density.default).sort(),
+    );
   });
 });

@@ -314,7 +314,12 @@ function Demo() {
           <DesignerPane>
             <DesignerPaneTitle>Layer</DesignerPaneTitle>
             <DesignerPaneContent>
-              <DesignerPropertyRow label="Name" labelFor="layer-name" layout="inline" labelWidth={48}>
+              <DesignerPropertyRow
+                label="Name"
+                labelFor="layer-name"
+                layout="inline"
+                labelWidth={48}
+              >
                 <Input id="layer-name" value={name} onChange={(e) => setName(e.target.value)} />
               </DesignerPropertyRow>
             </DesignerPaneContent>
@@ -343,7 +348,9 @@ function Demo() {
           </DesignerPane>
 
           <DesignerPane collapsible showFor={["text"]}>
-            <DesignerPaneTitle action={<ChevronsUpDown size={12} className="text-muted-foreground/70" />}>
+            <DesignerPaneTitle
+              action={<ChevronsUpDown size={12} className="text-muted-foreground/70" />}
+            >
               Appearance
             </DesignerPaneTitle>
             <DesignerPaneContent>

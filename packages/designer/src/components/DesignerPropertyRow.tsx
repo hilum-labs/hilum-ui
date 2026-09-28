@@ -113,7 +113,10 @@ function DesignerPropertyGroup({
   ...rest
 }: DesignerPropertyGroupProps) {
   return (
-    <div className={cn("flex min-w-0 max-w-full flex-col gap-3 compact:gap-2", className)} {...rest}>
+    <div
+      className={cn("flex min-w-0 max-w-full flex-col gap-3 compact:gap-2", className)}
+      {...rest}
+    >
       {title && (
         <div className="caption-xs min-w-0 max-w-full select-none overflow-hidden text-ellipsis uppercase tracking-wider text-muted-foreground">
           {title}

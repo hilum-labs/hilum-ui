@@ -67,7 +67,7 @@ function DataTransferControls({
       <Select value={scopeValue} onValueChange={onScopeChange}>
         <SelectTrigger
           aria-label={scopePlaceholder}
-          className={cn("min-h-10 w-full max-w-full bg-background sm:w-[180px]", selectClassName)}
+          className={cn("min-h-10 w-full max-w-full bg-background sm:w-45", selectClassName)}
         >
           <SelectValue placeholder={scopePlaceholder} />
         </SelectTrigger>
@@ -91,6 +91,7 @@ function DataTransferControls({
 
   return (
     <div
+      data-slot="data-transfer-controls"
       className={cn(
         compact
           ? "grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-2"
@@ -131,7 +132,9 @@ function DataTransferControls({
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (
-        <ButtonGroup className={cn("grid w-full grid-cols-3 sm:inline-flex sm:w-auto", actionGroupClassName)}>
+        <ButtonGroup
+          className={cn("grid w-full grid-cols-3 sm:inline-flex sm:w-auto", actionGroupClassName)}
+        >
           {actions.map((action, index) => (
             <ButtonGroupItem
               key={`${action.label}-${index}`}

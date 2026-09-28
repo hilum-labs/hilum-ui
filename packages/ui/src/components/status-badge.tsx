@@ -216,10 +216,11 @@ function StatusBadge({
 
   return (
     <Badge
+      data-slot="status-badge"
       variant={resolvedVariant}
       {...(resolvedColor ? { color: resolvedColor } : {})}
       data-tone={resolvedTone}
-      className={cn("max-w-full whitespace-nowrap", (showDot || Icon) && "pl-2", className)}
+      className={cn("max-w-full whitespace-nowrap", (showDot || Icon) && "ps-2", className)}
       {...props}
     >
       {showDot && (
@@ -240,11 +241,5 @@ function StatusBadge({
 
 StatusBadge.displayName = "StatusBadge";
 
-export {
-  StatusBadge,
-  statusBadgeVariantFor,
-  statusLabel,
-  statusToneFor,
-  DEFAULT_STATUS_TONE,
-};
+export { StatusBadge, statusBadgeVariantFor, statusLabel, statusToneFor, DEFAULT_STATUS_TONE };
 export type { StatusBadgeProps, StatusBadgeVariant };

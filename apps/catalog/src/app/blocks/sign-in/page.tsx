@@ -41,7 +41,9 @@ function SignInPage() {
         <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">
           <p className="caption text-muted-foreground">Block</p>
           <div className="h-3 w-px bg-border" />
-          <p className="caption text-muted-foreground">Field · Input · Button · Checkbox · Separator</p>
+          <p className="caption text-muted-foreground">
+            Field · Input · Button · Checkbox · Separator
+          </p>
         </div>
       </div>
 

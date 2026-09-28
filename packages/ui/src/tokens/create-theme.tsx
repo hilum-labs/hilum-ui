@@ -45,17 +45,17 @@ function hexToOklch(hex: string): [number, number, number] {
 
   // linear sRGB → XYZ D65
   const X = 0.4124564 * r + 0.3575761 * g + 0.1804375 * b;
-  const Y = 0.2126729 * r + 0.7151522 * g + 0.0721750 * b;
-  const Z = 0.0193339 * r + 0.1191920 * g + 0.9503041 * b;
+  const Y = 0.2126729 * r + 0.7151522 * g + 0.072175 * b;
+  const Z = 0.0193339 * r + 0.119192 * g + 0.9503041 * b;
 
   // XYZ → OKLab
   const l_ = Math.cbrt(0.8189330101 * X + 0.3618667424 * Y - 0.1288597137 * Z);
   const m_ = Math.cbrt(0.0329845436 * X + 0.9293118715 * Y + 0.0361456387 * Z);
-  const s_ = Math.cbrt(0.0482003018 * X + 0.2643662691 * Y + 0.6338517070 * Z);
+  const s_ = Math.cbrt(0.0482003018 * X + 0.2643662691 * Y + 0.633851707 * Z);
 
-  const L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_;
-  const a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_;
-  const bv = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_;
+  const L = 0.2104542553 * l_ + 0.793617785 * m_ - 0.0040720468 * s_;
+  const a = 1.9779984951 * l_ - 2.428592205 * m_ + 0.4505937099 * s_;
+  const bv = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.808675766 * s_;
 
   const C = Math.sqrt(a * a + bv * bv);
   let H = (Math.atan2(bv, a) * 180) / Math.PI;
@@ -71,7 +71,7 @@ function oklchToLinearRgb(L: number, C: number, H: number): [number, number, num
   // OKLab → XYZ
   const l_ = L + 0.3963377774 * a + 0.2158037573 * bv;
   const m_ = L - 0.1055613458 * a - 0.0638541728 * bv;
-  const s_ = L - 0.0894841775 * a - 1.2914855480 * bv;
+  const s_ = L - 0.0894841775 * a - 1.291485548 * bv;
 
   const l = l_ * l_ * l_;
   const m = m_ * m_ * m_;
@@ -80,7 +80,7 @@ function oklchToLinearRgb(L: number, C: number, H: number): [number, number, num
   // XYZ → linear sRGB
   const r = +4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s;
   const g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s;
-  const b = -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s;
+  const b = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s;
   return [r, g, b];
 }
 
@@ -157,7 +157,7 @@ function relativeLuminance(hex: string): number {
   const r = toLinear(parseInt(hex.slice(1, 3), 16) / 255);
   const g = toLinear(parseInt(hex.slice(3, 5), 16) / 255);
   const b = toLinear(parseInt(hex.slice(5, 7), 16) / 255);
-  return 0.2126729 * r + 0.7151522 * g + 0.0721750 * b;
+  return 0.2126729 * r + 0.7151522 * g + 0.072175 * b;
 }
 
 function autoFg(hex: string): string {

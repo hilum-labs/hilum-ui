@@ -34,9 +34,6 @@ export function resolveDesignerWorkspaceInsets(
   };
 }
 
-export function getDesignerFloatingMaxHeight(insets: {
-  top: string;
-  bottom: string;
-}): string {
+export function getDesignerFloatingMaxHeight(insets: { top: string; bottom: string }): string {
   return `calc(100% - ${insets.top} - ${insets.bottom})`;
 }

@@ -73,6 +73,10 @@ for (const k of Object.keys(tokens.semantic.light)) {
 const surfaceLevels = tokens.surfaces.light.bg.map((_, i) => i + 1);
 for (const n of surfaceLevels) lines.push(`  --color-surface-${n}: var(--surface-${n});`);
 for (const n of surfaceLevels) lines.push(`  --shadow-surface-${n}: var(--surface-shadow-${n});`);
+// Categorical hues → bg-categorical-red / text-categorical-blue / …
+for (const k of Object.keys(tokens.categorical ?? {})) {
+  lines.push(`  --color-categorical-${k}: var(--categorical-${k});`);
+}
 lines.push("}");
 lines.push("");
 
@@ -96,6 +100,15 @@ const themeBlock = (selector, theme, indent = "") => {
 themeBlock(":root", "light");
 lines.push("");
 
+/* ---------------- :root — categorical hues (theme-independent) ---------------- */
+if (tokens.categorical) {
+  lines.push(":root {");
+  for (const [k, v] of Object.entries(tokens.categorical))
+    lines.push(`  --categorical-${k}: ${v};`);
+  lines.push("}");
+  lines.push("");
+}
+
 /* ---------------- dark mode (D7) ---------------- */
 // Auto: prefers-color-scheme.
 lines.push("@media (prefers-color-scheme: dark) {");
@@ -116,7 +129,8 @@ if (tokens.semantic.mid) {
 // Default tier on :root; compact tier on any [data-density="compact"] subtree.
 const densityBlock = (selector, tier) => {
   lines.push(`${selector} {`);
-  for (const [k, v] of Object.entries(tokens.density[tier])) lines.push(`  --density-${kebab(k)}: ${v};`);
+  for (const [k, v] of Object.entries(tokens.density[tier]))
+    lines.push(`  --density-${kebab(k)}: ${v};`);
   lines.push("}");
 };
 densityBlock(":root", "default");

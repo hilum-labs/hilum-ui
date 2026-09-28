@@ -11,6 +11,18 @@ import { formatDate, formatDateRange, useFormatter } from "../lib/format";
 
 type DateRange = { from: Date | undefined; to?: Date | undefined };
 
+interface DatePickerLabels {
+  /** Clear (×) button accessible name. */
+  clear: string;
+  /** Accessible name of the DateRangePicker preset list. */
+  presets: string;
+}
+
+const DEFAULT_LABELS: DatePickerLabels = {
+  clear: "Clear date",
+  presets: "Preset ranges",
+};
+
 interface DatePickerBaseProps {
   placeholder?: string;
   disabled?: boolean;
@@ -34,6 +46,8 @@ interface DatePickerBaseProps {
   "aria-label"?: string;
   "aria-invalid"?: boolean;
   className?: string;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<DatePickerLabels>;
 }
 
 interface DatePickerProps extends DatePickerBaseProps {
@@ -54,25 +68,26 @@ interface TriggerProps extends DatePickerBaseProps {
   onClear: () => void;
 }
 
-const DatePickerTrigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
-  (
-    {
-      label,
-      empty,
-      onClear,
-      clearable,
-      disabled,
-      fullWidth = true,
-      containerClassName,
-      className,
-      id,
-      "aria-label": ariaLabel,
-      "aria-invalid": ariaInvalid,
-      ...rest
-    },
-    ref,
-  ) => (
+function DatePickerTrigger({
+  ref,
+  label,
+  empty,
+  onClear,
+  clearable,
+  disabled,
+  fullWidth = true,
+  containerClassName,
+  className,
+  id,
+  "aria-label": ariaLabel,
+  "aria-invalid": ariaInvalid,
+  labels: labelsProp,
+  ...rest
+}: TriggerProps & { ref?: React.Ref<HTMLButtonElement> | undefined }) {
+  const clearLabel = labelsProp?.clear ?? DEFAULT_LABELS.clear;
+  return (
     <div
+      data-slot="date-picker"
       className={cn(
         "relative inline-flex",
         fullWidth ? "w-full" : "w-60 max-w-full",
@@ -81,15 +96,16 @@ const DatePickerTrigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
     >
       <Button
         ref={ref}
+        data-slot="date-picker-trigger"
         type="button"
         variant="outline"
         id={id}
         aria-label={ariaLabel}
         aria-invalid={ariaInvalid}
         className={cn(
-          "w-full justify-start gap-2 text-left font-normal",
+          "w-full justify-start gap-2 text-start font-normal",
           empty && "text-muted-foreground",
-          clearable && !empty && "pr-8",
+          clearable && !empty && "pe-8",
           ariaInvalid && "border-destructive",
           className,
         )}
@@ -102,19 +118,19 @@ const DatePickerTrigger = React.forwardRef<HTMLButtonElement, TriggerProps>(
       {clearable && !empty && !disabled && (
         <button
           type="button"
-          aria-label="Clear date"
+          aria-label={clearLabel}
           onClick={(event) => {
             event.stopPropagation();
             onClear();
           }}
-          className="absolute top-1/2 right-1.5 flex size-6 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          className="absolute top-1/2 end-1.5 flex size-6 -translate-y-1/2 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <X size={12} aria-hidden="true" />
         </button>
       )}
     </div>
-  ),
-);
+  );
+}
 DatePickerTrigger.displayName = "DatePickerTrigger";
 
 /**
@@ -237,6 +253,7 @@ function DateRangePicker({
   numberOfMonths = 2,
   ...rest
 }: DateRangePickerProps) {
+  const presetsLabel = rest.labels?.presets ?? DEFAULT_LABELS.presets;
   const fmt = useFormatter();
   const [open, setOpen] = React.useState(false);
   const value = valueProp ?? (from || to ? { from, to } : undefined);
@@ -263,8 +280,8 @@ function DateRangePicker({
           {presets.length > 0 && (
             <div
               role="group"
-              aria-label="Preset ranges"
-              className="flex gap-1 overflow-x-auto border-b border-border p-2 [scrollbar-width:none] sm:w-40 sm:flex-col sm:overflow-visible sm:border-r sm:border-b-0"
+              aria-label={presetsLabel}
+              className="flex gap-1 overflow-x-auto border-b border-border p-2 [scrollbar-width:none] sm:w-40 sm:flex-col sm:overflow-visible sm:border-e sm:border-b-0"
             >
               {presets.map((preset) => (
                 <Button
@@ -304,5 +321,10 @@ function DateRangePicker({
 }
 DateRangePicker.displayName = "DateRangePicker";
 
-export { DatePicker, DateRangePicker, DEFAULT_DATE_RANGE_PRESETS };
-export type { DatePickerProps, DateRangePickerProps, DateRange, DateRangePreset };
+export {
+  DatePicker,
+  DateRangePicker,
+  DEFAULT_DATE_RANGE_PRESETS,
+  DEFAULT_LABELS as DATE_PICKER_DEFAULT_LABELS,
+};
+export type { DatePickerProps, DateRangePickerProps, DateRange, DateRangePreset, DatePickerLabels };

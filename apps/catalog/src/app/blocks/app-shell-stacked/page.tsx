@@ -5,6 +5,8 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import StackedShell from "@/components/blocks/app-shell-stacked/stacked-shell";
 import stackedShellSource from "@/components/blocks/app-shell-stacked/stacked-shell?raw";
+import AppFrameStacked from "@/components/blocks/app-shell-stacked/app-frame-stacked";
+import appFrameStackedSource from "@/components/blocks/app-shell-stacked/app-frame-stacked?raw";
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -54,6 +56,17 @@ function AppShellStackedPage() {
             previewClassName="p-0 bg-muted"
           >
             <StackedShell />
+          </PreviewBlock>
+        </div>
+        <div>
+          <SectionHeading label="@hilum/app-shell · Stacked frame" />
+          <PreviewBlock
+            title="AppShellStacked with mobile menu"
+            description="Navbar links collapse into a menu sheet below md; search slot, skip link and <main> come from the frame"
+            code={appFrameStackedSource}
+            previewClassName="p-0 bg-muted"
+          >
+            <AppFrameStacked />
           </PreviewBlock>
         </div>
       </div>

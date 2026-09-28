@@ -1,6 +1,5 @@
 import { useEffect, useRef, type ReactNode } from "react";
-import { cn } from "@hilum/ui";
-import { useLink } from "./link-context";
+import { cn, useLink } from "@hilum/ui";
 
 interface SettingsSection {
   /** Section anchor / id. Used for active-state matching. */

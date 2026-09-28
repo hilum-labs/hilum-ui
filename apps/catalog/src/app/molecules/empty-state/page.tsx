@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { FileX, Inbox, Search, Users, FolderOpen } from "lucide-react";
+import { Inbox, Search, Users, FolderOpen } from "lucide-react";
 import { EmptyState } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Package } from "lucide-react";
@@ -72,7 +72,6 @@ const CTA_CODE = `import { EmptyState } from "@hilum/ui"
 
 // Router links: pass an element.
 <EmptyState title="No discounts" action={<Button asChild><Link to="/discounts/new">Create discount</Link></Button>} />`;
-
 
 function SectionHeading({ label }: { label: string }) {
   return (

@@ -1,0 +1,19 @@
+/*
+ * Real Tailwind v4 build for the browser suite (compiled by @tailwindcss/vite).
+ * `source(none)` skips repo-wide auto-detection; tokens.css adds
+ * `@source "../src"` for packages/ui, and we scan the tests themselves.
+ */
+@import "tailwindcss" source(none);
+@import "../../packages/ui/dist/tokens.css";
+@source "../../packages/app-shell/src";
+@source "./";
+
+/* Determinism: no transitions/animations regardless of component classes. */
+*,
+*::before,
+*::after {
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+}

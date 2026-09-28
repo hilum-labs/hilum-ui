@@ -122,12 +122,12 @@ function DesignerToolbarButton({
 }: DesignerToolbarButtonProps) {
   return (
     <Tooltip
-      content={(
+      content={
         <span className="flex items-center whitespace-nowrap">
           <span>{label}</span>
           {shortcut && <span className="ml-2 text-[11px] text-background/65">{shortcut}</span>}
         </span>
-      )}
+      }
       side="top"
       sideOffset={10}
       delayDuration={120}

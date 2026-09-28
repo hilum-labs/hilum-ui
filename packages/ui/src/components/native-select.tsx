@@ -4,19 +4,34 @@ import * as React from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
+import { useFieldControl } from "../lib/field-context";
 
-const NativeSelect = React.forwardRef<
-  HTMLSelectElement,
-  React.SelectHTMLAttributes<HTMLSelectElement>
->(({ className, children, ...props }, ref) => {
+function NativeSelect({
+  className,
+  children,
+  id,
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
+  ...props
+}: React.ComponentProps<"select">) {
   const shape = useShape();
+  const fieldProps = useFieldControl({
+    id,
+    disabled,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
+  });
 
   return (
-    <div className="relative">
+    <div data-slot="native-select-wrapper" className="relative">
       <select
-        ref={ref}
+        data-slot="native-select"
+        {...fieldProps}
         className={cn(
-          "peer h-10 w-full appearance-none border border-border bg-background pl-3 pr-8",
+          "peer h-10 w-full appearance-none border border-border bg-background ps-3 pe-8",
           shape.input,
           "body text-foreground",
           "focus:border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -30,23 +45,21 @@ const NativeSelect = React.forwardRef<
       </select>
       <ChevronDown
         size={14}
-        className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground peer-disabled:opacity-50"
+        className="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 text-muted-foreground peer-disabled:opacity-50"
       />
     </div>
   );
-});
+}
 NativeSelect.displayName = "NativeSelect";
 
-const NativeSelectOption = React.forwardRef<
-  HTMLOptionElement,
-  React.OptionHTMLAttributes<HTMLOptionElement>
->((props, ref) => <option ref={ref} {...props} />);
+function NativeSelectOption(props: React.ComponentProps<"option">) {
+  return <option data-slot="native-select-option" {...props} />;
+}
 NativeSelectOption.displayName = "NativeSelectOption";
 
-const NativeSelectOptGroup = React.forwardRef<
-  HTMLOptGroupElement,
-  React.OptgroupHTMLAttributes<HTMLOptGroupElement>
->((props, ref) => <optgroup ref={ref} {...props} />);
+function NativeSelectOptGroup(props: React.ComponentProps<"optgroup">) {
+  return <optgroup data-slot="native-select-optgroup" {...props} />;
+}
 NativeSelectOptGroup.displayName = "NativeSelectOptGroup";
 
 export { NativeSelect, NativeSelectOption, NativeSelectOptGroup };

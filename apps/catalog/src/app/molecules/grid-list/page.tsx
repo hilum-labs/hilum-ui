@@ -4,7 +4,6 @@ import { PageDocs } from "@/components/catalog/page-docs";
 
 import { MoreHorizontal, Mail, Phone } from "lucide-react";
 import { GridList, GridListCard, GridListAccentCard } from "@hilum/ui";
-import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
@@ -223,7 +222,11 @@ function GridListPage() {
                     accentClass={p.accentClass}
                     href={p.href}
                     trailing={
-                      <Button variant="ghost" size="sm" className="size-7 p-0 text-muted-foreground">
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="size-7 p-0 text-muted-foreground"
+                      >
                         <MoreHorizontal size={14} />
                       </Button>
                     }

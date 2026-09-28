@@ -102,7 +102,7 @@ function ImageGridMenu({ category }: { category: NavCategory }) {
           {category.featured.map((item) => (
             <a
               key={item.title}
-              href="#"
+              href={`#${item.title.toLowerCase().replace(/\s+/g, "-")}`}
               className="group overflow-hidden rounded-[24px] border border-ground-100 bg-ground-50"
             >
               <img
@@ -125,7 +125,7 @@ function ImageGridMenu({ category }: { category: NavCategory }) {
                 {section.links.map((link) => (
                   <a
                     key={link}
-                    href="#"
+                    href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
                     className="block body text-ground-600 transition-colors hover:text-ground-900"
                   >
                     {link}
@@ -169,7 +169,7 @@ export default function ImageGridNav() {
               {pages.map((page) => (
                 <a
                   key={page}
-                  href="#"
+                  href={`#${page.toLowerCase().replace(/\s+/g, "-")}`}
                   className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900"
                 >
                   {page}

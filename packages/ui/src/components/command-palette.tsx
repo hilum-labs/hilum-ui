@@ -31,6 +31,8 @@ interface CommandPaletteProps {
    * routing. As before, an item's `href` takes precedence over its `onSelect`.
    */
   onNavigate?: (href: string) => void;
+  /** Screen-reader label of the dialog's close button. Default: "Close". */
+  closeLabel?: string;
 }
 
 function CommandPalette({
@@ -42,6 +44,7 @@ function CommandPalette({
   title = "Command palette",
   description = "Search for a command or page. Use the arrow keys to move and Enter to select.",
   onNavigate,
+  closeLabel,
 }: CommandPaletteProps) {
   const [query, setQuery] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState(0);
@@ -77,8 +80,8 @@ function CommandPalette({
     acc[cat].push(item);
     return acc;
   }, {});
-  const categories = Object.keys(grouped);
-  const ordered = categories.flatMap((cat) => grouped[cat]);
+  const groups = Object.entries(grouped);
+  const ordered = groups.flatMap(([, items]) => items);
   const safeActive = ordered.length === 0 ? -1 : Math.min(activeIndex, ordered.length - 1);
 
   // Keep the active option in view while arrowing through a long list.
@@ -127,7 +130,10 @@ function CommandPalette({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="gap-0 overflow-hidden p-0 sm:max-w-xl">
+      <DialogContent
+        className="gap-0 overflow-hidden p-0 sm:max-w-xl"
+        {...(closeLabel !== undefined ? { closeLabel } : {})}
+      >
         <DialogTitle className="sr-only">{title}</DialogTitle>
         <DialogDescription className="sr-only">{description}</DialogDescription>
         {/* Search input */}
@@ -167,14 +173,10 @@ function CommandPalette({
             </p>
           ) : (
             <div id={listboxId} role="listbox" aria-label={title} className="py-2">
-              {categories.map((cat) => {
+              {groups.map(([cat, items]) => {
                 const headingId = `${listboxId}-group-${cat}`;
                 return (
-                  <div
-                    key={cat}
-                    role="group"
-                    {...(cat ? { "aria-labelledby": headingId } : {})}
-                  >
+                  <div key={cat} role="group" {...(cat ? { "aria-labelledby": headingId } : {})}>
                     {cat && (
                       <p
                         id={headingId}
@@ -184,7 +186,7 @@ function CommandPalette({
                         {cat}
                       </p>
                     )}
-                    {grouped[cat].map((item, i) => {
+                    {items.map((item, i) => {
                       const index = runningIndex++;
                       const isActive = index === safeActive;
                       return (
@@ -199,7 +201,7 @@ function CommandPalette({
                           data-index={index}
                           data-active={isActive || undefined}
                           className={cn(
-                            "flex min-h-10 w-full cursor-pointer items-center gap-3 px-4 py-2.5 body text-left transition-colors",
+                            "flex min-h-10 w-full cursor-pointer items-center gap-3 px-4 py-2.5 body text-start transition-colors",
                             isActive ? "bg-muted" : "hover:bg-muted",
                           )}
                           onMouseDown={(e) => e.preventDefault()}
@@ -226,7 +228,7 @@ function CommandPalette({
                           </div>
                           <ArrowRight
                             size={13}
-                            className="shrink-0 text-muted-foreground"
+                            className="shrink-0 text-muted-foreground rtl:-scale-x-100"
                             aria-hidden="true"
                           />
                         </div>

@@ -80,7 +80,7 @@ function CheckboxCardPage() {
               key={option.id}
               label={option.label}
               description={option.description}
-              checked={checked[option.id]}
+              checked={checked[option.id] ?? false}
               onCheckedChange={(value) =>
                 setChecked((current) => ({ ...current, [option.id]: value === true }))
               }

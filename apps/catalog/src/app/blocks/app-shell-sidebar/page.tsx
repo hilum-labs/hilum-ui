@@ -5,6 +5,8 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import SidebarShell from "@/components/blocks/app-shell-sidebar/sidebar-shell";
 import sidebarShellSource from "@/components/blocks/app-shell-sidebar/sidebar-shell?raw";
+import AppFrameShell from "@/components/blocks/app-shell-sidebar/app-frame-shell";
+import appFrameShellSource from "@/components/blocks/app-shell-sidebar/app-frame-shell?raw";
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -54,6 +56,17 @@ function AppShellSidebarPage() {
             previewClassName="p-0 bg-muted"
           >
             <SidebarShell />
+          </PreviewBlock>
+        </div>
+        <div>
+          <SectionHeading label="@hilum/app-shell · App frame" />
+          <PreviewBlock
+            title="AppShell with nested navigation"
+            description="Skip link, <main> landmark, collapsible nested sidebar items, header search slot, global loading bar, mobile drawer navigation, and a page header whose secondary actions overflow into “More actions”"
+            code={appFrameShellSource}
+            previewClassName="p-0 bg-muted"
+          >
+            <AppFrameShell />
           </PreviewBlock>
         </div>
       </div>

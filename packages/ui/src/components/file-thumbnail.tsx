@@ -70,6 +70,21 @@ async function renderPdfFirstPage(
 // resolving a spinner is shown. Self-contained (border + surface + sizing) so
 // it can be reused both inside the composer's preview row and to render
 // already-sent attachments in a chat transcript.
+interface FileThumbnailLabels {
+  /** Type badge / meta line when no `type` is given. */
+  file: string;
+  /** Name shown when no `name` is given. */
+  untitled: string;
+  /** Spinner accessible name while a preview renders. */
+  loadingPreview: string;
+}
+
+const DEFAULT_LABELS: FileThumbnailLabels = {
+  file: "File",
+  untitled: "Untitled file",
+  loadingPreview: "Loading preview",
+};
+
 interface FileThumbnailProps {
   file?: File;
   name?: string;
@@ -82,6 +97,8 @@ interface FileThumbnailProps {
    * setPdfWorkerSrc(); when neither is set, the worker loads from jsDelivr.
    */
   pdfWorkerSrc?: string;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<FileThumbnailLabels>;
 }
 
 function FileThumbnail({
@@ -91,13 +108,18 @@ function FileThumbnail({
   size = 48,
   className,
   pdfWorkerSrc,
+  labels: labelsProp,
 }: FileThumbnailProps) {
   const shape = useShape();
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const numericSize = typeof size === "number" ? size : 48;
 
   if (!file) {
     return (
-      <div className={cn("flex items-center gap-3 rounded-lg border border-border p-2", className)}>
+      <div
+        data-slot="file-thumbnail"
+        className={cn("flex items-center gap-3 rounded-lg border border-border p-2", className)}
+      >
         <div
           className={cn(
             "flex shrink-0 items-center justify-center bg-accent text-[11px] text-muted-foreground",
@@ -105,12 +127,12 @@ function FileThumbnail({
           )}
           style={{ width: numericSize, height: numericSize }}
         >
-          {type ?? "File"}
+          {type ?? labels.file}
         </div>
         <div className="min-w-0">
-          <div className="truncate text-[13px] text-foreground">{name ?? "Untitled file"}</div>
+          <div className="truncate text-[13px] text-foreground">{name ?? labels.untitled}</div>
           <div className="text-[12px] text-muted-foreground">
-            {typeof size === "string" ? size : (type ?? "File")}
+            {typeof size === "string" ? size : (type ?? labels.file)}
           </div>
         </div>
       </div>
@@ -126,6 +148,7 @@ function FileThumbnail({
       className={className}
       pdfWorkerSrc={pdfWorkerSrc}
       shapeClassName={shape.bg}
+      loadingLabel={labels.loadingPreview}
     />
   );
 }
@@ -136,12 +159,14 @@ function FilePreview({
   className,
   pdfWorkerSrc,
   shapeClassName,
+  loadingLabel,
 }: {
   file: File;
   size: number;
   className?: string | undefined;
   pdfWorkerSrc?: string | undefined;
   shapeClassName: string;
+  loadingLabel: string;
 }) {
   const isImage = file.type.startsWith("image/");
   const isPdf = file.type === "application/pdf";
@@ -185,6 +210,7 @@ function FilePreview({
 
   return (
     <div
+      data-slot="file-thumbnail"
       className={cn(
         "relative shrink-0 overflow-hidden bg-accent border border-border",
         shapeClassName,
@@ -207,7 +233,7 @@ function FilePreview({
         <div className="absolute inset-0 flex items-center justify-center">
           <div
             className="w-6 h-6 rounded-full border-2 border-border border-t-muted-foreground animate-spin"
-            aria-label="Loading preview"
+            aria-label={loadingLabel}
             role="status"
           />
         </div>
@@ -216,5 +242,11 @@ function FilePreview({
   );
 }
 
-export { FileThumbnail, loadPdfjs, renderPdfFirstPage, setPdfWorkerSrc };
-export type { FileThumbnailProps };
+export {
+  FileThumbnail,
+  loadPdfjs,
+  renderPdfFirstPage,
+  setPdfWorkerSrc,
+  DEFAULT_LABELS as FILE_THUMBNAIL_DEFAULT_LABELS,
+};
+export type { FileThumbnailProps, FileThumbnailLabels };

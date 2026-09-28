@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useReducer, useRef, type ReactNode } from "react";
+import { useEffect, useMemo, useReducer, useRef, useState, type ReactNode } from "react";
 import { ShellProvider } from "@hilum/designer";
 import { CanvasContextProvider } from "./CanvasContext";
+import { CanvasHistoryProvider } from "./CanvasHistory";
 import { canvasReducer } from "./reducer";
 import { createInitialState } from "./state";
 import type { CanvasState } from "./state";
@@ -16,12 +17,15 @@ interface CanvasProviderProps<TData = Record<string, unknown>> {
   readOnly?: boolean;
   /** Receive every state transition. Useful for syncing to external storage. */
   onChange?: (state: CanvasState<TData>) => void;
+  /** Maximum undo depth of the shared layer history. Default: 100. */
+  historyLimit?: number;
   children: ReactNode;
 }
 
 /**
- * Mounts both ShellContext (from @hilum/designer) and CanvasContext.
- * Selection lives in ShellContext; layers / viewport / artboard live here.
+ * Mounts ShellContext (from @hilum/designer), CanvasContext and the shared
+ * layer history. Selection lives in ShellContext; layers / viewport /
+ * artboard live here; undo / redo is read with `useHistoryActions()`.
  *
  * The reducer is generic on TData; apps narrow it by passing a typed
  * `initial.layerTypes` array.
@@ -31,12 +35,11 @@ export function CanvasProvider<TData = Record<string, unknown>>({
   services = {},
   readOnly = false,
   onChange,
+  historyLimit,
   children,
 }: CanvasProviderProps<TData>) {
-  const initialState = useMemo(
-    () => createInitialState<TData>({ ...initial, readOnly }),
-    [], // initial state captured once at mount
-  );
+  // Initial state is captured once at mount.
+  const [initialState] = useState(() => createInitialState<TData>({ ...initial, readOnly }));
 
   const reducer = canvasReducer as (
     s: CanvasState<TData>,
@@ -82,7 +85,11 @@ export function CanvasProvider<TData = Record<string, unknown>>({
 
   return (
     <ShellProvider readOnly={readOnly} resolveKind={resolveKind}>
-      <CanvasContextProvider value={value as never}>{children}</CanvasContextProvider>
+      <CanvasContextProvider value={value as never}>
+        <CanvasHistoryProvider {...(historyLimit !== undefined && { limit: historyLimit })}>
+          {children}
+        </CanvasHistoryProvider>
+      </CanvasContextProvider>
     </ShellProvider>
   );
 }

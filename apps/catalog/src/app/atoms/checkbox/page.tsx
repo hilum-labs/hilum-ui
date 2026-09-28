@@ -216,7 +216,9 @@ function CheckboxPage() {
                       <Checkbox id={`inline-${item.id}`} className="mt-0.5" />
                       <Label htmlFor={`inline-${item.id}`} className="leading-snug">
                         {item.label}{" "}
-                        <span className="font-normal text-muted-foreground">{item.description}</span>
+                        <span className="font-normal text-muted-foreground">
+                          {item.description}
+                        </span>
                       </Label>
                     </div>
                   ))}
@@ -246,7 +248,7 @@ function CheckboxPage() {
                       </div>
                       <Checkbox
                         id={`right-${item.id}`}
-                        checked={rightSide[item.id]}
+                        checked={rightSide[item.id] ?? false}
                         onCheckedChange={(v) =>
                           setRightSide((prev) => ({ ...prev, [item.id]: !!v }))
                         }

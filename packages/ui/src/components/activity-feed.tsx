@@ -17,7 +17,7 @@ interface ActivityFeedProps {
 
 function ActivityFeed({ events, className }: ActivityFeedProps) {
   return (
-    <div className={cn("flow-root", className)}>
+    <div data-slot="activity-feed" className={cn("flow-root", className)}>
       <ul role="list" className="-mb-8">
         {events.map((event, i) => {
           const isLast = i === events.length - 1;
@@ -26,7 +26,7 @@ function ActivityFeed({ events, className }: ActivityFeedProps) {
               <div className="relative pb-8">
                 {!isLast && (
                   <span
-                    className="absolute top-4 left-4 -ml-px h-full w-0.5 bg-muted"
+                    className="absolute top-4 start-4 -ms-px h-full w-0.5 bg-muted"
                     aria-hidden="true"
                   />
                 )}

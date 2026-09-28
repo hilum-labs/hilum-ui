@@ -62,7 +62,9 @@ function SheetPage() {
           <span className="font-semibold text-foreground">Sheet</span>
         </div>
         <h1 className="display mb-2 text-foreground">Sheet</h1>
-        <p className="body max-w-lg text-muted-foreground">Slide-in panel anchored to a screen edge.</p>
+        <p className="body max-w-lg text-muted-foreground">
+          Slide-in panel anchored to a screen edge.
+        </p>
       </div>
 
       <PageDocs path="/atoms/sheet/" />

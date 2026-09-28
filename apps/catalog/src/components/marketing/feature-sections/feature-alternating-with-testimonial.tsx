@@ -59,7 +59,7 @@ export default function FeatureAlternatingWithTestimonial() {
               <h3 className="heading mt-3 text-ground-900">{item.title}</h3>
               <p className="body mt-3 text-ground-500">{item.description}</p>
               <a
-                href="#"
+                href={`#${item.cta.toLowerCase().replace(/\s+/g, "-")}`}
                 className="subheading mt-6 inline-flex items-center gap-2 text-ground-900 transition-colors hover:text-brand-primary"
               >
                 {item.cta}
@@ -93,8 +93,8 @@ export default function FeatureAlternatingWithTestimonial() {
 
         <div className="rounded-[2rem] border border-ground-200 bg-white px-8 py-6 shadow-natural">
           <p className="heading text-ground-900">
-            "We replaced three launch trackers, two approval threads, and a weekly status meeting
-            with one shared workflow."
+            “We replaced three launch trackers, two approval threads, and a weekly status meeting
+            with one shared workflow.”
           </p>
           <div className="mt-4 flex flex-wrap items-center gap-3 text-ground-500">
             <span className="subheading text-ground-900">Sofia Romero</span>

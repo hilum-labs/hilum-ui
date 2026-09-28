@@ -92,7 +92,9 @@ function SliderPage() {
           <span className="font-semibold text-foreground">Slider</span>
         </div>
         <h1 className="display mb-2 text-foreground">Slider</h1>
-        <p className="body max-w-lg text-muted-foreground">Range input for selecting a numeric value.</p>
+        <p className="body max-w-lg text-muted-foreground">
+          Range input for selecting a numeric value.
+        </p>
       </div>
 
       <PageDocs path="/atoms/slider/" />

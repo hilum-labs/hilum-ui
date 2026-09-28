@@ -48,7 +48,9 @@ function InputPage() {
           <span className="font-semibold text-foreground">Input</span>
         </div>
         <h1 className="display mb-2 text-foreground">Input</h1>
-        <p className="body max-w-lg text-muted-foreground">Single-line text field for user input.</p>
+        <p className="body max-w-lg text-muted-foreground">
+          Single-line text field for user input.
+        </p>
       </div>
 
       <PageDocs path="/atoms/input/" />

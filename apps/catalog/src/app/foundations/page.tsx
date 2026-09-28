@@ -368,13 +368,7 @@ function FoundationsPage() {
                       key={t.token}
                       className={cn(i !== rows.length - 1 && "border-b border-border")}
                     >
-                      <TokenRow
-                        token={t.token}
-                        value={t.value}
-                        hex={t.hex}
-                        usage={t.usage}
-                        lightText={t.lightText}
-                      />
+                      <TokenRow token={t.token} value={t.value} hex={t.hex} usage={t.usage} />
                     </div>
                   ))}
                 </div>
@@ -400,7 +394,9 @@ function FoundationsPage() {
                   <p className="body-lg text-foreground" style={{ fontFamily: f.value }}>
                     The quick brown fox jumps over the lazy dog.
                   </p>
-                  <p className="mt-3 break-words font-mono caption-xs text-muted-foreground">{f.value}</p>
+                  <p className="mt-3 break-words font-mono caption-xs text-muted-foreground">
+                    {f.value}
+                  </p>
                 </div>
               ))}
             </div>
@@ -442,7 +438,9 @@ function FoundationsPage() {
                     <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
                       tracking {step.letterSpacing} · transform {step.transform}
                     </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">{step.usage}</p>
+                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
+                      {step.usage}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -495,7 +493,9 @@ function FoundationsPage() {
                   >
                     {w.name} — The quick brown fox jumps over the lazy dog
                   </p>
-                  <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">{w.usage}</p>
+                  <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">
+                    {w.usage}
+                  </p>
                 </div>
               ))}
             </div>
@@ -522,10 +522,14 @@ function FoundationsPage() {
                       <p className="font-mono text-[11px] font-semibold text-muted-foreground">
                         {t.label}
                       </p>
-                      <p className="font-mono caption-xs text-muted-foreground/70">{t.letterSpacing}</p>
+                      <p className="font-mono caption-xs text-muted-foreground/70">
+                        {t.letterSpacing}
+                      </p>
                     </div>
                     <p className={cn("flex-1 text-foreground truncate", t.className)}>{t.sample}</p>
-                    <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">{t.usage}</p>
+                    <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">
+                      {t.usage}
+                    </p>
                   </div>
                 ))}
             </div>
@@ -582,7 +586,9 @@ function FoundationsPage() {
                 <div className="text-center">
                   <p className="font-mono text-[11px] font-semibold text-foreground">{r.name}</p>
                   <p className="font-mono caption-xs text-muted-foreground">{r.value}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">{r.usage}</p>
+                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
+                    {r.usage}
+                  </p>
                 </div>
               </div>
             ))}
@@ -610,7 +616,9 @@ function FoundationsPage() {
                 <div>
                   <p className="font-mono text-[11px] font-semibold text-foreground">{s.name}</p>
                   <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{s.usage}</p>
-                  <p className="mt-1 font-mono text-[9px] leading-tight text-muted-foreground/70">{s.css}</p>
+                  <p className="mt-1 font-mono text-[9px] leading-tight text-muted-foreground/70">
+                    {s.css}
+                  </p>
                 </div>
               </div>
             ))}

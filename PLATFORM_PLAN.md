@@ -6,35 +6,36 @@
 > **Audience:** Engineering team building on the shared platform
 
 > **Historical document.** This is the original May 2026 plan and is kept for its decision log (D1–D20…).
-> Parts are superseded. Hosting moved from GitHub to **AWS CodeCommit**, CI/CD is **CodeBuild**, packages
-> publish to **public npm** (not GitHub Packages), there are **five** packages including `@hilum/blocks`, and the
-> version line is **3.x**. For the current release process, see `RELEASING.md`. The GitHub, GitHub Actions and
+> Parts are superseded. The code is hosted on **GitHub** (`hilum-labs/hilum-ui`), CI/CD runs on **GitHub
+> Actions**, the catalog is deployed to **GitHub Pages** at `ui.hilum.dev`, packages publish to **public npm**
+> (not GitHub Packages) via npm trusted publishing with provenance, there are **five** packages including
+> `@hilum/blocks`, and the version line is **3.x**. For the current release process, see `RELEASING.md`. The
 > GitHub Packages references below are historical.
 
 ### Project Metadata
 
-| | |
-|---|---|
-| **GitHub repo** | `git@github.com:hilum-labs/hilum-ui.git` |
-| **GitHub org** | `hilum-labs` |
-| **Local path** | `/Users/william/Documents/hilum-ui/` |
-| **Catalog deploy** | `https://ui.hilum.dev` |
-| **Package namespace** | `@hilum/*` |
-| **Package registry** | GitHub Packages (private), under `hilum-labs` org |
-| **Owner / sole publisher** | William (controls all releases, reviews, infra) |
-| **Platform scope (v1)** | React (browser) + Electron (Chromium). Expo / RN deferred — see D11. |
-| **Brand model** | Model A — fixed across all Hilum apps. Primary `#FF4D01`, success `#CDEA19`, warning `#FDE086`. No per-app accent overrides (D8). |
-| **Color modes** | Light + dark. Auto via `prefers-color-scheme` with `[data-theme]` override (D7). |
-| **Performance target** | 60fps canvas interactions w/ 100 layers on M-series; 30fps min on 5-yr-old hardware (D12). |
+|                            |                                                                                                                                   |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **GitHub repo**            | `git@github.com:hilum-labs/hilum-ui.git`                                                                                          |
+| **GitHub org**             | `hilum-labs`                                                                                                                      |
+| **Local path**             | `/Users/william/Documents/hilum-ui/`                                                                                              |
+| **Catalog deploy**         | `https://ui.hilum.dev`                                                                                                            |
+| **Package namespace**      | `@hilum/*`                                                                                                                        |
+| **Package registry**       | GitHub Packages (private), under `hilum-labs` org                                                                                 |
+| **Owner / sole publisher** | William (controls all releases, reviews, infra)                                                                                   |
+| **Platform scope (v1)**    | React (browser) + Electron (Chromium). Expo / RN deferred — see D11.                                                              |
+| **Brand model**            | Model A — fixed across all Hilum apps. Primary `#FF4D01`, success `#CDEA19`, warning `#FDE086`. No per-app accent overrides (D8). |
+| **Color modes**            | Light + dark. Auto via `prefers-color-scheme` with `[data-theme]` override (D7).                                                  |
+| **Performance target**     | 60fps canvas interactions w/ 100 layers on M-series; 30fps min on 5-yr-old hardware (D12).                                        |
 
 ---
 
 ## 1. Context
 
-| Project | Location | Stack | Role in this plan |
-|---|---|---|---|
-| Hilum UI (design system) | `/Documents/hilum-ui` | Next.js 15, React 19, Tailwind v4 | **The thing we are building.** Hosts all four packages + the catalog. |
-| Pappery | `/Documents/Pappery/apps/frontend` | Vite + Tauri, React 19, Tailwind v4 | **Reference source only.** We read its `src/components/designer/` to understand existing implementations of editor chrome, canvas, hooks, and actions — then generalize and reimplement them inside Hilum UI packages. Pappery itself is **not modified** in this plan. |
+| Project                  | Location                           | Stack                               | Role in this plan                                                                                                                                                                                                                                                       |
+| ------------------------ | ---------------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hilum UI (design system) | `/Documents/hilum-ui`              | Next.js 15, React 19, Tailwind v4   | **The thing we are building.** Hosts all four packages + the catalog.                                                                                                                                                                                                   |
+| Pappery                  | `/Documents/Pappery/apps/frontend` | Vite + Tauri, React 19, Tailwind v4 | **Reference source only.** We read its `src/components/designer/` to understand existing implementations of editor chrome, canvas, hooks, and actions — then generalize and reimplement them inside Hilum UI packages. Pappery itself is **not modified** in this plan. |
 
 **Hilum UI** is the design system platform — its components, tokens, shells, editor chrome, and canvas engine are consumed by every Hilum app to keep them visually and structurally consistent. The catalog at `apps/catalog` is the public-facing reference (the equivalent of `ds.shadcn.com`).
 
@@ -54,12 +55,13 @@ Phases 3 and 4 of this plan extract editor chrome and canvas engine into `@hilum
 
 1. **Read.** Browse `Pappery/apps/frontend/src/components/designer/` for the source of truth on each component's behavior, state shape, and integration points.
 2. **Identify the generic core.** Strip Pappery-specific concerns (`productType`, `bindingType`, layer type assumptions, print logic, WASM dependencies).
-3. **Reimplement in the package.** Build the generalized version inside `packages/designer/` or `packages/designer-canvas/`. This is *not* a `git mv` — it's a clean reimplementation informed by the reference.
+3. **Reimplement in the package.** Build the generalized version inside `packages/designer/` or `packages/designer-canvas/`. This is _not_ a `git mv` — it's a clean reimplementation informed by the reference.
 4. **Don't touch Pappery.** Pappery's own migration to the new packages is out of scope. After Phase 7 publishes, Pappery's team handles their own switchover on their own timeline.
 
 Two distinct kinds of consumer:
+
 - **Product apps** (CRM, admin, dashboard, marketing) — need UI primitives + a shared app shell (sidebar, header, page layouts).
-- **Editor apps** (Pappery, future form builder, future layout editor) — need everything above *plus* canvas-editor chrome and (optionally) the canvas engine.
+- **Editor apps** (Pappery, future form builder, future layout editor) — need everything above _plus_ canvas-editor chrome and (optionally) the canvas engine.
 
 ---
 
@@ -67,32 +69,32 @@ Two distinct kinds of consumer:
 
 ### 2.1 Resolved
 
-| # | Decision | Resolution |
-|---|---|---|
-| D1 | Org namespace | **`@hilum/`** — design system is named "Hilum UI"; all packages live under the `@hilum/` scope (`@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas`). |
-| D2 | Monorepo root | **`/Documents/hilum-ui/`** — this repo is the Hilum UI monorepo. It hosts the four packages plus the catalog app. Pappery and other consuming apps live in their own repos and depend on `@hilum/*` via the published registry. |
-| D3 | Package registry | **GitHub Packages (private)** under `hilum-labs` org. Cross-repo consumption (Pappery is a separate repo) means `workspace:*` is insufficient. Packages must be published from day one of consumer integration. |
-| D5 | Distribution model | **npm install only.** No copy-paste CLI (no `npx hilum add button`). Consistency wins over per-app customization. Components ship `.tsx` source for Tailwind scanning + compiled `dist/` for imports; tokens ship as a generated `.css` file consumers `@import`. |
-| D6 | Token strategy | **Tokens live inside `@hilum/ui`.** Authored JS-first in `packages/ui/src/tokens/tokens.ts`; build step generates `packages/ui/dist/tokens.css` and `packages/ui/dist/tokens.js`. Consumers `@import "@hilum/ui/tokens.css"` in their globals. JS-first authoring keeps a future `@hilum/tokens` extraction painless when native (Option 1, see D11) arrives. |
-| D7 | Color modes | **Light + dark, both modes.** Default behavior auto-respects `prefers-color-scheme`; consumers can force a mode by setting `<html data-theme="light">` or `<html data-theme="dark">`. Components reference semantic CSS variables only (e.g. `var(--surface)`, not `var(--taupe-50)`); both modes redefine those semantics in the same `tokens.css`. |
-| D8 | Brand model | **Model A — fully fixed brand.** Every Hilum app uses `--brand-orange` (#FF4D01) as primary, `--brand-lime` (#CDEA19) as success, `--brand-yellow` (#FDE086) as warning, taupe scale as neutrals. **No per-app accent overrides.** Marketing pages may decoratively use brand-yellow / brand-lime tints in heroes/illustrations, but UI accents stay fixed across all apps. Goal: maximum brand recognition (Linear/Stripe/Notion/Apple model, not Google/Adobe). |
-| D9 | Typography ownership | **Fonts ship with `@hilum/ui`.** Inter (UI/body) + Gabarito (display/heading) bundled via `@fontsource` + `@font-face` declarations inside `fonts.css`. Apps don't load fonts separately. Single source of font truth. |
-| D10 | Icon ownership | **Icons ship with `@hilum/ui`.** Curated subset of lucide-react re-exported from `@hilum/ui/icons` (sub-export). Apps `import { ChevronDown } from "@hilum/ui/icons"`; they do not install lucide-react directly. Stops drift between two apps using slightly different icon sets. |
-| D11 | Platform scope | **Web-first now (Option 1).** `@hilum/*` v1 targets React in the browser and Electron (Chromium). Expo / React Native consumers are deferred to a future `@hilum/ui-native` sister package that will share `@hilum/tokens` (extracted from D6 at that time). To make that future split painless, tokens are authored JS-first today (see D6). |
-| D12 | Performance target | **60fps target on canvas interactions** (drag, resize, marquee, pan/zoom) with 100 layers on M-series Mac. **30fps minimum** on 5-year-old hardware. Implementation: RAF-driven, transform-only updates (no layout reflow), `contain: layout paint`, memoized layer renderers. |
-| D20 | App framework | **No Next.js anywhere.** All Hilum apps — including the catalog — are plain React, built with **Vite** for the web and **Electron** / **Expo** for desktop and native respectively. No `"use client"` directives, no server components, no SSR. Catalog uses **Vite + React Router + `vite-plugin-pages`** (Next-style file-based routing without the framework). |
-| D4 | Package versioning | **Lockstep.** All four packages publish at the same version (`@hilum/ui@1.4.0`, `@hilum/app-shell@1.4.0`, etc.) even when only one changed. Simpler to communicate ("install Hilum 1.4"), simpler dependency matrix in catalog. Cost: dead version bumps for unchanged packages — accepted. |
-| D13 | `@hilum/app-shell` routing | **Injected `LinkComponent`** + caller-computed active state. `<AppShellProvider linkComponent={Link}>` lets each app pass its router's link component (Next.js `Link`, react-router `NavLink`, raw `<a>`, etc.). Each `AppSidebarItem` accepts `active: boolean` — caller decides which item is active using its own routing state. Component stays router-agnostic. |
-| D14 | Per-component documentation | **Hand-written `page.tsx` per component** (continues the current catalog pattern). Prop tables auto-generated from TypeScript types via a small `<PropsTable componentType={typeof Button}/>` utility so they cannot drift. No MDX, no Storybook docs. |
-| D15 | Figma parity | **None.** Hilum UI does not ship a Figma library, Code Connect mappings, or Figma Variables sync. Designers reference the live catalog at `ui.hilum.dev`. The earlier "Phase 8 — Figma parity" idea is removed from scope. |
-| D16 | Accessibility | **No formal WCAG commitment.** Components use Radix UI primitives, which provide baseline keyboard navigation and ARIA semantics — that's the floor we get for free. No axe-core in CI, no documented a11y guarantees, no a11y section per component in the catalog. Risk accepted. |
-| D17 | Visual regression testing | **Manual review during PRs only.** No Chromatic, no Playwright screenshots, no automated diff. Reviewers eyeball changes against the catalog at `ui.hilum.dev` before merging. Risk acknowledged: a CSS change can silently break visuals across the catalog and consumer apps. Revisit if it bites. |
-| D18 | Internationalization | **English + Spanish.** Every user-facing string in component code comes from a prop — no hardcoded "Next", "Close", "Loading…", "No results", etc. Apps pass localized strings. **No RTL support** in v1; logical CSS properties used where convenient but not enforced. |
-| D19 | Contribution scaffolding | **Deferred.** No `CONTRIBUTING.md`, `CODEOWNERS`, PR templates, or issue templates until the repo gains external contributors or the team grows. |
+| #   | Decision                    | Resolution                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| --- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D1  | Org namespace               | **`@hilum/`** — design system is named "Hilum UI"; all packages live under the `@hilum/` scope (`@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas`).                                                                                                                                                                                                                                                                                    |
+| D2  | Monorepo root               | **`/Documents/hilum-ui/`** — this repo is the Hilum UI monorepo. It hosts the four packages plus the catalog app. Pappery and other consuming apps live in their own repos and depend on `@hilum/*` via the published registry.                                                                                                                                                                                                                                   |
+| D3  | Package registry            | **GitHub Packages (private)** under `hilum-labs` org. Cross-repo consumption (Pappery is a separate repo) means `workspace:*` is insufficient. Packages must be published from day one of consumer integration.                                                                                                                                                                                                                                                   |
+| D5  | Distribution model          | **npm install only.** No copy-paste CLI (no `npx hilum add button`). Consistency wins over per-app customization. Components ship `.tsx` source for Tailwind scanning + compiled `dist/` for imports; tokens ship as a generated `.css` file consumers `@import`.                                                                                                                                                                                                 |
+| D6  | Token strategy              | **Tokens live inside `@hilum/ui`.** Authored JS-first in `packages/ui/src/tokens/tokens.ts`; build step generates `packages/ui/dist/tokens.css` and `packages/ui/dist/tokens.js`. Consumers `@import "@hilum/ui/tokens.css"` in their globals. JS-first authoring keeps a future `@hilum/tokens` extraction painless when native (Option 1, see D11) arrives.                                                                                                     |
+| D7  | Color modes                 | **Light + dark, both modes.** Default behavior auto-respects `prefers-color-scheme`; consumers can force a mode by setting `<html data-theme="light">` or `<html data-theme="dark">`. Components reference semantic CSS variables only (e.g. `var(--surface)`, not `var(--taupe-50)`); both modes redefine those semantics in the same `tokens.css`.                                                                                                              |
+| D8  | Brand model                 | **Model A — fully fixed brand.** Every Hilum app uses `--brand-orange` (#FF4D01) as primary, `--brand-lime` (#CDEA19) as success, `--brand-yellow` (#FDE086) as warning, taupe scale as neutrals. **No per-app accent overrides.** Marketing pages may decoratively use brand-yellow / brand-lime tints in heroes/illustrations, but UI accents stay fixed across all apps. Goal: maximum brand recognition (Linear/Stripe/Notion/Apple model, not Google/Adobe). |
+| D9  | Typography ownership        | **Fonts ship with `@hilum/ui`.** Inter (UI/body) + Gabarito (display/heading) bundled via `@fontsource` + `@font-face` declarations inside `fonts.css`. Apps don't load fonts separately. Single source of font truth.                                                                                                                                                                                                                                            |
+| D10 | Icon ownership              | **Icons ship with `@hilum/ui`.** Curated subset of lucide-react re-exported from `@hilum/ui/icons` (sub-export). Apps `import { ChevronDown } from "@hilum/ui/icons"`; they do not install lucide-react directly. Stops drift between two apps using slightly different icon sets.                                                                                                                                                                                |
+| D11 | Platform scope              | **Web-first now (Option 1).** `@hilum/*` v1 targets React in the browser and Electron (Chromium). Expo / React Native consumers are deferred to a future `@hilum/ui-native` sister package that will share `@hilum/tokens` (extracted from D6 at that time). To make that future split painless, tokens are authored JS-first today (see D6).                                                                                                                     |
+| D12 | Performance target          | **60fps target on canvas interactions** (drag, resize, marquee, pan/zoom) with 100 layers on M-series Mac. **30fps minimum** on 5-year-old hardware. Implementation: RAF-driven, transform-only updates (no layout reflow), `contain: layout paint`, memoized layer renderers.                                                                                                                                                                                    |
+| D20 | App framework               | **No Next.js anywhere.** All Hilum apps — including the catalog — are plain React, built with **Vite** for the web and **Electron** / **Expo** for desktop and native respectively. No `"use client"` directives, no server components, no SSR. Catalog uses **Vite + React Router + `vite-plugin-pages`** (Next-style file-based routing without the framework).                                                                                                 |
+| D4  | Package versioning          | **Lockstep.** All four packages publish at the same version (`@hilum/ui@1.4.0`, `@hilum/app-shell@1.4.0`, etc.) even when only one changed. Simpler to communicate ("install Hilum 1.4"), simpler dependency matrix in catalog. Cost: dead version bumps for unchanged packages — accepted.                                                                                                                                                                       |
+| D13 | `@hilum/app-shell` routing  | **Injected `LinkComponent`** + caller-computed active state. `<AppShellProvider linkComponent={Link}>` lets each app pass its router's link component (Next.js `Link`, react-router `NavLink`, raw `<a>`, etc.). Each `AppSidebarItem` accepts `active: boolean` — caller decides which item is active using its own routing state. Component stays router-agnostic.                                                                                              |
+| D14 | Per-component documentation | **Hand-written `page.tsx` per component** (continues the current catalog pattern). Prop tables auto-generated from TypeScript types via a small `<PropsTable componentType={typeof Button}/>` utility so they cannot drift. No MDX, no Storybook docs.                                                                                                                                                                                                            |
+| D15 | Figma parity                | **None.** Hilum UI does not ship a Figma library, Code Connect mappings, or Figma Variables sync. Designers reference the live catalog at `ui.hilum.dev`. The earlier "Phase 8 — Figma parity" idea is removed from scope.                                                                                                                                                                                                                                        |
+| D16 | Accessibility               | **No formal WCAG commitment.** Components use Radix UI primitives, which provide baseline keyboard navigation and ARIA semantics — that's the floor we get for free. No axe-core in CI, no documented a11y guarantees, no a11y section per component in the catalog. Risk accepted.                                                                                                                                                                               |
+| D17 | Visual regression testing   | **Manual review during PRs only.** No Chromatic, no Playwright screenshots, no automated diff. Reviewers eyeball changes against the catalog at `ui.hilum.dev` before merging. Risk acknowledged: a CSS change can silently break visuals across the catalog and consumer apps. Revisit if it bites.                                                                                                                                                              |
+| D18 | Internationalization        | **English + Spanish.** Every user-facing string in component code comes from a prop — no hardcoded "Next", "Close", "Loading…", "No results", etc. Apps pass localized strings. **No RTL support** in v1; logical CSS properties used where convenient but not enforced.                                                                                                                                                                                          |
+| D19 | Contribution scaffolding    | **Deferred.** No `CONTRIBUTING.md`, `CODEOWNERS`, PR templates, or issue templates until the repo gains external contributors or the team grows.                                                                                                                                                                                                                                                                                                                  |
 
 ### 2.2 Pending
 
-*All decisions resolved.*
+_All decisions resolved._
 
 ---
 
@@ -192,6 +194,7 @@ Two distinct kinds of consumer:
 ```
 
 **Out of this repo:**
+
 - `/Documents/Pappery/` — separate repo, reference source only (see §1.2). After Phase 7 publishes, Pappery's team adds `@hilum/*` to its own `package.json` and migrates on its own schedule.
 - Any future Hilum app (CRM, admin, dashboard, form builder, etc.) — separate repo, consumes published `@hilum/*` packages.
 
@@ -217,14 +220,14 @@ apps/catalog                        ← imports everything for documentation
 
 **Install matrix:**
 
-| App type | `ui` | `app-shell` | `designer` | `designer-canvas` |
-|---|---|---|---|---|
-| Product app (CRM, admin, dashboard) | ✅ | ✅ | — | — |
-| Editor app with a non-canvas surface (form builder, CMS) | ✅ | ✅ | ✅ | — |
-| Editor app with a layer canvas (Pappery) | ✅ | optional | ✅ | ✅ |
-| Marketing site | ✅ | optional | — | — |
+| App type                                                 | `ui` | `app-shell` | `designer` | `designer-canvas` |
+| -------------------------------------------------------- | ---- | ----------- | ---------- | ----------------- |
+| Product app (CRM, admin, dashboard)                      | ✅   | ✅          | —          | —                 |
+| Editor app with a non-canvas surface (form builder, CMS) | ✅   | ✅          | ✅         | —                 |
+| Editor app with a layer canvas (Pappery)                 | ✅   | optional    | ✅         | ✅                |
+| Marketing site                                           | ✅   | optional    | —          | —                 |
 
-Note: `@hilum/designer` is **canvas-editor chrome** — toolbar/panel/pane primitives designed around a `selectedIds` + `activeTool` ShellContext. It is *not* a substitute for `@hilum/app-shell`. Product apps use `app-shell`; editor apps use `designer` (and may also use `app-shell` for non-editor pages like settings or dashboards).
+Note: `@hilum/designer` is **canvas-editor chrome** — toolbar/panel/pane primitives designed around a `selectedIds` + `activeTool` ShellContext. It is _not_ a substitute for `@hilum/app-shell`. Product apps use `app-shell`; editor apps use `designer` (and may also use `app-shell` for non-editor pages like settings or dashboards).
 
 ---
 
@@ -250,6 +253,7 @@ Pappery has 27 UI duplicates inside `/Documents/Pappery/apps/frontend/src/compon
 Composed product-app layouts. Currently exist as one-off showcase pages in `apps/catalog/src/app/blocks/` — this package extracts them into real importable components driven by props. Each app passes its nav config, user, breadcrumbs, etc.; the layout, spacing, collapse behavior, and responsive breakpoints are owned by the package.
 
 **Components:**
+
 ```
 AppShell                Root layout — sidebar + header + main (CSS grid)
 AppSidebar              Left navigation rail (sections, items, user menu bottom)
@@ -265,21 +269,32 @@ SignInScreen            Auth shell — centered card on full-bleed background
 ```
 
 **Shared types (`src/types.ts`):**
+
 ```ts
-interface NavSection { label?: string; items: NavItem[] }
-interface NavItem {
-  label: string
-  href: string
-  icon?: LucideIcon
-  badge?: string | number
-  active?: boolean
+interface NavSection {
+  label?: string;
+  items: NavItem[];
 }
-interface Crumb { label: string; href?: string }
-interface User { name: string; email: string; avatarUrl?: string }
+interface NavItem {
+  label: string;
+  href: string;
+  icon?: LucideIcon;
+  badge?: string | number;
+  active?: boolean;
+}
+interface Crumb {
+  label: string;
+  href?: string;
+}
+interface User {
+  name: string;
+  email: string;
+  avatarUrl?: string;
+}
 ```
 
 **What does NOT go in:**  
-Page-content components — forms, tables, dashboards. Apps build those from `@hilum/ui` directly. This package only owns the *frame* every product app sits inside.
+Page-content components — forms, tables, dashboards. Apps build those from `@hilum/ui` directly. This package only owns the _frame_ every product app sits inside.
 
 **What is the relationship to `@hilum/designer`?**  
 None. `app-shell` is built around standard product-app navigation patterns (a section/item nav config, breadcrumbs, user menu). `designer` is built around a canvas editor's selection model (`selectedIds`, `activeTool`). An editor app may import both: `app-shell` for its dashboard/settings pages, `designer` for its editor route.
@@ -294,6 +309,7 @@ None. `app-shell` is built around standard product-app navigation patterns (a se
 Pure presentational shell components + thin shared context + generic hooks. Zero assumptions about what is being edited or rendered.
 
 **Components:**
+
 ```
 DesignerShell           Root layout (flex-col, fills viewport)
 DesignerHeader          Top bar slot — accepts children
@@ -309,19 +325,21 @@ DesignerToolbarSeparator  Divider
 ```
 
 **Hooks:**
+
 ```ts
 useHistory<T>(initial: T)           // generic undo/redo stack, engine-agnostic
 useKeybindings(config: KeybindingConfig[])  // keyboard shortcut registry
 ```
 
 **ShellContext** — the only shared state between shell and engine:
+
 ```ts
 interface ShellContextValue {
-  selectedIds: string[]           // IDs of whatever is selected (layers, fields, nodes)
-  setSelectedIds: (ids: string[]) => void
-  activeTool: string              // "select" | "hand" | "text" — app defines valid values
-  setActiveTool: (tool: string) => void
-  readOnly: boolean
+  selectedIds: string[]; // IDs of whatever is selected (layers, fields, nodes)
+  setSelectedIds: (ids: string[]) => void;
+  activeTool: string; // "select" | "hand" | "text" — app defines valid values
+  setActiveTool: (tool: string) => void;
+  readOnly: boolean;
 }
 ```
 
@@ -342,41 +360,62 @@ After extracting shell concerns, the canvas context owns:
 ```ts
 interface CanvasContextValue {
   // Layer model
-  layers: Layer[]
-  addLayer, updateLayer, updateLayers, setLayers,
-  deleteLayer, deleteSelectedLayers, reorderLayers
+  layers: Layer[];
+  addLayer;
+  updateLayer;
+  updateLayers;
+  setLayers;
+  deleteLayer;
+  deleteSelectedLayers;
+  reorderLayers;
 
   // Canvas viewport
-  zoom: number
-  panX: number
-  panY: number
-  zoomIn, zoomOut, resetZoom, setZoom, setPan
+  zoom: number;
+  panX: number;
+  panY: number;
+  zoomIn;
+  zoomOut;
+  resetZoom;
+  setZoom;
+  setPan;
 
   // Frame
-  frameSize: FrameSize
-  setFrameSize
+  frameSize: FrameSize;
+  setFrameSize;
 
   // Grid
-  gridContainer?: GridContainer
-  setGridContainer, clearGridContainer, updateGridContainer
+  gridContainer?: GridContainer;
+  setGridContainer;
+  clearGridContainer;
+  updateGridContainer;
 
   // Clipboard
-  copySelectedLayers, cutSelectedLayers, pasteLayers
-  canPaste: boolean
+  copySelectedLayers;
+  cutSelectedLayers;
+  pasteLayers;
+  canPaste: boolean;
 
   // History (delegates to shell's useHistory<Layer[]>)
-  canUndo: boolean
-  canRedo: boolean
-  undo, redo
+  canUndo: boolean;
+  canRedo: boolean;
+  undo;
+  redo;
 
   // Canvas-specific settings
-  artboardName, artboardColor, artboardOpacity, artboardClipContent
-  uiColor, canvasColor, accentColor
-  setUIColor, setCanvasColor, setAccentColor
+  artboardName;
+  artboardColor;
+  artboardOpacity;
+  artboardClipContent;
+  uiColor;
+  canvasColor;
+  accentColor;
+  setUIColor;
+  setCanvasColor;
+  setAccentColor;
 
   // Internal
-  canvasRef
-  isControlled
+  canvasRef;
+  isControlled;
 }
 ```
 
@@ -384,6 +423,7 @@ interface CanvasContextValue {
 `productType`, `unitSystem`, `dpi`, `bindingType`, `bindingPosition`, `bindingSize`, `pageMargin`, `bleed` — all Pappery print-specific. They live in Pappery's own app-level config/context, never in Hilum UI.
 
 **Components:**
+
 ```
 Designer              Root — mounts ShellProvider + CanvasProvider
 DesignerCanvas        Pan/zoom viewport
@@ -397,6 +437,7 @@ DragGhost
 ```
 
 **Hooks (reimplemented in this package, reading Pappery's `hooks/` as reference):**
+
 ```
 useLayers, useLayersWithStyles, getCachedLayerStyles
 useSelectedLayer, useSelectedLayers, useSelectedLayerIds
@@ -423,8 +464,12 @@ They depend on `useDesignerState()` / `useDesignerDispatch()` which live in this
 
 ```tsx
 // Pappery today: conditional logic buried in DesignerProperties.tsx
-{selectedLayer?.type === 'text' && <TextActions />}
-{selectedLayer?.type === 'image' && <ImageActions />}
+{
+  selectedLayer?.type === "text" && <TextActions />;
+}
+{
+  selectedLayer?.type === "image" && <ImageActions />;
+}
 
 // New (composable):
 <DesignerPane showFor={["text"]}>
@@ -433,17 +478,17 @@ They depend on `useDesignerState()` / `useDesignerDispatch()` which live in this
     <ActionFontFamily />
     <ActionFontSize />
   </DesignerPaneContent>
-</DesignerPane>
+</DesignerPane>;
 ```
 
 `showFor` reads `selectedIds` from ShellContext, then asks the engine how to resolve types. Because `@hilum/designer` doesn't know about layers, `showFor` accepts either a string array (layer types) or a predicate function:
 
 ```ts
 interface DesignerPaneProps {
-  showFor?: string[] | ((selectedIds: string[]) => boolean)
-  collapsible?: boolean
-  defaultOpen?: boolean
-  children: ReactNode
+  showFor?: string[] | ((selectedIds: string[]) => boolean);
+  collapsible?: boolean;
+  defaultOpen?: boolean;
+  children: ReactNode;
 }
 ```
 
@@ -454,20 +499,27 @@ For canvas apps, the canvas engine provides a context value that maps IDs → ty
 Current: `state.history: Layer[][]` and `state.historyIndex` live in the canvas reducer.
 
 After split:
+
 ```ts
 // @hilum/designer — generic hook
 function useHistory<T>(initial: T): {
-  state: T
-  setState: (next: T) => void   // adds to stack
-  undo: () => void
-  redo: () => void
-  canUndo: boolean
-  canRedo: boolean
-}
+  state: T;
+  setState: (next: T) => void; // adds to stack
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+};
 
 // @hilum/designer-canvas — uses it
-const { state: layers, setState: setLayers, undo, redo, canUndo, canRedo }
-  = useHistory<Layer[]>(initialLayers)
+const {
+  state: layers,
+  setState: setLayers,
+  undo,
+  redo,
+  canUndo,
+  canRedo,
+} = useHistory<Layer[]>(initialLayers);
 ```
 
 The toolbar's undo/redo buttons call `undo()` / `redo()` from ShellContext — they never touch `Layer[]`.
@@ -477,6 +529,7 @@ The toolbar's undo/redo buttons call `undo()` / `redo()` from ShellContext — t
 Current: `useDesignerKeybindings` takes `DesignerState` and `DesignerAction` directly — fully canvas-coupled.
 
 After split:
+
 ```ts
 // @hilum/designer — generic
 useKeybindings(bindings: KeybindingConfig[])
@@ -496,6 +549,7 @@ useKeybindings([...defaultBindings, ...bindings, ...customBindings])
 ## 6. CSS / Tailwind / Tokens Strategy
 
 **Hybrid distribution model** (per D5, D6):
+
 - **Components:** TSX source distribution. Consumers run Tailwind over the package source at their own build time.
 - **Tokens, fonts, base styles:** compiled CSS distribution. Consumers import `@hilum/ui/tokens.css` and `@hilum/ui/fonts.css` once to get the Hilum visual identity (colors, typography, fonts, light/dark themes).
 
@@ -507,22 +561,30 @@ Tokens are authored as a **TypeScript module** so they can be consumed by both C
 // packages/ui/src/tokens/tokens.ts — single source of truth
 export const tokens = {
   color: {
-    taupe: { 50: 'oklch(...)', 100: '...', /* ... */ 950: '...' },
+    taupe: { 50: "oklch(...)", 100: "...", /* ... */ 950: "..." },
     brand: {
-      orange: '#FF4D01',  // primary (D8 — fixed across all apps)
-      lime:   '#CDEA19',  // success
-      yellow: '#FDE086',  // warning
+      orange: "#FF4D01", // primary (D8 — fixed across all apps)
+      lime: "#CDEA19", // success
+      yellow: "#FDE086", // warning
     },
     semantic: {
-      light: { surface: '...', text: '...', border: '...', primary: '...' },
-      dark:  { surface: '...', text: '...', border: '...', primary: '...' },
+      light: { surface: "...", text: "...", border: "...", primary: "..." },
+      dark: { surface: "...", text: "...", border: "...", primary: "..." },
     },
   },
-  typography: { /* ... */ },
-  spacing:    { /* ... */ },
-  radius:     { /* ... */ },
-  shadow:     { /* ... */ },
-} as const
+  typography: {
+    /* ... */
+  },
+  spacing: {
+    /* ... */
+  },
+  radius: {
+    /* ... */
+  },
+  shadow: {
+    /* ... */
+  },
+} as const;
 ```
 
 A build step generates these artifacts:
@@ -538,11 +600,11 @@ A build step generates these artifacts:
 ```json
 {
   "exports": {
-    ".":            { "import": "./dist/index.js",    "types": "./dist/index.d.ts" },
-    "./icons":      { "import": "./dist/icons.js",    "types": "./dist/icons.d.ts" },
-    "./tokens":     { "import": "./dist/tokens.js",   "types": "./dist/tokens.d.ts" },
+    ".": { "import": "./dist/index.js", "types": "./dist/index.d.ts" },
+    "./icons": { "import": "./dist/icons.js", "types": "./dist/icons.d.ts" },
+    "./tokens": { "import": "./dist/tokens.js", "types": "./dist/tokens.d.ts" },
     "./tokens.css": "./dist/tokens.css",
-    "./fonts.css":  "./dist/fonts.css"
+    "./fonts.css": "./dist/fonts.css"
   },
   "files": ["dist", "src"]
 }
@@ -589,6 +651,7 @@ Apps should not redeclare brand variables. The system is fixed. If an app legiti
 ## 7. TypeScript Strategy
 
 **Base config** (`tsconfig.base.json` at monorepo root):
+
 ```json
 {
   "compilerOptions": {
@@ -608,6 +671,7 @@ Apps should not redeclare brand variables. The system is fixed. If an app legiti
 ```
 
 **Per-package config** (e.g. `packages/ui/tsconfig.json`):
+
 ```json
 {
   "extends": "../../tsconfig.base.json",
@@ -621,18 +685,19 @@ Apps should not redeclare brand variables. The system is fixed. If an app legiti
 ```
 
 **Build tool** (`tsup.config.ts` — same pattern for all packages):
+
 ```ts
-import { defineConfig } from 'tsup'
+import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['esm', 'cjs'],
+  entry: ["src/index.ts"],
+  format: ["esm", "cjs"],
   dts: true,
-  external: ['react', 'react-dom', 'radix-ui', '@hilum/ui', '@hilum/designer'],
+  external: ["react", "react-dom", "radix-ui", "@hilum/ui", "@hilum/designer"],
   sourcemap: true,
   clean: true,
   treeshake: true,
-})
+});
 ```
 
 ---
@@ -640,13 +705,15 @@ export default defineConfig({
 ## 8. Build & Workspace Config
 
 **`pnpm-workspace.yaml`:**
+
 ```yaml
 packages:
-  - 'packages/*'
-  - 'apps/*'
+  - "packages/*"
+  - "apps/*"
 ```
 
 **`turbo.json`:**
+
 ```json
 {
   "$schema": "https://turbo.build/schema.json",
@@ -671,6 +738,7 @@ packages:
 ```
 
 **Root `package.json`:**
+
 ```json
 {
   "name": "hilum-platform",
@@ -706,7 +774,7 @@ All audits read **Pappery as a reference source** (see §1.2) — Pappery is not
 - [ ] P0.1 — Resolve D4 and D5 in §2.2. Write answers in §2.1 (Resolved).
 - [ ] P0.2 — **Audit Pappery's UI duplicates.** Walk `/Documents/Pappery/apps/frontend/src/components/designer/ui/` (27 components). Map each to its equivalent in this repo's `src/components/ui/`. Mark gaps — components Pappery has that Hilum UI does not. Each gap becomes a new component to add to `@hilum/ui` in Phase 2.
 - [ ] P0.3 — **Audit Pappery's actions.** Walk `/Documents/Pappery/apps/frontend/src/components/designer/actions/` (55 components). For each, list: (a) the `useDesignerState`/`dispatch` calls it makes, (b) whether it touches Pappery-specific config (`productType`, `bindingType`, `dpi`, `unitSystem`, `bleed`, etc.). Pappery-specific actions need an abstraction layer (config injected via context, not imported directly).
-- [ ] P0.4 — **Audit Pappery's designer types and reducer.** Walk `/Documents/Pappery/apps/frontend/src/components/designer/types.ts` and `reducer.ts`. Identify which slices are generic (layers, zoom, pan, frameSize, grid, clipboard, history, ui colors) vs Pappery-specific (productType, dpi, binding*, pageMargin, bleed). The generic slices go into `@hilum/designer-canvas`; the Pappery-specific slices stay out of Hilum UI.
+- [ ] P0.4 — **Audit Pappery's designer types and reducer.** Walk `/Documents/Pappery/apps/frontend/src/components/designer/types.ts` and `reducer.ts`. Identify which slices are generic (layers, zoom, pan, frameSize, grid, clipboard, history, ui colors) vs Pappery-specific (productType, dpi, binding\*, pageMargin, bleed). The generic slices go into `@hilum/designer-canvas`; the Pappery-specific slices stay out of Hilum UI.
 - [ ] P0.5 — **Verify version alignment between Pappery and this repo.** React major must match (both currently 19). Tailwind: this repo uses v4.0, Pappery uses v4.2 — confirm utility class compatibility before building packages that both will consume.
 - [ ] P0.6 — **Document WASM strategy.** Pappery's `GeometryService` and `FontService` (in `/Documents/Pappery/apps/frontend/src/wasm/`) are NOT moved into Hilum UI. The renderers in `@hilum/designer-canvas` consume these services via an injected interface — Pappery provides the implementation; the package is WASM-free. Define the service interface signature now so Phase 4 can target it.
 
@@ -766,6 +834,7 @@ turbo typecheck                       # exits 0
 ### Tasks
 
 **Package scaffolding:**
+
 - [ ] P2.1 — Create `packages/ui/` with `package.json`, `tsconfig.json`, `tsup.config.ts` (content in §7).
 - [ ] P2.2 — Move `apps/catalog/src/components/ui/` → `packages/ui/src/components/`. Update all internal imports in catalog.
 - [ ] P2.3 — Move `apps/catalog/src/lib/utils.ts` → `packages/ui/src/lib/utils.ts`. Update imports.
@@ -775,18 +844,22 @@ turbo typecheck                       # exits 0
 - [ ] P2.7 — Run `turbo build --filter=@hilum/ui` — verify `dist/` is produced with ESM, CJS, and `.d.ts`.
 
 **Tailwind setup:**
+
 - [ ] P2.8 — Add `@source` directive in catalog's `globals.css` pointing to `packages/ui/src`. Verify all utility classes resolve.
 
 **Fill gaps from Pappery audit:**
+
 - [ ] P2.9 — Resolve any gaps found in P0.2 (components Pappery uses that don't exist in `@hilum/ui` yet — typically things like `FontPicker`, `ColorPicker`, `InlineColorPicker`, `InputNumber`, `InputGroup`, `Action` wrapper). Build them as new atoms in the package, drawing on Pappery's implementation as a reference but generalizing.
 - [ ] P2.10 — Add catalog pages for any new atoms added in P2.9 so they are discoverable and documented.
 - [ ] P2.11 — Update `apps/catalog/src/app/atoms/page.tsx` counts to reflect added components.
 
 **Validation:**
+
 - [ ] P2.12 — Run typecheck across monorepo. Zero errors.
 - [ ] P2.13 — Visual regression: spot-check 10 atoms in the catalog vs screenshots taken before migration.
 
 **Validation:**
+
 - [ ] P2.15 — Run typecheck across monorepo. Zero errors.
 - [ ] P2.16 — Visual regression: spot-check 10 atoms in the catalog vs screenshots taken before migration.
 
@@ -818,13 +891,16 @@ grep -r "@/components/ui" apps/catalog/src | wc -l
 ### Tasks
 
 **Package scaffolding:**
+
 - [ ] P2.5.1 — Create `packages/app-shell/` with `package.json`, `tsconfig.json`, `tsup.config.ts`.
 - [ ] P2.5.2 — Set peer deps: `react`, `react-dom`, `@hilum/ui`.
 
 **Types:**
+
 - [ ] P2.5.3 — Create `packages/app-shell/src/types.ts` with `NavSection`, `NavItem`, `Crumb`, `User` (signatures in §4.2). Export from package index.
 
 **Component extraction (from `apps/catalog/src/app/blocks/`):**
+
 - [ ] P2.5.4 — Extract `app-shell-sidebar/page.tsx` → `AppShell`, `AppSidebar`, `AppSidebarSection`, `AppSidebarItem`, `AppHeader`. Drive structure via props (`sections: NavSection[]`, `user: User`, `breadcrumbs?: Crumb[]`). Hardcoded demo nav data stays in the catalog page; the package contains only the layout primitives.
 - [ ] P2.5.5 — Extract `app-shell-stacked/page.tsx` → `AppShellStacked` (top-nav variant for marketing/admin).
 - [ ] P2.5.6 — Extract `navbar/page.tsx` → standalone `Navbar` component for use outside `AppShell`.
@@ -834,17 +910,21 @@ grep -r "@/components/ui" apps/catalog/src | wc -l
 - [ ] P2.5.10 — Build `PageHeader` — in-content header with title, description, action slot. Currently inlined across multiple block pages — consolidate.
 
 **Barrel export:**
+
 - [ ] P2.5.11 — Create `packages/app-shell/src/index.ts` exporting all components and types.
 - [ ] P2.5.12 — Run `turbo build --filter=@hilum/app-shell` — verify `dist/` is produced.
 
 **Tailwind setup:**
+
 - [ ] P2.5.13 — Add `@source "../../packages/app-shell/src"` to catalog's `globals.css`. Verify all utility classes resolve.
 
 **Catalog integration:**
+
 - [ ] P2.5.14 — Update each block page in `apps/catalog/src/app/blocks/` to import from `@hilum/app-shell` instead of inlining the layout. Pages now demonstrate real package usage, not duplicated reference code.
 - [ ] P2.5.15 — Add prop tables and usage docs for each shell component to its catalog page.
 
 **Validation:**
+
 - [ ] P2.5.16 — Run typecheck across monorepo. Zero errors.
 - [ ] P2.5.17 — Visual regression: spot-check each block page vs screenshots taken before extraction.
 
@@ -879,14 +959,17 @@ cat packages/app-shell/package.json | grep -A 5 peerDependencies
 ### Tasks
 
 **Package scaffolding:**
+
 - [ ] P3.1 — Create `packages/designer/` with `package.json`, `tsconfig.json`, `tsup.config.ts`.
 - [ ] P3.2 — Set peer deps: `react`, `react-dom`, `@hilum/ui`.
 
 **ShellContext:**
+
 - [ ] P3.3 — Create `packages/designer/src/shell/ShellContext.tsx` implementing the interface from §4.3.
 - [ ] P3.4 — Ensure ShellContext has a no-op default so components render without a provider (useful for the catalog showcase).
 
 **Component reimplementation (read Pappery, build generic):**
+
 - [ ] P3.5 — Read Pappery's `DesignerToolbar.tsx`. Reimplement in `packages/designer/src/components/DesignerToolbar.tsx` with **zero `DesignerContext` imports** — toolbar takes children only, parents wire actions through ShellContext or props.
 - [ ] P3.6 — Read Pappery's `DesignerPanel.tsx`. Reimplement as a generic resizable panel — no canvas-state coupling.
 - [ ] P3.7 — Read Pappery's `DesignerSidebar.tsx`. Reimplement as a generic icon rail — `items: { icon, label, onClick }[]` driven, no designer-state coupling.
@@ -896,13 +979,16 @@ cat packages/app-shell/package.json | grep -A 5 peerDependencies
 - [ ] P3.11 — **Build new:** `DesignerToolbarGroup.tsx`, `DesignerToolbarButton.tsx`, `DesignerToolbarSeparator.tsx` — decompose Pappery's monolithic toolbar into reusable primitives.
 
 **Generic hooks (read Pappery, generalize):**
+
 - [ ] P3.12 — Read Pappery's `hooks/useHistory.ts`. Reimplement in `packages/designer/src/hooks/useHistory.ts` as generic `useHistory<T>` (see §5.2) — strip all `Layer` type references; the hook should know nothing about what it stacks.
 - [ ] P3.13 — Read Pappery's `hooks/useDesignerKeybindings.ts`. Reimplement in `packages/designer/src/hooks/useKeybindings.ts` as a generic registry — accepts `KeybindingConfig[]` not `DesignerState` (see §5.3).
 
 **Barrel export:**
+
 - [ ] P3.14 — Create `packages/designer/src/index.ts` exporting all components and hooks.
 
 **Catalog integration test:**
+
 - [ ] P3.15 — Create `apps/catalog/src/app/designer/page.tsx` — a page that mounts `DesignerShell` with panels and a toolbar using **no canvas components**. Demo data is plain strings/numbers. Serves as proof the shell is engine-agnostic.
 
 ### Exit Validation
@@ -935,10 +1021,12 @@ grep -r "useDesignerState\|DesignerContext\|useDesigner" packages/designer/src
 ### Tasks
 
 **Package scaffolding:**
+
 - [ ] P4.1 — Create `packages/designer-canvas/` with `package.json`, `tsconfig.json`, `tsup.config.ts`.
 - [ ] P4.2 — Set peer deps: `react`, `react-dom`, `@hilum/ui`, `@hilum/designer`.
 
 **Generic canvas state (read Pappery's `DesignerContext.tsx`, build slim version):**
+
 - [ ] P4.3 — Create `packages/designer-canvas/src/context/CanvasContext.tsx`. Read Pappery's `DesignerContext.tsx` and reimplement with:
   - **Excluded:** `productType`, `unitSystem`, `dpi`, `bindingType`, `bindingPosition`, `bindingSize`, `pageMargin`, `bleed` (Pappery domain — apps inject via `appConfig` prop or their own context).
   - **Excluded:** `activeTool`, `selectedLayerIds` → delegate to ShellContext from `@hilum/designer`.
@@ -949,29 +1037,35 @@ grep -r "useDesignerState\|DesignerContext\|useDesigner" packages/designer/src
 - [ ] P4.6 — Build `CanvasProvider.tsx` (renamed from Pappery's `DesignerProvider`). It wraps `ShellProvider` from `@hilum/designer` inside itself.
 
 **Generic types:**
+
 - [ ] P4.7 — Define a generic `Layer` type in `packages/designer-canvas/src/types/`: `id`, `type: string`, `x`, `y`, `width`, `height`, `rotation?`, `opacity?`, `data: Record<string, unknown>`. Apps narrow `type` and `data` for their own layer kinds. Read Pappery's `types/types.ts` as reference but don't import its concrete `LayerType` enum — the package stays open.
 
 **Components (read Pappery, reimplement generic):**
+
 - [ ] P4.8 — Reimplement `DesignerCanvas.tsx` (pan/zoom viewport).
 - [ ] P4.9 — Reimplement `DesignerFrame.tsx` (interactive layer container).
 - [ ] P4.10 — **Build new:** `DesignerStaticFrame.tsx` — read-only render of layers with no interaction hooks. Used for dashboard thumbnails. Uses the same layer renderers but no event handlers, no selection, no drag/resize.
 - [ ] P4.11 — Reimplement all overlay components (GridOverlay, SnapGuidesOverlay, MarqueeOverlay, LayerSelectionOverlay, DragGhost, CanvasWithBackgroundClick).
 
 **Hooks (read Pappery's `hooks/` and `interaction/`, reimplement generic):**
+
 - [ ] P4.12 — Reimplement layer hooks: `useLayers`, `useLayersWithStyles`, `useSelectedLayer`, `useSelectedLayers`, `useSelectedLayerIds`, `useIsLayerSelected`. Wire `useHistoryActions` to delegate to `@hilum/designer`'s `useHistory<Layer[]>`.
 - [ ] P4.13 — Reimplement interaction hooks: `useDragInteraction`, `useResizeInteraction`, `useTextEditInteraction`, `useMarqueeInteraction`. These should operate on the generic `Layer` shape.
 
 **Renderers (pluggable, not bundled):**
+
 - [ ] P4.14 — Build a renderer registry: apps register their own renderers per `layer.type`. The package ships **no concrete renderers** — Pappery's `ProTextRenderer`, `ShapeRenderer`, `RegionRenderer`, `UniversalWidgetRenderer` stay in Pappery because they depend on Pappery's layer schema and WASM services.
 - [ ] P4.15 — Define the `LayerRenderer` interface and `useLayerRenderer` hook so apps can plug in their renderers. Document the contract in the package README.
 - [ ] P4.16 — Define the WASM service interface (per P0.6) for geometry/font services. The package consumes these via injection — Pappery passes its WASM-backed implementation; the package itself is WASM-free.
 
 **Actions (read Pappery's 55 actions, build a generic subset):**
+
 - [ ] P4.17 — Reimplement only the **generic** actions that operate on the `Layer` shape: opacity, alignment (center, distribute), z-order (front/back), fill color, stroke, rotation, position, size, lock, visibility, duplicate, delete, group/ungroup. ~25–30 of Pappery's 55 actions are generic in this sense.
 - [ ] P4.18 — Pappery-specific actions (`ActionDPISelector`, `ActionUnitSelector`, `ActionExport`, `ActionBinding*`, font picker, anything that touches `productType`/`dpi`) **stay in Pappery**. They depend on Pappery-specific app state that doesn't exist in the package.
 - [ ] P4.19 — Update all package actions to import UI primitives from `@hilum/ui`.
 
 **Barrel export:**
+
 - [ ] P4.20 — Create `packages/designer-canvas/src/index.ts`.
 
 ### Exit Validation
@@ -1052,11 +1146,13 @@ pnpm --filter apps/catalog build       # exits 0
 ### Tasks
 
 **Versioning:**
+
 - [ ] P7.1 — Install `changesets` at monorepo root: `pnpm add -D @changesets/cli`.
 - [ ] P7.2 — Run `pnpm changeset init`. Configure for **lockstep / fixed versioning** (D4): set `"fixed": [["@hilum/ui", "@hilum/app-shell", "@hilum/designer", "@hilum/designer-canvas"]]` in `.changeset/config.json` so all packages publish at the same version on every release.
 - [ ] P7.3 — Document the change workflow: every PR that touches a package must include a changeset file.
 
 **Testing:**
+
 - [ ] P7.4 — Add `vitest` to each package. Write unit tests for:
   - `useHistory<T>` — push, undo, redo, boundary conditions
   - `useKeybindings` — key combination matching, custom override
@@ -1065,6 +1161,7 @@ pnpm --filter apps/catalog build       # exits 0
 - [ ] P7.5 — Target: 80% coverage on `@hilum/designer` hooks. Canvas renderer tests are lower priority.
 
 **CI:**
+
 - [ ] P7.6 — GitHub Actions workflow:
   ```yaml
   on: [pull_request]
@@ -1079,10 +1176,12 @@ pnpm --filter apps/catalog build       # exits 0
 - [ ] P7.7 — Add `changeset status` check to CI — PRs touching packages without a changeset fail.
 
 **Publishing:**
+
 - [ ] P7.8 — If using GitHub Packages: configure `publishConfig` in each `package.json`. Add publish workflow triggered on `main` merge.
 - [ ] P7.9 — If workspace-only: skip publishing, rely on `workspace:*` protocol forever.
 
 **Documentation:**
+
 - [ ] P7.10 — Each package gets a `README.md` with: installation, quick start, props reference, Tailwind setup instructions.
 
 ### Exit Validation
@@ -1098,18 +1197,18 @@ pnpm changeset status                  # no unpublished changesets (or expected 
 
 ## 17. Risk Register
 
-| Risk | Likelihood | Impact | Mitigation |
-|---|---|---|---|
-| WASM coupling sneaks into `designer-canvas` | High | High | Define the service interface in P0.6, enforce in P4.16. Add a CI grep that fails the build if `wasm` strings appear in package source. |
-| Tailwind class purging misses package source | Medium | Medium | Add explicit `@source` directives. Run visual smoke tests against the catalog before/after each phase. |
-| Pappery-specific concepts leak into the package (productType, dpi, layer-type assumptions) | High | Medium | P0.3 / P0.4 audits identify them upfront. Phase 4 exit validation greps the package for those keywords; CI re-runs the grep on every PR. |
-| Generic `useHistory<T>` breaks undo in edge cases | Medium | High | Read Pappery's existing history tests as input cases. Port the same sequences into the package's vitest suite (P7.4) before shipping. |
-| React version mismatch between Hilum packages and consumer apps | Low | High | Pin React to exact major in peer deps. Both this repo and Pappery currently on 19. |
-| Breaking change in `@hilum/ui` ripples to all consumers at once | Medium | Medium | Lockstep versioning (D4) — all packages bump together; semver enforced via Changesets. A single major bump is the contract for any breaking change anywhere in Hilum UI. Pappery and others control their upgrade cadence by pinning to a major. |
-| Visual regression slips through manual review (D17 risk) | Medium | High | No automated visual diff means CSS changes can silently break the catalog or consumer apps. Mitigation: small, focused PRs; reviewer must visit `ui.hilum.dev` preview before approving. Revisit Chromatic if regressions become recurring. |
-| A11y compliance gap (D16 risk) | Low–Medium | Variable | No formal WCAG commitment; a Hilum app sold into a market with regulatory a11y requirements (EU EAA, US Section 508) may need to add its own a11y layer. Radix primitives keep the floor reasonable but not certified. Revisit if a regulated market becomes a target. |
-| Pappery integration (out of scope) reveals an API design flaw | Medium | Medium | Treat the Pappery integration as the real-world test of the API. Cut a patch release on whatever package is wrong; do not block other consumers. |
-| Pappery audit (P0.2–P0.4) misses a coupling and we discover it mid-phase | Medium | Medium | The audits are checklists, not guarantees. Budget 1–2 buffer days inside Phases 3 and 4 for unforeseen abstractions. |
+| Risk                                                                                       | Likelihood | Impact   | Mitigation                                                                                                                                                                                                                                                             |
+| ------------------------------------------------------------------------------------------ | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| WASM coupling sneaks into `designer-canvas`                                                | High       | High     | Define the service interface in P0.6, enforce in P4.16. Add a CI grep that fails the build if `wasm` strings appear in package source.                                                                                                                                 |
+| Tailwind class purging misses package source                                               | Medium     | Medium   | Add explicit `@source` directives. Run visual smoke tests against the catalog before/after each phase.                                                                                                                                                                 |
+| Pappery-specific concepts leak into the package (productType, dpi, layer-type assumptions) | High       | Medium   | P0.3 / P0.4 audits identify them upfront. Phase 4 exit validation greps the package for those keywords; CI re-runs the grep on every PR.                                                                                                                               |
+| Generic `useHistory<T>` breaks undo in edge cases                                          | Medium     | High     | Read Pappery's existing history tests as input cases. Port the same sequences into the package's vitest suite (P7.4) before shipping.                                                                                                                                  |
+| React version mismatch between Hilum packages and consumer apps                            | Low        | High     | Pin React to exact major in peer deps. Both this repo and Pappery currently on 19.                                                                                                                                                                                     |
+| Breaking change in `@hilum/ui` ripples to all consumers at once                            | Medium     | Medium   | Lockstep versioning (D4) — all packages bump together; semver enforced via Changesets. A single major bump is the contract for any breaking change anywhere in Hilum UI. Pappery and others control their upgrade cadence by pinning to a major.                       |
+| Visual regression slips through manual review (D17 risk)                                   | Medium     | High     | No automated visual diff means CSS changes can silently break the catalog or consumer apps. Mitigation: small, focused PRs; reviewer must visit `ui.hilum.dev` preview before approving. Revisit Chromatic if regressions become recurring.                            |
+| A11y compliance gap (D16 risk)                                                             | Low–Medium | Variable | No formal WCAG commitment; a Hilum app sold into a market with regulatory a11y requirements (EU EAA, US Section 508) may need to add its own a11y layer. Radix primitives keep the floor reasonable but not certified. Revisit if a regulated market becomes a target. |
+| Pappery integration (out of scope) reveals an API design flaw                              | Medium     | Medium   | Treat the Pappery integration as the real-world test of the API. Cut a patch release on whatever package is wrong; do not block other consumers.                                                                                                                       |
+| Pappery audit (P0.2–P0.4) misses a coupling and we discover it mid-phase                   | Medium     | Medium   | The audits are checklists, not guarantees. Budget 1–2 buffer days inside Phases 3 and 4 for unforeseen abstractions.                                                                                                                                                   |
 
 ---
 
@@ -1117,43 +1216,44 @@ pnpm changeset status                  # no unpublished changesets (or expected 
 
 All architectural and product decisions are now resolved in §2.1 (D1–D19). The two remaining questions below are implementation-detail choices made inside their phase.
 
-| Q | Relevant Phase | Question |
-|---|---|---|
-| Q4 | Phase 3 | Does `DesignerPane`'s `showFor` resolve layer-type → category via ShellContext, or via a render-prop the app supplies? |
-| Q8 | Phase 4 | Does `@hilum/designer-canvas` ship a default `RectRenderer` and `TextRenderer` for the catalog demo, or are renderers always app-supplied? |
+| Q   | Relevant Phase | Question                                                                                                                                   |
+| --- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Q4  | Phase 3        | Does `DesignerPane`'s `showFor` resolve layer-type → category via ShellContext, or via a render-prop the app supplies?                     |
+| Q8  | Phase 4        | Does `@hilum/designer-canvas` ship a default `RectRenderer` and `TextRenderer` for the catalog demo, or are renderers always app-supplied? |
 
 **Pappery-internal questions (out of scope of this plan, listed for Pappery's team):**
 
-| Q | Pappery decides |
-|---|---|
-| ~~Q2~~ | Whether `GeometryService` becomes a separate `@pappery/geometry` package or stays in `apps/frontend/src/wasm/`. Hilum UI does not require either choice. |
-| ~~Q3~~ | Whether the `widgets/` folder (CalendarComponent, Checklist, HabitTracker) ever gets shared. Hilum UI does not host them. |
+| Q      | Pappery decides                                                                                                                                                 |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ~~Q2~~ | Whether `GeometryService` becomes a separate `@pappery/geometry` package or stays in `apps/frontend/src/wasm/`. Hilum UI does not require either choice.        |
+| ~~Q3~~ | Whether the `widgets/` folder (CalendarComponent, Checklist, HabitTracker) ever gets shared. Hilum UI does not host them.                                       |
 | ~~Q7~~ | Whether `ActionExport` (PDF generation) stays as an action component or moves to Pappery's app layer. Either way, it does not live in `@hilum/designer-canvas`. |
 
 ---
 
 ## 19. Timeline Summary
 
-| Phase | Name | Duration | Cumulative |
-|---|---|---|---|
-| 0 | Preparation & Pappery audit | 3–5 days | Week 1 |
-| 1 | Monorepo Foundation | 2–3 days | Week 1–2 |
-| 2 | `@hilum/ui` | 1–2 weeks | Week 2–3 |
-| 2.5 | `@hilum/app-shell` | 1 week | Week 3–4 |
-| 3 | `@hilum/designer` Shell | 1–2 weeks | Week 4–6 |
-| 4 | `@hilum/designer-canvas` | 2–3 weeks | Week 6–9 |
-| 6 | Catalog Integration | 1 week | Week 9–10 |
-| 7 | Production Hardening + publish | 1 week | Week 10–11 |
+| Phase | Name                           | Duration  | Cumulative |
+| ----- | ------------------------------ | --------- | ---------- |
+| 0     | Preparation & Pappery audit    | 3–5 days  | Week 1     |
+| 1     | Monorepo Foundation            | 2–3 days  | Week 1–2   |
+| 2     | `@hilum/ui`                    | 1–2 weeks | Week 2–3   |
+| 2.5   | `@hilum/app-shell`             | 1 week    | Week 3–4   |
+| 3     | `@hilum/designer` Shell        | 1–2 weeks | Week 4–6   |
+| 4     | `@hilum/designer-canvas`       | 2–3 weeks | Week 6–9   |
+| 6     | Catalog Integration            | 1 week    | Week 9–10  |
+| 7     | Production Hardening + publish | 1 week    | Week 10–11 |
 
 **Total: 10–11 weeks** with a single engineer. Can compress to 6–7 weeks with two engineers.
 
 Parallelism opportunities (after Phase 2 ships):
+
 - **Phase 2.5** and **Phase 3** are independent — both depend only on `@hilum/ui`. Run in parallel.
 - **Phase 4** depends on Phase 3.
 - **Phase 6** (catalog docs) can start incrementally as each package ships, not only at the end.
 
-**Pappery integration** (§14) happens *after* Phase 7 publishes, on Pappery's own schedule, in Pappery's own repo. Not counted in this timeline.
+**Pappery integration** (§14) happens _after_ Phase 7 publishes, on Pappery's own schedule, in Pappery's own repo. Not counted in this timeline.
 
 ---
 
-*This document should live at the monorepo root once Phase 1 is complete. Update it as decisions are resolved and phases are marked done.*
+_This document should live at the monorepo root once Phase 1 is complete. Update it as decisions are resolved and phases are marked done._

@@ -46,7 +46,7 @@ describe("InputNumber density + label prefix", () => {
   it("shows steppers and right-aligns by default", () => {
     render(<InputNumber value={10} onChange={() => {}} />);
     expect(screen.getByRole("button", { name: /increment/i })).toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toHaveClass("text-right", "tabular-nums");
+    expect(screen.getByRole("spinbutton")).toHaveClass("text-end", "tabular-nums");
   });
 
   it("hides steppers and left-aligns under compact density", () => {
@@ -56,7 +56,7 @@ describe("InputNumber density + label prefix", () => {
       </DensityProvider>,
     );
     expect(screen.queryByRole("button", { name: /increment/i })).not.toBeInTheDocument();
-    expect(screen.getByRole("textbox")).toHaveClass("text-left");
+    expect(screen.getByRole("spinbutton")).toHaveClass("text-start");
   });
 
   it("keeps steppers in compact density when explicitly requested", () => {
@@ -70,8 +70,8 @@ describe("InputNumber density + label prefix", () => {
 
   it("uses a string label as the accessible name and left-aligns the value", () => {
     render(<InputNumber label="X" value={10} onChange={() => {}} />);
-    const input = screen.getByRole("textbox", { name: "X" });
-    expect(input).toHaveClass("text-left");
+    const input = screen.getByRole("spinbutton", { name: "X" });
+    expect(input).toHaveClass("text-start");
   });
 
   it("scrubs the value when the label is dragged", () => {

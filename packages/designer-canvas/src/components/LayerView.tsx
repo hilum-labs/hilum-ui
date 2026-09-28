@@ -18,7 +18,7 @@ interface LayerViewProps {
  */
 function LayerView({ layer, staticMode = false }: LayerViewProps) {
   const { state } = useCanvasContext();
-  const { selectedIds, setSelectedIds, readOnly } = useShellContext();
+  const { selectedIds, setSelectedIds, readOnly, activeTool } = useShellContext();
   const Renderer = useLayerRenderer(layer.type);
   const { onPointerDown } = useDragInteraction({
     layerId: layer.id,
@@ -32,6 +32,8 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
 
   const transform = `rotate(${layer.rotation ?? 0}deg)`;
   const cursor = layer.isLocked ? "default" : "move";
+  // Flip actions (TRANSFORM_LAYERS) store -1 in data._flipX / data._flipY.
+  const flipTransform = getFlipTransform(layer.data);
 
   return (
     <div
@@ -42,10 +44,16 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
           : (e) => {
               if (readOnly) return;
               if (e.button !== 0) return;
+              // The hand tool pans the canvas instead (see DesignerCanvas).
+              if (activeTool === "hand") return;
+              let nextSelection = selectedIds;
               if (!selected) {
-                setSelectedIds(e.shiftKey ? [...selectedIds, layer.id] : [layer.id]);
+                nextSelection = e.shiftKey ? [...selectedIds, layer.id] : [layer.id];
+                setSelectedIds(nextSelection);
               }
-              onPointerDown(e);
+              // Pass the new selection explicitly: `selectedIds` from context
+              // won't reflect it until the next render.
+              onPointerDown(e, nextSelection);
             }
       }
       className={cn("absolute", !staticMode && "cursor-move", layer.isLocked && "cursor-default")}
@@ -59,16 +67,30 @@ function LayerView({ layer, staticMode = false }: LayerViewProps) {
         cursor: staticMode ? "default" : cursor,
       }}
     >
-      {Renderer ? (
-        <Renderer
-          layer={layer}
-          ctx={{ selected, zoom: state.zoom, readOnly: readOnly || staticMode }}
-        />
-      ) : (
-        <FallbackRenderer layer={layer} />
-      )}
+      <div
+        className="size-full"
+        data-layer-content
+        style={flipTransform ? { transform: flipTransform } : undefined}
+      >
+        {Renderer ? (
+          <Renderer
+            layer={layer}
+            ctx={{ selected, zoom: state.zoom, readOnly: readOnly || staticMode }}
+          />
+        ) : (
+          <FallbackRenderer layer={layer} />
+        )}
+      </div>
     </div>
   );
+}
+
+function getFlipTransform(data: unknown): string | undefined {
+  if (typeof data !== "object" || data === null) return undefined;
+  const { _flipX, _flipY } = data as { _flipX?: unknown; _flipY?: unknown };
+  const sx = _flipX === -1 ? -1 : 1;
+  const sy = _flipY === -1 ? -1 : 1;
+  return sx === 1 && sy === 1 ? undefined : `scale(${sx}, ${sy})`;
 }
 
 function FallbackRenderer({ layer }: { layer: Layer<unknown> }) {

@@ -1,11 +1,11 @@
-import { defineConfig } from 'tsup'
-import { prependUseClient } from '../../scripts/use-client-banner.mjs'
+import { defineConfig } from "tsup";
+import { prependUseClient } from "../../scripts/use-client-banner.mjs";
 
 export default defineConfig({
-  entry: ['src/index.ts'],
-  format: ['esm'],
+  entry: ["src/index.ts"],
+  format: ["esm"],
   dts: true,
-  external: ['react', 'react-dom', '@hilum/ui', '@hilum/designer'],
+  external: ["react", "react-dom", "@hilum/ui", "@hilum/designer"],
   sourcemap: true,
   clean: true,
   treeshake: true,
@@ -13,6 +13,6 @@ export default defineConfig({
   // that esbuild strips from the per-file directives when bundling (inert
   // outside RSC frameworks). Single entry, no shared chunks.
   async onSuccess() {
-    await prependUseClient(['dist/index.js'])
+    await prependUseClient(["dist/index.js"]);
   },
-})
+});

@@ -45,7 +45,7 @@ export default function PricingSplitBrandPanel() {
           </div>
         </div>
         <div className="bg-white px-8 py-10">
-          <p className="label text-ground-400">What's included</p>
+          <p className="label text-ground-400">What’s included</p>
           <h4 className="heading mt-3 text-ground-900">
             Every capability needed to run coordinated launches
           </h4>

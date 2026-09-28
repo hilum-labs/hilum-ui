@@ -80,7 +80,6 @@ const CONFIRM_CODE = `import { ConfirmDialog, Button, toast } from "@hilum/ui"
   }
 />`;
 
-
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">

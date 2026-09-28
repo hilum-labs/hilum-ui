@@ -32,11 +32,11 @@ function ProductQuickviewsPage() {
       <div className="mb-10 flex flex-col gap-5 border-b border-border pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-3xl">
           <div className="caption mb-4 flex items-center gap-1.5 text-muted-foreground">
-            <a href="#" className="hover:text-foreground">
+            <a href="/" className="hover:text-foreground">
               Design System
             </a>
             <span>/</span>
-            <a href="#" className="hover:text-foreground">
+            <a href="/ecommerce" className="hover:text-foreground">
               Ecommerce
             </a>
             <span>/</span>

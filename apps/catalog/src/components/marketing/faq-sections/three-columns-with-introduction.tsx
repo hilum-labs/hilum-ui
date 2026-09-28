@@ -38,7 +38,10 @@ export default function ThreeColumnsWithIntroduction() {
             Everything prospects usually need to know before they start a trial, upgrade a
             workspace, or talk to procurement.
           </p>
-          <a href="#" className="body inline-block font-semibold text-brand-primary">
+          <a
+            href="#explore-pricing-details"
+            className="body inline-block font-semibold text-brand-primary"
+          >
             Explore pricing details
           </a>
         </div>

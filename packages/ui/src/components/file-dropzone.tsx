@@ -7,6 +7,21 @@ import { cn } from "../lib/utils";
 
 type FileDropzoneSelectedFile = Pick<File, "name" | "size">;
 
+interface FileDropzoneLabels {
+  /** Chip under the summary when `multiple`. */
+  readyToUpload: string;
+  /** Chip under the summary for a single file. */
+  selected: string;
+  /** Summary for several files; `size` is pre-formatted (e.g. "2.4 MB"). */
+  filesSelected: (count: number, size: string) => string;
+}
+
+const DEFAULT_LABELS: FileDropzoneLabels = {
+  readyToUpload: "Ready to upload",
+  selected: "Selected",
+  filesSelected: (count, size) => `${count} files selected (${size})`,
+};
+
 interface FileDropzoneProps extends Omit<
   React.HTMLAttributes<HTMLLabelElement>,
   "children" | "onChange" | "onDrop" | "onDragOver" | "onDragLeave"
@@ -25,6 +40,9 @@ interface FileDropzoneProps extends Omit<
   inputClassName?: string;
   inputName?: string;
   onFilesSelected?: (files: File[]) => void;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<FileDropzoneLabels>;
+  ref?: React.Ref<HTMLLabelElement> | undefined;
 }
 
 function formatFileSize(bytes: number) {
@@ -37,11 +55,15 @@ function formatFileSize(bytes: number) {
   return `${value.toFixed(value >= 10 || unitIndex === 0 ? 0 : 1)} ${units[unitIndex]}`;
 }
 
-function getFileSummary(files: readonly FileDropzoneSelectedFile[]) {
-  if (files.length === 0) return null;
-  if (files.length === 1) return `${files[0].name} (${formatFileSize(files[0].size)})`;
+function getFileSummary(
+  files: readonly FileDropzoneSelectedFile[],
+  filesSelected: FileDropzoneLabels["filesSelected"],
+) {
+  const [first] = files;
+  if (!first) return null;
+  if (files.length === 1) return `${first.name} (${formatFileSize(first.size)})`;
   const totalSize = files.reduce((sum, file) => sum + file.size, 0);
-  return `${files.length} files selected (${formatFileSize(totalSize)})`;
+  return filesSelected(files.length, formatFileSize(totalSize));
 }
 
 function FileDropzone({
@@ -64,12 +86,14 @@ function FileDropzone({
   tabIndex,
   onKeyDown,
   onClick,
+  labels: labelsProp,
   ...props
 }: FileDropzoneProps) {
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [isDragging, setIsDragging] = React.useState(false);
   const inputId = React.useId();
   const resolvedId = id ?? inputId;
-  const fileSummary = getFileSummary(selectedFiles ?? []);
+  const fileSummary = getFileSummary(selectedFiles ?? [], labels.filesSelected);
   const isUnavailable = Boolean(disabled || loading);
 
   const emitFiles = React.useCallback(
@@ -83,6 +107,7 @@ function FileDropzone({
   return (
     <label
       htmlFor={resolvedId}
+      data-slot="file-dropzone"
       // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role -- label for the hidden file input, made a focusable button with Enter/Space handling (onKeyDown) so it also works as a drop target
       role="button"
       tabIndex={isUnavailable ? -1 : (tabIndex ?? 0)}
@@ -159,7 +184,9 @@ function FileDropzone({
       {fileSummary && !loading && (
         <span className="caption mt-2 inline-flex min-h-7 max-w-full items-center gap-1 rounded-full bg-muted px-2.5 text-muted-foreground">
           <FileIcon className="size-3.5 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate">{multiple ? "Ready to upload" : "Selected"}</span>
+          <span className="min-w-0 truncate">
+            {multiple ? labels.readyToUpload : labels.selected}
+          </span>
         </span>
       )}
     </label>
@@ -168,5 +195,5 @@ function FileDropzone({
 
 FileDropzone.displayName = "FileDropzone";
 
-export { FileDropzone, formatFileSize };
-export type { FileDropzoneProps, FileDropzoneSelectedFile };
+export { FileDropzone, formatFileSize, DEFAULT_LABELS as FILE_DROPZONE_DEFAULT_LABELS };
+export type { FileDropzoneProps, FileDropzoneSelectedFile, FileDropzoneLabels };

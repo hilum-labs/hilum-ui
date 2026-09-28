@@ -2,9 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DataTable,
+  type PaginationState,
+  type RowSelectionState,
+  type SortingState,
   SearchableTable,
   createColumnHelper,
   type ColumnDef,
@@ -139,10 +142,12 @@ const statusVariant: Record<Transaction["status"], "success" | "warning" | "dest
 
 const helper = createColumnHelper<Transaction>();
 
-const ALL_COLUMNS: ColumnDef<Transaction, any>[] = [
+const ALL_COLUMNS = [
   helper.accessor("id", {
     header: "ID",
-    cell: (info) => <span className="font-mono caption text-muted-foreground">{info.getValue()}</span>,
+    cell: (info) => (
+      <span className="font-mono caption text-muted-foreground">{info.getValue()}</span>
+    ),
   }),
   helper.accessor("company", {
     header: "Company",
@@ -169,7 +174,7 @@ const ALL_COLUMNS: ColumnDef<Transaction, any>[] = [
   }),
 ];
 
-const SIMPLE_COLUMNS: ColumnDef<Transaction, any>[] = [
+const SIMPLE_COLUMNS = [
   helper.accessor("company", {
     header: "Company",
     cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
@@ -245,7 +250,7 @@ type EmptyRow = { id: string; name: string };
 const EMPTY_COLUMNS: ColumnDef<EmptyRow>[] = [{ accessorKey: "name", header: "Order" }];
 
 const CODE = {
-  withSearch: `import { DataTable, createColumnHelper, type ColumnDef } from "@hilum/ui"
+  withSearch: `import { DataTable, createColumnHelper } from "@hilum/ui"
 import { Badge } from "@hilum/ui"
 
 type Transaction = {
@@ -255,7 +260,7 @@ type Transaction = {
 
 const helper = createColumnHelper<Transaction>()
 
-const columns: ColumnDef<Transaction>[] = [
+const columns = [
   helper.accessor("id", {
     header: "ID",
     cell: (info) => <span className="font-mono caption text-muted-foreground">{info.getValue()}</span>,
@@ -298,7 +303,7 @@ const columns: ColumnDef<Transaction>[] = [
 
   customColumns: `const helper = createColumnHelper<Transaction>()
 
-const columns: ColumnDef<Transaction>[] = [
+const columns = [
   helper.accessor("company", {
     header: "Company",
     cell: (info) => <span className="font-medium text-foreground">{info.getValue()}</span>,
@@ -361,6 +366,174 @@ function Example() {
 };
 
 /* ------------------------------------------------------------------ */
+/*  Admin demos: selection, bulk actions, server mode, virtualization  */
+/* ------------------------------------------------------------------ */
+
+const ADMIN_CODE = `<DataTable
+  columns={columns}
+  data={orders}
+  getRowId={(order) => order.id}
+  getRowLabel={(order) => order.id}          // "Select TXN-8821"
+  promotedBulkActions={[{ label: "Mark paid", onAction: ({ selectedRowIds }) => markPaid(selectedRowIds) }]}
+  bulkActions={[{ label: "Delete", destructive: true, onAction: ({ selectedRows }) => remove(selectedRows) }]}
+  enableColumnVisibility
+  enableColumnResizing
+  columnPinning={{ left: ["id"] }}
+  stickyHeader
+  maxHeight={360}
+  onRowClick={(order) => navigate(\`/orders/\${order.id}\`)}
+/>`;
+
+function AdminTableDemo() {
+  const [selection, setSelection] = useState<RowSelectionState>({});
+  const [log, setLog] = useState("Shift-click checkboxes to select a range.");
+  return (
+    <div className="flex w-full flex-col gap-3">
+      <DataTable
+        columns={ALL_COLUMNS}
+        data={DATA}
+        getRowId={(row) => row.id}
+        getRowLabel={(row) => row.id}
+        rowSelection={selection}
+        onRowSelectionChange={setSelection}
+        promotedBulkActions={[
+          {
+            label: "Mark paid",
+            onAction: ({ selectedRowIds }) => setLog(`Mark paid: ${selectedRowIds.join(", ")}`),
+          },
+        ]}
+        bulkActions={[
+          {
+            label: "Export CSV",
+            onAction: ({ selectedCount }) => setLog(`Export ${selectedCount} rows`),
+          },
+          {
+            label: "Delete",
+            destructive: true,
+            onAction: ({ selectedRowIds, clearSelection }) => {
+              setLog(`Delete ${selectedRowIds.join(", ")}`);
+              clearSelection();
+            },
+          },
+        ]}
+        enableColumnVisibility
+        enableColumnResizing
+        columnPinning={{ left: ["id"] }}
+        stickyHeader
+        maxHeight={360}
+        pageSize={8}
+        itemLabel="transaction"
+        onRowClick={(row) => setLog(`Open ${row.id}`)}
+      />
+      <p className="caption text-muted-foreground" aria-live="polite">
+        {log}
+      </p>
+    </div>
+  );
+}
+
+const SERVER_CODE = `const [sorting, setSorting] = useState<SortingState>([])
+const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 })
+const { rows, total, isLoading } = useOrders({ sorting, pagination })
+
+<DataTable
+  columns={columns}
+  data={rows}
+  getRowId={(order) => order.id}
+  manualSorting
+  manualPagination
+  rowCount={total}
+  sorting={sorting}
+  onSortingChange={setSorting}
+  pagination={pagination}
+  onPaginationChange={setPagination}
+  loading={isLoading}
+  enableRowSelection
+  totalCount={total}                        // enables "Select all 1,204"
+  onSelectAllMatching={(all) => setAllMatching(all)}
+  labels={{ pageOf: (page, count) => \`Página \${page} de \${count}\` }}
+/>`;
+
+const SERVER_TOTAL = 1204;
+const SERVER_ROWS: Transaction[] = Array.from({ length: SERVER_TOTAL }, (_, index) => {
+  const base = DATA[index % DATA.length]!;
+  return { ...base, id: `TXN-${String(10000 + index)}` };
+});
+
+function ServerTableDemo() {
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [pagination, setPagination] = useState<PaginationState>({ pageIndex: 0, pageSize: 10 });
+  const [loading, setLoading] = useState(false);
+  const [rows, setRows] = useState<Transaction[]>(SERVER_ROWS.slice(0, 10));
+
+  useEffect(() => {
+    setLoading(true);
+    const timer = setTimeout(() => {
+      const sorted = [...SERVER_ROWS];
+      const rule = sorting[0];
+      if (rule) {
+        const key = rule.id as keyof Transaction;
+        sorted.sort(
+          (a, b) => (a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0) * (rule.desc ? -1 : 1),
+        );
+      }
+      const start = pagination.pageIndex * pagination.pageSize;
+      setRows(sorted.slice(start, start + pagination.pageSize));
+      setLoading(false);
+    }, 450);
+    return () => clearTimeout(timer);
+  }, [sorting, pagination]);
+
+  return (
+    <div className="w-full">
+      <DataTable
+        columns={ALL_COLUMNS}
+        data={rows}
+        getRowId={(row) => row.id}
+        manualSorting
+        manualPagination
+        rowCount={SERVER_TOTAL}
+        sorting={sorting}
+        onSortingChange={setSorting}
+        pagination={pagination}
+        onPaginationChange={setPagination}
+        loading={loading}
+        enableRowSelection
+        totalCount={SERVER_TOTAL}
+        onSelectAllMatching={() => {}}
+        itemLabel="transaction"
+      />
+    </div>
+  );
+}
+
+const VIRTUAL_CODE = `<DataTable
+  columns={columns}
+  data={tenThousandRows}
+  virtualize={{ estimateRowHeight: 41, height: 420 }}
+  stickyHeader
+/>`;
+
+const VIRTUAL_ROWS: Transaction[] = Array.from({ length: 10000 }, (_, index) => {
+  const base = DATA[index % DATA.length]!;
+  return { ...base, id: `TXN-${String(index + 1).padStart(5, "0")}` };
+});
+
+function VirtualTableDemo() {
+  return (
+    <div className="w-full">
+      <DataTable
+        columns={ALL_COLUMNS}
+        data={VIRTUAL_ROWS}
+        virtualize={{ estimateRowHeight: 41, height: 420 }}
+        stickyHeader
+        itemLabel="transaction"
+      />
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -376,7 +549,8 @@ function SectionHeading({ label }: { label: string }) {
 function SearchableTableDemo() {
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = useState("all");
-  const rows = status === "all" ? DATA : DATA.filter((transaction) => transaction.status === status);
+  const rows =
+    status === "all" ? DATA : DATA.filter((transaction) => transaction.status === status);
 
   return (
     <SearchableTable
@@ -425,7 +599,8 @@ function DataTablePage() {
         <h1 className="display mb-2 text-foreground">Data Table</h1>
         <p className="body max-w-lg text-muted-foreground">
           A generic, sortable, filterable, and paginated data table built on @tanstack/react-table
-          v8. Define typed columns once and pass any data.
+          v8 — with row selection, bulk actions, server-side mode, column visibility, pinning,
+          resizing and virtualization for admin screens.
         </p>
       </div>
 
@@ -488,6 +663,42 @@ function DataTablePage() {
             <SearchableTableDemo />
           </PreviewBlock>
         </section>
+        <section>
+          <SectionHeading label="Selection and bulk actions" />
+          <PreviewBlock
+            title="Admin table"
+            description="Checkbox column with select-all and shift-click ranges, promoted and overflow bulk actions, column visibility, resizing, a pinned ID column and a sticky header."
+            code={ADMIN_CODE}
+            previewClassName="flex-col items-stretch"
+          >
+            <AdminTableDemo />
+          </PreviewBlock>
+        </section>
+
+        <section>
+          <SectionHeading label="Server-side data" />
+          <PreviewBlock
+            title="Manual sorting and pagination"
+            description="Controlled sorting/pagination with skeleton rows while loading and select-all-matching across 1,204 rows."
+            code={SERVER_CODE}
+            previewClassName="flex-col items-stretch"
+          >
+            <ServerTableDemo />
+          </PreviewBlock>
+        </section>
+
+        <section>
+          <SectionHeading label="Virtualized" />
+          <PreviewBlock
+            title="10,000 rows"
+            description="Only visible rows are rendered; pagination is replaced by a scroll viewport."
+            code={VIRTUAL_CODE}
+            previewClassName="flex-col items-stretch"
+          >
+            <VirtualTableDemo />
+          </PreviewBlock>
+        </section>
+
         <section className="mt-10">
           <div className="mb-4 flex items-center gap-3">
             <h2 className="label text-muted-foreground">Empty state and row clicks</h2>

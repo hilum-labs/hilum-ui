@@ -1,7 +1,8 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync, existsSync } from "fs";
-import { basename, dirname, join, relative } from "path";
+import { dirname, join, relative } from "path";
 import { fileURLToPath } from "url";
 import { getComponentEntriesBySection } from "../src/data/component-registry.js";
+import { createPropsExtractor, describeInherited } from "./extract-component-props.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CATALOG_ROOT = join(__dirname, "..");
@@ -9,6 +10,36 @@ const APP_DIR = join(CATALOG_ROOT, "src", "app");
 const UI_COMPONENTS_DIR = join(CATALOG_ROOT, "..", "..", "packages", "ui", "src", "components");
 const OUT_DIR = join(CATALOG_ROOT, "src", "generated");
 const OUT_FILE = join(OUT_DIR, "catalog-docs.ts");
+const PROPS_OUT_FILE = join(OUT_DIR, "component-props.ts");
+const WORKSPACE_ROOT = join(CATALOG_ROOT, "..", "..");
+const UI_TSCONFIG = join(WORKSPACE_ROOT, "packages", "ui", "tsconfig.json");
+// Components that ship from the `@hilum/ui/ai` subpath instead of the main entry.
+const UI_AI_ENTRY = join(WORKSPACE_ROOT, "packages", "ui", "src", "ai.ts");
+const AI_SLUGS = new Set(
+  existsSync(UI_AI_ENTRY)
+    ? [
+        ...readFileSync(UI_AI_ENTRY, "utf8").matchAll(/export \* from "\.\/components\/([^"]+)"/g),
+      ].map((match) => match[1])
+    : [],
+);
+// Props listed individually in the docs panel before collapsing into "More props".
+const MAX_LISTED_PROPS = 12;
+
+// One TypeScript program for all @hilum/ui component modules (built lazily).
+let propsExtractor = null;
+function getPropsExtractor() {
+  propsExtractor ??= createPropsExtractor({
+    tsconfigPath: UI_TSCONFIG,
+    rootNames: [],
+    workspaceRoot: WORKSPACE_ROOT,
+  });
+  return propsExtractor;
+}
+
+// Structured props per component page, emitted as `componentProps` in
+// src/generated/component-props.ts for consumers that want a real props table
+// (kept out of catalog-docs.ts so pages that only need `pageDocs` stay small).
+const componentPropsByPath = {};
 
 const SECTION_TITLES = {
   "application-ui": "Application UI",
@@ -222,7 +253,7 @@ function extractCodeExamples(source) {
   return examples;
 }
 
-function resolveRawImportExamples(source, pagePath) {
+function resolveRawImportExamples(source, _pagePath) {
   const importMap = {};
   const rawImportRe = /^import\s+(\w+)\s+from\s+"@\/([^"]+)\?raw"/gm;
   let match;
@@ -295,55 +326,6 @@ function inferAccessibilityKind(routePath, title, summary) {
   return "generic";
 }
 
-function parseTopLevelKeys(source) {
-  const matches = [...source.matchAll(/^\s{2}([a-zA-Z0-9-]+):\s*\{/gm)];
-  return matches.map((match) => match[1]);
-}
-
-function parseVariantPropNames(source) {
-  const variantsMatch = source.match(/variants:\s*\{([\s\S]*?)\n\s*\},\n\s*defaultVariants:/);
-  if (!variantsMatch) {
-    return [];
-  }
-
-  return [...variantsMatch[1].matchAll(/^\s+([a-zA-Z0-9-]+):\s*\{/gm)]
-    .map((match) => match[1])
-    .filter(
-      (key) =>
-        ![
-          "default",
-          "destructive",
-          "outline",
-          "secondary",
-          "brand",
-          "ghost",
-          "link",
-          "xs",
-          "sm",
-          "lg",
-          "icon",
-          "icon-xs",
-          "icon-sm",
-          "icon-lg",
-        ].includes(key),
-    );
-}
-
-function parseInterfaceProps(source) {
-  const props = [];
-  const interfaceMatches = [...source.matchAll(/interface\s+\w+Props[^{]*\{([\s\S]*?)\n\}/g)];
-  for (const match of interfaceMatches) {
-    const body = match[1];
-    for (const line of body.split("\n")) {
-      const propMatch = line.trim().match(/^([a-zA-Z0-9_]+)\??:/);
-      if (propMatch) {
-        props.push(propMatch[1]);
-      }
-    }
-  }
-  return [...new Set(props)];
-}
-
 function parseExportNames(source) {
   const exportSet = new Set();
   for (const match of source.matchAll(/export\s+\{([^}]+)\};/g)) {
@@ -391,6 +373,38 @@ function parseWorkspaceImportedSymbols(source) {
   return imports;
 }
 
+function toPascalCase(slug) {
+  return slug
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
+function pickPrimaryComponent(slug, components) {
+  const pascal = toPascalCase(slug);
+  return (
+    components.find((component) => component.name === pascal) ??
+    components.find((component) => component.name.startsWith(pascal)) ??
+    components.find((component) => component.props.length > 0) ??
+    components[0] ??
+    null
+  );
+}
+
+function formatPropItem(prop) {
+  const parts = [prop.type || "unknown"];
+  if (prop.required) {
+    parts.push("required");
+  } else if (prop.default) {
+    parts.push(`default ${prop.default}`);
+  }
+  const head = parts.join(" · ");
+  return {
+    label: prop.name,
+    description: prop.description ? `${head} — ${prop.description}` : head,
+  };
+}
+
 function buildApiItems(routePath, title, pageSource, previewBlocks) {
   const slug = routePath.split("/").filter(Boolean).at(-1);
   if (!slug) {
@@ -400,29 +414,51 @@ function buildApiItems(routePath, title, pageSource, previewBlocks) {
   const sourcePath = join(UI_COMPONENTS_DIR, `${slug}.tsx`);
   if (existsSync(sourcePath)) {
     const source = readFileSync(sourcePath, "utf8");
-    const interfaceProps = parseInterfaceProps(source);
-    const exportNames = parseExportNames(source);
-    const variantProps = parseVariantPropNames(source);
+    const components = getPropsExtractor().getComponents(sourcePath);
+    const primary = pickPrimaryComponent(slug, components);
+    const exportNames =
+      components.length > 0
+        ? components.map((component) => component.name)
+        : parseExportNames(source);
     const items = [];
 
-    if (interfaceProps.length > 0) {
-      items.push({
-        label: "Props",
-        description: interfaceProps.slice(0, 6).join(", "),
-      });
+    if (components.length > 0) {
+      componentPropsByPath[routePath] = {
+        package: AI_SLUGS.has(slug) ? "@hilum/ui/ai" : "@hilum/ui",
+        source: `packages/ui/src/components/${slug}.tsx`,
+        primary: primary?.name ?? null,
+        components: components.map((component) => ({
+          name: component.name,
+          inherits: describeInherited(component.inherited),
+          props: component.props,
+        })),
+      };
     }
 
-    if (variantProps.length > 0) {
-      items.push({
-        label: "Variant props",
-        description: variantProps.join(", "),
-      });
+    if (primary) {
+      // Required props first, then declaration order.
+      const props = [...primary.props].sort((a, b) => Number(b.required) - Number(a.required));
+      const listed = props.slice(0, MAX_LISTED_PROPS);
+      items.push(...listed.map(formatPropItem));
+      if (props.length > listed.length) {
+        items.push({
+          label: "More props",
+          description: props
+            .slice(MAX_LISTED_PROPS)
+            .map((prop) => prop.name)
+            .join(", "),
+        });
+      }
+      const inherits = describeInherited(primary.inherited);
+      if (inherits) {
+        items.push({ label: "Inherited props", description: inherits });
+      }
     }
 
     if (exportNames.length > 1) {
       items.push({
         label: "Key exports",
-        description: exportNames.slice(0, 6).join(", "),
+        description: exportNames.slice(0, 8).join(", ") + (exportNames.length > 8 ? ", …" : ""),
       });
     }
 
@@ -447,7 +483,7 @@ function buildApiItems(routePath, title, pageSource, previewBlocks) {
       });
     }
 
-    return items.slice(0, 4);
+    return items;
   }
 
   const importedSymbols = parseWorkspaceImportedSymbols(pageSource);
@@ -607,7 +643,7 @@ function buildCollectionIntro(routePath, title, summary, previewBlocks) {
   ];
 }
 
-function buildCollectionGrouping(routePath, previewBlocks, importantLinks) {
+function buildCollectionGrouping(routePath, previewBlocks, _importantLinks) {
   const sectionTitle = getSectionTitle(routePath);
   const segments = routePath.split("/").filter(Boolean);
 
@@ -734,13 +770,53 @@ function buildDocs() {
   }
 
   mkdirSync(OUT_DIR, { recursive: true });
-  const fileContents = `import type { CatalogPageDoc } from "../lib/catalog-docs";\n\nexport const pageDocs: Record<string, CatalogPageDoc> = ${JSON.stringify(
-    docs,
+  const fileContents = `import type { CatalogPageDoc } from "../lib/catalog-docs";
+
+export const pageDocs: Record<string, CatalogPageDoc> = ${JSON.stringify(docs, null, 2)};
+`;
+  const propsFileContents = `// Generated by apps/catalog/scripts/build-docs-content.mjs — do not edit.
+
+/** One prop of a documented component, extracted with the TypeScript compiler API. */
+export type CatalogComponentProp = {
+  name: string;
+  /** Written or resolved type, \`undefined\` stripped. */
+  type: string;
+  required: boolean;
+  /** Source text of the default (JSDoc @default, destructuring initializer, or CVA defaultVariants). */
+  default: string | null;
+  /** JSDoc description ("" when undocumented). */
+  description: string;
+  /** Workspace-relative file that declares the prop. */
+  declaredIn: string;
+};
+
+export type CatalogComponentPropsDoc = {
+  package: string;
+  source: string;
+  /** Component the page is about (its props are also listed in \`pageDocs[path].api\`). */
+  primary: string | null;
+  components: Array<{
+    name: string;
+    /** e.g. "Also accepts native HTML/React attributes (288)." */
+    inherits: string | null;
+    /** Props declared in the workspace; inherited DOM/Radix props are summarised in \`inherits\`. */
+    props: CatalogComponentProp[];
+  }>;
+};
+
+/** Structured props per component page path (same keys as \`pageDocs\`). */
+export const componentProps: Record<string, CatalogComponentPropsDoc> = ${JSON.stringify(
+    componentPropsByPath,
     null,
     2,
-  )};\n`;
+  )};
+`;
   writeFileSync(OUT_FILE, fileContents);
+  writeFileSync(PROPS_OUT_FILE, propsFileContents);
   console.log(`docs: wrote ${Object.keys(docs).length} pages → ${OUT_FILE}`);
+  console.log(
+    `docs: wrote props for ${Object.keys(componentPropsByPath).length} component pages → ${PROPS_OUT_FILE}`,
+  );
 }
 
 buildDocs();

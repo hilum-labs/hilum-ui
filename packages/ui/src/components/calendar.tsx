@@ -2,16 +2,62 @@
 
 import * as React from "react";
 import { DayPicker } from "react-day-picker";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
 import { cn } from "../lib/utils";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
-function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
+type ChevronOrientation = "left" | "right" | "up" | "down";
+
+/**
+ * Navigation chevron with a single source of truth for RTL mirroring.
+ *
+ * react-day-picker is inconsistent about direction: its default `Nav`
+ * (navLayout undefined / "after") always passes `orientation="left"` for
+ * "previous" and `"right"` for "next", but with `navLayout="around"` it swaps
+ * them itself when the `dir="rtl"` *prop* is set (and only then — an inherited
+ * `dir` from an ancestor is invisible to it). Mirroring on top of that
+ * double-flips the icon. So we undo rdp's swap to recover the logical
+ * orientation ("left" = previous, "right" = next), then mirror purely in CSS
+ * via `:dir(rtl)`, which resolves the *nearest* `dir` (prop or ancestor, and a
+ * nested `dir="ltr"` inside an RTL page correctly cancels it — unlike
+ * Tailwind's `rtl:` variant, which also matches `[dir=rtl] *`).
+ */
+function CalendarChevron({
+  orientation = "left",
+  className,
+  rdpMirrored,
+}: {
+  orientation?: ChevronOrientation | undefined;
+  className?: string | undefined;
+  rdpMirrored: boolean;
+}) {
+  if (orientation === "up") return <ChevronUp size={14} className={className} />;
+  if (orientation === "down") return <ChevronDown size={14} className={className} />;
+  const logical = rdpMirrored ? (orientation === "left" ? "right" : "left") : orientation;
+  const Icon = logical === "left" ? ChevronLeft : ChevronRight;
+  return (
+    <Icon
+      size={14}
+      data-direction={logical === "left" ? "previous" : "next"}
+      className={cn("[&:dir(rtl)]:-scale-x-100", className)}
+    />
+  );
+}
+
+function Calendar({
+  className,
+  classNames,
+  components,
+  showOutsideDays = true,
+  ...props
+}: CalendarProps) {
+  const rdpMirrored = props.navLayout === "around" && props.dir === "rtl";
   return (
     <DayPicker
+      data-slot="calendar"
       showOutsideDays={showOutsideDays}
-      className={cn("p-3", className)}
+      className={cn("relative p-3", className)}
       classNames={{
         months: "flex flex-col sm:flex-row gap-4",
         month: "flex flex-col gap-4",
@@ -19,11 +65,11 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         caption_label: "body font-semibold text-foreground",
         nav: "flex items-center justify-between absolute inset-x-0 top-1",
         button_previous: cn(
-          "absolute left-0 flex h-9 w-9 items-center justify-center rounded-md",
+          "absolute start-0 flex h-9 w-9 items-center justify-center rounded-md",
           "text-muted-foreground hover:bg-muted hover:text-muted-foreground transition-colors",
         ),
         button_next: cn(
-          "absolute right-0 flex h-9 w-9 items-center justify-center rounded-md",
+          "absolute end-0 flex h-9 w-9 items-center justify-center rounded-md",
           "text-muted-foreground hover:bg-muted hover:text-muted-foreground transition-colors",
         ),
         month_grid: "w-full border-collapse mt-1",
@@ -50,8 +96,14 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         ...classNames,
       }}
       components={{
-        Chevron: ({ orientation }) =>
-          orientation === "left" ? <ChevronLeft size={14} /> : <ChevronRight size={14} />,
+        Chevron: ({ orientation, className: chevronClassName }) => (
+          <CalendarChevron
+            orientation={orientation}
+            className={chevronClassName}
+            rdpMirrored={rdpMirrored}
+          />
+        ),
+        ...components,
       }}
       {...props}
     />

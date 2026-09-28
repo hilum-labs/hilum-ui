@@ -13,7 +13,7 @@ export interface RadioCardOption {
   disabled?: boolean;
 }
 
-interface RadioCardsProps {
+interface RadioCardsProps extends Omit<React.ComponentProps<"div">, "onChange" | "children"> {
   options: RadioCardOption[];
   value?: string;
   onValueChange?: (value: string) => void;
@@ -21,7 +21,42 @@ interface RadioCardsProps {
   className?: string;
 }
 
-function RadioCards({ options, value, onValueChange, columns = 3, className }: RadioCardsProps) {
+function RadioCards({
+  ref,
+  options,
+  value,
+  onValueChange,
+  columns = 3,
+  className,
+  onKeyDown,
+  ...props
+}: RadioCardsProps) {
+  const selectedIndex = options.findIndex((o) => o.value === value && !o.disabled);
+  // Roving tab stop: the selected card, else the first enabled one.
+  const tabbableIndex = selectedIndex >= 0 ? selectedIndex : options.findIndex((o) => !o.disabled);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(e);
+    if (e.defaultPrevented) return;
+    const items = Array.from(
+      e.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]:not(:disabled)'),
+    );
+    const current = items.indexOf(e.target as HTMLButtonElement);
+    if (current === -1) return;
+    const rtl = getComputedStyle(e.currentTarget).direction === "rtl";
+    const forward = rtl ? ["ArrowDown", "ArrowLeft"] : ["ArrowDown", "ArrowRight"];
+    const backward = rtl ? ["ArrowUp", "ArrowRight"] : ["ArrowUp", "ArrowLeft"];
+    let next: number | null = null;
+    if (forward.includes(e.key)) next = (current + 1) % items.length;
+    else if (backward.includes(e.key)) next = (current - 1 + items.length) % items.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = items.length - 1;
+    if (next === null) return;
+    e.preventDefault();
+    items[next]?.focus();
+    items[next]?.click();
+  };
+
   const colMap = {
     1: "grid-cols-1",
     2: "grid-cols-1 sm:grid-cols-2",
@@ -30,8 +65,16 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
   };
 
   return (
-    <div className={cn("grid gap-3", colMap[columns], className)}>
-      {options.map((option) => {
+    // eslint-disable-next-line jsx-a11y/interactive-supports-focus -- roving tabindex per WAI-ARIA APG: the radios are focusable, the radiogroup container is not
+    <div
+      ref={ref}
+      role="radiogroup"
+      data-slot="radio-cards"
+      className={cn("grid gap-3", colMap[columns], className)}
+      onKeyDown={handleKeyDown}
+      {...props}
+    >
+      {options.map((option, index) => {
         const isSelected = option.value === value;
         return (
           <button
@@ -39,10 +82,13 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
             type="button"
             role="radio"
             aria-checked={isSelected}
+            tabIndex={index === tabbableIndex ? 0 : -1}
+            data-slot="radio-card"
+            data-state={isSelected ? "checked" : "unchecked"}
             disabled={option.disabled}
             onClick={() => !option.disabled && onValueChange?.(option.value)}
             className={cn(
-              "relative flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-left transition-[background-color,border-color,box-shadow,opacity,scale]",
+              "relative flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-start transition-[background-color,border-color,box-shadow,opacity,scale]",
               "active:scale-[0.96]",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
               "disabled:cursor-not-allowed disabled:opacity-50",
@@ -106,3 +152,4 @@ function RadioCards({ options, value, onValueChange, columns = 3, className }: R
 RadioCards.displayName = "RadioCards";
 
 export { RadioCards };
+export type { RadioCardsProps };

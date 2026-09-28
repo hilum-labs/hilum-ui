@@ -108,7 +108,7 @@ function DoubleColumnMenu({ category }: { category: NavCategory }) {
               {section.links.map((link) => (
                 <a
                   key={link}
-                  href="#"
+                  href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
                   className="block body text-ground-600 transition-colors hover:text-ground-900"
                 >
                   {link}

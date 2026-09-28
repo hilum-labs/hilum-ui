@@ -4,6 +4,7 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 import { controlSurfaceClasses, inputFocusClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
+import { useFieldControl } from "../lib/field-context";
 
 type ControlDensity = "default" | "compact";
 type ControlMobileSurface = "default" | "flush";
@@ -36,14 +37,27 @@ function Input({
   density = "default",
   mobileDensity = "default",
   mobileSurface = "default",
+  id,
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
   ...props
 }: InputProps) {
   const shape = useShape();
+  const fieldProps = useFieldControl({
+    id,
+    disabled,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
+  });
 
   return (
     <input
       type={type}
       data-slot="input"
+      {...fieldProps}
       className={cn(
         "flex w-full",
         inputDensityClasses[density],

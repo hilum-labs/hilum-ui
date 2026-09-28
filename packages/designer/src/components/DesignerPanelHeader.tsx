@@ -43,9 +43,7 @@ function DesignerPanelHeader({
       {(title || actions) && (
         <div className="flex min-w-0 items-center gap-2">
           <div className="min-w-0 flex-1">
-            {title && (
-              <div className="body-sm truncate font-semibold text-foreground">{title}</div>
-            )}
+            {title && <div className="body-sm truncate font-semibold text-foreground">{title}</div>}
             {description && (
               <div className="caption-sm truncate text-muted-foreground">{description}</div>
             )}

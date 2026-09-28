@@ -63,7 +63,9 @@ function LayoutPage() {
     <div className="min-h-screen bg-muted">
       <div className="mx-auto max-w-7xl px-8 py-10">
         <div className="mb-10">
-          <p className="caption mb-2 text-muted-foreground">Design System / Application UI / Layout</p>
+          <p className="caption mb-2 text-muted-foreground">
+            Design System / Application UI / Layout
+          </p>
           <h1 className="display mb-2 text-foreground">Layout</h1>
           <p className="body mb-4 text-muted-foreground">
             Panels, media objects, dividers, containers, and list containers.

@@ -1,42 +1,72 @@
 import type { ReactNode } from "react";
-import { cn } from "@hilum/ui";
-import { LinkProvider } from "./link-context";
-import type { LinkComponent } from "./types";
+import { AppFrameMain, AppFrameRoot, type AppFrameProps } from "./app-frame";
 
-interface AppShellProps {
-  /** Router-aware link component. See D13 in PLATFORM_PLAN.md. */
-  linkComponent?: LinkComponent;
-  className?: string;
-  children: ReactNode;
+interface AppShellProps extends AppFrameProps {
+  /** Navigation column, typically `<AppSidebar>` (or a `@hilum/ui` `<Sidebar>`). */
+  sidebar?: ReactNode;
+  /** Top bar, typically `<AppHeader>`. Rendered above `<main>`. */
+  header?: ReactNode;
+  /**
+   * Content above the header in the content column — `<AppStatusBanner>`,
+   * `<AppMobileNav>` (which hides itself from `md` up), etc.
+   */
+  banner?: ReactNode;
+  /** Page content. Wrapped in `<main>` unless `main={false}`. */
+  children?: ReactNode;
 }
 
 /**
- * Root layout for any product app — Hilum School, Hilum Shop, admin, dashboard.
- * Place an <AppSidebar> + <AppHeader> + <main> as direct children.
+ * Root layout (app frame) for any product app — Hilum School, Hilum Shop,
+ * admin, dashboard. Owns the landmarks, skip link, global loading bar, toast
+ * host, top-bar search slot and `--hilum-header-height`.
  *
- * <AppShell linkComponent={({ href, ...r }) => <Link to={href} {...r} />}>
- *   <AppSidebar sections={...} user={...} />
- *   <div className="flex flex-col flex-1 min-w-0">
- *     <AppHeader breadcrumbs={...} />
- *     <main className="flex-1 overflow-auto">{children}</main>
- *   </div>
+ * <AppShell
+ *   linkComponent={({ href, ...r }) => <Link to={href} {...r} />}
+ *   sidebar={<AppSidebar sections={...} />}
+ *   header={<AppHeader breadcrumbs={...} />}
+ *   search={<AppCommandButton />}
+ *   loading={navigation.state === "loading"}
+ * >
+ *   {children}
  * </AppShell>
+ *
+ * Legacy composition (sidebar/header/main as children) still works with
+ * `main={false}` — give your own `<main>` `id="main-content"`.
  */
-function AppShell({ linkComponent, className, children }: AppShellProps) {
-  const Wrapper = linkComponent ? LinkProvider : Fragment;
-  const wrapperProps = linkComponent ? { value: linkComponent } : {};
+function AppShell({
+  sidebar,
+  header,
+  banner,
+  main = true,
+  mainClassName,
+  loading,
+  children,
+  ...frameProps
+}: AppShellProps) {
+  const mainRegion = main ? (
+    <AppFrameMain id={frameProps.mainId} loading={loading} className={mainClassName}>
+      {children}
+    </AppFrameMain>
+  ) : (
+    children
+  );
+  const hasColumn = sidebar !== undefined || header !== undefined || banner !== undefined;
 
   return (
-    <Wrapper {...(wrapperProps as { value: LinkComponent })}>
-      <div className={cn("flex h-screen overflow-hidden bg-muted text-foreground", className)}>
-        {children}
-      </div>
-    </Wrapper>
+    <AppFrameRoot {...frameProps} loading={loading ?? false} layoutClassName="flex">
+      {sidebar}
+      {hasColumn ? (
+        <div className="flex min-w-0 flex-1 flex-col" data-slot="app-shell-column">
+          {banner}
+          {header}
+          {mainRegion}
+        </div>
+      ) : (
+        mainRegion
+      )}
+    </AppFrameRoot>
   );
 }
-
-// Local Fragment alias keeps the conditional provider terse.
-import { Fragment } from "react";
 
 export { AppShell };
 export type { AppShellProps };

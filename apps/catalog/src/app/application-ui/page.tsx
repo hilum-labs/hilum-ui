@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { Link } from "@tanstack/react-router";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@hilum/ui";
 import { Badge } from "@hilum/ui";
 import { Button } from "@hilum/ui";
@@ -134,7 +133,9 @@ function ApplicationUIPage() {
                 <Badge variant="secondary" className="caption-xs">
                   {section.category}
                 </Badge>
-                <span className="caption-xs text-muted-foreground">{section.variants} variants</span>
+                <span className="caption-xs text-muted-foreground">
+                  {section.variants} variants
+                </span>
               </div>
               <CardTitle className="subheading text-foreground">{section.name}</CardTitle>
               <CardDescription className="caption leading-relaxed text-muted-foreground">

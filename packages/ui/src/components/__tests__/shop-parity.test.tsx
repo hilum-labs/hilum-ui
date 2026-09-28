@@ -95,9 +95,7 @@ describe("format helpers", () => {
     expect(formatRelativeTime(new Date(2026, 8, 28, 12), { now, locale: "en-US" })).toBe(
       "in 2 days",
     );
-    expect(formatRelativeTime(new Date(2026, 7, 1), { now, locale: "en-US" })).toBe(
-      "Aug 1, 2026",
-    );
+    expect(formatRelativeTime(new Date(2026, 7, 1), { now, locale: "en-US" })).toBe("Aug 1, 2026");
     expect(formatRelativeTime(undefined)).toBe("—");
   });
 
@@ -140,7 +138,9 @@ describe("format helpers", () => {
         <Probe />
       </FormatProvider>,
     );
-    expect(screen.getByText(/€10\.00 · Sep 26, 2026 · 2 items · 1,000 · 50% · EUR/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/€10\.00 · Sep 26, 2026 · 2 items · 1,000 · 50% · EUR/),
+    ).toBeInTheDocument();
   });
 });
 
@@ -230,7 +230,11 @@ describe("StatusBadge tones", () => {
     render(
       <>
         <Badge tone="info">Info badge</Badge>
-        <StatusTile title="Payments" status="custom_state" toneMap={{ custom_state: "attention" }} />
+        <StatusTile
+          title="Payments"
+          status="custom_state"
+          toneMap={{ custom_state: "attention" }}
+        />
       </>,
     );
     expect(screen.getByText("Info badge")).toHaveAttribute("data-tone", "info");
@@ -389,7 +393,9 @@ describe("SearchInput", () => {
     const input = screen.getByRole("searchbox", { name: "Search orders" });
     fireEvent.change(input, { target: { value: "1042" } });
     expect(onValueChange).toHaveBeenLastCalledWith("1042");
-    rerender(<SearchInput value="1042" onValueChange={onValueChange} placeholder="Search orders" />);
+    rerender(
+      <SearchInput value="1042" onValueChange={onValueChange} placeholder="Search orders" />,
+    );
     fireEvent.click(screen.getByRole("button", { name: "Clear search" }));
     expect(onValueChange).toHaveBeenLastCalledWith("");
     fireEvent.keyDown(input, { key: "Escape" });
@@ -449,7 +455,13 @@ describe("PaginationBar", () => {
   it("summarises the range with pluralized nouns", () => {
     const onPageChange = vi.fn();
     render(
-      <PaginationBar page={2} pageSize={20} total={124} itemLabel="order" onPageChange={onPageChange} />,
+      <PaginationBar
+        page={2}
+        pageSize={20}
+        total={124}
+        itemLabel="order"
+        onPageChange={onPageChange}
+      />,
     );
     expect(screen.getByText("Showing 21–40 of 124 orders")).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: "Go to next page" }));
@@ -522,7 +534,9 @@ describe("DataTable extensions", () => {
 
   it("makes rows clickable and keyboard-activatable", () => {
     const onRowClick = vi.fn();
-    render(<DataTable columns={columns} data={[{ id: "1", name: "Ada" }]} onRowClick={onRowClick} />);
+    render(
+      <DataTable columns={columns} data={[{ id: "1", name: "Ada" }]} onRowClick={onRowClick} />,
+    );
     const row = screen.getByText("Ada").closest("tr")!;
     fireEvent.click(row);
     fireEvent.keyDown(row, { key: "Enter" });
@@ -652,7 +666,7 @@ describe("FilterBar", () => {
         <button type="button">Status</button>
       </FilterBar>,
     );
-    expect(screen.getByRole("toolbar", { name: "Filters" })).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Filters" })).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Clear filters" })).not.toBeInTheDocument();
     fireEvent.change(screen.getByRole("searchbox", { name: "Search merchants" }), {
       target: { value: "acme" },
@@ -709,7 +723,9 @@ describe("CodeBlock", () => {
 
 describe("DateRangePicker from/to shorthand and DatePicker width", () => {
   it("accepts from/to props", () => {
-    render(<DateRangePicker from={new Date(2026, 8, 1)} to={new Date(2026, 8, 26)} locale="en-US" />);
+    render(
+      <DateRangePicker from={new Date(2026, 8, 1)} to={new Date(2026, 8, 26)} locale="en-US" />,
+    );
     expect(screen.getByText(/Sep 1\s*–\s*26, 2026/)).toBeInTheDocument();
   });
 

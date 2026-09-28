@@ -14,14 +14,14 @@ const sizeMap = {
 
 type AvatarSize = keyof typeof sizeMap;
 
-interface AvatarProps extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> {
+interface AvatarProps extends React.ComponentProps<typeof AvatarPrimitive.Root> {
   size?: AvatarSize;
 }
 
-const Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, AvatarProps>(
-  ({ className, size = "md", ...props }, ref) => (
+function Avatar({ className, size = "md", ...props }: AvatarProps) {
+  return (
     <AvatarPrimitive.Root
-      ref={ref}
+      data-slot="avatar"
       className={cn(
         "relative flex shrink-0 overflow-hidden rounded-full",
         sizeMap[size],
@@ -29,38 +29,39 @@ const Avatar = React.forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, A
       )}
       {...props}
     />
-  ),
-);
+  );
+}
 Avatar.displayName = "Avatar";
 
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn(
-      "aspect-square h-full w-full object-cover outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10",
-      className,
-    )}
-    {...props}
-  />
-));
+function AvatarImage({ className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+  return (
+    <AvatarPrimitive.Image
+      data-slot="avatar-image"
+      className={cn(
+        "aspect-square h-full w-full object-cover outline outline-1 -outline-offset-1 outline-black/10 dark:outline-white/10",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
 AvatarImage.displayName = "AvatarImage";
 
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted body font-semibold text-muted-foreground",
-      className,
-    )}
-    {...props}
-  />
-));
+function AvatarFallback({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  return (
+    <AvatarPrimitive.Fallback
+      data-slot="avatar-fallback"
+      className={cn(
+        "flex h-full w-full items-center justify-center rounded-full bg-muted body font-semibold text-muted-foreground",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
 AvatarFallback.displayName = "AvatarFallback";
 
 const statusColorMap = {
@@ -82,25 +83,30 @@ interface AvatarWithStatusProps extends AvatarProps {
   status?: keyof typeof statusColorMap;
 }
 
-const AvatarWithStatus = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  AvatarWithStatusProps & { children?: React.ReactNode }
->(({ status, size = "md", className, children, ...props }, ref) => (
-  <div className="relative inline-flex shrink-0">
-    <Avatar ref={ref} size={size} className={className} {...props}>
-      {children}
-    </Avatar>
-    {status && (
-      <span
-        className={cn(
-          "absolute bottom-0 right-0 rounded-full ring-background",
-          statusColorMap[status],
-          statusSizeMap[size],
-        )}
-      />
-    )}
-  </div>
-));
+function AvatarWithStatus({
+  status,
+  size = "md",
+  className,
+  children,
+  ...props
+}: AvatarWithStatusProps & { children?: React.ReactNode }) {
+  return (
+    <div data-slot="avatar-with-status" className="relative inline-flex shrink-0">
+      <Avatar size={size} className={className} {...props}>
+        {children}
+      </Avatar>
+      {status && (
+        <span
+          className={cn(
+            "absolute bottom-0 end-0 rounded-full ring-background",
+            statusColorMap[status],
+            statusSizeMap[size],
+          )}
+        />
+      )}
+    </div>
+  );
+}
 AvatarWithStatus.displayName = "AvatarWithStatus";
 
 export { Avatar, AvatarImage, AvatarFallback, AvatarWithStatus };

@@ -1,52 +1,62 @@
 const SITE_URL = "https://ui.hilum.dev";
 const SITE_NAME = "Hilum UI";
-const SITE_DESCRIPTION = "Hilum UI design system documentation, component catalog, and theming reference.";
+const SITE_DESCRIPTION =
+  "Hilum UI design system documentation, component catalog, and theming reference.";
 const ORGANIZATION_NAME = "Hilum Labs";
 
 const SECTION_METADATA: Record<string, { title: string; description: string; type: string }> = {
   "application-ui": {
     title: "Application UI",
-    description: "Application UI patterns for shells, forms, navigation, lists, overlays, and page layouts in Hilum UI.",
+    description:
+      "Application UI patterns for shells, forms, navigation, lists, overlays, and page layouts in Hilum UI.",
     type: "CollectionPage",
   },
   atoms: {
     title: "Atoms",
-    description: "Primitive Hilum UI components including buttons, inputs, dialogs, tables, charts, and navigation elements.",
+    description:
+      "Primitive Hilum UI components including buttons, inputs, dialogs, tables, charts, and navigation elements.",
     type: "CollectionPage",
   },
   blocks: {
     title: "Blocks",
-    description: "Reusable Hilum UI application blocks for sign-in flows, app shells, form layouts, and full-screen patterns.",
+    description:
+      "Reusable Hilum UI application blocks for sign-in flows, app shells, form layouts, and full-screen patterns.",
     type: "CollectionPage",
   },
   designer: {
     title: "Designer",
-    description: "Designer workflows and canvas primitives for composing interfaces with the Hilum UI system.",
+    description:
+      "Designer workflows and canvas primitives for composing interfaces with the Hilum UI system.",
     type: "CollectionPage",
   },
   ecommerce: {
     title: "Ecommerce",
-    description: "Ecommerce storefront, merchandising, checkout, and order-management patterns built with Hilum UI.",
+    description:
+      "Ecommerce storefront, merchandising, checkout, and order-management patterns built with Hilum UI.",
     type: "CollectionPage",
   },
   foundations: {
     title: "Foundations",
-    description: "Hilum UI foundations covering color, typography, spacing, radius, and elevation tokens.",
+    description:
+      "Hilum UI foundations covering color, typography, spacing, radius, and elevation tokens.",
     type: "CollectionPage",
   },
   marketing: {
     title: "Marketing",
-    description: "Marketing sections for landing pages, pricing, testimonials, FAQs, headers, and footers in Hilum UI.",
+    description:
+      "Marketing sections for landing pages, pricing, testimonials, FAQs, headers, and footers in Hilum UI.",
     type: "CollectionPage",
   },
   molecules: {
     title: "Molecules",
-    description: "Composed Hilum UI patterns including fields, input groups, lists, notifications, and command surfaces.",
+    description:
+      "Composed Hilum UI patterns including fields, input groups, lists, notifications, and command surfaces.",
     type: "CollectionPage",
   },
   theming: {
     title: "Theming",
-    description: "Hilum UI theming reference for brand tokens, generated palettes, and per-product customization.",
+    description:
+      "Hilum UI theming reference for brand tokens, generated palettes, and per-product customization.",
     type: "CollectionPage",
   },
 };

@@ -33,6 +33,37 @@ interface SearchableTableColumn<T = unknown> {
   className?: string;
 }
 
+/** Localizable strings. Every entry has an English default. */
+interface SearchableTableLabels {
+  /** Accessible name of a sortable column header button. */
+  sortBy: (column: string) => string;
+  /** Header of the row actions column. */
+  actions: string;
+  /** Visible Previous text in the pagination. */
+  previous: string;
+  /** Visible Next text in the pagination. */
+  next: string;
+  /** Accessible name of the Previous page link. */
+  previousPage: string;
+  /** Accessible name of the Next page link. */
+  nextPage: string;
+  /** Default empty-state title when `emptyState.title` is not set. */
+  noResults: string;
+  /** Default empty-state description when `emptyState.description` is not set. */
+  noResultsDescription: string;
+}
+
+const SEARCHABLE_TABLE_DEFAULT_LABELS: SearchableTableLabels = {
+  sortBy: (column) => `Sort by ${column}`,
+  actions: "Actions",
+  previous: "Prev",
+  next: "Next",
+  previousPage: "Go to previous page",
+  nextPage: "Go to next page",
+  noResults: "No results found",
+  noResultsDescription: "Try changing the search or filters.",
+};
+
 interface SearchableTableProps<T extends { id: string | number }> {
   data: T[];
   columns: SearchableTableColumn<T>[];
@@ -64,6 +95,8 @@ interface SearchableTableProps<T extends { id: string | number }> {
     currentPage: number;
     onPageChange: (page: number) => void;
   };
+  /** Localizable strings; unspecified keys fall back to English. */
+  labels?: Partial<SearchableTableLabels>;
 }
 
 function appendSearchableValue(value: unknown, parts: string[], depth = 0) {
@@ -113,7 +146,9 @@ function SearchableTable<T extends { id: string | number }>({
   mobileCard,
   tableClassName,
   pagination,
+  labels: labelsProp,
 }: SearchableTableProps<T>) {
+  const labels = { ...SEARCHABLE_TABLE_DEFAULT_LABELS, ...labelsProp };
   const [sort, setSort] = React.useState<{ key: string; direction: "asc" | "desc" } | null>(null);
   const rows = React.useMemo(() => (Array.isArray(data) ? data : []), [data]);
   const normalizedSearchTerm = searchTerm.trim().toLowerCase();
@@ -175,8 +210,8 @@ function SearchableTable<T extends { id: string | number }>({
 
   const renderEmptyState = (className?: string) => (
     <EmptyState
-      title={emptyState?.title ?? "No results found"}
-      description={emptyState?.description ?? "Try changing the search or filters."}
+      title={emptyState?.title ?? labels.noResults}
+      description={emptyState?.description ?? labels.noResultsDescription}
       {...(className ? { className } : {})}
       {...(emptyState?.icon ? { icon: normalizeEmptyStateIcon(emptyState.icon) } : {})}
       {...(emptyState?.action ? { action: emptyState.action } : {})}
@@ -194,7 +229,11 @@ function SearchableTable<T extends { id: string | number }>({
       pages.push(1);
       if (currentPage > 4) pages.push("ellipsis-start");
 
-      for (let page = Math.max(2, currentPage - 1); page <= Math.min(totalPages - 1, currentPage + 1); page++) {
+      for (
+        let page = Math.max(2, currentPage - 1);
+        page <= Math.min(totalPages - 1, currentPage + 1);
+        page++
+      ) {
         pages.push(page);
       }
 
@@ -210,6 +249,8 @@ function SearchableTable<T extends { id: string | number }>({
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious
+                label={labels.previous}
+                aria-label={labels.previousPage}
                 onClick={() => pagination.onPageChange(Math.max(1, currentPage - 1))}
                 className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
               />
@@ -231,6 +272,8 @@ function SearchableTable<T extends { id: string | number }>({
             ))}
             <PaginationItem>
               <PaginationNext
+                label={labels.next}
+                aria-label={labels.nextPage}
                 onClick={() => pagination.onPageChange(Math.min(totalPages, currentPage + 1))}
                 className={
                   currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"
@@ -244,7 +287,7 @@ function SearchableTable<T extends { id: string | number }>({
   };
 
   return (
-    <div className="space-y-4">
+    <div data-slot="searchable-table" className="space-y-4">
       <div
         data-slot="searchable-table-toolbar"
         className="flex flex-col gap-2.5 md:flex-row md:flex-wrap md:items-center md:justify-start md:gap-3"
@@ -254,14 +297,14 @@ function SearchableTable<T extends { id: string | number }>({
           value={searchTerm}
           onChange={(event) => onSearchChange(event.target.value)}
           leadingIcon={<Search className="size-4" />}
-          wrapperClassName="w-full min-w-0 md:min-w-[280px] md:max-w-[520px] md:flex-1 md:basis-[340px]"
+          wrapperClassName="w-full min-w-0 md:min-w-70 md:max-w-[520px] md:flex-1 md:basis-85"
           className="h-9 bg-background"
         />
         <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap md:w-auto md:justify-end">
           {Object.entries(filters).map(([key, filter]) => (
             <Select key={key} value={filter.value} onValueChange={filter.onChange}>
-              <SelectTrigger className="h-9 w-full bg-background sm:w-[180px]">
-                <Filter className="mr-2 size-4" />
+              <SelectTrigger className="h-9 w-full bg-background sm:w-45">
+                <Filter className="me-2 size-4" />
                 <SelectValue placeholder={filter.placeholder} />
               </SelectTrigger>
               <SelectContent>
@@ -332,17 +375,24 @@ function SearchableTable<T extends { id: string | number }>({
       </StackedList>
 
       {displayData.length === 0 ? (
-        <div className="hidden min-h-[18rem] items-center justify-center border-t border-border/60 md:flex">
+        <div className="hidden min-h-72 items-center justify-center border-t border-border/60 md:flex">
           {renderEmptyState("px-6 py-12")}
         </div>
       ) : (
-        <Table containerClassName="hidden overflow-x-auto md:block" className={cn("min-w-full", tableClassName)}>
+        <Table
+          containerClassName="hidden overflow-x-auto md:block"
+          className={cn("min-w-full", tableClassName)}
+        >
           <TableHeader>
             <TableRow className="relative border-b-0 bg-muted/80 transition-colors hover:bg-muted/80">
               {columns.map((column) => {
                 const isSortable = Boolean(column.sortable || column.sortAccessor);
                 const isSorted = sort?.key === column.key;
-                const SortIcon = !isSorted ? ChevronsUpDown : sort.direction === "asc" ? ArrowUp : ArrowDown;
+                const SortIcon = !isSorted
+                  ? ChevronsUpDown
+                  : sort.direction === "asc"
+                    ? ArrowUp
+                    : ArrowDown;
 
                 return (
                   <TableHead
@@ -366,9 +416,9 @@ function SearchableTable<T extends { id: string | number }>({
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="-ml-2 h-auto px-2 py-1 text-xs font-medium"
+                        className="-ms-2 h-auto px-2 py-1 text-xs font-medium"
                         onClick={() => toggleSort(column)}
-                        aria-label={`Sort by ${column.label}`}
+                        aria-label={labels.sortBy(column.label)}
                       >
                         <span>{column.label}</span>
                         <SortIcon className="size-3.5" />
@@ -381,7 +431,7 @@ function SearchableTable<T extends { id: string | number }>({
               })}
               {actions && (
                 <TableHead className="w-32 cursor-default select-none whitespace-nowrap px-4 py-3 text-xs font-medium text-muted-foreground">
-                  Actions
+                  {labels.actions}
                 </TableHead>
               )}
             </TableRow>
@@ -396,7 +446,9 @@ function SearchableTable<T extends { id: string | number }>({
                       : (item as Record<string, React.ReactNode>)[column.key]}
                   </TableCell>
                 ))}
-                {actions && <TableCell className="w-32 whitespace-nowrap py-3">{actions(item)}</TableCell>}
+                {actions && (
+                  <TableCell className="w-32 whitespace-nowrap py-3">{actions(item)}</TableCell>
+                )}
               </TableRow>
             ))}
           </TableBody>
@@ -408,5 +460,10 @@ function SearchableTable<T extends { id: string | number }>({
   );
 }
 
-export { SearchableTable };
-export type { SearchableTableColumn, SearchableTableFilterOption, SearchableTableProps };
+export { SearchableTable, SEARCHABLE_TABLE_DEFAULT_LABELS };
+export type {
+  SearchableTableColumn,
+  SearchableTableFilterOption,
+  SearchableTableLabels,
+  SearchableTableProps,
+};

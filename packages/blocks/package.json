@@ -6,8 +6,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui",
+    "url": "git+https://github.com/hilum-labs/hilum-ui.git",
     "directory": "packages/blocks"
+  },
+  "homepage": "https://ui.hilum.dev",
+  "bugs": {
+    "url": "https://github.com/hilum-labs/hilum-ui/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -25,7 +29,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src",
+    "lint": "eslint src --max-warnings 0",
     "clean": "rm -rf dist .turbo"
   },
   "dependencies": {

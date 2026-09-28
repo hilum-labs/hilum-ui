@@ -52,7 +52,10 @@ export function ThemeToggle({ className }: { className?: string }) {
     <div
       role="radiogroup"
       aria-label="Color theme"
-      className={cn("inline-flex items-center gap-0.5 rounded-md border border-border p-0.5", className)}
+      className={cn(
+        "inline-flex items-center gap-0.5 rounded-md border border-border p-0.5",
+        className,
+      )}
     >
       {options.map(({ value, label, icon: Icon }) => {
         const active = theme === value;

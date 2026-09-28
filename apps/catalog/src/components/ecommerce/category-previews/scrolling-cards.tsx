@@ -51,6 +51,7 @@ export default function ScrollingCards() {
   const selectedPreview =
     SCROLLING_CATEGORIES.find((category) => category.name === selectedCategory) ??
     SCROLLING_CATEGORIES[1];
+  if (!selectedPreview) return null;
 
   return (
     <section className="w-full bg-white px-6 py-8 sm:px-8">

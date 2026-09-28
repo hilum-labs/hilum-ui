@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import { isTypingTarget } from "./keyboard-shortcut";
 
 type ShapeVariant = "pill" | "rounded";
 
@@ -70,6 +71,10 @@ function useShapeContext() {
 }
 
 function transitionShape(callback: () => void) {
+  if (typeof document === "undefined") {
+    callback();
+    return;
+  }
   const root = document.documentElement;
   root.classList.add("transitioning");
   void root.offsetHeight;
@@ -90,26 +95,6 @@ function ShapeProvider({
     transitionShape(() => setShapeState(next));
   }, []);
 
-  // Global keyboard shortcut: R to cycle radius
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key !== "r" && e.key !== "R") return;
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const tag = (e.target as HTMLElement)?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA" || (e.target as HTMLElement)?.isContentEditable)
-        return;
-      e.preventDefault();
-      transitionShape(() => {
-        setShapeState((prev) => {
-          const idx = shapeOrder.indexOf(prev);
-          return shapeOrder[(idx + 1) % shapeOrder.length];
-        });
-      });
-    };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, []);
-
   return (
     <ShapeContext.Provider value={{ shape, setShape, classes: shapeMap[shape] }}>
       {children}
@@ -117,5 +102,32 @@ function ShapeProvider({
   );
 }
 
-export { ShapeProvider, useShape, useShapeContext, shapeMap };
+/**
+ * Opt-in global shortcut that cycles the shape (rounded ↔ pill). Must be
+ * called inside a ShapeProvider. Ignores keystrokes with modifiers and
+ * keystrokes aimed at text-entry targets. The library itself never installs
+ * global key handlers — apps (e.g. a docs site) choose to.
+ */
+function useShapeCycleShortcut({
+  key = "r",
+  enabled = true,
+}: { key?: string; enabled?: boolean } = {}) {
+  const { shape, setShape } = useShapeContext();
+
+  useEffect(() => {
+    if (!enabled) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key.toLowerCase() !== key.toLowerCase()) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || e.defaultPrevented) return;
+      if (isTypingTarget(e.target)) return;
+      e.preventDefault();
+      const idx = shapeOrder.indexOf(shape);
+      setShape(shapeOrder[(idx + 1) % shapeOrder.length] ?? "rounded");
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [enabled, key, shape, setShape]);
+}
+
+export { ShapeProvider, useShape, useShapeContext, useShapeCycleShortcut, shapeMap, shapeOrder };
 export type { ShapeVariant, ShapeClasses };

@@ -44,7 +44,9 @@ export function ColorSwatch({ name, hex, usage, lightText = true, size = "md" }:
       <div className="min-w-0">
         <p className="truncate text-[11px] font-semibold text-foreground">{name}</p>
         <p className="font-mono caption-xs text-muted-foreground">{hex}</p>
-        {usage && <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">{usage}</p>}
+        {usage && (
+          <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">{usage}</p>
+        )}
       </div>
     </button>
   );
@@ -59,10 +61,9 @@ interface TokenRowProps {
   value: string;
   hex: string;
   usage: string;
-  lightText?: boolean | undefined;
 }
 
-export function TokenRow({ token, value, hex, usage, lightText = true }: TokenRowProps) {
+export function TokenRow({ token, value, hex, usage }: TokenRowProps) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {

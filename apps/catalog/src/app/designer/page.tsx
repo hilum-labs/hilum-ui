@@ -396,7 +396,9 @@ function DesignerIndex() {
           <Card>
             <CardHeader>
               <CardTitle>CornerRadiusControl</CardTitle>
-              <CardDescription>Corner-specific values over the same four-value base.</CardDescription>
+              <CardDescription>
+                Corner-specific values over the same four-value base.
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <CornerRadiusControl

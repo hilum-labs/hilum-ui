@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { useLink, type LinkComponent } from "../lib/link-context";
 import { Button } from "./button";
 
 interface EmptyStateAction {
@@ -16,7 +19,8 @@ interface EmptyStateProps {
   description?: React.ReactNode;
   /**
    * Primary call to action — every first-run empty state should have one
-   * ("Add product", "Create discount"). Pass an element for router links.
+   * ("Add product", "Create discount"). `href` actions render through the
+   * `LinkProvider` link component; pass an element for full control.
    */
   action?: EmptyStateAction | React.ReactElement;
   /** Secondary, lower-emphasis action (e.g. "Import CSV", "Learn more"). */
@@ -36,6 +40,7 @@ interface EmptyStateProps {
 function renderAction(
   action: EmptyStateAction | React.ReactElement,
   variant: "primary" | "outline",
+  Link: LinkComponent,
 ) {
   if (React.isValidElement(action)) return action;
   const { label, href, onClick, icon } = action as EmptyStateAction;
@@ -51,7 +56,7 @@ function renderAction(
   );
   return href ? (
     <Button size="sm" variant={variant} asChild>
-      <a href={href}>{content}</a>
+      <Link href={href}>{content}</Link>
     </Button>
   ) : (
     <Button size="sm" variant={variant} onClick={onClick}>
@@ -71,6 +76,7 @@ function EmptyState({
   children,
   className,
 }: EmptyStateProps) {
+  const Link = useLink();
   return (
     <div
       data-slot="empty-state"
@@ -97,8 +103,8 @@ function EmptyState({
       </div>
       {(action || secondaryAction) && (
         <div className="flex flex-wrap items-center justify-center gap-2">
-          {action && renderAction(action, "primary")}
-          {secondaryAction && renderAction(secondaryAction, "outline")}
+          {action && renderAction(action, "primary", Link)}
+          {secondaryAction && renderAction(secondaryAction, "outline", Link)}
         </div>
       )}
       {children}

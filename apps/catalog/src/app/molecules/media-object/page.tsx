@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { FileText, Image as ImageIcon } from "lucide-react";
+import { Image as ImageIcon } from "lucide-react";
 import { MediaObject } from "@hilum/ui";
 import { Avatar, AvatarFallback } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";

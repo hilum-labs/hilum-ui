@@ -158,13 +158,7 @@ export function formatRelativeTime(
   value: DateInput,
   options: FormatRelativeTimeOptions = {},
 ): string {
-  const {
-    locale,
-    timeZone,
-    now,
-    maxRelativeSeconds = 7 * 24 * 60 * 60,
-    fallback = "—",
-  } = options;
+  const { locale, timeZone, now, maxRelativeSeconds = 7 * 24 * 60 * 60, fallback = "—" } = options;
   const date = toDate(value);
   if (!date) return fallback;
   const reference = toDate(now) ?? new Date();

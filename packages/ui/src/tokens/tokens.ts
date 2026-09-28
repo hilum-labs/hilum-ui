@@ -90,6 +90,31 @@ export const tokens = {
 
   destructive: "#dc2626", // red-600
 
+  // Categorical hues — label/tag colours (Badge `color`, chart series, …).
+  // Theme-independent: consumers tint them against the current background
+  // (e.g. `color-mix(in srgb, var(--categorical-red) 15%, var(--background))`).
+  // Emitted as `--categorical-<name>` on :root and as Tailwind colours
+  // (`bg-categorical-red`, `text-categorical-blue`, …).
+  categorical: {
+    gray: "#a3a3a3",
+    red: "#ef4444",
+    orange: "#f97316",
+    amber: "#f59e0b",
+    yellow: "#eab308",
+    lime: "#84cc16",
+    green: "#22c55e",
+    emerald: "#10b981",
+    teal: "#14b8a6",
+    cyan: "#06b6d4",
+    blue: "#3b82f6",
+    indigo: "#6366f1",
+    violet: "#8b5cf6",
+    purple: "#a855f7",
+    fuchsia: "#d946ef",
+    pink: "#ec4899",
+    rose: "#f43f5e",
+  },
+
   /* ============================================================== *
    *  SEMANTIC — what components reference                           *
    * ============================================================== */
@@ -221,12 +246,18 @@ export const tokens = {
     mid: {
       // background (#737373) → card (#525252) → ground-700 (#404040)
       bg: ["#737373", "#6b6b6b", "#636363", "#5b5b5b", "#525252", "#4d4d4d", "#474747", "#404040"],
-      shadow: surfaceShadowRamp("rgba(0, 0, 0, 0.14)", (a) => `rgba(0, 0, 0, ${Math.min(a * 2.5, 0.3)})`),
+      shadow: surfaceShadowRamp(
+        "rgba(0, 0, 0, 0.14)",
+        (a) => `rgba(0, 0, 0, ${Math.min(a * 2.5, 0.3)})`,
+      ),
     },
     dark: {
       // background (#171717) → card (#262626) → accent (#404040)
       bg: ["#171717", "#1f1f1f", "#262626", "#2b2b2b", "#303030", "#353535", "#3a3a3a", "#404040"],
-      shadow: surfaceShadowRamp("rgba(255, 255, 255, 0.08)", (a) => `rgba(0, 0, 0, ${Math.min(a * 4, 0.4)})`),
+      shadow: surfaceShadowRamp(
+        "rgba(255, 255, 255, 0.08)",
+        (a) => `rgba(0, 0, 0, ${Math.min(a * 4, 0.4)})`,
+      ),
     },
   },
 

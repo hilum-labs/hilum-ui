@@ -12,16 +12,46 @@ export interface Step {
   href?: string;
 }
 
+/** Localizable strings. Every entry has an English default. */
+export interface StepsLabels {
+  /** Accessible name of the steps `<nav>`. */
+  progress: string;
+  /** "Step 2 of 5" (bullets variant). */
+  stepOf: (current: number, total: number) => string;
+  /** Accessible name of a completed step dot (bullets variant). */
+  completed: (name: string) => string;
+  /** Accessible name of the current step dot (bullets variant). */
+  current: (name: string) => string;
+  /** Accessible name of an upcoming step dot (bullets variant). */
+  upcoming: (name: string) => string;
+}
+
+export const STEPS_DEFAULT_LABELS: StepsLabels = {
+  progress: "Progress",
+  stepOf: (current, total) => `Step ${current} of ${total}`,
+  completed: (name) => `${name}: completed`,
+  current: (name) => `${name}: current step`,
+  upcoming: (name) => `${name}: upcoming`,
+};
+
 interface StepsProps {
   steps: Step[];
   variant?: "circles" | "bullets" | "progress";
   className?: string;
+  /** Override any of the English strings. */
+  labels?: Partial<StepsLabels>;
+}
+
+interface VariantStepsProps {
+  steps: Step[];
+  className?: string;
+  labels: StepsLabels;
 }
 
 /* ---------- Circles variant ---------- */
-function CirclesSteps({ steps, className }: { steps: Step[]; className?: string }) {
+function CirclesSteps({ steps, className, labels }: VariantStepsProps) {
   return (
-    <nav aria-label="Progress" className={className}>
+    <nav data-slot="steps" aria-label={labels.progress} className={className}>
       <ol role="list" className="flex items-center">
         {steps.map((step, i) => {
           const isLast = i === steps.length - 1;
@@ -29,7 +59,7 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
             <li key={step.id ?? i} className={cn("relative", !isLast && "flex-1")}>
               {/* Connector line */}
               {!isLast && (
-                <div className="absolute left-9 right-0 top-[18px] h-0.5" aria-hidden="true">
+                <div className="absolute start-9 end-0 top-4.5 h-0.5" aria-hidden="true">
                   <div
                     className={cn(
                       "h-full",
@@ -90,13 +120,17 @@ function CirclesSteps({ steps, className }: { steps: Step[]; className?: string 
 }
 
 /* ---------- Bullets variant ---------- */
-function BulletsSteps({ steps, className }: { steps: Step[]; className?: string }) {
+function BulletsSteps({ steps, className, labels }: VariantStepsProps) {
   const currentIdx = steps.findIndex((s) => s.status === "current");
 
   return (
-    <nav className={cn("flex items-center gap-4", className)} aria-label="Progress">
+    <nav
+      data-slot="steps"
+      className={cn("flex items-center gap-4", className)}
+      aria-label={labels.progress}
+    >
       <p className="body font-medium tabular-nums text-muted-foreground">
-        Step {currentIdx + 1} of {steps.length}
+        {labels.stepOf(currentIdx + 1, steps.length)}
       </p>
       <ol role="list" className="flex items-center gap-2">
         {steps.map((step, i) => (
@@ -109,13 +143,13 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
               {step.status === "complete" ? (
                 <span
                   className="block size-2.5 rounded-full bg-brand-primary transition-colors hover:bg-brand-primary/80"
-                  aria-label={`${step.name}: completed`}
+                  aria-label={labels.completed(step.name)}
                 />
               ) : step.status === "current" ? (
                 <span
                   className="relative flex size-4 items-center justify-center"
                   aria-current="step"
-                  aria-label={`${step.name}: current step`}
+                  aria-label={labels.current(step.name)}
                 >
                   <span className="absolute size-4 rounded-full bg-brand-primary/20" />
                   <span className="relative size-2.5 rounded-full bg-brand-primary" />
@@ -123,7 +157,7 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
               ) : (
                 <span
                   className="block size-2.5 rounded-full bg-muted transition-colors hover:bg-muted"
-                  aria-label={`${step.name}: upcoming`}
+                  aria-label={labels.upcoming(step.name)}
                 />
               )}
             </a>
@@ -135,13 +169,13 @@ function BulletsSteps({ steps, className }: { steps: Step[]; className?: string 
 }
 
 /* ---------- Progress bar variant ---------- */
-function ProgressSteps({ steps, className }: { steps: Step[]; className?: string }) {
+function ProgressSteps({ steps, className }: Omit<VariantStepsProps, "labels">) {
   const completeCount = steps.filter((s) => s.status === "complete").length;
   const currentIdx = steps.findIndex((s) => s.status === "current");
   const progress = ((completeCount + (currentIdx >= 0 ? 0.5 : 0)) / steps.length) * 100;
 
   return (
-    <div className={cn("w-full", className)}>
+    <div data-slot="steps" className={cn("w-full", className)}>
       {/* Bar */}
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
         <div
@@ -158,7 +192,7 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
               key={step.id ?? i}
               className={cn(
                 "caption font-medium text-pretty",
-                i === 0 ? "text-left" : isLast ? "text-right" : "text-center",
+                i === 0 ? "text-start" : isLast ? "text-end" : "text-center",
                 step.status === "upcoming" ? "text-muted-foreground" : "text-foreground",
               )}
             >
@@ -172,13 +206,15 @@ function ProgressSteps({ steps, className }: { steps: Step[]; className?: string
 }
 
 /* ---------- Main component ---------- */
-function Steps({ steps, variant = "circles", className }: StepsProps) {
+function Steps({ steps, variant = "circles", className, labels }: StepsProps) {
   const classNameProp = className !== undefined ? { className } : {};
-  if (variant === "bullets") return <BulletsSteps steps={steps} {...classNameProp} />;
+  const l = { ...STEPS_DEFAULT_LABELS, ...labels };
+  if (variant === "bullets") return <BulletsSteps steps={steps} labels={l} {...classNameProp} />;
   if (variant === "progress") return <ProgressSteps steps={steps} {...classNameProp} />;
-  return <CirclesSteps steps={steps} {...classNameProp} />;
+  return <CirclesSteps steps={steps} labels={l} {...classNameProp} />;
 }
 
 Steps.displayName = "Steps";
 
 export { Steps };
+export type { StepsProps };

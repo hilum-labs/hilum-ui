@@ -7,7 +7,10 @@ const questions: AskUserQuestion[] = [
   {
     id: "q1",
     title: "Pick a colour",
-    options: [{ id: "red", title: "Red" }, { id: "blue", title: "Blue" }],
+    options: [
+      { id: "red", title: "Red" },
+      { id: "blue", title: "Blue" },
+    ],
   },
 ];
 

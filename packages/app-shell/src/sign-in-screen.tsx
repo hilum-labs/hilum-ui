@@ -14,6 +14,8 @@ interface SignInScreenProps {
   footer?: ReactNode;
   /** Right-side decorative panel. Hidden on mobile. */
   decoration?: ReactNode;
+  /** Id of the `<main>` region wrapping the form. Default: `main-content`. */
+  mainId?: string;
   className?: string;
 }
 
@@ -28,12 +30,16 @@ function SignInScreen({
   children,
   footer,
   decoration,
+  mainId = "main-content",
   className,
 }: SignInScreenProps) {
   return (
-    <div className={cn("flex min-h-screen bg-muted", className)}>
-      <div
+    <div className={cn("flex min-h-dvh bg-muted", className)}>
+      <main
+        id={mainId}
+        tabIndex={-1}
         className={cn(
+          "focus:outline-none",
           "flex flex-1 items-center justify-center p-6",
           decoration && "lg:flex-none lg:w-1/2",
         )}
@@ -49,10 +55,10 @@ function SignInScreen({
           {children}
           {footer && <div className="mt-6 caption text-muted-foreground">{footer}</div>}
         </div>
-      </div>
+      </main>
 
       {decoration && (
-        <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-card border-l border-border">
+        <div className="hidden lg:flex lg:w-1/2 items-center justify-center bg-card border-s border-border">
           {decoration}
         </div>
       )}

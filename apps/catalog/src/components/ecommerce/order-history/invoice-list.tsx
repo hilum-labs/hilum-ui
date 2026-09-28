@@ -90,7 +90,7 @@ export default function InvoiceList() {
               <div className="flex flex-wrap items-center gap-3">
                 <StatusBadge status={order.status} />
                 <a
-                  href="#"
+                  href="#view-invoice"
                   className="caption font-medium text-brand-primary transition-colors hover:text-brand-primary/80"
                 >
                   View invoice

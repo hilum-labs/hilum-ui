@@ -44,11 +44,15 @@ function DateText({
   const fmt = useFormatter();
   const date = toDate(value);
   const opts = {
-    ...(locale ?? fmt.locale ? { locale: locale ?? fmt.locale } : {}),
-    ...(timeZone ?? fmt.timeZone ? { timeZone: timeZone ?? fmt.timeZone } : {}),
+    ...((locale ?? fmt.locale) ? { locale: locale ?? fmt.locale } : {}),
+    ...((timeZone ?? fmt.timeZone) ? { timeZone: timeZone ?? fmt.timeZone } : {}),
   };
   if (!date) {
-    return <span className={cn("text-muted-foreground", className)}>{fallback}</span>;
+    return (
+      <span data-slot="date-text" className={cn("text-muted-foreground", className)}>
+        {fallback}
+      </span>
+    );
   }
   const text =
     format === "relative"
@@ -56,6 +60,7 @@ function DateText({
       : formatDate(date, { ...opts, style: format });
   return (
     <time
+      data-slot="date-text"
       dateTime={date.toISOString()}
       title={title ?? formatDate(date, { ...opts, style: "datetime" })}
       className={cn("tabular-nums", className)}

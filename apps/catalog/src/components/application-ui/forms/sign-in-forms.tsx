@@ -46,14 +46,18 @@ export default function SignInForms() {
                 <Input id="sign-in-password" type="password" placeholder="••••••••" />
               </div>
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2">
+                <label htmlFor="sign-in-remember" className="flex items-center gap-2">
                   <Checkbox
+                    id="sign-in-remember"
                     checked={rememberMe}
                     onCheckedChange={(checked) => setRememberMe(checked === true)}
                   />
                   <span className="caption text-ground-500">Remember me</span>
                 </label>
-                <a href="#" className="caption text-brand-primary hover:text-brand-primary/80">
+                <a
+                  href="#forgot-password"
+                  className="caption text-brand-primary hover:text-brand-primary/80"
+                >
                   Forgot password?
                 </a>
               </div>

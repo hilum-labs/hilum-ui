@@ -180,6 +180,7 @@ StatCard.displayName = "StatCard";
 function StatCardSlot({ onAddCard, className, label = "Add card" }: StatCardSlotProps) {
   return (
     <button
+      data-slot="stat-card-slot"
       type="button"
       className={cn(
         "flex min-h-28 w-full min-w-0 items-center justify-center rounded-xl border border-dashed border-border bg-card p-4 text-muted-foreground shadow-natural",

@@ -117,7 +117,9 @@ function DateTextPage() {
           >
             <FormatProvider locale="es-PE" currency="PEN">
               <div className="body flex flex-col gap-1 text-foreground">
-                <span>{formatCurrency(4820, { locale: "es-PE", currency: "PEN", minorUnits: true })}</span>
+                <span>
+                  {formatCurrency(4820, { locale: "es-PE", currency: "PEN", minorUnits: true })}
+                </span>
                 <span>{formatNumber(1204.5, { locale: "es-PE" })}</span>
                 <DateText value={SAMPLE} />
               </div>

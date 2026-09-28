@@ -2,86 +2,91 @@
 
 Hilum UI publishes five packages to **npm** in **lockstep**: `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas` and `@hilum/blocks`. One version covers all five (the Changesets `fixed` group in `.changeset/config.json`; D4 in `PLATFORM_PLAN.md`). The current line is **3.x**.
 
-## Pipeline
+The repo lives at [github.com/hilum-labs/hilum-ui](https://github.com/hilum-labs/hilum-ui). Everything runs on GitHub Actions:
 
-CodeCommit is the source of truth. **Every push to `main` releases.** There is no manual gate, so check your work before pushing.
+| Workflow                        | Trigger                                                 | Does                                                                                      |
+| ------------------------------- | ------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `.github/workflows/ci.yml`      | every pull request, every push to `main`                | `pnpm verify:ci`, changeset status (PRs only), browser tests; uploads coverage            |
+| `.github/workflows/release.yml` | push to `main`                                          | opens/updates the **Version Packages** PR, or publishes to npm once it is merged          |
+| `.github/workflows/pages.yml`   | push to `main` touching the catalog/packages, or manual | builds the catalog and deploys it to GitHub Pages at [ui.hilum.dev](https://ui.hilum.dev) |
+
+## Release flow
 
 ```
-push to CodeCommit main
-  → EventBridge (referenceUpdated on main, passes the pushed commit id)
-  → CodeBuild project `*-release` (concurrent_build_limit = 1, builds that exact commit)
-  → scripts/aws-release-and-deploy.sh
+PR with a changeset ──merge──▶ main
+  → release.yml: changesets/action opens/updates the "chore: version packages" PR
+    (runs `pnpm release:version`: bumps the group, writes changelogs, deletes the changesets)
+  → merge the Version Packages PR
+  → release.yml: no changesets left, so it runs `pnpm release:publish`
+    (build:packages → check:packages → changeset publish), tags @hilum/<pkg>@<version>,
+    and creates GitHub releases
 ```
 
-The script (`buildspec.aws-release.yml` → `scripts/aws-release-and-deploy.sh`):
-
-1. Skips if the commit is itself a `chore: release hilum <version>` commit, so the pipeline doesn't loop.
-2. **Versions** (`scripts/aws-auto-version.mjs`):
-   - with pending changesets (`.changeset/*.md`), runs `changeset version`: the group bumps by the highest declared type, the changelogs get your entries, and the changeset files are deleted;
-   - with none, does an automatic **patch** bump for all five packages and writes a generic changelog entry.
-3. **Guard:** aborts if that version already exists on npm for any package.
-4. Runs `pnpm release:preflight` (lint, typecheck, tests, package builds) and builds the catalog.
-5. **Commit, tag and push first:** commits `chore: release hilum <version>`, tags `@hilum/<pkg>@<version>`, and runs `git push --atomic` for the branch and the tags. If `main` moved on in the meantime, the push is rejected and the build stops before anything is published. The newer commit's own build then does the release.
-6. **Publishes** with `changeset publish --no-git-tag`. This only publishes versions npm doesn't have yet.
-7. **Deploys the catalog** to S3 + CloudFront. New hashed assets go up first, then other files, then HTML. Only after that does a `--delete` pass remove stale objects, and then CloudFront is invalidated.
+- Publishing uses **npm trusted publishing** (OIDC from GitHub Actions). There is no `NPM_TOKEN` secret. Every version is published **with provenance** (`NPM_CONFIG_PROVENANCE=true`), so npm shows a verified link back to the workflow run and commit.
+- `changeset publish` only publishes versions npm doesn't have yet, so re-running a failed release job is safe.
+- The catalog deploys on its own (`pages.yml`) whenever `main` changes something under `apps/catalog/` or `packages/`. It doesn't wait for a release. To redeploy by hand: Actions → **Deploy catalog** → Run workflow.
 
 ## Day-to-day workflow
 
 ```bash
-pnpm lint && pnpm typecheck && pnpm test && pnpm build   # = what CI runs
+pnpm verify   # the full local gate: verify:ci + changeset status against origin/main
 ```
 
-- **Patch-level change:** just push. The pipeline patch-bumps automatically.
-- **Minor/major change,** or when you want a real changelog entry: add a changeset before pushing:
+- **Any change to a published package** (`packages/*`) needs a changeset, whatever its size. CI fails without one (`changeset status --since=origin/<base branch>`):
 
   ```bash
   pnpm changeset          # pick any package in the group, choose patch/minor/major, write the note
   git add .changeset && git commit
-  git push codecommit main
   ```
 
-  Changesets are consumed by the next release. Delete stale changesets whose change has already shipped, or they'll trigger a surprise bump.
+- **Catalog-only / tooling-only changes** (`apps/catalog`, root config, docs) need no changeset. The catalog redeploys on merge.
+- Delete stale changesets whose change has already shipped, or they'll trigger a surprise bump.
+
+## Pull request checks
+
+`ci.yml` runs on Node 22 and pnpm 9 (from `packageManager`). It never publishes and has only `contents: read`. The `verify` job runs `pnpm verify:ci`, which is `pnpm verify` without the changeset step:
+
+| Step             | Script                                                                         | Fails when                                                                                                         |
+| ---------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Format           | `pnpm format:check` (Prettier)                                                 | any file isn't Prettier-formatted                                                                                  |
+| Lint             | `pnpm lint` (turbo → `eslint src --max-warnings 0` per package, plus `tests/`) | any error **or warning**                                                                                           |
+| Typecheck        | `pnpm typecheck`, `pnpm typecheck:tests`                                       | any TS error (packages, catalog, root `tests/`)                                                                    |
+| Tests + coverage | `pnpm test:coverage` (`vitest run --coverage`)                                 | a failing test, or coverage below the `thresholds` in `vitest.config.ts` (70% lines/functions/branches/statements) |
+| Package build    | `pnpm build:packages`, `pnpm check:packages` (publint)                         | build error, broken `exports`/`files`                                                                              |
+| Bundle size      | `pnpm size` (size-limit, `.size-limit.js`)                                     | a dist entry exceeds its brotli budget                                                                             |
+| Changeset (PRs)  | `pnpm changeset:status` with `DESTINATION_BRANCH` = the PR's base branch       | packages changed without a changeset                                                                               |
+
+The `browser-tests` job installs Playwright Chromium and runs `pnpm test:browser` (vitest browser mode). Coverage is uploaded as the `coverage` artifact on every run.
+
+## One-time setup
+
+### npm: trusted publishers
+
+For **each** of `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas` and `@hilum/blocks`, on npmjs.com → package → **Settings** → **Trusted Publisher** → **GitHub Actions**:
+
+- Organization or user: `hilum-labs`
+- Repository: `hilum-ui`
+- Workflow filename: `release.yml`
+- Environment: leave empty
+
+Then, under **Publishing access**, choose "Require two-factor authentication and disallow tokens" and revoke any old automation tokens. Trusted publishing needs npm CLI ≥ 11.5.1 (the workflow installs `npm@latest`), and each package's `repository.url` must be `git+https://github.com/hilum-labs/hilum-ui.git`, as it already is.
+
+### GitHub repository
+
+- **Settings → Actions → General → Workflow permissions:** enable "Allow GitHub Actions to create and approve pull requests" so `changesets/action` can open the Version Packages PR.
+- **Settings → Pages:** Source = **GitHub Actions**. Custom domain = `ui.hilum.dev`, then tick **Enforce HTTPS** once the certificate is issued. The deployed site also carries `CNAME` (from `apps/catalog/public/CNAME`).
+- **Settings → Branches (or Rulesets) for `main`:** require a pull request, and require the **Verify** and **Browser tests** status checks to pass. Block force pushes.
+- Optionally verify `hilum.dev` under **Settings → Pages → Verified domains** (org level) to prevent domain takeover.
+
+### DNS
+
+At the `hilum.dev` DNS provider, add a `CNAME` record `ui` → `hilum-labs.github.io`. Remove any old records for `ui` first.
 
 ## Recovery
 
-- **Publish failed after the push** (the release commit and tags exist, npm doesn't have the version): the next push won't retry, because the release commit is skipped. From the release commit, run the following with npm credentials:
-
-  ```bash
-  pnpm install --frozen-lockfile && pnpm build:packages
-  pnpm exec changeset publish --no-git-tag
-  ```
-
-  It publishes only the missing versions.
-- **Guard tripped** ("already exists on npm"): the repo's version is behind npm. Bump the package versions to the latest published version in a commit, then push again.
-- **Deploy failed after publish:** re-run the CodeBuild build for the release commit's parent, or deploy `apps/catalog/dist/client` by hand with the same `aws s3 sync` sequence as the script.
-
-## AWS setup
-
-Terraform for the catalog/release stack lives in `infra/terraform/catalog`. It covers the S3 bucket, CloudFront, the CodeBuild project, the EventBridge rule and target, and IAM.
-
-The pipeline requires the npm automation token as a plain secret string:
-
-```bash
-aws secretsmanager put-secret-value \
-  --secret-id hilum-ui/prod/npm-token \
-  --secret-string '<npm automation token>'
-```
-
-The CodeBuild role reads this secret and uses it only for npm.
-
-## Local publish (escape hatch)
-
-Avoid this. It bypasses the push-first ordering. If you must:
-
-```bash
-npm login
-node scripts/aws-auto-version.mjs   # consumes changesets or patch-bumps
-pnpm release:preflight
-git commit -am "chore: release hilum $(cat .aws-release/version)" && git push codecommit HEAD:main
-pnpm exec changeset publish
-```
-
-Your npm account needs publish access to the `@hilum` org.
+- **Publish failed** (the Version Packages PR is merged but npm doesn't have the version): re-run the failed **Release** job from the Actions tab. `changeset publish` skips versions that already exist.
+- **Trusted publishing error (`E404`/`ENEEDAUTH` on publish):** check the package's trusted publisher settings (org, repo, workflow filename `release.yml`) and that `repository.url` in its `package.json` matches the GitHub repo exactly.
+- **Catalog deploy failed:** re-run **Deploy catalog**, or trigger it with **Run workflow**.
 
 ## Consumer setup
 

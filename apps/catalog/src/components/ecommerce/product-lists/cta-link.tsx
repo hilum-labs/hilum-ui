@@ -45,7 +45,7 @@ export default function CtaLink() {
         ))}
       </div>
       <a
-        href="#"
+        href="#shop-the-collection"
         className="mt-8 inline-flex items-center gap-2 label text-brand-primary transition-opacity hover:opacity-80"
       >
         Shop the collection

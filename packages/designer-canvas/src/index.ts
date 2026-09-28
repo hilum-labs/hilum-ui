@@ -10,6 +10,7 @@ export * from "./context/state";
 export * from "./context/reducer";
 export * from "./context/CanvasContext";
 export * from "./context/CanvasProvider";
+export { useCanvasHistory, type CanvasHistoryValue } from "./context/CanvasHistory";
 
 // Renderer registry
 export * from "./renderer";

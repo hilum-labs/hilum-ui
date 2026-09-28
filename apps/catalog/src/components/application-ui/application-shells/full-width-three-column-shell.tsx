@@ -17,7 +17,7 @@ const CONTENT_ROWS = [
 ];
 const COLUMN_ICONS = [LayoutDashboard, Users, FolderKanban, Settings];
 
-function ShellFrame({ children }: { children: any }) {
+function ShellFrame({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-[480px] overflow-hidden rounded-xl border border-ground-100">
       {children}

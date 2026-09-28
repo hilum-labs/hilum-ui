@@ -123,7 +123,7 @@ function PromoPanel({ category }: { category: NavCategory }) {
           {links.map((link) => (
             <a
               key={link}
-              href="#"
+              href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
               className="rounded-2xl border border-ground-100 bg-white px-4 py-3 body text-ground-700 transition-colors hover:border-ground-200 hover:text-ground-900"
             >
               {link}
@@ -163,7 +163,7 @@ export default function SimpleNavWithPromoPanel() {
               {pages.map((page) => (
                 <a
                   key={page}
-                  href="#"
+                  href={`#${page.toLowerCase().replace(/\s+/g, "-")}`}
                   className="px-3 py-2 body text-ground-500 transition-colors hover:text-ground-900"
                 >
                   {page}

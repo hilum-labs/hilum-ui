@@ -121,15 +121,18 @@ export default function Tables() {
     return <ChevronUp size={12} className="text-brand-primary" />;
   };
 
-  const stickyPeople = Array.from({ length: 15 }, (_, index) => {
+  const stickyPeople = Array.from({ length: 15 }, (_, index) => index).flatMap((index) => {
     const person = PEOPLE[index % PEOPLE.length];
+    if (!person) return [];
     const [localPart] = person.email.split("@");
 
-    return {
-      ...person,
-      id: `${person.initials}-${index}`,
-      email: `${localPart}+${index}@example.com`,
-    };
+    return [
+      {
+        ...person,
+        id: `${person.initials}-${index}`,
+        email: `${localPart}+${index}@example.com`,
+      },
+    ];
   });
 
   return (
@@ -152,7 +155,7 @@ export default function Tables() {
               <TableCell>{person.email}</TableCell>
               <TableCell>{person.dept}</TableCell>
               <TableCell className="text-right">
-                <a href="#" className="body font-medium text-brand-primary">
+                <a href="#edit" className="body font-medium text-brand-primary">
                   Edit
                 </a>
               </TableCell>
@@ -183,7 +186,7 @@ export default function Tables() {
               <TableCell>{person.title}</TableCell>
               <TableCell>{person.email}</TableCell>
               <TableCell className="text-right">
-                <a href="#" className="body font-medium text-brand-primary">
+                <a href="#edit" className="body font-medium text-brand-primary">
                   Edit
                 </a>
               </TableCell>

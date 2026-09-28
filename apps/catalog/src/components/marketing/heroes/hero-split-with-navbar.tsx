@@ -13,16 +13,16 @@ export default function HeroSplitWithNavbar() {
             <span className="subheading text-ground-900">Lattice OS</span>
           </div>
           <div className="hidden items-center gap-6 body text-ground-500 md:flex">
-            <a href="#" className="transition-colors hover:text-ground-900">
+            <a href="#platform" className="transition-colors hover:text-ground-900">
               Platform
             </a>
-            <a href="#" className="transition-colors hover:text-ground-900">
+            <a href="#customers" className="transition-colors hover:text-ground-900">
               Customers
             </a>
-            <a href="#" className="transition-colors hover:text-ground-900">
+            <a href="#pricing" className="transition-colors hover:text-ground-900">
               Pricing
             </a>
-            <a href="#" className="transition-colors hover:text-ground-900">
+            <a href="#resources" className="transition-colors hover:text-ground-900">
               Resources
             </a>
           </div>

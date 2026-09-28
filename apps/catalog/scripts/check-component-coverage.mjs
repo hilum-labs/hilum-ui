@@ -6,7 +6,12 @@ import { componentRegistry } from "../src/data/component-registry.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CATALOG_ROOT = join(__dirname, "..");
 const REPO_ROOT = join(CATALOG_ROOT, "..", "..");
-const UI_INDEX_FILE = join(REPO_ROOT, "packages", "ui", "src", "index.ts");
+// Every @hilum/ui entry that re-exports components. Components that live on a
+// subpath (e.g. the AI surfaces on `@hilum/ui/ai`) must stay covered too.
+const UI_COMPONENT_ENTRIES = [
+  { entry: "@hilum/ui", file: join(REPO_ROOT, "packages", "ui", "src", "index.ts") },
+  { entry: "@hilum/ui/ai", file: join(REPO_ROOT, "packages", "ui", "src", "ai.ts") },
+];
 
 function unique(values) {
   return [...new Set(values)];
@@ -17,12 +22,29 @@ function formatList(values) {
 }
 
 function parseExportedComponentSlugs() {
-  const source = readFileSync(UI_INDEX_FILE, "utf8");
-  return [...source.matchAll(/export \* from "\.\/components\/([^"]+)"/g)].map((match) => match[1]);
+  return UI_COMPONENT_ENTRIES.flatMap(({ entry, file }) => {
+    if (!existsSync(file)) {
+      errors.push(`${entry} entry file is missing: ${file}`);
+      return [];
+    }
+    const source = readFileSync(file, "utf8");
+    return [...source.matchAll(/export \* from "\.\/components\/([^"]+)"/g)].map(
+      (match) => match[1],
+    );
+  });
 }
 
 const errors = [];
-const exportedSlugs = parseExportedComponentSlugs().sort();
+const exportedSlugList = parseExportedComponentSlugs();
+const exportedSlugs = unique(exportedSlugList).sort();
+const doublyExported = exportedSlugList.filter(
+  (slug, index) => exportedSlugList.indexOf(slug) !== index,
+);
+if (doublyExported.length > 0) {
+  errors.push(
+    `Components exported from more than one @hilum/ui entry:\n${formatList(unique(doublyExported))}`,
+  );
+}
 const registrySlugs = componentRegistry.map((component) => component.slug).sort();
 const duplicateRegistrySlugs = registrySlugs.filter(
   (slug, index) => registrySlugs.indexOf(slug) !== index,
@@ -41,7 +63,9 @@ if (missingFromRegistry.length > 0) {
 }
 
 if (extraInRegistry.length > 0) {
-  errors.push(`Registry entries without @hilum/ui exports:\n${formatList(extraInRegistry)}`);
+  errors.push(
+    `Registry entries without @hilum/ui (or subpath) exports:\n${formatList(extraInRegistry)}`,
+  );
 }
 
 for (const component of componentRegistry) {
@@ -75,5 +99,5 @@ if (errors.length > 0) {
 }
 
 console.log(
-  `component coverage: ${exportedSlugs.length} exported components covered by registry and catalog routes`,
+  `component coverage: ${exportedSlugs.length} exported components (${UI_COMPONENT_ENTRIES.map((e) => e.entry).join(", ")}) covered by registry and catalog routes`,
 );

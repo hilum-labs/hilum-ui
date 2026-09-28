@@ -25,7 +25,11 @@ interface UseProximityHoverReturn {
   activeIndex: number | null;
   setActiveIndex: Dispatch<SetStateAction<number | null>>;
   itemRects: ItemRect[];
-  sessionRef: RefObject<number>;
+  /**
+   * Hover session id — bumps each time the pointer enters the container, so
+   * the hover highlight can be keyed to fade in fresh per session.
+   */
+  session: number;
   handlers: {
     onMouseMove: (e: React.MouseEvent) => void;
     onMouseEnter: () => void;
@@ -44,7 +48,7 @@ export function useProximityHover<T extends HTMLElement>(
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [itemRects, setItemRects] = useState<ItemRect[]>([]);
   const itemRectsRef = useRef<ItemRect[]>([]);
-  const sessionRef = useRef(0);
+  const [session, setSession] = useState(0);
   const rafIdRef = useRef<number | null>(null);
   const remeasureRafIdRef = useRef<number | null>(null);
 
@@ -154,7 +158,7 @@ export function useProximityHover<T extends HTMLElement>(
   );
 
   const handleMouseEnter = useCallback(() => {
-    sessionRef.current += 1;
+    setSession((n) => n + 1);
   }, []);
 
   const handleMouseLeave = useCallback(() => {
@@ -181,7 +185,7 @@ export function useProximityHover<T extends HTMLElement>(
     activeIndex,
     setActiveIndex,
     itemRects,
-    sessionRef,
+    session,
     handlers: {
       onMouseMove: handleMouseMove,
       onMouseEnter: handleMouseEnter,

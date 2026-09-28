@@ -2,12 +2,16 @@
   "name": "@hilum/designer-canvas",
   "version": "3.10.0",
   "private": false,
-  "description": "Generic free-positioned canvas engine — Layer model, pan/zoom, drag/resize, snap guides, marquee, 49 generic actions, pluggable renderers and services",
+  "description": "Generic free-positioned canvas engine — Layer model and reducer, pan/zoom, drag-to-move, marquee selection, shared undo/redo, keyboard shortcuts, 11 toolbar actions, pluggable renderers",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui",
+    "url": "git+https://github.com/hilum-labs/hilum-ui.git",
     "directory": "packages/designer-canvas"
+  },
+  "homepage": "https://ui.hilum.dev",
+  "bugs": {
+    "url": "https://github.com/hilum-labs/hilum-ui/issues"
   },
   "publishConfig": {
     "access": "public"
@@ -30,7 +34,7 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src",
+    "lint": "eslint src --max-warnings 0",
     "clean": "rm -rf dist .turbo"
   },
   "//": "Tests for this package live in src/**/*.test.ts and run from the root via `pnpm test`.",

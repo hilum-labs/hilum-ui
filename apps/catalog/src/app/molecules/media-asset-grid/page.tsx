@@ -57,8 +57,8 @@ function MediaAssetGridPage() {
         </div>
         <h1 className="display mb-2 text-foreground">Media Asset Grid</h1>
         <p className="body max-w-lg text-muted-foreground">
-          Responsive media asset container that keeps compact divided rows on mobile and switches
-          to a grid on larger screens.
+          Responsive media asset container that keeps compact divided rows on mobile and switches to
+          a grid on larger screens.
         </p>
       </div>
 
@@ -82,7 +82,11 @@ function MediaAssetGridPage() {
                     mediaType={asset.mediaType}
                     meta={asset.meta}
                     actions={
-                      <Button size="icon-sm" variant="ghost" aria-label={`Actions for ${asset.name}`}>
+                      <Button
+                        size="icon-sm"
+                        variant="ghost"
+                        aria-label={`Actions for ${asset.name}`}
+                      >
                         <MoreHorizontal className="size-4" aria-hidden="true" />
                       </Button>
                     }

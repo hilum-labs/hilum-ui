@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Group, Panel, Separator } from "react-resizable-panels";
-import type { GroupProps, SeparatorProps } from "react-resizable-panels";
+import type { GroupProps, PanelProps, SeparatorProps } from "react-resizable-panels";
 import { GripVertical } from "lucide-react";
 import { cn } from "../lib/utils";
 
@@ -24,6 +24,7 @@ function ResizablePanelGroup({
   const resolvedOrientation = orientation ?? direction ?? "horizontal";
   return (
     <Group
+      data-slot="resizable-panel-group"
       orientation={resolvedOrientation}
       className={cn(
         "flex h-full w-full",
@@ -36,7 +37,10 @@ function ResizablePanelGroup({
 }
 ResizablePanelGroup.displayName = "ResizablePanelGroup";
 
-const ResizablePanel = Panel;
+function ResizablePanel(props: PanelProps) {
+  return <Panel data-slot="resizable-panel" {...props} />;
+}
+ResizablePanel.displayName = "ResizablePanel";
 
 type ResizableHandleProps = SeparatorProps & {
   withHandle?: boolean;
@@ -45,6 +49,7 @@ type ResizableHandleProps = SeparatorProps & {
 function ResizableHandle({ className, withHandle = true, ...props }: ResizableHandleProps) {
   return (
     <Separator
+      data-slot="resizable-handle"
       className={cn(
         "relative flex shrink-0 items-center justify-center bg-muted",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
@@ -54,7 +59,7 @@ function ResizableHandle({ className, withHandle = true, ...props }: ResizableHa
         "[aria-orientation=vertical]:h-px [aria-orientation=vertical]:w-full",
         // Wider hit target via pseudo-element
         "after:absolute after:inset-y-0 after:left-1/2 after:w-1 after:-translate-x-1/2",
-        "[aria-orientation=vertical]:after:left-0 [aria-orientation=vertical]:after:h-1 [aria-orientation=vertical]:after:w-full [aria-orientation=vertical]:after:translate-x-0 [aria-orientation=vertical]:after:-translate-y-1/2",
+        "[aria-orientation=vertical]:after:start-0 [aria-orientation=vertical]:after:h-1 [aria-orientation=vertical]:after:w-full [aria-orientation=vertical]:after:translate-x-0 [aria-orientation=vertical]:after:-translate-y-1/2",
         // Active drag state
         "active:bg-brand-primary/30",
         className,

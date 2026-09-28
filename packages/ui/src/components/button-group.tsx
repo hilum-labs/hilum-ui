@@ -9,10 +9,8 @@ interface ButtonGroupProps {
 function ButtonGroup({ children, className }: ButtonGroupProps) {
   return (
     <div
-      className={cn(
-        "inline-flex items-center gap-0.5 rounded-xl bg-muted p-0.5",
-        className,
-      )}
+      data-slot="button-group"
+      className={cn("inline-flex items-center gap-0.5 rounded-xl bg-muted p-0.5", className)}
     >
       {children}
     </div>
@@ -27,6 +25,7 @@ function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupI
   return (
     <button
       type="button"
+      data-slot="button-group-item"
       className={cn(
         "relative inline-flex min-h-8 items-center justify-center gap-1 rounded-[10px] px-3 py-1 body-sm font-medium",
         "transition-[background-color,box-shadow,color,opacity,scale] active:scale-[0.96]",

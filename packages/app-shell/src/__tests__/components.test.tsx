@@ -17,7 +17,7 @@ import { DetailScreen } from "../detail-screen";
 import { SettingsScreen } from "../settings-screen";
 import { SignInScreen } from "../sign-in-screen";
 import { Navbar } from "../navbar";
-import { useLink } from "../link-context";
+import { useLink } from "../index";
 
 /* ------------------------------------------------------------------ */
 /* AppShell                                                             */
@@ -27,10 +27,10 @@ describe("AppShell", () => {
   it("renders children", () => {
     render(
       <AppShell>
-        <main>App content</main>
+        <p>App content</p>
       </AppShell>,
     );
-    expect(screen.getByText("App content")).toBeInTheDocument();
+    expect(screen.getByRole("main")).toHaveTextContent("App content");
   });
 
   it("renders without linkComponent", () => {
@@ -456,18 +456,19 @@ describe("PageHeader", () => {
 /* ------------------------------------------------------------------ */
 
 describe("PageHeaderActions", () => {
-  it("renders the responsive dashboard action classes", () => {
+  it("uses container-query layout instead of app-specific class hooks", () => {
     const { container } = render(
       <PageHeaderActions>
         <button>Export</button>
-        <button className="dashboard-action-wide">Import</button>
+        <button data-span="full">Import</button>
       </PageHeaderActions>,
     );
 
     const actions = container.querySelector('[data-slot="page-header-actions"]');
     expect(actions).toHaveClass("grid");
-    expect(actions).toHaveClass("sm:flex");
-    expect(actions).toHaveClass("[&_.dashboard-action-wide]:col-span-2");
+    expect(actions).toHaveClass("@xl/page-header:flex");
+    expect(actions).toHaveClass("[&>[data-span=full]]:col-span-2");
+    expect(actions?.className).not.toMatch(/dashboard-action|vw/);
     expect(screen.getByRole("button", { name: "Export" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Import" })).toBeInTheDocument();
   });
@@ -608,13 +609,13 @@ describe("SignInScreen", () => {
 /* ------------------------------------------------------------------ */
 
 describe("Navbar", () => {
-  it("renders nav element", () => {
+  it("renders a labelled nav element", () => {
     render(
       <AppShell>
-        <Navbar />
+        <Navbar items={[{ label: "Home", href: "/" }]} />
       </AppShell>,
     );
-    expect(screen.getByRole("navigation")).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Main" })).toBeInTheDocument();
   });
 
   it("renders logo", () => {
@@ -698,7 +699,9 @@ describe("PageHeader detail-page props", () => {
     expect(screen.getByRole("link", { name: "Orders" })).toHaveAttribute("href", "/orders");
     expect(screen.getByRole("heading", { level: 1, name: "#1042" })).toBeInTheDocument();
     expect(screen.getByText("Paid").closest("[data-slot='page-header-badges']")).not.toBeNull();
-    expect(screen.getByText("Sep 26, 2026").closest("[data-slot='page-header-meta']")).not.toBeNull();
+    expect(
+      screen.getByText("Sep 26, 2026").closest("[data-slot='page-header-meta']"),
+    ).not.toBeNull();
   });
 });
 

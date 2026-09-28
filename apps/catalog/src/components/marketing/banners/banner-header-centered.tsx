@@ -19,7 +19,7 @@ export default function BannerHeaderCentered() {
             <span className="mx-2 text-white/60">·</span>
             Secure your spot for the biggest design conference of the year.
             <a
-              href="#"
+              href="#register-now"
               className="ml-2 inline-flex items-center gap-1 font-semibold text-white underline underline-offset-2"
             >
               Register now <ArrowRight size={12} />

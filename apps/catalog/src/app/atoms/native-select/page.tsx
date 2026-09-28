@@ -84,7 +84,7 @@ function NativeSelectPage() {
         </div>
         <h1 className="display mb-2 text-foreground">Native Select</h1>
         <p className="body max-w-lg text-muted-foreground">
-          Styled native HTML select. No JavaScript overhead — uses the browser's built-in dropdown.
+          Styled native HTML select. No JavaScript overhead — uses the browser’s built-in dropdown.
           Best for mobile forms and performance-sensitive contexts.
         </p>
         <div className="mt-5 flex items-center gap-4 border-t border-border pt-5">

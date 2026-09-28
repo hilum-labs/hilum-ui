@@ -3,7 +3,7 @@ import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
 import * as React from "react";
-import { Box, Code2, FileText, Globe, LayoutDashboard, Layers, Zap } from "lucide-react";
+import { Box, Layers, Zap } from "lucide-react";
 import {
   NavigationMenu,
   NavigationMenuList,

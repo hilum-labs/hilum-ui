@@ -35,5 +35,6 @@ pnpm-debug.log*
 # Misc
 .cache/
 
-# Release pipeline scratch (scripts/aws-auto-version.mjs)
-.aws-release/
+
+# TanStack Start dev cache
+.tanstack/

@@ -310,23 +310,14 @@ describe("DesignerSidebar", () => {
 
   it("renders item tooltips as designed floating surfaces", async () => {
     const user = userEvent.setup();
-    render(
-      <DesignerSidebar
-        items={[{ id: "select", label: "Select", icon: MockIcon }]}
-      />,
-    );
+    render(<DesignerSidebar items={[{ id: "select", label: "Select", icon: MockIcon }]} />);
 
     await user.hover(screen.getByRole("button", { name: "Select" }));
 
     const tooltip = await screen.findByRole("tooltip", { name: "Select" });
     const surface = screen.getAllByText("Select")[0]?.closest("div");
     expect(tooltip).toBeInTheDocument();
-    expect(surface).toHaveClass(
-      "rounded-lg",
-      "bg-foreground",
-      "text-background",
-      "shadow-natural",
-    );
+    expect(surface).toHaveClass("rounded-lg", "bg-foreground", "text-background", "shadow-natural");
   });
 
   it("renders on left and right sides without error", () => {
@@ -625,9 +616,9 @@ describe("TwoValueControl", () => {
         onChange={() => {}}
       />,
     );
-    expect(screen.getByRole("textbox", { name: "X position" })).toHaveValue("10");
+    expect(screen.getByRole("spinbutton", { name: "X position" })).toHaveValue("10");
     // Falls back to the string label for the accessible name.
-    const y = screen.getByRole("textbox", { name: "Y" });
+    const y = screen.getByRole("spinbutton", { name: "Y" });
     expect(y).toHaveValue("20");
     expect(y.closest(".grid")).toHaveClass("grid-cols-2");
   });

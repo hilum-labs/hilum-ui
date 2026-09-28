@@ -92,9 +92,11 @@ export default function Checkboxes() {
             ].map((item) => (
               <label
                 key={item.key}
+                htmlFor={`checkbox-card-${item.key}`}
                 className="flex items-start gap-3 rounded-xl border border-ground-100 bg-white p-3"
               >
                 <Checkbox
+                  id={`checkbox-card-${item.key}`}
                   checked={preferences[item.key]}
                   onCheckedChange={() => togglePreference(item.key)}
                   className="mt-1"

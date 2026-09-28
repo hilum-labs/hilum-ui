@@ -22,7 +22,6 @@ function RangePickerDemo() {
   return <DateRangePicker value={range} onChange={setRange} clearable maxDate={new Date()} />;
 }
 
-
 function Heading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">

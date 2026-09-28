@@ -25,7 +25,7 @@ function DescriptionList({
   className,
 }: DescriptionListProps) {
   return (
-    <div className={className}>
+    <div data-slot="description-list" className={className}>
       {(title || description) && (
         <div className="mb-4">
           {title && <p className="body font-semibold text-balance text-foreground">{title}</p>}

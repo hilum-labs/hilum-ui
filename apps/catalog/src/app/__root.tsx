@@ -7,7 +7,7 @@ import appCss from "../styles/globals.css?url";
 
 const SITE_URL = "https://ui.hilum.dev";
 const ORGANIZATION_NAME = "Hilum Labs";
-const REPOSITORY_URL = "https://git-codecommit.us-east-1.amazonaws.com/v1/repos/hilum-ui";
+const REPOSITORY_URL = "https://github.com/hilum-labs/hilum-ui";
 
 const structuredData = {
   "@context": "https://schema.org",

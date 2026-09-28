@@ -75,7 +75,7 @@ function SizeSelector({
     <div>
       <div className="flex items-center justify-between gap-4">
         <p className="label text-ground-900">Size</p>
-        <a href="#" className="caption text-brand-primary hover:opacity-80">
+        <a href="#size-guide" className="caption text-brand-primary hover:opacity-80">
           Size guide
         </a>
       </div>

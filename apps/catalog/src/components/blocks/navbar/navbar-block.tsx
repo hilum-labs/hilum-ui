@@ -29,7 +29,8 @@ export default function NavbarBlock() {
               {NAV_LINKS.map((link) => (
                 <a
                   key={link}
-                  href="#"
+                  href={`#${link.toLowerCase()}`}
+                  aria-current={active === link ? "page" : undefined}
                   onClick={(e) => {
                     e.preventDefault();
                     setActive(link);
@@ -89,7 +90,7 @@ export default function NavbarBlock() {
             {NAV_LINKS.map((link) => (
               <a
                 key={link}
-                href="#"
+                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
                 className="block rounded-md px-3 py-2 body font-medium text-ground-500 hover:bg-ground-50 hover:text-ground-900"
               >
                 {link}

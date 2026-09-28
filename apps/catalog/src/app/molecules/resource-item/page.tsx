@@ -52,9 +52,30 @@ const CODE = {
 };
 
 const ORDERS = [
-  { id: "1042", customer: "Ada Lovelace", items: 3, total: 48.2, status: "paid", date: new Date(2026, 8, 26) },
-  { id: "1041", customer: "Grace Hopper", items: 1, total: 120, status: "pending", date: new Date(2026, 8, 25) },
-  { id: "1040", customer: "Alan Turing", items: 2, total: 64.5, status: "refunded", date: new Date(2026, 8, 24) },
+  {
+    id: "1042",
+    customer: "Ada Lovelace",
+    items: 3,
+    total: 48.2,
+    status: "paid",
+    date: new Date(2026, 8, 26),
+  },
+  {
+    id: "1041",
+    customer: "Grace Hopper",
+    items: 1,
+    total: 120,
+    status: "pending",
+    date: new Date(2026, 8, 25),
+  },
+  {
+    id: "1040",
+    customer: "Alan Turing",
+    items: 2,
+    total: 64.5,
+    status: "refunded",
+    date: new Date(2026, 8, 24),
+  },
 ];
 
 function SectionHeading({ label }: { label: string }) {

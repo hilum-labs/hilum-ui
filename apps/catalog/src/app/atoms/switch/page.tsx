@@ -154,7 +154,7 @@ function SwitchPage() {
                   </div>
                   <Switch
                     id={s.id}
-                    checked={leftDesc[s.id]}
+                    checked={leftDesc[s.id] ?? false}
                     onCheckedChange={(v) => setLeftDesc((prev) => ({ ...prev, [s.id]: v }))}
                   />
                 </div>

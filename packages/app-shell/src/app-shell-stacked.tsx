@@ -1,42 +1,68 @@
 import type { ReactNode } from "react";
-import { cn } from "@hilum/ui";
-import { LinkProvider } from "./link-context";
-import type { LinkComponent } from "./types";
+import { AppFrameMain, AppFrameRoot, type AppFrameProps } from "./app-frame";
 import { Navbar } from "./navbar";
 import type { NavbarProps } from "./navbar";
 
-interface AppShellStackedProps extends NavbarProps {
-  linkComponent?: LinkComponent;
-  className?: string;
+interface AppShellStackedProps
+  extends Omit<NavbarProps, "className" | "search">, Omit<AppFrameProps, "children"> {
+  /** Content between the navbar and `<main>` (e.g. `<AppStatusBanner>`). */
+  banner?: ReactNode;
+  /** Class name for the `<Navbar>`. */
+  navbarClassName?: string;
   children: ReactNode;
 }
 
 /**
  * Top-nav variant of <AppShell> — no sidebar. Used for marketing-adjacent
- * apps (admin dashboards with a flat IA, public-facing tools, etc.).
+ * apps (admin dashboards with a flat IA, public-facing tools, etc.). Shares
+ * AppShell's frame features: skip link, `<main>`, loading bar, toaster,
+ * search slot and `--hilum-header-height`.
  */
 function AppShellStacked({
   linkComponent,
+  search,
+  loading,
+  loadingLabel,
+  toaster,
+  main = true,
+  mainId,
+  mainClassName,
+  skipLink,
+  headerHeight,
+  banner,
+  navbarClassName,
   className,
   children,
   ...navbarProps
 }: AppShellStackedProps) {
-  const Wrapper = linkComponent ? LinkProvider : Fragment;
-  const wrapperProps = linkComponent ? { value: linkComponent } : {};
-
   return (
-    <Wrapper {...(wrapperProps as { value: LinkComponent })}>
-      <div
-        className={cn("flex flex-col h-screen overflow-hidden bg-muted text-foreground", className)}
-      >
-        <Navbar {...navbarProps} />
-        <main className="flex-1 overflow-auto">{children}</main>
-      </div>
-    </Wrapper>
+    <AppFrameRoot
+      {...(linkComponent !== undefined && { linkComponent })}
+      {...(search !== undefined && { search })}
+      {...(loadingLabel !== undefined && { loadingLabel })}
+      {...(toaster !== undefined && { toaster })}
+      {...(mainId !== undefined && { mainId })}
+      {...(skipLink !== undefined && { skipLink })}
+      {...(headerHeight !== undefined && { headerHeight })}
+      {...(className !== undefined && { className })}
+      loading={loading ?? false}
+      layoutClassName="flex flex-col"
+    >
+      <Navbar
+        {...navbarProps}
+        {...(navbarClassName !== undefined && { className: navbarClassName })}
+      />
+      {banner}
+      {main ? (
+        <AppFrameMain id={mainId} loading={loading} className={mainClassName}>
+          {children}
+        </AppFrameMain>
+      ) : (
+        children
+      )}
+    </AppFrameRoot>
   );
 }
-
-import { Fragment } from "react";
 
 export { AppShellStacked };
 export type { AppShellStackedProps };

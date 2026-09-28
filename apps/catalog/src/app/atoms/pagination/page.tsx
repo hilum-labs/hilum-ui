@@ -12,7 +12,7 @@ import {
   PaginationEllipsis,
 } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
-import { PaginationBar } from "@hilum/ui";
+import { FormatProvider, PaginationBar } from "@hilum/ui";
 import { useState as usePageState } from "react";
 
 const CODE = {
@@ -43,11 +43,63 @@ function PaginationBarDemo() {
   const [page, setPage] = usePageState(2);
   return (
     <div className="w-full max-w-xl">
-      <PaginationBar page={page} pageSize={20} total={124} itemLabel="order" onPageChange={setPage} />
+      <PaginationBar
+        page={page}
+        pageSize={20}
+        total={124}
+        itemLabel="order"
+        onPageChange={setPage}
+      />
     </div>
   );
 }
 
+const LOCALIZED_CODE = `import { FormatProvider, PaginationBar } from "@hilum/ui"
+
+// Every string is a label; numbers and plurals follow the FormatProvider locale.
+<FormatProvider locale="es-ES">
+  <PaginationBar
+    page={page}
+    pageSize={20}
+    total={12480}
+    itemLabel="pedido"
+    onPageChange={setPage}
+    labels={{
+      summary: ({ start, end, total, noun }) => \`Mostrando \${start}–\${end} de \${total} \${noun}\`,
+      previous: "Anterior",
+      next: "Siguiente",
+      previousPage: "Ir a la página anterior",
+      nextPage: "Ir a la página siguiente",
+      navigation: "Paginación",
+    }}
+  />
+</FormatProvider>`;
+
+function LocalizedPaginationBarDemo() {
+  const [page, setPage] = usePageState(3);
+  return (
+    <div className="w-full max-w-xl">
+      <FormatProvider locale="es-ES">
+        <PaginationBar
+          page={page}
+          pageSize={20}
+          total={12480}
+          itemLabel="pedido"
+          onPageChange={setPage}
+          labels={{
+            summary: ({ start, end, total, noun }) =>
+              `Mostrando ${start}–${end} de ${total} ${noun}`,
+            previous: "Anterior",
+            next: "Siguiente",
+            previousPage: "Ir a la página anterior",
+            nextPage: "Ir a la página siguiente",
+            navigation: "Paginación",
+          }}
+        />
+      </FormatProvider>
+    </div>
+  );
+}
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -74,7 +126,9 @@ function PaginationPage() {
           <span className="font-semibold text-foreground">Pagination</span>
         </div>
         <h1 className="display mb-2 text-foreground">Pagination</h1>
-        <p className="body max-w-lg text-muted-foreground">Navigation control for multi-page content.</p>
+        <p className="body max-w-lg text-muted-foreground">
+          Navigation control for multi-page content.
+        </p>
       </div>
 
       <PageDocs path="/atoms/pagination/" />
@@ -127,6 +181,19 @@ function PaginationPage() {
             code={BAR_CODE}
           >
             <PaginationBarDemo />
+          </PreviewBlock>
+        </section>
+        <section>
+          <div className="mb-4 flex items-center gap-3">
+            <h2 className="label text-muted-foreground">Localized</h2>
+            <div className="h-px flex-1 bg-border" />
+          </div>
+          <PreviewBlock
+            title="Labels + FormatProvider"
+            description="No hard-coded English: summary, button text and accessible names come from labels; numbers use Intl."
+            code={LOCALIZED_CODE}
+          >
+            <LocalizedPaginationBarDemo />
           </PreviewBlock>
         </section>
       </div>

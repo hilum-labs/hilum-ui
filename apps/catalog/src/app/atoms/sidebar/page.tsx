@@ -542,10 +542,7 @@ function SidebarPage() {
                   </p>
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {Array.from({ length: 4 }).map((_, i) => (
-                      <div
-                        key={i}
-                        className="h-28 rounded-lg border border-border bg-muted"
-                      />
+                      <div key={i} className="h-28 rounded-lg border border-border bg-muted" />
                     ))}
                   </div>
                   <div className="flex-1 rounded-lg border border-border bg-muted" />

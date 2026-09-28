@@ -21,6 +21,21 @@ type ManagedAria =
   | "aria-autocomplete"
   | "aria-haspopup";
 
+interface ComboboxLabels {
+  /** Toggle button accessible name while the list is closed. */
+  open: string;
+  /** Toggle button accessible name while the list is open. */
+  close: string;
+  /** Mobile backdrop button that dismisses the list. */
+  closeOptions: string;
+}
+
+const DEFAULT_LABELS: ComboboxLabels = {
+  open: "Open",
+  close: "Close",
+  closeOptions: "Close options",
+};
+
 interface ComboboxProps extends Omit<React.AriaAttributes, ManagedAria> {
   options: ComboboxOption[];
   value?: string;
@@ -35,26 +50,29 @@ interface ComboboxProps extends Omit<React.AriaAttributes, ManagedAria> {
   name?: string;
   disabled?: boolean;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<ComboboxLabels>;
+  ref?: React.Ref<HTMLInputElement> | undefined;
 }
 
-const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Combobox(
-  {
-    options,
-    value,
-    onValueChange,
-    placeholder = "Select...",
-    searchPlaceholder = "Search...",
-    emptyText = "No results found.",
-    className,
-    id,
-    name,
-    disabled = false,
-    onBlur,
-    ...ariaProps
-  },
+function Combobox({
   ref,
-) {
+  options,
+  value,
+  onValueChange,
+  placeholder = "Select...",
+  searchPlaceholder = "Search...",
+  emptyText = "No results found.",
+  className,
+  id,
+  name,
+  disabled = false,
+  onBlur,
+  labels: labelsProp,
+  ...ariaProps
+}: ComboboxProps) {
   const shape = useShape();
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState(-1);
@@ -147,17 +165,17 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Comb
   }
 
   return (
-    <div ref={containerRef} className={cn("relative", className)}>
+    <div ref={containerRef} data-slot="combobox" className={cn("relative", className)}>
       {/* Trigger */}
       <div className="relative flex items-center">
         {selectedOption?.avatar && !open && (
-          <div className="pointer-events-none absolute left-2.5 flex size-5 items-center justify-center rounded-full bg-muted caption-xs font-semibold text-muted-foreground shrink-0">
+          <div className="pointer-events-none absolute start-2.5 flex size-5 items-center justify-center rounded-full bg-muted caption-xs font-semibold text-muted-foreground shrink-0">
             {selectedOption.avatar}
           </div>
         )}
         {selectedOption?.statusColor && !open && (
           <div
-            className="pointer-events-none absolute left-3 size-2 rounded-full shrink-0"
+            className="pointer-events-none absolute start-3 size-2 rounded-full shrink-0"
             style={{ backgroundColor: selectedOption.statusColor }}
           />
         )}
@@ -176,16 +194,16 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Comb
           }
           aria-autocomplete="list"
           className={cn(
-            "flex h-10 w-full border border-border bg-background pr-10 body text-foreground",
+            "flex h-10 w-full border border-border bg-background pe-10 body text-foreground",
             shape.input,
             "placeholder:text-muted-foreground",
             "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             "disabled:cursor-not-allowed disabled:opacity-50",
             selectedOption?.avatar && !open
-              ? "pl-8"
+              ? "ps-8"
               : selectedOption?.statusColor && !open
-                ? "pl-7"
-                : "pl-3",
+                ? "ps-7"
+                : "ps-3",
           )}
           placeholder={open ? searchPlaceholder : (selectedOption?.label ?? placeholder)}
           value={open ? query : (selectedOption?.label ?? "")}
@@ -205,8 +223,8 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Comb
           type="button"
           tabIndex={-1}
           disabled={disabled}
-          aria-label={open ? "Close" : "Open"}
-          className="absolute inset-y-0 right-0 flex w-10 items-center justify-center text-muted-foreground hover:text-muted-foreground transition-colors"
+          aria-label={open ? labels.close : labels.open}
+          className="absolute inset-y-0 end-0 flex w-10 items-center justify-center text-muted-foreground hover:text-muted-foreground transition-colors"
           onClick={() => {
             if (open) {
               closeDropdown();
@@ -225,7 +243,7 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Comb
         <>
           <button
             type="button"
-            aria-label="Close options"
+            aria-label={labels.closeOptions}
             className="fixed inset-0 z-40 hidden bg-black/30 backdrop-blur-sm max-md:block"
             onClick={closeDropdown}
           />
@@ -313,9 +331,9 @@ const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(function Comb
       )}
     </div>
   );
-});
+}
 
 Combobox.displayName = "Combobox";
 
-export { Combobox };
-export type { ComboboxProps };
+export { Combobox, DEFAULT_LABELS as COMBOBOX_DEFAULT_LABELS };
+export type { ComboboxProps, ComboboxLabels };

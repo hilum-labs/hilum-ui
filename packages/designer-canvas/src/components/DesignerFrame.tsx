@@ -38,8 +38,9 @@ function DesignerFrame({
     <div
       ref={ref}
       onPointerDown={(e) => {
-        // Click on the frame background = clear selection.
-        if (e.target === ref.current) setSelectedIds([]);
+        // Click on the frame background = clear selection. Shift keeps it so
+        // a shift-marquee can add to the current selection.
+        if (e.target === ref.current && !e.shiftKey) setSelectedIds([]);
       }}
       className={cn("relative shadow-elevated", className)}
       style={{

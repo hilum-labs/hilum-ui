@@ -146,7 +146,7 @@ function FeaturedColumnsMenu({ category }: { category: NavCategory }) {
             {section.links.map((link) => (
               <a
                 key={link}
-                href="#"
+                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
                 className="block body text-ground-600 transition-colors hover:text-ground-900"
               >
                 {link}
@@ -161,7 +161,7 @@ function FeaturedColumnsMenu({ category }: { category: NavCategory }) {
           {pages.map((page) => (
             <a
               key={page}
-              href="#"
+              href={`#${page.toLowerCase().replace(/\s+/g, "-")}`}
               className="block body text-ground-600 transition-colors hover:text-ground-900"
             >
               {page}
@@ -206,7 +206,11 @@ function MobileDrawer({ category, onClose }: { category: NavCategory; onClose: (
               <p className="label mb-3 text-ground-400">{section.label}</p>
               <div className="space-y-2">
                 {section.links.map((link) => (
-                  <a key={link} href="#" className="block body text-ground-700">
+                  <a
+                    key={link}
+                    href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="block body text-ground-700"
+                  >
                     {link}
                   </a>
                 ))}

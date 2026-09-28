@@ -14,7 +14,10 @@ export default function SignInNoLabels() {
         <h1 className="heading text-ground-900">Sign in</h1>
         <p className="mt-1 body text-ground-400">
           New here?{" "}
-          <a href="#" className="font-medium text-ground-900 underline underline-offset-2">
+          <a
+            href="#create-an-account"
+            className="font-medium text-ground-900 underline underline-offset-2"
+          >
             Create an account
           </a>
         </p>
@@ -47,7 +50,10 @@ export default function SignInNoLabels() {
             <Checkbox id="remember2" />
             <Label htmlFor="remember2">Remember me</Label>
           </div>
-          <a href="#" className="caption font-medium text-ground-500 hover:text-ground-900">
+          <a
+            href="#forgot-password"
+            className="caption font-medium text-ground-500 hover:text-ground-900"
+          >
             Forgot password?
           </a>
         </div>

@@ -37,7 +37,10 @@ export default function EmptyStateRecommendations() {
               </div>
               <h4 className="body font-semibold text-ground-900">{card.title}</h4>
               <p className="caption mt-1 text-ground-500">{card.description}</p>
-              <a href="#" className="mt-3 inline-block caption text-brand-primary hover:underline">
+              <a
+                href="#get-started"
+                className="mt-3 inline-block caption text-brand-primary hover:underline"
+              >
                 Get started →
               </a>
             </div>

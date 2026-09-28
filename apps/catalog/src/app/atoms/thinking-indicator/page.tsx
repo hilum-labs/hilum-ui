@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ThinkingIndicator } from "@hilum/ui";
+import { ThinkingIndicator } from "@hilum/ui/ai";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { createCatalogPageHead } from "@/lib/seo";
 
-const CODE = `import { ThinkingIndicator } from "@hilum/ui"
+const CODE = `import { ThinkingIndicator } from "@hilum/ui/ai"
 
 <ThinkingIndicator label="Thinking" />`;
 

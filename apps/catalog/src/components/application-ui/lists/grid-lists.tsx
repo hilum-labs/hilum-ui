@@ -121,7 +121,7 @@ export default function GridLists() {
         {LINK_CARDS.map((card) => (
           <a
             key={card.name}
-            href="#"
+            href={`#${card.name.toLowerCase().replace(/\s+/g, "-")}`}
             className="flex items-center gap-4 rounded-xl border border-ground-100 p-4 hover:shadow-natural"
           >
             <div className="flex size-11 items-center justify-center rounded-full bg-brand-primary/10 subheading text-brand-primary">

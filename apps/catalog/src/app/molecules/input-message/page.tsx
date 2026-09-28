@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { InputMessage } from "@hilum/ui";
+import { InputMessage } from "@hilum/ui/ai";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { createCatalogPageHead } from "@/lib/seo";
 
-const CODE = `import { InputMessage } from "@hilum/ui"
+const CODE = `import { InputMessage } from "@hilum/ui/ai"
 
 <InputMessage value="" onValueChange={() => undefined} onSubmit={() => undefined} />`;
 

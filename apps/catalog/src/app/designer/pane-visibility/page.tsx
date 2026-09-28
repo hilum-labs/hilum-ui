@@ -29,10 +29,10 @@ function PaneVisibilityDemo() {
       <div className="mb-10">
         <h1 className="display text-foreground">DesignerPane.showFor</h1>
         <p className="body-lg text-muted-foreground mt-3 max-w-2xl">
-          Click below to "select" different kinds. The properties panel on the right rerenders only
+          Click below to “select” different kinds. The properties panel on the right rerenders only
           the panes whose{" "}
           <code className="font-mono caption bg-muted px-1.5 py-0.5 rounded">showFor</code>{" "}
-          predicate matches. The shell itself doesn't know about layer kinds — apps wire a{" "}
+          predicate matches. The shell itself doesn’t know about layer kinds — apps wire a{" "}
           <code className="font-mono caption bg-muted px-1.5 py-0.5 rounded">resolveKind</code>{" "}
           function on <code className="font-mono caption">ShellContext</code>.
         </p>
@@ -122,7 +122,9 @@ function PaneVisibilityDemo() {
                   <DesignerPane collapsible>
                     <DesignerPaneTitle>Always</DesignerPaneTitle>
                     <DesignerPaneContent>
-                      <p className="caption text-muted-foreground">No showFor — visible regardless.</p>
+                      <p className="caption text-muted-foreground">
+                        No showFor — visible regardless.
+                      </p>
                     </DesignerPaneContent>
                   </DesignerPane>
                 </DesignerPanel>

@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { AskUserQuestions } from "@hilum/ui";
+import { AskUserQuestions } from "@hilum/ui/ai";
 import { PageDocs } from "@/components/catalog/page-docs";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { createCatalogPageHead } from "@/lib/seo";
 
-const CODE = `import { AskUserQuestions } from "@hilum/ui"
+const CODE = `import { AskUserQuestions } from "@hilum/ui/ai"
 
 <AskUserQuestions
   questions={[

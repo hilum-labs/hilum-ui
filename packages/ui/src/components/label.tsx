@@ -3,22 +3,26 @@
 import * as React from "react";
 import { Label as LabelPrimitive } from "radix-ui";
 import { cn } from "../lib/utils";
+import { useFieldContext } from "../lib/field-context";
 
-const Label = React.forwardRef<
-  React.ElementRef<typeof LabelPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <LabelPrimitive.Root
-    ref={ref}
-    className={cn(
-      "body font-medium leading-none text-muted-foreground",
-      "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-      "compact:text-[11px]",
-      className,
-    )}
-    {...props}
-  />
-));
+function Label({ className, htmlFor, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
+  // Inside a <Field>, a bare <Label> targets the field's control.
+  const field = useFieldContext();
+  const target = htmlFor ?? field?.controlId;
+  return (
+    <LabelPrimitive.Root
+      data-slot="label"
+      {...(target != null ? { htmlFor: target } : {})}
+      className={cn(
+        "body font-medium leading-none text-muted-foreground",
+        "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+        "compact:text-[11px]",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
 Label.displayName = "Label";
 
 export { Label };

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { Briefcase, ImageIcon, Lightbulb, Rocket, Shield, Star, Zap } from "lucide-react";
+import { ImageIcon, Rocket, Shield, Star, Zap } from "lucide-react";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@hilum/ui";
 

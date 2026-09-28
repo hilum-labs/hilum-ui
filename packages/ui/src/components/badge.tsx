@@ -1,28 +1,34 @@
 "use client";
 
-import { forwardRef, type HTMLAttributes } from "react";
+import { type Ref, type HTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
 
+/**
+ * Badge colours as CSS custom-property references to the categorical token
+ * palette (`tokens.categorical` → `--categorical-<name>` in tokens.css).
+ * Usable anywhere a CSS colour is accepted; for raw hex values (canvas, JS
+ * colour math) read `tokens.categorical` from `@hilum/ui/tokens`.
+ */
 const badgeColors = {
-  gray: "#a3a3a3",
-  red: "#ef4444",
-  orange: "#f97316",
-  amber: "#f59e0b",
-  yellow: "#eab308",
-  lime: "#84cc16",
-  green: "#22c55e",
-  emerald: "#10b981",
-  teal: "#14b8a6",
-  cyan: "#06b6d4",
-  blue: "#3b82f6",
-  indigo: "#6366f1",
-  violet: "#8b5cf6",
-  purple: "#a855f7",
-  fuchsia: "#d946ef",
-  pink: "#ec4899",
-  rose: "#f43f5e",
+  gray: "var(--categorical-gray)",
+  red: "var(--categorical-red)",
+  orange: "var(--categorical-orange)",
+  amber: "var(--categorical-amber)",
+  yellow: "var(--categorical-yellow)",
+  lime: "var(--categorical-lime)",
+  green: "var(--categorical-green)",
+  emerald: "var(--categorical-emerald)",
+  teal: "var(--categorical-teal)",
+  cyan: "var(--categorical-cyan)",
+  blue: "var(--categorical-blue)",
+  indigo: "var(--categorical-indigo)",
+  violet: "var(--categorical-violet)",
+  purple: "var(--categorical-purple)",
+  fuchsia: "var(--categorical-fuchsia)",
+  pink: "var(--categorical-pink)",
+  rose: "var(--categorical-rose)",
 } as const;
 
 type BadgeColor = keyof typeof badgeColors;
@@ -83,64 +89,70 @@ interface BadgeProps
   tone?: StatusTone;
 }
 
-const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  (
-    { className, variant: variantProp = "solid", size = "md", color: colorProp, tone, children, style, ...props },
-    ref,
-  ) => {
-    const shape = useShape();
-    const toneBadge = tone ? STATUS_TONE_BADGE[tone] : undefined;
-    const variant = toneBadge?.variant ?? variantProp;
-    const color = toneBadge?.color ?? colorProp;
-    const resolvedColor =
-      color ??
-      (variant === "brand"
-        ? "blue"
-        : variant === "success"
-          ? "green"
-          : variant === "warning"
-            ? "amber"
-            : variant === "destructive"
-              ? "red"
-              : "gray");
-    const colorValue = badgeColors[resolvedColor];
-    const isSolid = variant !== "dot" && variant !== "outline";
-    const dotSize = size === "sm" ? 6 : size === "lg" ? 8 : 7;
+function Badge({
+  ref,
+  className,
+  variant: variantProp = "solid",
+  size = "md",
+  color: colorProp,
+  tone,
+  children,
+  style,
+  ...props
+}: BadgeProps & { ref?: Ref<HTMLSpanElement> | undefined }) {
+  const shape = useShape();
+  const toneBadge = tone ? STATUS_TONE_BADGE[tone] : undefined;
+  const variant = toneBadge?.variant ?? variantProp;
+  const color = toneBadge?.color ?? colorProp;
+  const resolvedColor =
+    color ??
+    (variant === "brand"
+      ? "blue"
+      : variant === "success"
+        ? "green"
+        : variant === "warning"
+          ? "amber"
+          : variant === "destructive"
+            ? "red"
+            : "gray");
+  const colorValue = badgeColors[resolvedColor];
+  const isSolid = variant !== "dot" && variant !== "outline";
+  const dotSize = size === "sm" ? 6 : size === "lg" ? 8 : 7;
 
-    const colorStyle = isSolid
-      ? resolvedColor === "gray"
-        ? { backgroundColor: "var(--accent)", color: "var(--foreground)" }
-        : {
-            color: "var(--foreground)",
-            backgroundColor: `color-mix(in srgb, ${colorValue} 15%, var(--background))`,
-          }
-      : {};
+  const colorStyle = isSolid
+    ? resolvedColor === "gray"
+      ? { backgroundColor: "var(--accent)", color: "var(--foreground)" }
+      : {
+          color: "var(--foreground)",
+          backgroundColor: `color-mix(in srgb, ${colorValue} 15%, var(--background))`,
+        }
+    : {};
 
-    const dotColor = resolvedColor === "gray" ? "var(--muted-foreground)" : colorValue;
+  const dotColor = resolvedColor === "gray" ? "var(--muted-foreground)" : colorValue;
 
-    return (
-      <span
-        ref={ref}
-        className={cn(badgeVariants({ variant, size }), shape.item, className)}
-        {...(tone ? { "data-tone": tone } : {})}
-        style={{ ...colorStyle, ...style }}
-        {...props}
-      >
-        {!isSolid && (
-          <span
-            className="shrink-0 rounded-full"
-            style={{
-              width: dotSize,
-              height: dotSize,
-              backgroundColor: dotColor,
-            }}
-          />
-        )}
-        {children}
-      </span>
-    );
-  },
-);
+  return (
+    <span
+      ref={ref}
+      data-slot="badge"
+      className={cn(badgeVariants({ variant, size }), shape.item, className)}
+      {...(tone ? { "data-tone": tone } : {})}
+      style={{ ...colorStyle, ...style }}
+      {...props}
+    >
+      {!isSolid && (
+        <span
+          className="shrink-0 rounded-full"
+          style={{
+            width: dotSize,
+            height: dotSize,
+            backgroundColor: dotColor,
+          }}
+        />
+      )}
+      {children}
+    </span>
+  );
+}
 
 Badge.displayName = "Badge";
 

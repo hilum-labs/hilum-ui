@@ -3,15 +3,13 @@
 import {
   createContext,
   createElement,
-  forwardRef,
   useContext,
   useEffect,
   useState,
-  type ComponentPropsWithoutRef,
-  type HTMLAttributes,
+  type ComponentProps,
 } from "react";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { motion } from "framer-motion";
+import { Dialog as DialogPrimitive } from "radix-ui";
+import { motion } from "../lib/motion";
 import { cn } from "../lib/utils";
 import { useIcon } from "../lib/icon-context";
 import { spring } from "../lib/springs";
@@ -53,7 +51,7 @@ function Dialog({
 const DialogTrigger = DialogPrimitive.Trigger;
 const DialogClose = DialogPrimitive.Close;
 
-interface DialogContentProps extends ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+interface DialogContentProps extends ComponentProps<typeof DialogPrimitive.Content> {
   size?: "sm" | "lg";
   /** Portal target. When set, the overlay and panel render inside this element
    *  (positioned `absolute`) instead of covering the viewport (`fixed`). Pair
@@ -61,106 +59,116 @@ interface DialogContentProps extends ComponentPropsWithoutRef<typeof DialogPrimi
    *  `<Dialog modal={false}>` — to scope a dialog to a bounded region, e.g. a
    *  docs preview. Defaults to the document body / full-viewport behaviour. */
   container?: HTMLElement | null;
+  /** Screen-reader label of the close button. Default: "Close". */
+  closeLabel?: string;
 }
 
-const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
-  ({ className, children, size = "sm", container, ...props }, ref) => {
-    const XIcon = useIcon("x");
-    const open = useContext(DialogOpenContext);
-    const shape = useShape();
-    const substrate = useSurface();
-    const dialogLevel = Math.min(substrate + DIALOG_OFFSET, 8);
-    const [mounted, setMounted] = useState(false);
+function DialogContent({
+  ref,
+  className,
+  children,
+  size = "sm",
+  container,
+  closeLabel = "Close",
+  ...props
+}: DialogContentProps) {
+  const XIcon = useIcon("x");
+  const open = useContext(DialogOpenContext);
+  const shape = useShape();
+  const substrate = useSurface();
+  const dialogLevel = Math.min(substrate + DIALOG_OFFSET, 8);
+  const [mounted, setMounted] = useState(false);
 
-    useEffect(() => {
-      if (open) setMounted(true);
-    }, [open]);
+  useEffect(() => {
+    if (open) setMounted(true);
+  }, [open]);
 
-    const handleExitComplete = () => {
-      if (!open) setMounted(false);
-    };
+  const handleExitComplete = () => {
+    if (!open) setMounted(false);
+  };
 
-    if (!mounted) return null;
+  if (!mounted) return null;
 
-    const sizeClassName =
-      size === "sm"
-        ? container
-          ? "max-w-[400px]"
-          : "max-w-[400px]"
-        : container
-          ? "max-w-[540px]"
-          : "max-w-[540px]";
+  const sizeClassName =
+    size === "sm" ? (container ? "max-w-100" : "max-w-100") : container ? "max-w-135" : "max-w-135";
 
-    return (
-      <DialogPrimitive.Portal forceMount container={container ?? undefined}>
-        {!container && <style>{mobileDialogSheetStyle}</style>}
-        <DialogPrimitive.Overlay asChild forceMount>
-          <motion.div
-            className={cn(
-              container ? "absolute" : "fixed",
-              "inset-0 z-50 bg-black/40 dark:bg-black/80",
-            )}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: open ? 1 : 0 }}
-            transition={open ? spring.slow : spring.slow.exit}
-          />
-        </DialogPrimitive.Overlay>
-        <DialogPrimitive.Content ref={ref} asChild forceMount {...props}>
-          <motion.div
-            data-hilum-dialog-sheet={container ? undefined : "true"}
-            className={cn(
-              container
-                ? "absolute left-1/2 top-1/2 z-50 w-[calc(100%-2rem)]"
-                : [
-                    mobileDialogSheetContentClassName,
-                    desktopDialogContentClassName,
-                    dialogSheetMotionClassName,
-                  ],
-              surfaceClasses(dialogLevel),
-              "p-6 focus:outline-none",
-              sizeClassName,
-              shape.container,
-              "rounded-t-2xl",
-              className,
-            )}
-            initial={container ? { opacity: 0, scale: 0.97, x: "-50%", y: "-50%" } : { opacity: 0 }}
-            animate={
-              container
-                ? {
-                    opacity: open ? 1 : 0,
-                    scale: open ? 1 : 0.97,
-                    x: "-50%",
-                    y: "-50%",
-                  }
-                : { opacity: open ? 1 : 0 }
-            }
-            transition={open ? spring.slow : spring.slow.exit}
-            onAnimationComplete={handleExitComplete}
-          >
-            <SurfaceProvider value={dialogLevel}>
-              {children}
-              <DialogPrimitive.Close asChild>
-                <Button variant="ghost" size="icon-sm" className="absolute right-3 top-3">
-                  {createElement(XIcon)}
-                  <span className="sr-only">Close</span>
-                </Button>
-              </DialogPrimitive.Close>
-            </SurfaceProvider>
-          </motion.div>
-        </DialogPrimitive.Content>
-      </DialogPrimitive.Portal>
-    );
-  },
-);
+  return (
+    <DialogPrimitive.Portal forceMount container={container ?? undefined}>
+      {!container && <style>{mobileDialogSheetStyle}</style>}
+      <DialogPrimitive.Overlay asChild forceMount>
+        <motion.div
+          className={cn(
+            container ? "absolute" : "fixed",
+            "inset-0 z-50 bg-black/40 dark:bg-black/80",
+          )}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: open ? 1 : 0 }}
+          transition={open ? spring.slow : spring.slow.exit}
+        />
+      </DialogPrimitive.Overlay>
+      <DialogPrimitive.Content ref={ref} data-slot="dialog-content" asChild forceMount {...props}>
+        <motion.div
+          data-hilum-dialog-sheet={container ? undefined : "true"}
+          className={cn(
+            container
+              ? "absolute left-1/2 top-1/2 z-50 w-[calc(100%-2rem)]"
+              : [
+                  mobileDialogSheetContentClassName,
+                  desktopDialogContentClassName,
+                  dialogSheetMotionClassName,
+                ],
+            surfaceClasses(dialogLevel),
+            "p-6 focus:outline-none",
+            sizeClassName,
+            shape.container,
+            "rounded-t-2xl",
+            className,
+          )}
+          initial={container ? { opacity: 0, scale: 0.97, x: "-50%", y: "-50%" } : { opacity: 0 }}
+          animate={
+            container
+              ? {
+                  opacity: open ? 1 : 0,
+                  scale: open ? 1 : 0.97,
+                  x: "-50%",
+                  y: "-50%",
+                }
+              : { opacity: open ? 1 : 0 }
+          }
+          transition={open ? spring.slow : spring.slow.exit}
+          onAnimationComplete={handleExitComplete}
+        >
+          <SurfaceProvider value={dialogLevel}>
+            {children}
+            <DialogPrimitive.Close asChild>
+              <Button variant="ghost" size="icon-sm" className="absolute end-3 top-3">
+                {createElement(XIcon)}
+                <span className="sr-only">{closeLabel}</span>
+              </Button>
+            </DialogPrimitive.Close>
+          </SurfaceProvider>
+        </motion.div>
+      </DialogPrimitive.Content>
+    </DialogPrimitive.Portal>
+  );
+}
 DialogContent.displayName = "DialogContent";
 
-function DialogHeader({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex flex-col gap-1.5 mb-4", className)} {...props} />;
-}
-
-function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+function DialogHeader({ className, ...props }: ComponentProps<"div">) {
   return (
     <div
+      data-slot="dialog-header"
+      className={cn("flex flex-col gap-1.5 mb-4", className)}
+      {...props}
+    />
+  );
+}
+DialogHeader.displayName = "DialogHeader";
+
+function DialogFooter({ className, ...props }: ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-footer"
       className={cn(
         "mt-6 flex justify-end gap-2",
         "max-sm:flex-col-reverse max-sm:[&>*]:w-full",
@@ -170,30 +178,35 @@ function DialogFooter({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
     />
   );
 }
+DialogFooter.displayName = "DialogFooter";
 
-const DialogTitle = forwardRef<
-  HTMLHeadingElement,
-  ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={cn("text-[16px] text-foreground leading-tight", className)}
-    style={{ fontVariationSettings: "'wght' 700" }}
-    {...props}
-  />
-));
+function DialogTitle({ ref, className, ...props }: ComponentProps<typeof DialogPrimitive.Title>) {
+  return (
+    <DialogPrimitive.Title
+      ref={ref}
+      data-slot="dialog-title"
+      className={cn("text-base text-foreground leading-tight", className)}
+      style={{ fontVariationSettings: "'wght' 700" }}
+      {...props}
+    />
+  );
+}
 DialogTitle.displayName = "DialogTitle";
 
-const DialogDescription = forwardRef<
-  HTMLParagraphElement,
-  ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    ref={ref}
-    className={cn("text-[13px] text-muted-foreground", className)}
-    {...props}
-  />
-));
+function DialogDescription({
+  ref,
+  className,
+  ...props
+}: ComponentProps<typeof DialogPrimitive.Description>) {
+  return (
+    <DialogPrimitive.Description
+      ref={ref}
+      data-slot="dialog-description"
+      className={cn("text-[13px] text-muted-foreground", className)}
+      {...props}
+    />
+  );
+}
 DialogDescription.displayName = "DialogDescription";
 
 export {

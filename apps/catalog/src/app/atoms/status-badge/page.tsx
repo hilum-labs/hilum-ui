@@ -49,7 +49,6 @@ const TONE_GUIDANCE: Array<[StatusTone, string, string[]]> = [
   ["neutral", "Inactive, or terminal but fine", ["draft", "archived", "refunded", "closed"]],
 ];
 
-
 function SectionHeading({ label }: { label: string }) {
   return (
     <div className="mb-4 flex items-center gap-3">

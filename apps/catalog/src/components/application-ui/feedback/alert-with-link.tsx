@@ -8,7 +8,7 @@ export default function AlertWithLink() {
           <Info size={18} className="text-ground-600" />
           <span className="body text-ground-800">Your trial ends in 7 days</span>
         </div>
-        <a href="#" className="body font-medium text-brand-primary hover:underline">
+        <a href="#upgrade-now" className="body font-medium text-brand-primary hover:underline">
           Upgrade now →
         </a>
       </div>

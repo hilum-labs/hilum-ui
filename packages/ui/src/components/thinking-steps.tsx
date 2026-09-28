@@ -1,7 +1,7 @@
 "use client";
 
-import { forwardRef, type ReactNode, type HTMLAttributes } from "react";
-import { motion } from "framer-motion";
+import type { ReactNode, HTMLAttributes, Ref } from "react";
+import { motion } from "../lib/motion";
 import { cn } from "../lib/utils";
 import { useIcon } from "../lib/icon-context";
 import type { IconName } from "../lib/icon-context";
@@ -12,9 +12,24 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "./
 import { Badge } from "./badge";
 import type { BadgeColor } from "./badge";
 
+// ─── Labels ─────────────────────────────────────────────────────────────────
+
+/** Localizable strings. Every entry has an English default. */
+interface ThinkingStepsLabels {
+  /** Header text used by the `steps` shorthand and as the default
+   *  `ThinkingStepsHeader` children. */
+  title: string;
+}
+
+const DEFAULT_LABELS: ThinkingStepsLabels = {
+  title: "Thinking",
+};
+
 // ─── ThinkingSteps (root) ───────────────────────────────────────────────────
 
 interface ThinkingStepsProps extends HTMLAttributes<HTMLDivElement> {
+  /** Override the built-in English strings (used by the `steps` shorthand). */
+  labels?: Partial<ThinkingStepsLabels>;
   defaultOpen?: boolean;
   open?: boolean;
   onOpenChange?: (open: boolean) => void;
@@ -26,65 +41,62 @@ interface ThinkingStepsProps extends HTMLAttributes<HTMLDivElement> {
   }>;
 }
 
-const ThinkingSteps = forwardRef<HTMLDivElement, ThinkingStepsProps>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  (
-    {
-      defaultOpen = true,
-      open,
-      onOpenChange,
-      children,
-      steps,
-      className,
-      defaultValue: _,
-      ...props
-    },
-    ref,
-  ) => {
-    const controlled = open !== undefined;
-    const content =
-      children ??
-      (steps ? (
-        <>
-          <ThinkingStepsHeader>Thinking</ThinkingStepsHeader>
-          <ThinkingStepsContent>
-            {steps.map((step, index) => (
-              <ThinkingStep
-                key={`${step.label}-${index}`}
-                label={step.label}
-                {...(step.description !== undefined ? { description: step.description } : {})}
-                {...(step.status !== undefined
-                  ? { status: step.status === "current" ? "active" : step.status }
-                  : {})}
-                index={index}
-                isLast={index === steps.length - 1}
-              />
-            ))}
-          </ThinkingStepsContent>
-        </>
-      ) : null);
-    return (
-      <Accordion
-        ref={ref}
-        type="single"
-        collapsible
-        {...(controlled
-          ? { value: open ? "thinking" : "" }
-          : { defaultValue: defaultOpen ? "thinking" : "" })}
-        {...(onOpenChange
-          ? { onValueChange: (v: string | string[]) => onOpenChange(v === "thinking") }
-          : {})}
-        className={cn("w-80 max-w-full", className)}
-        {...props}
-      >
-        {/* Hide standalone accordion expanded bg */}
-        <AccordionItem value="thinking" className="[&>.absolute]:hidden">
-          {content}
-        </AccordionItem>
-      </Accordion>
-    );
-  },
-);
+function ThinkingSteps({
+  defaultOpen = true,
+  open,
+  onOpenChange,
+  children,
+  steps,
+  labels,
+  className,
+  defaultValue: _,
+  ref,
+  ...props
+}: ThinkingStepsProps & { ref?: Ref<HTMLDivElement> }) {
+  const controlled = open !== undefined;
+  const content =
+    children ??
+    (steps ? (
+      <>
+        <ThinkingStepsHeader>{labels?.title ?? DEFAULT_LABELS.title}</ThinkingStepsHeader>
+        <ThinkingStepsContent>
+          {steps.map((step, index) => (
+            <ThinkingStep
+              key={`${step.label}-${index}`}
+              label={step.label}
+              {...(step.description !== undefined ? { description: step.description } : {})}
+              {...(step.status !== undefined
+                ? { status: step.status === "current" ? "active" : step.status }
+                : {})}
+              index={index}
+              isLast={index === steps.length - 1}
+            />
+          ))}
+        </ThinkingStepsContent>
+      </>
+    ) : null);
+  return (
+    <Accordion
+      ref={ref}
+      type="single"
+      collapsible
+      {...(controlled
+        ? { value: open ? "thinking" : "" }
+        : { defaultValue: defaultOpen ? "thinking" : "" })}
+      {...(onOpenChange
+        ? { onValueChange: (v: string | string[]) => onOpenChange(v === "thinking") }
+        : {})}
+      data-slot="thinking-steps"
+      className={cn("w-80 max-w-full", className)}
+      {...props}
+    >
+      {/* Hide standalone accordion expanded bg */}
+      <AccordionItem value="thinking" className="[&>.absolute]:hidden">
+        {content}
+      </AccordionItem>
+    </Accordion>
+  );
+}
 ThinkingSteps.displayName = "ThinkingSteps";
 
 // ─── ThinkingStepsHeader ────────────────────────────────────────────────────
@@ -93,21 +105,24 @@ interface ThinkingStepsHeaderProps extends HTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
 }
 
-const ThinkingStepsHeader = forwardRef<HTMLButtonElement, ThinkingStepsHeaderProps>(
-  ({ children = "Thinking", className, ...props }, ref) => {
-    return (
-      <div className="w-fit">
-        <AccordionTrigger
-          ref={ref}
-          className={cn("[&>span:first-child]:flex-none w-auto", className)}
-          {...props}
-        >
-          {children}
-        </AccordionTrigger>
-      </div>
-    );
-  },
-);
+function ThinkingStepsHeader({
+  children = DEFAULT_LABELS.title,
+  className,
+  ref,
+  ...props
+}: ThinkingStepsHeaderProps & { ref?: Ref<HTMLButtonElement> }) {
+  return (
+    <div className="w-fit" data-slot="thinking-steps-header">
+      <AccordionTrigger
+        ref={ref}
+        className={cn("[&>span:first-child]:flex-none w-auto", className)}
+        {...props}
+      >
+        {children}
+      </AccordionTrigger>
+    </div>
+  );
+}
 ThinkingStepsHeader.displayName = "ThinkingStepsHeader";
 
 // ─── ThinkingStepsContent ───────────────────────────────────────────────────
@@ -116,17 +131,25 @@ interface ThinkingStepsContentProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-const ThinkingStepsContent = forwardRef<HTMLDivElement, ThinkingStepsContentProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <AccordionContent>
-        <div ref={ref} className={cn("flex flex-col", className)} {...props}>
-          {children}
-        </div>
-      </AccordionContent>
-    );
-  },
-);
+function ThinkingStepsContent({
+  children,
+  className,
+  ref,
+  ...props
+}: ThinkingStepsContentProps & { ref?: Ref<HTMLDivElement> }) {
+  return (
+    <AccordionContent>
+      <div
+        ref={ref}
+        data-slot="thinking-steps-content"
+        className={cn("flex flex-col", className)}
+        {...props}
+      >
+        {children}
+      </div>
+    </AccordionContent>
+  );
+}
 ThinkingStepsContent.displayName = "ThinkingStepsContent";
 
 // ─── ThinkingStep ───────────────────────────────────────────────────────────
@@ -168,6 +191,8 @@ function ThinkingStep({
   return (
     /* Outer: animates height to create space smoothly */
     <motion.div
+      data-slot="thinking-step"
+      data-status={status}
       className={cn("relative z-10 overflow-hidden", className)}
       initial={{ height: 0 }}
       animate={{ height: "auto" }}
@@ -242,7 +267,8 @@ function ThinkingStepDetails({
       type="single"
       collapsible
       defaultValue={defaultOpen ? "details" : ""}
-      className={cn("mt-1 -ml-3", className)}
+      data-slot="thinking-step-details"
+      className={cn("mt-1 -ms-3", className)}
     >
       <AccordionItem value="details" className="[&>.absolute]:hidden">
         <div className="w-fit">
@@ -273,15 +299,23 @@ interface ThinkingStepSourcesProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
 }
 
-const ThinkingStepSources = forwardRef<HTMLDivElement, ThinkingStepSourcesProps>(
-  ({ children, className, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cn("flex flex-wrap gap-1.5 mt-1", className)} {...props}>
-        {children}
-      </div>
-    );
-  },
-);
+function ThinkingStepSources({
+  children,
+  className,
+  ref,
+  ...props
+}: ThinkingStepSourcesProps & { ref?: Ref<HTMLDivElement> }) {
+  return (
+    <div
+      ref={ref}
+      data-slot="thinking-step-sources"
+      className={cn("flex flex-wrap gap-1.5 mt-1", className)}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
 ThinkingStepSources.displayName = "ThinkingStepSources";
 
 // ─── ThinkingStepSource ─────────────────────────────────────────────────────
@@ -301,6 +335,7 @@ function ThinkingStepSource({
 }: ThinkingStepSourceProps) {
   return (
     <motion.span
+      data-slot="thinking-step-source"
       initial={{ opacity: 0, scale: 0.85, filter: "blur(4px)" }}
       animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
       transition={{
@@ -337,6 +372,7 @@ function ThinkingStepImage({
   const shape = useShape();
   return (
     <motion.div
+      data-slot="thinking-step-image"
       className={cn("mt-1.5", className)}
       initial={{ opacity: 0, filter: "blur(4px)" }}
       animate={{ opacity: 1, filter: "blur(0px)" }}
@@ -367,9 +403,11 @@ export {
   ThinkingStepSources,
   ThinkingStepSource,
   ThinkingStepImage,
+  DEFAULT_LABELS as THINKING_STEPS_DEFAULT_LABELS,
 };
 
 export type {
+  ThinkingStepsLabels,
   ThinkingStepsProps,
   ThinkingStepsHeaderProps,
   ThinkingStepsContentProps,

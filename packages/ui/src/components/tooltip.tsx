@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { motion } from "framer-motion";
+import { Tooltip as TooltipPrimitive } from "radix-ui";
+import { motion } from "../lib/motion";
 import { cn } from "../lib/utils";
 import { spring } from "../lib/springs";
 import { fontWeights } from "../lib/font-weight";
@@ -127,6 +127,7 @@ function Tooltip({
               side={side}
               sideOffset={sideOffset}
               forceMount
+              data-slot="tooltip-content"
               className="z-50"
             >
               <motion.div

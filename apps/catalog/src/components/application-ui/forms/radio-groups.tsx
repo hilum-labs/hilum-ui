@@ -62,19 +62,21 @@ export default function RadioGroups() {
             ].map((option) => (
               <label
                 key={option.value}
+                htmlFor={`contact-preference-${option.value}`}
                 className="flex cursor-pointer items-start gap-3 rounded-xl border border-ground-100 bg-white p-3"
               >
                 <input
+                  id={`contact-preference-${option.value}`}
                   type="radio"
                   name="contact-preference"
                   checked={contactPreference === option.value}
                   onChange={() => setContactPreference(option.value)}
                   className="mt-1 size-4 border-ground-300 text-brand-primary focus:ring-brand-primary/30"
                 />
-                <div>
-                  <p className="body font-medium text-ground-900">{option.label}</p>
-                  <p className="caption text-ground-400">{option.description}</p>
-                </div>
+                <span className="flex flex-col body font-medium text-ground-900">
+                  {option.label}
+                  <span className="caption font-normal text-ground-400">{option.description}</span>
+                </span>
               </label>
             ))}
           </div>

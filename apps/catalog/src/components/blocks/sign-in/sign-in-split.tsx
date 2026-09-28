@@ -16,7 +16,10 @@ export default function SignInSplit() {
             <h1 className="subheading font-semibold text-ground-900">Sign in to your account</h1>
             <p className="mt-1 caption text-ground-400">
               Or{" "}
-              <a href="#" className="font-medium text-ground-900 underline underline-offset-2">
+              <a
+                href="#start-your-free-trial"
+                className="font-medium text-ground-900 underline underline-offset-2"
+              >
                 start your free trial
               </a>
             </p>
@@ -29,7 +32,7 @@ export default function SignInSplit() {
               <Input id="split-pw" type="password" placeholder="••••••••" />
             </Field>
             <a
-              href="#"
+              href="#forgot-password"
               className="caption font-medium text-ground-500 hover:text-ground-900 self-end -mt-0.5"
             >
               Forgot password?

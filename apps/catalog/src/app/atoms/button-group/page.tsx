@@ -166,19 +166,25 @@ function ButtonGroupPage() {
                   <ButtonGroupItem>
                     <Bookmark size={14} /> Save
                   </ButtonGroupItem>
-                  <ButtonGroupItem className="px-2.5 caption text-muted-foreground">12k</ButtonGroupItem>
+                  <ButtonGroupItem className="px-2.5 caption text-muted-foreground">
+                    12k
+                  </ButtonGroupItem>
                 </ButtonGroup>
                 <ButtonGroup>
                   <ButtonGroupItem active>
                     <Star size={14} /> Star
                   </ButtonGroupItem>
-                  <ButtonGroupItem className="px-2.5 caption text-muted-foreground">847</ButtonGroupItem>
+                  <ButtonGroupItem className="px-2.5 caption text-muted-foreground">
+                    847
+                  </ButtonGroupItem>
                 </ButtonGroup>
                 <ButtonGroup>
                   <ButtonGroupItem>
                     <Heart size={14} /> Like
                   </ButtonGroupItem>
-                  <ButtonGroupItem className="px-2.5 caption text-muted-foreground">2.1k</ButtonGroupItem>
+                  <ButtonGroupItem className="px-2.5 caption text-muted-foreground">
+                    2.1k
+                  </ButtonGroupItem>
                 </ButtonGroup>
               </div>
             </PreviewBlock>

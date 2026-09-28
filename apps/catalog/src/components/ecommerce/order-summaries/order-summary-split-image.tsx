@@ -116,7 +116,7 @@ export default function OrderSummarySplitImage() {
               </p>
             </div>
             <p className="caption mt-2 text-ground-500">
-              You'll receive delivery updates by {updateChannel.toLowerCase()}.
+              You’ll receive delivery updates by {updateChannel.toLowerCase()}.
             </p>
           </div>
           <TotalsCard />

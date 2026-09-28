@@ -5,6 +5,18 @@ import { CircleHelp } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./tooltip";
 
+interface HelpTooltipLabels {
+  /** Accessible name of the "?" trigger button. */
+  trigger: string;
+  /** Text of the "learn more" link. */
+  learnMore: string;
+}
+
+const DEFAULT_LABELS: HelpTooltipLabels = {
+  trigger: "Help",
+  learnMore: "Learn more",
+};
+
 interface HelpTooltipProps {
   text: string;
   learnMoreUrl?: string;
@@ -12,6 +24,8 @@ interface HelpTooltipProps {
   placement?: "top" | "right" | "bottom" | "left";
   className?: string;
   contentClassName?: string;
+  /** Override the English UI strings (i18n). */
+  labels?: Partial<HelpTooltipLabels>;
 }
 
 function HelpTooltip({
@@ -21,7 +35,9 @@ function HelpTooltip({
   placement = "top",
   className,
   contentClassName,
+  labels: labelsProp,
 }: HelpTooltipProps) {
+  const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [open, setOpen] = React.useState(false);
   const rootRef = React.useRef<HTMLSpanElement>(null);
   const url = learnMoreUrl ?? learnMoreURL;
@@ -43,17 +59,21 @@ function HelpTooltip({
   return (
     <TooltipProvider delayDuration={150}>
       <Tooltip open={open} onOpenChange={setOpen}>
-        <span ref={rootRef} className={cn("inline-flex align-middle", className)}>
+        <span
+          ref={rootRef}
+          data-slot="help-tooltip"
+          className={cn("inline-flex align-middle", className)}
+        >
           <TooltipTrigger asChild>
             <button
               type="button"
               className={cn(
-                "relative ml-1 inline-flex size-5 items-center justify-center rounded-full text-muted-foreground",
+                "relative ms-1 inline-flex size-5 items-center justify-center rounded-full text-muted-foreground",
                 "transition-[color,scale] duration-150 hover:text-foreground active:scale-[0.96]",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 "before:absolute before:-inset-2.5 before:content-['']",
               )}
-              aria-label="Help"
+              aria-label={labels.trigger}
               onClick={(event) => {
                 event.preventDefault();
                 setOpen((current) => !current);
@@ -75,7 +95,7 @@ function HelpTooltip({
                 rel="noopener noreferrer"
                 className="mt-1 block text-xs font-medium text-brand-primary underline-offset-4 hover:underline"
               >
-                Learn more
+                {labels.learnMore}
               </a>
             )}
           </TooltipContent>
@@ -87,4 +107,5 @@ function HelpTooltip({
 
 HelpTooltip.displayName = "HelpTooltip";
 
-export { HelpTooltip, type HelpTooltipProps };
+export { HelpTooltip, DEFAULT_LABELS as HELP_TOOLTIP_DEFAULT_LABELS };
+export type { HelpTooltipProps, HelpTooltipLabels };

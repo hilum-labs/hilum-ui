@@ -1,6 +1,5 @@
-// Generic toolbar actions. ~12 representative ones shipping with the package
-// out of the 49 generic actions identified in PHASE_0_AUDIT.md §P0.3. Apps
-// that want fine-grained control can dispatch directly via useCanvasContext.
+// Generic toolbar actions (11 components). Apps that want fine-grained
+// control can dispatch reducer actions directly via useCanvasContext.
 
 export * from "./ActionAddLayer";
 export * from "./ActionAlign";
