@@ -64,6 +64,9 @@ function SliderComfortable({
   disabled = false,
   className,
   style,
+  // Names the thumb (the role="slider" element), not the root.
+  "aria-label": ariaLabel,
+  "aria-labelledby": labelledBy,
   ...props
 }: SliderComfortableProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -408,10 +411,10 @@ function SliderComfortable({
           </SliderPrimitive.Track>
           <SliderPrimitive.Thumb
             className="block outline-none"
-            {...(props["aria-labelledby"]
-              ? { "aria-labelledby": props["aria-labelledby"] }
-              : (props["aria-label"] ?? label)
-                ? { "aria-label": props["aria-label"] ?? label }
+            {...(labelledBy
+              ? { "aria-labelledby": labelledBy }
+              : (ariaLabel ?? label)
+                ? { "aria-label": ariaLabel ?? label }
                 : {})}
             onFocus={(e) => {
               if (e.currentTarget.matches(":focus-visible")) setIsFocused(true);
