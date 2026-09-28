@@ -41,12 +41,13 @@ jobs:
       # With pending changesets: opens/updates the "Version Packages" PR.
       # With none (i.e. the version PR was just merged): builds and publishes
       # whatever versions npm doesn't have yet. Auth is OIDC; no NPM_TOKEN.
-      - uses: changesets/action@v2
+      # Stay on v1 until @changesets/cli moves to v3: action v2 refuses CLI v2.
+      - uses: changesets/action@v1
         with:
-          version-script: pnpm release:version
-          publish-script: pnpm release:publish
-          pr-title: "chore: version packages"
-          commit-message: "chore: version packages"
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version: pnpm release:version
+          publish: pnpm release:publish
+          title: "chore: version packages"
+          commit: "chore: version packages"
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_CONFIG_PROVENANCE: "true"
