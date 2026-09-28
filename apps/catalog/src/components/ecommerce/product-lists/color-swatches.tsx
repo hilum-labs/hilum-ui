@@ -62,6 +62,7 @@ export default function ColorSwatches() {
         <div className="flex gap-4 pb-1 md:grid md:grid-cols-2 md:gap-6 xl:grid-cols-4">
           {PRODUCTS.map((product) => {
             const activeColor = product.colors[selectedSwatches[product.name]];
+            if (!activeColor) return null;
 
             return (
               <article

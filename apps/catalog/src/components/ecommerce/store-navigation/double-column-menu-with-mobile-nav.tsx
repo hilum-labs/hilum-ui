@@ -140,7 +140,7 @@ export default function DoubleColumnMenuWithMobileNav() {
   const [persistentMenu, setPersistentMenu] = useState<CategoryName>("Men");
 
   const persistentCategory =
-    categories.find((category) => category.name === persistentMenu) ?? categories[0];
+    categories.find((category) => category.name === persistentMenu) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">

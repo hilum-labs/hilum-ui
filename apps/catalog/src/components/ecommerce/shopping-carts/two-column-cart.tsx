@@ -116,7 +116,7 @@ export default function TwoColumnCart() {
               <CartRow
                 key={item.id}
                 item={item}
-                quantity={cartTwo[item.id]}
+                quantity={cartTwo[item.id] ?? item.qty}
                 quantityControl={
                   <div className="w-28">
                     <Select

@@ -35,7 +35,7 @@ const wrappedGift = {
   icon: Gift,
 };
 
-const gridFour = [incentives[0], incentives[1], incentives[2], wrappedGift];
+const gridFour = [incentives[0]!, incentives[1]!, incentives[2]!, wrappedGift];
 
 function IconContainer({ children }: { children: ReactNode }) {
   return (
@@ -46,7 +46,7 @@ function IconContainer({ children }: { children: ReactNode }) {
 }
 
 export default function FourUpIconRow() {
-  const [highlighted, setHighlighted] = useState(incentives[0].title);
+  const [highlighted, setHighlighted] = useState(incentives[0]!.title);
 
   return (
     <section className="w-full rounded-xl border border-ground-100 bg-white px-6 py-12">

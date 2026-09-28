@@ -230,7 +230,7 @@ export default function FeaturedCategoriesWithDrawer() {
   const [featuredMobileOpen, setFeaturedMobileOpen] = useState(true);
 
   const featuredCategory =
-    categories.find((category) => category.name === featuredTab) ?? categories[0];
+    categories.find((category) => category.name === featuredTab) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">

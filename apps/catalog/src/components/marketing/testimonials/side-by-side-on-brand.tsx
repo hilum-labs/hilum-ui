@@ -13,7 +13,7 @@ const TESTIMONIALS = [
     role: "Creative Director, Merge Health",
     initials: "MR",
   },
-];
+] as const;
 
 function Avatar({ initials, className }: { initials: string; className?: string }) {
   return (

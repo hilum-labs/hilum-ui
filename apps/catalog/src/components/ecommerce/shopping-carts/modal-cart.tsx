@@ -136,11 +136,11 @@ export default function ModalCart() {
             <div key={item.id} className="rounded-[22px] border border-ground-100 p-4">
               <CartRow
                 item={item}
-                quantity={cartSix[item.id]}
+                quantity={cartSix[item.id] ?? item.qty}
                 compact
                 quantityControl={
                   <QuantityStepper
-                    value={cartSix[item.id]}
+                    value={cartSix[item.id] ?? item.qty}
                     onChange={(next) => setCartSix((current) => ({ ...current, [item.id]: next }))}
                   />
                 }

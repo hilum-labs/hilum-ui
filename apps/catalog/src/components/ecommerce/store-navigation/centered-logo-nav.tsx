@@ -135,7 +135,7 @@ export default function CenteredLogoNav() {
   const [centeredMenu, setCenteredMenu] = useState<CategoryName>("Women");
 
   const centeredCategory =
-    categories.find((category) => category.name === centeredMenu) ?? categories[0];
+    categories.find((category) => category.name === centeredMenu) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">

@@ -145,7 +145,7 @@ function ImageGridMenu({ category }: { category: NavCategory }) {
 export default function ImageGridMegaMenu() {
   const [gridMenu, setGridMenu] = useState<CategoryName>("Women");
 
-  const gridCategory = categories.find((category) => category.name === gridMenu) ?? categories[0];
+  const gridCategory = categories.find((category) => category.name === gridMenu) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">

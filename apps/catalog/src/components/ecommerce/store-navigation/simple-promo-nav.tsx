@@ -98,6 +98,7 @@ function PageContent() {
 function PromoPanel({ category }: { category: NavCategory }) {
   const links = category.sections.flatMap((section) => section.links).slice(0, 6);
   const feature = category.featured[0];
+  if (!feature) return null;
 
   return (
     <div className="grid gap-5 border-t border-ground-100 bg-white px-5 py-5 md:grid-cols-[1.2fr_0.8fr]">
@@ -136,7 +137,8 @@ function PromoPanel({ category }: { category: NavCategory }) {
 export default function SimplePromoNav() {
   const [promoMenu, setPromoMenu] = useState<CategoryName>("Women");
 
-  const promoCategory = categories.find((category) => category.name === promoMenu) ?? categories[0];
+  const promoCategory =
+    categories.find((category) => category.name === promoMenu) ?? categories[0]!;
 
   return (
     <div className="w-full rounded-xl border border-ground-100 overflow-hidden bg-white">
