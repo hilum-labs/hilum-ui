@@ -107,7 +107,7 @@
     "react-resizable-panels": "^4.10.0",
     "recharts": "^3.8.1",
     "sonner": "^2.0.7",
-    "tailwind-merge": "^2.6.0",
+    "tailwind-merge": "^3.6.0",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
@@ -117,14 +117,14 @@
     "@hugeicons/react": "^1.1.9",
     "@phosphor-icons/react": "^2.1.10",
     "@tabler/icons-react": "^3.44.0",
-    "@types/react": "^19.0.0",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.0.0",
     "@untitledui/icons": "^0.0.22",
     "lucide-react": "^0.542.0",
     "react-hook-form": "^7.89.0",
     "tailwindcss": "^4.2.0",
     "tsup": "^8.3.0",
-    "typescript": "^5.7.0"
+    "typescript": "^6.0.3"
   },
   "peerDependenciesMeta": {
     "@hugeicons/core-free-icons": {

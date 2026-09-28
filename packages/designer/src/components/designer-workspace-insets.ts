@@ -8,8 +8,7 @@ export interface DesignerWorkspaceInsets {
 }
 
 export type DesignerWorkspaceInsetsInput =
-  | DesignerWorkspaceInsetValue
-  | Partial<DesignerWorkspaceInsets>;
+  DesignerWorkspaceInsetValue | Partial<DesignerWorkspaceInsets>;
 
 function toCssLength(value: DesignerWorkspaceInsetValue): string {
   return typeof value === "number" ? `${value}px` : value;

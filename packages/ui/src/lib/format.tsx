@@ -31,14 +31,7 @@ export type DateInput = Date | string | number | null | undefined;
  * - `iso`            — "2026-09-26" (local calendar date, for APIs)
  */
 export type DateFormatStyle =
-  | "date"
-  | "short"
-  | "long"
-  | "datetime"
-  | "time"
-  | "monthDay"
-  | "month"
-  | "iso";
+  "date" | "short" | "long" | "datetime" | "time" | "monthDay" | "month" | "iso";
 
 export interface FormatOptions {
   /** BCP-47 locale. Defaults to the provider locale, then the runtime default. */

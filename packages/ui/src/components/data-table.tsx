@@ -165,8 +165,7 @@ interface DataTableProps<TData> {
    * renders anything you like.
    */
   bulkActions?:
-    | DataTableBulkAction<TData>[]
-    | ((context: DataTableSelectionContext<TData>) => React.ReactNode);
+    DataTableBulkAction<TData>[] | ((context: DataTableSelectionContext<TData>) => React.ReactNode);
   /** Always-visible bulk action buttons; `bulkActions` then go into a menu. */
   promotedBulkActions?: DataTableBulkAction<TData>[];
   /** Total rows matching the current query (server mode). Enables "Select all N". */

@@ -199,8 +199,7 @@ type ChartTooltipContentProps = Omit<
 };
 
 type ChartTooltipProps =
-  | React.ComponentProps<typeof RechartsPrimitive.Tooltip>
-  | ChartTooltipContentProps;
+  React.ComponentProps<typeof RechartsPrimitive.Tooltip> | ChartTooltipContentProps;
 
 function ChartTooltip(props: ChartTooltipProps) {
   const hasDirectTooltipPayload = "active" in props || "payload" in props;

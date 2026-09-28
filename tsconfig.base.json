@@ -21,6 +21,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["@testing-library/jest-dom"]
+    "types": ["node", "@testing-library/jest-dom"],
+    "ignoreDeprecations": "6.0"
   }
 }

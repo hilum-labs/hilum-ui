@@ -10,7 +10,10 @@ function visualDirection(button: HTMLElement): "left" | "right" {
   const svg = button.querySelector("svg");
   if (!svg) throw new Error("no chevron svg");
   let sign = svg.classList.contains("lucide-chevron-left") ? -1 : 1;
-  if (!svg.classList.contains("lucide-chevron-left") && !svg.classList.contains("lucide-chevron-right"))
+  if (
+    !svg.classList.contains("lucide-chevron-left") &&
+    !svg.classList.contains("lucide-chevron-right")
+  )
     throw new Error(`unexpected icon: ${svg.getAttribute("class")}`);
   const style = getComputedStyle(svg);
   const scaleX = style.scale === "none" ? 1 : parseFloat(style.scale.split(" ")[0]!);
@@ -53,14 +56,20 @@ describe("Calendar navigation chevrons (real browser)", () => {
     for (const dirCase of DIRS) {
       test(`navLayout=${navLayout ?? "default"} · ${dirCase}`, () => {
         const { container, effectiveRtl } = renderCase(navLayout, dirCase);
-        const previous = container.querySelector<HTMLElement>(
-          'button[aria-label*="previous" i]',
-        )!;
+        const previous = container.querySelector<HTMLElement>('button[aria-label*="previous" i]')!;
         const next = container.querySelector<HTMLElement>('button[aria-label*="next" i]')!;
         expect(previous).toBeTruthy();
         expect(next).toBeTruthy();
 
-        console.log(JSON.stringify({pc: previous.querySelector("svg")!.getAttribute("class"), ps: getComputedStyle(previous.querySelector("svg")!).scale, p: previous.getBoundingClientRect().left, n: next.getBoundingClientRect().left, r: container.querySelector("[data-slot=calendar]")!.getBoundingClientRect().left}));
+        console.log(
+          JSON.stringify({
+            pc: previous.querySelector("svg")!.getAttribute("class"),
+            ps: getComputedStyle(previous.querySelector("svg")!).scale,
+            p: previous.getBoundingClientRect().left,
+            n: next.getBoundingClientRect().left,
+            r: container.querySelector("[data-slot=calendar]")!.getBoundingClientRect().left,
+          }),
+        );
         // "Previous" points toward the inline-start edge, "next" toward inline-end.
         expect(visualDirection(previous)).toBe(effectiveRtl ? "right" : "left");
         expect(visualDirection(next)).toBe(effectiveRtl ? "left" : "right");

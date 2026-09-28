@@ -1,12 +1,11 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "paths": {
-      "@hilum/ui": ["packages/ui/src/index.ts"],
-      "@hilum/app-shell": ["packages/app-shell/src/index.ts"],
-      "@hilum/designer": ["packages/designer/src/index.ts"],
-      "@hilum/designer-canvas": ["packages/designer-canvas/src/index.ts"]
+      "@hilum/ui": ["./packages/ui/src/index.ts"],
+      "@hilum/app-shell": ["./packages/app-shell/src/index.ts"],
+      "@hilum/designer": ["./packages/designer/src/index.ts"],
+      "@hilum/designer-canvas": ["./packages/designer-canvas/src/index.ts"]
     }
   },
   "include": []

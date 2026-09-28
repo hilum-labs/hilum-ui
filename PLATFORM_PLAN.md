@@ -572,18 +572,10 @@ export const tokens = {
       dark: { surface: "...", text: "...", border: "...", primary: "..." },
     },
   },
-  typography: {
-    /* ... */
-  },
-  spacing: {
-    /* ... */
-  },
-  radius: {
-    /* ... */
-  },
-  shadow: {
-    /* ... */
-  },
+  typography: {/* ... */},
+  spacing: {/* ... */},
+  radius: {/* ... */},
+  shadow: {/* ... */},
 } as const;
 ```
 

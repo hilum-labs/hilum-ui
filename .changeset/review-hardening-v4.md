@@ -74,3 +74,8 @@ Platform hardening: security fixes, accessibility, admin-grade components, RTL, 
   - `search`, `loading` (top loading bar) and `toaster` props on the frame
   - `PageHeader` gains `primaryAction`, `secondaryActions` (overflowing into a menu), `backAction` and `titleMetadata`
 - **@hilum/blocks:** new `--force`, `--dry-run` and `--registry` options, plus `HILUM_REGISTRY_URL`, bun support and detection of lockfiles in parent directories.
+
+## Dependencies
+
+- **@hilum/ui:** `tailwind-merge` 3 (Tailwind v4 class groups).
+- The packages are built and tested with React 19.2, TypeScript 6 and Vitest 4.

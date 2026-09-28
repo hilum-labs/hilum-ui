@@ -1,12 +1,12 @@
 {
-  "extends": "../tsconfig.base.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
     "declaration": false,
     "declarationMap": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "types": ["@testing-library/jest-dom", "vitest/globals"]
+    "types": ["node", "vite/client", "@testing-library/jest-dom", "vitest/globals"]
   },
   "include": ["./**/*.ts", "./**/*.tsx", "../packages/*/src/**/*.d.ts"]
 }

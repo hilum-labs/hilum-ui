@@ -19,6 +19,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import tailwind from "@tailwindcss/vite";
+import { playwright } from "@vitest/browser-playwright";
 import { chromium } from "playwright";
 import type { BrowserCommand } from "vitest/node";
 import { defineConfig } from "vitest/config";
@@ -117,18 +118,15 @@ export default defineConfig({
     globals: true,
     browser: {
       enabled: true,
-      provider: "playwright",
+      provider: playwright({
+        launchOptions: executablePath ? { executablePath } : {},
+        contextOptions: { reducedMotion: "reduce" },
+      }),
       headless: true,
       screenshotFailures: false,
       viewport: { width: 1280, height: 800 },
       commands: { pointerDrag },
-      instances: [
-        {
-          browser: "chromium",
-          launch: executablePath ? { executablePath } : {},
-          context: { reducedMotion: "reduce" },
-        },
-      ],
+      instances: [{ browser: "chromium" }],
     },
   },
 });

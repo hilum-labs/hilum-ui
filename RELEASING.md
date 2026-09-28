@@ -1,6 +1,6 @@
 # Releasing
 
-Hilum UI publishes five packages to **npm** in **lockstep**: `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas` and `@hilum/blocks`. One version covers all five (the Changesets `fixed` group in `.changeset/config.json`; D4 in `PLATFORM_PLAN.md`). The current line is **3.x**.
+Hilum UI publishes five packages to **npm** in **lockstep**: `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer`, `@hilum/designer-canvas` and `@hilum/blocks`. One version covers all five (the Changesets `fixed` group in `.changeset/config.json`; D4 in `PLATFORM_PLAN.md`). The current line is **4.x**.
 
 The repo lives at [github.com/hilum-labs/hilum-ui](https://github.com/hilum-labs/hilum-ui). Everything runs on GitHub Actions:
 
@@ -100,7 +100,7 @@ pnpm add @hilum/ui @hilum/app-shell @hilum/designer @hilum/designer-canvas lucid
 
 `lucide-react` is a required peer of `@hilum/ui`, `@hilum/app-shell`, `@hilum/designer` and `@hilum/designer-canvas`. For Tailwind `@source` setup, see `packages/ui/README.md`.
 
-## Versioning policy (semver, 3.x)
+## Versioning policy (semver, 4.x)
 
 - **patch:** bug fixes, type-only changes, internal refactors with no API surface change.
 - **minor:** new components, new props with backwards-compatible defaults, new optional services.

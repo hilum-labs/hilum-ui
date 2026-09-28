@@ -1,6 +1,6 @@
 import * as React from "react";
 import { render, screen } from "@testing-library/react";
-import { commands, userEvent } from "@vitest/browser/context";
+import { commands, userEvent } from "vitest/browser";
 import { SortableHandle, SortableItem, SortableList } from "@hilum/ui";
 
 interface Row {
@@ -83,9 +83,7 @@ describe("SortableList (real browser)", () => {
     await expect.poll(liveRegionText).toBe("Bravo moved to position 3 of 4.");
 
     await userEvent.keyboard("{Escape}");
-    await expect
-      .poll(liveRegionText)
-      .toBe("Reordering cancelled. Bravo returned to position 2.");
+    await expect.poll(liveRegionText).toBe("Reordering cancelled. Bravo returned to position 2.");
 
     expect(onReorder).not.toHaveBeenCalled();
     expect(renderedOrder()).toEqual(["Alpha", "Bravo", "Charlie", "Delta"]);

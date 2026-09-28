@@ -239,17 +239,7 @@ ColorInput.displayName = "ColorInput";
 // ---------------------------------------------------------------------------
 
 type ChannelKey =
-  | "hex"
-  | "r"
-  | "g"
-  | "b"
-  | "hSL"
-  | "sSL"
-  | "lSL"
-  | "L"
-  | "C"
-  | "H"
-  | "alphaPercent";
+  "hex" | "r" | "g" | "b" | "hSL" | "sSL" | "lSL" | "L" | "C" | "H" | "alphaPercent";
 
 export function ColorInputsRow({
   parsed,
