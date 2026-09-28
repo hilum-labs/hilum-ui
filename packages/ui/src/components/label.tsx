@@ -16,7 +16,7 @@ function Label({ className, htmlFor, ...props }: React.ComponentProps<typeof Lab
       className={cn(
         "body font-medium leading-none text-muted-foreground",
         "peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-        "compact:text-[11px]",
+        "compact:text-[11px] compact:leading-4",
         className,
       )}
       {...props}

@@ -20,7 +20,7 @@ const buttonVariants = cva(
     "text-box-trim-both text-box-edge-cap-alphabetic",
     "transition-colors duration-80",
     "disabled:opacity-50 disabled:pointer-events-none",
-    "compact:rounded-[5px]",
+    "compact:rounded-[5px] compact:whitespace-nowrap",
     "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
   ],
   {
@@ -33,8 +33,21 @@ const buttonVariants = cva(
         outline: "border border-border text-foreground hover:border-border-strong",
         tertiary: "border border-border text-foreground hover:border-border-strong",
         destructive: "text-destructive border border-destructive/30",
-        ghost: "text-muted-foreground hover:text-foreground",
+        ghost: "text-muted-foreground hover:text-foreground aria-pressed:text-foreground",
         link: "text-foreground underline-offset-4 hover:underline",
+        // Pressable preset tile (style presets, font pairings, previews): a
+        // quiet filled tile; pressed (`aria-pressed` or `active`) is a
+        // background tile with a hairline foreground ring (on the bg span).
+        // Tiles are usually content-sized: pass `h-auto compact:h-auto`.
+        tile: "text-foreground",
+        // A button that reads as a field, e.g. a font-family picker trigger.
+        field: [
+          "border border-border text-foreground font-normal justify-between hover:border-border-strong",
+          "compact:border-transparent compact:hover:border-border",
+          "compact:aria-expanded:border-ring compact:focus-visible:border-ring",
+          "compact:focus-visible:ring-0 compact:focus-visible:ring-offset-0",
+          "compact:[&_svg]:size-3 compact:[&_svg]:text-muted-foreground",
+        ],
       },
       // `compact:` classes apply under data-density="compact" (editor chrome):
       // 24px controls, 12px text, 8–10px padding, 5px radius.
@@ -59,6 +72,11 @@ const buttonVariants = cva(
       { size: "sm", iconRight: true, className: "pe-1.5" },
       { size: "md", iconRight: true, className: "pe-2.5" },
       { size: "lg", iconRight: true, className: "pe-3.5" },
+      // After the size classes, so the field sizing follows (and overrides) them.
+      {
+        variant: "field",
+        className: "compact:h-6 compact:ps-2 compact:pe-1.5 compact:text-[12px]",
+      },
     ],
     defaultVariants: {
       variant: "primary",
@@ -79,11 +97,19 @@ interface ButtonProps
   active?: boolean;
 }
 
+type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>;
+
+/** Pressed preset tile: a background-coloured tile with a hairline ring.
+ *  Painted on the bg span, since an inset shadow on the root would sit under it. */
+const tilePressedClasses =
+  "bg-background shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]";
+
 // Variant fills. Neutral variants tint with `foreground` alpha rather than a
 // fixed palette colour so they mean the same thing in light, mid and dark:
 // primary = inverted foreground, secondary = soft neutral fill, outline /
-// tertiary / ghost = transparent with a neutral hover wash.
-const bgVariants: Record<string, string> = {
+// tertiary / ghost = transparent with a neutral hover wash; a pressed ghost
+// (`aria-pressed="true"`) keeps a subtle fill.
+const bgVariants: Record<ButtonVariant, string> = {
   default: "bg-foreground group-hover:bg-foreground/90 group-active:bg-foreground/80",
   primary: "bg-foreground group-hover:bg-foreground/90 group-active:bg-foreground/80",
   brand: "bg-primary group-hover:bg-primary/90 group-active:bg-primary/80",
@@ -92,11 +118,20 @@ const bgVariants: Record<string, string> = {
   outline: "bg-transparent group-hover:bg-foreground/[0.05] group-active:bg-foreground/[0.09]",
   tertiary: "bg-transparent group-hover:bg-foreground/[0.05] group-active:bg-foreground/[0.09]",
   destructive: "bg-destructive/10 group-hover:bg-destructive/15 group-active:bg-destructive/20",
-  ghost: "bg-transparent group-hover:bg-foreground/[0.06] group-active:bg-foreground/[0.1]",
+  ghost:
+    "bg-transparent group-hover:bg-foreground/[0.06] group-active:bg-foreground/[0.1] group-aria-pressed:bg-foreground/[0.08]",
   link: "bg-transparent",
+  tile: [
+    "bg-foreground/[0.05] group-hover:bg-foreground/[0.08]",
+    "group-aria-pressed:bg-background group-aria-pressed:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
+  ].join(" "),
+  field: [
+    "bg-background compact:bg-[var(--density-field)]",
+    "compact:group-aria-expanded:bg-background compact:group-focus-visible:bg-background",
+  ].join(" "),
 };
 
-const activeBgVariants: Record<string, string> = {
+const activeBgVariants: Record<ButtonVariant, string> = {
   default: "bg-foreground/80",
   primary: "bg-foreground/80",
   brand: "bg-primary/80",
@@ -106,6 +141,8 @@ const activeBgVariants: Record<string, string> = {
   destructive: "bg-destructive/20",
   ghost: "bg-foreground/[0.1]",
   link: "bg-transparent",
+  tile: tilePressedClasses,
+  field: "bg-background",
 };
 
 function Button({
@@ -180,7 +217,13 @@ function Button({
           bgClass,
         )}
       />
-      <span className="relative inline-flex items-center justify-center gap-[inherit]">
+      <span
+        className={cn(
+          "relative inline-flex items-center justify-center gap-[inherit]",
+          // Field buttons: value at the start, trailing icon at the end.
+          variant === "field" && "w-full min-w-0 justify-between text-start",
+        )}
+      >
         {loading ? (
           <>
             <span className="flex items-center justify-center gap-[inherit] opacity-0">

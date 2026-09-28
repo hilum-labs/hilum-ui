@@ -933,7 +933,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "variant",
-        "description": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" · default \"primary\""
+        "description": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" | \"tile\" | \"field\" · default \"primary\""
       },
       {
         "label": "size",
@@ -979,8 +979,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "React.ReactNode · required"
       },
       {
-        "label": "className",
-        "description": "string"
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
       },
       {
         "label": "Key exports",
@@ -4124,12 +4124,12 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "api": [
       {
-        "label": "variant",
-        "description": "\"default\" | \"outline\" | \"brand\" · default \"default\""
-      },
-      {
         "label": "size",
         "description": "\"default\" | \"sm\" | \"lg\" | \"icon-sm\" | \"icon\" | \"icon-lg\" · default \"default\""
+      },
+      {
+        "label": "variant",
+        "description": "\"default\" | \"outline\" | \"brand\" | \"segmented\" · default \"default\" — `segmented` renders the group as one track with a raised chip for the \"on\" item (the ButtonGroup look, including its compact editor-chrome tier); the other variants are spaced Toggles."
       },
       {
         "label": "Inherited props",

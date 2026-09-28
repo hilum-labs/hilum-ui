@@ -11,19 +11,40 @@ export const pressClasses = "active:scale-[0.97] motion-reduce:active:scale-100"
 export const focusRingClasses =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background";
 
+/**
+ * Compact-tier focus for fields: the filled surface turns into the plain
+ * background with a ring-token border, and no halo.
+ */
+export const compactFieldFocusClasses =
+  "compact:focus-visible:border-ring compact:focus-visible:bg-background compact:focus-visible:ring-0";
+
 /** Focus treatment for text-entry fields: ring-token border + a soft 2px halo. */
-export const inputFocusClasses =
-  "focus-visible:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35";
+export const inputFocusClasses = [
+  "focus-visible:outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/35",
+  compactFieldFocusClasses,
+].join(" ");
 
 /** Same as inputFocusClasses for composite fields that wrap a native input. */
-export const inputFocusWithinClasses =
-  "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35";
+export const inputFocusWithinClasses = [
+  "focus-within:border-ring focus-within:ring-2 focus-within:ring-ring/35",
+  "compact:focus-within:border-ring compact:focus-within:bg-background compact:focus-within:ring-0",
+].join(" ");
 
 export const iconStrokeClasses =
   "[&_svg]:transition-[stroke-width,transform,color] [&_svg]:duration-150 [&_svg]:ease-out group-hover:[&_svg]:stroke-[2]";
 
-export const controlSurfaceClasses =
-  "border border-border bg-background hover:border-border-strong";
+/**
+ * Compact-tier field surface (editor chrome): a filled `--density-field`
+ * surface with no resting border; hover shows the border. The hover border
+ * skips focused fields, since `focus-within:` sorts before `hover:`.
+ */
+export const compactFieldSurfaceClasses =
+  "compact:border-transparent compact:bg-[var(--density-field)] compact:shadow-none compact:hover:not-focus-within:border-border";
+
+export const controlSurfaceClasses = [
+  "border border-border bg-background hover:border-border-strong",
+  compactFieldSurfaceClasses,
+].join(" ");
 
 export const surfaceElevationClasses = {
   flat: "border border-border bg-card",
@@ -36,6 +57,43 @@ export const radiusClasses = {
   panel: "rounded-xl",
   pill: "rounded-full",
 } as const;
+
+/*
+ * Segmented control (ButtonGroup, ToggleGroup variant="segmented"): a muted
+ * track with a raised chip for the active item. In the compact tier the track
+ * is the filled field surface and the chip a white 20px pill; `w-full` on the
+ * track stretches the items evenly.
+ */
+export const segmentedTrackClasses = [
+  "inline-flex items-center gap-0.5 rounded-xl bg-muted p-0.5",
+  "compact:h-6 compact:gap-0 compact:rounded-[6px] compact:bg-[var(--density-field)] compact:p-0.5 compact:[&.w-full]:flex",
+].join(" ");
+
+export const segmentedItemClasses = [
+  "relative inline-flex min-h-8 items-center justify-center gap-1 rounded-[10px] px-3 py-1 body-sm font-medium",
+  "transition-[background-color,box-shadow,color,opacity,scale] active:scale-[0.96]",
+  "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+  "text-muted-foreground hover:text-foreground",
+  "compact:h-5 compact:min-h-0 compact:min-w-6 compact:flex-1 compact:rounded-[4px] compact:px-1.5 compact:py-0",
+  "compact:text-[11px] compact:active:scale-100 compact:[&_svg]:size-3.5",
+  "compact:disabled:cursor-default compact:disabled:opacity-40",
+].join(" ");
+
+/** Active chip, applied conditionally (ButtonGroupItem `active` / `aria-pressed`). */
+export const segmentedItemActiveClasses = [
+  "bg-card text-foreground shadow-natural",
+  "compact:bg-background compact:shadow-[0_0_0_0.5px_rgb(0_0_0/0.08),0_1px_2px_rgb(0_0_0/0.08)]",
+].join(" ");
+
+/**
+ * The same chip keyed off Radix's `data-state="on"` (ToggleGroup items).
+ * Tailwind can't prefix a variant at runtime, so it is spelled out here; keep
+ * it in sync with segmentedItemActiveClasses (a test checks this).
+ */
+export const segmentedItemOnClasses = [
+  "data-[state=on]:bg-card data-[state=on]:text-foreground data-[state=on]:shadow-natural",
+  "compact:data-[state=on]:bg-background compact:data-[state=on]:shadow-[0_0_0_0.5px_rgb(0_0_0/0.08),0_1px_2px_rgb(0_0_0/0.08)]",
+].join(" ");
 
 export const menuItemClasses =
   "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 body outline-none transition-[background-color,color,box-shadow] duration-150 ease-out compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]";

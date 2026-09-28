@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
 import { useDensity } from "../lib/density-context";
-import { inputFocusWithinClasses } from "../lib/interaction";
+import { controlSurfaceClasses, inputFocusWithinClasses } from "../lib/interaction";
 import { useFormatter } from "../lib/format";
 import { useFieldControl } from "../lib/field-context";
 
@@ -306,8 +306,9 @@ function InputNumber({
       className={cn(
         // w-48 ≈ the old intrinsic width of the native input (size=20), kept as an
         // overridable default; min-w-fit stops narrow widths clipping digits.
-        "inline-flex h-8 w-48 min-w-fit items-stretch overflow-hidden border border-border bg-background",
-        "transition-[border-color,box-shadow] duration-150 hover:border-border-strong",
+        "inline-flex h-8 w-48 min-w-fit items-stretch overflow-hidden",
+        controlSurfaceClasses,
+        "transition-[background-color,border-color,box-shadow] duration-150",
         shape.input,
         "compact:h-6 compact:rounded-[5px]",
         inputFocusWithinClasses,
@@ -325,9 +326,10 @@ function InputNumber({
           onPointerCancel={handleScrubEnd}
           className={cn(
             // Fixed-width prefix column so values in stacked fields line up.
+            // Only the prefix is fixed: the unit suffix (also aria-hidden) sizes to its text.
             "flex w-6 shrink-0 cursor-ew-resize select-none items-center justify-center",
             "caption-xs font-medium leading-none text-muted-foreground transition-colors hover:text-foreground",
-            "compact:w-5 compact:text-[11px] [&_svg]:size-3",
+            "compact:w-[22px] compact:text-[11px] compact:font-normal [&_svg]:size-3",
           )}
         >
           {label}

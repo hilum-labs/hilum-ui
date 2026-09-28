@@ -1,40 +1,42 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
+import {
+  segmentedItemActiveClasses,
+  segmentedItemClasses,
+  segmentedTrackClasses,
+} from "../lib/interaction";
 
-interface ButtonGroupProps {
+/**
+ * Segmented control: a track of ButtonGroupItems with a raised chip for the
+ * active item. Extra props (`role="toolbar"`, `aria-label`, …) reach the track.
+ * Under data-density="compact" it is the 24px editor-chrome segmented control;
+ * add `w-full` to stretch the items evenly across the row.
+ */
+interface ButtonGroupProps extends React.ComponentProps<"div"> {
   children: React.ReactNode;
-  className?: string;
 }
 
-function ButtonGroup({ children, className }: ButtonGroupProps) {
+function ButtonGroup({ children, className, ...props }: ButtonGroupProps) {
   return (
-    <div
-      data-slot="button-group"
-      className={cn("inline-flex items-center gap-0.5 rounded-xl bg-muted p-0.5", className)}
-    >
+    <div data-slot="button-group" className={cn(segmentedTrackClasses, className)} {...props}>
       {children}
     </div>
   );
 }
 
 interface ButtonGroupItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /** Shows the item as selected. `aria-pressed="true"` does the same. */
   active?: boolean;
 }
 
 function ButtonGroupItem({ active, className, children, ...props }: ButtonGroupItemProps) {
+  const pressed = props["aria-pressed"];
+  const isActive = active || pressed === true || pressed === "true";
   return (
     <button
       type="button"
       data-slot="button-group-item"
-      className={cn(
-        "relative inline-flex min-h-8 items-center justify-center gap-1 rounded-[10px] px-3 py-1 body-sm font-medium",
-        "transition-[background-color,box-shadow,color,opacity,scale] active:scale-[0.96]",
-        "focus:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-        active
-          ? "bg-card text-foreground shadow-natural"
-          : "text-muted-foreground hover:text-foreground",
-        className,
-      )}
+      className={cn(segmentedItemClasses, isActive && segmentedItemActiveClasses, className)}
       {...props}
     >
       {children}
@@ -46,3 +48,4 @@ ButtonGroup.displayName = "ButtonGroup";
 ButtonGroupItem.displayName = "ButtonGroupItem";
 
 export { ButtonGroup, ButtonGroupItem };
+export type { ButtonGroupProps, ButtonGroupItemProps };

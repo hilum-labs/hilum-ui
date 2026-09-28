@@ -598,7 +598,9 @@ describe("editor density", () => {
       </DesignerPropertyRow>,
     );
     const label = screen.getByText("Opacity");
-    expect(label).toHaveStyle({ width: "48px" });
+    // The label reads its width from the row's variable (shared with composed labels).
+    expect(label).toHaveClass("w-[var(--designer-label-width,64px)]", "shrink-0");
+    expect(label.parentElement!.style.getPropertyValue("--designer-label-width")).toBe("48px");
     expect(label.parentElement).toHaveAttribute("data-layout", "inline");
     expect(label.parentElement).toHaveClass("flex-row");
   });

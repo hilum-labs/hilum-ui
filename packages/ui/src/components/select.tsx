@@ -47,13 +47,20 @@ const triggerVariants = cva(
     "transition-all duration-80 motion-reduce:transition-none",
     "disabled:opacity-50 disabled:pointer-events-none",
     "focus-visible:ring-2 focus-visible:ring-ring",
-    "compact:h-6 compact:min-w-0 compact:gap-1 compact:px-2 compact:text-[12px] compact:rounded-[5px]",
+    // Editor-chrome density: a full-width 24px field; open or focused reads
+    // as the plain background with a ring-token border and no halo.
+    "compact:h-6 compact:w-full compact:min-w-0 compact:justify-between compact:gap-1 compact:ps-2 compact:pe-1.5 compact:text-[12px] compact:rounded-[5px]",
+    "compact:focus-visible:ring-0 compact:aria-expanded:bg-background compact:aria-expanded:border-ring",
+    "compact:focus-visible:bg-background compact:focus-visible:border-ring",
   ],
   {
     variants: {
       variant: {
-        bordered:
+        bordered: [
           "border border-border bg-transparent text-foreground hover:bg-hover hover:border-border-strong",
+          "compact:border-transparent compact:bg-[var(--density-field)] compact:shadow-none",
+          "compact:hover:border-border compact:hover:bg-[var(--density-field)]",
+        ],
         borderless: "border border-transparent bg-transparent text-foreground hover:bg-hover",
       },
     },
@@ -122,7 +129,7 @@ function SelectTrigger({
   });
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 compact:w-full compact:min-w-0">
       <SelectPrimitive.Trigger
         ref={ref}
         data-slot="select-trigger"
@@ -133,7 +140,8 @@ function SelectTrigger({
           selectTriggerMobileDensityClasses[mobileDensity],
           selectTriggerMobileSurfaceClasses[mobileSurface],
           shape.input,
-          error && "border-destructive/50 hover:border-destructive/50",
+          error &&
+            "border-destructive/50 hover:border-destructive/50 compact:border-destructive/50 compact:hover:border-destructive/50",
           className,
         )}
         {...props}
@@ -160,7 +168,7 @@ function SelectTrigger({
             strokeLinecap="round"
             strokeLinejoin="round"
             aria-hidden="true"
-            className="shrink-0 text-muted-foreground transition-colors duration-80 group-hover:text-foreground"
+            className="shrink-0 text-muted-foreground transition-colors duration-80 group-hover:text-foreground compact:size-3 compact:group-hover:text-muted-foreground"
           >
             <path d="M6 9l6 6 6-6" />
           </svg>
