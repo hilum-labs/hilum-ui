@@ -5,7 +5,6 @@
  */
 @import "tailwindcss" source(none);
 @import "../../packages/ui/dist/tokens.css";
-@import "../../packages/ui/dist/vendor.css";
 @source "../../packages/app-shell/src";
 @source "../../packages/designer/src";
 @source "./";

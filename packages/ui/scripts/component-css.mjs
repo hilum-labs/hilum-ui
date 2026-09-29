@@ -130,6 +130,24 @@ export const radixViewportCss = `[data-radix-select-viewport], [data-radix-scrol
 [data-radix-select-viewport]::-webkit-scrollbar,
 [data-radix-scroll-area-viewport]::-webkit-scrollbar { display: none; }`;
 
+/**
+ * input-otp (InputOTP) appends a <style id="input-otp-style"> on first mount
+ * and fills it with insertRule; under a strict CSP the tag is blocked (and
+ * logged), so no rule lands. Hilum's InputOTP marks that id as taken (see
+ * input-otp.tsx) and these are the same rules, statically: hide the real
+ * input's selection and autofill paint, iOS spacing, and pointer events for
+ * the slots rendered after the input.
+ */
+const otpHidden =
+  "background: transparent !important; color: transparent !important; border-color: transparent !important; opacity: 0 !important; box-shadow: none !important; -webkit-box-shadow: none !important; -webkit-text-fill-color: transparent !important;";
+export const inputOtpCss = `[data-input-otp]::selection { background: transparent !important; color: transparent !important; }
+[data-input-otp]:autofill { ${otpHidden} }
+[data-input-otp]:-webkit-autofill { ${otpHidden} }
+@supports (-webkit-touch-callout: none) {
+  [data-input-otp] { letter-spacing: -.6em !important; font-weight: 100 !important; font-stretch: ultra-condensed; font-optical-sizing: none !important; left: -1px !important; right: 1px !important; }
+}
+[data-input-otp] + * { pointer-events: all !important; }`;
+
 export const componentCss = [
   "/* ---- Component CSS (static; was injected at runtime before 4.2) ---- */",
   colorSchemeCss,
@@ -139,4 +157,5 @@ export const componentCss = [
   appLoadingBarCss,
   scrollLockCss,
   radixViewportCss,
+  inputOtpCss,
 ].join("\n\n");

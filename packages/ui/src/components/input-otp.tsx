@@ -6,6 +6,27 @@ import { Minus } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useFieldControl } from "../lib/field-context";
 
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
+/**
+ * input-otp appends a `<style id="input-otp-style">` the first time an OTP
+ * input mounts, unless an element with that id already exists. Under a strict
+ * Content-Security-Policy that tag is blocked and logged as a violation, and
+ * its rules never apply; tokens.css ships the same rules statically. Claim the
+ * id with an inert `<meta>` first (layout effects run before input-otp's
+ * effect), so no `<style>` is attempted.
+ */
+function useStaticOtpStyles() {
+  useIsomorphicLayoutEffect(() => {
+    if (document.getElementById("input-otp-style")) return;
+    const marker = document.createElement("meta");
+    marker.id = "input-otp-style";
+    marker.setAttribute("data-hilum", "input-otp styles ship in @hilum/ui tokens.css");
+    document.head.appendChild(marker);
+  }, []);
+}
+
 function InputOTP({
   className,
   containerClassName,
@@ -26,6 +47,7 @@ function InputOTP({
     "aria-invalid": ariaInvalid,
     "aria-required": ariaRequired,
   });
+  useStaticOtpStyles();
   return (
     <OTPInput
       data-slot="input-otp"

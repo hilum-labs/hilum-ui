@@ -64,7 +64,7 @@ See the live catalog at [ui.hilum.dev](https://ui.hilum.dev) for component docs,
 | `@hilum/ui/tokens`                            | JS design tokens. Server-safe.                                                                                                                                                         |
 | `@hilum/ui/create-theme`                      | `createTheme`, `applyTheme`, `ThemeProvider`.                                                                                                                                          |
 | `@hilum/ui/tokens.css`, `@hilum/ui/fonts.css` | Stylesheets (see Setup).                                                                                                                                                               |
-| `@hilum/ui/vendor.css`                        | Static sonner + vaul CSS for apps with a strict Content-Security-Policy (see below).                                                                                                   |
+| `@hilum/ui/vendor.css`                        | Deprecated, empty since 4.4 (the sonner + vaul CSS is in `tokens.css`); kept so existing imports resolve.                                                                              |
 
 ### AI components (`@hilum/ui/ai`)
 
@@ -207,7 +207,6 @@ Hilum UI works under a strict policy such as `style-src 'self'` (no
 @import "tailwindcss";
 @import "@hilum/ui/tokens.css";
 @import "@hilum/ui/fonts.css";
-@import "@hilum/ui/vendor.css"; /* only needed under a strict CSP */
 ```
 
 - **Hilum components insert no `<style>` elements.** The CSS they used to inject
@@ -217,17 +216,44 @@ Hilum UI works under a strict policy such as `style-src 'self'` (no
   (CSSOM), which CSP allows: e.g. chart series colours are `--color-<key>`
   custom properties on `ChartContainer`, with `theme` colours resolved by
   `light-dark()` (tokens.css sets `color-scheme` to follow the Hilum theme).
-- **`vendor.css`** is a static copy of the CSS that `sonner` (toasts) and `vaul`
-  (drawers) insert with a `<style>` tag when they are imported. Neither library
-  can turn that off, so under a strict CSP their tag is blocked (the browser
-  logs a CSP violation) and `vendor.css` styles toasts and drawers instead.
-  Without `vendor.css`, toasts render as an unstyled full-width bar.
-- **Radix** still renders two `<style>` tags we can't disable: the page
-  scroll lock while a modal layer is open (react-remove-scroll-bar) and the
-  scrollbar-hiding rule of the Select / ScrollArea viewport. Both are blocked
-  harmlessly: `tokens.css` carries the same rules (the scroll lock without the
-  scrollbar-width compensation, so pages with classic scrollbars may shift by
-  the scrollbar width while a dialog is open).
+- **Toasts and drawers inject nothing either.** `sonner` (toasts) and `vaul`
+  (drawers) insert their CSS with a `<style>` as soon as they are imported,
+  with no opt-out, which logged CSP violations on every page. Since 4.4
+  `@hilum/ui` bundles both with that injection removed, and their CSS ships in
+  `tokens.css`. `@hilum/ui/vendor.css` (4.2) is now empty: remove its import.
+- **`InputOTP`**: `input-otp` appends a `<style id="input-otp-style">` on first
+  use; Hilum's `InputOTP` claims that id first, and the same rules are in
+  `tokens.css`.
+- **What's left: three Radix `<style>` tags.** Radix primitives render them
+  and their public API can't turn them off (Radix doesn't forward
+  react-remove-scroll's `removeScrollBar` option; the viewports render theirs
+  unconditionally). Under `style-src 'self'` the browser blocks each one when
+  the component opens and logs a violation; nothing breaks, because
+  `tokens.css` carries the same rules:
+  1. the page scroll lock of modal layers (react-remove-scroll-bar): `Dialog`,
+     `AlertDialog`, `Sheet`, `Drawer`, `Select`, a modal `DropdownMenu` /
+     `ContextMenu` and a `modal` `Popover`. The static copy locks the page
+     without the scrollbar-width compensation, so pages with classic
+     scrollbars may shift by the scrollbar width while one is open;
+  2. the scrollbar-hiding rule of the `Select` viewport;
+  3. the same rule for the `ScrollArea` viewport.
+
+  Their contents are fixed, so a policy can allow them by hash and log
+  nothing at all (the scroll lock's hash is for overlay scrollbars, as on
+  macOS and phones, or a page without a scrollbar; with classic scrollbars its
+  contents include the measured width, and that open still logs one harmless
+  violation):
+
+  ```
+  style-src 'self'
+    'sha256-nzTgYzXYDNe6BAHiiI7NNlfK8n/auuOAhh2t92YvuXo='
+    'sha256-441zG27rExd4/il+NvIqyL8zFx5XmyNQtE381kSkUJk='
+    'sha256-vGQdhYJbTuF+M8iCn1IZCHpdkiICocWHDq4qnQF4Rjw='
+  ```
+
+  The hashes follow the Radix versions `@hilum/ui` depends on; release notes
+  mention any change.
+
 - `applyTheme()` / `<ThemeProvider>` from `@hilum/ui/create-theme` insert a
   `<style>` by design: pass `nonce`, or write `createTheme(config).css` to a
   static stylesheet.

@@ -17,7 +17,12 @@ const checks = [
   // 4.3 added MultiCombobox, ResourcePicker, TagInput / Tag and PreviewFrame,
   // DataTable's mobile cards and Field wiring in nine more controls:
   // 98.4 → 106.8 kB.
-  { name: "@hilum/ui", path: "packages/ui/dist/index.js", limit: "117 kB" },
+  // 4.4 bundles sonner (Toaster / toast) and vaul (Drawer) into this entry,
+  // with their import-time <style> injection stripped for strict-CSP apps
+  // (scripts/strip-injected-css.mjs). They were dependencies apps downloaded
+  // anyway, so an app's total is unchanged (their CSS strings moved to
+  // tokens.css); this entry grows by their code: ~108 → 124.1 kB.
+  { name: "@hilum/ui", path: "packages/ui/dist/index.js", limit: "136 kB" },
   // Shared code-split chunks imported by several @hilum/ui entries.
   // 4.3: the Field control registry (useFieldControl lives in a shared chunk):
   // 21.3 → 22 kB, at the old budget.
@@ -31,10 +36,13 @@ const checks = [
   // 4.2 moved the component CSS that used to be injected with runtime <style>
   // tags (mobile sheets, rich text, loading bar, Radix fallbacks, color-scheme)
   // out of the JS and into tokens.css for strict-CSP apps: 2.88 → 3.81 kB.
-  { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "4.2 kB" },
-  // 4.2: static copy of the CSS sonner + vaul inject at import, for strict-CSP
-  // apps (opt-in import). Measured 3.36 kB.
-  { name: "@hilum/ui/vendor.css", path: "packages/ui/dist/vendor.css", limit: "3.7 kB" },
+  // 4.4 moved the sonner + vaul CSS in from vendor.css (every app needs it now
+  // that the bundled libraries don't inject it) plus input-otp's rules:
+  // 3.81 → 7.03 kB.
+  { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "7.8 kB" },
+  // 4.2: static copy of the CSS sonner + vaul inject at import (3.36 kB).
+  // 4.4: an empty, deprecated stub (its CSS is in tokens.css): 155 B.
+  { name: "@hilum/ui/vendor.css", path: "packages/ui/dist/vendor.css", limit: "200 B" },
   { name: "@hilum/app-shell", path: "packages/app-shell/dist/index.js", limit: "13.2 kB" },
   // 4.1.1 added the inspector grid row (its selector classes), DesignerPropertyField
   // and the restructured pane title: 7.65 → 8.55 kB.

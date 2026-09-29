@@ -26,6 +26,7 @@ import { CommandPalette } from "../command-palette";
 import { applyTheme } from "../../tokens/create-theme";
 import { PreviewFrame } from "../preview-frame";
 import { MultiCombobox } from "../multi-combobox";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../input-otp";
 import { TagInput } from "../tag-input";
 import { ResourcePicker } from "../resource-picker";
 
@@ -193,6 +194,19 @@ describe("no runtime <style> from Hilum components (strict CSP)", () => {
     [
       "PreviewFrame",
       () => render(<PreviewFrame src="about:blank" title="Preview" device="mobile" />),
+    ],
+    [
+      // input-otp would append <style id="input-otp-style">; InputOTP claims the
+      // id first (its rules ship in tokens.css).
+      "InputOTP",
+      () =>
+        render(
+          <InputOTP maxLength={4} aria-label="Code">
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+            </InputOTPGroup>
+          </InputOTP>,
+        ),
     ],
     [
       "MultiCombobox, TagInput and ResourcePicker",

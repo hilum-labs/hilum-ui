@@ -1,7 +1,8 @@
 /**
  * Strict Content-Security-Policy (`style-src 'self'`): runtime <style> tags are
- * blocked, so Hilum components must work from the static CSS alone
- * (tokens.css + vendor.css, imported by tests/browser/styles.css).
+ * blocked, so Hilum components must work from the static CSS alone (tokens.css,
+ * imported by tests/browser/styles.css). csp-page-load.browser.test.tsx checks
+ * that the built package logs no violation at all.
  */
 import { act, render, screen } from "@testing-library/react";
 import { page } from "vitest/browser";
@@ -39,7 +40,7 @@ const RADIX_SAMPLE =
   /data-radix-select-viewport|data-radix-scroll-area-viewport|with-scroll-bars-hidden|data-scroll-locked/;
 
 beforeAll(async () => {
-  // Vite serves the app CSS (Tailwind + tokens.css + vendor.css) through a
+  // Vite serves the app CSS (Tailwind + tokens.css) through a
   // runtime <style> in dev, which the policy would block on its next update.
   // Stand in for a production `<link rel=stylesheet>` from 'self': once the
   // CSS is ready, move it into constructable stylesheets (not subject to CSP).
@@ -60,8 +61,10 @@ beforeAll(async () => {
   });
   expect(sheets.length).toBeGreaterThan(0);
   document.adoptedStyleSheets = [...document.adoptedStyleSheets, ...sheets];
-  // sonner and vaul injected their CSS when imported, before this policy
-  // existed: drop those tags so only the static vendor.css can style them.
+  // Here @hilum/ui runs from source, which imports sonner and vaul unbundled:
+  // they injected their CSS when imported, before this policy existed. Drop
+  // those tags so only the static tokens.css can style them. (The published
+  // bundle strips the injection; see csp-page-load.browser.test.tsx.)
   for (const style of Array.from(document.querySelectorAll("style"))) {
     if (/data-sonner-toaster|data-vaul-drawer/.test(style.textContent ?? "")) style.remove();
   }
@@ -94,7 +97,7 @@ describe("under style-src 'self' (real browser)", () => {
     violations.length = 0;
   });
 
-  test("toasts are positioned and sized by vendor.css", async () => {
+  test("toasts are positioned and sized by tokens.css", async () => {
     await page.viewport(1280, 800);
     render(<Toaster />);
     act(() => {
@@ -194,7 +197,7 @@ describe("under style-src 'self' (real browser)", () => {
     expect(hilumViolations()).toEqual([]);
   });
 
-  test("drawers slide in with vendor.css", async () => {
+  test("drawers slide in with tokens.css", async () => {
     render(
       <Drawer open>
         <DrawerContent>
