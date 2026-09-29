@@ -434,7 +434,11 @@ describe("StatusBadge", () => {
   });
 
   it("exports label helper", () => {
-    expect(statusLabel("dead-letter")).toBe("Dead Letter");
+    expect(statusLabel("dead-letter")).toBe("Dead letter");
+    expect(statusLabel("partially_fulfilled")).toBe("Partially fulfilled");
+    expect(statusLabel("PARTIALLY REFUNDED")).toBe("Partially refunded");
+    expect(statusLabel("paid")).toBe("Paid");
+    expect(statusLabel(null)).toBe("Unknown");
   });
 });
 

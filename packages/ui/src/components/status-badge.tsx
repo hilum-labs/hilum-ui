@@ -158,11 +158,10 @@ function statusLabel(status?: string | null) {
   const normalized = normalizeStatus(status);
   if (normalized === "unknown") return "Unknown";
 
-  return normalized
-    .split("_")
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
+  // Sentence case ("partially_fulfilled" → "Partially fulfilled"), matching
+  // the rest of Hilum's copy.
+  const words = normalized.split("_").filter(Boolean).join(" ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
 /**
