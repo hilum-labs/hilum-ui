@@ -771,6 +771,14 @@ const componentDefinitions = [
     "Multi-line text field for longer user input.",
   ],
   [
+    "thumbnail",
+    "Thumbnail",
+    "atoms",
+    "Primitives",
+    "primitive",
+    "Square product or resource image with sizes, object fit, border, and a neutral placeholder when there is no image.",
+  ],
+  [
     "thinking-indicator",
     "Thinking Indicator",
     "atoms",

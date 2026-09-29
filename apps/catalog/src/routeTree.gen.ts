@@ -110,6 +110,7 @@ import { Route as AtomsToggleGroupPageRouteImport } from './app/atoms/toggle-gro
 import { Route as AtomsTimePickerPageRouteImport } from './app/atoms/time-picker/page'
 import { Route as AtomsThinkingIndicatorPageRouteImport } from './app/atoms/thinking-indicator/page'
 import { Route as AtomsTextareaPageRouteImport } from './app/atoms/textarea/page'
+import { Route as AtomsThumbnailPageRouteImport } from './app/atoms/thumbnail/page'
 import { Route as AtomsTabsPageRouteImport } from './app/atoms/tabs/page'
 import { Route as AtomsTabsSubtlePageRouteImport } from './app/atoms/tabs-subtle/page'
 import { Route as AtomsTablePageRouteImport } from './app/atoms/table/page'
@@ -752,6 +753,11 @@ const AtomsTextareaPageRoute = AtomsTextareaPageRouteImport.update({
   path: '/atoms/textarea/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsThumbnailPageRoute = AtomsThumbnailPageRouteImport.update({
+  id: '/atoms/thumbnail/',
+  path: '/atoms/thumbnail/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsTabsPageRoute = AtomsTabsPageRouteImport.update({
   id: '/atoms/tabs/',
   path: '/atoms/tabs/',
@@ -1272,6 +1278,7 @@ export interface FileRoutesByFullPath {
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
+  '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
   '/atoms/thinking-indicator/': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/time-picker/': typeof AtomsTimePickerPageRoute
   '/atoms/toggle-group/': typeof AtomsToggleGroupPageRoute
@@ -1458,6 +1465,7 @@ export interface FileRoutesByTo {
   '/atoms/tabs-subtle': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs': typeof AtomsTabsPageRoute
   '/atoms/textarea': typeof AtomsTextareaPageRoute
+  '/atoms/thumbnail': typeof AtomsThumbnailPageRoute
   '/atoms/thinking-indicator': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/time-picker': typeof AtomsTimePickerPageRoute
   '/atoms/toggle-group': typeof AtomsToggleGroupPageRoute
@@ -1645,6 +1653,7 @@ export interface FileRoutesById {
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
+  '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
   '/atoms/thinking-indicator/': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/time-picker/': typeof AtomsTimePickerPageRoute
   '/atoms/toggle-group/': typeof AtomsToggleGroupPageRoute
@@ -1833,6 +1842,7 @@ export interface FileRouteTypes {
     | '/atoms/tabs-subtle/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
+    | '/atoms/thumbnail/'
     | '/atoms/thinking-indicator/'
     | '/atoms/time-picker/'
     | '/atoms/toggle-group/'
@@ -2019,6 +2029,7 @@ export interface FileRouteTypes {
     | '/atoms/tabs-subtle'
     | '/atoms/tabs'
     | '/atoms/textarea'
+    | '/atoms/thumbnail'
     | '/atoms/thinking-indicator'
     | '/atoms/time-picker'
     | '/atoms/toggle-group'
@@ -2205,6 +2216,7 @@ export interface FileRouteTypes {
     | '/atoms/tabs-subtle/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
+    | '/atoms/thumbnail/'
     | '/atoms/thinking-indicator/'
     | '/atoms/time-picker/'
     | '/atoms/toggle-group/'
@@ -2392,6 +2404,7 @@ export interface RootRouteChildren {
   AtomsTabsSubtlePageRoute: typeof AtomsTabsSubtlePageRoute
   AtomsTabsPageRoute: typeof AtomsTabsPageRoute
   AtomsTextareaPageRoute: typeof AtomsTextareaPageRoute
+  AtomsThumbnailPageRoute: typeof AtomsThumbnailPageRoute
   AtomsThinkingIndicatorPageRoute: typeof AtomsThinkingIndicatorPageRoute
   AtomsTimePickerPageRoute: typeof AtomsTimePickerPageRoute
   AtomsToggleGroupPageRoute: typeof AtomsToggleGroupPageRoute
@@ -3193,6 +3206,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsTextareaPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/thumbnail/': {
+      id: '/atoms/thumbnail/'
+      path: '/atoms/thumbnail'
+      fullPath: '/atoms/thumbnail/'
+      preLoaderRoute: typeof AtomsThumbnailPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/tabs/': {
       id: '/atoms/tabs/'
       path: '/atoms/tabs'
@@ -3873,6 +3893,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsTabsSubtlePageRoute: AtomsTabsSubtlePageRoute,
   AtomsTabsPageRoute: AtomsTabsPageRoute,
   AtomsTextareaPageRoute: AtomsTextareaPageRoute,
+  AtomsThumbnailPageRoute: AtomsThumbnailPageRoute,
   AtomsThinkingIndicatorPageRoute: AtomsThinkingIndicatorPageRoute,
   AtomsTimePickerPageRoute: AtomsTimePickerPageRoute,
   AtomsToggleGroupPageRoute: AtomsToggleGroupPageRoute,

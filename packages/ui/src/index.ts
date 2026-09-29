@@ -130,6 +130,7 @@ export * from "./components/table";
 export * from "./components/tabs";
 export * from "./components/tabs-subtle";
 export * from "./components/textarea";
+export * from "./components/thumbnail";
 export * from "./components/time-picker";
 export * from "./components/titled-card";
 export * from "./components/toggle";
