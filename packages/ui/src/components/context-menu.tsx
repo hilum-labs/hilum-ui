@@ -8,7 +8,6 @@ import { useDensityAttributes } from "../lib/density-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -26,7 +25,6 @@ function ContextMenuContent({
 }: React.ComponentProps<typeof ContextMenu.Content>) {
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <ContextMenu.Portal>
         <ContextMenu.Content
           {...useDensityAttributes()}
@@ -222,7 +220,6 @@ function ContextMenuSubContent({
 }: React.ComponentProps<typeof ContextMenu.SubContent>) {
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <ContextMenu.SubContent
         {...useDensityAttributes()}
         ref={ref}

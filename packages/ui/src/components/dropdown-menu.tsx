@@ -14,7 +14,6 @@ import {
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -33,7 +32,6 @@ function DropdownMenuContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           {...densityAttributes}
@@ -219,7 +217,6 @@ function DropdownMenuSubContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <DropdownMenu.SubContent
         {...densityAttributes}
         data-slot="dropdown-menu-sub-content"

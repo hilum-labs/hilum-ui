@@ -35,6 +35,7 @@
     },
     "./tokens.css": "./dist/tokens.css",
     "./fonts.css": "./dist/fonts.css",
+    "./vendor.css": "./dist/vendor.css",
     "./fonts/*": "./dist/fonts/*",
     "./create-theme": {
       "types": "./dist/create-theme.d.ts",

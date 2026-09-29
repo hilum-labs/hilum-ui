@@ -19,7 +19,6 @@ import { surfaceClasses } from "../lib/surface-classes";
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
-  mobileDialogSheetStyle,
   mobileDialogSheetContentClassName,
 } from "../lib/mobile-popper-sheet";
 import { Button } from "./button";
@@ -100,7 +99,6 @@ function DialogContent({
 
   return (
     <DialogPrimitive.Portal forceMount container={container ?? undefined}>
-      {!container && <style>{mobileDialogSheetStyle}</style>}
       <DialogPrimitive.Overlay asChild forceMount>
         <motion.div
           className={cn(

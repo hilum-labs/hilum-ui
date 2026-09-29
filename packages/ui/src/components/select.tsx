@@ -15,7 +15,6 @@ import { SurfaceProvider, useSurface } from "../lib/surface-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 import type { ControlDensity, ControlMobileSurface } from "./input";
@@ -224,7 +223,6 @@ function SelectContent({
   return (
     <SelectPrimitive.Portal>
       <SurfaceProvider value={level}>
-        <style>{mobilePopperSheetStyle}</style>
         <SelectPrimitive.Content
           ref={ref}
           data-slot="select-content"

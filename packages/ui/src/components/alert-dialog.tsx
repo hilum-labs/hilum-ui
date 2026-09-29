@@ -7,7 +7,6 @@ import { focusRingClasses, motionClasses, pressClasses } from "../lib/interactio
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
-  mobileDialogSheetStyle,
   mobileDialogSheetContentClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -45,7 +44,6 @@ function AlertDialogContent({
 }: React.ComponentProps<typeof AlertDialog.Content>) {
   return (
     <AlertDialog.Portal>
-      <style>{mobileDialogSheetStyle}</style>
       <AlertDialogOverlay />
       <AlertDialog.Content
         ref={ref}

@@ -8,7 +8,6 @@ import { motionClasses } from "../lib/interaction";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -33,7 +32,6 @@ function PopoverContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <Popover.Portal>
         <Popover.Content
           {...densityAttributes}

@@ -8,7 +8,6 @@ import { useDensityAttributes } from "../lib/density-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -67,7 +66,6 @@ function MenubarContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <Menubar.Portal>
         <Menubar.Content
           {...densityAttributes}
@@ -246,7 +244,6 @@ function MenubarSubContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <Menubar.SubContent
         {...densityAttributes}
         data-slot="menubar-sub-content"

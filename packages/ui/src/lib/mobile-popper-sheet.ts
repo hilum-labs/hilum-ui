@@ -1,3 +1,9 @@
+// Class names for the mobile bottom-sheet presentation of menus, popovers,
+// selects and dialogs. The positioning rules keyed on
+// `data-hilum-mobile-sheet` / `data-hilum-dialog-sheet` ship statically in
+// tokens.css (scripts/component-css.mjs) instead of a runtime <style>, so they
+// work under a strict Content-Security-Policy.
+
 export const mobileDialogSheetContentClassName = [
   "fixed inset-x-0 bottom-0 z-50 max-h-[calc(100dvh-1rem)] w-full overflow-y-auto",
   "max-lg:!fixed max-lg:!inset-x-0 max-lg:!bottom-0 max-lg:!top-auto",
@@ -19,24 +25,6 @@ export const dialogSheetMotionClassName = [
   "lg:data-[state=closed]:zoom-out-95 lg:data-[state=open]:zoom-in-95",
 ].join(" ");
 
-export const mobileDialogSheetStyle = `
-@media (max-width: 1023px) {
-  [data-hilum-dialog-sheet="true"] {
-    position: fixed !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    top: auto !important;
-    width: 100% !important;
-    max-width: none !important;
-    max-height: calc(100dvh - 1rem) !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    transform-origin: bottom center !important;
-  }
-}
-`;
-
 export const mobilePopperSheetPositionClassName = [
   "max-md:!fixed max-md:!inset-x-3 max-md:!bottom-3 max-md:!top-auto max-md:!left-3 max-md:!right-3",
   "max-md:!w-auto max-md:!min-w-0 max-md:!max-w-none max-md:!transform-none",
@@ -48,52 +36,3 @@ export const mobilePopperSheetSurfaceClassName =
 export const mobilePopperSheetMotionClassName = [
   "max-md:data-[state=closed]:slide-out-to-bottom max-md:data-[state=open]:slide-in-from-bottom",
 ].join(" ");
-
-export const mobilePopperSheetStyle = `
-@media (max-width: 767px) {
-  [data-radix-popper-content-wrapper]:has([data-hilum-mobile-sheet="true"]) {
-    position: fixed !important;
-    inset: 0 !important;
-    min-width: 0 !important;
-    transform: none !important;
-    pointer-events: none;
-    z-index: 50 !important;
-  }
-
-  [data-radix-popper-content-wrapper]:has([data-hilum-mobile-sheet="true"][data-state="open"])::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgb(0 0 0 / 0.3);
-    backdrop-filter: blur(4px);
-    pointer-events: auto;
-  }
-
-  [data-hilum-mobile-sheet="true"] {
-    position: fixed !important;
-    left: 0.75rem !important;
-    right: 0.75rem !important;
-    bottom: max(0.75rem, env(safe-area-inset-bottom)) !important;
-    top: auto !important;
-    width: calc(100dvw - 1.5rem) !important;
-    min-width: 0 !important;
-    max-width: none !important;
-    transform: none !important;
-    pointer-events: auto;
-    transform-origin: bottom center !important;
-    overscroll-behavior: contain;
-  }
-
-  [data-hilum-mobile-sheet="true"]::before {
-    content: "";
-    position: absolute;
-    top: 0.5rem;
-    left: 50%;
-    width: 2.25rem;
-    height: 0.25rem;
-    border-radius: 999px;
-    background: hsl(var(--muted-foreground) / 0.35);
-    transform: translateX(-50%);
-  }
-}
-`;

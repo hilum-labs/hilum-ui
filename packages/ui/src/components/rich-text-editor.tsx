@@ -626,20 +626,6 @@ function RichTextEditor({
         data-placeholder={placeholder}
         suppressContentEditableWarning
       />
-
-      <style>{`
-        .rich-text-editor-content h1 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; margin: 0.75rem 0 0.5rem; text-wrap: balance; }
-        .rich-text-editor-content h2 { font-size: 1.25rem; font-weight: 650; line-height: 1.25; margin: 0.75rem 0 0.5rem; text-wrap: balance; }
-        .rich-text-editor-content h3 { font-size: 1.1rem; font-weight: 650; line-height: 1.3; margin: 0.5rem 0 0.25rem; text-wrap: balance; }
-        .rich-text-editor-content blockquote { border-inline-start: 3px solid var(--border); color: var(--muted-foreground); margin: 0.75rem 0; padding-inline-start: 1rem; text-wrap: pretty; }
-        .rich-text-editor-content pre { background: var(--muted); border-radius: 0.5rem; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.85rem; margin: 0.75rem 0; overflow-x: auto; padding: 0.75rem; }
-        .rich-text-editor-content a { color: var(--brand-primary); text-decoration: underline; text-underline-offset: 3px; }
-        .rich-text-editor-content img { border-radius: 0.5rem; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); height: auto; margin: 0.5rem 0; max-width: 100%; }
-        .dark .rich-text-editor-content img { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1); }
-        .rich-text-editor-content hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
-        .rich-text-editor-content ul, .rich-text-editor-content ol { margin: 0.5rem 0; padding-inline-start: 1.5rem; }
-        .rich-text-editor-content li { margin: 0.25rem 0; }
-      `}</style>
     </div>
   );
 }
