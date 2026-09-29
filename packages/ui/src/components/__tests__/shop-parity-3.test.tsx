@@ -3,6 +3,7 @@ import { act, render, screen } from "@testing-library/react";
 import { DataTable, type ColumnDef } from "../data-table";
 import { Field } from "../field";
 import { InputGroup } from "../input-group";
+import { InputNumber } from "../input-number";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -177,5 +178,32 @@ describe("InputGroup inside a Field", () => {
     expect(input).toHaveAttribute("name", "domain");
     expect(input).toHaveAttribute("autocomplete", "off");
     expect(input).toHaveAttribute("maxlength", "63");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* InputNumber width                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("InputNumber width", () => {
+  it("is full width inside a Field and compact elsewhere", () => {
+    render(
+      <>
+        <Field label="Weight">
+          <InputNumber value={1} onChange={() => {}} />
+        </Field>
+        <InputNumber aria-label="Quantity" value={1} onChange={() => {}} />
+        <Field label="Width">
+          <InputNumber value={1} onChange={() => {}} fullWidth={false} />
+        </Field>
+      </>,
+    );
+    const [inField, bare, optedOut] = Array.from(
+      document.querySelectorAll("[data-slot=input-number]"),
+    );
+    expect(inField).toHaveClass("w-full");
+    expect(inField).not.toHaveClass("w-48");
+    expect(bare).toHaveClass("w-48");
+    expect(optedOut).toHaveClass("w-48");
   });
 });
