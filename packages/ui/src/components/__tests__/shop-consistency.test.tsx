@@ -1,4 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
+import type * as React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Button, buttonVariants } from "../button";
 import { PaginationLink } from "../pagination";
@@ -38,6 +39,7 @@ import { Badge } from "../badge";
 import { CommandPalette } from "../command-palette";
 import { CommandDialog, CommandInput } from "../command";
 import { ContextualSaveBar } from "../contextual-save-bar";
+import * as icons from "../../icons";
 import { controlHeightClass, controlTextClass } from "../../lib/interaction";
 import "@testing-library/jest-dom";
 
@@ -716,5 +718,19 @@ describe("ContextualSaveBar in fixed mode", () => {
     render(<ContextualSaveBar open onSave={() => {}} offsetTop="4rem" />);
     const bar = screen.getByRole("region", { name: "Unsaved changes" });
     expect(bar.style.getPropertyValue("--hilum-save-bar-top")).toBe("4rem");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Icons entry                                                          */
+/* ------------------------------------------------------------------ */
+
+describe("@hilum/ui/icons", () => {
+  it.each(["Smartphone", "Tablet", "Monitor", "Keyboard", "GripVertical"])("exports %s", (name) => {
+    const icon = (icons as Record<string, unknown>)[name];
+    expect(icon).toBeDefined();
+    const Icon = icon as React.ComponentType<{ "data-testid"?: string }>;
+    render(<Icon data-testid={name} />);
+    expect(screen.getByTestId(name).tagName.toLowerCase()).toBe("svg");
   });
 });
