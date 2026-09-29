@@ -5,7 +5,7 @@
  * axe-core.
  */
 import { describe, expect, it } from "vitest";
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { axe } from "../axe";
 
 import { Field } from "../../packages/ui/src/components/field";
@@ -17,6 +17,7 @@ import { DateTimePicker } from "../../packages/ui/src/components/date-time-picke
 import { TimePicker } from "../../packages/ui/src/components/time-picker";
 import { ColorInput } from "../../packages/ui/src/components/color-input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../packages/ui/src/components/input-otp";
+import { Tag, TagInput } from "../../packages/ui/src/components/tag-input";
 
 async function expectAccessible(ui: React.ReactElement) {
   render(ui);
@@ -63,5 +64,20 @@ describe("a11y: shop parity 2", () => {
         </Field>
       </form>,
     );
+  });
+
+  it("TagInput with tags, suggestions open and an error, and Tag", async () => {
+    render(
+      <div>
+        <Field label="Tags" hint="Press Enter to add" error="Add a tag">
+          <TagInput defaultValue={["summer", "sale"]} suggestions={["gift", "new"]} />
+        </Field>
+        <Tag onRemove={() => {}}>VIP</Tag>
+      </div>,
+    );
+    const input = document.querySelector("[data-slot=tag-input] input") as HTMLInputElement;
+    fireEvent.focus(input);
+    expect(document.querySelector("[role=listbox]")).not.toBeNull();
+    expect(await axe(document.body)).toHaveNoAxeViolations();
   });
 });

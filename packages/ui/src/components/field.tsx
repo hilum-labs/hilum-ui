@@ -17,14 +17,14 @@ interface FieldProps {
    * `disabled` automatically. If the control has its own `id`, the label
    * follows it, so `htmlFor` is only needed for controls outside this list.
    */
-  htmlFor?: string;
-  hint?: string;
-  error?: string;
-  required?: boolean;
+  htmlFor?: string | undefined;
+  hint?: string | undefined;
+  error?: string | undefined;
+  required?: boolean | undefined;
   /** Disables the wrapped control (via context) unless it sets `disabled` itself. */
-  disabled?: boolean;
-  cornerHint?: string;
-  className?: string;
+  disabled?: boolean | undefined;
+  cornerHint?: string | undefined;
+  className?: string | undefined;
   children: React.ReactNode;
   ref?: React.Ref<HTMLDivElement> | undefined;
 }

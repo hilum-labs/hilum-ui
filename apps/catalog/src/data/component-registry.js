@@ -763,6 +763,14 @@ const componentDefinitions = [
     "Quiet segmented tab navigation for settings, filters, and compact product panels.",
   ],
   [
+    "tag-input",
+    "Tag Input",
+    "atoms",
+    "Form",
+    "form",
+    "Free-text tags with Enter or comma to add, Backspace to remove, paste splitting, de-duplication, limits and optional suggestions.",
+  ],
+  [
     "textarea",
     "Textarea",
     "atoms",

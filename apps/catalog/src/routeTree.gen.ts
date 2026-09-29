@@ -114,6 +114,7 @@ import { Route as AtomsTextareaPageRouteImport } from './app/atoms/textarea/page
 import { Route as AtomsThumbnailPageRouteImport } from './app/atoms/thumbnail/page'
 import { Route as AtomsTabsPageRouteImport } from './app/atoms/tabs/page'
 import { Route as AtomsTabsSubtlePageRouteImport } from './app/atoms/tabs-subtle/page'
+import { Route as AtomsTagInputPageRouteImport } from './app/atoms/tag-input/page'
 import { Route as AtomsTablePageRouteImport } from './app/atoms/table/page'
 import { Route as AtomsSwitchPageRouteImport } from './app/atoms/switch/page'
 import { Route as AtomsSummaryTilePageRouteImport } from './app/atoms/summary-tile/page'
@@ -774,6 +775,11 @@ const AtomsTabsSubtlePageRoute = AtomsTabsSubtlePageRouteImport.update({
   path: '/atoms/tabs-subtle/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsTagInputPageRoute = AtomsTagInputPageRouteImport.update({
+  id: '/atoms/tag-input/',
+  path: '/atoms/tag-input/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsTablePageRoute = AtomsTablePageRouteImport.update({
   id: '/atoms/table/',
   path: '/atoms/table/',
@@ -1282,6 +1288,7 @@ export interface FileRoutesByFullPath {
   '/atoms/switch/': typeof AtomsSwitchPageRoute
   '/atoms/table/': typeof AtomsTablePageRoute
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
+  '/atoms/tag-input/': typeof AtomsTagInputPageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
   '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
@@ -1470,6 +1477,7 @@ export interface FileRoutesByTo {
   '/atoms/switch': typeof AtomsSwitchPageRoute
   '/atoms/table': typeof AtomsTablePageRoute
   '/atoms/tabs-subtle': typeof AtomsTabsSubtlePageRoute
+  '/atoms/tag-input': typeof AtomsTagInputPageRoute
   '/atoms/tabs': typeof AtomsTabsPageRoute
   '/atoms/textarea': typeof AtomsTextareaPageRoute
   '/atoms/thumbnail': typeof AtomsThumbnailPageRoute
@@ -1659,6 +1667,7 @@ export interface FileRoutesById {
   '/atoms/switch/': typeof AtomsSwitchPageRoute
   '/atoms/table/': typeof AtomsTablePageRoute
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
+  '/atoms/tag-input/': typeof AtomsTagInputPageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
   '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
@@ -1849,6 +1858,7 @@ export interface FileRouteTypes {
     | '/atoms/switch/'
     | '/atoms/table/'
     | '/atoms/tabs-subtle/'
+    | '/atoms/tag-input/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
     | '/atoms/thumbnail/'
@@ -2037,6 +2047,7 @@ export interface FileRouteTypes {
     | '/atoms/switch'
     | '/atoms/table'
     | '/atoms/tabs-subtle'
+    | '/atoms/tag-input'
     | '/atoms/tabs'
     | '/atoms/textarea'
     | '/atoms/thumbnail'
@@ -2225,6 +2236,7 @@ export interface FileRouteTypes {
     | '/atoms/switch/'
     | '/atoms/table/'
     | '/atoms/tabs-subtle/'
+    | '/atoms/tag-input/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
     | '/atoms/thumbnail/'
@@ -2414,6 +2426,7 @@ export interface RootRouteChildren {
   AtomsSwitchPageRoute: typeof AtomsSwitchPageRoute
   AtomsTablePageRoute: typeof AtomsTablePageRoute
   AtomsTabsSubtlePageRoute: typeof AtomsTabsSubtlePageRoute
+  AtomsTagInputPageRoute: typeof AtomsTagInputPageRoute
   AtomsTabsPageRoute: typeof AtomsTabsPageRoute
   AtomsTextareaPageRoute: typeof AtomsTextareaPageRoute
   AtomsThumbnailPageRoute: typeof AtomsThumbnailPageRoute
@@ -3247,6 +3260,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsTabsSubtlePageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/tag-input/': {
+      id: '/atoms/tag-input/'
+      path: '/atoms/tag-input'
+      fullPath: '/atoms/tag-input/'
+      preLoaderRoute: typeof AtomsTagInputPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/table/': {
       id: '/atoms/table/'
       path: '/atoms/table'
@@ -3911,6 +3931,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsSwitchPageRoute: AtomsSwitchPageRoute,
   AtomsTablePageRoute: AtomsTablePageRoute,
   AtomsTabsSubtlePageRoute: AtomsTabsSubtlePageRoute,
+  AtomsTagInputPageRoute: AtomsTagInputPageRoute,
   AtomsTabsPageRoute: AtomsTabsPageRoute,
   AtomsTextareaPageRoute: AtomsTextareaPageRoute,
   AtomsThumbnailPageRoute: AtomsThumbnailPageRoute,
