@@ -159,11 +159,17 @@ const TAUPE_900 = "#26181a";
 
 // WCAG relative luminance Y (XYZ). Threshold ≈ 0.179 gives equal contrast
 // with black and white: use dark text above, white text at or below.
+function rgb(hex: string): number[] {
+  return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+}
+
+function luminance(channels: number[]): number {
+  const [r, g, b] = channels.map((c) => toLinear(c / 255));
+  return 0.2126729 * r! + 0.7151522 * g! + 0.072175 * b!;
+}
+
 function relativeLuminance(hex: string): number {
-  const r = toLinear(parseInt(hex.slice(1, 3), 16) / 255);
-  const g = toLinear(parseInt(hex.slice(3, 5), 16) / 255);
-  const b = toLinear(parseInt(hex.slice(5, 7), 16) / 255);
-  return 0.2126729 * r + 0.7151522 * g + 0.072175 * b;
+  return luminance(rgb(hex));
 }
 
 function autoFg(hex: string): string {
@@ -183,19 +189,11 @@ const TEXT_SURFACES = {
 };
 const TINT_ALPHAS = [0, 0.1, 0.15];
 
-function rgb(hex: string): number[] {
-  return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
-}
-
-function hexOf(channels: number[]): string {
-  return `#${channels.map((c) => Math.round(c).toString(16).padStart(2, "0")).join("")}`;
-}
-
 /** WCAG contrast of `text` on `tint` at `alpha` over `surface`. */
 function tintContrast(text: string, tint: string, alpha: number, surface: string): number {
   const t = rgb(tint);
-  const bg = hexOf(rgb(surface).map((c, i) => t[i]! * alpha + c * (1 - alpha)));
-  const [a, b] = [relativeLuminance(text), relativeLuminance(bg)];
+  const a = relativeLuminance(text);
+  const b = luminance(rgb(surface).map((c, i) => t[i]! * alpha + c * (1 - alpha)));
   return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
 }
 
