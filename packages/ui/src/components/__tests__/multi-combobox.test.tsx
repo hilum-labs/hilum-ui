@@ -329,4 +329,21 @@ describe("ResourcePicker", () => {
     expect(screen.getByRole("checkbox", { name: "Tea towel" })).toBeDisabled();
     expect(screen.getByText("1 of 1 selected")).toBeInTheDocument();
   });
+
+  it("doesn't wire its search field into a surrounding Field", () => {
+    render(
+      <Field label="Related products" error="Add a product">
+        <ResourcePicker
+          open
+          onOpenChange={() => {}}
+          title="Add products"
+          items={PRODUCTS}
+          onSelect={() => {}}
+        />
+      </Field>,
+    );
+    const search = screen.getByRole("searchbox", { name: "Search" });
+    expect(search).not.toHaveAttribute("aria-invalid");
+    expect(search).not.toHaveAccessibleDescription("Add a product");
+  });
 });

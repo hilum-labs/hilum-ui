@@ -3,6 +3,7 @@
 import * as React from "react";
 import { RadioGroup as RadioGroupPrimitive } from "radix-ui";
 import { cn } from "../lib/utils";
+import { FieldContext } from "../lib/field-context";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./dialog";
 import { Button } from "./button";
 import { Checkbox } from "./checkbox";
@@ -333,67 +334,71 @@ function ResourcePicker<T extends ResourcePickerItem = ResourcePickerItem>({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent
-        size="lg"
-        closeLabel={labels.close}
-        className="flex max-h-[min(90dvh,44rem)] flex-col p-0"
-        data-slot="resource-picker"
-        {...(description ? {} : { "aria-describedby": undefined })}
-      >
-        <DialogHeader className="mb-0 border-b border-border px-5 py-4 pe-12">
-          <DialogTitle>{title}</DialogTitle>
-          {description && <DialogDescription>{description}</DialogDescription>}
-        </DialogHeader>
-        <div className="border-b border-border px-5 py-3">
-          <SearchInput
-            value={query}
-            onValueChange={setQuery}
-            placeholder={labels.search}
-            loading={loading && rows.length > 0}
-            labels={{ searching: labels.loading }}
-          />
-        </div>
-        <div
-          className="min-h-40 flex-1 overflow-y-auto py-1"
-          aria-busy={loading || undefined}
-          data-slot="resource-picker-list"
+    // The dialog's search field and checkboxes don't belong to a Field the
+    // picker's trigger may sit in.
+    <FieldContext.Provider value={null}>
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent
+          size="lg"
+          closeLabel={labels.close}
+          className="flex max-h-[min(90dvh,44rem)] flex-col p-0"
+          data-slot="resource-picker"
+          {...(description ? {} : { "aria-describedby": undefined })}
         >
-          {list}
-          {hasMore && onLoadMore && rows.length > 0 && (
-            <div className="flex justify-center px-5 py-3">
-              <Button
-                type="button"
-                variant="outline"
-                size="sm"
-                loading={loading}
-                onClick={onLoadMore}
-              >
-                {labels.loadMore}
+          <DialogHeader className="mb-0 border-b border-border px-5 py-4 pe-12">
+            <DialogTitle>{title}</DialogTitle>
+            {description && <DialogDescription>{description}</DialogDescription>}
+          </DialogHeader>
+          <div className="border-b border-border px-5 py-3">
+            <SearchInput
+              value={query}
+              onValueChange={setQuery}
+              placeholder={labels.search}
+              loading={loading && rows.length > 0}
+              labels={{ searching: labels.loading }}
+            />
+          </div>
+          <div
+            className="min-h-40 flex-1 overflow-y-auto py-1"
+            aria-busy={loading || undefined}
+            data-slot="resource-picker-list"
+          >
+            {list}
+            {hasMore && onLoadMore && rows.length > 0 && (
+              <div className="flex justify-center px-5 py-3">
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  loading={loading}
+                  onClick={onLoadMore}
+                >
+                  {labels.loadMore}
+                </Button>
+              </div>
+            )}
+            {loading && rows.length === 0 && (
+              <span className="sr-only" role="status">
+                {labels.loading}
+              </span>
+            )}
+          </div>
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border px-5 py-3">
+            <p className="caption tabular-nums text-muted-foreground" aria-live="polite">
+              {multiple ? labels.selectedCount(selectedIds.length, maxSelected) : ""}
+            </p>
+            <div className="flex gap-2">
+              <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+                {labels.cancel}
+              </Button>
+              <Button type="button" onClick={confirm} disabled={!canConfirm}>
+                {labels.add(selectedIds.length)}
               </Button>
             </div>
-          )}
-          {loading && rows.length === 0 && (
-            <span className="sr-only" role="status">
-              {labels.loading}
-            </span>
-          )}
-        </div>
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border px-5 py-3">
-          <p className="caption tabular-nums text-muted-foreground" aria-live="polite">
-            {multiple ? labels.selectedCount(selectedIds.length, maxSelected) : ""}
-          </p>
-          <div className="flex gap-2">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
-              {labels.cancel}
-            </Button>
-            <Button type="button" onClick={confirm} disabled={!canConfirm}>
-              {labels.add(selectedIds.length)}
-            </Button>
           </div>
-        </div>
-      </DialogContent>
-    </Dialog>
+        </DialogContent>
+      </Dialog>
+    </FieldContext.Provider>
   );
 }
 ResourcePicker.displayName = "ResourcePicker";
