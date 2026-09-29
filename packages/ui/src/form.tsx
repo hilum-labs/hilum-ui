@@ -36,7 +36,7 @@ import {
   type FieldValues,
 } from "react-hook-form";
 import { cn } from "./lib/utils";
-import { FieldContext, type FieldContextValue } from "./lib/field-context";
+import { FieldContext, useFieldRegistry, type FieldContextValue } from "./lib/field-context";
 import { Label } from "./components/label";
 
 /** `<Form {...useForm()}>` — react-hook-form's FormProvider. */
@@ -135,33 +135,43 @@ FormItem.displayName = "FormItem";
  */
 function FormItemFieldBridge({ children }: { children: React.ReactNode }) {
   const fieldContext = React.useContext(FormFieldContext);
-  const claimRef = React.useRef<string | null>(null);
   // Outside a FormField (e.g. a static FormItem) there is nothing to bridge.
   if (!fieldContext) return <>{children}</>;
-  return <FieldBridgeInner claimRef={claimRef}>{children}</FieldBridgeInner>;
+  return <FieldBridgeInner>{children}</FieldBridgeInner>;
 }
 
-function FieldBridgeInner({
-  claimRef,
-  children,
-}: {
-  claimRef: React.MutableRefObject<string | null>;
-  children: React.ReactNode;
-}) {
+function FieldBridgeInner({ children }: { children: React.ReactNode }) {
   const { formItemId, formDescriptionId, formMessageId, error, required, hasDescription } =
     useFormField();
+  const { claimRef, owner, registerControl, unregisterControl } = useFieldRegistry();
   const context = React.useMemo<FieldContextValue>(
     () => ({
+      // FormLabel / FormControl use formItemId, so the id stays fixed here.
       controlId: formItemId,
+      labelFor: formItemId,
+      labelId: `${formItemId}-label`,
       descriptionId: hasDescription ? formDescriptionId : undefined,
       errorId: error ? formMessageId : undefined,
       invalid: Boolean(error),
       required,
       disabled: false,
+      ownerToken: owner?.token ?? null,
       claimRef,
-      registerControlId: () => {},
+      registerControl,
+      unregisterControl,
     }),
-    [formItemId, formDescriptionId, formMessageId, error, required, hasDescription, claimRef],
+    [
+      formItemId,
+      formDescriptionId,
+      formMessageId,
+      error,
+      required,
+      hasDescription,
+      owner,
+      claimRef,
+      registerControl,
+      unregisterControl,
+    ],
   );
   return <FieldContext.Provider value={context}>{children}</FieldContext.Provider>;
 }
@@ -178,6 +188,7 @@ function FormLabel({
     <Label
       data-slot="form-label"
       data-error={error ? "" : undefined}
+      id={`${formItemId}-label`}
       htmlFor={formItemId}
       className={cn(error && "text-destructive", className)}
       {...props}

@@ -8,7 +8,7 @@ import { useFieldContext } from "../lib/field-context";
 function Label({ className, htmlFor, ...props }: React.ComponentProps<typeof LabelPrimitive.Root>) {
   // Inside a <Field>, a bare <Label> targets the field's control.
   const field = useFieldContext();
-  const target = htmlFor ?? field?.controlId;
+  const target = htmlFor ?? field?.labelFor;
   return (
     <LabelPrimitive.Root
       data-slot="label"
