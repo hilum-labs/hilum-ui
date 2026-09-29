@@ -31,22 +31,57 @@ function PaginationItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 PaginationItem.displayName = "PaginationItem";
 
-type PaginationLinkProps = React.ComponentProps<"a"> & { isActive?: boolean };
+type PaginationLinkProps = React.ComponentProps<"a"> & {
+  isActive?: boolean;
+  /** Not available (first / last page): a disabled button, or a link without `href`. */
+  disabled?: boolean;
+};
 
-const PaginationLink = ({ className, isActive, children, ...props }: PaginationLinkProps) => (
-  <a
-    aria-current={isActive ? "page" : undefined}
-    data-slot="pagination-link"
-    className={cn(
-      buttonVariants({ variant: isActive ? "default" : "ghost", size: "icon" }),
-      "size-9 rounded-md body",
-      className,
-    )}
-    {...props}
-  >
-    {children}
-  </a>
-);
+/**
+ * A page link. With `href` it's an `<a>`; without one (client-side paging
+ * with `onClick`) it's a `<button>`, since an `<a>` without `href` can't be
+ * reached with the keyboard.
+ */
+const PaginationLink = ({
+  className,
+  isActive,
+  disabled,
+  href,
+  children,
+  ...props
+}: PaginationLinkProps) => {
+  const classes = cn(
+    buttonVariants({ variant: isActive ? "default" : "ghost", size: "icon" }),
+    "size-9 rounded-md body",
+    className,
+  );
+  if (href === undefined) {
+    return (
+      <button
+        type="button"
+        aria-current={isActive ? "page" : undefined}
+        data-slot="pagination-link"
+        disabled={disabled}
+        className={classes}
+        {...(props as React.ComponentProps<"button">)}
+      >
+        {children}
+      </button>
+    );
+  }
+  return (
+    <a
+      aria-current={isActive ? "page" : undefined}
+      aria-disabled={disabled || undefined}
+      data-slot="pagination-link"
+      href={disabled ? undefined : href}
+      className={classes}
+      {...props}
+    >
+      {children}
+    </a>
+  );
+};
 PaginationLink.displayName = "PaginationLink";
 
 type PaginationStepProps = React.ComponentProps<typeof PaginationLink> & {

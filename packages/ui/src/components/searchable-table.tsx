@@ -252,7 +252,8 @@ function SearchableTable<T extends { id: string | number }>({
                 label={labels.previous}
                 aria-label={labels.previousPage}
                 onClick={() => pagination.onPageChange(Math.max(1, currentPage - 1))}
-                className={currentPage === 1 ? "pointer-events-none opacity-50" : "cursor-pointer"}
+                disabled={currentPage === 1}
+                className="cursor-pointer"
               />
             </PaginationItem>
             {pages.map((page, index) => (
@@ -275,9 +276,8 @@ function SearchableTable<T extends { id: string | number }>({
                 label={labels.next}
                 aria-label={labels.nextPage}
                 onClick={() => pagination.onPageChange(Math.min(totalPages, currentPage + 1))}
-                className={
-                  currentPage === totalPages ? "pointer-events-none opacity-50" : "cursor-pointer"
-                }
+                disabled={currentPage === totalPages}
+                className="cursor-pointer"
               />
             </PaginationItem>
           </PaginationContent>
