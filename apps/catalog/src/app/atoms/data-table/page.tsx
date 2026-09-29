@@ -540,9 +540,16 @@ const CARDS_CODE = `<DataTable
   getRowId={(row) => row.id}
   enableRowSelection
   onRowClick={(row) => navigate(\`/orders/\${row.id}\`)}
-  mobileLayout="cards"          // below 640px (mobileBreakpoint="md": 768px)
+  mobileLayout="cards"          // when the table is narrower than 640px
   mobileColumns={["amount", "status", "date"]}
-/>`;
+/>
+
+// Card labels come from a string header, or meta.label (typed) when the
+// header is a component:
+{ id: "amount", header: () => <AmountHeader />, meta: { label: "Amount" }, cell: … }
+
+// mobileBreakpoint="md" (768px) or a number of px; mobileBreakpointBasis="viewport"
+// compares with the window width instead of the table's own width.`;
 
 const CARD_COLUMNS: ColumnDef<Transaction>[] = [
   {
@@ -744,11 +751,14 @@ function DataTablePage() {
           <SectionHeading label="Phones: stacked cards" />
           <PreviewBlock
             title="Mobile layout: cards"
-            description="Below 640px each row becomes a card: the first column (a ResourceCell) is the title and the other columns are label / value rows. Selection, bulk actions and row clicks keep working. Narrow the window to see it. Body cells are 14px, the size of the ResourceCell title: primary title (medium) › values (regular) › secondary lines (12px, muted)."
+            description="When the table is narrower than 640px (on a phone, or in a narrow column, card or dialog) each row becomes a card: the first column (a ResourceCell) is the title and the other columns are label / value rows labelled by their string header or meta.label. Selection, bulk actions and row clicks keep working. The second preview is the same table in a 360px column. Body cells are 14px, the size of the ResourceCell title: primary title (medium) › values (regular) › secondary lines (12px, muted)."
             code={CARDS_CODE}
             previewClassName="flex-col items-stretch"
           >
             <CardsTableDemo />
+            <div className="w-full max-w-[360px]">
+              <CardsTableDemo />
+            </div>
           </PreviewBlock>
         </section>
 
