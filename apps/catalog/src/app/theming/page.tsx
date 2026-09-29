@@ -172,9 +172,7 @@ function ColorPicker({
           className="h-9 w-28 rounded-md border border-border bg-background px-3 font-mono caption text-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
         />
       </div>
-      <p className="caption-xs text-muted-foreground">
-        {label}-500 anchor · 11 shades generated
-      </p>
+      <p className="caption-xs text-muted-foreground">{label}-500 anchor · 11 shades generated</p>
     </div>
   );
 }

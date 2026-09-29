@@ -587,9 +587,7 @@ function FoundationsPage() {
                 <div className="text-center">
                   <p className="font-mono text-[11px] font-semibold text-foreground">{r.name}</p>
                   <p className="font-mono caption-xs text-muted-foreground">{r.value}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">
-                    {r.usage}
-                  </p>
+                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{r.usage}</p>
                 </div>
               </div>
             ))}

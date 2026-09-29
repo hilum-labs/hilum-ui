@@ -509,11 +509,7 @@ function PackageCard({ pkg }: { pkg: PackageDoc }) {
               <CardDescription className="caption">v{pkg.version}</CardDescription>
             </div>
           </div>
-          <Package
-            size={16}
-            strokeWidth={1.75}
-            className="mt-1 shrink-0 text-muted-foreground"
-          />
+          <Package size={16} strokeWidth={1.75} className="mt-1 shrink-0 text-muted-foreground" />
         </div>
         <CardDescription className="body">{pkg.description}</CardDescription>
       </CardHeader>
@@ -596,10 +592,7 @@ function Stat({ label, value, active }: { label: string; value: string; active: 
   return (
     <div>
       <p
-        className={cn(
-          "heading font-medium",
-          active ? "text-foreground" : "text-muted-foreground",
-        )}
+        className={cn("heading font-medium", active ? "text-foreground" : "text-muted-foreground")}
       >
         {value}
       </p>

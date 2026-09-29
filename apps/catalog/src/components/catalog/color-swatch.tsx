@@ -44,9 +44,7 @@ export function ColorSwatch({ name, hex, usage, lightText = true, size = "md" }:
       <div className="min-w-0">
         <p className="truncate text-[11px] font-semibold text-foreground">{name}</p>
         <p className="font-mono caption-xs text-muted-foreground">{hex}</p>
-        {usage && (
-          <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{usage}</p>
-        )}
+        {usage && <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{usage}</p>}
       </div>
     </button>
   );
