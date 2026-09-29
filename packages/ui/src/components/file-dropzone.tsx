@@ -133,6 +133,8 @@ function FileDropzone({
       data-slot="file-dropzone"
       data-dragging={isDragging ? "true" : "false"}
       data-disabled={isUnavailable || undefined}
+      // Dimmed text of an unavailable control is exempt from contrast (WCAG 1.4.3).
+      aria-disabled={isUnavailable || undefined}
       className={cn(
         "group relative flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card p-6 text-center shadow-natural",
         "transition-[background-color,border-color,box-shadow,scale] duration-150",

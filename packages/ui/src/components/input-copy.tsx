@@ -291,6 +291,8 @@ function InputCopy({
     <div
       ref={ref}
       data-slot="input-copy"
+      // Dimmed text of a disabled control is exempt from contrast (WCAG 1.4.3).
+      aria-disabled={disabled || undefined}
       className={cn(
         "flex flex-col gap-0.5",
         disabled && "opacity-50 pointer-events-none",
