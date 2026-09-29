@@ -22,6 +22,7 @@ import {
   TimePicker,
 } from "@hilum/ui";
 import { AppHeader, AppShell, AppSidebar, AppStatusBanner } from "@hilum/app-shell";
+import { DesignerHeader } from "@hilum/designer";
 
 /** Resolve a CSS colour expression to its computed rgb() string. */
 function resolveColor(value: string) {
@@ -302,5 +303,61 @@ describe("ContextualSaveBar inside AppShell (real browser)", () => {
     // Nothing below the top bar is covered: the page title starts under it.
     const title = screen.getByRole("heading", { name: "Edit product" }).getBoundingClientRect();
     expect(title.top).toBeGreaterThanOrEqual(rect.bottom);
+  });
+});
+
+describe("DesignerHeader (real browser)", () => {
+  test("keeps Publish fully visible at 1440px with many actions", async () => {
+    await page.viewport(1440, 900);
+    render(
+      <DesignerHeader
+        left={<span>Theme editor · Dawn</span>}
+        center={<span>Home page</span>}
+        right={
+          <>
+            {Array.from({ length: 8 }, (_, i) => (
+              <Button key={i} variant="outline" size="sm">
+                Tool {i + 1}
+              </Button>
+            ))}
+          </>
+        }
+        primaryAction={{ label: "Publish", onAction: () => {} }}
+        secondaryActions={["Preview", "Share", "Export", "Duplicate"].map((label) => ({
+          label,
+          onAction: () => {},
+        }))}
+      />,
+    );
+    const header = document.querySelector("[data-designer-header]")!.getBoundingClientRect();
+    const publish = screen.getByRole("button", { name: "Publish" }).getBoundingClientRect();
+    expect(publish.width).toBeGreaterThan(40);
+    expect(publish.right).toBeLessThanOrEqual(header.right);
+    expect(publish.left).toBeGreaterThanOrEqual(header.left);
+    // Wide header: two secondary actions inline, the rest in "More actions".
+    expect(screen.getByRole("button", { name: "Preview" })).toBeVisible();
+    expect(screen.getByRole("button", { name: "Share" })).toBeVisible();
+    const more = screen
+      .getAllByRole("button", { name: "More actions" })
+      .filter((b) => b.offsetParent);
+    expect(more).toHaveLength(1);
+  });
+
+  test("collapses every secondary action into the menu on a narrow header", async () => {
+    await page.viewport(700, 900);
+    render(
+      <DesignerHeader
+        primaryAction={{ label: "Publish" }}
+        secondaryActions={[{ label: "Preview" }, { label: "Share" }]}
+      />,
+    );
+    const header = document.querySelector("[data-designer-header]")!;
+    expect(header.getBoundingClientRect().width).toBeLessThan(896);
+    expect(screen.getByRole("button", { name: "Publish" })).toBeVisible();
+    const preview = Array.from(header.querySelectorAll("button")).find(
+      (button) => button.textContent === "Preview",
+    );
+    expect(preview).toBeDefined();
+    expect(preview).not.toBeVisible();
   });
 });
