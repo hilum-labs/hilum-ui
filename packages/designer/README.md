@@ -155,6 +155,11 @@ renders in the category's generic face until the font has loaded. Under a
 strict CSP, load fonts with `<link rel="stylesheet">` or the `FontFace` API
 (`style-src` must allow the font CSS origin).
 
+Search matches family names (case-insensitive substring, in the order of
+`fonts`), so "play" finds "Playfair Display" but not every `display` font. A
+query that names a category exactly ("serif", "display", "sans serif") also
+lists that category's other fonts, after the name matches.
+
 ## Hooks
 
 - `useShellContext()` / `<ShellProvider>` — selection, active tool, read-only flag

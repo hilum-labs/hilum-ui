@@ -55,6 +55,18 @@ const { data, isFetching } = useCountries(query)
     clearable
   />
 </Field>`,
+  labels: `// The record's selection arrives before (or without) its options:
+// chips never show raw ids.
+<MultiCombobox
+  options={searchResults}                 // current search results only
+  value={product.collectionIds}
+  onValueChange={setIds}
+  onSearchChange={setQuery}
+  selectedOptions={product.collections}   // { value, label }[] loaded with the record
+  getOptionLabel={(id) => labelCache.get(id)}  // or a lookup
+  loading={isLoading}                     // unknown chips read "Loading…"
+  labels={{ unknownOption: "Deleted collection" }}  // default "Unknown item"
+/>`,
   error: `<Field label="Eligible collections" error="Pick at least one collection" required>
   <MultiCombobox options={collections} value={[]} onValueChange={setIds} />
 </Field>`,
@@ -113,6 +125,32 @@ function AsyncDemo() {
           clearable
           placeholder="Search countries"
           emptyText="No countries found"
+        />
+      </Field>
+    </div>
+  );
+}
+
+function LabelsDemo() {
+  const [ids, setIds] = useState(["summer", "sale", "archived-2019"]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setLoading(false), 1500);
+    return () => window.clearTimeout(timer);
+  }, []);
+  return (
+    <div className="w-full max-w-md">
+      <Field
+        label="Collections"
+        hint="“Sale” comes from selectedOptions; the 2019 one was deleted."
+      >
+        <MultiCombobox
+          options={COLLECTIONS.filter((option) => option.value !== "sale")}
+          selectedOptions={[{ value: "sale", label: "Sale" }]}
+          value={ids}
+          onValueChange={setIds}
+          loading={loading}
+          labels={{ unknownOption: "Deleted collection" }}
         />
       </Field>
     </div>
@@ -178,6 +216,17 @@ function MultiComboboxPage() {
             code={CODE.async}
           >
             <AsyncDemo />
+          </PreviewBlock>
+        </section>
+
+        <section>
+          <SectionHeading label="Selected values without options" />
+          <PreviewBlock
+            title="Labels for unknown values"
+            description="Chips use options, then selectedOptions, getOptionLabel and every option seen before. A value with none of these reads “Loading…” while loading and “Unknown item” after (labels.loadingOption / labels.unknownOption), never its raw id. The list renders in a popover layer, so cards and dialogs with overflow hidden don't clip it."
+            code={CODE.labels}
+          >
+            <LabelsDemo />
           </PreviewBlock>
         </section>
 

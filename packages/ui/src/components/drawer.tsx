@@ -39,7 +39,11 @@ function DrawerContent({
         )}
         {...props}
       >
-        <div className="mx-auto mt-4 h-1 w-12 rounded-full bg-muted" />
+        <div
+          data-slot="drawer-handle"
+          aria-hidden="true"
+          className="mx-auto mt-4 h-1 w-12 rounded-full bg-muted-foreground/35"
+        />
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>

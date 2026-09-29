@@ -3078,10 +3078,18 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
           },
           {
             "name": "mobileBreakpoint",
-            "type": "\"sm\" | \"md\"",
+            "type": "\"sm\" | \"md\" | number",
             "required": false,
             "default": "\"sm\"",
-            "description": "Width below which `mobileLayout=\"cards\"` applies: `sm` (640px, default) or `md` (768px).",
+            "description": "Width below which `mobileLayout=\"cards\"` applies: `sm` (640px, default), `md` (768px) or a number of px. Measured on the table's own width by default (`mobileBreakpointBasis`).",
+            "declaredIn": "packages/ui/src/components/data-table.tsx"
+          },
+          {
+            "name": "mobileBreakpointBasis",
+            "type": "\"container\" | \"viewport\"",
+            "required": false,
+            "default": "\"container\"",
+            "description": "What `mobileBreakpoint` is compared with: `\"container\"` (default) is the DataTable's own width, so a table in a narrow column, card or dialog switches to cards too; `\"viewport\"` is the window width (a media query). Before the table has been laid out (server render, hidden tab) the viewport is used.",
             "declaredIn": "packages/ui/src/components/data-table.tsx"
           },
           {
@@ -4311,6 +4319,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "declaredIn": "packages/ui/src/components/input-number.tsx"
           },
           {
+            "name": "fullWidth",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "Stretch to the width of the container. Default: `true` inside a `<Field>` (so fields in a two-column FormLayout row fit a phone), `false` elsewhere, where the field is a compact 192px. `className` still wins.",
+            "declaredIn": "packages/ui/src/components/input-number.tsx"
+          },
+          {
             "name": "labels",
             "type": "Partial<InputNumberLabels>",
             "required": false,
@@ -4575,6 +4591,22 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": true,
             "default": null,
             "description": "Options to choose from (the current search results when `onSearchChange` is set).",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "selectedOptions",
+            "type": "ComboboxOption[]",
+            "required": false,
+            "default": null,
+            "description": "Options for selected values that may not be in `options`: the selection loaded with a record while search results are fetched separately, or a value whose option is on another page. Chips use their labels.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "getOptionLabel",
+            "type": "(value: string) => string",
+            "required": false,
+            "default": null,
+            "description": "Label for a selected value that isn't in `options` or `selectedOptions` (e.g. from a lookup map). Return `undefined` when unknown.",
             "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
           },
           {
@@ -9576,7 +9608,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "string",
             "required": false,
             "default": null,
-            "description": "id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context. Input, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically. If the control has its own `id`, the label follows it, so `htmlFor` is only needed for controls outside this list.",
+            "description": "id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context. Input, InputGroup, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically. If the control has its own `id`, the label follows it, so `htmlFor` is only needed for controls outside this list.",
             "declaredIn": "packages/ui/src/components/field.tsx"
           },
           {
@@ -10219,7 +10251,31 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "string",
             "required": false,
             "default": null,
-            "description": "",
+            "description": "id of the built-in input. Inside a `<Field>` the input takes the field's id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically, like `Input`.",
+            "declaredIn": "packages/ui/src/components/input-group.tsx"
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Marks the built-in input required (`required` + `aria-required`).",
+            "declaredIn": "packages/ui/src/components/input-group.tsx"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Form field name of the built-in input.",
+            "declaredIn": "packages/ui/src/components/input-group.tsx"
+          },
+          {
+            "name": "inputProps",
+            "type": "Omit<ComponentProps<\"input\">, \"className\" | \"value\" | \"defaultValue\" | \"onChange\">",
+            "required": false,
+            "default": null,
+            "description": "Other props for the built-in `<input>` (`autoComplete`, `inputMode`, `onBlur`, `maxLength`, a `ref` for react-hook-form's `register`, …).",
             "declaredIn": "packages/ui/src/components/input-group.tsx"
           },
           {
@@ -12733,7 +12789,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "TimeSeriesValueFormat",
             "required": false,
             "default": "\"number\"",
-            "description": "Value formatting for the y-axis (compact) and tooltip (full): \"number\" (default), \"currency\", \"percent\" (0.12 → 12%) or a function.",
+            "description": "Value formatting for the y-axis (compact) and tooltip (full): \"number\" (default), \"currency\", \"percent\" (0.12 → 12%) or a function. A function gets `{ context: \"axis\" | \"tooltip\" }` as its second argument, e.g. `(value, { context }) => formatMoney(value, context === \"axis\" ? { notation: \"compact\" } : {})`.",
             "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
           },
           {
@@ -12742,6 +12798,22 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "ISO-4217 code for `valueFormat=\"currency\"`. Default: FormatProvider currency, then USD.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "currencyDisplay",
+            "type": "keyof Intl.NumberFormatOptionsCurrencyDisplayRegistry",
+            "required": false,
+            "default": "\"symbol\"",
+            "description": "How `valueFormat=\"currency\"` shows the currency, as in Intl / `formatCurrency`: \"symbol\" (default: \"$\", \"CA$\", \"S/\" in es-PE, \"PEN\" in en), \"narrowSymbol\" (\"$\" for CAD too), \"code\" (\"PEN\") or \"name\".",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "currencySymbol",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Replaces Intl's currency sign on the axis and in the tooltip, e.g. \"S/\" for PEN in an English locale, where Intl only has \"PEN\" (as in `formatCurrency`).",
             "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
           },
           {

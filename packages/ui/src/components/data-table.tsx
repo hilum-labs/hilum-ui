@@ -15,6 +15,7 @@ import {
   type ColumnSizingState,
   type PaginationState,
   type Row,
+  type RowData,
   type RowSelectionState,
   type SortingState,
   type TableOptions,
@@ -41,6 +42,21 @@ import { pluralize, useFormatter } from "../lib/format";
 import { useControllableState } from "../lib/use-controllable-state";
 
 /* ─────────────────────── Types ─────────────────────── */
+
+declare module "@tanstack/react-table" {
+  // Hilum reads these from `columnDef.meta`. Declared here so column
+  // definitions type-check without a cast.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- must match TanStack's signature
+  interface ColumnMeta<TData extends RowData, TValue> {
+    /**
+     * Human-readable column name, used where the header isn't plain text (or
+     * isn't shown): the label of the column's rows in the mobile cards
+     * (`mobileLayout="cards"`) and its entry in the "Columns" menu
+     * (`enableColumnVisibility`). Default: a string `header`.
+     */
+    label?: string;
+  }
+}
 
 /** Localizable strings. Every entry has an English default. */
 interface DataTableLabels {
@@ -226,8 +242,20 @@ interface DataTableProps<TData> {
    * the same. Default `"table"` (the table scrolls horizontally).
    */
   mobileLayout?: "table" | "cards";
-  /** Width below which `mobileLayout="cards"` applies: `sm` (640px, default) or `md` (768px). */
-  mobileBreakpoint?: "sm" | "md";
+  /**
+   * Width below which `mobileLayout="cards"` applies: `sm` (640px, default),
+   * `md` (768px) or a number of px. Measured on the table's own width by
+   * default (`mobileBreakpointBasis`).
+   */
+  mobileBreakpoint?: "sm" | "md" | number;
+  /**
+   * What `mobileBreakpoint` is compared with: `"container"` (default) is the
+   * DataTable's own width, so a table in a narrow column, card or dialog
+   * switches to cards too; `"viewport"` is the window width (a media query).
+   * Before the table has been laid out (server render, hidden tab) the
+   * viewport is used.
+   */
+  mobileBreakpointBasis?: "container" | "viewport";
   /** Column id shown as the card title. Default: the first visible data column. */
   mobilePrimaryColumn?: string;
   /**
@@ -244,8 +272,8 @@ const ROW_CLICK_IGNORE =
   'a,button,input,select,textarea,label,summary,[role="checkbox"],[role="button"],[role="link"],[role="menuitem"],[role="switch"],[contenteditable="true"],[data-row-click-ignore]';
 
 function columnLabel<TData>(column: Column<TData, unknown>): string {
-  const meta = column.columnDef.meta as { label?: string } | undefined;
-  if (meta?.label) return meta.label;
+  const label = column.columnDef.meta?.label;
+  if (label) return label;
   const header = column.columnDef.header;
   return typeof header === "string" ? header : column.id;
 }
@@ -268,10 +296,42 @@ function useMediaQuery(query: string | null): boolean {
   );
 }
 
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
+/**
+ * Border-box width of an element, measured before paint and kept current with
+ * a ResizeObserver. `null` until measured, and while the element has no
+ * layout (display: none, not in a rendered document).
+ */
+function useElementWidth<T extends HTMLElement>(enabled: boolean) {
+  const ref = React.useRef<T>(null);
+  const [width, setWidth] = React.useState<number | null>(null);
+  useIsomorphicLayoutEffect(() => {
+    const element = ref.current;
+    if (!enabled || !element) {
+      setWidth(null);
+      return;
+    }
+    const measure = () => {
+      const next = element.getBoundingClientRect().width;
+      setWidth(next > 0 ? next : null);
+    };
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [enabled]);
+  return [ref, width] as const;
+}
+
+const MOBILE_BREAKPOINTS = { sm: 640, md: 768 } as const;
+
 /** Label of a column for the mobile cards: `meta.label` or a string header, else undefined. */
 function cardColumnLabel<TData>(column: Column<TData, unknown>): string | undefined {
-  const meta = column.columnDef.meta as { label?: string } | undefined;
-  if (meta?.label) return meta.label;
+  const label = column.columnDef.meta?.label;
+  if (label) return label;
   const header = column.columnDef.header;
   return typeof header === "string" ? header : undefined;
 }
@@ -348,14 +408,18 @@ function DataTable<TData>({
   virtualize,
   mobileLayout = "table",
   mobileBreakpoint = "sm",
+  mobileBreakpointBasis = "container",
   mobilePrimaryColumn,
   mobileColumns,
 }: DataTableProps<TData>) {
+  const breakpointPx =
+    typeof mobileBreakpoint === "number" ? mobileBreakpoint : MOBILE_BREAKPOINTS[mobileBreakpoint];
   const cardsQuery =
-    mobileLayout === "cards"
-      ? `(max-width: ${mobileBreakpoint === "md" ? "767.98px" : "639.98px"})`
-      : null;
-  const cards = useMediaQuery(cardsQuery);
+    mobileLayout === "cards" ? `(max-width: ${Math.max(0, breakpointPx - 0.02)}px)` : null;
+  const viewportCards = useMediaQuery(cardsQuery);
+  const measureContainer = mobileLayout === "cards" && mobileBreakpointBasis === "container";
+  const [rootRef, rootWidth] = useElementWidth<HTMLDivElement>(measureContainer);
+  const cards = measureContainer && rootWidth !== null ? rootWidth < breakpointPx : viewportCards;
   const fmt = useFormatter();
   const labels = React.useMemo(() => ({ ...DEFAULT_LABELS, ...labelsProp }), [labelsProp]);
   const locale = fmt.locale ? { locale: fmt.locale } : {};
@@ -1016,7 +1080,18 @@ function DataTable<TData>({
   );
 
   return (
-    <div className={cn("flex flex-col gap-4", className)} data-slot="data-table">
+    <div
+      ref={rootRef}
+      className={cn(
+        "flex flex-col gap-4",
+        // Measured for the cards switch: let a grid / flex cell shrink it
+        // below the table's content width instead of growing to fit it.
+        measureContainer && "min-w-0",
+        className,
+      )}
+      data-slot="data-table"
+      data-layout={cards ? "cards" : "table"}
+    >
       {showToolbar && (
         <div className="flex flex-wrap items-center gap-2" data-slot="data-table-toolbar">
           {searchKey && (

@@ -68,8 +68,9 @@ function UsageBar({
 
   const bar = (
     <div
+      data-slot="usage-bar-track"
       className={cn(
-        "h-2 w-full overflow-hidden rounded-full bg-muted",
+        "h-2 w-full overflow-hidden rounded-full bg-border",
         layout === "inline" && "w-28",
         barClassName,
       )}

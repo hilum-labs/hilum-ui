@@ -661,19 +661,18 @@ describe("Combobox", () => {
     expect(screen.getAllByRole("option")).toHaveLength(3);
   });
 
-  it("renders a mobile bottom sheet backdrop when open", async () => {
+  it("renders the list in a popover layer that becomes a bottom sheet on phones", async () => {
     const user = userEvent.setup();
-    render(<Combobox options={FRUITS} />);
+    const { container } = render(<Combobox options={FRUITS} />);
     await user.click(screen.getByRole("combobox"));
 
-    expect(screen.getByRole("button", { name: "Close options" })).toHaveClass(
-      "max-md:block",
-      "backdrop-blur-sm",
-    );
-    expect(screen.getByRole("listbox").parentElement).toHaveClass(
-      "max-md:fixed",
-      "max-md:rounded-2xl",
-    );
+    // Portalled out of the field, so a card's overflow can't clip it.
+    const content = screen.getByRole("listbox").parentElement!;
+    expect(container).not.toContainElement(content);
+    expect(content).toHaveAttribute("data-slot", "combobox-content");
+    // The mobile sheet (position, backdrop) comes from tokens.css.
+    expect(content).toHaveAttribute("data-hilum-mobile-sheet", "true");
+    expect(content).toHaveClass("max-md:rounded-2xl");
   });
 
   it("filters options by query", async () => {

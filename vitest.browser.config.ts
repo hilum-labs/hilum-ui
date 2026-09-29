@@ -15,7 +15,7 @@
  * the newest chromium(-headless-shell) found under ~/.cache/ms-playwright.
  */
 import { execSync } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, resolve } from "node:path";
 import tailwind from "@tailwindcss/vite";
@@ -26,12 +26,26 @@ import { defineConfig } from "vitest/config";
 
 const root = resolve(import.meta.dirname);
 
-/* ── Tailwind tokens: tests import packages/ui/dist/tokens.css (generated). ── */
-const tokensCss = resolve(root, "packages/ui/dist/tokens.css");
-if (!existsSync(tokensCss)) {
-  console.log("[test:browser] packages/ui/dist/tokens.css missing — building @hilum/ui…");
+/* ── Built @hilum/ui: tests import packages/ui/dist/tokens.css (generated), and
+ *   csp-page-load.browser.test.tsx loads dist/index.js (the published bundle,
+ *   with sonner / vaul's CSS injection stripped). Rebuild after changing
+ *   packages/ui when running that test locally. ── */
+const builtFiles = ["tokens.css", "index.js"].map((file) =>
+  resolve(root, "packages/ui/dist", file),
+);
+if (!builtFiles.every((file) => existsSync(file))) {
+  console.log("[test:browser] packages/ui/dist incomplete — building @hilum/ui…");
   execSync("pnpm --filter @hilum/ui build", { cwd: root, stdio: "inherit" });
 }
+
+const uiDependencies = Object.keys(
+  (
+    JSON.parse(readFileSync(resolve(root, "packages/ui/package.json"), "utf8")) as {
+      dependencies: Record<string, string>;
+    }
+  ).dependencies,
+  // Loaded on demand by FileThumbnail, never by the tests.
+).filter((name) => name !== "pdfjs-dist");
 
 /* ── Chromium resolution ── */
 function resolveChromium(): string | undefined {
@@ -102,13 +116,19 @@ export default defineConfig({
   },
   optimizeDeps: {
     // Pre-bundle up front so the first test file doesn't trigger a reload.
+    // @hilum/ui's own dependencies are listed too: csp-page-load imports the
+    // built bundle dynamically, which the dependency scan can't see, and a
+    // re-optimization mid-run would load a second copy of React.
     include: [
       "react",
       "react-dom",
       "react-dom/client",
+      "react/jsx-runtime",
       "react/jsx-dev-runtime",
       "@testing-library/react",
       "@testing-library/jest-dom/vitest",
+      "lucide-react",
+      ...uiDependencies,
     ],
   },
   test: {

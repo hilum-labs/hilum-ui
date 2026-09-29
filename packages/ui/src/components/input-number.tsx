@@ -12,7 +12,7 @@ import {
   inputFocusWithinClasses,
 } from "../lib/interaction";
 import { useFormatter } from "../lib/format";
-import { isAriaInvalid, useFieldControl } from "../lib/field-context";
+import { isAriaInvalid, useFieldContext, useFieldControl } from "../lib/field-context";
 
 interface InputNumberProps extends Omit<
   React.ComponentProps<"input">,
@@ -63,6 +63,12 @@ interface InputNumberProps extends Omit<
    * "1,234". `style: "percent"` formats 0.5 as "50%" (and parses it back).
    */
   formatOptions?: Intl.NumberFormatOptions | undefined;
+  /**
+   * Stretch to the width of the container. Default: `true` inside a
+   * `<Field>` (so fields in a two-column FormLayout row fit a phone), `false`
+   * elsewhere, where the field is a compact 192px. `className` still wins.
+   */
+  fullWidth?: boolean | undefined;
   /** Localizable strings. Every entry has an English default. */
   labels?: Partial<InputNumberLabels> | undefined;
 }
@@ -178,6 +184,7 @@ function InputNumber({
   "aria-describedby": ariaDescribedBy,
   "aria-invalid": ariaInvalid,
   "aria-required": ariaRequired,
+  fullWidth: fullWidthProp,
   labels: labelsProp,
   ref,
   ...rest
@@ -194,6 +201,8 @@ function InputNumber({
     "aria-required": ariaRequired,
   });
   const isDisabled = fieldProps.disabled ?? false;
+  const field = useFieldContext();
+  const fullWidth = fullWidthProp ?? field !== null;
   // Stable key so an inline `formatOptions={{…}}` doesn't rebuild the codec every render.
   const formatOptionsKey = JSON.stringify(formatOptions ?? null);
   const codec = React.useMemo(
@@ -311,9 +320,11 @@ function InputNumber({
       data-slot="input-number"
       data-invalid={isAriaInvalid(fieldProps["aria-invalid"]) ? "" : undefined}
       className={cn(
-        // w-48 ≈ the old intrinsic width of the native input (size=20), kept as an
-        // overridable default; min-w-fit stops narrow widths clipping digits.
-        "inline-flex w-48 min-w-fit items-stretch overflow-hidden",
+        // Full width inside a Field. Elsewhere w-48 ≈ the old intrinsic width
+        // of the native input (size=20), kept as an overridable default.
+        // min-w-fit stops narrow widths clipping digits.
+        "inline-flex min-w-fit items-stretch overflow-hidden",
+        fullWidth ? "w-full" : "w-48",
         controlHeightClass,
         controlSurfaceClasses,
         "transition-[background-color,border-color,box-shadow] duration-150",

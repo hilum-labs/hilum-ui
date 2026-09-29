@@ -104,6 +104,11 @@ interface PreviewFrameProps {
   ref?: React.Ref<HTMLIFrameElement> | undefined;
 }
 
+/** `src` values that load a blank document synchronously on insertion. */
+function isBlankSrc(src: string) {
+  return src.trim() === "" || /^about:blank(?:[?#]|$)/i.test(src.trim());
+}
+
 function useElementSize<T extends HTMLElement>() {
   const ref = React.useRef<T>(null);
   const [size, setSize] = React.useState<{ width: number; height: number } | null>(null);
@@ -173,9 +178,30 @@ function PreviewFrame({
   const [stageRef, stage] = useElementSize<HTMLDivElement>();
 
   const onErrorRef = React.useRef(onError);
+  const onLoadRef = React.useRef(onLoad);
   React.useEffect(() => {
     onErrorRef.current = onError;
+    onLoadRef.current = onLoad;
   });
+
+  // Marks a page load as done and calls `onLoad` once per load.
+  const reportedLoadRef = React.useRef<string | null>(null);
+  const markLoaded = React.useCallback((key: string) => {
+    setLoadedKey(key);
+    if (reportedLoadRef.current === key) return;
+    reportedLoadRef.current = key;
+    onLoadRef.current?.();
+  }, []);
+
+  const frameRef = React.useRef<HTMLIFrameElement | null>(null);
+  const setFrameRef = React.useCallback(
+    (node: HTMLIFrameElement | null) => {
+      frameRef.current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref) (ref as React.RefObject<HTMLIFrameElement | null>).current = node;
+    },
+    [ref],
+  );
   React.useEffect(() => {
     if (loaded || failed || !loadTimeout) return;
     const timer = window.setTimeout(() => {
@@ -194,9 +220,33 @@ function PreviewFrame({
   const frameHeight = stageHeight > 0 ? stageHeight / scale : undefined;
   const framed = device !== "desktop" && scale === 1 && layoutWidth < stageWidth;
 
+  const showErrorState = Boolean(errorProp) || failed;
+  // A frame can finish loading while React inserts it (about:blank loads
+  // synchronously; a cached same-origin page can be quick), and React drops
+  // events fired during its commit, so `onLoad` would never run and the
+  // skeleton would stay. Check the frame once it is in the document.
+  React.useLayoutEffect(() => {
+    const frame = frameRef.current;
+    if (!frame || showErrorState) return;
+    if (isBlankSrc(src)) {
+      markLoaded(frameKey);
+      return;
+    }
+    try {
+      // Same-origin only (null otherwise). Before navigation the frame holds
+      // its initial about:blank document, which doesn't count.
+      const doc = frame.contentDocument;
+      if (doc && doc.readyState === "complete" && doc.URL !== "about:blank") {
+        markLoaded(frameKey);
+      }
+    } catch {
+      // Cross-origin: wait for the load event.
+    }
+  }, [frameKey, src, showErrorState, markLoaded]);
+
   const errorMessage =
     typeof errorProp === "string" && errorProp ? errorProp : labels.errorDescription;
-  const showError = Boolean(errorProp) || failed;
+  const showError = showErrorState;
   const toggleVisible = (showDeviceToggle ?? devices.length > 1) && devices.length > 0;
 
   return (
@@ -271,7 +321,7 @@ function PreviewFrame({
           {!showError && (
             <iframe
               key={frameKey}
-              ref={ref}
+              ref={setFrameRef}
               src={src}
               title={title}
               sandbox={sandbox}
@@ -287,10 +337,7 @@ function PreviewFrame({
                 transform: scale === 1 ? undefined : `scale(${scale})`,
                 transformOrigin: "0 0",
               }}
-              onLoad={() => {
-                setLoadedKey(frameKey);
-                onLoad?.();
-              }}
+              onLoad={() => markLoaded(frameKey)}
               onError={() => {
                 setFailedKey(frameKey);
                 onError?.();

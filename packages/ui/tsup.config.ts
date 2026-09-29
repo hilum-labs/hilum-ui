@@ -1,5 +1,6 @@
 import { defineConfig } from "tsup";
 import { prependUseClient } from "../../scripts/use-client-banner.mjs";
+import { INJECTING_PACKAGES, stripInjectedCssPlugin } from "./scripts/strip-injected-css.mjs";
 
 export default defineConfig({
   entry: {
@@ -15,9 +16,14 @@ export default defineConfig({
   // Inline external types from vaul + radix into the .d.ts so consumers in
   // pnpm-strict layouts don't need to traverse .pnpm/ paths (avoids TS2742).
   dts: {
-    resolve: ["vaul", /^@radix-ui\//],
+    resolve: ["vaul", "sonner", /^@radix-ui\//],
   },
   external: ["react", "react-dom"],
+  // sonner and vaul are bundled so their import-time <style> injection can be
+  // stripped (strict-CSP apps logged a violation on every page); their CSS
+  // ships in tokens.css. See scripts/strip-injected-css.mjs.
+  noExternal: INJECTING_PACKAGES,
+  esbuildPlugins: [stripInjectedCssPlugin()],
   sourcemap: true,
   clean: true,
   treeshake: true,

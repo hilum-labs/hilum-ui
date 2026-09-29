@@ -2,7 +2,7 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { DensityProvider, InputNumber } from "@hilum/ui";
+import { DensityProvider, Field, FormLayout, InputNumber } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
@@ -30,6 +30,19 @@ const [value, setValue] = React.useState(0)
   decimal: `<InputNumber value={value} onChange={setValue} step={0.1} precision={2} unit="rem" />`,
 
   noSteppers: `<InputNumber value={value} onChange={setValue} unit="px" hideSteppers />`,
+
+  inField: `import { Field, FormLayout, InputNumber } from "@hilum/ui"
+
+// Inside a Field, InputNumber fills its column (fullWidth defaults to true),
+// so two fields share a row on a phone. fullWidth={false} keeps 192px.
+<FormLayout.Group condensed>
+  <Field label="Weight">
+    <InputNumber value={weight} onChange={setWeight} precision={1} step={0.1} unit="kg" />
+  </Field>
+  <Field label="Stock">
+    <InputNumber value={stock} onChange={setStock} min={0} />
+  </Field>
+</FormLayout.Group>`,
 };
 
 function SectionHeading({ label }: { label: string }) {
@@ -49,6 +62,8 @@ function InputNumberPage() {
   const [decimal, setDecimal] = React.useState(1.5);
   const [noSteppers, setNoSteppers] = React.useState(24);
   const [pos, setPos] = React.useState({ x: 120, y: 80, w: 320, h: 180 });
+  const [weight, setWeight] = React.useState(1.5);
+  const [stock, setStock] = React.useState(120);
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
@@ -106,6 +121,29 @@ function InputNumberPage() {
           code={CODE.noSteppers}
         >
           <InputNumber value={noSteppers} onChange={setNoSteppers} unit="px" hideSteppers />
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="In a form row"
+          description="Full width inside a Field, so two fields fit side by side on a phone; fullWidth={false} opts back into the compact 192px width"
+          code={CODE.inField}
+        >
+          <div className="w-full max-w-sm">
+            <FormLayout.Group condensed>
+              <Field label="Weight">
+                <InputNumber
+                  value={weight}
+                  onChange={setWeight}
+                  precision={1}
+                  step={0.1}
+                  unit="kg"
+                />
+              </Field>
+              <Field label="Stock">
+                <InputNumber value={stock} onChange={setStock} min={0} />
+              </Field>
+            </FormLayout.Group>
+          </div>
         </PreviewBlock>
 
         <PreviewBlock
