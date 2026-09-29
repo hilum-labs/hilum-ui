@@ -405,7 +405,7 @@ describe("StatusTile", () => {
 describe("StatusBadge", () => {
   it("formats status labels", () => {
     render(<StatusBadge status="held_for_review" />);
-    expect(screen.getByText("Held For Review")).toBeInTheDocument();
+    expect(screen.getByText("Held for review")).toBeInTheDocument();
   });
 
   it("maps common statuses to badge variants", () => {

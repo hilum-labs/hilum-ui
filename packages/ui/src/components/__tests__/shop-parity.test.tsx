@@ -238,7 +238,7 @@ describe("StatusBadge tones", () => {
       </>,
     );
     expect(screen.getByText("Info badge")).toHaveAttribute("data-tone", "info");
-    expect(screen.getByText("Custom State").closest("[data-tone]")).toHaveAttribute(
+    expect(screen.getByText("Custom state").closest("[data-tone]")).toHaveAttribute(
       "data-tone",
       "attention",
     );
