@@ -181,8 +181,10 @@ export const tokens = {
       mutedForeground: "#e5e5e5", // ground-200 (designer text-secondary)
       accent: "#404040", // ground-700 (designer item-hover-bg)
       accentForeground: "#fafafa",
-      hover: "rgba(255, 255, 255, 0.08)",
-      active: "rgba(255, 255, 255, 0.13)",
+      // Dark washes: white ones lightened the gray under mid's light text
+      // (foreground 4.3:1 on an active row, muted text 3.6:1 on hover).
+      hover: "rgba(0, 0, 0, 0.1)",
+      active: "rgba(0, 0, 0, 0.16)",
       primary: "#c100f1", // brand stays consistent across themes
       primaryForeground: "#ffffff",
       // No purple stays readable on every mid surface and tint; the brand

@@ -199,6 +199,20 @@ describe("text contrast on every surface", () => {
     expect(contrast(tokens.semantic.mid.mutedForeground, "#737373")).toBeLessThan(4.5);
   });
 
+  it("mid: text stays ≥ 4.5:1 on its hover and active washes", () => {
+    const { background, card, foreground, mutedForeground, hover, active } = tokens.semantic.mid;
+    const alpha = (wash: string) => Number(wash.match(/[\d.]+\)$/)![0].slice(0, -1));
+    const black = "#000000";
+    for (const wash of [hover, active]) {
+      expect(wash).toMatch(/^rgba\(0, 0, 0,/);
+      for (const surface of [background, card]) {
+        const washed = over(black, alpha(wash), surface);
+        expect(contrast(foreground, washed)).toBeGreaterThanOrEqual(4.5);
+        expect(contrast(mutedForeground, washed)).toBeGreaterThanOrEqual(4.5);
+      }
+    }
+  });
+
   it("mid keeps its steps: canvas between the page and the cards", () => {
     const { background, canvas, card } = tokens.semantic.mid;
     expect(luminance(background)).toBeGreaterThan(luminance(canvas));
