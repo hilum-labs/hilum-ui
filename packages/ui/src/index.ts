@@ -132,6 +132,7 @@ export * from "./components/tabs-subtle";
 export * from "./components/textarea";
 export * from "./components/thumbnail";
 export * from "./components/time-picker";
+export * from "./components/time-series-chart";
 export * from "./components/titled-card";
 export * from "./components/toggle";
 export * from "./components/toggle-group";

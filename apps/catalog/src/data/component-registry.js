@@ -796,6 +796,15 @@ const componentDefinitions = [
     "Thinking Indicator",
   ],
   [
+    "time-series-chart",
+    "Time Series Chart",
+    "molecules",
+    "Data Display",
+    "data",
+    "Dashboard chart of values over dates with formatted axes and tooltip, loading and empty states.",
+    "Chart · Skeleton",
+  ],
+  [
     "titled-card",
     "Titled Card",
     "molecules",
