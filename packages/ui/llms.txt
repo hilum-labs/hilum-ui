@@ -6,9 +6,9 @@
 
 - Package name: `@hilum/ui`
 - Package version: 4.1.1
-- Component modules: 121
-- Atom components: 80
-- Molecule components: 41
+- Component modules: 125
+- Atom components: 82
+- Molecule components: 43
 - Docs site: https://ui.hilum.dev
 - Source repository: https://github.com/hilum-labs/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
@@ -161,6 +161,7 @@ Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost
 - Media Object (/molecules/media-object/) — Layout primitive pairing fixed media with flexible text content. Composes: Avatar · Icon.
 - Menu Item (/atoms/menu-item/) — Reusable command row for menus, lists, and product navigation surfaces.
 - Menubar (/atoms/menubar/) — Horizontal application menu bar with nested dropdown panels.
+- Multi Combobox (/atoms/multi-combobox/) — Searchable multi-select with removable chips, server-side search, a loading state, selection limits and Backspace to remove.
 - Mobile Drawer (/molecules/mobile-drawer/) — Mobile navigation drawer wrapper with trigger, sheet content, title, and description. Composes: Button · Sheet.
 - Native Select (/atoms/native-select/) — Styled native HTML select with no JavaScript dropdown overhead.
 - Nav Item (/atoms/nav-item/) — Single navigation row with icon, active state, trailing content, and product motion.
@@ -168,6 +169,7 @@ Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost
 - Navigation Menu (/atoms/navigation-menu/) — Top-level navigation with accessible animated dropdown panels.
 - Notification (/molecules/notification/) — Toast-style notification panel with success, error, warning, and info variants. Composes: Icon · Button.
 - Page Heading (/molecules/page-heading/) — Full page header with breadcrumb navigation, title, metadata, and actions. Composes: Button · Badge · Breadcrumb.
+- Preview Frame (/molecules/preview-frame/) — Sandboxed iframe for storefront and theme previews with mobile, tablet and desktop widths, scale to fit, loading and error states. Composes: Toggle Group · Skeleton · Button.
 - Pagination (/atoms/pagination/) — Navigation control for multi-page content.
 - Popover (/atoms/popover/) — Floating panel anchored to a trigger for richer contextual content.
 - Progress (/atoms/progress/) — Visual indicator of completion or loading progress.
@@ -199,6 +201,7 @@ Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost
 - Table (/atoms/table/) — Structured data display with rows and columns.
 - Tabs (/atoms/tabs/) — Organizes content into switchable panels.
 - Tabs Subtle (/atoms/tabs-subtle/) — Quiet segmented tab navigation for settings, filters, and compact product panels.
+- Tag Input (/atoms/tag-input/) — Free-text tags with Enter or comma to add, Backspace to remove, paste splitting, de-duplication, limits and optional suggestions.
 - Textarea (/atoms/textarea/) — Multi-line text field for longer user input.
 - Thumbnail (/atoms/thumbnail/) — Square product or resource image with sizes, object fit, border, and a neutral placeholder when there is no image.
 - Thinking Indicator (/atoms/thinking-indicator/) — Compact animated status indicator for pending assistant or system work.
@@ -212,6 +215,7 @@ Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost
 - Contextual Save Bar (/molecules/contextual-save-bar/) — Unsaved-changes bar with Save and Discard for edit screens, with ⌘S and unload guarding. Composes: Button · Icon.
 - Date Text (/atoms/date-text/) — Locale-aware dates and relative times, plus Intl helpers for money, numbers and plurals.
 - Resource Item (/molecules/resource-item/) — Primary/secondary text hierarchy for resource table cells and full-row mobile list items. Composes: Stacked List · Table.
+- Resource Picker (/molecules/resource-picker/) — Dialog to search and pick products or other resources: thumbnail, title and subtitle rows with checkboxes or a single choice, async search and paging. Composes: Dialog · Search Input · Checkbox · Thumbnail.
 - Search Input (/atoms/search-input/) — Search field with leading icon, clear button, Escape-to-clear and loading state. Composes: Input · Spinner.
 - Filter Bar (/molecules/filter-bar/) — List toolbar with saved views, search, filters, removable applied-filter pills, clear action and trailing actions; responsive. Composes: Search Input · Select · Button.
 - Rating (/atoms/rating/) — Read-only star rating with partial stars, or an accessible radio-group input.

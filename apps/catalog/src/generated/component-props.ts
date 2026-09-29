@@ -1815,6 +1815,54 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "default": null,
             "description": "Override the English UI strings (i18n).",
             "declaredIn": "packages/ui/src/components/color-input.tsx"
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "id of the group. Inside a `<Field>` the group is named by the field's label (`aria-labelledby`) and the hex field takes its hint / error, invalid, required and disabled state.",
+            "declaredIn": "packages/ui/src/components/color-input.tsx"
+          },
+          {
+            "name": "aria-label",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/color-input.tsx"
+          },
+          {
+            "name": "aria-labelledby",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/color-input.tsx"
+          },
+          {
+            "name": "aria-describedby",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/color-input.tsx"
+          },
+          {
+            "name": "aria-invalid",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/color-input.tsx"
+          },
+          {
+            "name": "aria-required",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/color-input.tsx"
           }
         ]
       }
@@ -2001,6 +2049,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/color-picker.tsx"
+          },
+          {
+            "name": "triggerAriaLabel",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Accessible name of the trigger when it shows no text (`triggerShowValue={false}`, no `triggerLabel`).",
             "declaredIn": "packages/ui/src/components/color-picker.tsx"
           },
           {
@@ -2311,7 +2367,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "string",
             "required": false,
             "default": null,
-            "description": "id of the text input (e.g. for a `<label htmlFor>`).",
+            "description": "id of the text input (e.g. for a `<label htmlFor>`). Inside a `<Field>` the input takes the field's label, hint / error, invalid, required and disabled state automatically.",
             "declaredIn": "packages/ui/src/components/combobox.tsx"
           },
           {
@@ -2326,7 +2382,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "name": "disabled",
             "type": "boolean",
             "required": false,
-            "default": "false",
+            "default": null,
             "description": "",
             "declaredIn": "packages/ui/src/components/combobox.tsx"
           },
@@ -3011,6 +3067,38 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "default": null,
             "description": "Render only visible rows (large client datasets). Disables pagination — all filtered/sorted rows are scrollable in a fixed-height viewport.",
             "declaredIn": "packages/ui/src/components/data-table.tsx"
+          },
+          {
+            "name": "mobileLayout",
+            "type": "\"table\" | \"cards\"",
+            "required": false,
+            "default": "\"table\"",
+            "description": "`\"cards\"` renders rows as stacked cards below `mobileBreakpoint`: the primary column as the card title and the other columns as label / value rows. Selection, row clicks, bulk actions, loading and empty states work the same. Default `\"table\"` (the table scrolls horizontally).",
+            "declaredIn": "packages/ui/src/components/data-table.tsx"
+          },
+          {
+            "name": "mobileBreakpoint",
+            "type": "\"sm\" | \"md\"",
+            "required": false,
+            "default": "\"sm\"",
+            "description": "Width below which `mobileLayout=\"cards\"` applies: `sm` (640px, default) or `md` (768px).",
+            "declaredIn": "packages/ui/src/components/data-table.tsx"
+          },
+          {
+            "name": "mobilePrimaryColumn",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Column id shown as the card title. Default: the first visible data column.",
+            "declaredIn": "packages/ui/src/components/data-table.tsx"
+          },
+          {
+            "name": "mobileColumns",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Column ids shown as label / value rows, in this order. Default: every other visible column. The label is `meta.label` or a string `header`; columns without one (e.g. row actions) render full width at the end.",
+            "declaredIn": "packages/ui/src/components/data-table.tsx"
           }
         ]
       }
@@ -3110,7 +3198,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "string",
             "required": false,
             "default": null,
-            "description": "",
+            "description": "id of the trigger button. Inside a `<Field>` the trigger takes the field's label, hint / error, invalid, required and disabled state automatically.",
             "declaredIn": "packages/ui/src/components/date-picker.tsx"
           },
           {
@@ -3130,7 +3218,31 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "declaredIn": "packages/ui/src/components/date-picker.tsx"
           },
           {
+            "name": "aria-labelledby",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/date-picker.tsx"
+          },
+          {
+            "name": "aria-describedby",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/date-picker.tsx"
+          },
+          {
             "name": "aria-invalid",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/date-picker.tsx"
+          },
+          {
+            "name": "aria-required",
             "type": "boolean",
             "required": false,
             "default": null,
@@ -3276,7 +3388,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "string",
             "required": false,
             "default": null,
-            "description": "",
+            "description": "id of the trigger button. Inside a `<Field>` the trigger takes the field's label, hint / error, invalid, required and disabled state automatically.",
             "declaredIn": "packages/ui/src/components/date-picker.tsx"
           },
           {
@@ -3296,7 +3408,31 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "declaredIn": "packages/ui/src/components/date-picker.tsx"
           },
           {
+            "name": "aria-labelledby",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/date-picker.tsx"
+          },
+          {
+            "name": "aria-describedby",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/date-picker.tsx"
+          },
+          {
             "name": "aria-invalid",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/date-picker.tsx"
+          },
+          {
+            "name": "aria-required",
             "type": "boolean",
             "required": false,
             "default": null,
@@ -4421,6 +4557,163 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
         "name": "MenubarGroup",
         "inherits": "Also accepts native HTML/React attributes (278), Radix primitive props (1).",
         "props": []
+      }
+    ]
+  },
+  "/atoms/multi-combobox/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/multi-combobox.tsx",
+    "primary": "MultiCombobox",
+    "components": [
+      {
+        "name": "MultiCombobox",
+        "inherits": "Also accepts native HTML/React attributes (48).",
+        "props": [
+          {
+            "name": "options",
+            "type": "ComboboxOption[]",
+            "required": true,
+            "default": null,
+            "description": "Options to choose from (the current search results when `onSearchChange` is set).",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "value",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Selected option values (controlled).",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "defaultValue",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Initially selected values (uncontrolled).",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "onValueChange",
+            "type": "(values: string[]) => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": false,
+            "default": "\"Search…\"",
+            "description": "Search field placeholder while nothing is selected.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "emptyText",
+            "type": "string",
+            "required": false,
+            "default": "\"No results found.\"",
+            "description": "Shown when no option matches.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "onSearchChange",
+            "type": "(query: string) => void",
+            "required": false,
+            "default": null,
+            "description": "Called with the search text as the user types (and \"\" when the list closes). Use it to fetch `options` from a server; the component then stops filtering them itself unless `filterOptions` is true.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "filterOptions",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Filter `options` by the search text. Default: true, or false with `onSearchChange`.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Show a loading row (e.g. while `onSearchChange` results load).",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "maxSelected",
+            "type": "number",
+            "required": false,
+            "default": null,
+            "description": "Most options that can be selected; the rest are disabled once reached.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "closeOnSelect",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Close the list after each selection. Default false.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "clearable",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Show a clear-all (×) button while something is selected.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "id of the search input. Inside a `<Field>` it is wired automatically.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Form field name: every selected value posts as a hidden input.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "onBlur",
+            "type": "React.FocusEventHandler<HTMLInputElement>",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Classes for the root element.",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<MultiComboboxLabels>",
+            "required": false,
+            "default": null,
+            "description": "Override the English UI strings (i18n).",
+            "declaredIn": "packages/ui/src/components/multi-combobox.tsx"
+          }
+        ]
       }
     ]
   },
@@ -6813,7 +7106,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
     "components": [
       {
         "name": "Switch",
-        "inherits": "Also accepts native HTML/React attributes (276).",
+        "inherits": "Also accepts native HTML/React attributes (275).",
         "props": [
           {
             "name": "label",
@@ -6859,8 +7152,16 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "name": "disabled",
             "type": "boolean",
             "required": false,
-            "default": "false",
-            "description": "",
+            "default": null,
+            "description": "Disables the switch. Inside a `<Field disabled>` it is disabled unless set explicitly.",
+            "declaredIn": "packages/ui/src/components/switch.tsx"
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "id of the switch button (the labelable element), e.g. for a `<label htmlFor>`. Inside a `<Field>` the field's label targets it.",
             "declaredIn": "packages/ui/src/components/switch.tsx"
           },
           {
@@ -7240,6 +7541,209 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
       }
     ]
   },
+  "/atoms/tag-input/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/tag-input.tsx",
+    "primary": "TagInput",
+    "components": [
+      {
+        "name": "Tag",
+        "inherits": "Also accepts native HTML/React attributes (277).",
+        "props": [
+          {
+            "name": "children",
+            "type": "React.ReactNode",
+            "required": true,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "onRemove",
+            "type": "() => void",
+            "required": false,
+            "default": null,
+            "description": "Show a remove (×) button that calls this.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "removeLabel",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Accessible name of the remove button. Default: \"Remove {children}\" for text children.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Dims the tag and hides the remove button.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          }
+        ]
+      },
+      {
+        "name": "TagInput",
+        "inherits": "Also accepts native HTML/React attributes (48).",
+        "props": [
+          {
+            "name": "value",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Controlled tags.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "defaultValue",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Initial tags (uncontrolled).",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "onChange",
+            "type": "(tags: string[]) => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "id of the text input. Inside a `<Field>` it is wired automatically.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Form field name: every tag posts as a hidden input with this name.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "maxTags",
+            "type": "number",
+            "required": false,
+            "default": null,
+            "description": "Most tags allowed; further additions are ignored and announced.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "maxLength",
+            "type": "number",
+            "required": false,
+            "default": null,
+            "description": "Longest tag, in characters. Longer text is cut to this length.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "separators",
+            "type": "string[]",
+            "required": false,
+            "default": "[\",\"]",
+            "description": "Characters that end a tag while typing or pasting (Enter always does). Default `[\",\"]`.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "caseSensitive",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Treat \"Sale\" and \"sale\" as different tags. Default false (duplicates are dropped case-insensitively).",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "normalize",
+            "type": "(tag: string) => string",
+            "required": false,
+            "default": null,
+            "description": "Transform each tag before it's added (after trimming), e.g. lower-casing.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "suggestions",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Existing tags to suggest while typing; picked with the arrow keys and Enter, or a click.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "onInputChange",
+            "type": "(text: string) => void",
+            "required": false,
+            "default": null,
+            "description": "Called with the text being typed (e.g. to fetch suggestions).",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "addOnBlur",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "Add the typed text as a tag when the field loses focus. Default true.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "onBlur",
+            "type": "React.FocusEventHandler<HTMLInputElement>",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "onFocus",
+            "type": "React.FocusEventHandler<HTMLInputElement>",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Classes for the field wrapper.",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<TagInputLabels>",
+            "required": false,
+            "default": null,
+            "description": "Override the English UI strings (i18n).",
+            "declaredIn": "packages/ui/src/components/tag-input.tsx"
+          }
+        ]
+      }
+    ]
+  },
   "/atoms/textarea/": {
     "package": "@hilum/ui",
     "source": "packages/ui/src/components/textarea.tsx",
@@ -7510,6 +8014,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/time-picker.tsx"
+          },
+          {
+            "name": "aria-required",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Set on the hour / minute segments (a group can't carry it).",
             "declaredIn": "packages/ui/src/components/time-picker.tsx"
           },
           {
@@ -8869,6 +9381,22 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "declaredIn": "packages/ui/src/components/date-time-picker.tsx"
           },
           {
+            "name": "aria-required",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Set on the time segments (a group or a button can't carry it).",
+            "declaredIn": "packages/ui/src/components/date-time-picker.tsx"
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "id of the group. Inside a `<Field>` the group is named by the field's label (`aria-labelledby`) and both halves take its hint / error, invalid and disabled state.",
+            "declaredIn": "packages/ui/src/components/date-time-picker.tsx"
+          },
+          {
             "name": "className",
             "type": "string",
             "required": false,
@@ -9048,7 +9576,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "string",
             "required": false,
             "default": null,
-            "description": "id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context (Input, Textarea, Select, NativeSelect, InputNumber pick it up automatically). If the control has its own `id`, the label follows it.",
+            "description": "id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context. Input, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically. If the control has its own `id`, the label follows it, so `htmlFor` is only needed for controls outside this list.",
             "declaredIn": "packages/ui/src/components/field.tsx"
           },
           {
@@ -10470,6 +10998,187 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
       }
     ]
   },
+  "/molecules/preview-frame/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/preview-frame.tsx",
+    "primary": "PreviewFrame",
+    "components": [
+      {
+        "name": "PreviewFrame",
+        "inherits": null,
+        "props": [
+          {
+            "name": "src",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "URL of the page to preview.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Accessible name of the frame, e.g. \"Preview of Dawn\". Required.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "device",
+            "type": "\"mobile\" | \"tablet\" | \"desktop\"",
+            "required": false,
+            "default": null,
+            "description": "Device width to render (controlled).",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "defaultDevice",
+            "type": "\"mobile\" | \"tablet\" | \"desktop\"",
+            "required": false,
+            "default": "\"desktop\"",
+            "description": "Initial device (uncontrolled). Default \"desktop\".",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "onDeviceChange",
+            "type": "(device: PreviewDevice) => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "devices",
+            "type": "PreviewDevice[]",
+            "required": false,
+            "default": "[\"mobile\", \"tablet\", \"desktop\"]",
+            "description": "Devices offered in the toggle. Default all three.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "deviceWidths",
+            "type": "Partial<Record<PreviewDevice, number>>",
+            "required": false,
+            "default": null,
+            "description": "Override the layout width of a device, in CSS pixels.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "showDeviceToggle",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Show the device toggle. Default true when more than one device is offered.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "showOpenInNewTab",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Show a link that opens `src` in a new tab.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "toolbar",
+            "type": "React.ReactNode",
+            "required": false,
+            "default": null,
+            "description": "Extra toolbar content at the end (e.g. a Publish button).",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "height",
+            "type": "number | string",
+            "required": false,
+            "default": "600",
+            "description": "Height of the preview area. Default 600 (px). Pass \"100%\" inside a sized parent.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "sandbox",
+            "type": "string",
+            "required": false,
+            "default": "PREVIEW_FRAME_DEFAULT_SANDBOX",
+            "description": "iframe `sandbox`. Default: scripts, same-origin, forms and popups, for a storefront on another origin. Never combine `allow-scripts` with `allow-same-origin` for a page served from your app's own origin.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "allow",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "iframe `allow` (permissions policy), e.g. \"clipboard-write\".",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "referrerPolicy",
+            "type": "\"\" | \"no-referrer\" | \"no-referrer-when-downgrade\" | \"origin\" | \"origin-when-cross-origin\" | \"same-origin\" | \"strict-origin\" | \"strict-origin-when-cross-origin\"…",
+            "required": false,
+            "default": "\"no-referrer\"",
+            "description": "iframe `referrerPolicy`. Default \"no-referrer\" (preview URLs often carry tokens).",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "error",
+            "type": "boolean | string",
+            "required": false,
+            "default": null,
+            "description": "Show the error state (e.g. the app knows the preview failed). A string replaces the default description.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "loadTimeout",
+            "type": "number",
+            "required": false,
+            "default": null,
+            "description": "Treat the preview as failed when it hasn't loaded after this many ms.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "onLoad",
+            "type": "() => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "onError",
+            "type": "() => void",
+            "required": false,
+            "default": null,
+            "description": "Called when the frame errors or times out.",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "onRetry",
+            "type": "() => void",
+            "required": false,
+            "default": null,
+            "description": "Called by the error state's retry button (the frame reloads either way).",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<PreviewFrameLabels>",
+            "required": false,
+            "default": null,
+            "description": "Override the English UI strings (i18n).",
+            "declaredIn": "packages/ui/src/components/preview-frame.tsx"
+          }
+        ]
+      }
+    ]
+  },
   "/molecules/property-row/": {
     "package": "@hilum/ui",
     "source": "packages/ui/src/components/property-row.tsx",
@@ -10718,6 +11427,155 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "default": null,
             "description": "Inline trailing content on the title line (e.g. a StatusBadge).",
             "declaredIn": "packages/ui/src/components/resource-item.tsx"
+          }
+        ]
+      }
+    ]
+  },
+  "/molecules/resource-picker/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/resource-picker.tsx",
+    "primary": "ResourcePicker",
+    "components": [
+      {
+        "name": "ResourcePicker",
+        "inherits": null,
+        "props": [
+          {
+            "name": "open",
+            "type": "boolean",
+            "required": true,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "onOpenChange",
+            "type": "(open: boolean) => void",
+            "required": true,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Dialog title, e.g. \"Add products\".",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "description",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "items",
+            "type": "T[]",
+            "required": true,
+            "default": null,
+            "description": "Rows to show: the current search results.",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "onSearch",
+            "type": "(query: string) => void",
+            "required": false,
+            "default": null,
+            "description": "Called with the search text after `searchDelay` ms (and with \"\" when the picker opens). Fetch matching `items` here. Without it, `items` are filtered by title in the browser.",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "searchDelay",
+            "type": "number",
+            "required": false,
+            "default": "250",
+            "description": "Debounce for `onSearch`, in ms. Default 250.",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Rows are loading (skeleton rows when empty, a spinner row otherwise).",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "hasMore",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Show a \"Load more\" button that calls `onLoadMore`.",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "onLoadMore",
+            "type": "() => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "multiple",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "Checkboxes (default) or a single choice with radio buttons.",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "initialSelectedIds",
+            "type": "string[]",
+            "required": false,
+            "default": null,
+            "description": "Ids already chosen, selected each time the picker opens.",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "maxSelected",
+            "type": "number",
+            "required": false,
+            "default": null,
+            "description": "Most rows that can be selected (multiple mode).",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "onSelect",
+            "type": "(ids: string[], items: T[]) => void",
+            "required": true,
+            "default": null,
+            "description": "Confirmed selection, in selection order. `items` holds every selected row the picker has seen (rows selected before opening that were never in `items` appear in `ids` only).",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "renderItem",
+            "type": "(item: T, state: { selected: boolean; disabled: boolean }) => React.ReactNode",
+            "required": false,
+            "default": null,
+            "description": "Custom row content (replaces title, subtitle and meta; the control and thumbnail stay).",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "emptyState",
+            "type": "React.ReactNode",
+            "required": false,
+            "default": null,
+            "description": "Rendered when there are no rows (after loading).",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<ResourcePickerLabels>",
+            "required": false,
+            "default": null,
+            "description": "Override the English UI strings (i18n).",
+            "declaredIn": "packages/ui/src/components/resource-picker.tsx"
           }
         ]
       }
