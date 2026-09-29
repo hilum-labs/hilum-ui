@@ -1,5 +1,7 @@
 # @hilum/app-shell
 
+## 4.4.0
+
 ## 4.3.0
 
 ### Minor Changes
