@@ -31,7 +31,9 @@ const checks = [
   { name: "@hilum/ui/ai", path: "packages/ui/dist/ai.js", limit: "16.7 kB" },
   { name: "@hilum/ui/icons", path: "packages/ui/dist/icons.js", limit: "700 B" },
   { name: "@hilum/ui/tokens", path: "packages/ui/dist/tokens.js", limit: "100 B" },
-  { name: "@hilum/ui/create-theme", path: "packages/ui/dist/create-theme.js", limit: "2.2 kB" },
+  // 4.4.2 picks and emits --brand-text per theme (a WCAG contrast search over
+  // the palette): ~2.0 -> 2.5 kB.
+  { name: "@hilum/ui/create-theme", path: "packages/ui/dist/create-theme.js", limit: "2.8 kB" },
   // 4.1 added the compact editor-chrome vars and base rules: 2.74 → 2.88 kB.
   // 4.2 moved the component CSS that used to be injected with runtime <style>
   // tags (mobile sheets, rich text, loading bar, Radix fallbacks, color-scheme)
