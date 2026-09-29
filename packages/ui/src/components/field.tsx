@@ -10,7 +10,7 @@ interface FieldProps {
   /**
    * id of the control the label targets. Optional: when omitted, Field
    * generates one and hands it to the control through context. Input,
-   * Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox,
+   * InputGroup, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox,
    * MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker,
    * DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label,
    * hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and

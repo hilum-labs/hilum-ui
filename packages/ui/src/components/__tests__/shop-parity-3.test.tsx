@@ -1,6 +1,8 @@
 import { afterEach, describe, it, expect, vi } from "vitest";
 import { act, render, screen } from "@testing-library/react";
 import { DataTable, type ColumnDef } from "../data-table";
+import { Field } from "../field";
+import { InputGroup } from "../input-group";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -122,5 +124,58 @@ describe("DataTable mobileBreakpointBasis", () => {
     );
     await tick();
     expect(screen.queryByRole("table")).not.toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* InputGroup inside a Field                                            */
+/* ------------------------------------------------------------------ */
+
+describe("InputGroup inside a Field", () => {
+  it("links the built-in input to the label, hint, error, required and disabled state", () => {
+    const { rerender } = render(
+      <Field label="Store address" hint="Your store's web address" required>
+        <InputGroup leadingAddon="https://" trailingAddon=".hilum.shop" placeholder="my-store" />
+      </Field>,
+    );
+    const input = screen.getByLabelText(/Store address/);
+    expect(input.tagName).toBe("INPUT");
+    expect(input).toHaveAttribute("data-slot", "input-group-input");
+    expect(input).toHaveAccessibleDescription("Your store's web address");
+    expect(input).toHaveAttribute("aria-required", "true");
+    expect(input).not.toHaveAttribute("aria-invalid");
+
+    rerender(
+      <Field label="Store address" error="That address is taken" disabled>
+        <InputGroup leadingAddon="https://" trailingAddon=".hilum.shop" placeholder="my-store" />
+      </Field>,
+    );
+    const invalid = screen.getByLabelText("Store address");
+    expect(invalid).toHaveAttribute("aria-invalid", "true");
+    expect(invalid).toHaveAccessibleDescription("That address is taken");
+    expect(invalid).toBeDisabled();
+    expect(document.querySelector("[data-slot=input-group]")).toHaveAttribute("data-invalid");
+  });
+
+  it("keeps its own id and explicit aria props; error marks it invalid", () => {
+    render(
+      <Field label="Domain">
+        <InputGroup
+          id="domain"
+          leadingAddon="https://"
+          error
+          name="domain"
+          aria-describedby="custom-help"
+          inputProps={{ autoComplete: "off", maxLength: 63 }}
+        />
+      </Field>,
+    );
+    const input = screen.getByLabelText("Domain");
+    expect(input).toHaveAttribute("id", "domain");
+    expect(input).toHaveAttribute("aria-describedby", "custom-help");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAttribute("name", "domain");
+    expect(input).toHaveAttribute("autocomplete", "off");
+    expect(input).toHaveAttribute("maxlength", "63");
   });
 });

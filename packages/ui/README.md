@@ -116,7 +116,7 @@ import { Field, Input, MultiCombobox, TagInput } from "@hilum/ui";
 </Field>;
 ```
 
-Input, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the field's id (or keep their own `id`, which the label then follows), `aria-describedby`, `aria-invalid` (a destructive border), `aria-required` and `disabled`. Groups (TimePicker, DateTimePicker, ColorInput) are named by the label through `aria-labelledby`. `htmlFor` is only needed for your own controls; wire those with `useFieldControl()`.
+Input, InputGroup (its built-in input), Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the field's id (or keep their own `id`, which the label then follows), `aria-describedby`, `aria-invalid` (a destructive border), `aria-required` and `disabled`. Groups (TimePicker, DateTimePicker, ColorInput) are named by the label through `aria-labelledby`. `htmlFor` is only needed for your own controls; wire those with `useFieldControl()`.
 
 ### Icon libraries (`@hilum/ui/icon-libraries`)
 

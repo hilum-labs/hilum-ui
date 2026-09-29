@@ -11,6 +11,7 @@ import {
   type HTMLAttributes,
   type InputHTMLAttributes,
   type ChangeEventHandler,
+  type ComponentProps,
   type Ref,
 } from "react";
 import type { IconComponent } from "../lib/icon-context";
@@ -19,11 +20,13 @@ import { fontWeights } from "../lib/font-weight";
 import { useShape } from "../lib/shape-context";
 import {
   controlHeightClass,
+  controlInvalidWithinClasses,
   controlSurfaceClasses,
   controlTextClass,
   inputFocusWithinClasses,
   motionClasses,
 } from "../lib/interaction";
+import { isAriaInvalid, useFieldControl } from "../lib/field-context";
 
 interface InputGroupContextValue {
   registerItem: (index: number, element: HTMLLabelElement | null) => void;
@@ -55,7 +58,21 @@ interface InputGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange
   pill?: boolean;
   type?: InputHTMLAttributes<HTMLInputElement>["type"];
   defaultValue?: InputHTMLAttributes<HTMLInputElement>["defaultValue"];
+  /**
+   * id of the built-in input. Inside a `<Field>` the input takes the field's
+   * id, label, hint / error (`aria-describedby`), `aria-invalid`,
+   * `aria-required` and `disabled` automatically, like `Input`.
+   */
   id?: string;
+  /** Marks the built-in input required (`required` + `aria-required`). */
+  required?: boolean;
+  /** Form field name of the built-in input. */
+  name?: string;
+  /**
+   * Other props for the built-in `<input>` (`autoComplete`, `inputMode`,
+   * `onBlur`, `maxLength`, a `ref` for react-hook-form's `register`, …).
+   */
+  inputProps?: Omit<ComponentProps<"input">, "className" | "value" | "defaultValue" | "onChange">;
   /** Accessible name. With a built-in input it names the input, otherwise the group. */
   "aria-label"?: string;
   ref?: Ref<HTMLDivElement>;
@@ -80,8 +97,14 @@ function InputGroup({
   type,
   defaultValue,
   id,
+  required,
+  name,
+  inputProps,
   ref,
   "aria-label": ariaLabel,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
   ...props
 }: InputGroupProps) {
   const itemsRef = useRef(new Map<number, HTMLLabelElement>());
@@ -130,13 +153,31 @@ function InputGroup({
     leadingIcon !== undefined ||
     trailingIcon !== undefined ||
     trailingButton !== undefined ||
-    error !== undefined;
+    error !== undefined ||
+    inputProps !== undefined ||
+    name !== undefined;
+  // Field wiring for the built-in input (`error` marks it invalid too). The
+  // multi-field variant has no single input for a Field label to target.
+  const fieldProps = useFieldControl(
+    {
+      id,
+      disabled,
+      "aria-describedby": ariaDescribedBy,
+      "aria-invalid": ariaInvalid ?? (error ? true : undefined),
+      "aria-required": ariaRequired ?? (required ? true : undefined),
+    },
+    { labelable: rendersInput },
+  );
 
   if (rendersInput) {
+    const invalid = isAriaInvalid(fieldProps["aria-invalid"]);
+    const isDisabled = fieldProps.disabled ?? false;
     return (
       <div
         ref={ref}
         data-slot="input-group"
+        data-invalid={invalid ? "" : undefined}
+        data-disabled={isDisabled ? "" : undefined}
         className={cn(
           // The wrapper is the control: the standard single-line height and
           // text size, the field surface, and the focus ring while the input
@@ -149,8 +190,8 @@ function InputGroup({
           inputFocusWithinClasses,
           shape.input,
           "compact:h-6 compact:gap-1.5 compact:px-2 compact:text-[12px] compact:rounded-[5px]",
-          error && "border-destructive/50 hover:border-destructive/50",
-          disabled && "cursor-not-allowed opacity-50",
+          controlInvalidWithinClasses,
+          isDisabled && "cursor-not-allowed opacity-50",
           pill && "rounded-full",
           // A trailing button sits inset in the field, 4px from each edge.
           trailingButton !== undefined && "pe-1 compact:pe-0.5",
@@ -161,15 +202,17 @@ function InputGroup({
         {leadingAddon && <span className="shrink-0 text-muted-foreground">{leadingAddon}</span>}
         {leadingIcon && <span className="shrink-0 text-muted-foreground">{leadingIcon}</span>}
         <input
-          id={id}
+          {...inputProps}
+          {...fieldProps}
+          data-slot="input-group-input"
           type={type}
+          name={name}
           value={value}
           defaultValue={defaultValue}
           onChange={onChange}
           placeholder={placeholder}
-          disabled={disabled}
+          required={required}
           aria-label={ariaLabel}
-          aria-invalid={!!error || undefined}
           className={cn(
             "h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed",
             (trailingAction || trailingIcon) && "pe-16",
@@ -199,6 +242,10 @@ function InputGroup({
         ref={ref}
         data-slot="input-group"
         aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
+        aria-invalid={ariaInvalid}
+        aria-required={ariaRequired}
+        id={id}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className={cn("flex flex-col gap-3 w-72 max-w-full", className)}

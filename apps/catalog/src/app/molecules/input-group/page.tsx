@@ -4,7 +4,7 @@ import { PageDocs } from "@/components/catalog/page-docs";
 
 import { useState } from "react";
 import { Mail, Search } from "lucide-react";
-import { InputField, InputGroup } from "@hilum/ui";
+import { Field, InputField, InputGroup } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
@@ -46,6 +46,22 @@ import { Mail } from "lucide-react";
   />
 </InputGroup>`,
 
+  field: `import { Field, InputGroup } from "@hilum/ui";
+
+// The built-in input takes the Field's label, hint / error, required and
+// disabled state, like Input: no htmlFor or ids needed.
+<Field label="Store address" hint="Letters, numbers and hyphens." error={error} required>
+  <InputGroup
+    leadingAddon="https://"
+    trailingAddon=".hilum.shop"
+    placeholder="my-store"
+    value={subdomain}
+    onChange={(event) => setSubdomain(event.target.value)}
+    name="subdomain"
+    inputProps={{ autoComplete: "off", spellCheck: false }}
+  />
+</Field>`,
+
   error: `<InputGroup>
   <InputField
     index={0}
@@ -64,6 +80,10 @@ function InputGroupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [errorEmail, setErrorEmail] = useState("bad@");
+  const [subdomain, setSubdomain] = useState("my store");
+  const subdomainError = /^[a-z0-9-]*$/.test(subdomain)
+    ? undefined
+    : "Use lowercase letters, numbers and hyphens.";
 
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
@@ -106,6 +126,27 @@ function InputGroupPage() {
               onChange={setEmail}
             />
           </InputGroup>
+        </PreviewBlock>
+
+        <PreviewBlock title="Inside a Field" code={CODE.field}>
+          <div className="w-full max-w-sm">
+            <Field
+              label="Store address"
+              hint="Letters, numbers and hyphens."
+              error={subdomainError}
+              required
+            >
+              <InputGroup
+                leadingAddon="https://"
+                trailingAddon=".hilum.shop"
+                placeholder="my-store"
+                value={subdomain}
+                onChange={(event) => setSubdomain(event.target.value)}
+                name="subdomain"
+                inputProps={{ autoComplete: "off", spellCheck: false }}
+              />
+            </Field>
+          </div>
         </PreviewBlock>
 
         <PreviewBlock title="Error State" code={CODE.error}>
