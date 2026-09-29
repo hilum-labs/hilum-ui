@@ -2729,7 +2729,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "(row: TData) => void",
             "required": false,
             "default": null,
-            "description": "Make rows clickable (e.g. open the detail page). Enter/Space activate focused rows. Clicks on checkboxes, links, buttons and form controls inside the row are ignored, as are clicks on anything marked `data-row-click-ignore`.",
+            "description": "Make rows clickable (e.g. open the detail page). Enter/Space activate focused rows. Clicks on checkboxes, links, buttons and form controls inside the row are ignored, as are clicks on anything marked `data-row-click-ignore` and clicks inside portals opened from the row (a row action's Dialog, ConfirmDialog or menu).",
             "declaredIn": "packages/ui/src/components/data-table.tsx"
           },
           {
