@@ -15,6 +15,7 @@ import {
   Input,
   InputNumber,
   NativeSelect,
+  Steps,
   Select,
   SelectContent,
   SelectItem,
@@ -171,5 +172,64 @@ describe("TagInput and MultiCombobox fields (real browser)", () => {
       expect(field.getBoundingClientRect().height).toBeCloseTo(reference.height, 0);
     }
     expect(borderColor(fields[3]!)).toBe(resolveColor("var(--destructive)"));
+  });
+});
+
+describe("Steps with long labels (real browser)", () => {
+  const steps = [
+    { name: "Store details", status: "complete" as const },
+    { name: "Add your first product with photos and variants", status: "complete" as const },
+    { name: "Payments", status: "current" as const },
+    { name: "Shipping zones and delivery rates", status: "upcoming" as const },
+    { name: "Taxes", status: "upcoming" as const },
+    { name: "Connect a custom domain name", status: "upcoming" as const },
+    { name: "Launch", status: "upcoming" as const },
+  ];
+
+  test.each([720, 360])("circles stay aligned with 7 steps at %ipx", (width) => {
+    const { container } = render(
+      <div style={{ width }}>
+        <Steps steps={steps} />
+      </div>,
+    );
+    const circles = [...container.querySelectorAll("[data-slot=steps-circle]")].map((el) =>
+      el.getBoundingClientRect(),
+    );
+    expect(circles).toHaveLength(7);
+    const top = circles[0]!.top;
+    for (const circle of circles) expect(circle.top).toBeCloseTo(top, 0);
+    // Evenly spaced centres.
+    const centres = circles.map((c) => c.left + c.width / 2);
+    const gap = centres[1]! - centres[0]!;
+    for (let i = 1; i < centres.length; i++) {
+      expect(centres[i]! - centres[i - 1]!).toBeCloseTo(gap, 0);
+    }
+    // Each connector sits on the circles' centre line, between two circles.
+    const connectors = [...container.querySelectorAll("[data-slot=steps-connector]")].map((el) =>
+      el.getBoundingClientRect(),
+    );
+    connectors.forEach((line, i) => {
+      expect(line.top + line.height / 2).toBeCloseTo(top + circles[i]!.height / 2, 0);
+      expect(line.left).toBeGreaterThanOrEqual(circles[i]!.right - 1);
+      expect(line.right).toBeLessThanOrEqual(circles[i + 1]!.left + 1);
+      expect(line.width).toBeGreaterThan(0);
+    });
+    // Labels wrap within their column instead of overflowing into the next one.
+    const items = [...container.querySelectorAll("[data-slot=steps-item]")];
+    items.forEach((item) => {
+      const box = item.getBoundingClientRect();
+      const label = item.querySelector("a span:last-child")!.getBoundingClientRect();
+      expect(label.left).toBeGreaterThanOrEqual(box.left - 1);
+      expect(label.right).toBeLessThanOrEqual(box.right + 1);
+    });
+  });
+
+  it("bullets show upcoming dots", () => {
+    const { container } = render(<Steps steps={steps} variant="bullets" />);
+    const upcoming = container.querySelector("[data-status=upcoming] [data-slot=steps-dot]")!;
+    const style = getComputedStyle(upcoming);
+    expect(upcoming.getBoundingClientRect().width).toBeGreaterThan(8);
+    expect(style.borderTopColor).toBe(resolveColor("var(--muted-foreground)"));
+    expect(style.borderTopWidth).not.toBe("0px");
   });
 });

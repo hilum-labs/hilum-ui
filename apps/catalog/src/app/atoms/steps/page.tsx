@@ -20,6 +20,16 @@ const stepsShort: Step[] = [
   { name: "Plan", description: "Choose tier", status: "upcoming" },
 ];
 
+const stepsLong: Step[] = [
+  { name: "Store details", status: "complete" },
+  { name: "Add your first product", status: "complete" },
+  { name: "Payments", status: "current" },
+  { name: "Shipping and delivery", status: "upcoming" },
+  { name: "Taxes", status: "upcoming" },
+  { name: "Custom domain", status: "upcoming" },
+  { name: "Launch", status: "upcoming" },
+];
+
 const CODE = {
   circles: `import { Steps } from "@hilum/ui"
 import type { Step } from "@hilum/ui"
@@ -51,6 +61,12 @@ const steps: Step[] = [
 ]
 
 <Steps steps={steps} variant="circles" />`,
+
+  long: `import { Steps } from "@hilum/ui"
+
+// Seven steps with labels that wrap: every step gets an equal column, circles
+// stay on one line and connectors run circle to circle.
+<Steps steps={setupSteps} variant="circles" />`,
 };
 
 function SectionHeading({ label }: { label: string }) {
@@ -138,6 +154,19 @@ function StepsPage() {
           >
             <div className="w-full">
               <Steps steps={stepsShort} variant="circles" />
+            </div>
+          </PreviewBlock>
+        </div>
+
+        <div>
+          <SectionHeading label="Steps · Long labels" />
+          <PreviewBlock
+            title="Seven steps"
+            description="Labels wrap within equal columns; circles and connectors stay aligned."
+            code={CODE.long}
+          >
+            <div className="w-full max-w-3xl">
+              <Steps steps={stepsLong} variant="circles" />
             </div>
           </PreviewBlock>
         </div>

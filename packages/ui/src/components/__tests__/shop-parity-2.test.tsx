@@ -16,6 +16,7 @@ import { DateTimePicker } from "../date-time-picker";
 import { TimePicker } from "../time-picker";
 import { ColorInput } from "../color-input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../input-otp";
+import { Steps, type Step } from "../steps";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -347,5 +348,42 @@ describe("Field wires more controls", () => {
     const input = screen.getByRole("textbox", { name: "Verification code" });
     expect(input).toHaveAttribute("aria-invalid", "true");
     expect(input).toHaveAccessibleDescription("Code expired");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Steps                                                                */
+/* ------------------------------------------------------------------ */
+
+const SEVEN_STEPS: Step[] = [
+  { name: "Store details", status: "complete" },
+  { name: "Add your first product with photos and variants", status: "complete" },
+  { name: "Payments", status: "current" },
+  { name: "Shipping zones and delivery rates", status: "upcoming" },
+  { name: "Taxes", status: "upcoming" },
+  { name: "Custom domain", status: "upcoming" },
+  { name: "Launch", status: "upcoming" },
+];
+
+describe("Steps", () => {
+  it("circles lay out one equal column per step, top-aligned", () => {
+    render(<Steps steps={SEVEN_STEPS} />);
+    const list = screen.getByRole("navigation", { name: "Progress" }).querySelector("ol")!;
+    expect(list).toHaveClass("grid", "items-start");
+    expect(list.style.gridTemplateColumns).toBe("repeat(7, minmax(0, 1fr))");
+    expect(list.querySelectorAll("[data-slot=steps-connector]")).toHaveLength(6);
+    expect(screen.getByRole("link", { name: "Payments" })).toHaveAttribute("aria-current", "step");
+  });
+
+  it("bullets name every dot on its link and keep upcoming dots visible", () => {
+    render(<Steps steps={SEVEN_STEPS} variant="bullets" />);
+    expect(screen.getByText("Step 3 of 7")).toBeInTheDocument();
+    const current = screen.getByRole("link", { name: "Payments: current step" });
+    expect(current).toHaveAttribute("aria-current", "step");
+    const upcoming = screen.getByRole("link", { name: "Launch: upcoming" });
+    const dot = upcoming.querySelector("[data-slot=steps-dot]")!;
+    expect(dot).toHaveClass("border-muted-foreground");
+    expect(dot).not.toHaveClass("bg-muted");
+    expect(screen.getAllByRole("link", { name: /: completed$/ })).toHaveLength(2);
   });
 });

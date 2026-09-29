@@ -49,40 +49,54 @@ interface VariantStepsProps {
 }
 
 /* ---------- Circles variant ---------- */
+// One equal-width grid column per step, top-aligned, so circles stay on one
+// line however the labels wrap; each connector runs from its circle to the
+// next one (centre ± circle radius + gap), whatever the column width.
 function CirclesSteps({ steps, className, labels }: VariantStepsProps) {
   return (
     <nav data-slot="steps" aria-label={labels.progress} className={className}>
-      <ol role="list" className="flex items-center">
+      <ol
+        role="list"
+        className="grid items-start"
+        style={{ gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }}
+      >
         {steps.map((step, i) => {
           const isLast = i === steps.length - 1;
           return (
-            <li key={step.id ?? i} className={cn("relative", !isLast && "flex-1")}>
+            <li
+              key={step.id ?? i}
+              data-slot="steps-item"
+              data-status={step.status}
+              className="relative flex min-w-0 flex-col items-center"
+            >
               {/* Connector line */}
               {!isLast && (
-                <div className="absolute start-9 end-0 top-4.5 h-0.5" aria-hidden="true">
-                  <div
-                    className={cn(
-                      "h-full",
-                      step.status === "complete" ? "bg-brand-primary" : "bg-muted",
-                    )}
-                  />
-                </div>
+                <div
+                  aria-hidden="true"
+                  data-slot="steps-connector"
+                  className={cn(
+                    "absolute top-[17px] h-0.5 start-[calc(50%_+_1.5rem)] end-[calc(-50%_+_1.5rem)]",
+                    step.status === "complete" ? "bg-brand-primary" : "bg-border-strong",
+                  )}
+                />
               )}
 
               <a
                 href={step.href ?? "#"}
                 onClick={!step.href ? (e) => e.preventDefault() : undefined}
-                className="group relative flex flex-col items-center gap-2"
+                aria-current={step.status === "current" ? "step" : undefined}
+                className="group relative flex min-w-0 max-w-full flex-col items-center gap-2 rounded-md px-1 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {/* Circle */}
                 <span
+                  data-slot="steps-circle"
                   className={cn(
-                    "relative z-10 flex h-9 w-9 items-center justify-center rounded-full transition-colors",
+                    "relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full transition-colors motion-reduce:transition-none",
                     step.status === "complete" &&
                       "bg-brand-primary group-hover:bg-brand-primary/80",
                     step.status === "current" && "border-2 border-brand-primary bg-card",
                     step.status === "upcoming" &&
-                      "border-2 border-border bg-card group-hover:border-border",
+                      "border-2 border-border-strong bg-card group-hover:border-muted-foreground",
                   )}
                 >
                   {step.status === "complete" ? (
@@ -94,18 +108,18 @@ function CirclesSteps({ steps, className, labels }: VariantStepsProps) {
                   )}
                 </span>
 
-                {/* Labels */}
-                <span className="flex flex-col items-center">
+                {/* Labels: wrap between words; a word longer than the column breaks rather than overflow. */}
+                <span className="flex min-w-0 max-w-full flex-col items-center">
                   <span
                     className={cn(
-                      "caption font-semibold",
+                      "caption max-w-full font-semibold text-balance break-words hyphens-auto",
                       step.status === "upcoming" ? "text-muted-foreground" : "text-foreground",
                     )}
                   >
                     {step.name}
                   </span>
                   {step.description && (
-                    <span className="caption text-pretty text-muted-foreground">
+                    <span className="caption max-w-full text-pretty break-words hyphens-auto text-muted-foreground">
                       {step.description}
                     </span>
                   )}
@@ -134,30 +148,41 @@ function BulletsSteps({ steps, className, labels }: VariantStepsProps) {
       </p>
       <ol role="list" className="flex items-center gap-2">
         {steps.map((step, i) => (
-          <li key={step.id ?? i}>
+          <li key={step.id ?? i} data-slot="steps-item" data-status={step.status}>
             <a
               href={step.href ?? "#"}
               onClick={!step.href ? (e) => e.preventDefault() : undefined}
-              className="relative flex h-9 w-9 items-center justify-center"
+              aria-current={step.status === "current" ? "step" : undefined}
+              aria-label={
+                step.status === "complete"
+                  ? labels.completed(step.name)
+                  : step.status === "current"
+                    ? labels.current(step.name)
+                    : labels.upcoming(step.name)
+              }
+              className="group relative flex h-9 w-9 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               {step.status === "complete" ? (
                 <span
-                  className="block size-2.5 rounded-full bg-brand-primary transition-colors hover:bg-brand-primary/80"
-                  aria-label={labels.completed(step.name)}
+                  aria-hidden="true"
+                  data-slot="steps-dot"
+                  className="block size-2.5 rounded-full bg-brand-primary transition-colors group-hover:bg-brand-primary/80 motion-reduce:transition-none"
                 />
               ) : step.status === "current" ? (
                 <span
+                  aria-hidden="true"
+                  data-slot="steps-dot"
                   className="relative flex size-4 items-center justify-center"
-                  aria-current="step"
-                  aria-label={labels.current(step.name)}
                 >
                   <span className="absolute size-4 rounded-full bg-brand-primary/20" />
                   <span className="relative size-2.5 rounded-full bg-brand-primary" />
                 </span>
               ) : (
+                // Upcoming: a hollow dot in the muted text colour, visible on any surface.
                 <span
-                  className="block size-2.5 rounded-full bg-muted transition-colors hover:bg-muted"
-                  aria-label={labels.upcoming(step.name)}
+                  aria-hidden="true"
+                  data-slot="steps-dot"
+                  className="block size-2.5 rounded-full border-[1.5px] border-muted-foreground transition-colors group-hover:bg-muted-foreground/30 motion-reduce:transition-none"
                 />
               )}
             </a>
