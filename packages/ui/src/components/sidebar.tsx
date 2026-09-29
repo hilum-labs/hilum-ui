@@ -578,10 +578,11 @@ function SidebarMenuButton({
         // Size variants
         size === "sm" && "h-7 text-xs",
         size === "lg" && "h-10",
-        // Active state
+        // Active state: brand tint with --brand-text (≥ 4.5:1 on the tint in
+        // every theme; brand-primary text was 3.9:1)
         isActive && [
-          "bg-brand-primary/10 text-brand-primary",
-          "hover:bg-brand-primary/15 hover:text-brand-primary",
+          "bg-brand-primary/10 text-brand-text",
+          "hover:bg-brand-primary/15 hover:text-brand-text",
         ],
         // Collapsed state
         "data-[state=collapsed]:size-9 data-[state=collapsed]:justify-center data-[state=collapsed]:p-0",
@@ -769,7 +770,7 @@ function SidebarMenuSubButton({
         "focus-visible:ring-2 focus-visible:ring-ring",
         "disabled:pointer-events-none disabled:opacity-50",
         "[&>svg]:size-3.5 [&>svg]:shrink-0",
-        isActive && "text-brand-primary hover:text-brand-primary",
+        isActive && "text-brand-text hover:text-brand-text",
         className,
       )}
       {...props}

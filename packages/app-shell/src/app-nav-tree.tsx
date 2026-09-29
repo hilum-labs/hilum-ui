@@ -140,7 +140,7 @@ function AppNavTreeItem({
             className={cn(
               rowClass,
               item.active
-                ? "bg-brand-primary/10 font-medium text-brand-primary"
+                ? "bg-brand-primary/10 font-medium text-brand-text"
                 : childActive
                   ? "font-medium text-foreground hover:bg-muted"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground",
