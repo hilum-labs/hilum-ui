@@ -100,7 +100,7 @@ function TitledCardPage() {
           <SectionHeading label="Simple" />
           <PreviewBlock
             title="Content card"
-            description="When there are no actions, TitledCard uses the lighter CardHeading treatment."
+            description="Without actions the title keeps the same heading element and style."
             code={CODE.simple}
             previewClassName="flex-col items-stretch"
           >

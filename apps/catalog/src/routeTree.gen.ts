@@ -22,6 +22,7 @@ import { Route as ApplicationUiPageRouteImport } from './app/application-ui/page
 import { Route as MoleculesUsageBarPageRouteImport } from './app/molecules/usage-bar/page'
 import { Route as MoleculesUrlRedirectPromptPageRouteImport } from './app/molecules/url-redirect-prompt/page'
 import { Route as MoleculesTitledCardPageRouteImport } from './app/molecules/titled-card/page'
+import { Route as MoleculesSetupGuidePageRouteImport } from './app/molecules/setup-guide/page'
 import { Route as MoleculesThinkingStepsPageRouteImport } from './app/molecules/thinking-steps/page'
 import { Route as MoleculesStatCardPageRouteImport } from './app/molecules/stat-card/page'
 import { Route as MoleculesStackedListPageRouteImport } from './app/molecules/stacked-list/page'
@@ -257,6 +258,11 @@ const MoleculesUrlRedirectPromptPageRoute =
 const MoleculesTitledCardPageRoute = MoleculesTitledCardPageRouteImport.update({
   id: '/molecules/titled-card/',
   path: '/molecules/titled-card/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoleculesSetupGuidePageRoute = MoleculesSetupGuidePageRouteImport.update({
+  id: '/molecules/setup-guide/',
+  path: '/molecules/setup-guide/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoleculesThinkingStepsPageRoute =
@@ -1353,6 +1359,7 @@ export interface FileRoutesByFullPath {
   '/molecules/stat-card/': typeof MoleculesStatCardPageRoute
   '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
+  '/molecules/setup-guide/': typeof MoleculesSetupGuidePageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
   '/molecules/usage-bar/': typeof MoleculesUsageBarPageRoute
 }
@@ -1538,6 +1545,7 @@ export interface FileRoutesByTo {
   '/molecules/stat-card': typeof MoleculesStatCardPageRoute
   '/molecules/thinking-steps': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card': typeof MoleculesTitledCardPageRoute
+  '/molecules/setup-guide': typeof MoleculesSetupGuidePageRoute
   '/molecules/url-redirect-prompt': typeof MoleculesUrlRedirectPromptPageRoute
   '/molecules/usage-bar': typeof MoleculesUsageBarPageRoute
 }
@@ -1724,6 +1732,7 @@ export interface FileRoutesById {
   '/molecules/stat-card/': typeof MoleculesStatCardPageRoute
   '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
+  '/molecules/setup-guide/': typeof MoleculesSetupGuidePageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
   '/molecules/usage-bar/': typeof MoleculesUsageBarPageRoute
 }
@@ -1911,6 +1920,7 @@ export interface FileRouteTypes {
     | '/molecules/stat-card/'
     | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
+    | '/molecules/setup-guide/'
     | '/molecules/url-redirect-prompt/'
     | '/molecules/usage-bar/'
   fileRoutesByTo: FileRoutesByTo
@@ -2096,6 +2106,7 @@ export interface FileRouteTypes {
     | '/molecules/stat-card'
     | '/molecules/thinking-steps'
     | '/molecules/titled-card'
+    | '/molecules/setup-guide'
     | '/molecules/url-redirect-prompt'
     | '/molecules/usage-bar'
   id:
@@ -2281,6 +2292,7 @@ export interface FileRouteTypes {
     | '/molecules/stat-card/'
     | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
+    | '/molecules/setup-guide/'
     | '/molecules/url-redirect-prompt/'
     | '/molecules/usage-bar/'
   fileRoutesById: FileRoutesById
@@ -2467,6 +2479,7 @@ export interface RootRouteChildren {
   MoleculesStatCardPageRoute: typeof MoleculesStatCardPageRoute
   MoleculesThinkingStepsPageRoute: typeof MoleculesThinkingStepsPageRoute
   MoleculesTitledCardPageRoute: typeof MoleculesTitledCardPageRoute
+  MoleculesSetupGuidePageRoute: typeof MoleculesSetupGuidePageRoute
   MoleculesUrlRedirectPromptPageRoute: typeof MoleculesUrlRedirectPromptPageRoute
   MoleculesUsageBarPageRoute: typeof MoleculesUsageBarPageRoute
 }
@@ -2562,6 +2575,13 @@ declare module '@tanstack/react-router' {
       path: '/molecules/titled-card'
       fullPath: '/molecules/titled-card/'
       preLoaderRoute: typeof MoleculesTitledCardPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/setup-guide/': {
+      id: '/molecules/setup-guide/'
+      path: '/molecules/setup-guide'
+      fullPath: '/molecules/setup-guide/'
+      preLoaderRoute: typeof MoleculesSetupGuidePageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/thinking-steps/': {
@@ -3941,6 +3961,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesStatCardPageRoute: MoleculesStatCardPageRoute,
   MoleculesThinkingStepsPageRoute: MoleculesThinkingStepsPageRoute,
   MoleculesTitledCardPageRoute: MoleculesTitledCardPageRoute,
+  MoleculesSetupGuidePageRoute: MoleculesSetupGuidePageRoute,
   MoleculesUrlRedirectPromptPageRoute: MoleculesUrlRedirectPromptPageRoute,
   MoleculesUsageBarPageRoute: MoleculesUsageBarPageRoute,
 }

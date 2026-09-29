@@ -110,6 +110,7 @@ export * from "./components/searchable-table";
 export * from "./components/section-heading";
 export * from "./components/select";
 export * from "./components/separator";
+export * from "./components/setup-guide";
 export * from "./components/sheet";
 export * from "./components/sidebar";
 export * from "./components/skeleton";
