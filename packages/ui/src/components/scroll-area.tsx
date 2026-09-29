@@ -4,12 +4,15 @@ import * as React from "react";
 import { ScrollArea } from "radix-ui";
 import { cn } from "../lib/utils";
 import { motionClasses } from "../lib/interaction";
+import { useKeyboardScrollable } from "../lib/use-keyboard-scrollable";
 
 function ScrollAreaRoot({
   className,
   children,
   ...props
 }: React.ComponentProps<typeof ScrollArea.Root>) {
+  const viewportRef = React.useRef<HTMLDivElement>(null);
+  const keyboardScroll = useKeyboardScrollable(viewportRef);
   return (
     <ScrollArea.Root
       data-slot="scroll-area"
@@ -17,8 +20,10 @@ function ScrollAreaRoot({
       {...props}
     >
       <ScrollArea.Viewport
+        ref={viewportRef}
         data-slot="scroll-area-viewport"
-        className="h-full w-full rounded-[inherit]"
+        className="h-full w-full rounded-[inherit] outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
+        {...keyboardScroll}
       >
         {children}
       </ScrollArea.Viewport>
