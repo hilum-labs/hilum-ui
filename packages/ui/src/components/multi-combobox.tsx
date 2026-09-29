@@ -134,6 +134,16 @@ interface MultiComboboxProps extends Omit<React.AriaAttributes, ManagedAria> {
   ref?: React.Ref<HTMLInputElement> | undefined;
 }
 
+function sameOption(a: ComboboxOption | undefined, b: ComboboxOption) {
+  return (
+    a !== undefined &&
+    a.label === b.label &&
+    a.description === b.description &&
+    a.statusColor === b.statusColor &&
+    a.avatar === b.avatar
+  );
+}
+
 function matches(option: ComboboxOption, query: string) {
   const needle = query.trim().toLocaleLowerCase();
   if (!needle) return true;
@@ -209,7 +219,8 @@ function MultiCombobox({
       let changed = false;
       const next = new Map(previous);
       for (const option of [...(selectedOptions ?? []), ...options]) {
-        if (next.get(option.value) !== option) {
+        // Compare contents: inline option arrays are new objects every render.
+        if (!sameOption(next.get(option.value), option)) {
           next.set(option.value, option);
           changed = true;
         }
