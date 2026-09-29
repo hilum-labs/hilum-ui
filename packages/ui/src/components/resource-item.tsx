@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn, isOwnEvent } from "../lib/utils";
 import { useLink } from "../lib/link-context";
 
 /* ─────────────────────── ResourceCell ─────────────────────── */
@@ -131,7 +131,15 @@ function ResourceItem({
           {inner}
         </Link>
       ) : onClick ? (
-        <button type="button" onClick={onClick} className={interactive} aria-label={ariaLabel}>
+        <button
+          type="button"
+          // Ignore clicks inside portals (a Dialog or menu rendered in the row).
+          onClick={(event) => {
+            if (isOwnEvent(event)) onClick();
+          }}
+          className={interactive}
+          aria-label={ariaLabel}
+        >
           {inner}
         </button>
       ) : (

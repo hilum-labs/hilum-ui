@@ -1,5 +1,5 @@
 import * as React from "react";
-import { cn } from "../lib/utils";
+import { cn, isOwnEvent } from "../lib/utils";
 
 interface StackedListProps {
   children: React.ReactNode;
@@ -60,7 +60,10 @@ function StackedListItem({ children, href, onClick, className }: StackedListItem
         <button
           type="button"
           className="w-full text-start hover:bg-muted transition-colors"
-          onClick={onClick}
+          // Ignore clicks inside portals (a Dialog or menu rendered in the item).
+          onClick={(event) => {
+            if (isOwnEvent(event)) onClick();
+          }}
         >
           {inner}
         </button>
