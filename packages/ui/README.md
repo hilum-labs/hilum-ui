@@ -221,6 +221,10 @@ Hilum UI works under a strict policy such as `style-src 'self'` (no
   with no opt-out, which logged CSP violations on every page. Since 4.4
   `@hilum/ui` bundles both with that injection removed, and their CSS ships in
   `tokens.css`. `@hilum/ui/vendor.css` (4.2) is now empty: remove its import.
+  This applies to the built package (`dist`). Apps that build from the
+  published `src` (for per-route code splitting) import `sonner` and `vaul`
+  directly, both regular dependencies, so their `<style>` is inserted as before;
+  use `dist` where a strict `style-src` matters.
 - **`InputOTP`**: `input-otp` appends a `<style id="input-otp-style">` on first
   use; Hilum's `InputOTP` claims that id first, and the same rules are in
   `tokens.css`.
