@@ -18,6 +18,8 @@ import { TimePicker } from "../../packages/ui/src/components/time-picker";
 import { ColorInput } from "../../packages/ui/src/components/color-input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../packages/ui/src/components/input-otp";
 import { Tag, TagInput } from "../../packages/ui/src/components/tag-input";
+import { MultiCombobox } from "../../packages/ui/src/components/multi-combobox";
+import { ResourcePicker } from "../../packages/ui/src/components/resource-picker";
 
 async function expectAccessible(ui: React.ReactElement) {
   render(ui);
@@ -78,6 +80,62 @@ describe("a11y: shop parity 2", () => {
     const input = document.querySelector("[data-slot=tag-input] input") as HTMLInputElement;
     fireEvent.focus(input);
     expect(document.querySelector("[role=listbox]")).not.toBeNull();
+    expect(await axe(document.body)).toHaveNoAxeViolations();
+  });
+
+  it("MultiCombobox open with chips, and with an empty result", async () => {
+    render(
+      <div>
+        <Field label="Collections" error="Pick one" required>
+          <MultiCombobox
+            options={[
+              { value: "summer", label: "Summer", description: "12 products" },
+              { value: "sale", label: "Sale" },
+            ]}
+            defaultValue={["summer"]}
+            clearable
+          />
+        </Field>
+        <MultiCombobox aria-label="Countries" options={[]} loading />
+      </div>,
+    );
+    for (const input of document.querySelectorAll("[data-slot=multi-combobox] input")) {
+      fireEvent.focus(input);
+    }
+    expect(document.querySelectorAll("[role=listbox]")).toHaveLength(1);
+    expect(await axe(document.body)).toHaveNoAxeViolations();
+  });
+
+  it("ResourcePicker, multiple and single", async () => {
+    const items = [
+      { id: "p1", title: "Ceramic mug", subtitle: "12 in stock", thumbnail: null, meta: "$20" },
+      { id: "p2", title: "Tea towel", subtitle: "4 in stock", disabled: true },
+    ];
+    const { unmount } = render(
+      <ResourcePicker
+        open
+        onOpenChange={() => {}}
+        title="Add products"
+        items={items}
+        initialSelectedIds={["p1"]}
+        hasMore
+        onLoadMore={() => {}}
+        onSelect={() => {}}
+      />,
+    );
+    expect(await axe(document.body)).toHaveNoAxeViolations();
+    unmount();
+    render(
+      <ResourcePicker
+        open
+        onOpenChange={() => {}}
+        title="Choose a collection"
+        description="Products are added to the collection you choose."
+        items={items}
+        multiple={false}
+        onSelect={() => {}}
+      />,
+    );
     expect(await axe(document.body)).toHaveNoAxeViolations();
   });
 });

@@ -31,6 +31,7 @@ import { Route as MoleculesSortablePageRouteImport } from './app/molecules/sorta
 import { Route as MoleculesSkeletonPagePageRouteImport } from './app/molecules/skeleton-page/page'
 import { Route as MoleculesSectionHeadingPageRouteImport } from './app/molecules/section-heading/page'
 import { Route as MoleculesResourceItemPageRouteImport } from './app/molecules/resource-item/page'
+import { Route as MoleculesResourcePickerPageRouteImport } from './app/molecules/resource-picker/page'
 import { Route as MoleculesRadioCardPageRouteImport } from './app/molecules/radio-card/page'
 import { Route as MoleculesPropertyRowPageRouteImport } from './app/molecules/property-row/page'
 import { Route as MoleculesPageHeadingPageRouteImport } from './app/molecules/page-heading/page'
@@ -143,6 +144,7 @@ import { Route as AtomsNavigationMenuPageRouteImport } from './app/atoms/navigat
 import { Route as AtomsNavItemPageRouteImport } from './app/atoms/nav-item/page'
 import { Route as AtomsNativeSelectPageRouteImport } from './app/atoms/native-select/page'
 import { Route as AtomsMenubarPageRouteImport } from './app/atoms/menubar/page'
+import { Route as AtomsMultiComboboxPageRouteImport } from './app/atoms/multi-combobox/page'
 import { Route as AtomsMenuItemPageRouteImport } from './app/atoms/menu-item/page'
 import { Route as AtomsLabelPageRouteImport } from './app/atoms/label/page'
 import { Route as AtomsKbdPageRouteImport } from './app/atoms/kbd/page'
@@ -311,6 +313,12 @@ const MoleculesResourceItemPageRoute =
   MoleculesResourceItemPageRouteImport.update({
     id: '/molecules/resource-item/',
     path: '/molecules/resource-item/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MoleculesResourcePickerPageRoute =
+  MoleculesResourcePickerPageRouteImport.update({
+    id: '/molecules/resource-picker/',
+    path: '/molecules/resource-picker/',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MoleculesRadioCardPageRoute = MoleculesRadioCardPageRouteImport.update({
@@ -921,6 +929,11 @@ const AtomsMenubarPageRoute = AtomsMenubarPageRouteImport.update({
   path: '/atoms/menubar/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsMultiComboboxPageRoute = AtomsMultiComboboxPageRouteImport.update({
+  id: '/atoms/multi-combobox/',
+  path: '/atoms/multi-combobox/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsMenuItemPageRoute = AtomsMenuItemPageRouteImport.update({
   id: '/atoms/menu-item/',
   path: '/atoms/menu-item/',
@@ -1260,6 +1273,7 @@ export interface FileRoutesByFullPath {
   '/atoms/label/': typeof AtomsLabelPageRoute
   '/atoms/menu-item/': typeof AtomsMenuItemPageRoute
   '/atoms/menubar/': typeof AtomsMenubarPageRoute
+  '/atoms/multi-combobox/': typeof AtomsMultiComboboxPageRoute
   '/atoms/native-select/': typeof AtomsNativeSelectPageRoute
   '/atoms/nav-item/': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu/': typeof AtomsNavigationMenuPageRoute
@@ -1372,6 +1386,7 @@ export interface FileRoutesByFullPath {
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item/': typeof MoleculesResourceItemPageRoute
+  '/molecules/resource-picker/': typeof MoleculesResourcePickerPageRoute
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/skeleton-page/': typeof MoleculesSkeletonPagePageRoute
   '/molecules/sortable/': typeof MoleculesSortablePageRoute
@@ -1449,6 +1464,7 @@ export interface FileRoutesByTo {
   '/atoms/label': typeof AtomsLabelPageRoute
   '/atoms/menu-item': typeof AtomsMenuItemPageRoute
   '/atoms/menubar': typeof AtomsMenubarPageRoute
+  '/atoms/multi-combobox': typeof AtomsMultiComboboxPageRoute
   '/atoms/native-select': typeof AtomsNativeSelectPageRoute
   '/atoms/nav-item': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu': typeof AtomsNavigationMenuPageRoute
@@ -1561,6 +1577,7 @@ export interface FileRoutesByTo {
   '/molecules/property-row': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item': typeof MoleculesResourceItemPageRoute
+  '/molecules/resource-picker': typeof MoleculesResourcePickerPageRoute
   '/molecules/section-heading': typeof MoleculesSectionHeadingPageRoute
   '/molecules/skeleton-page': typeof MoleculesSkeletonPagePageRoute
   '/molecules/sortable': typeof MoleculesSortablePageRoute
@@ -1639,6 +1656,7 @@ export interface FileRoutesById {
   '/atoms/label/': typeof AtomsLabelPageRoute
   '/atoms/menu-item/': typeof AtomsMenuItemPageRoute
   '/atoms/menubar/': typeof AtomsMenubarPageRoute
+  '/atoms/multi-combobox/': typeof AtomsMultiComboboxPageRoute
   '/atoms/native-select/': typeof AtomsNativeSelectPageRoute
   '/atoms/nav-item/': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu/': typeof AtomsNavigationMenuPageRoute
@@ -1751,6 +1769,7 @@ export interface FileRoutesById {
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item/': typeof MoleculesResourceItemPageRoute
+  '/molecules/resource-picker/': typeof MoleculesResourcePickerPageRoute
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/skeleton-page/': typeof MoleculesSkeletonPagePageRoute
   '/molecules/sortable/': typeof MoleculesSortablePageRoute
@@ -1830,6 +1849,7 @@ export interface FileRouteTypes {
     | '/atoms/label/'
     | '/atoms/menu-item/'
     | '/atoms/menubar/'
+    | '/atoms/multi-combobox/'
     | '/atoms/native-select/'
     | '/atoms/nav-item/'
     | '/atoms/navigation-menu/'
@@ -1942,6 +1962,7 @@ export interface FileRouteTypes {
     | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/resource-item/'
+    | '/molecules/resource-picker/'
     | '/molecules/section-heading/'
     | '/molecules/skeleton-page/'
     | '/molecules/sortable/'
@@ -2019,6 +2040,7 @@ export interface FileRouteTypes {
     | '/atoms/label'
     | '/atoms/menu-item'
     | '/atoms/menubar'
+    | '/atoms/multi-combobox'
     | '/atoms/native-select'
     | '/atoms/nav-item'
     | '/atoms/navigation-menu'
@@ -2131,6 +2153,7 @@ export interface FileRouteTypes {
     | '/molecules/property-row'
     | '/molecules/radio-card'
     | '/molecules/resource-item'
+    | '/molecules/resource-picker'
     | '/molecules/section-heading'
     | '/molecules/skeleton-page'
     | '/molecules/sortable'
@@ -2208,6 +2231,7 @@ export interface FileRouteTypes {
     | '/atoms/label/'
     | '/atoms/menu-item/'
     | '/atoms/menubar/'
+    | '/atoms/multi-combobox/'
     | '/atoms/native-select/'
     | '/atoms/nav-item/'
     | '/atoms/navigation-menu/'
@@ -2320,6 +2344,7 @@ export interface FileRouteTypes {
     | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/resource-item/'
+    | '/molecules/resource-picker/'
     | '/molecules/section-heading/'
     | '/molecules/skeleton-page/'
     | '/molecules/sortable/'
@@ -2398,6 +2423,7 @@ export interface RootRouteChildren {
   AtomsLabelPageRoute: typeof AtomsLabelPageRoute
   AtomsMenuItemPageRoute: typeof AtomsMenuItemPageRoute
   AtomsMenubarPageRoute: typeof AtomsMenubarPageRoute
+  AtomsMultiComboboxPageRoute: typeof AtomsMultiComboboxPageRoute
   AtomsNativeSelectPageRoute: typeof AtomsNativeSelectPageRoute
   AtomsNavItemPageRoute: typeof AtomsNavItemPageRoute
   AtomsNavigationMenuPageRoute: typeof AtomsNavigationMenuPageRoute
@@ -2510,6 +2536,7 @@ export interface RootRouteChildren {
   MoleculesPropertyRowPageRoute: typeof MoleculesPropertyRowPageRoute
   MoleculesRadioCardPageRoute: typeof MoleculesRadioCardPageRoute
   MoleculesResourceItemPageRoute: typeof MoleculesResourceItemPageRoute
+  MoleculesResourcePickerPageRoute: typeof MoleculesResourcePickerPageRoute
   MoleculesSectionHeadingPageRoute: typeof MoleculesSectionHeadingPageRoute
   MoleculesSkeletonPagePageRoute: typeof MoleculesSkeletonPagePageRoute
   MoleculesSortablePageRoute: typeof MoleculesSortablePageRoute
@@ -2677,6 +2704,13 @@ declare module '@tanstack/react-router' {
       path: '/molecules/resource-item'
       fullPath: '/molecules/resource-item/'
       preLoaderRoute: typeof MoleculesResourceItemPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/resource-picker/': {
+      id: '/molecules/resource-picker/'
+      path: '/molecules/resource-picker'
+      fullPath: '/molecules/resource-picker/'
+      preLoaderRoute: typeof MoleculesResourcePickerPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/radio-card/': {
@@ -3463,6 +3497,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsMenubarPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/multi-combobox/': {
+      id: '/atoms/multi-combobox/'
+      path: '/atoms/multi-combobox'
+      fullPath: '/atoms/multi-combobox/'
+      preLoaderRoute: typeof AtomsMultiComboboxPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/menu-item/': {
       id: '/atoms/menu-item/'
       path: '/atoms/menu-item'
@@ -3903,6 +3944,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsLabelPageRoute: AtomsLabelPageRoute,
   AtomsMenuItemPageRoute: AtomsMenuItemPageRoute,
   AtomsMenubarPageRoute: AtomsMenubarPageRoute,
+  AtomsMultiComboboxPageRoute: AtomsMultiComboboxPageRoute,
   AtomsNativeSelectPageRoute: AtomsNativeSelectPageRoute,
   AtomsNavItemPageRoute: AtomsNavItemPageRoute,
   AtomsNavigationMenuPageRoute: AtomsNavigationMenuPageRoute,
@@ -4016,6 +4058,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesPropertyRowPageRoute: MoleculesPropertyRowPageRoute,
   MoleculesRadioCardPageRoute: MoleculesRadioCardPageRoute,
   MoleculesResourceItemPageRoute: MoleculesResourceItemPageRoute,
+  MoleculesResourcePickerPageRoute: MoleculesResourcePickerPageRoute,
   MoleculesSectionHeadingPageRoute: MoleculesSectionHeadingPageRoute,
   MoleculesSkeletonPagePageRoute: MoleculesSkeletonPagePageRoute,
   MoleculesSortablePageRoute: MoleculesSortablePageRoute,

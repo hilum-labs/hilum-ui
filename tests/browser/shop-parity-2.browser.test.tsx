@@ -9,7 +9,9 @@ import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot,
+  MultiCombobox,
   Switch,
+  TagInput,
   Input,
   InputNumber,
   NativeSelect,
@@ -142,5 +144,32 @@ describe("Field error border on the newly wired controls (real browser)", () => 
     const toggle = screen.getByRole("switch", { name: "Charge tax" });
     expect(getComputedStyle(toggle).outlineColor).toBe(destructive);
     expect(getComputedStyle(toggle).outlineStyle).toBe("solid");
+  });
+});
+
+describe("TagInput and MultiCombobox fields (real browser)", () => {
+  it("are 36px tall like other controls, with or without chips, and show the error border", () => {
+    render(
+      <div className="flex w-96 flex-col gap-4 p-4">
+        <TagInput aria-label="Empty tags" />
+        <TagInput aria-label="Tags" defaultValue={["summer", "sale"]} />
+        <MultiCombobox aria-label="Empty" options={[{ value: "a", label: "Apple" }]} />
+        <Field label="Fruits" error="Pick one">
+          <MultiCombobox options={[{ value: "a", label: "Apple" }]} defaultValue={["a"]} />
+        </Field>
+        <Input aria-label="Reference" />
+      </div>,
+    );
+    const reference = screen.getByRole("textbox", { name: "Reference" }).getBoundingClientRect();
+    const fields = [
+      screen.getByRole("textbox", { name: "Empty tags" }),
+      screen.getByRole("textbox", { name: "Tags" }),
+      screen.getByRole("combobox", { name: "Empty" }),
+      screen.getByRole("combobox", { name: "Fruits" }),
+    ].map((input) => input.parentElement!);
+    for (const field of fields) {
+      expect(field.getBoundingClientRect().height).toBeCloseTo(reference.height, 0);
+    }
+    expect(borderColor(fields[3]!)).toBe(resolveColor("var(--destructive)"));
   });
 });

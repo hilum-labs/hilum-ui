@@ -490,6 +490,14 @@ const componentDefinitions = [
     "Horizontal application menu bar with nested dropdown panels.",
   ],
   [
+    "multi-combobox",
+    "Multi Combobox",
+    "atoms",
+    "Form",
+    "form",
+    "Searchable multi-select with removable chips, server-side search, a loading state, selection limits and Backspace to remove.",
+  ],
+  [
     "mobile-drawer",
     "Mobile Drawer",
     "molecules",
@@ -879,6 +887,15 @@ const componentDefinitions = [
     "data",
     "Primary/secondary text hierarchy for resource table cells and full-row mobile list items.",
     "Stacked List · Table",
+  ],
+  [
+    "resource-picker",
+    "Resource Picker",
+    "molecules",
+    "Lists",
+    "data",
+    "Dialog to search and pick products or other resources: thumbnail, title and subtitle rows with checkboxes or a single choice, async search and paging.",
+    "Dialog · Search Input · Checkbox · Thumbnail",
   ],
   [
     "search-input",
