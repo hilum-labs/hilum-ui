@@ -88,6 +88,8 @@ interface ColorPickerPopoverProps extends ColorPickerProps {
   triggerShowRemove?: boolean;
   onTriggerRemove?: () => void;
   triggerClassName?: string;
+  /** Accessible name of the trigger when it shows no text (`triggerShowValue={false}`, no `triggerLabel`). */
+  triggerAriaLabel?: string;
   /** Controls the popover's open state. When provided, the popover is fully
    *  controlled and ignores trigger clicks. */
   open?: boolean;
@@ -405,6 +407,7 @@ function ColorPickerPopover({
   triggerShowRemove = false,
   onTriggerRemove,
   triggerClassName,
+  triggerAriaLabel,
   open: openProp,
   defaultOpen = false,
   onOpenChange,
@@ -500,6 +503,7 @@ function ColorPickerPopover({
         disabled={pickerProps.disabled}
         aria-haspopup="dialog"
         aria-expanded={open}
+        {...(triggerAriaLabel ? { "aria-label": triggerAriaLabel } : {})}
         className={cn(
           "flex items-center gap-2 h-9 px-2 border border-border bg-transparent hover:bg-hover hover:border-border-strong transition-colors duration-80 outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer",
           "disabled:pointer-events-none disabled:opacity-50",

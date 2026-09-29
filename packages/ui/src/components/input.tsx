@@ -4,6 +4,7 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 import {
   controlHeightClass,
+  controlInvalidClasses,
   controlSurfaceClasses,
   controlTextClass,
   inputFocusClasses,
@@ -74,6 +75,7 @@ function Input({
         controlSurfaceClasses,
         motionClasses,
         inputFocusClasses,
+        controlInvalidClasses,
         controlMobileSurfaceClasses[mobileSurface],
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
         "file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground",

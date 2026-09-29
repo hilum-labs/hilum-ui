@@ -2,7 +2,12 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { controlSurfaceClasses, inputFocusClasses, motionClasses } from "../lib/interaction";
+import {
+  controlInvalidClasses,
+  controlSurfaceClasses,
+  inputFocusClasses,
+  motionClasses,
+} from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { useFieldControl } from "../lib/field-context";
 import type { ControlDensity, ControlMobileSurface } from "./input";
@@ -64,6 +69,7 @@ function Textarea({
         controlSurfaceClasses,
         motionClasses,
         inputFocusClasses,
+        controlInvalidClasses,
         textareaMobileSurfaceClasses[mobileSurface],
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
         // Editor-chrome density (data-density="compact" ancestor).

@@ -1458,6 +1458,22 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       {
         "label": "labels",
         "description": "Partial<ColorInputLabels> — Override the English UI strings (i18n)."
+      },
+      {
+        "label": "id",
+        "description": "string — id of the group. Inside a `<Field>` the group is named by the field's label (`aria-labelledby`) and the hex field takes its hint / error, invalid, required and disabled state."
+      },
+      {
+        "label": "aria-label",
+        "description": "string"
+      },
+      {
+        "label": "aria-labelledby",
+        "description": "string"
+      },
+      {
+        "label": "More props",
+        "description": "aria-describedby, aria-invalid, aria-required"
       }
     ],
     "exampleCode": "import { ColorInput } from \"@hilum/ui\"\n\nconst [color, setColor] = React.useState(\"#c100f1\")\n\n<ColorInput value={color} onChange={setColor} />",
@@ -1595,7 +1611,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "id",
-        "description": "string — id of the text input (e.g. for a `<label htmlFor>`)."
+        "description": "string — id of the text input (e.g. for a `<label htmlFor>`). Inside a `<Field>` the input takes the field's label, hint / error, invalid, required and disabled state automatically."
       },
       {
         "label": "name",
@@ -1603,7 +1619,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "disabled",
-        "description": "boolean · default false"
+        "description": "boolean"
       },
       {
         "label": "onBlur",
@@ -1756,7 +1772,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "className, getRowId, getRowLabel, enableRowSelection, rowSelection, defaultRowSelection, onRowSelectionChange, bulkActions, promotedBulkActions, totalCount, onSelectAllMatching, manualSorting, manualFiltering, manualPagination, pageCount, rowCount, sorting, defaultSorting, onSortingChange, pagination, onPaginationChange, columnFilters, onColumnFiltersChange, loading, loadingRowCount, stickyHeader, maxHeight, enableColumnVisibility, columnVisibility, defaultColumnVisibility, onColumnVisibilityChange, columnPinning, onColumnPinningChange, enableColumnResizing, columnSizing, onColumnSizingChange, dir, virtualize"
+        "description": "className, getRowId, getRowLabel, enableRowSelection, rowSelection, defaultRowSelection, onRowSelectionChange, bulkActions, promotedBulkActions, totalCount, onSelectAllMatching, manualSorting, manualFiltering, manualPagination, pageCount, rowCount, sorting, defaultSorting, onSortingChange, pagination, onPaginationChange, columnFilters, onColumnFiltersChange, loading, loadingRowCount, stickyHeader, maxHeight, enableColumnVisibility, columnVisibility, defaultColumnVisibility, onColumnVisibilityChange, columnPinning, onColumnPinningChange, enableColumnResizing, columnSizing, onColumnSizingChange, dir, virtualize, mobileLayout, mobileBreakpoint, mobilePrimaryColumn, mobileColumns"
       }
     ],
     "exampleCode": "import { DataTable, createColumnHelper } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\ntype Transaction = {\n  id: string; company: string; type: string\n  amount: string; date: string; status: \"Paid\" | \"Pending\" | \"Overdue\"\n}\n\nconst helper = createColumnHelper<Transaction>()\n\nconst columns = [\n  helper.accessor(\"id\", {\n    header: \"ID\",\n    cell: (info) => <span className=\"font-mono caption text-muted-foreground\">{info.getValue()}</span>,\n  }),\n  helper.accessor(\"company\", {\n    header: \"Company\",\n    cell: (info) => <span className=\"font-medium text-foreground\">{info.getValue()}</span>,\n// ...trimmed for docs",
@@ -1823,7 +1839,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "id",
-        "description": "string"
+        "description": "string — id of the trigger button. Inside a `<Field>` the trigger takes the field's label, hint / error, invalid, required and disabled state automatically."
       },
       {
         "label": "name",
@@ -1831,7 +1847,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "aria-label, aria-invalid, className, labels"
+        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, aria-required, className, labels"
       },
       {
         "label": "Key exports",
@@ -2537,6 +2553,85 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     ],
     "whenToUse": [
       "Use Menubar when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
+  "/atoms/multi-combobox/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "options",
+        "description": "ComboboxOption[] · required — Options to choose from (the current search results when `onSearchChange` is set)."
+      },
+      {
+        "label": "value",
+        "description": "string[] — Selected option values (controlled)."
+      },
+      {
+        "label": "defaultValue",
+        "description": "string[] — Initially selected values (uncontrolled)."
+      },
+      {
+        "label": "onValueChange",
+        "description": "(values: string[]) => void"
+      },
+      {
+        "label": "placeholder",
+        "description": "string · default \"Search…\" — Search field placeholder while nothing is selected."
+      },
+      {
+        "label": "emptyText",
+        "description": "string · default \"No results found.\" — Shown when no option matches."
+      },
+      {
+        "label": "onSearchChange",
+        "description": "(query: string) => void — Called with the search text as the user types (and \"\" when the list closes). Use it to fetch `options` from a server; the component then stops filtering them itself unless `filterOptions` is true."
+      },
+      {
+        "label": "filterOptions",
+        "description": "boolean — Filter `options` by the search text. Default: true, or false with `onSearchChange`."
+      },
+      {
+        "label": "loading",
+        "description": "boolean · default false — Show a loading row (e.g. while `onSearchChange` results load)."
+      },
+      {
+        "label": "maxSelected",
+        "description": "number — Most options that can be selected; the rest are disabled once reached."
+      },
+      {
+        "label": "closeOnSelect",
+        "description": "boolean · default false — Close the list after each selection. Default false."
+      },
+      {
+        "label": "clearable",
+        "description": "boolean · default false — Show a clear-all (×) button while something is selected."
+      },
+      {
+        "label": "More props",
+        "description": "disabled, id, name, onBlur, className, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (48)."
+      }
+    ],
+    "exampleCode": "import { Field, MultiCombobox } from \"@hilum/ui\"\n\nconst [ids, setIds] = useState([\"summer\"])\n\n<Field label=\"Collections\" hint=\"The product appears in every collection you pick.\">\n  <MultiCombobox\n    options={collections}          // { value, label, description? }[]\n    value={ids}\n    onValueChange={setIds}\n    placeholder=\"Search collections\"\n    emptyText=\"No collections found\"\n  />\n</Field>",
+    "kind": "component",
+    "path": "/atoms/multi-combobox/",
+    "summary": "Pick several options from a searchable list. The selection shows as removable chips in the field; search can run on the server, and Backspace removes the last chip.",
+    "title": "Multi Combobox",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Multi Combobox when the user needs to enter or choose information as part of a larger form or workflow.",
       "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
       "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
@@ -3753,7 +3848,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "disabled",
-        "description": "boolean · default false"
+        "description": "boolean — Disables the switch. Inside a `<Field disabled>` it is disabled unless set explicitly."
+      },
+      {
+        "label": "id",
+        "description": "string — id of the switch button (the labelable element), e.g. for a `<label htmlFor>`. Inside a `<Field>` the field's label targets it."
       },
       {
         "label": "thumbTransition",
@@ -3761,7 +3860,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "Inherited props",
-        "description": "Also accepts native HTML/React attributes (276)."
+        "description": "Also accepts native HTML/React attributes (275)."
       }
     ],
     "exampleCode": "import { Switch } from \"@hilum/ui\"\nimport { Label } from \"@hilum/ui\"\n\n<div className=\"flex items-center gap-3\">\n  <Switch id=\"lang\" defaultChecked />\n  <Label htmlFor=\"lang\">Language override</Label>\n</div>",
@@ -3926,6 +4025,89 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Tabs Subtle when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
       "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
       "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
+  "/atoms/tag-input/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "value",
+        "description": "string[] — Controlled tags."
+      },
+      {
+        "label": "defaultValue",
+        "description": "string[] — Initial tags (uncontrolled)."
+      },
+      {
+        "label": "onChange",
+        "description": "(tags: string[]) => void"
+      },
+      {
+        "label": "placeholder",
+        "description": "string"
+      },
+      {
+        "label": "disabled",
+        "description": "boolean"
+      },
+      {
+        "label": "id",
+        "description": "string — id of the text input. Inside a `<Field>` it is wired automatically."
+      },
+      {
+        "label": "name",
+        "description": "string — Form field name: every tag posts as a hidden input with this name."
+      },
+      {
+        "label": "maxTags",
+        "description": "number — Most tags allowed; further additions are ignored and announced."
+      },
+      {
+        "label": "maxLength",
+        "description": "number — Longest tag, in characters. Longer text is cut to this length."
+      },
+      {
+        "label": "separators",
+        "description": "string[] · default [\",\"] — Characters that end a tag while typing or pasting (Enter always does). Default `[\",\"]`."
+      },
+      {
+        "label": "caseSensitive",
+        "description": "boolean · default false — Treat \"Sale\" and \"sale\" as different tags. Default false (duplicates are dropped case-insensitively)."
+      },
+      {
+        "label": "normalize",
+        "description": "(tag: string) => string — Transform each tag before it's added (after trimming), e.g. lower-casing."
+      },
+      {
+        "label": "More props",
+        "description": "suggestions, onInputChange, addOnBlur, onBlur, onFocus, className, labels"
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (48)."
+      },
+      {
+        "label": "Key exports",
+        "description": "Tag, TagInput"
+      }
+    ],
+    "exampleCode": "import { Field, TagInput } from \"@hilum/ui\"\n\nconst [tags, setTags] = useState([\"summer\", \"sale\"])\n\n<Field label=\"Tags\" hint=\"Press Enter or type a comma to add a tag.\">\n  <TagInput value={tags} onChange={setTags} placeholder=\"Add a tag\" />\n</Field>",
+    "kind": "component",
+    "path": "/atoms/tag-input/",
+    "summary": "Free-text tags: Enter or a comma adds a tag, Backspace removes the last one, pasted text is split on commas and new lines, and duplicates are dropped. Optional suggestions, limits and a Field-wired label, hint and error.",
+    "title": "Tag Input",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Tag Input when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
   "/atoms/textarea/": {
@@ -4114,7 +4296,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, labels, className"
+        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, aria-required, labels, className"
       }
     ],
     "exampleCode": null,
@@ -6931,7 +7113,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, className"
+        "description": "aria-label, aria-labelledby, aria-describedby, aria-invalid, aria-required, id, className"
       }
     ],
     "exampleCode": null,
@@ -7072,7 +7254,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "htmlFor",
-        "description": "string — id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context (Input, Textarea, Select, NativeSelect, InputNumber pick it up automatically). If the control has its own `id`, the label follows it."
+        "description": "string — id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context. Input, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically. If the control has its own `id`, the label follows it, so `htmlFor` is only needed for controls outside this list."
       },
       {
         "label": "hint",
@@ -7912,6 +8094,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
     "summary": "Composed components built from atoms. Each molecule combines primitives into a reusable, purpose-built pattern.",
     "title": "Molecules"
   },
+  "/molecules/preview-frame/": {
+    "accessibility": [
+      "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
+      "Avoid using visual grouping alone to explain hierarchy; expose the structure semantically as well.",
+      "Make sure drag, resize, and reorder interactions have keyboard alternatives when they are part of the core task."
+    ],
+    "api": [
+      {
+        "label": "src",
+        "description": "string · required — URL of the page to preview."
+      },
+      {
+        "label": "title",
+        "description": "string · required — Accessible name of the frame, e.g. \"Preview of Dawn\". Required."
+      },
+      {
+        "label": "device",
+        "description": "\"mobile\" | \"tablet\" | \"desktop\" — Device width to render (controlled)."
+      },
+      {
+        "label": "defaultDevice",
+        "description": "\"mobile\" | \"tablet\" | \"desktop\" · default \"desktop\" — Initial device (uncontrolled). Default \"desktop\"."
+      },
+      {
+        "label": "onDeviceChange",
+        "description": "(device: PreviewDevice) => void"
+      },
+      {
+        "label": "devices",
+        "description": "PreviewDevice[] · default [\"mobile\", \"tablet\", \"desktop\"] — Devices offered in the toggle. Default all three."
+      },
+      {
+        "label": "deviceWidths",
+        "description": "Partial<Record<PreviewDevice, number>> — Override the layout width of a device, in CSS pixels."
+      },
+      {
+        "label": "showDeviceToggle",
+        "description": "boolean — Show the device toggle. Default true when more than one device is offered."
+      },
+      {
+        "label": "showOpenInNewTab",
+        "description": "boolean · default false — Show a link that opens `src` in a new tab."
+      },
+      {
+        "label": "toolbar",
+        "description": "React.ReactNode — Extra toolbar content at the end (e.g. a Publish button)."
+      },
+      {
+        "label": "height",
+        "description": "number | string · default 600 — Height of the preview area. Default 600 (px). Pass \"100%\" inside a sized parent."
+      },
+      {
+        "label": "sandbox",
+        "description": "string · default PREVIEW_FRAME_DEFAULT_SANDBOX — iframe `sandbox`. Default: scripts, same-origin, forms and popups, for a storefront on another origin. Never combine `allow-scripts` with `allow-same-origin` for a page served from your app's own origin."
+      },
+      {
+        "label": "More props",
+        "description": "allow, referrerPolicy, error, loadTimeout, onLoad, onError, onRetry, className, labels"
+      }
+    ],
+    "exampleCode": "import { PreviewFrame } from \"@hilum/ui\"\n\n<PreviewFrame\n  src={themePreviewUrl}\n  title={\\",
+    "kind": "component",
+    "path": "/molecules/preview-frame/",
+    "summary": "Sandboxed iframe for storefront and theme previews: mobile, tablet and desktop widths, the page scaled to fit its container, a loading skeleton and an error state with retry. Use it instead of a raw iframe.",
+    "title": "Summer essentials",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Summer essentials when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/molecules/property-row/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -8071,6 +8328,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Use Resource Item when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
       "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
+  "/molecules/resource-picker/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "open",
+        "description": "boolean · required"
+      },
+      {
+        "label": "onOpenChange",
+        "description": "(open: boolean) => void · required"
+      },
+      {
+        "label": "title",
+        "description": "string · required — Dialog title, e.g. \"Add products\"."
+      },
+      {
+        "label": "items",
+        "description": "T[] · required — Rows to show: the current search results."
+      },
+      {
+        "label": "onSelect",
+        "description": "(ids: string[], items: T[]) => void · required — Confirmed selection, in selection order. `items` holds every selected row the picker has seen (rows selected before opening that were never in `items` appear in `ids` only)."
+      },
+      {
+        "label": "description",
+        "description": "string"
+      },
+      {
+        "label": "onSearch",
+        "description": "(query: string) => void — Called with the search text after `searchDelay` ms (and with \"\" when the picker opens). Fetch matching `items` here. Without it, `items` are filtered by title in the browser."
+      },
+      {
+        "label": "searchDelay",
+        "description": "number · default 250 — Debounce for `onSearch`, in ms. Default 250."
+      },
+      {
+        "label": "loading",
+        "description": "boolean · default false — Rows are loading (skeleton rows when empty, a spinner row otherwise)."
+      },
+      {
+        "label": "hasMore",
+        "description": "boolean · default false — Show a \"Load more\" button that calls `onLoadMore`."
+      },
+      {
+        "label": "onLoadMore",
+        "description": "() => void"
+      },
+      {
+        "label": "multiple",
+        "description": "boolean · default true — Checkboxes (default) or a single choice with radio buttons."
+      },
+      {
+        "label": "More props",
+        "description": "initialSelectedIds, maxSelected, renderItem, emptyState, labels"
+      }
+    ],
+    "exampleCode": "import { Button, ResourcePicker } from \"@hilum/ui\"\n\nconst [open, setOpen] = useState(false)\nconst [query, setQuery] = useState(\"\")\nconst { data, isFetching, hasNextPage, fetchNextPage } = useProducts(query)\n\n<Button variant=\"outline\" onClick={() => setOpen(true)}>Browse</Button>\n<ResourcePicker\n  open={open}\n  onOpenChange={setOpen}\n  title=\"Add products\"\n  items={(data ?? []).map((p) => ({\n    id: p.id,\n    title: p.title,\n    subtitle: \\",
+    "kind": "component",
+    "path": "/molecules/resource-picker/",
+    "summary": "Shopify-style picker dialog: search, a list of rows with thumbnail, title, subtitle and meta, checkboxes (or a single choice), and Add. Search and paging can run on the server; the selection survives searching.",
+    "title": "Resource Picker",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Resource Picker when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
     ]
   },
   "/molecules/section-heading/": {

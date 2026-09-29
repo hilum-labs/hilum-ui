@@ -490,6 +490,14 @@ const componentDefinitions = [
     "Horizontal application menu bar with nested dropdown panels.",
   ],
   [
+    "multi-combobox",
+    "Multi Combobox",
+    "atoms",
+    "Form",
+    "form",
+    "Searchable multi-select with removable chips, server-side search, a loading state, selection limits and Backspace to remove.",
+  ],
+  [
     "mobile-drawer",
     "Mobile Drawer",
     "molecules",
@@ -548,6 +556,15 @@ const componentDefinitions = [
     "layout",
     "Full page header with breadcrumb navigation, title, metadata, and actions.",
     "Button · Badge · Breadcrumb",
+  ],
+  [
+    "preview-frame",
+    "Preview Frame",
+    "molecules",
+    "Media",
+    "data",
+    "Sandboxed iframe for storefront and theme previews with mobile, tablet and desktop widths, scale to fit, loading and error states.",
+    "Toggle Group · Skeleton · Button",
   ],
   [
     "pagination",
@@ -763,6 +780,14 @@ const componentDefinitions = [
     "Quiet segmented tab navigation for settings, filters, and compact product panels.",
   ],
   [
+    "tag-input",
+    "Tag Input",
+    "atoms",
+    "Form",
+    "form",
+    "Free-text tags with Enter or comma to add, Backspace to remove, paste splitting, de-duplication, limits and optional suggestions.",
+  ],
+  [
     "textarea",
     "Textarea",
     "atoms",
@@ -871,6 +896,15 @@ const componentDefinitions = [
     "data",
     "Primary/secondary text hierarchy for resource table cells and full-row mobile list items.",
     "Stacked List · Table",
+  ],
+  [
+    "resource-picker",
+    "Resource Picker",
+    "molecules",
+    "Lists",
+    "data",
+    "Dialog to search and pick products or other resources: thumbnail, title and subtitle rows with checkboxes or a single choice, async search and paging.",
+    "Dialog · Search Input · Checkbox · Thumbnail",
   ],
   [
     "search-input",

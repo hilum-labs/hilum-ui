@@ -235,6 +235,25 @@ function StatCardPage() {
             </div>
           </PreviewBlock>
         </section>
+
+        <section>
+          <SectionHeading label="Stat Card · Narrow cells" />
+          <PreviewBlock
+            title="Long labels and values on a phone"
+            description="In a StatGrid each cell is a size container: values scale down with the card (30px to 18px) and wrap instead of clipping; labels wrap between words over two lines at most, with tighter tracking."
+            code={`<StatGrid columns={2}>
+  <StatCard label="Total merchants" value="1,284" />
+  <StatCard label="Gross merchandise volume" value="S/ 12,345,678.90" />
+</StatGrid>`}
+          >
+            <div className="w-full max-w-[22rem]">
+              <StatGrid columns={2}>
+                <StatCard label="Total merchants" value="1,284" />
+                <StatCard label="Gross merchandise volume" value="S/ 12,345,678.90" />
+              </StatGrid>
+            </div>
+          </PreviewBlock>
+        </section>
       </div>
       <div className="h-16" />
     </div>

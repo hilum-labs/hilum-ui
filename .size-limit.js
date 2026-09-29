@@ -14,9 +14,14 @@ const checks = [
   // 4.0 moved the AI components to `@hilum/ui/ai`, so the primitives both
   // entries use (Button, Tooltip, Accordion, Callout, motion, …) now live in
   // the shared chunks: index alone dropped ~116 → ~93 kB, chunks grew.
-  { name: "@hilum/ui", path: "packages/ui/dist/index.js", limit: "102 kB" },
+  // 4.3 added MultiCombobox, ResourcePicker, TagInput / Tag and PreviewFrame,
+  // DataTable's mobile cards and Field wiring in nine more controls:
+  // 98.4 → 106.8 kB.
+  { name: "@hilum/ui", path: "packages/ui/dist/index.js", limit: "117 kB" },
   // Shared code-split chunks imported by several @hilum/ui entries.
-  { name: "@hilum/ui (shared chunks)", path: "packages/ui/dist/chunk-*.js", limit: "22 kB" },
+  // 4.3: the Field control registry (useFieldControl lives in a shared chunk):
+  // 21.3 → 22 kB, at the old budget.
+  { name: "@hilum/ui (shared chunks)", path: "packages/ui/dist/chunk-*.js", limit: "24 kB" },
   // @hilum/ui/ai — AI/chat components (imports shared chunks above).
   { name: "@hilum/ui/ai", path: "packages/ui/dist/ai.js", limit: "16.7 kB" },
   { name: "@hilum/ui/icons", path: "packages/ui/dist/icons.js", limit: "700 B" },

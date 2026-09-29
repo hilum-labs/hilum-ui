@@ -40,9 +40,10 @@ interface PageHeaderProps {
   /** Main call to action, rendered as a primary button. */
   primaryAction?: PageHeaderAction;
   /**
-   * Secondary actions, rendered as outline buttons. When the header is narrow
-   * (container query) — or beyond `maxVisibleSecondaryActions` — they collapse
-   * into a "More actions" menu.
+   * Secondary actions, rendered as outline buttons. A single secondary action
+   * always stays inline. With two or more, a narrow header (container query)
+   * collapses them into a "More actions" menu, and a wide one shows up to
+   * `maxVisibleSecondaryActions` and overflows the rest.
    */
   secondaryActions?: PageHeaderAction[];
   /** Secondary actions shown inline on wide headers before overflowing. Default: 3. */
@@ -282,8 +283,11 @@ function PageHeader({
     title
   );
 
-  // Wide headers show up to `maxVisibleSecondaryActions` inline and overflow
-  // the rest; narrow headers put every secondary action in the menu.
+  // A lone secondary action is always inline: a menu holding one item only
+  // hides it. With two or more, wide headers show up to
+  // `maxVisibleSecondaryActions` inline and overflow the rest, and narrow
+  // headers put every secondary action in the menu.
+  const single = secondaryActions.length === 1 && maxVisibleSecondaryActions > 0;
   const inlineSecondary = secondaryActions.slice(0, maxVisibleSecondaryActions);
   const overflowSecondary = secondaryActions.slice(maxVisibleSecondaryActions);
   const hasStructuredActions = Boolean(primaryAction) || secondaryActions.length > 0;
@@ -302,10 +306,10 @@ function PageHeader({
           key={index}
           action={action}
           variant={action.destructive ? "destructive" : "outline"}
-          className="hidden @3xl/page-header:inline-flex"
+          {...(single ? {} : { className: "hidden @3xl/page-header:inline-flex" })}
         />
       ))}
-      {secondaryActions.length > 0 && (
+      {secondaryActions.length > 0 && !single && (
         <PageHeaderMoreActions
           actions={secondaryActions}
           label={moreActionsLabel}

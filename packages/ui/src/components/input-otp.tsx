@@ -4,16 +4,36 @@ import * as React from "react";
 import { OTPInput, OTPInputContext } from "input-otp";
 import { Minus } from "lucide-react";
 import { cn } from "../lib/utils";
+import { useFieldControl } from "../lib/field-context";
 
 function InputOTP({
   className,
   containerClassName,
+  id,
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
   ...props
 }: React.ComponentProps<typeof OTPInput>) {
+  // Inside a <Field>, the (visually hidden) input takes the field's label,
+  // hint / error, invalid, required and disabled state; the slots show the
+  // error border.
+  const fieldProps = useFieldControl({
+    id,
+    disabled,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
+  });
   return (
     <OTPInput
       data-slot="input-otp"
-      containerClassName={cn("flex items-center gap-2 has-disabled:opacity-50", containerClassName)}
+      {...fieldProps}
+      containerClassName={cn(
+        "group/input-otp flex items-center gap-2 has-disabled:opacity-50",
+        containerClassName,
+      )}
       className={cn("disabled:cursor-not-allowed", className)}
       {...props}
     />
@@ -44,7 +64,11 @@ function InputOTPSlot({
         "border-y border-e border-border body font-medium text-foreground",
         "first:rounded-s-xl first:border-s last:rounded-e-xl",
         "transition-[border-color,box-shadow]",
+        // Error state from the input's aria-invalid (e.g. <Field error>).
+        "group-has-[input[aria-invalid=true]]/input-otp:border-destructive",
         isActive && "z-10 ring-2 ring-brand-primary/40 border-brand-primary",
+        isActive &&
+          "group-has-[input[aria-invalid=true]]/input-otp:border-destructive group-has-[input[aria-invalid=true]]/input-otp:ring-destructive/35",
         className,
       )}
       {...props}

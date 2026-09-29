@@ -1,6 +1,6 @@
 # @hilum/ui
 
-UI primitives for the Hilum design system — Button, Input, Dialog, Combobox, and 118 component modules total (112 on the main entry, 6 AI/chat modules on `@hilum/ui/ai`), plus brand tokens, fonts, and a curated icon set.
+UI primitives for the Hilum design system — Button, Input, Dialog, Combobox, and 125 component modules total (119 on the main entry, 6 AI/chat modules on `@hilum/ui/ai`), plus brand tokens, fonts, and a curated icon set.
 
 ## Install
 
@@ -103,6 +103,20 @@ const form = useForm({ defaultValues: { email: "" } });
   </form>
 </Form>;
 ```
+
+### Field wiring
+
+`<Field label hint error required disabled>` labels, describes and marks invalid the control inside it, with no manual ids:
+
+```tsx
+import { Field, Input, MultiCombobox, TagInput } from "@hilum/ui";
+
+<Field label="Email" error={errors.email} required>
+  <Input id="email" value={email} onChange={onEmailChange} />
+</Field>;
+```
+
+Input, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the field's id (or keep their own `id`, which the label then follows), `aria-describedby`, `aria-invalid` (a destructive border), `aria-required` and `disabled`. Groups (TimePicker, DateTimePicker, ColorInput) are named by the label through `aria-labelledby`. `htmlFor` is only needed for your own controls; wire those with `useFieldControl()`.
 
 ### Icon libraries (`@hilum/ui/icon-libraries`)
 

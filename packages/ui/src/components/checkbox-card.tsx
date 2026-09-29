@@ -3,6 +3,7 @@
 import * as React from "react";
 import { cn } from "../lib/utils";
 import { Checkbox } from "./checkbox";
+import { FieldContext } from "../lib/field-context";
 
 interface CheckboxCardProps extends Omit<React.LabelHTMLAttributes<HTMLLabelElement>, "onChange"> {
   checked?: boolean | "indeterminate";
@@ -45,7 +46,10 @@ function CheckboxCard({
       )}
       {...props}
     >
-      <Checkbox {...checkboxProps} className="mt-0.5" />
+      {/* The card is the checkbox's label: it doesn't take a surrounding Field's label. */}
+      <FieldContext.Provider value={null}>
+        <Checkbox {...checkboxProps} className="mt-0.5" />
+      </FieldContext.Provider>
       <span className="flex min-w-0 flex-1 flex-col gap-0.5">
         <span className="font-medium leading-5 text-foreground">{label}</span>
         {description ? (

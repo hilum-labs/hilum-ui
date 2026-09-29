@@ -2,25 +2,29 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { FieldContext, type FieldContextValue } from "../lib/field-context";
+import { FieldContext, useFieldRegistry, type FieldContextValue } from "../lib/field-context";
 import { Label } from "./label";
 
 interface FieldProps {
   label: string;
   /**
    * id of the control the label targets. Optional: when omitted, Field
-   * generates one and hands it to the control through context (Input,
-   * Textarea, Select, NativeSelect, InputNumber pick it up automatically). If
-   * the control has its own `id`, the label follows it.
+   * generates one and hands it to the control through context. Input,
+   * Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox,
+   * MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker,
+   * DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label,
+   * hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and
+   * `disabled` automatically. If the control has its own `id`, the label
+   * follows it, so `htmlFor` is only needed for controls outside this list.
    */
-  htmlFor?: string;
-  hint?: string;
-  error?: string;
-  required?: boolean;
+  htmlFor?: string | undefined;
+  hint?: string | undefined;
+  error?: string | undefined;
+  required?: boolean | undefined;
   /** Disables the wrapped control (via context) unless it sets `disabled` itself. */
-  disabled?: boolean;
-  cornerHint?: string;
-  className?: string;
+  disabled?: boolean | undefined;
+  cornerHint?: string | undefined;
+  className?: string | undefined;
   children: React.ReactNode;
   ref?: React.Ref<HTMLDivElement> | undefined;
 }
@@ -39,11 +43,14 @@ function Field({
 }: FieldProps) {
   const generatedId = React.useId();
   const baseId = htmlFor ?? `field-${generatedId.replace(/:/g, "")}`;
-  const [registeredId, setRegisteredId] = React.useState<string | null>(null);
-  const claimRef = React.useRef<string | null>(null);
+  const labelId = `${baseId}-label`;
+  const { claimRef, owner, registerControl, unregisterControl } = useFieldRegistry();
 
-  // Label target: explicit htmlFor > a control's own id > generated id.
-  const controlId = htmlFor ?? registeredId ?? baseId;
+  // Label target: explicit htmlFor > the owning control's own id > generated id.
+  const controlId = htmlFor ?? owner?.id ?? baseId;
+  // Groups (TimePicker, DateTimePicker, ColorInput) aren't labelable elements:
+  // they reference the label with aria-labelledby and the label drops `for`.
+  const labelFor = htmlFor ?? (owner && !owner.labelable ? undefined : controlId);
   // The hint/error paragraph keeps its predictable `${htmlFor}-description`
   // id (only one of them renders at a time), so consumers that wired
   // aria-describedby by hand keep working alongside the auto-wiring.
@@ -54,15 +61,32 @@ function Field({
   const context = React.useMemo<FieldContextValue>(
     () => ({
       controlId,
+      labelFor,
+      labelId,
       descriptionId,
       errorId,
       invalid: !!error,
       required: !!required,
       disabled: !!disabled,
+      ownerToken: owner?.token ?? null,
       claimRef,
-      registerControlId: setRegisteredId,
+      registerControl,
+      unregisterControl,
     }),
-    [controlId, descriptionId, errorId, error, required, disabled],
+    [
+      controlId,
+      labelFor,
+      labelId,
+      descriptionId,
+      errorId,
+      error,
+      required,
+      disabled,
+      owner,
+      claimRef,
+      registerControl,
+      unregisterControl,
+    ],
   );
 
   return (
@@ -74,7 +98,7 @@ function Field({
         data-invalid={error ? "" : undefined}
       >
         <div className="flex items-center justify-between gap-2">
-          <Label htmlFor={controlId}>
+          <Label id={labelId}>
             {label}
             {required && (
               <span className="ms-0.5 text-destructive" aria-hidden="true">

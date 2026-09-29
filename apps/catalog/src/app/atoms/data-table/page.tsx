@@ -5,6 +5,7 @@ import { PageDocs } from "@/components/catalog/page-docs";
 import { useEffect, useState } from "react";
 import {
   DataTable,
+  ResourceCell,
   type PaginationState,
   type RowSelectionState,
   type SortingState,
@@ -533,6 +534,58 @@ function VirtualTableDemo() {
   );
 }
 
+const CARDS_CODE = `<DataTable
+  columns={columns}             // first column: a ResourceCell
+  data={orders}
+  getRowId={(row) => row.id}
+  enableRowSelection
+  onRowClick={(row) => navigate(\`/orders/\${row.id}\`)}
+  mobileLayout="cards"          // below 640px (mobileBreakpoint="md": 768px)
+  mobileColumns={["amount", "status", "date"]}
+/>`;
+
+const CARD_COLUMNS: ColumnDef<Transaction>[] = [
+  {
+    id: "transaction",
+    header: "Transaction",
+    cell: ({ row }) => <ResourceCell title={row.original.company} subtitle={row.original.id} />,
+  },
+  {
+    id: "amount",
+    header: () => <span className="block text-end">Amount</span>,
+    meta: { label: "Amount" },
+    cell: ({ row }) => <span className="block text-end tabular-nums">{row.original.amount}</span>,
+  },
+  {
+    id: "status",
+    header: "Status",
+    cell: ({ row }) => (
+      <Badge variant={statusVariant[row.original.status]}>{row.original.status}</Badge>
+    ),
+  },
+  { id: "date", header: "Date", cell: ({ row }) => row.original.date },
+];
+
+function CardsTableDemo() {
+  const [selection, setSelection] = useState<RowSelectionState>({});
+  return (
+    <div className="w-full">
+      <DataTable
+        columns={CARD_COLUMNS}
+        data={DATA.slice(0, 5)}
+        getRowId={(row) => row.id}
+        getRowLabel={(row) => row.company}
+        rowSelection={selection}
+        onRowSelectionChange={setSelection}
+        enableRowSelection
+        onRowClick={() => {}}
+        mobileLayout="cards"
+        showPagination={false}
+      />
+    </div>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
@@ -684,6 +737,18 @@ function DataTablePage() {
             previewClassName="flex-col items-stretch"
           >
             <ServerTableDemo />
+          </PreviewBlock>
+        </section>
+
+        <section>
+          <SectionHeading label="Phones: stacked cards" />
+          <PreviewBlock
+            title="Mobile layout: cards"
+            description="Below 640px each row becomes a card: the first column (a ResourceCell) is the title and the other columns are label / value rows. Selection, bulk actions and row clicks keep working. Narrow the window to see it. Body cells are 14px, the size of the ResourceCell title: primary title (medium) › values (regular) › secondary lines (12px, muted)."
+            code={CARDS_CODE}
+            previewClassName="flex-col items-stretch"
+          >
+            <CardsTableDemo />
           </PreviewBlock>
         </section>
 

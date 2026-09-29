@@ -6,12 +6,13 @@ import { useShape } from "../lib/shape-context";
 import { useDensity } from "../lib/density-context";
 import {
   controlHeightClass,
+  controlInvalidWithinClasses,
   controlSurfaceClasses,
   controlTextClass,
   inputFocusWithinClasses,
 } from "../lib/interaction";
 import { useFormatter } from "../lib/format";
-import { useFieldControl } from "../lib/field-context";
+import { isAriaInvalid, useFieldControl } from "../lib/field-context";
 
 interface InputNumberProps extends Omit<
   React.ComponentProps<"input">,
@@ -308,6 +309,7 @@ function InputNumber({
   return (
     <div
       data-slot="input-number"
+      data-invalid={isAriaInvalid(fieldProps["aria-invalid"]) ? "" : undefined}
       className={cn(
         // w-48 ≈ the old intrinsic width of the native input (size=20), kept as an
         // overridable default; min-w-fit stops narrow widths clipping digits.
@@ -318,6 +320,7 @@ function InputNumber({
         shape.input,
         "compact:h-6 compact:rounded-[5px]",
         inputFocusWithinClasses,
+        controlInvalidWithinClasses,
         isDisabled && "opacity-50 pointer-events-none",
         className,
       )}

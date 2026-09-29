@@ -5,11 +5,35 @@ import { Checkbox } from "radix-ui";
 import { Check, Minus } from "lucide-react";
 import { cn } from "../lib/utils";
 import { focusRingClasses, motionClasses, pressClasses } from "../lib/interaction";
+import { useFieldControl } from "../lib/field-context";
 
-function CheckboxRoot({ className, ...props }: React.ComponentProps<typeof Checkbox.Root>) {
+function CheckboxRoot({
+  className,
+  id,
+  disabled,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
+  "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  ...props
+}: React.ComponentProps<typeof Checkbox.Root>) {
+  // Inside a <Field>, the checkbox takes the field's label, hint / error,
+  // invalid, required and disabled state (explicit props win).
+  const fieldProps = useFieldControl({
+    id,
+    disabled,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+  });
   return (
     <Checkbox.Root
       data-slot="checkbox"
+      {...fieldProps}
+      {...(ariaLabel !== undefined ? { "aria-label": ariaLabel } : {})}
       className={cn(
         "peer relative size-4 shrink-0 rounded border border-border bg-card",
         motionClasses,
@@ -19,6 +43,8 @@ function CheckboxRoot({ className, ...props }: React.ComponentProps<typeof Check
         "disabled:cursor-not-allowed disabled:opacity-50",
         "data-[state=checked]:bg-brand-primary data-[state=checked]:border-brand-primary",
         "data-[state=indeterminate]:bg-brand-primary data-[state=indeterminate]:border-brand-primary",
+        // Error state: destructive border (unchecked) and outline; focus keeps its ring.
+        "aria-invalid:border-destructive aria-invalid:outline-solid aria-invalid:outline-1 aria-invalid:outline-offset-1 aria-invalid:outline-destructive",
         className,
       )}
       {...props}

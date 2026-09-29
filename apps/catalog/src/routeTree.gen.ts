@@ -31,9 +31,11 @@ import { Route as MoleculesSortablePageRouteImport } from './app/molecules/sorta
 import { Route as MoleculesSkeletonPagePageRouteImport } from './app/molecules/skeleton-page/page'
 import { Route as MoleculesSectionHeadingPageRouteImport } from './app/molecules/section-heading/page'
 import { Route as MoleculesResourceItemPageRouteImport } from './app/molecules/resource-item/page'
+import { Route as MoleculesResourcePickerPageRouteImport } from './app/molecules/resource-picker/page'
 import { Route as MoleculesRadioCardPageRouteImport } from './app/molecules/radio-card/page'
 import { Route as MoleculesPropertyRowPageRouteImport } from './app/molecules/property-row/page'
 import { Route as MoleculesPageHeadingPageRouteImport } from './app/molecules/page-heading/page'
+import { Route as MoleculesPreviewFramePageRouteImport } from './app/molecules/preview-frame/page'
 import { Route as MoleculesNotificationPageRouteImport } from './app/molecules/notification/page'
 import { Route as MoleculesNavMenuPageRouteImport } from './app/molecules/nav-menu/page'
 import { Route as MoleculesMobileDrawerPageRouteImport } from './app/molecules/mobile-drawer/page'
@@ -114,6 +116,7 @@ import { Route as AtomsTextareaPageRouteImport } from './app/atoms/textarea/page
 import { Route as AtomsThumbnailPageRouteImport } from './app/atoms/thumbnail/page'
 import { Route as AtomsTabsPageRouteImport } from './app/atoms/tabs/page'
 import { Route as AtomsTabsSubtlePageRouteImport } from './app/atoms/tabs-subtle/page'
+import { Route as AtomsTagInputPageRouteImport } from './app/atoms/tag-input/page'
 import { Route as AtomsTablePageRouteImport } from './app/atoms/table/page'
 import { Route as AtomsSwitchPageRouteImport } from './app/atoms/switch/page'
 import { Route as AtomsSummaryTilePageRouteImport } from './app/atoms/summary-tile/page'
@@ -142,6 +145,7 @@ import { Route as AtomsNavigationMenuPageRouteImport } from './app/atoms/navigat
 import { Route as AtomsNavItemPageRouteImport } from './app/atoms/nav-item/page'
 import { Route as AtomsNativeSelectPageRouteImport } from './app/atoms/native-select/page'
 import { Route as AtomsMenubarPageRouteImport } from './app/atoms/menubar/page'
+import { Route as AtomsMultiComboboxPageRouteImport } from './app/atoms/multi-combobox/page'
 import { Route as AtomsMenuItemPageRouteImport } from './app/atoms/menu-item/page'
 import { Route as AtomsLabelPageRouteImport } from './app/atoms/label/page'
 import { Route as AtomsKbdPageRouteImport } from './app/atoms/kbd/page'
@@ -312,6 +316,12 @@ const MoleculesResourceItemPageRoute =
     path: '/molecules/resource-item/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const MoleculesResourcePickerPageRoute =
+  MoleculesResourcePickerPageRouteImport.update({
+    id: '/molecules/resource-picker/',
+    path: '/molecules/resource-picker/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const MoleculesRadioCardPageRoute = MoleculesRadioCardPageRouteImport.update({
   id: '/molecules/radio-card/',
   path: '/molecules/radio-card/',
@@ -327,6 +337,12 @@ const MoleculesPageHeadingPageRoute =
   MoleculesPageHeadingPageRouteImport.update({
     id: '/molecules/page-heading/',
     path: '/molecules/page-heading/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MoleculesPreviewFramePageRoute =
+  MoleculesPreviewFramePageRouteImport.update({
+    id: '/molecules/preview-frame/',
+    path: '/molecules/preview-frame/',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MoleculesNotificationPageRoute =
@@ -774,6 +790,11 @@ const AtomsTabsSubtlePageRoute = AtomsTabsSubtlePageRouteImport.update({
   path: '/atoms/tabs-subtle/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AtomsTagInputPageRoute = AtomsTagInputPageRouteImport.update({
+  id: '/atoms/tag-input/',
+  path: '/atoms/tag-input/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AtomsTablePageRoute = AtomsTablePageRouteImport.update({
   id: '/atoms/table/',
   path: '/atoms/table/',
@@ -913,6 +934,11 @@ const AtomsNativeSelectPageRoute = AtomsNativeSelectPageRouteImport.update({
 const AtomsMenubarPageRoute = AtomsMenubarPageRouteImport.update({
   id: '/atoms/menubar/',
   path: '/atoms/menubar/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsMultiComboboxPageRoute = AtomsMultiComboboxPageRouteImport.update({
+  id: '/atoms/multi-combobox/',
+  path: '/atoms/multi-combobox/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsMenuItemPageRoute = AtomsMenuItemPageRouteImport.update({
@@ -1254,6 +1280,7 @@ export interface FileRoutesByFullPath {
   '/atoms/label/': typeof AtomsLabelPageRoute
   '/atoms/menu-item/': typeof AtomsMenuItemPageRoute
   '/atoms/menubar/': typeof AtomsMenubarPageRoute
+  '/atoms/multi-combobox/': typeof AtomsMultiComboboxPageRoute
   '/atoms/native-select/': typeof AtomsNativeSelectPageRoute
   '/atoms/nav-item/': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu/': typeof AtomsNavigationMenuPageRoute
@@ -1282,6 +1309,7 @@ export interface FileRoutesByFullPath {
   '/atoms/switch/': typeof AtomsSwitchPageRoute
   '/atoms/table/': typeof AtomsTablePageRoute
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
+  '/atoms/tag-input/': typeof AtomsTagInputPageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
   '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
@@ -1362,9 +1390,11 @@ export interface FileRoutesByFullPath {
   '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
+  '/molecules/preview-frame/': typeof MoleculesPreviewFramePageRoute
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item/': typeof MoleculesResourceItemPageRoute
+  '/molecules/resource-picker/': typeof MoleculesResourcePickerPageRoute
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/skeleton-page/': typeof MoleculesSkeletonPagePageRoute
   '/molecules/sortable/': typeof MoleculesSortablePageRoute
@@ -1442,6 +1472,7 @@ export interface FileRoutesByTo {
   '/atoms/label': typeof AtomsLabelPageRoute
   '/atoms/menu-item': typeof AtomsMenuItemPageRoute
   '/atoms/menubar': typeof AtomsMenubarPageRoute
+  '/atoms/multi-combobox': typeof AtomsMultiComboboxPageRoute
   '/atoms/native-select': typeof AtomsNativeSelectPageRoute
   '/atoms/nav-item': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu': typeof AtomsNavigationMenuPageRoute
@@ -1470,6 +1501,7 @@ export interface FileRoutesByTo {
   '/atoms/switch': typeof AtomsSwitchPageRoute
   '/atoms/table': typeof AtomsTablePageRoute
   '/atoms/tabs-subtle': typeof AtomsTabsSubtlePageRoute
+  '/atoms/tag-input': typeof AtomsTagInputPageRoute
   '/atoms/tabs': typeof AtomsTabsPageRoute
   '/atoms/textarea': typeof AtomsTextareaPageRoute
   '/atoms/thumbnail': typeof AtomsThumbnailPageRoute
@@ -1550,9 +1582,11 @@ export interface FileRoutesByTo {
   '/molecules/nav-menu': typeof MoleculesNavMenuPageRoute
   '/molecules/notification': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading': typeof MoleculesPageHeadingPageRoute
+  '/molecules/preview-frame': typeof MoleculesPreviewFramePageRoute
   '/molecules/property-row': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item': typeof MoleculesResourceItemPageRoute
+  '/molecules/resource-picker': typeof MoleculesResourcePickerPageRoute
   '/molecules/section-heading': typeof MoleculesSectionHeadingPageRoute
   '/molecules/skeleton-page': typeof MoleculesSkeletonPagePageRoute
   '/molecules/sortable': typeof MoleculesSortablePageRoute
@@ -1631,6 +1665,7 @@ export interface FileRoutesById {
   '/atoms/label/': typeof AtomsLabelPageRoute
   '/atoms/menu-item/': typeof AtomsMenuItemPageRoute
   '/atoms/menubar/': typeof AtomsMenubarPageRoute
+  '/atoms/multi-combobox/': typeof AtomsMultiComboboxPageRoute
   '/atoms/native-select/': typeof AtomsNativeSelectPageRoute
   '/atoms/nav-item/': typeof AtomsNavItemPageRoute
   '/atoms/navigation-menu/': typeof AtomsNavigationMenuPageRoute
@@ -1659,6 +1694,7 @@ export interface FileRoutesById {
   '/atoms/switch/': typeof AtomsSwitchPageRoute
   '/atoms/table/': typeof AtomsTablePageRoute
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
+  '/atoms/tag-input/': typeof AtomsTagInputPageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
   '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
@@ -1739,9 +1775,11 @@ export interface FileRoutesById {
   '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
+  '/molecules/preview-frame/': typeof MoleculesPreviewFramePageRoute
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item/': typeof MoleculesResourceItemPageRoute
+  '/molecules/resource-picker/': typeof MoleculesResourcePickerPageRoute
   '/molecules/section-heading/': typeof MoleculesSectionHeadingPageRoute
   '/molecules/skeleton-page/': typeof MoleculesSkeletonPagePageRoute
   '/molecules/sortable/': typeof MoleculesSortablePageRoute
@@ -1821,6 +1859,7 @@ export interface FileRouteTypes {
     | '/atoms/label/'
     | '/atoms/menu-item/'
     | '/atoms/menubar/'
+    | '/atoms/multi-combobox/'
     | '/atoms/native-select/'
     | '/atoms/nav-item/'
     | '/atoms/navigation-menu/'
@@ -1849,6 +1888,7 @@ export interface FileRouteTypes {
     | '/atoms/switch/'
     | '/atoms/table/'
     | '/atoms/tabs-subtle/'
+    | '/atoms/tag-input/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
     | '/atoms/thumbnail/'
@@ -1929,9 +1969,11 @@ export interface FileRouteTypes {
     | '/molecules/nav-menu/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
+    | '/molecules/preview-frame/'
     | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/resource-item/'
+    | '/molecules/resource-picker/'
     | '/molecules/section-heading/'
     | '/molecules/skeleton-page/'
     | '/molecules/sortable/'
@@ -2009,6 +2051,7 @@ export interface FileRouteTypes {
     | '/atoms/label'
     | '/atoms/menu-item'
     | '/atoms/menubar'
+    | '/atoms/multi-combobox'
     | '/atoms/native-select'
     | '/atoms/nav-item'
     | '/atoms/navigation-menu'
@@ -2037,6 +2080,7 @@ export interface FileRouteTypes {
     | '/atoms/switch'
     | '/atoms/table'
     | '/atoms/tabs-subtle'
+    | '/atoms/tag-input'
     | '/atoms/tabs'
     | '/atoms/textarea'
     | '/atoms/thumbnail'
@@ -2117,9 +2161,11 @@ export interface FileRouteTypes {
     | '/molecules/nav-menu'
     | '/molecules/notification'
     | '/molecules/page-heading'
+    | '/molecules/preview-frame'
     | '/molecules/property-row'
     | '/molecules/radio-card'
     | '/molecules/resource-item'
+    | '/molecules/resource-picker'
     | '/molecules/section-heading'
     | '/molecules/skeleton-page'
     | '/molecules/sortable'
@@ -2197,6 +2243,7 @@ export interface FileRouteTypes {
     | '/atoms/label/'
     | '/atoms/menu-item/'
     | '/atoms/menubar/'
+    | '/atoms/multi-combobox/'
     | '/atoms/native-select/'
     | '/atoms/nav-item/'
     | '/atoms/navigation-menu/'
@@ -2225,6 +2272,7 @@ export interface FileRouteTypes {
     | '/atoms/switch/'
     | '/atoms/table/'
     | '/atoms/tabs-subtle/'
+    | '/atoms/tag-input/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
     | '/atoms/thumbnail/'
@@ -2305,9 +2353,11 @@ export interface FileRouteTypes {
     | '/molecules/nav-menu/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
+    | '/molecules/preview-frame/'
     | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/resource-item/'
+    | '/molecules/resource-picker/'
     | '/molecules/section-heading/'
     | '/molecules/skeleton-page/'
     | '/molecules/sortable/'
@@ -2386,6 +2436,7 @@ export interface RootRouteChildren {
   AtomsLabelPageRoute: typeof AtomsLabelPageRoute
   AtomsMenuItemPageRoute: typeof AtomsMenuItemPageRoute
   AtomsMenubarPageRoute: typeof AtomsMenubarPageRoute
+  AtomsMultiComboboxPageRoute: typeof AtomsMultiComboboxPageRoute
   AtomsNativeSelectPageRoute: typeof AtomsNativeSelectPageRoute
   AtomsNavItemPageRoute: typeof AtomsNavItemPageRoute
   AtomsNavigationMenuPageRoute: typeof AtomsNavigationMenuPageRoute
@@ -2414,6 +2465,7 @@ export interface RootRouteChildren {
   AtomsSwitchPageRoute: typeof AtomsSwitchPageRoute
   AtomsTablePageRoute: typeof AtomsTablePageRoute
   AtomsTabsSubtlePageRoute: typeof AtomsTabsSubtlePageRoute
+  AtomsTagInputPageRoute: typeof AtomsTagInputPageRoute
   AtomsTabsPageRoute: typeof AtomsTabsPageRoute
   AtomsTextareaPageRoute: typeof AtomsTextareaPageRoute
   AtomsThumbnailPageRoute: typeof AtomsThumbnailPageRoute
@@ -2494,9 +2546,11 @@ export interface RootRouteChildren {
   MoleculesNavMenuPageRoute: typeof MoleculesNavMenuPageRoute
   MoleculesNotificationPageRoute: typeof MoleculesNotificationPageRoute
   MoleculesPageHeadingPageRoute: typeof MoleculesPageHeadingPageRoute
+  MoleculesPreviewFramePageRoute: typeof MoleculesPreviewFramePageRoute
   MoleculesPropertyRowPageRoute: typeof MoleculesPropertyRowPageRoute
   MoleculesRadioCardPageRoute: typeof MoleculesRadioCardPageRoute
   MoleculesResourceItemPageRoute: typeof MoleculesResourceItemPageRoute
+  MoleculesResourcePickerPageRoute: typeof MoleculesResourcePickerPageRoute
   MoleculesSectionHeadingPageRoute: typeof MoleculesSectionHeadingPageRoute
   MoleculesSkeletonPagePageRoute: typeof MoleculesSkeletonPagePageRoute
   MoleculesSortablePageRoute: typeof MoleculesSortablePageRoute
@@ -2666,6 +2720,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MoleculesResourceItemPageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/molecules/resource-picker/': {
+      id: '/molecules/resource-picker/'
+      path: '/molecules/resource-picker'
+      fullPath: '/molecules/resource-picker/'
+      preLoaderRoute: typeof MoleculesResourcePickerPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/molecules/radio-card/': {
       id: '/molecules/radio-card/'
       path: '/molecules/radio-card'
@@ -2685,6 +2746,13 @@ declare module '@tanstack/react-router' {
       path: '/molecules/page-heading'
       fullPath: '/molecules/page-heading/'
       preLoaderRoute: typeof MoleculesPageHeadingPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/preview-frame/': {
+      id: '/molecules/preview-frame/'
+      path: '/molecules/preview-frame'
+      fullPath: '/molecules/preview-frame/'
+      preLoaderRoute: typeof MoleculesPreviewFramePageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/notification/': {
@@ -3247,6 +3315,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AtomsTabsSubtlePageRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/atoms/tag-input/': {
+      id: '/atoms/tag-input/'
+      path: '/atoms/tag-input'
+      fullPath: '/atoms/tag-input/'
+      preLoaderRoute: typeof AtomsTagInputPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/atoms/table/': {
       id: '/atoms/table/'
       path: '/atoms/table'
@@ -3441,6 +3516,13 @@ declare module '@tanstack/react-router' {
       path: '/atoms/menubar'
       fullPath: '/atoms/menubar/'
       preLoaderRoute: typeof AtomsMenubarPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/multi-combobox/': {
+      id: '/atoms/multi-combobox/'
+      path: '/atoms/multi-combobox'
+      fullPath: '/atoms/multi-combobox/'
+      preLoaderRoute: typeof AtomsMultiComboboxPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/menu-item/': {
@@ -3883,6 +3965,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsLabelPageRoute: AtomsLabelPageRoute,
   AtomsMenuItemPageRoute: AtomsMenuItemPageRoute,
   AtomsMenubarPageRoute: AtomsMenubarPageRoute,
+  AtomsMultiComboboxPageRoute: AtomsMultiComboboxPageRoute,
   AtomsNativeSelectPageRoute: AtomsNativeSelectPageRoute,
   AtomsNavItemPageRoute: AtomsNavItemPageRoute,
   AtomsNavigationMenuPageRoute: AtomsNavigationMenuPageRoute,
@@ -3911,6 +3994,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsSwitchPageRoute: AtomsSwitchPageRoute,
   AtomsTablePageRoute: AtomsTablePageRoute,
   AtomsTabsSubtlePageRoute: AtomsTabsSubtlePageRoute,
+  AtomsTagInputPageRoute: AtomsTagInputPageRoute,
   AtomsTabsPageRoute: AtomsTabsPageRoute,
   AtomsTextareaPageRoute: AtomsTextareaPageRoute,
   AtomsThumbnailPageRoute: AtomsThumbnailPageRoute,
@@ -3992,9 +4076,11 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesNavMenuPageRoute: MoleculesNavMenuPageRoute,
   MoleculesNotificationPageRoute: MoleculesNotificationPageRoute,
   MoleculesPageHeadingPageRoute: MoleculesPageHeadingPageRoute,
+  MoleculesPreviewFramePageRoute: MoleculesPreviewFramePageRoute,
   MoleculesPropertyRowPageRoute: MoleculesPropertyRowPageRoute,
   MoleculesRadioCardPageRoute: MoleculesRadioCardPageRoute,
   MoleculesResourceItemPageRoute: MoleculesResourceItemPageRoute,
+  MoleculesResourcePickerPageRoute: MoleculesResourcePickerPageRoute,
   MoleculesSectionHeadingPageRoute: MoleculesSectionHeadingPageRoute,
   MoleculesSkeletonPagePageRoute: MoleculesSkeletonPagePageRoute,
   MoleculesSortablePageRoute: MoleculesSortablePageRoute,
