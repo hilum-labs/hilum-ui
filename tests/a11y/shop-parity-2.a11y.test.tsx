@@ -103,10 +103,13 @@ describe("a11y: shop parity 2", () => {
         <MultiCombobox aria-label="Countries" options={[]} loading />
       </div>,
     );
-    for (const input of document.querySelectorAll("[data-slot=multi-combobox] input")) {
-      fireEvent.focus(input);
-    }
+    // One list is open at a time: focusing the second field closes the first.
+    const [first, second] = document.querySelectorAll("[data-slot=multi-combobox] input");
+    fireEvent.focus(first!);
     expect(document.querySelectorAll("[role=listbox]")).toHaveLength(1);
+    expect(await axe(document.body)).toHaveNoAxeViolations();
+    fireEvent.focus(second!);
+    expect(document.querySelectorAll("[data-slot=multi-combobox-content]")).toHaveLength(1);
     expect(await axe(document.body)).toHaveNoAxeViolations();
   });
 

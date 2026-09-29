@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import { Check, ChevronsUpDown, X } from "lucide-react";
 import { cn } from "../lib/utils";
 import {
@@ -13,6 +14,12 @@ import {
 import { useShape } from "../lib/shape-context";
 import { isAriaInvalid, useFieldContext, useFieldControl } from "../lib/field-context";
 import { useControllableState } from "../lib/use-controllable-state";
+import { useDensityAttributes } from "../lib/density-context";
+import {
+  mobilePopperSheetMotionClassName,
+  mobilePopperSheetPositionClassName,
+  mobilePopperSheetSurfaceClassName,
+} from "../lib/mobile-popper-sheet";
 import type { ComboboxOption } from "./combobox";
 import { Tag } from "./tag-input";
 import { Spinner } from "./spinner";
@@ -23,7 +30,10 @@ interface MultiComboboxLabels {
   open: string;
   /** Toggle button accessible name while the list is open. */
   close: string;
-  /** Mobile backdrop button that dismisses the list. */
+  /**
+   * @deprecated Unused since the list renders in a popover layer: on phones
+   * it is a bottom sheet whose backdrop (like Select's) dismisses it.
+   */
   closeOptions: string;
   /** Accessible name of a chip's remove button. */
   remove: (label: string) => string;
@@ -31,6 +41,13 @@ interface MultiComboboxLabels {
   clearAll: string;
   /** Shown while `loading`. */
   loading: string;
+  /**
+   * Chip label for a selected value whose option isn't known yet (not in
+   * `options`, `selectedOptions` or `getOptionLabel`) while `loading`.
+   */
+  loadingOption: string;
+  /** Chip label for a selected value with no known option (e.g. deleted). */
+  unknownOption: string;
   /** Screen-reader summary of the selection, read with the input. */
   selectedSummary: (labels: string[]) => string;
   /** Announced when an option is selected. */
@@ -48,6 +65,8 @@ const MULTI_COMBOBOX_DEFAULT_LABELS: MultiComboboxLabels = {
   remove: (label) => `Remove ${label}`,
   clearAll: "Clear all",
   loading: "Loading…",
+  loadingOption: "Loading…",
+  unknownOption: "Unknown item",
   selectedSummary: (labels) =>
     labels.length === 0 ? "" : `${labels.length} selected: ${labels.join(", ")}`,
   selected: (label) => `${label} selected`,
@@ -66,6 +85,17 @@ type ManagedAria =
 interface MultiComboboxProps extends Omit<React.AriaAttributes, ManagedAria> {
   /** Options to choose from (the current search results when `onSearchChange` is set). */
   options: ComboboxOption[];
+  /**
+   * Options for selected values that may not be in `options`: the selection
+   * loaded with a record while search results are fetched separately, or a
+   * value whose option is on another page. Chips use their labels.
+   */
+  selectedOptions?: ComboboxOption[];
+  /**
+   * Label for a selected value that isn't in `options` or `selectedOptions`
+   * (e.g. from a lookup map). Return `undefined` when unknown.
+   */
+  getOptionLabel?: (value: string) => string | undefined;
   /** Selected option values (controlled). */
   value?: string[];
   /** Initially selected values (uncontrolled). */
@@ -122,6 +152,8 @@ function matches(option: ComboboxOption, query: string) {
  */
 function MultiCombobox({
   options,
+  selectedOptions,
+  getOptionLabel,
   value,
   defaultValue,
   onValueChange,
@@ -164,18 +196,19 @@ function MultiCombobox({
   const [query, setQuery] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState(-1);
   const [announcement, setAnnouncement] = React.useState("");
+  const densityAttributes = useDensityAttributes();
   const containerRef = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
   React.useImperativeHandle(ref, () => inputRef.current as HTMLInputElement, []);
 
-  // Remember every option seen so chips keep their labels when server-side
-  // search replaces `options`.
+  // Remember every option seen (in `options` or `selectedOptions`) so chips
+  // keep their labels when server-side search replaces `options`.
   const [known, setKnown] = React.useState<Map<string, ComboboxOption>>(() => new Map());
   React.useEffect(() => {
     setKnown((previous) => {
       let changed = false;
       const next = new Map(previous);
-      for (const option of options) {
+      for (const option of [...(selectedOptions ?? []), ...options]) {
         if (next.get(option.value) !== option) {
           next.set(option.value, option);
           changed = true;
@@ -183,10 +216,18 @@ function MultiCombobox({
       }
       return changed ? next : previous;
     });
-  }, [options]);
+  }, [options, selectedOptions]);
   const optionFor = (optionValue: string) =>
-    options.find((option) => option.value === optionValue) ?? known.get(optionValue);
-  const labelFor = (optionValue: string) => optionFor(optionValue)?.label ?? optionValue;
+    options.find((option) => option.value === optionValue) ??
+    selectedOptions?.find((option) => option.value === optionValue) ??
+    known.get(optionValue);
+  // Never show a raw id: a value with no known option gets a neutral label.
+  const labelFor = (optionValue: string) =>
+    optionFor(optionValue)?.label ??
+    getOptionLabel?.(optionValue) ??
+    (loading ? labels.loadingOption : labels.unknownOption);
+  const isKnown = (optionValue: string) =>
+    optionFor(optionValue) !== undefined || getOptionLabel?.(optionValue) !== undefined;
 
   const shouldFilter = filterOptions ?? !onSearchChange;
   const filtered = shouldFilter ? options.filter((option) => matches(option, query)) : options;
@@ -218,23 +259,6 @@ function MultiCombobox({
   React.useEffect(() => {
     if (disabled) setOpen(false);
   }, [disabled]);
-
-  // Close on outside pointer down.
-  React.useEffect(() => {
-    if (!open) return;
-    function onPointerDown(event: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
-        setOpen(false);
-        setActiveIndex(-1);
-        setQuery((current) => {
-          if (current) onSearchChange?.("");
-          return "";
-        });
-      }
-    }
-    document.addEventListener("mousedown", onPointerDown);
-    return () => document.removeEventListener("mousedown", onPointerDown);
-  }, [open, onSearchChange]);
 
   const toggle = (option: ComboboxOption) => {
     if (disabled) return;
@@ -275,7 +299,8 @@ function MultiCombobox({
       const target = activeIndex >= 0 ? filtered[activeIndex] : filtered[0];
       if (target) toggle(target);
     } else if (event.key === "Escape") {
-      if (open) {
+      // The popover layer closes the list first (and marks the event handled).
+      if (open && !event.defaultPrevented) {
         event.preventDefault();
         closeList();
       }
@@ -305,126 +330,148 @@ function MultiCombobox({
     undefined;
 
   return (
-    <div ref={containerRef} data-slot="multi-combobox" className={cn("relative", className)}>
-      {/* Clicking the field's padding focuses the search input. */}
-      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- pointer convenience; the input inside is the keyboard target */}
-      <div
-        data-invalid={invalid ? "" : undefined}
-        data-disabled={disabled ? "" : undefined}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) {
-            inputRef.current?.focus();
-            setOpen(true);
-          }
-        }}
-        className={cn(
-          "flex min-h-9 w-full cursor-text flex-wrap items-center gap-1 py-[5px] ps-1.5 pe-9",
-          shape.input,
-          controlSurfaceClasses,
-          motionClasses,
-          inputFocusWithinClasses,
-          controlInvalidWithinClasses,
-          disabled && "cursor-not-allowed bg-muted opacity-50",
-          clearable && selected.length > 0 && "pe-16",
-        )}
-      >
-        {selected.map((optionValue) => (
-          <Tag
-            key={optionValue}
-            disabled={disabled}
-            removeLabel={labels.remove(labelFor(optionValue))}
-            onRemove={() => {
-              removeValue(optionValue);
-              inputRef.current?.focus();
-            }}
-          >
-            {labelFor(optionValue)}
-          </Tag>
-        ))}
-        <input
-          {...ariaProps}
-          {...fieldProps}
-          ref={inputRef}
-          type="text"
-          role="combobox"
-          disabled={disabled}
-          aria-describedby={describedBy}
-          aria-expanded={listVisible}
-          aria-haspopup="listbox"
-          aria-controls={listVisible ? listboxId : undefined}
-          aria-activedescendant={
-            listVisible && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
-          }
-          aria-autocomplete="list"
-          value={query}
-          placeholder={selected.length === 0 ? placeholder : undefined}
-          onChange={(event) => {
-            updateQuery(event.target.value);
-            if (!open) setOpen(true);
-          }}
-          onFocus={() => setOpen(true)}
-          onBlur={onBlur}
-          onKeyDown={handleKeyDown}
-          className={cn(
-            "h-6 min-w-20 flex-1 bg-transparent px-1.5 text-foreground outline-none placeholder:text-muted-foreground",
-            controlTextClass,
-            "disabled:cursor-not-allowed",
-          )}
-        />
-        <span id={summaryId} className="sr-only">
-          {summary}
-        </span>
-        <div className="absolute inset-y-0 end-0 flex items-center pe-1">
-          {clearable && selected.length > 0 && !disabled && (
-            <button
-              type="button"
-              aria-label={labels.clearAll}
-              onClick={() => {
-                setSelected([]);
+    <PopoverPrimitive.Root
+      open={open}
+      onOpenChange={(next) => {
+        if (!next) closeList();
+      }}
+    >
+      <div ref={containerRef} data-slot="multi-combobox" className={cn("relative", className)}>
+        {/* The field anchors the list, which renders in a portal so a card's
+          overflow can't clip it. Clicking the field's padding focuses the
+          search input. */}
+        <PopoverPrimitive.Anchor asChild>
+          {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- pointer convenience; the input inside is the keyboard target */}
+          <div
+            data-invalid={invalid ? "" : undefined}
+            data-disabled={disabled ? "" : undefined}
+            onClick={(event) => {
+              if (event.target === event.currentTarget) {
                 inputRef.current?.focus();
-              }}
-              className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-hover hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
-            >
-              <X size={14} aria-hidden="true" />
-            </button>
-          )}
-          <button
-            type="button"
-            tabIndex={-1}
-            disabled={disabled}
-            aria-label={open ? labels.close : labels.open}
-            className="flex size-7 items-center justify-center text-muted-foreground"
-            onClick={() => {
-              if (open) closeList();
-              else {
                 setOpen(true);
-                inputRef.current?.focus();
               }
             }}
-          >
-            <ChevronsUpDown size={14} aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-      {name !== undefined &&
-        selected.map((optionValue) => (
-          <input key={optionValue} type="hidden" name={name} value={optionValue} />
-        ))}
-
-      {open && (
-        <>
-          <button
-            type="button"
-            aria-label={labels.closeOptions}
-            className="fixed inset-0 z-40 hidden bg-black/30 backdrop-blur-sm max-md:block"
-            onClick={closeList}
-          />
-          <div
             className={cn(
-              "absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-border bg-card shadow-elevated",
-              "max-md:fixed max-md:inset-x-3 max-md:bottom-3 max-md:[bottom:max(0.75rem,env(safe-area-inset-bottom))] max-md:top-auto max-md:mt-0 max-md:w-auto",
-              "max-md:max-h-[min(70dvh,28rem)] max-md:rounded-2xl max-md:p-2 max-md:pt-5",
-              "max-md:before:absolute max-md:before:left-1/2 max-md:before:top-2 max-md:before:h-1 max-md:before:w-9 max-md:before:-translate-x-1/2 max-md:before:rounded-full max-md:before:bg-muted-foreground/35",
+              "flex min-h-9 w-full cursor-text flex-wrap items-center gap-1 py-[5px] ps-1.5 pe-9",
+              shape.input,
+              controlSurfaceClasses,
+              motionClasses,
+              inputFocusWithinClasses,
+              controlInvalidWithinClasses,
+              disabled && "cursor-not-allowed bg-muted opacity-50",
+              clearable && selected.length > 0 && "pe-16",
+            )}
+          >
+            {selected.map((optionValue) => (
+              <Tag
+                key={optionValue}
+                data-unknown={isKnown(optionValue) ? undefined : ""}
+                className={cn(!isKnown(optionValue) && "italic text-muted-foreground")}
+                disabled={disabled}
+                removeLabel={labels.remove(labelFor(optionValue))}
+                onRemove={() => {
+                  removeValue(optionValue);
+                  inputRef.current?.focus();
+                }}
+              >
+                {labelFor(optionValue)}
+              </Tag>
+            ))}
+            <input
+              {...ariaProps}
+              {...fieldProps}
+              ref={inputRef}
+              type="text"
+              role="combobox"
+              disabled={disabled}
+              aria-describedby={describedBy}
+              aria-expanded={listVisible}
+              aria-haspopup="listbox"
+              aria-controls={listVisible ? listboxId : undefined}
+              aria-activedescendant={
+                listVisible && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
+              }
+              aria-autocomplete="list"
+              value={query}
+              placeholder={selected.length === 0 ? placeholder : undefined}
+              onChange={(event) => {
+                updateQuery(event.target.value);
+                if (!open) setOpen(true);
+              }}
+              onFocus={() => setOpen(true)}
+              onBlur={onBlur}
+              onKeyDown={handleKeyDown}
+              className={cn(
+                "h-6 min-w-20 flex-1 bg-transparent px-1.5 text-foreground outline-none placeholder:text-muted-foreground",
+                controlTextClass,
+                "disabled:cursor-not-allowed",
+              )}
+            />
+            <span id={summaryId} className="sr-only">
+              {summary}
+            </span>
+            <div className="absolute inset-y-0 end-0 flex items-center pe-1">
+              {clearable && selected.length > 0 && !disabled && (
+                <button
+                  type="button"
+                  aria-label={labels.clearAll}
+                  onClick={() => {
+                    setSelected([]);
+                    inputRef.current?.focus();
+                  }}
+                  className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-hover hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-reduce:transition-none"
+                >
+                  <X size={14} aria-hidden="true" />
+                </button>
+              )}
+              <button
+                type="button"
+                tabIndex={-1}
+                disabled={disabled}
+                aria-label={open ? labels.close : labels.open}
+                className="flex size-7 items-center justify-center text-muted-foreground"
+                onClick={() => {
+                  if (open) closeList();
+                  else {
+                    setOpen(true);
+                    inputRef.current?.focus();
+                  }
+                }}
+              >
+                <ChevronsUpDown size={14} aria-hidden="true" />
+              </button>
+            </div>
+          </div>
+        </PopoverPrimitive.Anchor>
+        {name !== undefined &&
+          selected.map((optionValue) => (
+            <input key={optionValue} type="hidden" name={name} value={optionValue} />
+          ))}
+
+        <PopoverPrimitive.Portal>
+          <PopoverPrimitive.Content
+            {...densityAttributes}
+            // Not a dialog: the listbox inside is the combobox's popup.
+            role={undefined}
+            data-slot="multi-combobox-content"
+            data-hilum-mobile-sheet="true"
+            side="bottom"
+            align="start"
+            sideOffset={4}
+            // Focus stays in the search input (aria-activedescendant pattern).
+            onOpenAutoFocus={(event) => event.preventDefault()}
+            onCloseAutoFocus={(event) => event.preventDefault()}
+            onInteractOutside={(event) => {
+              if (containerRef.current?.contains(event.target as Node)) event.preventDefault();
+            }}
+            className={cn(
+              "z-50 w-(--radix-popover-trigger-width) overflow-hidden rounded-lg border border-border bg-card shadow-elevated outline-none",
+              mobilePopperSheetPositionClassName,
+              mobilePopperSheetSurfaceClassName,
+              "max-md:p-2 max-md:pt-5",
+              "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+              mobilePopperSheetMotionClassName,
+              "motion-reduce:animate-none",
             )}
           >
             {filtered.length > 0 && (
@@ -501,13 +548,13 @@ function MultiCombobox({
                 {emptyText}
               </div>
             ) : null}
-          </div>
-        </>
-      )}
-      <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-        {announcement}
-      </span>
-    </div>
+          </PopoverPrimitive.Content>
+        </PopoverPrimitive.Portal>
+        <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          {announcement}
+        </span>
+      </div>
+    </PopoverPrimitive.Root>
   );
 }
 MultiCombobox.displayName = "MultiCombobox";

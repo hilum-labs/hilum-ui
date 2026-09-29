@@ -1,11 +1,18 @@
 "use client";
 
 import * as React from "react";
+import { Popover as PopoverPrimitive } from "radix-ui";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "../lib/utils";
 import { controlInvalidClasses, controlSizeClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { useFieldControl } from "../lib/field-context";
+import { useDensityAttributes } from "../lib/density-context";
+import {
+  mobilePopperSheetMotionClassName,
+  mobilePopperSheetPositionClassName,
+  mobilePopperSheetSurfaceClassName,
+} from "../lib/mobile-popper-sheet";
 
 export interface ComboboxOption {
   value: string;
@@ -28,7 +35,10 @@ interface ComboboxLabels {
   open: string;
   /** Toggle button accessible name while the list is open. */
   close: string;
-  /** Mobile backdrop button that dismisses the list. */
+  /**
+   * @deprecated Unused since the list renders in a popover layer: on phones
+   * it is a bottom sheet whose backdrop (like Select's) dismisses it.
+   */
   closeOptions: string;
 }
 
@@ -87,6 +97,7 @@ function Combobox({
   });
   const disabled = fieldProps.disabled ?? false;
   const labels = { ...DEFAULT_LABELS, ...labelsProp };
+  const densityAttributes = useDensityAttributes();
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
   const [activeIndex, setActiveIndex] = React.useState(-1);
@@ -127,18 +138,6 @@ function Combobox({
     }
   }, [disabled]);
 
-  // Close on outside click
-  React.useEffect(() => {
-    function onMouseDown(e: MouseEvent) {
-      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
-        setOpen(false);
-        setQuery("");
-      }
-    }
-    document.addEventListener("mousedown", onMouseDown);
-    return () => document.removeEventListener("mousedown", onMouseDown);
-  }, []);
-
   function closeDropdown() {
     setOpen(false);
     setQuery("");
@@ -152,7 +151,8 @@ function Combobox({
 
   function handleInputKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Escape") {
-      closeDropdown();
+      // While open, the popover layer handles Escape (and marks it handled).
+      if (!e.defaultPrevented) closeDropdown();
       return;
     }
     if (e.key === "ArrowDown") {
@@ -179,96 +179,115 @@ function Combobox({
   }
 
   return (
-    <div ref={containerRef} data-slot="combobox" className={cn("relative", className)}>
-      {/* Trigger */}
-      <div className="relative flex items-center">
-        {selectedOption?.avatar && !open && (
-          <div className="pointer-events-none absolute start-2.5 flex size-5 items-center justify-center rounded-full bg-muted caption-xs font-semibold text-muted-foreground shrink-0">
-            {selectedOption.avatar}
+    <PopoverPrimitive.Root
+      open={open}
+      onOpenChange={(next) => {
+        if (!next) closeDropdown();
+      }}
+    >
+      <div ref={containerRef} data-slot="combobox" className={cn("relative", className)}>
+        {/* The field anchors the list, which renders in a portal so a card's
+          overflow can't clip it. */}
+        <PopoverPrimitive.Anchor asChild>
+          <div className="relative flex items-center">
+            {selectedOption?.avatar && !open && (
+              <div className="pointer-events-none absolute start-2.5 flex size-5 items-center justify-center rounded-full bg-muted caption-xs font-semibold text-muted-foreground shrink-0">
+                {selectedOption.avatar}
+              </div>
+            )}
+            {selectedOption?.statusColor && !open && (
+              <div
+                className="pointer-events-none absolute start-3 size-2 rounded-full shrink-0"
+                style={{ backgroundColor: selectedOption.statusColor }}
+              />
+            )}
+            <input
+              {...ariaProps}
+              {...fieldProps}
+              ref={inputRef}
+              type="text"
+              role="combobox"
+              disabled={disabled}
+              aria-expanded={open}
+              aria-haspopup="listbox"
+              aria-controls={open ? listboxId : undefined}
+              aria-activedescendant={
+                open && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
+              }
+              aria-autocomplete="list"
+              className={cn(
+                "flex w-full border border-border bg-background pe-10 text-foreground",
+                controlSizeClasses,
+                shape.input,
+                "placeholder:text-muted-foreground",
+                "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "disabled:cursor-not-allowed disabled:opacity-50",
+                controlInvalidClasses,
+                selectedOption?.avatar && !open
+                  ? "ps-8"
+                  : selectedOption?.statusColor && !open
+                    ? "ps-7"
+                    : "ps-3",
+              )}
+              placeholder={open ? searchPlaceholder : (selectedOption?.label ?? placeholder)}
+              value={open ? query : (selectedOption?.label ?? "")}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                if (!open) setOpen(true);
+              }}
+              onFocus={() => {
+                setOpen(true);
+                setQuery("");
+              }}
+              onBlur={onBlur}
+              onKeyDown={handleInputKeyDown}
+            />
+            {name !== undefined && <input type="hidden" name={name} value={value ?? ""} />}
+            <button
+              type="button"
+              tabIndex={-1}
+              disabled={disabled}
+              aria-label={open ? labels.close : labels.open}
+              className="absolute inset-y-0 end-0 flex w-10 items-center justify-center text-muted-foreground hover:text-muted-foreground transition-colors"
+              onClick={() => {
+                if (open) {
+                  closeDropdown();
+                } else {
+                  setOpen(true);
+                  inputRef.current?.focus();
+                }
+              }}
+            >
+              <ChevronsUpDown size={14} />
+            </button>
           </div>
-        )}
-        {selectedOption?.statusColor && !open && (
-          <div
-            className="pointer-events-none absolute start-3 size-2 rounded-full shrink-0"
-            style={{ backgroundColor: selectedOption.statusColor }}
-          />
-        )}
-        <input
-          {...ariaProps}
-          {...fieldProps}
-          ref={inputRef}
-          type="text"
-          role="combobox"
-          disabled={disabled}
-          aria-expanded={open}
-          aria-haspopup="listbox"
-          aria-controls={open ? listboxId : undefined}
-          aria-activedescendant={
-            open && activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined
-          }
-          aria-autocomplete="list"
-          className={cn(
-            "flex w-full border border-border bg-background pe-10 text-foreground",
-            controlSizeClasses,
-            shape.input,
-            "placeholder:text-muted-foreground",
-            "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            "disabled:cursor-not-allowed disabled:opacity-50",
-            controlInvalidClasses,
-            selectedOption?.avatar && !open
-              ? "ps-8"
-              : selectedOption?.statusColor && !open
-                ? "ps-7"
-                : "ps-3",
-          )}
-          placeholder={open ? searchPlaceholder : (selectedOption?.label ?? placeholder)}
-          value={open ? query : (selectedOption?.label ?? "")}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            if (!open) setOpen(true);
-          }}
-          onFocus={() => {
-            setOpen(true);
-            setQuery("");
-          }}
-          onBlur={onBlur}
-          onKeyDown={handleInputKeyDown}
-        />
-        {name !== undefined && <input type="hidden" name={name} value={value ?? ""} />}
-        <button
-          type="button"
-          tabIndex={-1}
-          disabled={disabled}
-          aria-label={open ? labels.close : labels.open}
-          className="absolute inset-y-0 end-0 flex w-10 items-center justify-center text-muted-foreground hover:text-muted-foreground transition-colors"
-          onClick={() => {
-            if (open) {
-              closeDropdown();
-            } else {
-              setOpen(true);
-              inputRef.current?.focus();
-            }
-          }}
-        >
-          <ChevronsUpDown size={14} />
-        </button>
-      </div>
+        </PopoverPrimitive.Anchor>
 
-      {/* Dropdown */}
-      {open && (
-        <>
-          <button
-            type="button"
-            aria-label={labels.closeOptions}
-            className="fixed inset-0 z-40 hidden bg-black/30 backdrop-blur-sm max-md:block"
-            onClick={closeDropdown}
-          />
-          <div
+        {/* Dropdown */}
+        <PopoverPrimitive.Portal>
+          <PopoverPrimitive.Content
+            {...densityAttributes}
+            // Not a dialog: the listbox inside is the combobox's popup.
+            role={undefined}
+            data-slot="combobox-content"
+            data-hilum-mobile-sheet="true"
+            side="bottom"
+            align="start"
+            sideOffset={4}
+            // Focus stays in the input (aria-activedescendant pattern).
+            onOpenAutoFocus={(event) => event.preventDefault()}
+            onCloseAutoFocus={(event) => event.preventDefault()}
+            onInteractOutside={(event) => {
+              if (containerRef.current?.contains(event.target as Node)) event.preventDefault();
+            }}
             className={cn(
-              "absolute z-50 mt-1 w-full overflow-hidden rounded-lg border border-border bg-card shadow-elevated",
-              "max-md:fixed max-md:inset-x-3 max-md:bottom-3 max-md:[bottom:max(0.75rem,env(safe-area-inset-bottom))] max-md:top-auto max-md:mt-0 max-md:w-auto",
-              "max-md:max-h-[min(70dvh,28rem)] max-md:rounded-2xl max-md:p-2 max-md:pt-5",
-              "max-md:before:absolute max-md:before:left-1/2 max-md:before:top-2 max-md:before:h-1 max-md:before:w-9 max-md:before:-translate-x-1/2 max-md:before:rounded-full max-md:before:bg-muted-foreground/35",
+              "z-50 w-(--radix-popover-trigger-width) overflow-hidden rounded-lg border border-border bg-card shadow-elevated outline-none",
+              mobilePopperSheetPositionClassName,
+              mobilePopperSheetSurfaceClassName,
+              "max-md:p-2 max-md:pt-5",
+              "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+              mobilePopperSheetMotionClassName,
+              "motion-reduce:animate-none",
             )}
           >
             <ul
@@ -342,10 +361,10 @@ function Combobox({
                 })
               )}
             </ul>
-          </div>
-        </>
-      )}
-    </div>
+          </PopoverPrimitive.Content>
+        </PopoverPrimitive.Portal>
+      </div>
+    </PopoverPrimitive.Root>
   );
 }
 

@@ -1,10 +1,15 @@
+import type * as React from "react";
 import { render } from "@testing-library/react";
 import { page } from "vitest/browser";
+import { screen } from "@testing-library/react";
+import { userEvent } from "vitest/browser";
 import {
+  Combobox,
   DataTable,
   Field,
   FormLayout,
   InputNumber,
+  MultiCombobox,
   PreviewFrame,
   Progress,
   ScrollArea,
@@ -285,5 +290,91 @@ describe("StatCard long money values in 2-column phone grids (real browser)", ()
     for (const value of container.querySelectorAll("[data-slot=stat-card-value]")) {
       expect(getComputedStyle(value).fontSize).toBe("30px");
     }
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* MultiCombobox / Combobox lists above clipping cards                  */
+/* ------------------------------------------------------------------ */
+
+describe("Combobox lists inside a clipping card (real browser)", () => {
+  const options = Array.from({ length: 8 }, (_, i) => ({
+    value: `c${i}`,
+    label: `Collection ${i + 1}`,
+  }));
+
+  function ClippingCard({ children }: { children: React.ReactNode }) {
+    return (
+      <div data-testid="card" className="h-24 w-80 overflow-hidden rounded-xl border p-3">
+        {children}
+      </div>
+    );
+  }
+
+  it("MultiCombobox: the list sits above the card, clickable past its edge, and stays open", async () => {
+    render(
+      <ClippingCard>
+        <MultiCombobox aria-label="Collections" options={options} />
+      </ClippingCard>,
+    );
+    await userEvent.click(screen.getByRole("combobox", { name: "Collections" }));
+    const listbox = await screen.findByRole("listbox");
+    const card = screen.getByTestId("card").getBoundingClientRect();
+    const list = listbox.getBoundingClientRect();
+    expect(list.bottom).toBeGreaterThan(card.bottom + 50);
+    // Aligned with the field and as wide.
+    const field = document
+      .querySelector("[data-slot=multi-combobox] > div")!
+      .getBoundingClientRect();
+    const layer = listbox.parentElement!.getBoundingClientRect();
+    expect(Math.round(layer.left)).toBe(Math.round(field.left));
+    expect(Math.round(layer.width)).toBe(Math.round(field.width));
+    // An option below the card is really on top (hit-testable) and selectable.
+    const option = screen.getByRole("option", { name: "Collection 6" });
+    const box = option.getBoundingClientRect();
+    expect(box.top).toBeGreaterThan(card.bottom);
+    expect(
+      document.elementFromPoint(box.left + 20, box.top + box.height / 2)?.closest("[role=option]"),
+    ).toBe(option);
+    await userEvent.click(option);
+    expect(document.querySelector("[data-slot=tag]")).toHaveTextContent("Collection 6");
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    // An outside click closes it.
+    await userEvent.click(document.body, { position: { x: 1200, y: 700 } });
+    await expect.poll(() => screen.queryByRole("listbox")).toBeNull();
+  });
+
+  it("Combobox: the list isn't clipped either", async () => {
+    let picked = "";
+    render(
+      <ClippingCard>
+        <Combobox aria-label="Collection" options={options} onValueChange={(v) => (picked = v)} />
+      </ClippingCard>,
+    );
+    await userEvent.click(screen.getByRole("combobox", { name: "Collection" }));
+    const option = await screen.findByRole("option", { name: "Collection 6" });
+    const card = screen.getByTestId("card").getBoundingClientRect();
+    const box = option.getBoundingClientRect();
+    expect(box.top).toBeGreaterThan(card.bottom);
+    expect(
+      document.elementFromPoint(box.left + 20, box.top + box.height / 2)?.closest("[role=option]"),
+    ).toBe(option);
+    await userEvent.click(option);
+    expect(picked).toBe("c5");
+    expect(screen.queryByRole("listbox")).toBeNull();
+  });
+
+  it("MultiCombobox is a bottom sheet on phones", async () => {
+    await page.viewport(375, 700);
+    render(<MultiCombobox aria-label="Collections" options={options} />);
+    await userEvent.click(screen.getByRole("combobox", { name: "Collections" }));
+    const content = (await screen.findByRole("listbox")).closest<HTMLElement>(
+      "[data-slot=multi-combobox-content]",
+    )!;
+    const rect = content.getBoundingClientRect();
+    expect(getComputedStyle(content).position).toBe("fixed");
+    expect(Math.round(rect.left)).toBe(12);
+    expect(Math.round(700 - rect.bottom)).toBeGreaterThanOrEqual(11);
+    expect(Math.round(700 - rect.bottom)).toBeLessThanOrEqual(13);
   });
 });

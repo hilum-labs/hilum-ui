@@ -1,5 +1,6 @@
 import { afterEach, describe, it, expect, vi } from "vitest";
-import { act, render, screen } from "@testing-library/react";
+import * as React from "react";
+import { act, fireEvent, render, screen } from "@testing-library/react";
 import { DataTable, type ColumnDef } from "../data-table";
 import { Field } from "../field";
 import { InputGroup } from "../input-group";
@@ -7,6 +8,8 @@ import { InputNumber } from "../input-number";
 import { PreviewFrame } from "../preview-frame";
 import { StatCard } from "../stat-card";
 import { formatCurrency } from "../../lib/format";
+import { MultiCombobox, MULTI_COMBOBOX_DEFAULT_LABELS } from "../multi-combobox";
+import type { ComboboxOption } from "../combobox";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -309,5 +312,90 @@ describe("formatCurrency currency sign", () => {
         currencySymbol: "S/",
       }),
     ).toMatch(/^S\/\s10\.50$/);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* MultiCombobox: popover layer and labels for unknown values           */
+/* ------------------------------------------------------------------ */
+
+describe("MultiCombobox list layer", () => {
+  const OPTIONS: ComboboxOption[] = [
+    { value: "summer", label: "Summer" },
+    { value: "sale", label: "Sale" },
+  ];
+
+  it("renders the list outside the field (a portal), so a card can't clip it", () => {
+    const { container } = render(
+      <div style={{ overflow: "hidden" }}>
+        <MultiCombobox aria-label="Collections" options={OPTIONS} />
+      </div>,
+    );
+    fireEvent.focus(screen.getByRole("combobox", { name: "Collections" }));
+    const listbox = screen.getByRole("listbox", { name: "Collections" });
+    expect(container).not.toContainElement(listbox);
+    const content = listbox.closest("[data-slot=multi-combobox-content]")!;
+    expect(content).toHaveAttribute("data-hilum-mobile-sheet", "true");
+    // Not announced as a dialog: the listbox is the combobox's popup.
+    expect(content).not.toHaveAttribute("role");
+    fireEvent.click(screen.getByRole("option", { name: "Sale" }));
+    // Still open after a pick (closeOnSelect is off).
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    fireEvent.keyDown(screen.getByRole("combobox"), { key: "Escape" });
+    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  });
+});
+
+describe("MultiCombobox labels for values not in options", () => {
+  const chips = () =>
+    Array.from(document.querySelectorAll("[data-slot=tag]")).map((tag) => tag.textContent);
+
+  it("never shows a raw id: Loading… while loading, then Unknown item", () => {
+    const { rerender } = render(
+      <MultiCombobox aria-label="Products" options={[]} value={["gid://Product/42"]} loading />,
+    );
+    expect(chips()).toEqual([MULTI_COMBOBOX_DEFAULT_LABELS.loadingOption]);
+    expect(document.querySelector("[data-slot=tag]")).toHaveAttribute("data-unknown");
+    rerender(<MultiCombobox aria-label="Products" options={[]} value={["gid://Product/42"]} />);
+    expect(chips()).toEqual(["Unknown item"]);
+    expect(screen.getByRole("button", { name: "Remove Unknown item" })).toBeInTheDocument();
+    expect(screen.getByRole("combobox")).toHaveAccessibleDescription("1 selected: Unknown item");
+    rerender(
+      <MultiCombobox
+        aria-label="Products"
+        options={[]}
+        value={["gid://Product/42"]}
+        labels={{ unknownOption: "Producto eliminado", loadingOption: "Cargando…" }}
+      />,
+    );
+    expect(chips()).toEqual(["Producto eliminado"]);
+  });
+
+  it("takes labels from selectedOptions and getOptionLabel, and remembers them", () => {
+    function Remote() {
+      const [query, setQuery] = React.useState("");
+      const [value, setValue] = React.useState(["p1", "p2", "p3"]);
+      return (
+        <MultiCombobox
+          aria-label="Products"
+          // Search results only: none of the selected products.
+          options={query ? [{ value: "p9", label: "Tea towel" }] : []}
+          onSearchChange={setQuery}
+          // Loaded with the record.
+          selectedOptions={[{ value: "p1", label: "Ceramic mug" }]}
+          getOptionLabel={(id) => (id === "p2" ? "Linen napkin" : undefined)}
+          value={value}
+          onValueChange={setValue}
+        />
+      );
+    }
+    render(<Remote />);
+    expect(chips()).toEqual(["Ceramic mug", "Linen napkin", "Unknown item"]);
+    const input = screen.getByRole("combobox", { name: "Products" });
+    fireEvent.change(input, { target: { value: "tea" } });
+    fireEvent.click(screen.getByRole("option", { name: "Tea towel" }));
+    fireEvent.change(input, { target: { value: "" } });
+    // "Tea towel" left `options`, but its chip keeps the label.
+    expect(chips()).toEqual(["Ceramic mug", "Linen napkin", "Unknown item", "Tea towel"]);
   });
 });
