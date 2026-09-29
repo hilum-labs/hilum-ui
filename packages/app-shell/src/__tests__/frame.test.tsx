@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LayoutDashboard, Package } from "lucide-react";
 import { LinkProvider as UiLinkProvider, useLink as useUiLink } from "@hilum/ui";
@@ -466,6 +466,49 @@ describe("AppNavTree", () => {
     fireEvent.click(screen.getByRole("link", { name: "Home" }));
     expect(onNavigate).toHaveBeenCalledTimes(1);
     expect(screen.getByRole("navigation", { name: "Drawer" })).toBeInTheDocument();
+  });
+});
+
+describe("active nav item colours", () => {
+  // tokens.test.ts checks text-brand-text on these brand tints in every theme;
+  // brand-primary text on its own 10% tint was 3.9:1.
+  const expectBrandText = (element: HTMLElement) => {
+    expect(element.className).toContain("bg-brand-primary/10");
+    expect(element.className).toContain("text-brand-text");
+    expect(element.className).not.toContain("text-brand-primary");
+  };
+
+  it("AppNavTree (the mobile drawer) and AppMobileNav tabs", () => {
+    render(<AppNavTree sections={nestedSections} label="Drawer" />);
+    expectBrandText(screen.getByRole("link", { name: "Collections" }));
+    cleanup();
+    render(
+      <AppMobileNav
+        brand="Admin"
+        variant="tabs"
+        sections={[{ items: [{ label: "Home", href: "/", active: true }] }]}
+      />,
+    );
+    expectBrandText(screen.getByRole("link", { name: "Home" }));
+  });
+
+  it("AppSidebar top-level and nested items", () => {
+    render(
+      <AppSidebar
+        sections={[
+          {
+            items: [
+              { label: "Orders", href: "/orders", active: true },
+              ...nestedSections[0]!.items,
+            ],
+          },
+        ]}
+      />,
+    );
+    expectBrandText(screen.getByRole("link", { name: "Orders", current: "page" }));
+    const nested = screen.getByRole("link", { name: "Collections" });
+    expect(nested.className).toContain("text-brand-text");
+    expect(nested.className).not.toContain("text-brand-primary");
   });
 });
 

@@ -226,6 +226,22 @@ describe("Sidebar", () => {
     expect(screen.getByText("Footer")).toHaveAttribute("data-sidebar", "footer");
   });
 
+  it("active items use --brand-text on the brand tint, not brand-primary text", () => {
+    // tokens.test.ts checks text-brand-text against these tints in every theme.
+    render(<App />);
+    const active = screen.getByRole("button", { name: "Inbox" });
+    expect(active.className).toContain("bg-brand-primary/10");
+    expect(active.className).toContain("hover:bg-brand-primary/15");
+    expect(active.className).toContain("text-brand-text");
+    expect(active.className).not.toContain("text-brand-primary");
+    const sub = screen.getByRole("link", { name: "Draft A" });
+    expect(sub.className).toContain("text-brand-text");
+    expect(sub.className).not.toContain("text-brand-primary");
+    expect(screen.getByRole("button", { name: "Drafts" }).className).not.toContain(
+      "text-brand-text",
+    );
+  });
+
   it("uses a sheet on mobile, opened by the trigger", async () => {
     mockViewport(true);
     render(<App />);

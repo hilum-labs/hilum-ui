@@ -342,7 +342,7 @@ function AppMobileNavTabs({
                       tabClass,
                       "active:scale-[0.96]",
                       active
-                        ? "bg-brand-primary/10 text-brand-primary"
+                        ? "bg-brand-primary/10 text-brand-text"
                         : "text-muted-foreground hover:bg-muted hover:text-foreground",
                     )}
                   >

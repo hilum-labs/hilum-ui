@@ -37,7 +37,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { cn } from "../lib/utils";
+import { cn, isOwnEvent } from "../lib/utils";
 import { pluralize, useFormatter } from "../lib/format";
 import { useControllableState } from "../lib/use-controllable-state";
 
@@ -152,7 +152,8 @@ interface DataTableProps<TData> {
   /**
    * Make rows clickable (e.g. open the detail page). Enter/Space activate focused rows.
    * Clicks on checkboxes, links, buttons and form controls inside the row are ignored,
-   * as are clicks on anything marked `data-row-click-ignore`.
+   * as are clicks on anything marked `data-row-click-ignore` and clicks inside
+   * portals opened from the row (a row action's Dialog, ConfirmDialog or menu).
    */
   onRowClick?: (row: TData) => void;
   /** Noun for the result count — "12 orders". Default: "result". */
@@ -700,6 +701,10 @@ function DataTable<TData>({
       ? {
           tabIndex: 0,
           onClick: (event: React.MouseEvent<HTMLElement>) => {
+            // React bubbles events through portals, so a click in a Dialog,
+            // ConfirmDialog or menu opened from the row reaches the row too.
+            // Only clicks on the row's own DOM count.
+            if (!isOwnEvent(event)) return;
             const target = event.target as HTMLElement;
             const ignored = target.closest(ROW_CLICK_IGNORE);
             if (

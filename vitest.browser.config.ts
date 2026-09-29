@@ -128,6 +128,7 @@ export default defineConfig({
       "@testing-library/react",
       "@testing-library/jest-dom/vitest",
       "lucide-react",
+      "axe-core",
       ...uiDependencies,
     ],
   },

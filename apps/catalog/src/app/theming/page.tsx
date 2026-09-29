@@ -54,6 +54,7 @@ const USAGE_MANUAL_CSS = `/* product-theme.css — loaded after tokens.css */
   --color-brand-secondary: #FF9900;
   --primary:               #0066FF;
   --primary-foreground:    #ffffff;
+  --brand-text:            #0051ce;
   --accent:                #f2f7ff;
   --accent-foreground:     #003d9f;
   --ring:                  #0066FF;
@@ -78,7 +79,10 @@ function PaletteGenerator() {
   const [primary, setPrimary] = useState("#c100f1");
   const [secondary, setSecondary] = useState("#fff5bf");
 
-  const { palette } = useMemo(() => createTheme({ primary, secondary }), [primary, secondary]);
+  const { palette, brandText } = useMemo(
+    () => createTheme({ primary, secondary }),
+    [primary, secondary],
+  );
 
   const pfg = relativeLuminance(primary) > 0.179 ? "#26181a" : "#ffffff";
 
@@ -87,6 +91,7 @@ function PaletteGenerator() {
     "--color-brand-secondary": secondary,
     "--primary": primary,
     "--primary-foreground": pfg,
+    "--brand-text": brandText.light,
     "--accent": palette.primary["50"],
     "--accent-foreground": palette.primary["700"],
     "--ring": primary,
@@ -276,6 +281,11 @@ const resultRows = [
     type: "Record<string, string>",
     desc: "Same structure for the secondary color.",
   },
+  {
+    prop: "brandText",
+    type: "{ light: string; mid: string; dark: string }",
+    desc: "The --brand-text emitted per theme: the shade closest to primary that stays ≥ 4.5:1 on the brand tint.",
+  },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -296,6 +306,12 @@ const overrideRows = [
   },
   { var: "--primary", value: "primary hex", affects: "Semantic primary token" },
   { var: "--primary-foreground", value: "auto (WCAG)", affects: "Text on primary surfaces" },
+  {
+    var: "--brand-text",
+    value: "auto (WCAG), per theme",
+    affects:
+      "text-brand-text — active Sidebar / AppNavTree / AppMobileNav items; the palette shade closest to primary that stays ≥ 4.5:1 on the brand tint",
+  },
   {
     var: "--accent / --accent-foreground",
     value: "primary-50 / primary-700",

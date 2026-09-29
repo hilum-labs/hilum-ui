@@ -142,6 +142,10 @@ export const tokens = {
       active: "rgba(23, 23, 23, 0.08)",
       primary: "#c100f1", // purple-500 = brand.primary
       primaryForeground: "#ffffff",
+      // Brand-coloured text that stays readable (≥ 4.5:1) on every surface and
+      // on the brand tint behind active nav items (`bg-brand-primary/10`–`/15`).
+      // brand.primary itself is only 3.9:1 on its own 10% tint.
+      brandText: "#9c00c0", // purple-600
       secondary: "#fafafa", // ground-50
       secondaryForeground: "#404040", // ground-700
       destructive: "#dc2626",
@@ -178,6 +182,9 @@ export const tokens = {
       active: "rgba(255, 255, 255, 0.13)",
       primary: "#c100f1", // brand stays consistent across themes
       primaryForeground: "#ffffff",
+      // No purple is readable on the mid gray (#fdf0ff is 4.3:1 on the
+      // hovered tint); the brand tint behind it carries the colour.
+      brandText: "#ffffff",
       secondary: "#525252", // ground-600
       secondaryForeground: "#fafafa",
       destructive: "#ef4444", // red-500
@@ -211,6 +218,7 @@ export const tokens = {
       active: "rgba(250, 250, 250, 0.1)",
       primary: "#c100f1", // purple-500 — brand stays consistent (D8)
       primaryForeground: "#ffffff",
+      brandText: "#d870f9", // purple-300
       secondary: "#262626", // ground-800
       secondaryForeground: "#f5f5f5",
       destructive: "#ef4444", // red-500 (slightly lighter for dark)
