@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { page } from "vitest/browser";
 import {
   Badge,
   Button,
   Callout,
+  CommandPalette,
   StatusBadge,
   Combobox,
   DatePicker,
@@ -250,5 +251,30 @@ describe("status dots and callout actions (real browser)", () => {
       actions.getBoundingClientRect().width,
       0,
     );
+  });
+});
+
+describe("CommandPalette (real browser)", () => {
+  test("stays put while results shrink, and the close button clears the esc hint", async () => {
+    await page.viewport(1280, 800);
+    const items = Array.from({ length: 12 }, (_, i) => ({
+      label: `Page ${i + 1}`,
+      href: `/p/${i + 1}`,
+      category: "Pages",
+    }));
+    render(<CommandPalette open onClose={() => {}} items={items} />);
+    const dialog = await screen.findByRole("dialog");
+    // Let the open animation settle.
+    await new Promise((r) => setTimeout(r, 400));
+    const before = dialog.getBoundingClientRect().top;
+    fireEvent.change(screen.getByRole("combobox"), { target: { value: "Page 12" } });
+    await new Promise((r) => setTimeout(r, 50));
+    expect(screen.getAllByRole("option")).toHaveLength(1);
+    expect(dialog.getBoundingClientRect().top).toBeCloseTo(before, 0);
+    expect(before).toBeLessThan(800 * 0.2);
+
+    const esc = dialog.querySelector("[data-slot='command-palette-esc']")!.getBoundingClientRect();
+    const close = screen.getByRole("button", { name: "Close" }).getBoundingClientRect();
+    expect(close.left).toBeGreaterThanOrEqual(esc.right);
   });
 });

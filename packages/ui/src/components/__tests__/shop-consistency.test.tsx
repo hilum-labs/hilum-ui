@@ -35,6 +35,8 @@ import { RadioCards } from "../radio-card";
 import { StatusBadge } from "../status-badge";
 import { Callout } from "../callout";
 import { Badge } from "../badge";
+import { CommandPalette } from "../command-palette";
+import { CommandDialog, CommandInput } from "../command";
 import { controlHeightClass, controlTextClass } from "../../lib/interaction";
 import "@testing-library/jest-dom";
 
@@ -580,5 +582,115 @@ describe("Callout actions", () => {
     const actions = container.querySelector("[data-slot='callout-actions']")!;
     expect(actions).not.toHaveClass("max-sm:items-stretch");
     expect(actions).toHaveClass("max-sm:items-start", "max-sm:[&>[data-slot=button]]:self-stretch");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* CommandPalette                                                       */
+/* ------------------------------------------------------------------ */
+
+describe("CommandPalette layout", () => {
+  it("puts the close button in the search row after the esc hint (no overlap)", () => {
+    render(<CommandPalette open onClose={() => {}} items={[{ label: "Orders", href: "/o" }]} />);
+    const input = screen.getByRole("combobox");
+    const row = input.parentElement!;
+    const close = screen.getByRole("button", { name: "Close" });
+    const esc = row.querySelector("[data-slot='command-palette-esc']")!;
+    expect(row).toContainElement(close);
+    expect(esc.compareDocumentPosition(close) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(close).not.toHaveClass("absolute");
+    // Only one close button (the dialog's corner button is off).
+    expect(screen.getAllByRole("button", { name: "Close" })).toHaveLength(1);
+  });
+
+  it("is anchored to the top on desktop and keeps a fixed results height on mobile", () => {
+    render(<CommandPalette open onClose={() => {}} items={[]} />);
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toHaveClass("lg:top-[12dvh]", "lg:translate-y-0");
+    expect(dialog).not.toHaveClass("lg:top-1/2", "lg:-translate-y-1/2");
+    expect(dialog.querySelector("[data-slot='command-palette-results']")).toHaveClass(
+      "max-lg:h-[min(55dvh,24rem)]",
+    );
+  });
+});
+
+describe("CommandDialog layout", () => {
+  it("is top-anchored and reserves room for the close button in the input row", () => {
+    render(
+      <CommandDialog open>
+        <CommandInput placeholder="Search" />
+      </CommandDialog>,
+    );
+    expect(screen.getByRole("dialog")).toHaveClass(
+      "lg:top-[12dvh]",
+      "[&_[data-slot=command-input-wrapper]]:pe-12",
+    );
+  });
+});
+
+describe("CommandPalette async groups", () => {
+  it("reports the query and renders app-fetched groups, unfiltered, after static items", () => {
+    const onQueryChange = vi.fn();
+    const onNavigate = vi.fn();
+    const { rerender } = render(
+      <CommandPalette
+        open
+        onClose={() => {}}
+        onNavigate={onNavigate}
+        items={[{ label: "Orders", href: "/orders", category: "Pages" }]}
+        onQueryChange={onQueryChange}
+        groups={[{ id: "orders", label: "Orders", items: [], loading: true }]}
+      />,
+    );
+    expect(onQueryChange).toHaveBeenCalledWith("");
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "#1001" } });
+    expect(onQueryChange).toHaveBeenLastCalledWith("#1001");
+
+    // Loading: a loading row under the heading, busy listbox, polite announcement.
+    expect(screen.getByRole("listbox")).toHaveAttribute("aria-busy", "true");
+    expect(screen.getByRole("status")).toHaveTextContent("Loading…");
+    expect(screen.getByRole("group", { name: "Orders" })).toHaveTextContent("Loading…");
+
+    rerender(
+      <CommandPalette
+        open
+        onClose={() => {}}
+        onNavigate={onNavigate}
+        items={[{ label: "Orders", href: "/orders", category: "Pages" }]}
+        onQueryChange={onQueryChange}
+        groups={[
+          {
+            id: "orders",
+            label: "Orders",
+            items: [{ id: "o1", label: "Order 1001", href: "/orders/1001" }],
+          },
+          { id: "customers", label: "Customers", items: [], emptyText: "No customers" },
+          { id: "products", label: "Products", items: [] },
+        ]}
+      />,
+    );
+    expect(screen.getByRole("listbox")).not.toHaveAttribute("aria-busy");
+    // "#1001" matches no static item, but the fetched order still shows.
+    expect(screen.getAllByRole("option")).toHaveLength(1);
+    expect(screen.getByRole("group", { name: "Customers" })).toHaveTextContent("No customers");
+    expect(screen.queryByRole("group", { name: "Products" })).toBeNull();
+    fireEvent.keyDown(input, { key: "Enter" });
+    expect(onNavigate).toHaveBeenCalledWith("/orders/1001");
+  });
+
+  it("labels are localizable", () => {
+    render(
+      <CommandPalette
+        open
+        onClose={() => {}}
+        items={[]}
+        closeLabel="Cerrar"
+        labels={{ loading: "Cargando…", escapeHint: "esc" }}
+        groups={[{ id: "p", label: "Productos", items: [], loading: true }]}
+      />,
+    );
+    expect(screen.getByRole("button", { name: "Cerrar" })).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Productos" })).toHaveTextContent("Cargando…");
   });
 });
