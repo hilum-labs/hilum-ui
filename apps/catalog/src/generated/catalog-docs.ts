@@ -1772,7 +1772,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "className, getRowId, getRowLabel, enableRowSelection, rowSelection, defaultRowSelection, onRowSelectionChange, bulkActions, promotedBulkActions, totalCount, onSelectAllMatching, manualSorting, manualFiltering, manualPagination, pageCount, rowCount, sorting, defaultSorting, onSortingChange, pagination, onPaginationChange, columnFilters, onColumnFiltersChange, loading, loadingRowCount, stickyHeader, maxHeight, enableColumnVisibility, columnVisibility, defaultColumnVisibility, onColumnVisibilityChange, columnPinning, onColumnPinningChange, enableColumnResizing, columnSizing, onColumnSizingChange, dir, virtualize, mobileLayout, mobileBreakpoint, mobilePrimaryColumn, mobileColumns"
+        "description": "className, getRowId, getRowLabel, enableRowSelection, rowSelection, defaultRowSelection, onRowSelectionChange, bulkActions, promotedBulkActions, totalCount, onSelectAllMatching, manualSorting, manualFiltering, manualPagination, pageCount, rowCount, sorting, defaultSorting, onSortingChange, pagination, onPaginationChange, columnFilters, onColumnFiltersChange, loading, loadingRowCount, stickyHeader, maxHeight, enableColumnVisibility, columnVisibility, defaultColumnVisibility, onColumnVisibilityChange, columnPinning, onColumnPinningChange, enableColumnResizing, columnSizing, onColumnSizingChange, dir, virtualize, mobileLayout, mobileBreakpoint, mobileBreakpointBasis, mobilePrimaryColumn, mobileColumns"
       }
     ],
     "exampleCode": "import { DataTable, createColumnHelper } from \"@hilum/ui\"\nimport { Badge } from \"@hilum/ui\"\n\ntype Transaction = {\n  id: string; company: string; type: string\n  amount: string; date: string; status: \"Paid\" | \"Pending\" | \"Overdue\"\n}\n\nconst helper = createColumnHelper<Transaction>()\n\nconst columns = [\n  helper.accessor(\"id\", {\n    header: \"ID\",\n    cell: (info) => <span className=\"font-mono caption text-muted-foreground\">{info.getValue()}</span>,\n  }),\n  helper.accessor(\"company\", {\n    header: \"Company\",\n    cell: (info) => <span className=\"font-medium text-foreground\">{info.getValue()}</span>,\n// ...trimmed for docs",
@@ -2360,7 +2360,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "align, locale, formatOptions, labels"
+        "description": "align, locale, formatOptions, fullWidth, labels"
       },
       {
         "label": "Inherited props",
@@ -2569,6 +2569,14 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "ComboboxOption[] · required — Options to choose from (the current search results when `onSearchChange` is set)."
       },
       {
+        "label": "selectedOptions",
+        "description": "ComboboxOption[] — Options for selected values that may not be in `options`: the selection loaded with a record while search results are fetched separately, or a value whose option is on another page. Chips use their labels."
+      },
+      {
+        "label": "getOptionLabel",
+        "description": "(value: string) => string — Label for a selected value that isn't in `options` or `selectedOptions` (e.g. from a lookup map). Return `undefined` when unknown."
+      },
+      {
         "label": "value",
         "description": "string[] — Selected option values (controlled)."
       },
@@ -2605,16 +2613,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "number — Most options that can be selected; the rest are disabled once reached."
       },
       {
-        "label": "closeOnSelect",
-        "description": "boolean · default false — Close the list after each selection. Default false."
-      },
-      {
-        "label": "clearable",
-        "description": "boolean · default false — Show a clear-all (×) button while something is selected."
-      },
-      {
         "label": "More props",
-        "description": "disabled, id, name, onBlur, className, labels"
+        "description": "closeOnSelect, clearable, disabled, id, name, onBlur, className, labels"
       },
       {
         "label": "Inherited props",
@@ -7254,7 +7254,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "htmlFor",
-        "description": "string — id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context. Input, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically. If the control has its own `id`, the label follows it, so `htmlFor` is only needed for controls outside this list."
+        "description": "string — id of the control the label targets. Optional: when omitted, Field generates one and hands it to the control through context. Input, InputGroup, Textarea, SelectTrigger, NativeSelect, InputNumber, Combobox, MultiCombobox, TagInput, Switch, Checkbox, DatePicker, DateRangePicker, DateTimePicker, TimePicker, ColorInput and InputOTP pick up the id, label, hint / error (`aria-describedby`), `aria-invalid`, `aria-required` and `disabled` automatically. If the control has its own `id`, the label follows it, so `htmlFor` is only needed for controls outside this list."
       },
       {
         "label": "hint",
@@ -7561,7 +7561,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "wrapperClassName, pill, type, defaultValue, id, aria-label"
+        "description": "wrapperClassName, pill, type, defaultValue, id, required, name, inputProps, aria-label"
       },
       {
         "label": "Inherited props",
@@ -8863,11 +8863,19 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "valueFormat",
-        "description": "TimeSeriesValueFormat · default \"number\" — Value formatting for the y-axis (compact) and tooltip (full): \"number\" (default), \"currency\", \"percent\" (0.12 → 12%) or a function."
+        "description": "TimeSeriesValueFormat · default \"number\" — Value formatting for the y-axis (compact) and tooltip (full): \"number\" (default), \"currency\", \"percent\" (0.12 → 12%) or a function. A function gets `{ context: \"axis\" | \"tooltip\" }` as its second argument, e.g. `(value, { context }) => formatMoney(value, context === \"axis\" ? { notation: \"compact\" } : {})`."
       },
       {
         "label": "currency",
         "description": "string — ISO-4217 code for `valueFormat=\"currency\"`. Default: FormatProvider currency, then USD."
+      },
+      {
+        "label": "currencyDisplay",
+        "description": "keyof Intl.NumberFormatOptionsCurrencyDisplayRegistry · default \"symbol\" — How `valueFormat=\"currency\"` shows the currency, as in Intl / `formatCurrency`: \"symbol\" (default: \"$\", \"CA$\", \"S/\" in es-PE, \"PEN\" in en), \"narrowSymbol\" (\"$\" for CAD too), \"code\" (\"PEN\") or \"name\"."
+      },
+      {
+        "label": "currencySymbol",
+        "description": "string — Replaces Intl's currency sign on the axis and in the tooltip, e.g. \"S/\" for PEN in an English locale, where Intl only has \"PEN\" (as in `formatCurrency`)."
       },
       {
         "label": "minorUnits",
@@ -8878,16 +8886,8 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "TimeSeriesDateFormat · default { month: \"short\", day: \"numeric\" } — X-axis tick format. Default: \"Sep 26\"."
       },
       {
-        "label": "tooltipDateFormat",
-        "description": "TimeSeriesDateFormat · default { month: \"short\", day: \"numeric\", year: \"numeric\" } — Tooltip heading format. Default: \"Sep 26, 2026\"."
-      },
-      {
-        "label": "loading",
-        "description": "boolean · default false — Show a skeleton instead of the chart."
-      },
-      {
         "label": "More props",
-        "description": "emptyState, showLegend, showGrid, labels, className"
+        "description": "tooltipDateFormat, loading, emptyState, showLegend, showGrid, labels, className"
       }
     ],
     "exampleCode": "import { TimeSeriesChart } from \"@hilum/ui\"\n\n<TimeSeriesChart\n  aria-label=\"Total sales over time\"\n  data={points}               // [{ date: \"2026-09-01\", sales: 1240, previous: 910 }, …]\n  series={[\n    { key: \"sales\", label: \"Total sales\" },\n    { key: \"previous\", label: \"Previous period\", dashed: true },\n  ]}\n  valueFormat=\"currency\"      // currency from FormatProvider, or currency=\"PEN\"\n  loading={isLoading}\n/>",
