@@ -2,11 +2,14 @@
 
 import {
   cloneElement,
+  useCallback,
   type Ref,
   isValidElement,
   type ButtonHTMLAttributes,
   type CSSProperties,
+  type MouseEvent,
   type ReactElement,
+  type ReactNode,
 } from "react";
 import { Slot } from "radix-ui";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -14,35 +17,71 @@ import type { IconComponent } from "../lib/icon-context";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
 
+// The variant fill is painted on the element's own `::before` (inset 0, the
+// border radius inherited, stacked under the label by `isolate` + a negative
+// z-index) instead of an extra child. That keeps the classes self-contained:
+// a `<Button>`, a `<Button asChild>` child (router links, EmptyState / PageHeader
+// href actions) and any element styled with `buttonVariants()` (PaginationLink)
+// get the same fill, hover, press and pressed states.
 const buttonVariants = cva(
   [
     "group relative isolate inline-flex items-center justify-center outline-none cursor-pointer",
     "text-box-trim-both text-box-edge-cap-alphabetic",
     "transition-colors duration-80",
+    "before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-[inherit] before:content-['']",
+    "before:transition-[background-color,box-shadow,scale] before:duration-80",
+    "active:before:scale-[0.98] motion-reduce:active:before:scale-100",
     "disabled:opacity-50 disabled:pointer-events-none",
+    "aria-disabled:opacity-50 aria-disabled:pointer-events-none",
     "compact:rounded-[5px] compact:whitespace-nowrap",
     "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
   ],
   {
     variants: {
+      // Neutral variants tint with `foreground` alpha rather than a fixed
+      // palette colour so they mean the same thing in light, mid and dark:
+      // primary = inverted foreground, secondary = soft neutral fill, outline /
+      // tertiary / ghost = transparent with a neutral hover wash; a pressed
+      // ghost (`aria-pressed="true"`) keeps a subtle fill.
       variant: {
-        default: "text-background",
-        primary: "text-background",
-        brand: "text-primary-foreground",
-        secondary: "text-foreground",
-        outline: "border border-border text-foreground hover:border-border-strong",
-        tertiary: "border border-border text-foreground hover:border-border-strong",
-        destructive: "text-destructive border border-destructive/30",
-        ghost: "text-muted-foreground hover:text-foreground aria-pressed:text-foreground",
+        default:
+          "text-background before:bg-foreground hover:before:bg-foreground/90 active:before:bg-foreground/80",
+        primary:
+          "text-background before:bg-foreground hover:before:bg-foreground/90 active:before:bg-foreground/80",
+        brand:
+          "text-primary-foreground before:bg-primary hover:before:bg-primary/90 active:before:bg-primary/80",
+        secondary:
+          "text-foreground before:bg-foreground/[0.07] hover:before:bg-foreground/[0.11] active:before:bg-foreground/[0.15]",
+        outline: [
+          "border border-border text-foreground hover:border-border-strong",
+          "hover:before:bg-foreground/[0.05] active:before:bg-foreground/[0.09]",
+        ],
+        tertiary: [
+          "border border-border text-foreground hover:border-border-strong",
+          "hover:before:bg-foreground/[0.05] active:before:bg-foreground/[0.09]",
+        ],
+        destructive: [
+          "text-destructive border border-destructive/30",
+          "before:bg-destructive/10 hover:before:bg-destructive/15 active:before:bg-destructive/20",
+        ],
+        ghost: [
+          "text-muted-foreground hover:text-foreground aria-pressed:text-foreground",
+          "hover:before:bg-foreground/[0.06] active:before:bg-foreground/[0.1] aria-pressed:before:bg-foreground/[0.08]",
+        ],
         link: "text-foreground underline-offset-4 hover:underline",
         // Pressable preset tile (style presets, font pairings, previews): a
         // quiet filled tile; pressed (`aria-pressed` or `active`) is a
-        // background tile with a hairline foreground ring (on the bg span).
+        // background tile with a hairline foreground ring.
         // Tiles are usually content-sized: pass `h-auto compact:h-auto`.
-        tile: "text-foreground",
+        tile: [
+          "text-foreground before:bg-foreground/[0.05] hover:before:bg-foreground/[0.08]",
+          "aria-pressed:before:bg-background aria-pressed:before:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
+        ],
         // A button that reads as a field, e.g. a font-family picker trigger.
         field: [
           "border border-border text-foreground font-normal justify-between hover:border-border-strong",
+          "before:bg-background compact:before:bg-[var(--density-field)]",
+          "compact:aria-expanded:before:bg-background compact:focus-visible:before:bg-background",
           "compact:border-transparent compact:hover:border-border",
           "compact:aria-expanded:border-ring compact:focus-visible:border-ring",
           "compact:focus-visible:ring-0 compact:focus-visible:ring-offset-0",
@@ -105,51 +144,49 @@ interface ButtonProps
 
 type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>;
 
-/** Pressed preset tile: a background-coloured tile with a hairline ring.
- *  Painted on the bg span, since an inset shadow on the root would sit under it. */
-const tilePressedClasses =
-  "bg-background shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]";
-
-// Variant fills. Neutral variants tint with `foreground` alpha rather than a
-// fixed palette colour so they mean the same thing in light, mid and dark:
-// primary = inverted foreground, secondary = soft neutral fill, outline /
-// tertiary / ghost = transparent with a neutral hover wash; a pressed ghost
-// (`aria-pressed="true"`) keeps a subtle fill.
-const bgVariants: Record<ButtonVariant, string> = {
-  default: "bg-foreground group-hover:bg-foreground/90 group-active:bg-foreground/80",
-  primary: "bg-foreground group-hover:bg-foreground/90 group-active:bg-foreground/80",
-  brand: "bg-primary group-hover:bg-primary/90 group-active:bg-primary/80",
-  secondary:
-    "bg-foreground/[0.07] group-hover:bg-foreground/[0.11] group-active:bg-foreground/[0.15]",
-  outline: "bg-transparent group-hover:bg-foreground/[0.05] group-active:bg-foreground/[0.09]",
-  tertiary: "bg-transparent group-hover:bg-foreground/[0.05] group-active:bg-foreground/[0.09]",
-  destructive: "bg-destructive/10 group-hover:bg-destructive/15 group-active:bg-destructive/20",
-  ghost:
-    "bg-transparent group-hover:bg-foreground/[0.06] group-active:bg-foreground/[0.1] group-aria-pressed:bg-foreground/[0.08]",
-  link: "bg-transparent",
-  tile: [
-    "bg-foreground/[0.05] group-hover:bg-foreground/[0.08]",
-    "group-aria-pressed:bg-background group-aria-pressed:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
-  ].join(" "),
-  field: [
-    "bg-background compact:bg-[var(--density-field)]",
-    "compact:group-aria-expanded:bg-background compact:group-focus-visible:bg-background",
-  ].join(" "),
+/**
+ * Forced pressed/held fills for `active`. They replace (via tailwind-merge) the
+ * resting and hover fills of the variant, so an engaged button doesn't shift
+ * on hover.
+ */
+const activeFillVariants: Record<ButtonVariant, string> = {
+  default: "before:bg-foreground/80 hover:before:bg-foreground/80",
+  primary: "before:bg-foreground/80 hover:before:bg-foreground/80",
+  brand: "before:bg-primary/80 hover:before:bg-primary/80",
+  secondary: "before:bg-foreground/[0.15] hover:before:bg-foreground/[0.15]",
+  outline: "before:bg-foreground/[0.09] hover:before:bg-foreground/[0.09]",
+  tertiary: "before:bg-foreground/[0.09] hover:before:bg-foreground/[0.09]",
+  destructive: "before:bg-destructive/20 hover:before:bg-destructive/20",
+  ghost: "before:bg-foreground/[0.1] hover:before:bg-foreground/[0.1]",
+  link: "",
+  // Pressed preset tile: a background-coloured tile with a hairline ring.
+  tile: "before:bg-background hover:before:bg-background before:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
+  field: "before:bg-background compact:before:bg-background",
 };
 
-const activeBgVariants: Record<ButtonVariant, string> = {
-  default: "bg-foreground/80",
-  primary: "bg-foreground/80",
-  brand: "bg-primary/80",
-  secondary: "bg-foreground/[0.15]",
-  outline: "bg-foreground/[0.09]",
-  tertiary: "bg-foreground/[0.09]",
-  destructive: "bg-destructive/20",
-  ghost: "bg-foreground/[0.1]",
-  link: "bg-transparent",
-  tile: tilePressedClasses,
-  field: "bg-background",
-};
+function setRef<T>(ref: Ref<T> | undefined, node: T | null) {
+  if (typeof ref === "function") ref(node);
+  else if (ref) (ref as { current: T | null }).current = node;
+}
+
+/** The Hilum loading glyph: a dash tracing a figure-eight (`hilum-orbit`). */
+function ButtonSpinner() {
+  return (
+    <span className="absolute inset-0 flex items-center justify-center">
+      <svg className="h-8 w-8" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M 12 12 C 14 8.5 19 8.5 19 12 C 19 15.5 14 15.5 12 12 C 10 8.5 5 8.5 5 12 C 5 15.5 10 15.5 12 12 Z"
+          stroke="currentColor"
+          strokeWidth="1.125"
+          strokeLinecap="round"
+          strokeDasharray="15 85"
+          pathLength="100"
+          className="animate-hilum-orbit motion-reduce:animate-none"
+        />
+      </svg>
+    </span>
+  );
+}
 
 function Button({
   ref,
@@ -166,38 +203,119 @@ function Button({
   style,
   ...props
 }: ButtonProps & { ref?: Ref<HTMLButtonElement> | undefined }) {
-  const Comp = asChild ? Slot.Root : "button";
   const isIconOnly =
     size === "icon" || size === "icon-xs" || size === "icon-sm" || size === "icon-lg";
   const iconSize = size === "xs" || size === "sm" ? 14 : size === "lg" ? 20 : 16;
   const shape = useShape();
-  const bgClass = active
-    ? activeBgVariants[variant ?? "primary"]
-    : bgVariants[variant ?? "primary"];
+  const childRef =
+    asChild && isValidElement(children)
+      ? (children.props as { ref?: Ref<HTMLButtonElement> }).ref
+      : undefined;
+  // asChild: the button's ref and the child's own ref both get the node.
+  const composedRef = useCallback(
+    (node: HTMLButtonElement | null) => {
+      setRef(ref, node);
+      setRef(childRef, node);
+    },
+    [ref, childRef],
+  );
+  const classes = cn(
+    buttonVariants({
+      variant,
+      size,
+      iconLeft: !isIconOnly && !!LeadingIcon,
+      iconRight: !isIconOnly && !!TrailingIcon,
+    }),
+    shape.button,
+    active && activeFillVariants[variant ?? "primary"],
+  );
+
+  // The label layer. Identical for <button> and asChild children, so icons,
+  // loading and the icon-only stroke treatment render the same either way.
+  const renderContent = (content: ReactNode) => (
+    <span
+      className={cn(
+        "relative inline-flex items-center justify-center gap-[inherit]",
+        // Field buttons: value at the start, trailing icon at the end.
+        variant === "field" && "w-full min-w-0 justify-between text-start",
+      )}
+    >
+      {loading ? (
+        <>
+          <span className="flex items-center justify-center gap-[inherit] opacity-0">
+            {LeadingIcon && !isIconOnly && <LeadingIcon size={iconSize} strokeWidth={2} />}
+            {content}
+            {TrailingIcon && !isIconOnly && <TrailingIcon size={iconSize} strokeWidth={2} />}
+          </span>
+          <ButtonSpinner />
+        </>
+      ) : isIconOnly ? (
+        <span className="[&_svg]:stroke-[1.5] [&_svg]:transition-[stroke-width] [&_svg]:duration-80 group-hover:[&_svg]:stroke-[2]">
+          {content}
+        </span>
+      ) : (
+        <>
+          {LeadingIcon && (
+            <LeadingIcon
+              size={iconSize}
+              strokeWidth={1.5}
+              className="transition-[stroke-width] duration-80 group-hover:stroke-[2]"
+            />
+          )}
+          {LeadingIcon || TrailingIcon ? <span>{content}</span> : content}
+          {TrailingIcon && (
+            <TrailingIcon
+              size={iconSize}
+              strokeWidth={1.5}
+              className="transition-[stroke-width] duration-80 group-hover:stroke-[2]"
+            />
+          )}
+        </>
+      )}
+    </span>
+  );
 
   if (asChild && isValidElement(children)) {
     // The child receives arbitrary button props (data-*, aria-*, handlers).
     const child = children as ReactElement<
-      Record<string, unknown> & { className?: string; style?: CSSProperties }
+      Record<string, unknown> & {
+        className?: string;
+        style?: CSSProperties;
+        children?: ReactNode;
+      }
     >;
-    return cloneElement(child, {
-      ...props,
-      "data-slot": "button",
-      "data-icon-only": isIconOnly ? "" : undefined,
-      className: cn(
-        buttonVariants({
-          variant,
-          size,
-          iconLeft: !isIconOnly && !!LeadingIcon,
-          iconRight: !isIconOnly && !!TrailingIcon,
-        }),
-        shape.button,
-        child.props.className,
-        className,
-      ),
-      style: { ...child.props.style, ...style },
-    });
+    const inert = Boolean(disabled || loading);
+    const childContent = child.props.children;
+    // Links keep their own markup unless the button needs to add something
+    // (icons, the loading glyph, the icon-only stroke treatment). Render-prop
+    // children (e.g. a NavLink function) are passed through untouched.
+    const decorate =
+      (loading || isIconOnly || Boolean(LeadingIcon) || Boolean(TrailingIcon)) &&
+      typeof childContent !== "function";
+    return cloneElement(
+      child,
+      {
+        ...props,
+        ref: composedRef,
+        "data-slot": "button",
+        "data-icon-only": isIconOnly ? "" : undefined,
+        ...(active ? { "data-active": "" } : {}),
+        ...(inert
+          ? {
+              "aria-disabled": true,
+              tabIndex: -1,
+              onClick: (event: MouseEvent<HTMLElement>) => event.preventDefault(),
+            }
+          : {}),
+        ...(loading ? { "aria-busy": true } : {}),
+        className: cn(classes, child.props.className, className),
+        style: { ...child.props.style, ...style },
+      },
+      ...(decorate ? [renderContent(childContent)] : []),
+    );
   }
+
+  const Comp = asChild ? Slot.Root : "button";
 
   return (
     <Comp
@@ -205,82 +323,14 @@ function Button({
       data-slot="button"
       // Lets layouts target icon-only buttons (e.g. the inspector grid's action column).
       data-icon-only={isIconOnly ? "" : undefined}
-      className={cn(
-        buttonVariants({
-          variant,
-          size,
-          iconLeft: !isIconOnly && !!LeadingIcon,
-          iconRight: !isIconOnly && !!TrailingIcon,
-        }),
-        shape.button,
-        className,
-      )}
+      {...(active ? { "data-active": "" } : {})}
+      className={cn(classes, className)}
       disabled={disabled || loading}
+      {...(loading ? { "aria-busy": true } : {})}
       style={style}
       {...props}
     >
-      <span
-        aria-hidden
-        className={cn(
-          "absolute inset-0 rounded-[inherit] transition-[background-color,transform] duration-80 group-active:scale-[0.98]",
-          bgClass,
-        )}
-      />
-      <span
-        className={cn(
-          "relative inline-flex items-center justify-center gap-[inherit]",
-          // Field buttons: value at the start, trailing icon at the end.
-          variant === "field" && "w-full min-w-0 justify-between text-start",
-        )}
-      >
-        {loading ? (
-          <>
-            <span className="flex items-center justify-center gap-[inherit] opacity-0">
-              {LeadingIcon && !isIconOnly && <LeadingIcon size={iconSize} strokeWidth={2} />}
-              {children}
-              {TrailingIcon && !isIconOnly && <TrailingIcon size={iconSize} strokeWidth={2} />}
-            </span>
-            <span className="absolute inset-0 flex items-center justify-center">
-              <svg className="h-8 w-8" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M 12 12 C 14 8.5 19 8.5 19 12 C 19 15.5 14 15.5 12 12 C 10 8.5 5 8.5 5 12 C 5 15.5 10 15.5 12 12 Z"
-                  stroke="currentColor"
-                  strokeWidth="1.125"
-                  strokeLinecap="round"
-                  pathLength="100"
-                  style={{
-                    strokeDasharray: "15 85",
-                    animation:
-                      "spinner-move 2s linear infinite, spinner-dash 4s ease-in-out infinite",
-                  }}
-                />
-              </svg>
-            </span>
-          </>
-        ) : isIconOnly ? (
-          <span className="[&_svg]:stroke-[1.5] [&_svg]:transition-[stroke-width] [&_svg]:duration-80 group-hover:[&_svg]:stroke-[2]">
-            {children}
-          </span>
-        ) : (
-          <>
-            {LeadingIcon && (
-              <LeadingIcon
-                size={iconSize}
-                strokeWidth={1.5}
-                className="transition-[stroke-width] duration-80 group-hover:stroke-[2]"
-              />
-            )}
-            {LeadingIcon || TrailingIcon ? <span>{children}</span> : children}
-            {TrailingIcon && (
-              <TrailingIcon
-                size={iconSize}
-                strokeWidth={1.5}
-                className="transition-[stroke-width] duration-80 group-hover:stroke-[2]"
-              />
-            )}
-          </>
-        )}
-      </span>
+      {renderContent(children)}
     </Comp>
   );
 }

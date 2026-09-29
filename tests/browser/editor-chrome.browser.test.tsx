@@ -86,7 +86,7 @@ describe("compact editor chrome (real browser)", () => {
     );
     const tile = screen.getByRole("button", { name: "Preset", pressed: true });
     expect(tile.getBoundingClientRect().height).toBeGreaterThan(24);
-    const bg = getComputedStyle(tile.querySelector(":scope > span[aria-hidden]")!);
+    const bg = getComputedStyle(tile, "::before");
     expect(bg.backgroundColor).toBe(resolveColor("var(--background)"));
     expect(bg.boxShadow).toMatch(/inset/);
   });
