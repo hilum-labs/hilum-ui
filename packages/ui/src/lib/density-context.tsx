@@ -5,7 +5,7 @@ import { createContext, useContext, type ReactNode } from "react";
 /**
  * Control density.
  *
- * - `default` — the standard Hilum sizing (40px inputs, 32px buttons, 40px
+ * - `default` — the standard Hilum sizing (36px form controls with 14px text, 32px buttons, 40px
  *   menu rows). Used everywhere unless something opts in.
  * - `compact` — editor-chrome sizing (Figma / Framer / Linear inspectors):
  *   24px controls, 28px rows and menu items, 12px text, 11px labels, 8px

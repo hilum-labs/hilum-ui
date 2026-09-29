@@ -16,6 +16,7 @@ export * from "./lib/link-context";
 export { HilumProvider, MotionProvider, usePrefersReducedMotion } from "./lib/motion-provider";
 export type { HilumProviderProps, ReducedMotionSetting } from "./lib/motion-provider";
 export { sanitizeRichTextHtml } from "./lib/sanitize-html";
+export { controlHeightClass, controlSizeClasses, controlTextClass } from "./lib/interaction";
 export {
   useScrollEdges,
   horizontalEdgeMask,
