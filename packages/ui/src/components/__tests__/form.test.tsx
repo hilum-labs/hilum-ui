@@ -392,11 +392,45 @@ describe("FileDropzone", () => {
     render(<FileDropzone onFilesSelected={onFilesSelected} />);
 
     const file = new File(["image"], "hero.png", { type: "image/png" });
-    fireEvent.drop(screen.getByRole("button"), {
+    fireEvent.drop(document.querySelector("[data-slot=file-dropzone]")!, {
       dataTransfer: { files: [file] },
     });
 
     expect(onFilesSelected).toHaveBeenCalledWith([file]);
+  });
+
+  it("emits pasted files", () => {
+    const onFilesSelected = vi.fn();
+    render(<FileDropzone onFilesSelected={onFilesSelected} />);
+
+    const file = new File(["image"], "screenshot.png", { type: "image/png" });
+    fireEvent.paste(screen.getByRole("button"), { clipboardData: { files: [file] } });
+
+    expect(onFilesSelected).toHaveBeenCalledWith([file]);
+  });
+
+  it("is one button that opens the hidden file input", async () => {
+    const user = userEvent.setup();
+    render(
+      <FileDropzone
+        label="Upload assets"
+        description="Images only"
+        selectedFiles={[{ name: "hero.png", size: 1024 }]}
+      />,
+    );
+    const input = document.querySelector<HTMLInputElement>("input[type='file']")!;
+    const click = vi.spyOn(input, "click");
+    const button = screen.getByRole("button", { name: "hero.png (1.0 KB)" });
+    expect(button).toHaveAccessibleDescription("Images only Selected");
+    expect(screen.getAllByRole("button")).toHaveLength(1);
+    expect(input).toHaveAttribute("tabindex", "-1");
+    // No focusable element inside another interactive one.
+    expect(button.querySelector("input, button, a, [tabindex]")).toBeNull();
+    await user.tab();
+    expect(button).toHaveFocus();
+    await user.keyboard("{Enter}");
+    await user.keyboard(" ");
+    expect(click).toHaveBeenCalledTimes(2);
   });
 
   it("renders selected file summary", () => {
@@ -412,8 +446,15 @@ describe("FileDropzone", () => {
 
     expect(screen.getByText("Importing...")).toBeInTheDocument();
     expect(screen.getByRole("button")).toHaveAttribute("aria-disabled", "true");
-    fireEvent.change(document.querySelector("input[type='file']")!, {
+    const input = document.querySelector<HTMLInputElement>("input[type='file']")!;
+    const click = vi.spyOn(input, "click");
+    fireEvent.click(screen.getByRole("button"));
+    expect(click).not.toHaveBeenCalled();
+    fireEvent.change(input, {
       target: { files: [new File([""], "ignored.csv")] },
+    });
+    fireEvent.paste(screen.getByRole("button"), {
+      clipboardData: { files: [new File([""], "ignored.png")] },
     });
     expect(onFilesSelected).not.toHaveBeenCalled();
   });
