@@ -318,3 +318,18 @@ describe("SliderComfortable", () => {
     expect(onChange).not.toHaveBeenCalled();
   });
 });
+
+describe("Slider accessible name", () => {
+  it.each([
+    ["Slider", (label: string) => <Slider value={40} onChange={() => {}} aria-label={label} />],
+    [
+      "SliderComfortable",
+      (label: string) => <SliderComfortable value={40} onChange={() => {}} aria-label={label} />,
+    ],
+  ])("%s names only the thumb, not the root", (_, renderSlider) => {
+    render(renderSlider("Warp strength"));
+    const named = screen.getAllByLabelText("Warp strength");
+    expect(named).toHaveLength(1);
+    expect(named[0]).toHaveAttribute("role", "slider");
+  });
+});

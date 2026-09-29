@@ -409,7 +409,10 @@ export const tokens = {
    * Emitted as `--density-*` custom properties: `:root` carries the
    * default tier, `[data-density="compact"]` the editor-chrome tier.
    * Components switch via the `compact:` Tailwind variant (same
-   * attribute); consumers can read the vars for bespoke controls. */
+   * attribute); consumers can read the vars for bespoke controls.
+   * `field` / `fieldHover` are the compact tier's filled field surfaces
+   * and `divider` its section hairline; the default tier maps them to
+   * the plain background and border. */
   density: {
     default: {
       controlHeight: "32px",
@@ -421,6 +424,9 @@ export const tokens = {
       menuText: "14px",
       paddingX: "12px",
       radius: "8px",
+      field: "var(--background)",
+      fieldHover: "var(--background)",
+      divider: "var(--border)",
     },
     compact: {
       controlHeight: "24px",
@@ -432,6 +438,9 @@ export const tokens = {
       menuText: "13px",
       paddingX: "8px",
       radius: "5px",
+      field: "color-mix(in srgb, var(--foreground) 5%, transparent)",
+      fieldHover: "color-mix(in srgb, var(--foreground) 8%, transparent)",
+      divider: "color-mix(in srgb, var(--foreground) 8%, transparent)",
     },
   },
 

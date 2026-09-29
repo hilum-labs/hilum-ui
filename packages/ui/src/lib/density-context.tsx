@@ -9,7 +9,9 @@ import { createContext, useContext, type ReactNode } from "react";
  *   menu rows). Used everywhere unless something opts in.
  * - `compact` — editor-chrome sizing (Figma / Framer / Linear inspectors):
  *   24px controls, 28px rows and menu items, 12px text, 11px labels, 8px
- *   horizontal padding, 4–6px radii.
+ *   horizontal padding, 4–6px radii. Fields are filled surfaces with no
+ *   resting border (`--density-field`), digits are tabular, lucide icons use
+ *   a 1.5px stroke, and the accent colour is kept for focus and "on" states.
  *
  * Density is carried two ways so it works for both CSS and portalled UI:
  *   1. the `data-density="compact"` attribute on an ancestor element drives the

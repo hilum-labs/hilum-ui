@@ -6,6 +6,7 @@
 @import "tailwindcss" source(none);
 @import "../../packages/ui/dist/tokens.css";
 @source "../../packages/app-shell/src";
+@source "../../packages/designer/src";
 @source "./";
 
 /* Determinism: no transitions/animations regardless of component classes. */

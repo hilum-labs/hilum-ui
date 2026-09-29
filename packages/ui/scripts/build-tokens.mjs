@@ -192,9 +192,12 @@ lines.push(`@keyframes accordion-down {
 }
 `);
 
-/* ---------------- Base body / box-sizing ---------------- */
+/* ---------------- Base body / box-sizing / editor chrome ---------------- */
 // Inside @layer base so border-{color} / bg utilities (layer utilities) win;
 // unlayered, this rule silently overrode every border colour utility.
+// Compact (editor-chrome) subtrees get plain tabular Inter digits (the
+// app-wide ss01/ss02 read as code in inspectors) and a finer 1.5px lucide
+// stroke; base layer on purpose, so group-hover:[&_svg]:stroke-[2] still wins.
 lines.push(`@layer base {
   *,
   ::before,
@@ -209,6 +212,14 @@ lines.push(`@layer base {
     color: var(--foreground);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  [data-density="compact"] {
+    font-feature-settings: "tnum" 1, "cv11" 1;
+  }
+
+  [data-density="compact"] svg.lucide {
+    stroke-width: 1.5px;
   }
 }
 `);

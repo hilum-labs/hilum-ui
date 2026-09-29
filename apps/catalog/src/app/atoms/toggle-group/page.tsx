@@ -11,7 +11,7 @@ import {
   AlignRight,
   AlignJustify,
 } from "lucide-react";
-import { ToggleGroup, ToggleGroupItem } from "@hilum/ui";
+import { DensityProvider, ToggleGroup, ToggleGroupItem } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
@@ -80,6 +80,23 @@ import { AlignLeft, AlignCenter, AlignRight } from "lucide-react"
   <ToggleGroupItem value="md">M</ToggleGroupItem>
   <ToggleGroupItem value="lg">L</ToggleGroupItem>
 </ToggleGroup>`,
+  segmented: `import { DensityProvider, ToggleGroup, ToggleGroupItem } from "@hilum/ui"
+
+// One track with a raised chip for the "on" item (the ButtonGroup look).
+<ToggleGroup type="single" variant="segmented" defaultValue="week">
+  <ToggleGroupItem value="day">Day</ToggleGroupItem>
+  <ToggleGroupItem value="week">Week</ToggleGroupItem>
+  <ToggleGroupItem value="month">Month</ToggleGroupItem>
+</ToggleGroup>
+
+// Compact density: the 24px editor-chrome segmented control.
+<DensityProvider density="compact">
+  <ToggleGroup type="single" variant="segmented" defaultValue="center" className="w-56">
+    <ToggleGroupItem value="left" aria-label="Left"><AlignLeft /></ToggleGroupItem>
+    <ToggleGroupItem value="center" aria-label="Center"><AlignCenter /></ToggleGroupItem>
+    <ToggleGroupItem value="right" aria-label="Right"><AlignRight /></ToggleGroupItem>
+  </ToggleGroup>
+</DensityProvider>`,
   sizes: `<ToggleGroup type="single" size="sm" defaultValue="day">
   <ToggleGroupItem value="day">Day</ToggleGroupItem>
   <ToggleGroupItem value="week">Week</ToggleGroupItem>
@@ -224,6 +241,32 @@ function ToggleGroupPage() {
             <ToggleGroupItem value="md">M</ToggleGroupItem>
             <ToggleGroupItem value="lg">L</ToggleGroupItem>
           </ToggleGroup>
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="Segmented variant"
+          description="A track with a raised chip for the on item; 24px editor chrome under compact density"
+          code={CODE.segmented}
+          previewClassName="flex-col gap-6"
+        >
+          <ToggleGroup type="single" variant="segmented" defaultValue="week">
+            <ToggleGroupItem value="day">Day</ToggleGroupItem>
+            <ToggleGroupItem value="week">Week</ToggleGroupItem>
+            <ToggleGroupItem value="month">Month</ToggleGroupItem>
+          </ToggleGroup>
+          <DensityProvider density="compact">
+            <ToggleGroup type="single" variant="segmented" defaultValue="center" className="w-56">
+              <ToggleGroupItem value="left" aria-label="Left">
+                <AlignLeft />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="center" aria-label="Center">
+                <AlignCenter />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="right" aria-label="Right">
+                <AlignRight />
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </DensityProvider>
         </PreviewBlock>
 
         <SectionHeading label="Sizes" />

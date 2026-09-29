@@ -12,7 +12,8 @@ import {
   Star,
   Heart,
 } from "lucide-react";
-import { ButtonGroup, ButtonGroupItem } from "@hilum/ui";
+import * as React from "react";
+import { ButtonGroup, ButtonGroupItem, DensityProvider } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
@@ -62,7 +63,36 @@ import { Bookmark } from "lucide-react"
     12k
   </ButtonGroupItem>
 </ButtonGroup>`,
+
+  segmented: `import { ButtonGroup, ButtonGroupItem, DensityProvider } from "@hilum/ui"
+import { AlignLeft, AlignCenter, AlignRight } from "lucide-react"
+
+// aria-pressed marks the active item (same as \`active\`); extra props reach the track.
+<DensityProvider density="compact">
+  <ButtonGroup role="toolbar" aria-label="Text alignment" className="w-full">
+    <ButtonGroupItem aria-pressed={align === "left"} aria-label="Left" onClick={() => setAlign("left")}>
+      <AlignLeft />
+    </ButtonGroupItem>
+    <ButtonGroupItem aria-pressed={align === "center"} aria-label="Center" onClick={() => setAlign("center")}>
+      <AlignCenter />
+    </ButtonGroupItem>
+    <ButtonGroupItem aria-pressed={align === "right"} aria-label="Right" onClick={() => setAlign("right")}>
+      <AlignRight />
+    </ButtonGroupItem>
+  </ButtonGroup>
+  <ButtonGroup aria-label="Units">
+    <ButtonGroupItem active>px</ButtonGroupItem>
+    <ButtonGroupItem>%</ButtonGroupItem>
+    <ButtonGroupItem disabled>em</ButtonGroupItem>
+  </ButtonGroup>
+</DensityProvider>`,
 };
+
+const ALIGNMENTS = [
+  { value: "left", label: "Left", icon: AlignLeft },
+  { value: "center", label: "Center", icon: AlignCenter },
+  { value: "right", label: "Right", icon: AlignRight },
+] as const;
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -74,6 +104,8 @@ function SectionHeading({ label }: { label: string }) {
 }
 
 function ButtonGroupPage() {
+  const [align, setAlign] = React.useState<string>("center");
+
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -189,6 +221,37 @@ function ButtonGroupPage() {
               </div>
             </PreviewBlock>
           </div>
+        </div>
+
+        <div>
+          <SectionHeading label="Button Group · Compact density" />
+          <PreviewBlock
+            title="Segmented control"
+            description="Editor chrome: a 24px filled track with a white chip; w-full stretches the items"
+            code={CODE.segmented}
+          >
+            <DensityProvider density="compact">
+              <div className="flex w-56 flex-col gap-2">
+                <ButtonGroup role="toolbar" aria-label="Text alignment" className="w-full">
+                  {ALIGNMENTS.map(({ value, label, icon: Icon }) => (
+                    <ButtonGroupItem
+                      key={value}
+                      aria-label={label}
+                      aria-pressed={align === value}
+                      onClick={() => setAlign(value)}
+                    >
+                      <Icon />
+                    </ButtonGroupItem>
+                  ))}
+                </ButtonGroup>
+                <ButtonGroup aria-label="Units">
+                  <ButtonGroupItem active>px</ButtonGroupItem>
+                  <ButtonGroupItem>%</ButtonGroupItem>
+                  <ButtonGroupItem disabled>em</ButtonGroupItem>
+                </ButtonGroup>
+              </div>
+            </DensityProvider>
+          </PreviewBlock>
         </div>
       </div>
       <div className="h-16" />

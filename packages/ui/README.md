@@ -150,6 +150,12 @@ import { Link } from "@tanstack/react-router";
 
 (`@hilum/app-shell`'s `<AppShell linkComponent={Link}>` sets this for you.)
 
+### `DensityProvider` (editor chrome)
+
+`<DensityProvider density="compact">` (or `data-density="compact"` on any element) switches the subtree to the editor-chrome tier used by `@hilum/designer` panels: 24px filled fields with no resting border (hover shows the border, focus the ring colour), 11px labels and 12px values with tabular digits, 1.5px icon strokes, and a 24px segmented track for `ButtonGroup` and `ToggleGroup variant="segmented"`. Components opt in with the `compact:` Tailwind variant; the `--density-*` vars (`--density-field`, `--density-divider`, …) are there for bespoke controls.
+
+Editor-oriented Button variants: `variant="tile"` for pressable preset tiles (pressed via `aria-pressed` or `active`; pass `h-auto compact:h-auto` for content-sized tiles) and `variant="field"` for triggers that read as a field (e.g. a font picker).
+
 ## Brand
 
 Hilum UI ships a fully-fixed brand: vivid purple `#C100F1` primary, pale lemon `#FFF5BF` secondary, lime `#CDEA19` success, and `ground` scale neutrals. No per-app overrides — apps pass through this identity unchanged. See `PLATFORM_PLAN.md` §2.1 D8.

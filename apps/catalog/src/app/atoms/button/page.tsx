@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
 
-import { ArrowRight, Loader, Plus, Search } from "lucide-react";
-import { Button, ShapeProvider } from "@hilum/ui";
+import * as React from "react";
+import { ArrowRight, ChevronDown, Loader, Plus, Search } from "lucide-react";
+import { Button, DensityProvider, ShapeProvider } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const CODE = {
@@ -50,7 +51,45 @@ import { Loader } from "lucide-react"
 <Button variant="secondary" loading leadingIcon={Loader}>Saving</Button>
 <Button disabled>Disabled</Button>
 `,
+
+  buttonTile: `import { Button, DensityProvider } from "@hilum/ui"
+
+// Pressable preset tiles: quiet fills; the pressed one is a ringed background
+// tile. Tiles are content-sized, so pass h-auto (and compact:h-auto).
+const [preset, setPreset] = React.useState("classic")
+
+<DensityProvider density="compact">
+  <div className="grid w-64 grid-cols-3 gap-1.5">
+    {["classic", "modern", "playful"].map((name) => (
+      <Button
+        key={name}
+        variant="tile"
+        aria-pressed={preset === name}
+        onClick={() => setPreset(name)}
+        className="h-auto flex-col py-3 capitalize compact:h-auto"
+      >
+        {name}
+      </Button>
+    ))}
+  </div>
+</DensityProvider>`,
+
+  buttonField: `import { Button, DensityProvider } from "@hilum/ui"
+import { ChevronDown } from "lucide-react"
+
+// A button that reads as a field, e.g. a font-family picker trigger.
+<Button variant="field" trailingIcon={ChevronDown} className="w-56">
+  Inter
+</Button>
+
+<DensityProvider density="compact">
+  <Button variant="field" trailingIcon={ChevronDown} className="w-56">
+    Inter
+  </Button>
+</DensityProvider>`,
 };
+
+const PRESETS = ["classic", "modern", "playful"] as const;
 
 function SectionHeading({ label }: { label: string }) {
   return (
@@ -62,6 +101,9 @@ function SectionHeading({ label }: { label: string }) {
 }
 
 function ButtonPage() {
+  const [preset, setPreset] = React.useState<string>("classic");
+  const [compactPreset, setCompactPreset] = React.useState<string>("modern");
+
   return (
     <div className="mx-auto max-w-7xl px-8 py-10">
       <div className="mb-10">
@@ -144,6 +186,60 @@ function ButtonPage() {
             Saving
           </Button>
           <Button disabled>Disabled</Button>
+        </PreviewBlock>
+
+        <SectionHeading label="Editor chrome" />
+
+        <PreviewBlock
+          title="Tile"
+          description="Pressable preset tiles: aria-pressed (or active) marks the chosen one"
+          code={CODE.buttonTile}
+          previewClassName="flex-col gap-6"
+        >
+          <div className="grid w-80 grid-cols-3 gap-2">
+            {PRESETS.map((name) => (
+              <Button
+                key={name}
+                variant="tile"
+                aria-pressed={preset === name}
+                onClick={() => setPreset(name)}
+                className="h-auto flex-col py-4 capitalize compact:h-auto"
+              >
+                {name}
+              </Button>
+            ))}
+          </div>
+          <DensityProvider density="compact">
+            <div className="grid w-64 grid-cols-3 gap-1.5">
+              {PRESETS.map((name) => (
+                <Button
+                  key={name}
+                  variant="tile"
+                  aria-pressed={compactPreset === name}
+                  onClick={() => setCompactPreset(name)}
+                  className="h-auto flex-col py-3 capitalize compact:h-auto"
+                >
+                  {name}
+                </Button>
+              ))}
+            </div>
+          </DensityProvider>
+        </PreviewBlock>
+
+        <PreviewBlock
+          title="Field"
+          description="A trigger that reads as a field; filled 24px field under compact density"
+          code={CODE.buttonField}
+          previewClassName="flex-col gap-6"
+        >
+          <Button variant="field" trailingIcon={ChevronDown} className="w-56">
+            Inter
+          </Button>
+          <DensityProvider density="compact">
+            <Button variant="field" trailingIcon={ChevronDown} className="w-56">
+              Inter
+            </Button>
+          </DensityProvider>
         </PreviewBlock>
       </div>
     </div>

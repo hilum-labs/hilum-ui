@@ -5,7 +5,7 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 3.9.0
+- Package version: 4.0.0
 - Component modules: 118
 - Atom components: 79
 - Molecule components: 39
@@ -79,6 +79,13 @@ All optional; components work without them.
 - `<HilumProvider reducedMotion="user" | "always" | "never">` — reduced-motion policy for every Hilum animation (default `"user"` follows the OS `prefers-reduced-motion`; movement becomes instant, opacity/colour still fade). `MotionProvider` is an alias; `usePrefersReducedMotion()` reads the effective setting.
 - `<LinkProvider value={Link}>` — router link component used by link-rendering components (breadcrumbs, nav items, pagination, …) so they navigate client-side. Receives `{ href, className, children, … }`; react-router users pass `({ href, ...rest }) => <Link to={href} {...rest} />`.
 - `<IconProvider libraries defaultLibrary>` — switch the icon set (see `@hilum/ui/icon-libraries`).
+- `<DensityProvider density="compact">` — editor-chrome density (see below).
+
+## Density
+
+`<DensityProvider density="compact">` (or `data-density="compact"` on an element) switches a subtree to the editor-chrome tier used by `@hilum/designer` panels: 24px filled fields with no resting border, 11px labels / 12px values, tabular digits, a 24px segmented track for `ButtonGroup` and `ToggleGroup variant="segmented"`. Components opt in with the `compact:` Tailwind variant; `--density-*` vars (incl. `--density-field`, `--density-divider`) are available for bespoke controls.
+
+Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost`, `destructive`, `brand`, `link`, plus `tile` (pressable preset tile; pressed via `aria-pressed` or `active`) and `field` (a trigger that reads as a field).
 
 ## Documentation
 

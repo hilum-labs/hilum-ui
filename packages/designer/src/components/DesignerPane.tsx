@@ -71,6 +71,7 @@ function DesignerPane({
       <section
         className={cn(
           "flex min-w-0 max-w-full flex-col overflow-x-hidden border-b border-border last:border-b-0",
+          "compact:border-[color:var(--density-divider)]",
           className,
         )}
       >
@@ -91,7 +92,8 @@ function DesignerPaneTitle({ className, children, action }: DesignerPaneTitlePro
       className={cn(
         "flex min-h-10 w-full items-center justify-between gap-2 px-3 py-2 text-left",
         "caption-xs uppercase tracking-wider font-semibold text-muted-foreground",
-        "compact:min-h-8 compact:py-1.5 compact:text-[10px]",
+        // Compact: sentence-case section titles in the foreground colour.
+        "compact:min-h-8 compact:py-1.5 compact:text-[11px] compact:normal-case compact:tracking-normal compact:text-foreground",
         collapsible &&
           "hover:text-foreground transition-colors outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring",
         className,

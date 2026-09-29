@@ -69,6 +69,9 @@ function Slider({
   trackSize = TRACK_BG_HEIGHT,
   labels: labelsProp,
   className,
+  // Names the thumb (the role="slider" element), not the root.
+  "aria-label": ariaLabel,
+  "aria-labelledby": labelledBy,
   ...props
 }: SliderProps) {
   const labels = useMemo(() => ({ ...SLIDER_DEFAULT_LABELS, ...labelsProp }), [labelsProp]);
@@ -450,8 +453,7 @@ function Slider({
   // Each thumb is the focusable role="slider" element, so it needs its own
   // accessible name: an explicit aria-labelledby wins, otherwise the
   // aria-label / label (suffixed per end for a range).
-  const labelledBy = props["aria-labelledby"];
-  const baseName = props["aria-label"] ?? label;
+  const baseName = ariaLabel ?? label;
   const thumbA11y = (index: number) =>
     labelledBy
       ? { "aria-labelledby": labelledBy }

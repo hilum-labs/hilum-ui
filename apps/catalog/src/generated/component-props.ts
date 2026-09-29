@@ -679,7 +679,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
           },
           {
             "name": "variant",
-            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\"",
+            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" | \"tile\" | \"field\"",
             "required": false,
             "default": "\"primary\"",
             "description": "",
@@ -720,20 +720,12 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
     "components": [
       {
         "name": "ButtonGroup",
-        "inherits": null,
+        "inherits": "Also accepts native HTML/React attributes (277).",
         "props": [
           {
             "name": "children",
             "type": "React.ReactNode",
             "required": true,
-            "default": null,
-            "description": "",
-            "declaredIn": "packages/ui/src/components/button-group.tsx"
-          },
-          {
-            "name": "className",
-            "type": "string",
-            "required": false,
             "default": null,
             "description": "",
             "declaredIn": "packages/ui/src/components/button-group.tsx"
@@ -749,7 +741,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "boolean",
             "required": false,
             "default": null,
-            "description": "",
+            "description": "Shows the item as selected. `aria-pressed=\"true\"` does the same.",
             "declaredIn": "packages/ui/src/components/button-group.tsx"
           }
         ]
@@ -992,7 +984,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
           },
           {
             "name": "variant",
-            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\"",
+            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" | \"tile\" | \"field\"",
             "required": false,
             "default": "\"outline\"",
             "description": "",
@@ -1078,7 +1070,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
           },
           {
             "name": "variant",
-            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\"",
+            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" | \"tile\" | \"field\"",
             "required": false,
             "default": "\"outline\"",
             "description": "",
@@ -2774,7 +2766,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
           },
           {
             "name": "bulkActions",
-            "type": "| DataTableBulkAction<TData>[] | ((context: DataTableSelectionContext<TData>) => React.ReactNode)",
+            "type": "DataTableBulkAction<TData>[] | ((context: DataTableSelectionContext<TData>) => React.ReactNode)",
             "required": false,
             "default": null,
             "description": "Bulk actions shown while rows are selected. An array renders buttons (or a \"More actions\" menu when `promotedBulkActions` is also set); a function renders anything you like.",
@@ -5942,7 +5934,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
           },
           {
             "name": "variant",
-            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\"",
+            "type": "\"link\" | \"default\" | \"destructive\" | \"secondary\" | \"outline\" | \"brand\" | \"primary\" | \"tertiary\" | \"ghost\" | \"tile\" | \"field\"",
             "required": false,
             "default": "\"primary\"",
             "description": "",
@@ -7510,20 +7502,20 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
         "inherits": "Also accepts native HTML/React attributes (276), Radix toggle-group props (9), Radix primitive props (1).",
         "props": [
           {
-            "name": "variant",
-            "type": "\"default\" | \"outline\" | \"brand\"",
-            "required": false,
-            "default": "\"default\"",
-            "description": "",
-            "declaredIn": "packages/ui/src/components/toggle.tsx"
-          },
-          {
             "name": "size",
             "type": "\"default\" | \"sm\" | \"lg\" | \"icon-sm\" | \"icon\" | \"icon-lg\"",
             "required": false,
             "default": "\"default\"",
             "description": "",
             "declaredIn": "packages/ui/src/components/toggle.tsx"
+          },
+          {
+            "name": "variant",
+            "type": "\"default\" | \"outline\" | \"brand\" | \"segmented\"",
+            "required": false,
+            "default": "\"default\"",
+            "description": "`segmented` renders the group as one track with a raised chip for the \"on\" item (the ButtonGroup look, including its compact editor-chrome tier); the other variants are spaced Toggles.",
+            "declaredIn": "packages/ui/src/components/toggle-group.tsx"
           }
         ]
       },
@@ -7532,20 +7524,20 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
         "inherits": "Also accepts native HTML/React attributes (287), Radix toggle-group props (1), Radix primitive props (1).",
         "props": [
           {
-            "name": "variant",
-            "type": "\"default\" | \"outline\" | \"brand\"",
-            "required": false,
-            "default": "\"default\"",
-            "description": "",
-            "declaredIn": "packages/ui/src/components/toggle.tsx"
-          },
-          {
             "name": "size",
             "type": "\"default\" | \"sm\" | \"lg\" | \"icon-sm\" | \"icon\" | \"icon-lg\"",
             "required": false,
             "default": "\"default\"",
             "description": "",
             "declaredIn": "packages/ui/src/components/toggle.tsx"
+          },
+          {
+            "name": "variant",
+            "type": "\"default\" | \"outline\" | \"brand\" | \"segmented\"",
+            "required": false,
+            "default": null,
+            "description": "`segmented` renders the group as one track with a raised chip for the \"on\" item (the ButtonGroup look, including its compact editor-chrome tier); the other variants are spaced Toggles.",
+            "declaredIn": "packages/ui/src/components/toggle-group.tsx"
           }
         ]
       }

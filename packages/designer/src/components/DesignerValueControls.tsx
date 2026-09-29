@@ -127,7 +127,7 @@ function DesignerValueField<K extends string>({
     <div className="relative min-w-0">
       {/* Label-in-field prefix doubles as a scrub handle (drag to change). */}
       <InputNumber
-        label={<span className="uppercase">{item.label}</span>}
+        label={item.label}
         scrubLabel={item.ariaLabel}
         value={value}
         onChange={onChange}

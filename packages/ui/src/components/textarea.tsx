@@ -66,6 +66,8 @@ function Textarea({
         inputFocusClasses,
         textareaMobileSurfaceClasses[mobileSurface],
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-muted",
+        // Editor-chrome density (data-density="compact" ancestor).
+        "compact:text-[12px] compact:rounded-[5px]",
         className,
       )}
       {...props}

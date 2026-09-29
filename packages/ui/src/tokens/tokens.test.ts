@@ -81,9 +81,19 @@ describe("density tokens", () => {
       menuItemHeight: "28px",
       menuText: "13px",
       paddingX: "8px",
+      field: "color-mix(in srgb, var(--foreground) 5%, transparent)",
+      fieldHover: "color-mix(in srgb, var(--foreground) 8%, transparent)",
+      divider: "color-mix(in srgb, var(--foreground) 8%, transparent)",
     });
     expect(Object.keys(tokens.density.compact).sort()).toEqual(
       Object.keys(tokens.density.default).sort(),
     );
+  });
+
+  it("default tier maps the field surfaces to the plain background and border", () => {
+    expect(tokens.density.default).toMatchObject({
+      field: "var(--background)",
+      divider: "var(--border)",
+    });
   });
 });

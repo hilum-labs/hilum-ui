@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "../lib/utils";
+import { compactFieldFocusClasses, compactFieldSurfaceClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { useFieldControl } from "../lib/field-context";
 
@@ -37,6 +38,10 @@ function NativeSelect({
           "focus:border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "aria-[invalid=true]:border-destructive aria-[invalid=true]:focus:ring-destructive/20",
+          // Editor-chrome density: the same 24px filled field as Input.
+          "compact:h-6 compact:py-0 compact:ps-2 compact:pe-6 compact:rounded-[5px] compact:text-[12px]",
+          compactFieldSurfaceClasses,
+          compactFieldFocusClasses,
           className,
         )}
         {...props}
@@ -45,7 +50,7 @@ function NativeSelect({
       </select>
       <ChevronDown
         size={14}
-        className="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 text-muted-foreground peer-disabled:opacity-50"
+        className="pointer-events-none absolute end-2.5 top-1/2 -translate-y-1/2 text-muted-foreground peer-disabled:opacity-50 compact:end-1.5 compact:size-3"
       />
     </div>
   );

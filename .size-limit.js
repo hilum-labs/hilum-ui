@@ -22,7 +22,8 @@ const checks = [
   { name: "@hilum/ui/icons", path: "packages/ui/dist/icons.js", limit: "700 B" },
   { name: "@hilum/ui/tokens", path: "packages/ui/dist/tokens.js", limit: "100 B" },
   { name: "@hilum/ui/create-theme", path: "packages/ui/dist/create-theme.js", limit: "2.2 kB" },
-  { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "2.75 kB" },
+  // 4.1 added the compact editor-chrome vars and base rules: 2.74 → 2.88 kB.
+  { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "3.2 kB" },
   { name: "@hilum/app-shell", path: "packages/app-shell/dist/index.js", limit: "13.2 kB" },
   { name: "@hilum/designer", path: "packages/designer/dist/index.js", limit: "8.1 kB" },
   {

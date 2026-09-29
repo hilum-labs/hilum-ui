@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { inputFocusWithinClasses, motionClasses } from "../lib/interaction";
+import { controlSurfaceClasses, inputFocusWithinClasses, motionClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { ColorPickerPopover } from "./color-picker";
 import type { ControlMobileSurface } from "./input";
@@ -70,9 +70,11 @@ function ColorInput({
     <div
       data-slot="color-input"
       className={cn(
-        "inline-flex h-8 items-stretch gap-0 overflow-hidden border border-border bg-background hover:border-border-strong",
+        "inline-flex h-8 items-stretch gap-0 overflow-hidden",
+        controlSurfaceClasses,
         shape.input,
-        "compact:h-6 compact:rounded-[5px]",
+        // Compact: span the row like Figma's fill rows; the hex field takes the slack.
+        "compact:flex compact:h-6 compact:w-full compact:min-w-0 compact:rounded-[5px]",
         inputFocusWithinClasses,
         motionClasses,
         mobileSurfaceClass,
@@ -100,10 +102,13 @@ function ColorInput({
         }}
         spellCheck={false}
         aria-label={labels.hex}
-        className="w-[5.5rem] caption tabular-nums text-foreground px-2 bg-transparent border-s border-border focus:outline-none uppercase compact:w-[4.5rem] compact:px-1.5 compact:text-[12px]"
+        className={cn(
+          "w-[5.5rem] caption tabular-nums text-foreground px-2 bg-transparent border-s border-border focus:outline-none uppercase",
+          "compact:w-[4.5rem] compact:min-w-0 compact:flex-1 compact:border-foreground/[0.07] compact:px-1.5 compact:text-[12px]",
+        )}
       />
       {typeof opacity === "number" && onOpacityChange && (
-        <div className="relative flex items-center border-s border-border">
+        <div className="relative flex items-center border-s border-border compact:border-foreground/[0.07]">
           <input
             type="number"
             min={0}
