@@ -1,5 +1,42 @@
 # @hilum/app-shell
 
+## 4.2.0
+
+### Minor Changes
+
+- 62a2281: Shopify-admin consistency: strict-CSP support, one form-control size, dashboard and onboarding components, and fixes found building Hilum Shop.
+
+  **Visible changes to check in your app:** single-line form controls are 36px with 14px text (Input was 40px), Select triggers have no 160px minimum width, Select options use the foreground colour, `TitledCard` / `CardHeading` titles are 14px semibold headings, `StatusBadge` fallback labels are sentence case, the fixed `ContextualSaveBar` covers the app top bar instead of sitting under it, `AppStatusBanner` success / warning / danger colours changed (token surfaces), and `tokens.css` now sets `color-scheme`, so native scrollbars and date inputs follow dark mode.
+
+  - **Strict Content-Security-Policy.** Hilum components no longer insert `<style>` elements, so apps work under `style-src 'self'`:
+    - The mobile bottom-sheet rules of `Select`, `Popover`, `DropdownMenu`, `ContextMenu`, `Menubar`, `Dialog` and `AlertDialog`, the `RichTextEditor` content typography and the app-shell `AppLoadingBar` sweep ship statically in `tokens.css`. The sheet grabber, which used an invalid `hsl()` on hex tokens, is visible again.
+    - `ChartContainer` sets series colours as `--color-<key>` custom properties through its `style` prop; `theme` colours use `light-dark()`, driven by the `color-scheme` that `tokens.css` now sets per theme. New `chartColorVariables(config)`; `ChartStyle` is deprecated (it renders a `<style>`) and no longer used.
+    - New `@hilum/ui/vendor.css`: the CSS that sonner (toasts) and vaul (drawers) inject when imported, which neither library can turn off. Import it after `tokens.css` when your CSP blocks inline styles; without it, toasts render as an unstyled full-width bar.
+    - Radix still renders two `<style>` tags (the modal scroll lock and the Select / ScrollArea scrollbar hiding); they are blocked harmlessly because `tokens.css` carries the same rules. `applyTheme()` / `ThemeProvider` accept a `nonce`. The ui README has a "Strict Content-Security-Policy" section.
+  - **One size for form controls.** At the default density every single-line control is 36px tall with 14px text: `Input`, `SearchInput`, `Select`, `NativeSelect`, `Combobox`, `InputNumber` (was 32px / 12px), `InputGroup`, `ColorInput`, `TimePicker` and the `DatePicker` / `DateRangePicker` triggers (were 32px / 13px). 36px / 14px matches Hilum's `lg` button and the Select trigger, keeps body-size text readable, and gives the tighter rhythm of Shopify admin forms without shrinking text below 14px. The size is defined once and exported for bespoke controls (`controlSizeClasses`, `controlHeightClass`, `controlTextClass`; the `--density-input-height` token is now 36px); the compact editor tier and `density="compact"` are unchanged. Buttons in compositions line up: `FilterBar` filter and action Buttons take the control height (icon Buttons become 36px squares), an `InputGroup` `trailingButton` sits 4px inset, and the `RichTextEditor` link row and `DataTransferControls` match.
+  - **`InputGroup` / `SearchableTable` search:** the wrapper is the control, with no vertical padding (the search field was 54px tall), the field surface, a focus-within ring, and `aria-label` naming the input. `SearchableTable` filter Select triggers are labelled with their placeholder.
+  - **Select:** the trigger drops `min-w-40` (it overflowed narrow columns, dialogs and Fields; add `w-40` where you relied on it). `SelectItem` options render in the foreground colour at 14px; only disabled options are muted.
+  - **Card headings:** `TitledCard` and `CardHeading` render their title as a heading element (`headingLevel`, default 2) in one style, 14px semibold, whether or not the card has actions. `TitledCard` uses one header layout for both cases. New `CardHeadingTitle`.
+  - **Status labels:** `statusLabel()` (the `StatusBadge` fallback) is sentence case: `partially_fulfilled` reads "Partially fulfilled".
+  - **`StatusBadge` dots** use the categorical token colours mixed towards the foreground instead of raw Tailwind hues, keeping at least 4:1 against the tinted badge in light and dark (the info dot was nearly invisible). `dotClassName` still overrides.
+  - **Menus and account menus:** rich content inside `DropdownMenuLabel` / `ContextMenuLabel` / `MenubarLabel` (such as a user's name and email) shows as typed instead of uppercased; plain-text labels keep the eyebrow style. `AccountMenuHeader` never inherits the transform.
+  - **`RadioCards`:** keyboard focus is a detached halo, distinct from the checked ring; unchecked option titles use the foreground colour.
+  - **`Callout`:** on mobile only Buttons in `actions` stretch full width; badges and links keep their size.
+  - **`CommandPalette`:** the close button sits in the search row after the `esc` hint instead of on top of it (`DialogContent` gains `showCloseButton`), and the dialog is anchored near the top so it no longer jumps as results shrink (`CommandDialog` too). New async result groups: `onQueryChange(query)` and `groups` (`{ id, label, items, loading?, emptyText? }`) render app-fetched orders, products or customers after the matching static items, with loading rows and a polite announcement. Strings via `labels`.
+  - **`ContextualSaveBar`:** in `fixed` mode it replaces the app top bar on desktop (top 0, at least `--hilum-header-height` tall, above the header) instead of sitting below it over the sidebar and page header. `offsetTop` remains an explicit override.
+  - **New `SetupGuide`:** Shopify-style onboarding card with "3 of 7 tasks complete" progress, grouped tasks (`groups`), one expanded task at a time (the first incomplete one by default) with a visible primary action (button or link through `LinkProvider`) and an optional secondary one, disclosure-pattern keyboard support, optional completion toggles (`onTaskCompleteChange`), collapse and dismiss, `labels`.
+  - **New `TimeSeriesChart`:** sales-over-time style chart for dashboards without Recharts primitives: dates on the x-axis, money / number / percent values formatted with `FormatProvider`, a tooltip, dashed comparison series and legend, loading and empty states, token colours and reduced motion.
+  - **New `Thumbnail`:** square product or resource image in four sizes (24 / 32 / 40 / 80px, matching `SkeletonThumbnail`), `fit` cover or contain, border and radius, `alt` text, and a neutral placeholder icon when there is no image or it fails to load.
+  - **Icons:** `@hilum/ui/icons` exports `Smartphone`, `Tablet`, `Monitor` and `Keyboard`.
+  - **Button:** `asChild` links, `buttonVariants()` elements and the active `PaginationLink` get the same fill as a plain `<button>` (the fill moved to `::before`; it used to be missing, leaving white text on nothing). `asChild` also supports `loading`, leading / trailing icons, `disabled` and ref forwarding, and the loading glyph animates again. `AlertDialogAction` / `AlertDialogCancel` with `asChild` keep their Button child's variant.
+  - **@hilum/app-shell:**
+    - `AppStatusBanner` uses semantic token surfaces: warning is the token warning surface, success a success-token tint with a solid icon chip, and danger the regular foreground on a destructive tint, so all tones stay legible in dark mode. The `PageHeader` icon chip no longer uses a fixed palette colour.
+    - `AppMobileNav` gains `actions` (search, notifications, … before the account avatar), `accountMenu` (custom account menu content, e.g. the full desktop account menu) and `accountMenuClassName`.
+    - `AppLoadingBar` renders no `<style>`; its keyframes ship in `tokens.css`.
+  - **@hilum/designer:**
+    - `DesignerHeader` gains `primaryAction`, `secondaryActions`, `maxVisibleSecondaryActions` (default 2) and `labels`: the primary action (e.g. Publish) is never cut off, and secondary actions overflow into a "More actions" menu on narrow headers. Free-form `right` content is clipped first.
+    - New `FontPicker`: a compact, searchable font-family picker that previews each family in its own face (with a generic fallback until loaded), loads faces on demand through `onLoadFont`, and takes a controlled `value` / `onChange`.
+
 ## 4.1.1
 
 ## 4.1.0
