@@ -240,17 +240,25 @@ function StatCardPage() {
           <SectionHeading label="Stat Card · Narrow cells" />
           <PreviewBlock
             title="Long labels and values on a phone"
-            description="In a StatGrid each cell is a size container: values scale down with the card (30px to 18px) and wrap instead of clipping; labels wrap between words over two lines at most, with tighter tracking."
+            description="Values scale with the card's own width in any grid (30px down to 16px), sized so the longest number fits on one line: they wrap between the currency and the amount, never inside the number. Labels wrap between words over two lines at most, with tighter tracking in a StatGrid. The second grid is 320px wide, a small phone."
             code={`<StatGrid columns={2}>
   <StatCard label="Total merchants" value="1,284" />
   <StatCard label="Gross merchandise volume" value="S/ 12,345,678.90" />
 </StatGrid>`}
           >
-            <div className="w-full max-w-[22rem]">
-              <StatGrid columns={2}>
-                <StatCard label="Total merchants" value="1,284" />
-                <StatCard label="Gross merchandise volume" value="S/ 12,345,678.90" />
-              </StatGrid>
+            <div className="flex w-full flex-col gap-4">
+              <div className="w-full max-w-[22rem]">
+                <StatGrid columns={2}>
+                  <StatCard label="Total merchants" value="1,284" />
+                  <StatCard label="Gross merchandise volume" value="S/ 12,345,678.90" />
+                </StatGrid>
+              </div>
+              <div className="w-full max-w-[18rem]">
+                <StatGrid columns={2}>
+                  <StatCard label="Total merchants" value="1,284" />
+                  <StatCard label="Gross merchandise volume" value="S/ 1,234,567.89" />
+                </StatGrid>
+              </div>
             </div>
           </PreviewBlock>
         </section>

@@ -62,6 +62,23 @@ interface StatCardSlotProps {
   label?: string;
 }
 
+/**
+ * Text values may wrap between a currency and its amount: Intl joins them with
+ * a no-break space ("S/\u00a01,234.50", "1\u00a0234,50\u00a0zł"), which would
+ * otherwise force a break inside the number in a narrow card. No-break spaces
+ * between digits (group separators) are kept.
+ */
+function breakableValue(value: React.ReactNode): React.ReactNode {
+  return typeof value === "string" ? value.replace(/\u00a0(?!\d)|(?<!\d)\u00a0/g, " ") : value;
+}
+
+/** Length of the longest run of characters a line can't break (text values only). */
+function longestWord(value: React.ReactNode): number | undefined {
+  if (typeof value !== "string" && typeof value !== "number") return undefined;
+  const words = String(value).split(/[ \t\n\r]+/);
+  return Math.max(1, ...words.map((word) => word.length));
+}
+
 function StatCard({
   label,
   title,
@@ -80,6 +97,8 @@ function StatCard({
   valueClassName,
 }: StatCardProps) {
   const displayLabel = title ?? label;
+  const displayValue = breakableValue(value);
+  const valueChars = longestWord(displayValue);
   const trendTone: StatTrendTone | undefined = trend
     ? (trend.tone ??
       (trend.direction === "up" ? "positive" : trend.direction === "down" ? "negative" : "neutral"))
@@ -126,18 +145,28 @@ function StatCard({
       {loading ? (
         <Skeleton className="mt-3 h-7 w-24" />
       ) : value !== undefined ? (
-        // Scales down with the card inside a StatCardGrid (30px → 18px, `cqi`)
-        // and wraps rather than clipping when it still doesn't fit.
-        <p
-          data-slot="stat-card-value"
-          className={cn(
-            "mt-2 min-w-0 break-words font-display font-normal tabular-nums text-foreground",
-            "[font-size:clamp(1.125rem,12cqi,1.875rem)] [line-height:1.2] text-balance",
-            valueClassName,
-          )}
-        >
-          {value}
-        </p>
+        // The wrapper is a size container, so the value scales with the
+        // card's own width in any grid (`cqi`), from 30px down to 16px. For
+        // text values the size also fits the longest unbreakable run of
+        // characters ("12,345,678.90") on one line, so values wrap between
+        // the currency and the amount, not inside the number.
+        // A word that still can't fit at 16px breaks rather than clipping.
+        <div className="@container/stat-card-value mt-2 min-w-0">
+          <p
+            data-slot="stat-card-value"
+            className={cn(
+              "min-w-0 break-words font-display font-normal tabular-nums text-foreground",
+              "[font-size:clamp(1rem,min(16cqi,calc(100cqi/(var(--stat-value-chars,1)*0.55))),1.875rem)]",
+              "[line-height:1.2] text-balance",
+              valueClassName,
+            )}
+            style={
+              valueChars ? ({ "--stat-value-chars": valueChars } as React.CSSProperties) : undefined
+            }
+          >
+            {displayValue}
+          </p>
+        </div>
       ) : children ? (
         <div className="mt-2">{children}</div>
       ) : null}

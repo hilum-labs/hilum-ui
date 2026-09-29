@@ -5,6 +5,7 @@ import { Field } from "../field";
 import { InputGroup } from "../input-group";
 import { InputNumber } from "../input-number";
 import { PreviewFrame } from "../preview-frame";
+import { StatCard } from "../stat-card";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -228,5 +229,34 @@ describe("PreviewFrame src=about:blank", () => {
     // An empty src is blank too.
     rerender(<PreviewFrame src="" title="Preview" onLoad={onLoad} />);
     expect(container.querySelector("[data-slot=preview-frame-loading]")).toBeNull();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* StatCard values                                                      */
+/* ------------------------------------------------------------------ */
+
+describe("StatCard value sizing", () => {
+  it("lets a value wrap between currency and amount, and sizes it to its longest word", () => {
+    render(
+      <>
+        <StatCard label="Net sales" value={"S/\u00a012,345,678.90"} />
+        <StatCard label="Ventes" value={"1\u00a0234\u00a0567,89\u00a0zł"} />
+        <StatCard label="Orders" value={8421} />
+        <StatCard label="Custom" value={<span>42</span>} />
+      </>,
+    );
+    const [money, grouped, number, node] = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-slot=stat-card-value]"),
+    );
+    expect(money!.textContent).toBe("S/ 12,345,678.90");
+    expect(money!.style.getPropertyValue("--stat-value-chars")).toBe("13");
+    // No-break spaces between digits (group separators) stay.
+    expect(grouped!.textContent).toBe("1\u00a0234\u00a0567,89 zł");
+    expect(grouped!.style.getPropertyValue("--stat-value-chars")).toBe("12");
+    expect(number!.style.getPropertyValue("--stat-value-chars")).toBe("4");
+    expect(node!.style.getPropertyValue("--stat-value-chars")).toBe("");
+    // Each value sits in its own size container.
+    expect(money!.parentElement).toHaveClass("@container/stat-card-value");
   });
 });

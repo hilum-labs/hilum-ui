@@ -9,6 +9,8 @@ import {
   Progress,
   ScrollArea,
   Slider,
+  StatCard,
+  StatCardGrid,
   Steps,
   UsageBar,
   type ColumnDef,
@@ -211,5 +213,77 @@ describe("PreviewFrame with src=about:blank (real browser)", () => {
     await new Promise((resolve) => setTimeout(resolve, 100));
     expect(container.querySelector("[data-slot=preview-frame-loading]")).toBeNull();
     expect(loads).toBe(1);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* StatCard values in narrow 2-column grids                             */
+/* ------------------------------------------------------------------ */
+
+describe("StatCard long money values in 2-column phone grids (real browser)", () => {
+  /** Lines each whitespace-separated word of `el`'s text occupies. */
+  function wordLines(el: Element) {
+    const text = el.firstChild!;
+    const content = text.textContent!;
+    const result: number[] = [];
+    let index = 0;
+    for (const word of content.split(" ")) {
+      const range = document.createRange();
+      range.setStart(text, index);
+      range.setEnd(text, index + word.length);
+      result.push(new Set([...range.getClientRects()].map((rect) => Math.round(rect.top))).size);
+      index += word.length + 1;
+    }
+    return result;
+  }
+
+  const cards = (
+    <>
+      <StatCard label="TOTAL MERCHANTS" value="1,284" />
+      <StatCard label="Gross merchandise volume" value="S/ 1,234,567.89" />
+      <StatCard label="Net sales" value={"S/\u00a012,345,678.90"} />
+      <StatCard label="Refunds" value="S/ 1,204.00" description="Last 30 days" />
+    </>
+  );
+
+  for (const [viewport, width] of [
+    [375, 343],
+    [320, 288],
+  ] as const) {
+    it(`${viewport}px phone: values fit without breaking inside a number, in StatCardGrid and a plain grid`, async () => {
+      await page.viewport(viewport, 800);
+      const { container } = render(
+        <div style={{ width }}>
+          <StatCardGrid columns={4}>{cards}</StatCardGrid>
+          <div className="mt-4 grid grid-cols-2 gap-2">{cards}</div>
+        </div>,
+      );
+      const values = [...container.querySelectorAll("[data-slot=stat-card-value]")];
+      expect(values).toHaveLength(8);
+      for (const value of values) {
+        expect(value.scrollWidth).toBeLessThanOrEqual(value.clientWidth + 1);
+        const card = value.closest("[data-slot=stat-card]")!.getBoundingClientRect();
+        expect(value.getBoundingClientRect().right).toBeLessThanOrEqual(card.right);
+        expect(parseFloat(getComputedStyle(value).fontSize)).toBeGreaterThanOrEqual(16);
+        expect(wordLines(value), value.textContent!).toEqual(
+          value.textContent!.split(" ").map(() => 1),
+        );
+      }
+      for (const label of container.querySelectorAll("[data-slot=stat-card] p.label")) {
+        expect(label.scrollWidth).toBeLessThanOrEqual(label.clientWidth + 1);
+      }
+    });
+  }
+
+  it("uses the full 30px value in wide cards outside a StatCardGrid too", () => {
+    const { container } = render(
+      <div className="grid w-[1000px] grid-cols-3 gap-4">
+        <StatCard label="Orders" value="8,421" />
+        <StatCard label="Net sales" value="S/ 12,345,678.90" />
+      </div>,
+    );
+    for (const value of container.querySelectorAll("[data-slot=stat-card-value]")) {
+      expect(getComputedStyle(value).fontSize).toBe("30px");
+    }
   });
 });
