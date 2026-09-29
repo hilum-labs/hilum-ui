@@ -11,7 +11,7 @@ For the actual canvas (pan/zoom viewport, layers, drag/resize), use `@hilum/desi
 - `<DesignerHeader>` / `<DesignerSidebar>` / `<DesignerPanel>` — chrome
 - `<DesignerPanelHeader>` / `<DesignerPanelTabs>` — panel title bar and value-based tabs
 - `<DesignerPane>` (+ `DesignerPaneTitle`, `DesignerPaneContent`) — collapsible property panel section with `showFor` predicate
-- `<DesignerPropertyRow>` / `DesignerPropertyLabel` / `DesignerPropertyControls` / `DesignerPropertyGroup` — inspector rows
+- `<DesignerPropertyRow>` / `DesignerPropertyLabel` / `DesignerPropertyControls` / `DesignerPropertyField` / `DesignerPropertyGroup` — inspector rows
 - `TwoValueControl` / `FourValueControl` / `SpacingControl` / `CornerRadiusControl` — compound numeric inputs
 - `<DesignerToolbar>` + `DesignerToolbarGroup` / `DesignerToolbarButton` / `DesignerToolbarSeparator` — composable toolbar
 
@@ -66,6 +66,53 @@ insets and center the toolbar within the same region:
 ```
 
 The existing inline desktop and sheet/bottom mobile variants remain available.
+
+## Inspector grid
+
+`<DesignerPropertyRow layout="grid">` is the Figma inspector row: two equal
+field columns plus a fixed action column (24px in compact density, 32px in
+default), with the label spanning the row above the fields. Every grid row
+keeps the action column, so field edges line up down the panel whether or not
+a row has an action.
+
+- Children (or the children of a `DesignerPropertyControls`) fill columns 1
+  and 2 and stretch to their cell. A row's only field spans both columns.
+- `<DesignerPropertyField span={2}>` (or `data-span="2"`) spans both columns;
+  `span={1}` keeps a lone field in column 1. A field can hold several controls.
+- `action`, and any icon-only `Button` child, sit centred in the action column.
+
+`<DesignerPaneTitle muted>` is for an empty or optional section: a muted,
+normal-weight title next to an `action` such as a "+" button. In compact
+density the title is flush with the field labels and the collapse chevron
+trails the actions.
+
+```tsx
+<DesignerPane collapsible>
+  <DesignerPaneTitle>Position</DesignerPaneTitle>
+  <DesignerPaneContent>
+    <DesignerPropertyRow layout="grid" label="Position" action={constraintsButton}>
+      <InputNumber label="X" value={x} onChange={setX} />
+      <InputNumber label="Y" value={y} onChange={setY} />
+    </DesignerPropertyRow>
+    <DesignerPropertyRow layout="grid" label="Rotation">
+      <InputNumber label={<RotateCw />} aria-label="Rotation" unit="°" value={r} onChange={setR} />
+      <DesignerPropertyField className="gap-0.5">
+        {flipHorizontalButton}
+        {flipVerticalButton}
+      </DesignerPropertyField>
+      <Button size="icon-sm" variant="ghost" aria-label="Rotate 90°">
+        <RotateCwSquare />
+      </Button>
+    </DesignerPropertyRow>
+  </DesignerPaneContent>
+</DesignerPane>
+
+<DesignerPane>
+  <DesignerPaneTitle muted action={addFillButton}>
+    Fill
+  </DesignerPaneTitle>
+</DesignerPane>
+```
 
 ## Hooks
 

@@ -14,10 +14,12 @@ describe("DesignerPane compact chrome", () => {
         <DesignerPaneContent>…</DesignerPaneContent>
       </DesignerPane>,
     );
-    const title = screen.getByText("Typography").parentElement!;
+    // The typography sits on the header row, which holds the title and its actions.
+    const header = screen.getByText("Typography").parentElement!;
+    expect(header).toHaveClass("flex", "px-3");
     // Default density keeps the tracked caps caption.
-    expect(title).toHaveClass("uppercase", "tracking-wider", "text-muted-foreground");
-    expect(title).toHaveClass(
+    expect(header).toHaveClass("uppercase", "tracking-wider", "text-muted-foreground");
+    expect(header).toHaveClass(
       "compact:normal-case",
       "compact:tracking-normal",
       "compact:text-[11px]",

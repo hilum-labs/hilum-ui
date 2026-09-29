@@ -85,7 +85,7 @@ interface DesignerToolbarSeparatorProps {
 function DesignerToolbarSeparator({ className }: DesignerToolbarSeparatorProps) {
   return (
     <div
-      className={cn("mx-1 h-5 w-px bg-border compact:h-4", className)}
+      className={cn("mx-1 h-5 w-px bg-border", className)}
       role="separator"
       aria-orientation="vertical"
     />
@@ -140,9 +140,12 @@ function DesignerToolbarButton({
         aria-label={label}
         aria-pressed={active}
         className={cn(
-          "flex h-9 min-w-9 items-center justify-center gap-1 rounded-md px-2 caption tabular-nums transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          // 32px with 16px, 1.5px-stroke icons in every density: the toolbar can
+          // sit outside the compact subtree.
+          "flex h-8 min-w-8 items-center justify-center gap-1 rounded-md px-2 caption tabular-nums transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          "[&_svg]:stroke-[1.5]",
           "outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          "compact:h-8 compact:min-w-8 compact:rounded-[6px] compact:px-1.5 compact:text-[12px]",
+          "compact:px-1.5 compact:text-[12px]",
           "[@media(pointer:coarse)]:h-11 [@media(pointer:coarse)]:min-w-11",
           size === "touch" && "h-11 min-w-11",
           active

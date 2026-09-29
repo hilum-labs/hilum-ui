@@ -25,7 +25,9 @@ const checks = [
   // 4.1 added the compact editor-chrome vars and base rules: 2.74 → 2.88 kB.
   { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "3.2 kB" },
   { name: "@hilum/app-shell", path: "packages/app-shell/dist/index.js", limit: "13.2 kB" },
-  { name: "@hilum/designer", path: "packages/designer/dist/index.js", limit: "8.1 kB" },
+  // 4.1.1 added the inspector grid row (its selector classes), DesignerPropertyField
+  // and the restructured pane title: 7.65 → 8.55 kB.
+  { name: "@hilum/designer", path: "packages/designer/dist/index.js", limit: "9.4 kB" },
   {
     name: "@hilum/designer-canvas",
     path: "packages/designer-canvas/dist/index.js",

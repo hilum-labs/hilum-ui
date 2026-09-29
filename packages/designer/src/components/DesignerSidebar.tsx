@@ -174,11 +174,11 @@ function SidebarButton({
         aria-label={item.label}
         aria-pressed={item.active}
         className={cn(
-          "relative flex size-9 items-center justify-center rounded-md transition-[background-color,color,opacity,scale] active:scale-[0.96]",
-          // The rail can sit outside the compact subtree, so set the fine stroke here.
+          // 32px with 16px icons in every density. The rail can sit outside the
+          // compact subtree, so set the fine stroke here.
+          "relative flex size-8 items-center justify-center rounded-md transition-[background-color,color,opacity,scale] active:scale-[0.96]",
           "[&_svg]:stroke-[1.5]",
           "outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          "compact:size-8 compact:rounded-[6px]",
           "[@media(pointer:coarse)]:size-11",
           touchTarget && "size-11 shrink-0",
           item.active

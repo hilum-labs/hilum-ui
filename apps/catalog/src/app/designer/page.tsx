@@ -104,6 +104,12 @@ const EXPORT_GROUPS = [
         description: "Consistent content spacing for property rows and controls inside a pane.",
       },
       {
+        name: "DesignerPropertyRow / DesignerPropertyField",
+        kind: "Inspector",
+        description:
+          'Inspector rows; layout="grid" snaps fields to two columns plus an action column.',
+      },
+      {
         name: "TwoValueControl",
         kind: "Inspector",
         description: "Compact paired numeric fields for properties such as X/Y, W/H, and offsets.",
