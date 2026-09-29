@@ -73,7 +73,7 @@ function PropName({ prop }: { prop: CatalogComponentProp }) {
     <span className="inline-flex flex-wrap items-center gap-1.5">
       <code className="font-mono caption font-medium text-foreground">{prop.name}</code>
       {prop.required ? (
-        <span className="rounded-sm bg-destructive/10 px-1.5 py-0.5 caption-xs font-medium text-destructive">
+        <span className="rounded-sm bg-destructive/10 px-1.5 py-0.5 caption-xs font-medium text-foreground">
           required
         </span>
       ) : null}

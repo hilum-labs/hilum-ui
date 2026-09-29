@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const IMG_PLACEHOLDER = (
-  <div className="flex size-16 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground/70">
+  <div className="flex size-16 items-center justify-center rounded-lg border border-border bg-muted text-muted-foreground">
     <ImageIcon size={24} />
   </div>
 );

@@ -269,7 +269,7 @@ function FoundationsPage() {
                     <p className="subheading text-foreground">{c.name}</p>
                     <p className="font-mono caption font-semibold text-muted-foreground">{c.hex}</p>
                     <p className="caption text-muted-foreground">{c.token}</p>
-                    <p className="caption-xs mt-0.5 text-muted-foreground/70">{c.role}</p>
+                    <p className="caption-xs mt-0.5 text-muted-foreground">{c.role}</p>
                   </div>
                 </div>
               ))}
@@ -433,13 +433,13 @@ function FoundationsPage() {
                   </p>
                   <div className="hidden md:block">
                     <p className="font-mono caption-xs text-muted-foreground">{step.size}</p>
-                    <p className="font-mono caption-xs text-muted-foreground/70">
+                    <p className="font-mono caption-xs text-muted-foreground">
                       weight {step.weight} · {step.font} · line {step.lineHeight}
                     </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
+                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">
                       tracking {step.letterSpacing} · transform {step.transform}
                     </p>
-                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
+                    <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">
                       {step.usage}
                     </p>
                   </div>
@@ -486,7 +486,7 @@ function FoundationsPage() {
                     <p className="font-mono text-[11px] font-semibold text-muted-foreground">
                       {w.tailwind}
                     </p>
-                    <p className="font-mono caption-xs text-muted-foreground/70">{w.weight}</p>
+                    <p className="font-mono caption-xs text-muted-foreground">{w.weight}</p>
                   </div>
                   <p
                     className={cn("flex-1 body-lg text-foreground", w.tailwind)}
@@ -494,7 +494,7 @@ function FoundationsPage() {
                   >
                     {w.name} — The quick brown fox jumps over the lazy dog
                   </p>
-                  <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">
+                  <p className="hidden shrink-0 caption-xs text-muted-foreground md:block">
                     {w.usage}
                   </p>
                 </div>
@@ -523,12 +523,12 @@ function FoundationsPage() {
                       <p className="font-mono text-[11px] font-semibold text-muted-foreground">
                         {t.label}
                       </p>
-                      <p className="font-mono caption-xs text-muted-foreground/70">
+                      <p className="font-mono caption-xs text-muted-foreground">
                         {t.letterSpacing}
                       </p>
                     </div>
                     <p className={cn("flex-1 text-foreground truncate", t.className)}>{t.sample}</p>
-                    <p className="hidden shrink-0 caption-xs text-muted-foreground/70 md:block">
+                    <p className="hidden shrink-0 caption-xs text-muted-foreground md:block">
                       {t.usage}
                     </p>
                   </div>
@@ -564,7 +564,7 @@ function FoundationsPage() {
                 <div className="flex items-center">
                   <div className="h-3 rounded-sm bg-foreground" style={{ width: s.px }} />
                 </div>
-                <p className="caption-xs text-muted-foreground/70">{s.usage}</p>
+                <p className="caption-xs text-muted-foreground">{s.usage}</p>
               </div>
             ))}
           </div>
@@ -587,9 +587,7 @@ function FoundationsPage() {
                 <div className="text-center">
                   <p className="font-mono text-[11px] font-semibold text-foreground">{r.name}</p>
                   <p className="font-mono caption-xs text-muted-foreground">{r.value}</p>
-                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">
-                    {r.usage}
-                  </p>
+                  <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{r.usage}</p>
                 </div>
               </div>
             ))}
@@ -617,7 +615,7 @@ function FoundationsPage() {
                 <div>
                   <p className="font-mono text-[11px] font-semibold text-foreground">{s.name}</p>
                   <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{s.usage}</p>
-                  <p className="mt-1 font-mono text-[9px] leading-tight text-muted-foreground/70">
+                  <p className="mt-1 font-mono text-[9px] leading-tight text-muted-foreground">
                     {s.css}
                   </p>
                 </div>

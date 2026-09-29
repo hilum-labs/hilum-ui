@@ -61,7 +61,7 @@ function MoleculesPage() {
               </CardDescription>
             </CardHeader>
             <div className="px-5 pb-3">
-              <p className="caption text-muted-foreground/70">{molecule.composedFrom}</p>
+              <p className="caption text-muted-foreground">{molecule.composedFrom}</p>
             </div>
             <CardFooter className="pt-0">
               <Button

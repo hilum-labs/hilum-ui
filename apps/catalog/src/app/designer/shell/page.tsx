@@ -474,7 +474,7 @@ function Demo() {
 
           <DesignerPane collapsible showFor={["text"]}>
             <DesignerPaneTitle
-              action={<ChevronsUpDown size={12} className="text-muted-foreground/70" />}
+              action={<ChevronsUpDown size={12} className="text-muted-foreground" />}
             >
               Appearance
             </DesignerPaneTitle>

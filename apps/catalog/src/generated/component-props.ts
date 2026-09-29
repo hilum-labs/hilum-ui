@@ -3866,7 +3866,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
     "components": [
       {
         "name": "FileDropzone",
-        "inherits": "Also accepts native HTML/React attributes (273).",
+        "inherits": "Also accepts native HTML/React attributes (272).",
         "props": [
           {
             "name": "accept",
@@ -4972,6 +4972,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "default": null,
             "description": "",
             "declaredIn": "packages/ui/src/components/pagination.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Not available (first / last page): a disabled button, or a link without `href`.",
+            "declaredIn": "packages/ui/src/components/pagination.tsx"
           }
         ]
       },
@@ -4985,6 +4993,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/pagination.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Not available (first / last page): a disabled button, or a link without `href`.",
             "declaredIn": "packages/ui/src/components/pagination.tsx"
           },
           {
@@ -5007,6 +5023,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/pagination.tsx"
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Not available (first / last page): a disabled button, or a link without `href`.",
             "declaredIn": "packages/ui/src/components/pagination.tsx"
           },
           {

@@ -23,8 +23,8 @@ const DEFAULT_LABELS: FileDropzoneLabels = {
 };
 
 interface FileDropzoneProps extends Omit<
-  React.HTMLAttributes<HTMLLabelElement>,
-  "children" | "onChange" | "onDrop" | "onDragOver" | "onDragLeave"
+  React.HTMLAttributes<HTMLDivElement>,
+  "children" | "onChange" | "onDrop" | "onDragOver" | "onDragLeave" | "onPaste"
 > {
   accept?: string;
   multiple?: boolean;
@@ -42,7 +42,8 @@ interface FileDropzoneProps extends Omit<
   onFilesSelected?: (files: File[]) => void;
   /** Override the English UI strings (i18n). */
   labels?: Partial<FileDropzoneLabels>;
-  ref?: React.Ref<HTMLLabelElement> | undefined;
+  /** The drop area (a `<div>` since 4.4.4; the browse control is a `<button>` inside it). */
+  ref?: React.Ref<HTMLDivElement> | undefined;
 }
 
 function formatFileSize(bytes: number) {
@@ -66,6 +67,13 @@ function getFileSummary(
   return filesSelected(files.length, formatFileSize(totalSize));
 }
 
+/**
+ * Drop area for files. The area itself is a plain container (drop target and
+ * paste target); the one interactive element is the `<button>` carrying the
+ * label, stretched over the whole area, which opens the hidden file input.
+ * Drag files onto it, click anywhere in it, press Enter/Space on the button,
+ * or paste files (⌘/Ctrl+V) while it has focus.
+ */
 function FileDropzone({
   accept,
   multiple,
@@ -84,42 +92,45 @@ function FileDropzone({
   className,
   id,
   tabIndex,
-  onKeyDown,
-  onClick,
   labels: labelsProp,
+  ref,
   ...props
 }: FileDropzoneProps) {
   const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [isDragging, setIsDragging] = React.useState(false);
-  const inputId = React.useId();
-  const resolvedId = id ?? inputId;
+  const baseId = React.useId();
+  const resolvedId = id ?? baseId;
+  const descriptionId = `${baseId}-description`;
+  const summaryId = `${baseId}-summary`;
   const fileSummary = getFileSummary(selectedFiles ?? [], labels.filesSelected);
   const isUnavailable = Boolean(disabled || loading);
+  const showSummaryChip = Boolean(fileSummary && !loading);
+  const describedBy = [description && descriptionId, showSummaryChip && summaryId]
+    .filter(Boolean)
+    .join(" ");
 
   const emitFiles = React.useCallback(
     (fileList: FileList | null) => {
-      if (!fileList || isUnavailable) return;
+      if (!fileList || fileList.length === 0 || isUnavailable) return;
       onFilesSelected?.(Array.from(fileList));
     },
     [isUnavailable, onFilesSelected],
   );
 
   return (
-    <label
-      htmlFor={resolvedId}
+    <div
+      ref={ref}
       data-slot="file-dropzone"
-      // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role -- label for the hidden file input, made a focusable button with Enter/Space handling (onKeyDown) so it also works as a drop target
-      role="button"
-      tabIndex={isUnavailable ? -1 : (tabIndex ?? 0)}
-      aria-disabled={isUnavailable || undefined}
       data-dragging={isDragging ? "true" : "false"}
+      data-disabled={isUnavailable || undefined}
+      // Dimmed text of an unavailable control is exempt from contrast (WCAG 1.4.3).
+      aria-disabled={isUnavailable || undefined}
       className={cn(
-        "group flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card p-6 text-center shadow-natural",
+        "group relative flex min-h-36 cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-border bg-card p-6 text-center shadow-natural",
         "transition-[background-color,border-color,box-shadow,scale] duration-150",
-        "hover:border-brand-primary/50 hover:bg-muted/40 active:scale-[0.96]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "hover:border-brand-primary/50 hover:bg-muted/40 has-[button:active]:scale-[0.96]",
         "data-[dragging=true]:border-brand-primary data-[dragging=true]:bg-brand-secondary/25",
-        isUnavailable && "pointer-events-none cursor-not-allowed opacity-60 active:scale-100",
+        isUnavailable && "cursor-not-allowed opacity-60 has-[button:active]:scale-100",
         className,
       )}
       onDragOver={(event) => {
@@ -135,20 +146,10 @@ function FileDropzone({
         setIsDragging(false);
         emitFiles(event.dataTransfer.files);
       }}
-      onKeyDown={(event) => {
-        onKeyDown?.(event);
-        if (event.defaultPrevented || isUnavailable) return;
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          document.getElementById(resolvedId)?.click();
-        }
-      }}
-      onClick={(event) => {
-        if (isUnavailable) {
-          event.preventDefault();
-          return;
-        }
-        onClick?.(event);
+      onPaste={(event) => {
+        if (!event.clipboardData?.files.length) return;
+        event.preventDefault();
+        emitFiles(event.clipboardData.files);
       }}
       {...props}
     >
@@ -160,6 +161,9 @@ function FileDropzone({
         accept={accept}
         multiple={multiple}
         disabled={isUnavailable}
+        // The button below is the control; the input only opens the picker.
+        tabIndex={-1}
+        aria-hidden="true"
         className={cn("sr-only", inputClassName)}
         onChange={(event) => emitFiles(event.currentTarget.files)}
       />
@@ -173,23 +177,43 @@ function FileDropzone({
       >
         {loading ? <Spinner size="sm" /> : (icon ?? <Upload className="size-5" />)}
       </span>
-      <span className="body-sm font-medium text-foreground text-balance">
+      <button
+        type="button"
+        data-slot="file-dropzone-button"
+        tabIndex={tabIndex}
+        aria-disabled={isUnavailable || undefined}
+        {...(describedBy ? { "aria-describedby": describedBy } : {})}
+        className={cn(
+          "body-sm font-medium text-foreground text-balance outline-none",
+          // Stretched over the whole area: a click anywhere opens the picker,
+          // and the focus ring outlines the area.
+          "after:absolute after:inset-0 after:rounded-xl after:content-['']",
+          "focus-visible:after:ring-2 focus-visible:after:ring-ring",
+          isUnavailable ? "cursor-not-allowed" : "cursor-pointer",
+        )}
+        onClick={() => {
+          if (!isUnavailable) document.getElementById(resolvedId)?.click();
+        }}
+      >
         {loading ? loadingText : isDragging ? activeLabel : fileSummary ? fileSummary : label}
-      </span>
+      </button>
       {description && (
-        <span className="caption mt-1 max-w-md text-pretty text-muted-foreground">
+        <span
+          id={descriptionId}
+          className="caption mt-1 max-w-md text-pretty text-muted-foreground"
+        >
           {description}
         </span>
       )}
-      {fileSummary && !loading && (
+      {showSummaryChip && (
         <span className="caption mt-2 inline-flex min-h-7 max-w-full items-center gap-1 rounded-full bg-muted px-2.5 text-muted-foreground">
           <FileIcon className="size-3.5 shrink-0" aria-hidden="true" />
-          <span className="min-w-0 truncate">
+          <span id={summaryId} className="min-w-0 truncate">
             {multiple ? labels.readyToUpload : labels.selected}
           </span>
         </span>
       )}
-    </label>
+    </div>
   );
 }
 

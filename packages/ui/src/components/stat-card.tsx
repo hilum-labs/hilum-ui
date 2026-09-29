@@ -181,8 +181,13 @@ function StatCard({
                   data-tone={trendTone}
                   className={cn(
                     "inline-flex w-fit items-center gap-1 rounded-full px-2 py-0.5",
-                    trendTone === "positive" && "bg-success/40 text-foreground",
-                    trendTone === "negative" && "bg-destructive/10 text-destructive",
+                    // Lime at 40% lightens the mid gray under white text.
+                    trendTone === "positive" &&
+                      "bg-success/40 in-data-[theme=mid]:bg-success/10 text-foreground",
+                    // Red text on the red tint was 4.1:1 (3.6:1 dark); the
+                    // arrow carries the colour, as the positive pill does.
+                    trendTone === "negative" &&
+                      "bg-destructive/10 text-foreground [&>svg]:text-destructive",
                     trendTone === "neutral" && "bg-muted text-muted-foreground",
                   )}
                 >

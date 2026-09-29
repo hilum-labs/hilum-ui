@@ -25,6 +25,10 @@ import { fontWeights } from "../lib/font-weight";
 import { useShape } from "../lib/shape-context";
 import { MAX_STEP_DOTS, PIP_SIZE } from "./slider-parts";
 
+// Resting label / value colour. Muted text sits on the track's --active fill
+// (4.0:1 in light mode), so it leans a third toward the foreground (≥ 4.5:1).
+const RESTING_TEXT = "color-mix(in oklab, var(--muted-foreground) 65%, var(--foreground))";
+
 // ---------------------------------------------------------------------------
 // SliderComfortable
 // ---------------------------------------------------------------------------
@@ -532,7 +536,7 @@ function SliderComfortable({
               <motion.span
                 className="text-[13px] px-2"
                 initial={false}
-                animate={{ color: isActive ? "var(--foreground)" : "var(--muted-foreground)" }}
+                animate={{ color: isActive ? "var(--foreground)" : RESTING_TEXT }}
                 transition={spring.fast}
               >
                 {label}
@@ -541,7 +545,7 @@ function SliderComfortable({
             <motion.span
               className="text-[13px] tabular-nums ms-auto px-2"
               initial={false}
-              animate={{ color: isActive ? "var(--foreground)" : "var(--muted-foreground)" }}
+              animate={{ color: isActive ? "var(--foreground)" : RESTING_TEXT }}
               transition={spring.fast}
               style={{ minWidth: `${String(formatValue(max)).length}ch`, textAlign: "end" }}
             >
@@ -588,7 +592,7 @@ function SliderComfortable({
           <motion.span
             className="text-[13px] shrink-0 z-10"
             initial={false}
-            animate={{ color: isActive ? "var(--foreground)" : "var(--muted-foreground)" }}
+            animate={{ color: isActive ? "var(--foreground)" : RESTING_TEXT }}
             transition={spring.fast}
           >
             {label}
@@ -602,7 +606,7 @@ function SliderComfortable({
             <motion.span
               className="text-[13px] shrink-0 tabular-nums text-end z-10"
               initial={false}
-              animate={{ color: isActive ? "var(--foreground)" : "var(--muted-foreground)" }}
+              animate={{ color: isActive ? "var(--foreground)" : RESTING_TEXT }}
               transition={spring.fast}
               style={{ minWidth: `${String(formatValue(max)).length}ch` }}
             >

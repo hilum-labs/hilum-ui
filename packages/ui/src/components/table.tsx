@@ -17,6 +17,7 @@ import { cn } from "../lib/utils";
 import { spring } from "../lib/springs";
 import { fontWeights } from "../lib/font-weight";
 import { useProximityHover } from "../hooks/use-proximity-hover";
+import { useKeyboardScrollable } from "../lib/use-keyboard-scrollable";
 
 // ── Context ──────────────────────────────────────────────
 
@@ -54,6 +55,7 @@ function Table({
   ...props
 }: TableProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const keyboardScroll = useKeyboardScrollable(containerRef);
 
   const { activeIndex, itemRects, session, handlers, registerItem, measureItems } =
     useProximityHover(containerRef);
@@ -69,8 +71,9 @@ function Table({
       <div
         ref={containerRef}
         data-slot="table-container"
+        {...keyboardScroll}
         className={cn(
-          "relative",
+          "relative outline-none focus-visible:ring-2 focus-visible:ring-ring",
           mobileSurface === "flat" &&
             "max-sm:-mx-4 max-sm:overflow-x-auto max-sm:rounded-none max-sm:border-x-0",
           containerClassName,

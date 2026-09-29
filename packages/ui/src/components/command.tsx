@@ -135,6 +135,8 @@ function CommandList({
       ref={combinedRef}
       data-slot="command-list"
       role="listbox"
+      // A listbox needs a name; pass aria-label / aria-labelledby to override.
+      aria-label={props["aria-labelledby"] ? undefined : (props["aria-label"] ?? "Suggestions")}
       onKeyDown={handleKeyDown}
       className={cn("max-h-75 overflow-y-auto py-1", className)}
       {...props}

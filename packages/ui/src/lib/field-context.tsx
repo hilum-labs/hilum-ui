@@ -44,6 +44,12 @@ interface FieldContextValue {
   registerControl: (token: string, registration: FieldControlRegistration) => void;
   /** Called by controls when they unmount. */
   unregisterControl: (token: string) => void;
+  /**
+   * Name every unnamed control with the label (`aria-labelledby`), not just
+   * the one the `<label for>` targets. Set by PropertyRow, whose rows pair
+   * controls (a Slider and an InputNumber) under one label.
+   */
+  labelEveryControl?: boolean;
 }
 
 interface FieldControlRegistration {
@@ -224,7 +230,12 @@ function useFieldControl(
 
   if (props["aria-labelledby"] != null) {
     result["aria-labelledby"] = props["aria-labelledby"];
-  } else if (!labelable && isPrimary && props["aria-label"] == null && ctx?.labelId) {
+  } else if (
+    (!labelable || !isPrimary) &&
+    (isPrimary || ctx?.labelEveryControl) &&
+    props["aria-label"] == null &&
+    ctx?.labelId
+  ) {
     result["aria-labelledby"] = ctx.labelId;
   }
 

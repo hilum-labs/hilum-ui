@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
+import { FieldContext, useFieldRegistry, type FieldContextValue } from "../lib/field-context";
 
 interface PropertyRowProps extends React.ComponentProps<"div"> {
   /** Optional label rendered on the left. Pass a string or any React node (icon + label, etc.). */
@@ -23,6 +24,9 @@ interface PropertyRowProps extends React.ComponentProps<"div"> {
  *   <Slider />
  *   <InputNumber />
  * </PropertyRow>
+ *
+ * The label names the controls inside: it's a `<label for>` the first Hilum
+ * control, and the others (and a Slider) are labelled by it.
  */
 function PropertyRow({
   label,
@@ -34,8 +38,34 @@ function PropertyRow({
   ...rest
 }: PropertyRowProps) {
   const inline = layout === "inline";
+  const generatedId = React.useId();
+  const baseId = `property-row-${generatedId.replace(/:/g, "")}`;
+  const labelId = `${baseId}-label`;
+  const { claimRef, owner, registerControl, unregisterControl } = useFieldRegistry();
+  const controlId = owner?.id ?? baseId;
+  const labelFor = owner && !owner.labelable ? undefined : owner ? controlId : undefined;
+  const hasLabel = label !== undefined;
 
-  return (
+  const context = React.useMemo<FieldContextValue>(
+    () => ({
+      controlId,
+      labelFor,
+      labelId,
+      descriptionId: undefined,
+      errorId: undefined,
+      invalid: false,
+      required: false,
+      disabled: false,
+      ownerToken: owner?.token ?? null,
+      claimRef,
+      registerControl,
+      unregisterControl,
+      labelEveryControl: true,
+    }),
+    [controlId, labelFor, labelId, owner, claimRef, registerControl, unregisterControl],
+  );
+
+  const row = (
     <div
       data-slot="property-row"
       className={cn(
@@ -50,8 +80,10 @@ function PropertyRow({
       )}
       {...rest}
     >
-      {label !== undefined && (
-        <div
+      {hasLabel && (
+        <label
+          id={labelId}
+          htmlFor={labelFor}
           className={cn(
             "caption select-none text-muted-foreground compact:text-[11px] compact:leading-4",
             inline ? "shrink-0" : "w-full",
@@ -63,11 +95,13 @@ function PropertyRow({
           }
         >
           {label}
-        </div>
+        </label>
       )}
       <div className="flex min-w-0 flex-1 items-center gap-2">{children}</div>
     </div>
   );
+
+  return hasLabel ? <FieldContext.Provider value={context}>{row}</FieldContext.Provider> : row;
 }
 
 PropertyRow.displayName = "PropertyRow";

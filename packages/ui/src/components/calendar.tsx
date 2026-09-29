@@ -82,14 +82,17 @@ function Calendar({
           "text-foreground hover:bg-muted transition-colors",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         ),
+        // White on the brand (4.6:1): text-background was 3.9:1 in dark mode.
         selected:
-          "[&>button]:bg-brand-primary [&>button]:text-background [&>button]:hover:bg-brand-primary/90",
-        today: "[&>button]:font-semibold [&>button]:text-brand-primary",
-        outside: "opacity-40 [&>button]:text-muted-foreground",
+          "[&>button]:bg-brand-primary [&>button]:text-primary-foreground [&>button]:hover:bg-brand-primary/90",
+        today: "[&>button]:font-semibold [&>button]:text-brand-text",
+        // Outside days are selectable, so they stay ≥ 4.5:1 (opacity-40 was 1.7:1).
+        outside: "[&>button]:text-muted-foreground",
         disabled: "opacity-30 [&>button]:cursor-not-allowed",
         range_start:
-          "[&>button]:bg-brand-primary [&>button]:text-background [&>button]:rounded-full",
-        range_end: "[&>button]:bg-brand-primary [&>button]:text-background [&>button]:rounded-full",
+          "[&>button]:bg-brand-primary [&>button]:text-primary-foreground [&>button]:rounded-full",
+        range_end:
+          "[&>button]:bg-brand-primary [&>button]:text-primary-foreground [&>button]:rounded-full",
         range_middle:
           "[&>button]:bg-brand-primary/15 [&>button]:text-foreground [&>button]:rounded-none",
         hidden: "invisible",
