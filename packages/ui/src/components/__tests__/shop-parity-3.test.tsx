@@ -4,6 +4,7 @@ import { DataTable, type ColumnDef } from "../data-table";
 import { Field } from "../field";
 import { InputGroup } from "../input-group";
 import { InputNumber } from "../input-number";
+import { PreviewFrame } from "../preview-frame";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -205,5 +206,27 @@ describe("InputNumber width", () => {
     expect(inField).not.toHaveClass("w-48");
     expect(bare).toHaveClass("w-48");
     expect(optedOut).toHaveClass("w-48");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* PreviewFrame with a blank page                                       */
+/* ------------------------------------------------------------------ */
+
+describe("PreviewFrame src=about:blank", () => {
+  it("counts a blank frame as loaded at once and calls onLoad once", async () => {
+    const onLoad = vi.fn();
+    const { container, rerender } = render(
+      <PreviewFrame src="about:blank" title="Preview" onLoad={onLoad} />,
+    );
+    expect(container.querySelector("[data-slot=preview-frame-loading]")).toBeNull();
+    expect(container.querySelector("[data-slot=preview-frame-stage]")).not.toHaveAttribute(
+      "aria-busy",
+    );
+    await tick();
+    expect(onLoad).toHaveBeenCalledTimes(1);
+    // An empty src is blank too.
+    rerender(<PreviewFrame src="" title="Preview" onLoad={onLoad} />);
+    expect(container.querySelector("[data-slot=preview-frame-loading]")).toBeNull();
   });
 });

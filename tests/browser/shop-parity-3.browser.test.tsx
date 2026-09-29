@@ -5,6 +5,7 @@ import {
   Field,
   FormLayout,
   InputNumber,
+  PreviewFrame,
   Progress,
   ScrollArea,
   Slider,
@@ -195,4 +196,20 @@ describe("Track surfaces are visible on cards in light and dark (real browser)",
       }
     });
   }
+});
+
+/* ------------------------------------------------------------------ */
+/* PreviewFrame about:blank                                             */
+/* ------------------------------------------------------------------ */
+
+describe("PreviewFrame with src=about:blank (real browser)", () => {
+  it("drops the skeleton although the load event fired during React's commit", async () => {
+    let loads = 0;
+    const { container } = render(
+      <PreviewFrame src="about:blank" title="Preview" onLoad={() => (loads += 1)} />,
+    );
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    expect(container.querySelector("[data-slot=preview-frame-loading]")).toBeNull();
+    expect(loads).toBe(1);
+  });
 });

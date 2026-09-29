@@ -1,4 +1,9 @@
-import { describe, it, expect, vi } from "vitest";
+/**
+ * @vitest-environment-options {"settings":{"disableIframePageLoading":true}}
+ */
+// happy-dom doesn't fetch the frame's page, so loads are simulated with
+// fireEvent.load (about:blank counts as loaded at once; see the last tests).
+import { beforeAll, describe, it, expect, vi } from "vitest";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import {
   PreviewFrame,
@@ -6,7 +11,16 @@ import {
   PREVIEW_FRAME_DEFAULT_SANDBOX,
 } from "../preview-frame";
 
-const SRC = "about:blank";
+const SRC = "https://dawn.example.test/";
+
+// happy-dom reports each skipped frame load on the process's own stderr.
+beforeAll(() => {
+  const write = process.stderr.write.bind(process.stderr) as (...args: unknown[]) => boolean;
+  vi.spyOn(process.stderr, "write").mockImplementation(((chunk: unknown, ...rest: unknown[]) =>
+    String(chunk).includes("Iframe page loading is disabled")
+      ? true
+      : write(chunk, ...rest)) as typeof process.stderr.write);
+});
 
 function iframe() {
   return screen.getByTitle("Preview of Dawn") as HTMLIFrameElement;
@@ -151,5 +165,30 @@ describe("PreviewFrame", () => {
     expect(screen.getByRole("status")).toHaveTextContent("Cargando vista previa");
     expect(container.querySelector("style")).toBeNull();
     expect(document.head.querySelector("style[data-hilum]")).toBeNull();
+  });
+
+  it("counts a same-origin frame that finished loading before React listened as loaded", () => {
+    const onLoad = vi.fn();
+    const spy = vi
+      .spyOn(HTMLIFrameElement.prototype, "contentDocument", "get")
+      .mockReturnValue({ readyState: "complete", URL: SRC } as unknown as Document);
+    const { container } = render(
+      <PreviewFrame src={SRC} title="Preview of Dawn" onLoad={onLoad} />,
+    );
+    expect(container.querySelector("[data-slot=preview-frame-loading]")).toBeNull();
+    expect(onLoad).toHaveBeenCalledTimes(1);
+    // The load event may still arrive: onLoad isn't called twice.
+    fireEvent.load(iframe());
+    expect(onLoad).toHaveBeenCalledTimes(1);
+    spy.mockRestore();
+  });
+
+  it("keeps waiting while the frame still holds its initial about:blank document", () => {
+    const spy = vi
+      .spyOn(HTMLIFrameElement.prototype, "contentDocument", "get")
+      .mockReturnValue({ readyState: "complete", URL: "about:blank" } as unknown as Document);
+    const { container } = render(<PreviewFrame src={SRC} title="Preview of Dawn" />);
+    expect(container.querySelector("[data-slot=preview-frame-loading]")).not.toBeNull();
+    spy.mockRestore();
   });
 });
