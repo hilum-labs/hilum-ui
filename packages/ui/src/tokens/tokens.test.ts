@@ -139,7 +139,7 @@ describe("active nav item contrast", () => {
 
   it.each(brands)("createTheme(%s) emits a --brand-text that passes in every theme", (primary) => {
     const { css, brandText } = createTheme({ primary, secondary: "#fff5bf" });
-    expect(themeBlock(css, ":root")).toContain(`--brand-text: ${brandText.light};`);
+    expect(themeBlock(css, '[data-theme="light"]')).toContain(`--brand-text: ${brandText.light};`);
     expect(themeBlock(css, '[data-theme="dark"]')).toContain(`--brand-text: ${brandText.dark};`);
     expect(themeBlock(css, '[data-theme="mid"]')).toContain(`--brand-text: ${brandText.mid};`);
     expect(worstContrast(brandText.light, primary, "light")).toBeGreaterThanOrEqual(4.5);
@@ -154,6 +154,12 @@ describe("active nav item contrast", () => {
     expect(mid >= 4.5 || mid >= bestPlain).toBe(true);
   });
 
+  it("createTheme's OS-dark rule leaves explicit light and mid roots alone", () => {
+    const { css } = createTheme({ primary: "#0066ff", secondary: "#fff5bf" });
+    expect(css).toContain(':root:not([data-theme="light"], [data-theme="mid"]) {');
+    expect(css).toMatch(/:root,\s*\[data-theme="light"\] \{/);
+  });
+
   it("createTheme keeps brand text as close to the brand as contrast allows", () => {
     // Already readable on its tint: dark blue keeps its own shade in light mode.
     expect(createTheme({ primary: "#1d4ed8", secondary: "#fff5bf" }).brandText.light).toBe(
@@ -163,6 +169,40 @@ describe("active nav item contrast", () => {
     const hilum = createTheme({ primary: "#c100f1", secondary: "#fff5bf" });
     expect(hilum.brandText.light).toBe(hilum.palette.primary["600"]);
     expect(hilum.brandText.dark).toBe(hilum.palette.primary["300"]);
+  });
+});
+
+describe("text contrast on every surface", () => {
+  const surfaces = ["background", "card", "surface", "muted"] as const;
+
+  it.each(["light", "mid", "dark"] as const)(
+    "%s: foreground and muted text are ≥ 4.5:1 on background, card, surface and muted",
+    (theme) => {
+      const semantic = tokens.semantic[theme];
+      for (const surface of surfaces) {
+        for (const text of ["foreground", "mutedForeground"] as const) {
+          expect(
+            contrast(semantic[text], semantic[surface]),
+            `${theme} ${text} on ${surface}`,
+          ).toBeGreaterThanOrEqual(4.5);
+        }
+      }
+    },
+  );
+
+  it("mid: muted text is ≥ 4.5:1 on every surface level (was 3.8:1 on the page)", () => {
+    for (const level of tokens.surfaces.mid.bg) {
+      expect(contrast(tokens.semantic.mid.mutedForeground, level), level).toBeGreaterThanOrEqual(
+        4.5,
+      );
+    }
+    expect(contrast(tokens.semantic.mid.mutedForeground, "#737373")).toBeLessThan(4.5);
+  });
+
+  it("mid keeps its steps: canvas between the page and the cards", () => {
+    const { background, canvas, card } = tokens.semantic.mid;
+    expect(luminance(background)).toBeGreaterThan(luminance(canvas));
+    expect(luminance(canvas)).toBeGreaterThan(luminance(card));
   });
 });
 

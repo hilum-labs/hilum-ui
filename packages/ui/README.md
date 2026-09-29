@@ -269,20 +269,15 @@ Hilum UI works under a strict policy such as `style-src 'self'` (no
 
 ## Theming
 
-Light/dark mode works automatically via `prefers-color-scheme`. Override explicitly:
+Light and dark ship out of the box and follow `prefers-color-scheme` by default. `data-theme` forces a theme, and an explicit choice always beats the OS setting:
 
 ```html
 <html data-theme="dark">
-  <!-- force dark -->
-  <html data-theme="light">
-    <!-- force light -->
-  </html>
+  <!-- or "light", or "mid" (the neutral medium-gray editor theme) -->
 </html>
 ```
 
-## Light / dark
-
-Both modes ship out of the box. `prefers-color-scheme` is respected by default; force a mode by setting `<html data-theme="light">` or `<html data-theme="dark">`.
+`data-theme` also works on any element, so a subtree can use another theme than the page (a light preview inside a dark app, a mid designer panel).
 
 ## Credits
 

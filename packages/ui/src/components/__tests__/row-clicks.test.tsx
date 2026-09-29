@@ -13,6 +13,7 @@ import {
 } from "../dropdown-menu";
 import { ResourceItem } from "../resource-item";
 import { StackedList, StackedListItem } from "../stacked-list";
+import { LinkProvider, type LinkComponent } from "../../lib/link-context";
 
 /* React bubbles synthetic events through portals, so a click inside a Dialog,
  * ConfirmDialog or menu opened from a clickable row used to reach the row's
@@ -218,5 +219,132 @@ describe("clickable list rows ignore clicks inside portals", () => {
     expect(onClick).not.toHaveBeenCalled();
     fireEvent.click(screen.getByText("Order #1001"));
     expect(onClick).toHaveBeenCalledTimes(1);
+  });
+});
+
+/* Router links (TanStack Router, Next.js, React Router) navigate from their
+ * React onClick, so a portal click that bubbled into a row's Link navigated. */
+
+/** A router link like TanStack's: navigates on plain left clicks it receives. */
+function routerLink(navigate: (href: string) => void): LinkComponent {
+  return function RouterLink({ href, onClick, children, ...rest }) {
+    return (
+      <a
+        href={href}
+        {...rest}
+        onClick={(event) => {
+          onClick?.(event);
+          const modified = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey;
+          if (event.defaultPrevented || event.button !== 0 || modified) return;
+          event.preventDefault();
+          navigate(href);
+        }}
+      >
+        {children}
+      </a>
+    );
+  };
+}
+
+function ArchiveMenu() {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button type="button" aria-label="Order actions">
+          …
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <DropdownMenuItem>Archive</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
+
+describe("href rows don't navigate for clicks inside portals", () => {
+  it("ResourceItem: the router link sees its own clicks only", () => {
+    const navigate = vi.fn();
+    render(
+      <LinkProvider value={routerLink(navigate)}>
+        <StackedList>
+          <ResourceItem
+            title="Order #1001"
+            subtitle="Ada Lovelace"
+            badge={<ItemWithDialog />}
+            trailing="S/ 120.00"
+            href="/orders/1001"
+          />
+        </StackedList>
+      </LinkProvider>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Archive" }));
+    fireEvent.click(screen.getByText("Archived orders stay searchable."));
+    expect(navigate).not.toHaveBeenCalled();
+
+    // (The open modal Dialog hides the rest of the page from the a11y tree.)
+    fireEvent.click(screen.getByRole("link", { name: "Order #1001", hidden: true }));
+    expect(navigate).toHaveBeenCalledWith("/orders/1001");
+  });
+
+  it("ResourceItem: a row's DropdownMenu item doesn't navigate", async () => {
+    const user = userEvent.setup();
+    const navigate = vi.fn();
+    render(
+      <LinkProvider value={routerLink(navigate)}>
+        <StackedList>
+          <ResourceItem title="Order #1001" trailing={<ArchiveMenu />} href="/orders/1001" />
+        </StackedList>
+      </LinkProvider>,
+    );
+    await user.click(screen.getByRole("button", { name: "Order actions" }));
+    await user.click(await screen.findByRole("menuitem", { name: "Archive" }));
+    expect(navigate).not.toHaveBeenCalled();
+  });
+
+  it("ResourceItem: modified clicks and keyboard stay native", async () => {
+    const user = userEvent.setup();
+    const navigate = vi.fn();
+    render(
+      <LinkProvider value={routerLink(navigate)}>
+        <StackedList>
+          <ResourceItem
+            title="Order #1001"
+            subtitle="Ada Lovelace"
+            meta="Sep 26"
+            trailing="S/ 120.00"
+            href="/orders/1001"
+          />
+        </StackedList>
+      </LinkProvider>,
+    );
+    const link = screen.getByRole("link", { name: "Order #1001" });
+    expect(link).toHaveAccessibleDescription("Ada Lovelace Sep 26 S/ 120.00");
+    // ⌘/Ctrl-click and middle-click reach the anchor un-prevented (new tab).
+    expect(fireEvent.click(link, { metaKey: true })).toBe(true);
+    expect(fireEvent.click(link, { ctrlKey: true })).toBe(true);
+    expect(navigate).not.toHaveBeenCalled();
+    // One tab stop; Enter follows the link.
+    await user.tab();
+    expect(link).toHaveFocus();
+    await user.keyboard("{Enter}");
+    expect(navigate).toHaveBeenCalledWith("/orders/1001");
+  });
+
+  it("StackedListItem: its plain anchor gets no portal clicks", () => {
+    const anchorClick = vi.fn();
+    render(
+      <StackedList>
+        <StackedListItem href="/orders/1001">
+          Order #1001
+          <ItemWithDialog />
+        </StackedListItem>
+      </StackedList>,
+    );
+    const link = screen.getByRole("link", { name: /Order #1001/, hidden: true });
+    link.addEventListener("click", anchorClick);
+    fireEvent.click(screen.getByRole("button", { name: "Archive" }));
+    expect(anchorClick).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByText("Order #1001"));
+    expect(anchorClick).toHaveBeenCalledTimes(1);
   });
 });
