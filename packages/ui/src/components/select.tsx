@@ -30,8 +30,22 @@ import type { ControlDensity, ControlMobileSurface } from "./input";
 
 type SelectProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>;
 
-function Select(props: SelectProps) {
-  return <SelectPrimitive.Root {...props} />;
+function Select({ onValueChange, ...props }: SelectProps) {
+  // Inside a <form>, Radix mirrors the value into a hidden native <select> and
+  // reports that element's `change` events back through onValueChange. When a
+  // controlled `value` changes after mount (data loaded, a reset) before the
+  // matching <option> is registered, the native select resolves to "" and
+  // Radix emits onValueChange("") — wiping the value and dirtying the form.
+  // Users can't pick "" (SelectItem values must be non-empty), so an empty
+  // value never comes from the user and is dropped.
+  const handleValueChange = React.useCallback(
+    (next: string) => {
+      if (next === "") return;
+      onValueChange?.(next);
+    },
+    [onValueChange],
+  );
+  return <SelectPrimitive.Root {...props} onValueChange={handleValueChange} />;
 }
 
 Select.displayName = "Select";
