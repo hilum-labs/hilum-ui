@@ -186,13 +186,20 @@ export interface FormatCurrencyOptions extends FormatNumberOptions {
   currency?: string;
   /** When true, `value` is in minor units (cents) and divided by 10^fractionDigits. */
   minorUnits?: boolean;
+  /**
+   * Replaces the currency sign Intl picks (whatever `currencyDisplay` is),
+   * keeping its position and spacing. Intl has no local sign for some
+   * currencies in many locales ("PEN 72.00" in `en`); pass `"S/"` for
+   * "S/ 72.00".
+   */
+  currencySymbol?: string;
 }
 
 export function formatCurrency(
   value: number | string | null | undefined,
   options: FormatCurrencyOptions = {},
 ): string {
-  const { currency = "USD", minorUnits = false, ...rest } = options;
+  const { currency = "USD", minorUnits = false, currencySymbol, ...rest } = options;
   const num = typeof value === "string" ? Number(value) : value;
   if (num === null || num === undefined || Number.isNaN(num)) return rest.fallback ?? "—";
   let amount = num;
@@ -202,7 +209,14 @@ export function formatCurrency(
         .maximumFractionDigits ?? 2;
     amount = num / 10 ** digits;
   }
-  return formatNumber(amount, { style: "currency", currency, ...rest });
+  if (currencySymbol === undefined) {
+    return formatNumber(amount, { style: "currency", currency, ...rest });
+  }
+  const { locale, timeZone: _timeZone, fallback: _fallback, ...intl } = rest;
+  return new Intl.NumberFormat(locale, { style: "currency", currency, ...intl })
+    .formatToParts(amount)
+    .map((part) => (part.type === "currency" ? currencySymbol : part.value))
+    .join("");
 }
 
 export function formatPercent(

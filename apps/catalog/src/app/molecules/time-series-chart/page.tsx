@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createCatalogPageHead } from "@/lib/seo";
 import { PageDocs } from "@/components/catalog/page-docs";
-import { TimeSeriesChart } from "@hilum/ui";
+import { FormatProvider, TimeSeriesChart } from "@hilum/ui";
 import { PreviewBlock } from "@/components/catalog/preview-block";
 
 const SALES = [1240, 980, 1510, 1320, 2380, 1930, 2140, 1760, 1880, 2410, 2650, 2290, 2530, 2870];
@@ -33,6 +33,24 @@ const CODE = {
   data={points}
   series={[{ key: "orders", label: "Orders" }]}
   height={180}
+/>`,
+  currency: `// A sol store in English: Intl writes "PEN 1,240.00"; currencySymbol keeps the local sign.
+<FormatProvider locale="en-US" currency="PEN">
+  <TimeSeriesChart
+    aria-label="Net sales per day"
+    data={points}
+    series={[{ key: "sales", label: "Net sales" }]}
+    valueFormat="currency"
+    currencySymbol="S/"         // or currencyDisplay: "symbol" (default) | "narrowSymbol" | "code"
+  />
+</FormatProvider>
+
+// Or format values yourself: the function knows where the value goes.
+<TimeSeriesChart
+  valueFormat={(value, { context }) =>
+    formatMoney(value, context === "axis" ? { notation: "compact" } : {})
+  }
+  …
 />`,
   states: `<TimeSeriesChart aria-label="Sales" data={[]} series={series} loading />
 <TimeSeriesChart aria-label="Sales" data={[]} series={series} />`,
@@ -89,6 +107,27 @@ function TimeSeriesChartPage() {
               ]}
               valueFormat="currency"
             />
+          </PreviewBlock>
+        </section>
+
+        <section>
+          <SectionHeading label="Currency sign" />
+          <PreviewBlock
+            title="Local currency sign"
+            description="currencyDisplay chooses Intl's sign (symbol, narrowSymbol, code). Intl has no local sign for some currencies in some locales (the sol is PEN in English), so currencySymbol replaces it on the axis and in the tooltip. A custom valueFormat function gets { context: 'axis' | 'tooltip' }."
+            code={CODE.currency}
+            previewClassName="flex-col items-stretch"
+          >
+            <FormatProvider locale="en-US" currency="PEN">
+              <TimeSeriesChart
+                aria-label="Net sales per day"
+                data={DATA}
+                series={[{ key: "sales", label: "Net sales" }]}
+                valueFormat="currency"
+                currencySymbol="S/"
+                height={200}
+              />
+            </FormatProvider>
           </PreviewBlock>
         </section>
 

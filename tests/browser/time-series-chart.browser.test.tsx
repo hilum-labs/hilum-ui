@@ -53,4 +53,88 @@ describe("TimeSeriesChart (real browser)", () => {
     expect(box.textContent).toMatch(/\$[\d,]+\.\d{2}/);
     expect(document.querySelectorAll("style")).toHaveLength(styles);
   });
+
+  test("custom formatters know the axis from the tooltip; currencyDisplay and currencySymbol", async () => {
+    await page.viewport(900, 700);
+    const contexts = new Set<string>();
+    const { rerender } = render(
+      <FormatProvider locale="en-US" currency="PEN">
+        <div style={{ width: 640 }}>
+          <TimeSeriesChart
+            aria-label="Net sales"
+            data={data}
+            series={[{ key: "sales", label: "Net sales" }]}
+            valueFormat={(value, { context }) => {
+              contexts.add(context);
+              return context === "axis" ? `A${Math.round(value / 1000)}k` : `T${value}`;
+            }}
+          />
+        </div>
+      </FormatProvider>,
+    );
+    const figure = () => screen.getByRole("figure", { name: "Net sales" });
+    const yTicks = () =>
+      Array.from(
+        figure().querySelectorAll(
+          ".recharts-yAxis-tick-labels .recharts-cartesian-axis-tick-value",
+        ),
+      ).map((tick) => tick.textContent ?? "");
+    await expect.poll(() => yTicks().length).toBeGreaterThan(1);
+    expect(yTicks().every((tick) => /^A\d+k$/.test(tick))).toBe(true);
+    const surface = figure().querySelector(".recharts-surface")!.getBoundingClientRect();
+    await userEvent.hover(figure().querySelector(".recharts-surface")!, {
+      position: { x: surface.width / 2, y: surface.height / 2 },
+    });
+    const tooltip = await screen.findByText(/^T\d+$/, {
+      selector: "[data-slot='time-series-chart-tooltip'] span",
+    });
+    expect(tooltip).toBeInTheDocument();
+    expect([...contexts].sort()).toEqual(["axis", "tooltip"]);
+
+    // A sol store in an English locale: Intl only has "PEN"; currencySymbol gives "S/".
+    rerender(
+      <FormatProvider locale="en-US" currency="PEN">
+        <div style={{ width: 640 }}>
+          <TimeSeriesChart
+            aria-label="Net sales"
+            data={data}
+            series={[{ key: "sales", label: "Net sales" }]}
+            valueFormat="currency"
+            currencySymbol="S/"
+          />
+        </div>
+      </FormatProvider>,
+    );
+    await expect.poll(() => yTicks().some((tick) => tick.startsWith("S/"))).toBe(true);
+    expect(yTicks().some((tick) => tick.includes("PEN"))).toBe(false);
+
+    // es-PE has the local sign; currencyDisplay="code" asks for the ISO code.
+    rerender(
+      <FormatProvider locale="es-PE" currency="PEN">
+        <div style={{ width: 640 }}>
+          <TimeSeriesChart
+            aria-label="Net sales"
+            data={data}
+            series={[{ key: "sales", label: "Net sales" }]}
+            valueFormat="currency"
+          />
+        </div>
+      </FormatProvider>,
+    );
+    await expect.poll(() => yTicks().some((tick) => tick.startsWith("S/"))).toBe(true);
+    rerender(
+      <FormatProvider locale="es-PE" currency="PEN">
+        <div style={{ width: 640 }}>
+          <TimeSeriesChart
+            aria-label="Net sales"
+            data={data}
+            series={[{ key: "sales", label: "Net sales" }]}
+            valueFormat="currency"
+            currencyDisplay="code"
+          />
+        </div>
+      </FormatProvider>,
+    );
+    await expect.poll(() => yTicks().some((tick) => tick.startsWith("PEN"))).toBe(true);
+  });
 });

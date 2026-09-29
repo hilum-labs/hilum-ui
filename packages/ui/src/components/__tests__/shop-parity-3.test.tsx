@@ -6,6 +6,7 @@ import { InputGroup } from "../input-group";
 import { InputNumber } from "../input-number";
 import { PreviewFrame } from "../preview-frame";
 import { StatCard } from "../stat-card";
+import { formatCurrency } from "../../lib/format";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -258,5 +259,55 @@ describe("StatCard value sizing", () => {
     expect(node!.style.getPropertyValue("--stat-value-chars")).toBe("");
     // Each value sits in its own size container.
     expect(money!.parentElement).toHaveClass("@container/stat-card-value");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* formatCurrency currencyDisplay / currencySymbol                      */
+/* ------------------------------------------------------------------ */
+
+describe("formatCurrency currency sign", () => {
+  const plain = (text: string) => text.replace(/[\u00a0\u202f]/g, " ");
+
+  it("passes currencyDisplay to Intl", () => {
+    // es-PE has a local sign for the sol; narrowSymbol drops a country prefix.
+    expect(plain(formatCurrency(1234.5, { currency: "PEN", locale: "es-PE" }))).toBe("S/ 1,234.50");
+    expect(formatCurrency(5, { currency: "CAD", locale: "en" })).toBe("CA$5.00");
+    expect(
+      formatCurrency(5, { currency: "CAD", locale: "en", currencyDisplay: "narrowSymbol" }),
+    ).toBe("$5.00");
+    expect(
+      plain(formatCurrency(72, { currency: "PEN", locale: "en-US", currencyDisplay: "code" })),
+    ).toBe("PEN 72.00");
+  });
+
+  it("replaces the sign with currencySymbol, keeping position and spacing", () => {
+    expect(
+      plain(formatCurrency(72, { currency: "PEN", locale: "en-US", currencySymbol: "S/" })),
+    ).toBe("S/ 72.00");
+    expect(
+      plain(
+        formatCurrency(1234567, {
+          currency: "PEN",
+          locale: "en-US",
+          currencySymbol: "S/",
+          notation: "compact",
+          maximumFractionDigits: 1,
+        }),
+      ),
+    ).toBe("S/ 1.2M");
+    // Trailing signs stay trailing.
+    expect(
+      plain(formatCurrency(5, { currency: "EUR", locale: "de-DE", currencySymbol: "EUR" })),
+    ).toBe("5,00 EUR");
+    expect(formatCurrency(null, { currencySymbol: "S/" })).toBe("—");
+    expect(
+      formatCurrency(1050, {
+        currency: "PEN",
+        locale: "en-US",
+        minorUnits: true,
+        currencySymbol: "S/",
+      }),
+    ).toMatch(/^S\/\s10\.50$/);
   });
 });

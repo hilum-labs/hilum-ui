@@ -20,7 +20,13 @@ interface TimeSeriesChartSeries {
   dashed?: boolean;
 }
 
-type TimeSeriesValueFormat = "number" | "currency" | "percent" | ((value: number) => string);
+/** Where a formatted value is shown: a y-axis tick (keep it short) or the tooltip (full). */
+interface TimeSeriesValueFormatInfo {
+  context: "axis" | "tooltip";
+}
+
+type TimeSeriesValueFormat =
+  "number" | "currency" | "percent" | ((value: number, info: TimeSeriesValueFormatInfo) => string);
 type TimeSeriesDateFormat = Intl.DateTimeFormatOptions | ((date: Date) => string);
 
 /** Localizable strings. Every entry has an English default. */
@@ -58,11 +64,25 @@ interface TimeSeriesChartProps {
   height?: number;
   /**
    * Value formatting for the y-axis (compact) and tooltip (full): "number"
-   * (default), "currency", "percent" (0.12 → 12%) or a function.
+   * (default), "currency", "percent" (0.12 → 12%) or a function. A function
+   * gets `{ context: "axis" | "tooltip" }` as its second argument, e.g.
+   * `(value, { context }) => formatMoney(value, context === "axis" ? { notation: "compact" } : {})`.
    */
   valueFormat?: TimeSeriesValueFormat;
   /** ISO-4217 code for `valueFormat="currency"`. Default: FormatProvider currency, then USD. */
   currency?: string;
+  /**
+   * How `valueFormat="currency"` shows the currency, as in Intl /
+   * `formatCurrency`: "symbol" (default: "$", "CA$", "S/" in es-PE, "PEN" in
+   * en), "narrowSymbol" ("$" for CAD too), "code" ("PEN") or "name".
+   */
+  currencyDisplay?: Intl.NumberFormatOptions["currencyDisplay"];
+  /**
+   * Replaces Intl's currency sign on the axis and in the tooltip, e.g. "S/"
+   * for PEN in an English locale, where Intl only has "PEN" (as in
+   * `formatCurrency`).
+   */
+  currencySymbol?: string;
   /** Values are in minor units (cents) for `valueFormat="currency"`. */
   minorUnits?: boolean;
   /** X-axis tick format. Default: "Sep 26". */
@@ -113,6 +133,8 @@ function TimeSeriesChart({
   height = 240,
   valueFormat = "number",
   currency,
+  currencyDisplay = "symbol",
+  currencySymbol,
   minorUnits = false,
   dateFormat = { month: "short", day: "numeric" },
   tooltipDateFormat = { month: "short", day: "numeric", year: "numeric" },
@@ -138,11 +160,15 @@ function TimeSeriesChart({
   );
 
   const formatValue = (value: number, compact: boolean): string => {
-    if (typeof valueFormat === "function") return valueFormat(value);
+    if (typeof valueFormat === "function") {
+      return valueFormat(value, { context: compact ? "axis" : "tooltip" });
+    }
     const notation = compact ? ({ notation: "compact" } as const) : {};
     if (valueFormat === "currency") {
       return fmt.currency(value, {
         ...(currency ? { currency } : {}),
+        currencyDisplay,
+        ...(currencySymbol !== undefined ? { currencySymbol } : {}),
         minorUnits,
         ...notation,
         ...(compact ? { maximumFractionDigits: 1 } : {}),
@@ -352,4 +378,5 @@ export type {
   TimeSeriesChartSeries,
   TimeSeriesDateFormat,
   TimeSeriesValueFormat,
+  TimeSeriesValueFormatInfo,
 };
