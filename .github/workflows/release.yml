@@ -26,7 +26,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
 
       - uses: actions/setup-node@v7
         with:
@@ -44,7 +44,7 @@ jobs:
       # With none (i.e. the version PR was just merged): builds and publishes
       # whatever versions npm doesn't have yet. Auth is OIDC; no NPM_TOKEN.
       # Stay on v1 until @changesets/cli moves to v3: action v2 refuses CLI v2.
-      - uses: changesets/action@v1
+      - uses: changesets/action@v2
         with:
           version: pnpm release:version
           publish: pnpm release:publish
