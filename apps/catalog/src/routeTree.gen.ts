@@ -35,6 +35,7 @@ import { Route as MoleculesResourcePickerPageRouteImport } from './app/molecules
 import { Route as MoleculesRadioCardPageRouteImport } from './app/molecules/radio-card/page'
 import { Route as MoleculesPropertyRowPageRouteImport } from './app/molecules/property-row/page'
 import { Route as MoleculesPageHeadingPageRouteImport } from './app/molecules/page-heading/page'
+import { Route as MoleculesPreviewFramePageRouteImport } from './app/molecules/preview-frame/page'
 import { Route as MoleculesNotificationPageRouteImport } from './app/molecules/notification/page'
 import { Route as MoleculesNavMenuPageRouteImport } from './app/molecules/nav-menu/page'
 import { Route as MoleculesMobileDrawerPageRouteImport } from './app/molecules/mobile-drawer/page'
@@ -336,6 +337,12 @@ const MoleculesPageHeadingPageRoute =
   MoleculesPageHeadingPageRouteImport.update({
     id: '/molecules/page-heading/',
     path: '/molecules/page-heading/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MoleculesPreviewFramePageRoute =
+  MoleculesPreviewFramePageRouteImport.update({
+    id: '/molecules/preview-frame/',
+    path: '/molecules/preview-frame/',
     getParentRoute: () => rootRouteImport,
   } as any)
 const MoleculesNotificationPageRoute =
@@ -1383,6 +1390,7 @@ export interface FileRoutesByFullPath {
   '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
+  '/molecules/preview-frame/': typeof MoleculesPreviewFramePageRoute
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item/': typeof MoleculesResourceItemPageRoute
@@ -1574,6 +1582,7 @@ export interface FileRoutesByTo {
   '/molecules/nav-menu': typeof MoleculesNavMenuPageRoute
   '/molecules/notification': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading': typeof MoleculesPageHeadingPageRoute
+  '/molecules/preview-frame': typeof MoleculesPreviewFramePageRoute
   '/molecules/property-row': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item': typeof MoleculesResourceItemPageRoute
@@ -1766,6 +1775,7 @@ export interface FileRoutesById {
   '/molecules/nav-menu/': typeof MoleculesNavMenuPageRoute
   '/molecules/notification/': typeof MoleculesNotificationPageRoute
   '/molecules/page-heading/': typeof MoleculesPageHeadingPageRoute
+  '/molecules/preview-frame/': typeof MoleculesPreviewFramePageRoute
   '/molecules/property-row/': typeof MoleculesPropertyRowPageRoute
   '/molecules/radio-card/': typeof MoleculesRadioCardPageRoute
   '/molecules/resource-item/': typeof MoleculesResourceItemPageRoute
@@ -1959,6 +1969,7 @@ export interface FileRouteTypes {
     | '/molecules/nav-menu/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
+    | '/molecules/preview-frame/'
     | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/resource-item/'
@@ -2150,6 +2161,7 @@ export interface FileRouteTypes {
     | '/molecules/nav-menu'
     | '/molecules/notification'
     | '/molecules/page-heading'
+    | '/molecules/preview-frame'
     | '/molecules/property-row'
     | '/molecules/radio-card'
     | '/molecules/resource-item'
@@ -2341,6 +2353,7 @@ export interface FileRouteTypes {
     | '/molecules/nav-menu/'
     | '/molecules/notification/'
     | '/molecules/page-heading/'
+    | '/molecules/preview-frame/'
     | '/molecules/property-row/'
     | '/molecules/radio-card/'
     | '/molecules/resource-item/'
@@ -2533,6 +2546,7 @@ export interface RootRouteChildren {
   MoleculesNavMenuPageRoute: typeof MoleculesNavMenuPageRoute
   MoleculesNotificationPageRoute: typeof MoleculesNotificationPageRoute
   MoleculesPageHeadingPageRoute: typeof MoleculesPageHeadingPageRoute
+  MoleculesPreviewFramePageRoute: typeof MoleculesPreviewFramePageRoute
   MoleculesPropertyRowPageRoute: typeof MoleculesPropertyRowPageRoute
   MoleculesRadioCardPageRoute: typeof MoleculesRadioCardPageRoute
   MoleculesResourceItemPageRoute: typeof MoleculesResourceItemPageRoute
@@ -2732,6 +2746,13 @@ declare module '@tanstack/react-router' {
       path: '/molecules/page-heading'
       fullPath: '/molecules/page-heading/'
       preLoaderRoute: typeof MoleculesPageHeadingPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/preview-frame/': {
+      id: '/molecules/preview-frame/'
+      path: '/molecules/preview-frame'
+      fullPath: '/molecules/preview-frame/'
+      preLoaderRoute: typeof MoleculesPreviewFramePageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/notification/': {
@@ -4055,6 +4076,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesNavMenuPageRoute: MoleculesNavMenuPageRoute,
   MoleculesNotificationPageRoute: MoleculesNotificationPageRoute,
   MoleculesPageHeadingPageRoute: MoleculesPageHeadingPageRoute,
+  MoleculesPreviewFramePageRoute: MoleculesPreviewFramePageRoute,
   MoleculesPropertyRowPageRoute: MoleculesPropertyRowPageRoute,
   MoleculesRadioCardPageRoute: MoleculesRadioCardPageRoute,
   MoleculesResourceItemPageRoute: MoleculesResourceItemPageRoute,

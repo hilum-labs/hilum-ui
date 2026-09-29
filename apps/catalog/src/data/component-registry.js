@@ -558,6 +558,15 @@ const componentDefinitions = [
     "Button · Badge · Breadcrumb",
   ],
   [
+    "preview-frame",
+    "Preview Frame",
+    "molecules",
+    "Media",
+    "data",
+    "Sandboxed iframe for storefront and theme previews with mobile, tablet and desktop widths, scale to fit, loading and error states.",
+    "Toggle Group · Skeleton · Button",
+  ],
+  [
     "pagination",
     "Pagination",
     "atoms",

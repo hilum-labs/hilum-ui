@@ -98,6 +98,7 @@ export * from "./components/notification";
 export * from "./components/page-heading";
 export * from "./components/pagination";
 export * from "./components/popover";
+export * from "./components/preview-frame";
 export * from "./components/progress";
 export * from "./components/property-row";
 export * from "./components/radio-card";

@@ -23,6 +23,7 @@ import { ResourcePicker } from "../../packages/ui/src/components/resource-picker
 import { DataTable } from "../../packages/ui/src/components/data-table";
 import { ResourceCell } from "../../packages/ui/src/components/resource-item";
 import { Steps } from "../../packages/ui/src/components/steps";
+import { PreviewFrame } from "../../packages/ui/src/components/preview-frame";
 
 async function expectAccessible(ui: React.ReactElement) {
   render(ui);
@@ -190,5 +191,18 @@ describe("a11y: shop parity 2", () => {
         <Steps steps={steps} variant="bullets" labels={{ progress: "Setup progress" }} />
       </div>,
     );
+  });
+
+  it("PreviewFrame loading, loaded and failed", async () => {
+    const { container } = render(
+      <div>
+        <PreviewFrame src="about:blank" title="Preview of Dawn" showOpenInNewTab />
+        <PreviewFrame src="about:blank" title="Preview of Sense" device="mobile" error />
+      </div>,
+    );
+    // The framed page is another document; audit the frame chrome only.
+    expect(await axe(document.body, { iframes: false })).toHaveNoAxeViolations();
+    fireEvent.load(container.querySelector("iframe")!);
+    expect(await axe(document.body, { iframes: false })).toHaveNoAxeViolations();
   });
 });

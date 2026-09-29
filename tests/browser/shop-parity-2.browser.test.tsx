@@ -19,6 +19,7 @@ import {
   Input,
   InputNumber,
   NativeSelect,
+  PreviewFrame,
   Steps,
   Select,
   SelectContent,
@@ -356,5 +357,53 @@ describe("PageHeader on a phone (real browser)", () => {
     expect(getComputedStyle(preview).display).not.toBe("none");
     expect(preview.getBoundingClientRect().width).toBeGreaterThan(0);
     expect(screen.queryByRole("button", { name: /more actions/i })).toBeNull();
+  });
+});
+
+describe("PreviewFrame (real browser)", () => {
+  const PAGE = "data:text/html,<h1>Storefront</h1>";
+
+  it("scales the desktop page to fit and frames a mobile page at its width", async () => {
+    const { container, rerender } = render(
+      <div style={{ width: 640 }}>
+        <PreviewFrame src={PAGE} title="Preview of Dawn" height={400} />
+      </div>,
+    );
+    const frame = screen.getByTitle("Preview of Dawn");
+    await expect
+      .poll(() => container.querySelector("[data-slot=preview-frame-loading]"))
+      .toBeNull();
+    const stage = container.querySelector("[data-slot=preview-frame-stage]")!;
+    const stageBox = stage.getBoundingClientRect();
+    // Laid out at 1280px, scaled to the 638px stage (640 minus borders).
+    expect(frame.style.width).toBe("1280px");
+    const box = frame.getBoundingClientRect();
+    expect(box.width).toBeCloseTo(stageBox.width, 0);
+    expect(box.height).toBeCloseTo(stageBox.height, 0);
+    expect(frame.style.transform).toMatch(/^scale\(0\.49/);
+
+    rerender(
+      <div style={{ width: 640 }}>
+        <PreviewFrame src={PAGE} title="Preview of Dawn" height={400} device="mobile" />
+      </div>,
+    );
+    const mobile = screen.getByTitle("Preview of Dawn").getBoundingClientRect();
+    expect(mobile.width).toBeCloseTo(390, 0);
+    // Centred in the stage.
+    expect(mobile.left - stageBox.left).toBeCloseTo(stageBox.right - mobile.right, 0);
+  });
+
+  it("the device toggle uses the Smartphone / Tablet / Monitor icons", () => {
+    render(<PreviewFrame src={PAGE} title="Preview of Dawn" />);
+    for (const name of ["Mobile", "Tablet", "Desktop"]) {
+      const radio = screen.getByRole("radio", { name });
+      expect(radio.querySelector("svg")).not.toBeNull();
+    }
+    expect(
+      screen.getByRole("radio", { name: "Mobile" }).querySelector("svg.lucide-smartphone"),
+    ).not.toBeNull();
+    expect(
+      screen.getByRole("radio", { name: "Desktop" }).querySelector("svg.lucide-monitor"),
+    ).not.toBeNull();
   });
 });

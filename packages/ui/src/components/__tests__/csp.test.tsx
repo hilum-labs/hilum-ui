@@ -24,6 +24,10 @@ import { RichTextEditor } from "../rich-text-editor";
 import { ChartContainer, chartColorVariables, LineChart, Line } from "../chart";
 import { CommandPalette } from "../command-palette";
 import { applyTheme } from "../../tokens/create-theme";
+import { PreviewFrame } from "../preview-frame";
+import { MultiCombobox } from "../multi-combobox";
+import { TagInput } from "../tag-input";
+import { ResourcePicker } from "../resource-picker";
 
 /**
  * Strict CSP (`style-src 'self'`) blocks runtime <style> elements. Hilum's own
@@ -185,6 +189,27 @@ describe("no runtime <style> from Hilum components (strict CSP)", () => {
     [
       "CommandPalette",
       () => render(<CommandPalette open onClose={() => {}} items={[{ label: "Orders" }]} />),
+    ],
+    [
+      "PreviewFrame",
+      () => render(<PreviewFrame src="about:blank" title="Preview" device="mobile" />),
+    ],
+    [
+      "MultiCombobox, TagInput and ResourcePicker",
+      () =>
+        render(
+          <>
+            <MultiCombobox aria-label="Fruits" options={[{ value: "a", label: "Apple" }]} />
+            <TagInput aria-label="Tags" defaultValue={["a"]} suggestions={["b"]} />
+            <ResourcePicker
+              open
+              onOpenChange={() => {}}
+              title="Add products"
+              items={[{ id: "1", title: "Mug", thumbnail: null }]}
+              onSelect={() => {}}
+            />
+          </>,
+        ),
     ],
   ];
 
