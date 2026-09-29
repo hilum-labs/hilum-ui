@@ -234,7 +234,12 @@ function useFieldControl(
   return result;
 }
 
-export { FieldContext, useFieldContext, useFieldControl, useFieldRegistry };
+/** Whether an `aria-invalid` value marks the control invalid. */
+function isAriaInvalid(value: React.AriaAttributes["aria-invalid"] | undefined): boolean {
+  return value != null && value !== false && value !== "false";
+}
+
+export { FieldContext, isAriaInvalid, useFieldContext, useFieldControl, useFieldRegistry };
 export type {
   FieldContextValue,
   FieldControlProps,

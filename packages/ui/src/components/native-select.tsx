@@ -6,6 +6,7 @@ import { cn } from "../lib/utils";
 import {
   compactFieldFocusClasses,
   compactFieldSurfaceClasses,
+  controlInvalidClasses,
   controlSizeClasses,
 } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
@@ -42,11 +43,11 @@ function NativeSelect({
           "text-foreground",
           "focus:border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",
-          "aria-[invalid=true]:border-destructive aria-[invalid=true]:focus:ring-destructive/20",
           // Editor-chrome density: the same 24px filled field as Input.
           "compact:h-6 compact:py-0 compact:ps-2 compact:pe-6 compact:rounded-[5px] compact:text-[12px]",
           compactFieldSurfaceClasses,
           compactFieldFocusClasses,
+          controlInvalidClasses,
           className,
         )}
         {...props}

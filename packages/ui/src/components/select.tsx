@@ -10,7 +10,7 @@ import { useShape } from "../lib/shape-context";
 import { useScrollEdges, ScrollEdgeCue } from "../lib/scroll-fade";
 import { useFieldControl } from "../lib/field-context";
 import { surfaceClasses } from "../lib/surface-classes";
-import { controlHeightClass, controlSizeClasses } from "../lib/interaction";
+import { controlHeightClass, controlInvalidClasses, controlSizeClasses } from "../lib/interaction";
 import { SurfaceProvider, useSurface } from "../lib/surface-context";
 import {
   mobilePopperSheetMotionClassName,
@@ -159,8 +159,8 @@ function SelectTrigger({
           selectTriggerMobileDensityClasses[mobileDensity],
           selectTriggerMobileSurfaceClasses[mobileSurface],
           shape.input,
-          error &&
-            "border-destructive/50 hover:border-destructive/50 compact:border-destructive/50 compact:hover:border-destructive/50",
+          // aria-invalid comes from `error`, a surrounding <Field error> or the prop.
+          controlInvalidClasses,
           className,
         )}
         {...props}

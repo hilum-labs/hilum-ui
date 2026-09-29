@@ -52,6 +52,30 @@ export const inputFocusWithinClasses = [
   "compact:focus-within:border-ring compact:focus-within:bg-background compact:focus-within:ring-0",
 ].join(" ");
 
+/**
+ * Error state of a text-entry control carrying `aria-invalid="true"` (set by
+ * `<Field error>` or explicitly): a destructive border at rest, on hover and
+ * on focus, and a destructive focus halo, so focus stays visible while the
+ * error reads. The stacked variants out-rank the plain `hover:` / `focus:`
+ * border classes by specificity, whatever their order.
+ */
+export const controlInvalidClasses = [
+  "aria-invalid:border-destructive aria-invalid:hover:border-destructive",
+  "aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-2 aria-invalid:focus-visible:ring-destructive/35",
+  "compact:aria-invalid:border-destructive compact:aria-invalid:hover:border-destructive",
+].join(" ");
+
+/**
+ * The same error state for composite fields (InputNumber, TimePicker,
+ * ColorInput, MultiCombobox, TagInput) whose wrapper carries `data-invalid`
+ * and whose focus is shown with `focus-within`.
+ */
+export const controlInvalidWithinClasses = [
+  "data-[invalid]:border-destructive data-[invalid]:hover:border-destructive",
+  "data-[invalid]:focus-within:border-destructive data-[invalid]:focus-within:ring-2 data-[invalid]:focus-within:ring-destructive/35",
+  "compact:data-[invalid]:border-destructive compact:data-[invalid]:hover:border-destructive",
+].join(" ");
+
 export const iconStrokeClasses =
   "[&_svg]:transition-[stroke-width,transform,color] [&_svg]:duration-150 [&_svg]:ease-out group-hover:[&_svg]:stroke-[2]";
 

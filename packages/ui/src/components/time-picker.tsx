@@ -4,8 +4,9 @@ import * as React from "react";
 import { Clock, X } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useFormatter } from "../lib/format";
-import { useFieldControl } from "../lib/field-context";
+import { isAriaInvalid, useFieldControl } from "../lib/field-context";
 import {
+  controlInvalidWithinClasses,
   controlSizeClasses,
   controlSurfaceClasses,
   inputFocusWithinClasses,
@@ -458,7 +459,7 @@ function TimePicker({
       aria-labelledby={ariaLabelledBy}
       aria-describedby={fieldProps["aria-describedby"]}
       aria-disabled={disabled || undefined}
-      data-invalid={fieldProps["aria-invalid"] ? "" : undefined}
+      data-invalid={isAriaInvalid(fieldProps["aria-invalid"]) ? "" : undefined}
       data-slot="time-picker"
       className={cn(
         "relative inline-flex min-w-0 items-center gap-2 rounded-md px-3 text-foreground",
@@ -466,7 +467,7 @@ function TimePicker({
         controlSurfaceClasses,
         motionClasses,
         inputFocusWithinClasses,
-        fieldProps["aria-invalid"] && "border-destructive",
+        controlInvalidWithinClasses,
         disabled && "cursor-not-allowed bg-muted opacity-50",
         "compact:h-6 compact:px-2 compact:text-[12px]",
         className,
