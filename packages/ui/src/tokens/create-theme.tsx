@@ -24,6 +24,12 @@ export interface ThemeResult {
     primary: Record<string, string>;
     secondary: Record<string, string>;
   };
+  /**
+   * `--brand-text` per theme: the palette shade closest to `primary` that
+   * stays ≥ 4.5:1 on the theme's surfaces and on the brand tint behind
+   * active nav items.
+   */
+  brandText: { light: string; mid: string; dark: string };
 }
 
 /* ------------------------------------------------------------------ *
@@ -165,6 +171,66 @@ function autoFg(hex: string): string {
 }
 
 /* ------------------------------------------------------------------ *
+ *  Brand text (text on the brand tint)                                 *
+ * ------------------------------------------------------------------ */
+
+// Surfaces nav items sit on per theme (background, card, surface / muted in
+// tokens.ts), and the tint alphas active items use (none, /10, hover /15).
+const TEXT_SURFACES = {
+  light: ["#ffffff", "#fafafa"],
+  mid: ["#737373", "#525252"],
+  dark: ["#171717", "#1a1a1a", "#262626"],
+};
+const TINT_ALPHAS = [0, 0.1, 0.15];
+
+function rgb(hex: string): number[] {
+  return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+}
+
+function hexOf(channels: number[]): string {
+  return `#${channels.map((c) => Math.round(c).toString(16).padStart(2, "0")).join("")}`;
+}
+
+/** WCAG contrast of `text` on `tint` at `alpha` over `surface`. */
+function tintContrast(text: string, tint: string, alpha: number, surface: string): number {
+  const t = rgb(tint);
+  const bg = hexOf(rgb(surface).map((c, i) => t[i]! * alpha + c * (1 - alpha)));
+  const [a, b] = [relativeLuminance(text), relativeLuminance(bg)];
+  return (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+}
+
+/** Lowest contrast of `text` over the theme's surfaces and tints. */
+function brandTextContrast(
+  text: string,
+  primaryHex: string,
+  theme: keyof typeof TEXT_SURFACES,
+): number {
+  return Math.min(
+    ...TEXT_SURFACES[theme].flatMap((surface) =>
+      TINT_ALPHAS.map((alpha) => tintContrast(text, primaryHex, alpha, surface)),
+    ),
+  );
+}
+
+function pickBrandText(
+  p: Record<string, string>,
+  primaryHex: string,
+  theme: keyof typeof TEXT_SURFACES,
+): string {
+  // Walk from the brand shade toward more contrast, then plain black/white.
+  // The mid gray can leave no colour at 4.5:1 for a bright brand; then the
+  // best one wins.
+  const shades = theme === "light" ? SHADE_KEYS.slice(5) : SHADE_KEYS.slice(0, 6).reverse();
+  const candidates = [...shades.map((k) => p[k]!), "#000000", "#ffffff"];
+  const scored = candidates.map((text) => ({
+    text,
+    contrast: brandTextContrast(text, primaryHex, theme),
+  }));
+  const best = scored.reduce((a, b) => (b.contrast > a.contrast ? b : a));
+  return (scored.find((c) => c.contrast >= 4.5) ?? best).text;
+}
+
+/* ------------------------------------------------------------------ *
  *  CSS emission                                                        *
  * ------------------------------------------------------------------ */
 
@@ -173,6 +239,7 @@ function buildCss(
   s: Record<string, string>,
   primaryHex: string,
   secondaryHex: string,
+  brandText: ThemeResult["brandText"],
 ): string {
   const pfg = autoFg(primaryHex);
 
@@ -181,6 +248,7 @@ function buildCss(
     `  --color-brand-secondary: ${secondaryHex};`,
     `  --primary: ${primaryHex};`,
     `  --primary-foreground: ${pfg};`,
+    `  --brand-text: ${brandText.light};`,
     `  --accent: ${p["50"]};`,
     `  --accent-foreground: ${p["700"]};`,
     `  --ring: ${primaryHex};`,
@@ -196,6 +264,7 @@ function buildCss(
     `  --color-brand-secondary: ${secondaryHex};`,
     `  --primary: ${primaryHex};`,
     `  --primary-foreground: #ffffff;`,
+    `  --brand-text: ${brandText.dark};`,
     `  --accent: ${p["900"]};`,
     `  --accent-foreground: ${p["100"]};`,
     `  --ring: ${primaryHex};`,
@@ -222,6 +291,10 @@ ${darkMediaBlock}
 [data-theme="dark"] {
 ${darkBlock}
 }
+
+[data-theme="mid"] {
+  --brand-text: ${brandText.mid};
+}
 `;
 }
 
@@ -234,7 +307,16 @@ export function createTheme(config: ThemeConfig): ThemeResult {
   const secondary = config.secondary.trim().toLowerCase();
   const p = generatePalette(primary);
   const s = generatePalette(secondary);
-  return { css: buildCss(p, s, primary, secondary), palette: { primary: p, secondary: s } };
+  const brandText = {
+    light: pickBrandText(p, primary, "light"),
+    mid: pickBrandText(p, primary, "mid"),
+    dark: pickBrandText(p, primary, "dark"),
+  };
+  return {
+    css: buildCss(p, s, primary, secondary, brandText),
+    palette: { primary: p, secondary: s },
+    brandText,
+  };
 }
 
 /**
