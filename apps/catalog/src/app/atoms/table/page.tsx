@@ -310,7 +310,7 @@ const [sort, setSort] = useState<{ col: string; dir: "asc" | "desc" } | null>(nu
   <button className="flex items-center gap-1 hover:text-foreground"
     onClick={() => setSort(s => s?.col === "name" ? { col: "name", dir: s.dir === "asc" ? "desc" : "asc" } : { col: "name", dir: "asc" })}>
     Name
-    <ChevronsUpDown size={12} className="text-muted-foreground/70" />
+    <ChevronsUpDown size={12} className="text-muted-foreground" />
   </button>
 </TableHead>`,
 
@@ -432,7 +432,7 @@ function SortableTable() {
     );
 
   const SortIcon = ({ col }: { col: string }) => {
-    if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-muted-foreground/70" />;
+    if (sort?.col !== col) return <ChevronsUpDown size={12} className="text-muted-foreground" />;
     return sort.dir === "asc" ? <ChevronUp size={12} /> : <ChevronDown size={12} />;
   };
 

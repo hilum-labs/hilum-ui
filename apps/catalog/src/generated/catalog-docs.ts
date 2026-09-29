@@ -2113,7 +2113,7 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "Inherited props",
-        "description": "Also accepts native HTML/React attributes (273)."
+        "description": "Also accepts native HTML/React attributes (272)."
       }
     ],
     "exampleCode": "import { FileDropzone } from \"@hilum/ui\"\n\nconst [files, setFiles] = React.useState([])\n\n<FileDropzone\n  accept=\"image/*\"\n  multiple\n  selectedFiles={files}\n  onFilesSelected={setFiles}\n  description=\"PNG, JPG, or WebP up to 10 MB each.\"\n/>",

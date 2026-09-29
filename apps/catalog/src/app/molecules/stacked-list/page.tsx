@@ -34,7 +34,7 @@ const CODE = {
           <p className="body font-semibold text-foreground truncate">{person.name}</p>
           <p className="caption text-muted-foreground truncate">{person.email}</p>
         </div>
-        <ChevronRight size={14} className="shrink-0 text-muted-foreground/70" />
+        <ChevronRight size={14} className="shrink-0 text-muted-foreground" />
       </div>
     </StackedListItem>
   ))}
@@ -52,7 +52,7 @@ const CODE = {
         </div>
         <div className="flex items-center gap-2">
           <Badge variant="secondary">{app.date}</Badge>
-          <ChevronRight size={14} className="text-muted-foreground/70" />
+          <ChevronRight size={14} className="text-muted-foreground" />
         </div>
       </div>
     </StackedListItem>
@@ -164,7 +164,7 @@ function StackedListPage() {
                         <p className="body font-semibold text-foreground truncate">{p.name}</p>
                         <p className="caption text-muted-foreground truncate">{p.email}</p>
                       </div>
-                      <ChevronRight size={14} className="shrink-0 text-muted-foreground/70" />
+                      <ChevronRight size={14} className="shrink-0 text-muted-foreground" />
                     </div>
                   </StackedListItem>
                 ))}
@@ -192,7 +192,7 @@ function StackedListPage() {
                       </div>
                       <div className="flex shrink-0 items-center gap-2">
                         <Badge variant="secondary">{p.date}</Badge>
-                        <ChevronRight size={14} className="text-muted-foreground/70" />
+                        <ChevronRight size={14} className="text-muted-foreground" />
                       </div>
                     </div>
                   </StackedListItem>

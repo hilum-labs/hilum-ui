@@ -36,13 +36,13 @@ import { Button } from "@hilum/ui"
       <div>
         <p className="label text-muted-foreground mb-1.5">Name</p>
         <div className="h-10 rounded-md border border-border bg-background px-3 flex items-center">
-          <span className="body text-muted-foreground/70">Your full name</span>
+          <span className="body text-muted-foreground">Your full name</span>
         </div>
       </div>
       <div>
         <p className="label text-muted-foreground mb-1.5">Bio</p>
         <div className="h-20 rounded-md border border-border bg-background px-3 py-2">
-          <span className="body text-muted-foreground/70">Tell us about yourself</span>
+          <span className="body text-muted-foreground">Tell us about yourself</span>
         </div>
       </div>
     </div>
@@ -192,13 +192,13 @@ function DrawerPage() {
                 <div>
                   <p className="label text-muted-foreground mb-1.5">Name</p>
                   <div className="h-10 rounded-md border border-border bg-background px-3 flex items-center">
-                    <span className="body text-muted-foreground/70">Your full name</span>
+                    <span className="body text-muted-foreground">Your full name</span>
                   </div>
                 </div>
                 <div>
                   <p className="label text-muted-foreground mb-1.5">Bio</p>
                   <div className="h-20 rounded-md border border-border bg-background px-3 py-2">
-                    <span className="body text-muted-foreground/70">Tell us about yourself</span>
+                    <span className="body text-muted-foreground">Tell us about yourself</span>
                   </div>
                 </div>
               </div>

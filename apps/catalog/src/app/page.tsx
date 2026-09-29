@@ -512,7 +512,7 @@ function PackageCard({ pkg }: { pkg: PackageDoc }) {
           <Package
             size={16}
             strokeWidth={1.75}
-            className="mt-1 shrink-0 text-muted-foreground/70"
+            className="mt-1 shrink-0 text-muted-foreground"
           />
         </div>
         <CardDescription className="body">{pkg.description}</CardDescription>
@@ -598,7 +598,7 @@ function Stat({ label, value, active }: { label: string; value: string; active: 
       <p
         className={cn(
           "heading font-medium",
-          active ? "text-foreground" : "text-muted-foreground/70",
+          active ? "text-foreground" : "text-muted-foreground",
         )}
       >
         {value}
@@ -606,7 +606,7 @@ function Stat({ label, value, active }: { label: string; value: string; active: 
       <p
         className={cn(
           "mt-0.5 caption font-medium",
-          active ? "text-muted-foreground" : "text-muted-foreground/70",
+          active ? "text-muted-foreground" : "text-muted-foreground",
         )}
       >
         {label}

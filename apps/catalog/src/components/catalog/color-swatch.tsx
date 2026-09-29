@@ -45,7 +45,7 @@ export function ColorSwatch({ name, hex, usage, lightText = true, size = "md" }:
         <p className="truncate text-[11px] font-semibold text-foreground">{name}</p>
         <p className="font-mono caption-xs text-muted-foreground">{hex}</p>
         {usage && (
-          <p className="mt-0.5 caption-xs leading-tight text-muted-foreground/70">{usage}</p>
+          <p className="mt-0.5 caption-xs leading-tight text-muted-foreground">{usage}</p>
         )}
       </div>
     </button>
@@ -92,7 +92,7 @@ export function TokenRow({ token, value, hex, usage }: TokenRowProps) {
         {value}
       </span>
       {/* Copy feedback */}
-      <span className="w-12 shrink-0 text-right caption-xs font-medium text-muted-foreground/70 opacity-0 transition-opacity group-hover:opacity-100">
+      <span className="w-12 shrink-0 text-right caption-xs font-medium text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
         {copied ? "Copied!" : "Copy"}
       </span>
     </button>

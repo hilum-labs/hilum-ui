@@ -172,7 +172,7 @@ function ColorPicker({
           className="h-9 w-28 rounded-md border border-border bg-background px-3 font-mono caption text-foreground focus:outline-none focus:ring-2 focus:ring-brand-primary/30"
         />
       </div>
-      <p className="caption-xs text-muted-foreground/70">
+      <p className="caption-xs text-muted-foreground">
         {label}-500 anchor · 11 shades generated
       </p>
     </div>
@@ -375,7 +375,7 @@ function ThemingPage() {
         </p>
         <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-border pt-5">
           <Badge variant="secondary">@hilum/ui/create-theme</Badge>
-          <span className="caption text-muted-foreground/70">
+          <span className="caption text-muted-foreground">
             No external dependencies · Works in Node + browser
           </span>
         </div>
@@ -649,7 +649,7 @@ function ThemingPage() {
                 "Foreground colors (primaryForeground) are chosen using WCAG relative luminance with a 0.179 threshold — the crossover point where white and black have equal contrast.",
               ].map((step, i) => (
                 <li key={i} className="flex gap-3">
-                  <span className="caption font-semibold text-muted-foreground/70 shrink-0 w-4">
+                  <span className="caption font-semibold text-muted-foreground shrink-0 w-4">
                     {i + 1}.
                   </span>
                   <p className="caption text-muted-foreground">{step}</p>
