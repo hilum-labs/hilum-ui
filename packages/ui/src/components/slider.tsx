@@ -16,6 +16,7 @@ import { spring } from "../lib/springs";
 import { fontWeights } from "../lib/font-weight";
 import { useShape } from "../lib/shape-context";
 import { useDensity } from "../lib/density-context";
+import { useFieldContext } from "../lib/field-context";
 import {
   DOT_SIZE,
   MAX_STEP_DOTS,
@@ -111,6 +112,7 @@ function Slider({
   const trackRef = useRef<HTMLDivElement>(null);
   const trackWidthRef = useRef(0);
   const dragging = useRef(false);
+  const fieldContext = useFieldContext();
   const activeDragThumb = useRef<number>(0);
   // Latest values for the ResizeObserver callback (which outlives renders).
   const latestRef = useRef({ values, min, max });
@@ -454,9 +456,12 @@ function Slider({
   // accessible name: an explicit aria-labelledby wins, otherwise the
   // aria-label / label (suffixed per end for a range).
   const baseName = ariaLabel ?? label;
+  // Unnamed inside a Field or PropertyRow: the thumbs are labelled by it.
+  const fieldLabelId = baseName ? undefined : fieldContext?.labelId;
+  const thumbLabelledBy = labelledBy ?? fieldLabelId;
   const thumbA11y = (index: number) =>
-    labelledBy
-      ? { "aria-labelledby": labelledBy }
+    thumbLabelledBy
+      ? { "aria-labelledby": thumbLabelledBy }
       : isRange
         ? { "aria-label": labels.rangeThumb(baseName, index === 0 ? "start" : "end") }
         : baseName

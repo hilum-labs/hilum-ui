@@ -586,11 +586,13 @@ function SidebarMenuButton({
         ],
         // Collapsed state
         "data-[state=collapsed]:size-9 data-[state=collapsed]:justify-center data-[state=collapsed]:p-0",
-        "data-[state=collapsed]:[&>span]:hidden",
+        // Collapsed: the label stays as the accessible name (display:none
+        // left icon-only buttons unnamed).
+        "data-[state=collapsed]:[&>span]:sr-only",
         "group-data-[state=collapsed]/sidebar-wrapper:justify-center",
         "group-data-[state=collapsed]/sidebar-wrapper:size-9",
         "group-data-[state=collapsed]/sidebar-wrapper:p-0",
-        "group-data-[state=collapsed]/sidebar-wrapper:[&>span]:hidden",
+        "group-data-[state=collapsed]/sidebar-wrapper:[&>span]:sr-only",
         className,
       )}
       {...props}
