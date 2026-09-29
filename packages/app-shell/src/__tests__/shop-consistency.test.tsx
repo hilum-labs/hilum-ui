@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { AccountMenuHeader, Button, DropdownMenuItem } from "@hilum/ui";
+import { AppMobileNav } from "../app-mobile-nav";
 import { AppStatusBanner, type AppStatusBannerTone } from "../app-status-banner";
 
 /** Tailwind's default palette names; components must use semantic tokens instead. */
@@ -44,5 +47,60 @@ describe("AppStatusBanner tones", () => {
       "bg-success",
       "text-success-foreground",
     );
+  });
+});
+
+describe("AppMobileNav top bar", () => {
+  const sections = [{ items: [{ label: "Home", href: "/" }] }];
+
+  it("renders app actions (search, notifications) before the account menu", () => {
+    const { container } = render(
+      <AppMobileNav
+        brand="Shop"
+        sections={sections}
+        user={{ name: "Ana", email: "ana@shop.pe" }}
+        actions={
+          <>
+            <Button size="icon" variant="ghost" aria-label="Search">
+              <span />
+            </Button>
+            <Button size="icon" variant="ghost" aria-label="Notifications">
+              <span />
+            </Button>
+          </>
+        }
+      />,
+    );
+    const actions = container.querySelector("[data-slot='app-mobile-nav-actions']")!;
+    expect(actions).toContainElement(screen.getByRole("button", { name: "Search" }));
+    expect(actions).toContainElement(screen.getByRole("button", { name: "Notifications" }));
+    const account = screen.getByRole("button", { name: "Open account menu" });
+    expect(
+      actions.compareDocumentPosition(account) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
+  it("shows a custom, full account menu", async () => {
+    render(
+      <AppMobileNav
+        brand="Shop"
+        sections={sections}
+        user={{ name: "Ana Pérez", email: "ana@shop.pe" }}
+        accountMenu={
+          <>
+            <AccountMenuHeader name="Ana Pérez" email="ana@shop.pe" />
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Log out</DropdownMenuItem>
+          </>
+        }
+      />,
+    );
+    await userEvent.click(screen.getByRole("button", { name: "Open account menu" }));
+    const menu = await screen.findByRole("menu");
+    expect(menu).toHaveAttribute("data-slot", "app-mobile-nav-account-menu");
+    expect(screen.getByRole("menuitem", { name: "Billing" })).toBeInTheDocument();
+    expect(screen.getByText("ana@shop.pe")).toBeInTheDocument();
+    // The built-in default items are replaced.
+    expect(screen.queryByRole("menuitem", { name: "Profile" })).toBeNull();
   });
 });
