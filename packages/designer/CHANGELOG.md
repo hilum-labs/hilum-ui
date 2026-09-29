@@ -1,5 +1,7 @@
 # @hilum/designer
 
+## 4.3.0
+
 ## 4.2.0
 
 ### Minor Changes
