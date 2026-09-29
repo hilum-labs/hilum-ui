@@ -14,7 +14,6 @@ import {
   type HTMLAttributes,
 } from "react";
 import { motion, AnimatePresence } from "../lib/motion";
-import { Checkbox as CheckboxPrimitive } from "radix-ui";
 import { cn } from "../lib/utils";
 import { spring } from "../lib/springs";
 import { fontWeights } from "../lib/font-weight";
@@ -134,9 +133,7 @@ function CheckboxGroup({
           setActiveIndex(null);
         }}
         onKeyDown={(e) => {
-          // Scope to row wrappers only. The inner checkbox primitive also
-          // carries role="checkbox", so a bare [role="checkbox"] selector
-          // matches twice per row and arrows skip onto the hidden control.
+          // Scope to row wrappers (the items carrying data-proximity-index).
           const items = Array.from(
             containerRef.current?.querySelectorAll("[data-proximity-index]") ?? [],
           ) as HTMLElement[];
@@ -279,14 +276,12 @@ function CheckboxItem({
       )}
       {...props}
     >
-      {/* Checkbox — Radix primitive for accessibility */}
-      <CheckboxPrimitive.Root
-        checked={checked}
-        onCheckedChange={() => onToggle()}
-        tabIndex={-1}
-        aria-hidden
-        className="relative w-[15px] h-[15px] shrink-0 appearance-none bg-transparent p-0 border-0 outline-none cursor-pointer"
-        onClick={(e) => e.stopPropagation()}
+      {/* Check box — purely visual: the row is the role="checkbox" control
+          (a nested checkbox button was nested-interactive). */}
+      <span
+        aria-hidden="true"
+        data-state={checked ? "checked" : "unchecked"}
+        className="relative w-[15px] h-[15px] shrink-0"
       >
         {/* Border */}
         <div
@@ -302,44 +297,42 @@ function CheckboxItem({
         {/* Check mark — initial={false}: already checked on mount = no draw-in. */}
         <AnimatePresence initial={false}>
           {checked && (
-            <CheckboxPrimitive.Indicator forceMount asChild>
-              <motion.svg
-                width={18}
-                height={18}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 1 }}
-              >
-                <motion.path
-                  d="M6 12L10 16L18 8"
-                  initial={{ pathLength: 0 }}
-                  animate={{
-                    pathLength: 1,
-                    transition: {
-                      duration: 0.08,
-                      ease: "easeOut",
-                    },
-                  }}
-                  exit={{
-                    pathLength: 0,
-                    transition: {
-                      duration: 0.04,
-                      ease: "easeIn",
-                    },
-                  }}
-                />
-              </motion.svg>
-            </CheckboxPrimitive.Indicator>
+            <motion.svg
+              width={18}
+              height={18}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-foreground"
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 1 }}
+            >
+              <motion.path
+                d="M6 12L10 16L18 8"
+                initial={{ pathLength: 0 }}
+                animate={{
+                  pathLength: 1,
+                  transition: {
+                    duration: 0.08,
+                    ease: "easeOut",
+                  },
+                }}
+                exit={{
+                  pathLength: 0,
+                  transition: {
+                    duration: 0.04,
+                    ease: "easeIn",
+                  },
+                }}
+              />
+            </motion.svg>
           )}
         </AnimatePresence>
-      </CheckboxPrimitive.Root>
+      </span>
 
       {/* Label */}
       <span className="inline-grid text-[13px]">
