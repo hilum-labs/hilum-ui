@@ -246,7 +246,9 @@ function DesignerValueControl<K extends string>({
       ) : (
         <div
           className={cn(
-            "grid min-w-0 gap-2 compact:gap-1.5",
+            // 8px in every density: the inspector grid's column gap, so a
+            // control spanning a grid row's two field columns lines up with them.
+            "grid min-w-0 gap-2",
             items.length === 2 ? "grid-cols-2" : "grid-cols-2",
             controlsClassName,
           )}

@@ -241,6 +241,49 @@ describe("Button tile and field variants", () => {
   });
 });
 
+describe("Button icon-only marker", () => {
+  it("marks every icon-only size with data-icon-only and a 14px compact icon", () => {
+    const sizes = ["icon", "icon-xs", "icon-sm", "icon-lg"] as const;
+    render(
+      <>
+        {sizes.map((size) => (
+          <Button key={size} size={size} aria-label={size}>
+            <svg />
+          </Button>
+        ))}
+      </>,
+    );
+    for (const size of sizes) {
+      const button = screen.getByRole("button", { name: size });
+      expect(button).toHaveAttribute("data-icon-only", "");
+      expect(button).toHaveClass("compact:[&_svg]:size-3.5");
+    }
+    // The per-size default icon sizes stay (the compact class is emitted after them).
+    expect(screen.getByRole("button", { name: "icon-xs" })).toHaveClass("[&_svg]:h-3");
+  });
+
+  it("leaves text buttons unmarked", () => {
+    render(<Button size="sm">Save</Button>);
+    const button = screen.getByRole("button", { name: "Save" });
+    expect(button).not.toHaveAttribute("data-icon-only");
+    expect(button).not.toHaveClass("compact:[&_svg]:size-3.5");
+  });
+
+  it("marks the asChild root too", () => {
+    render(
+      <Button asChild size="icon-sm">
+        <a href="#top" aria-label="Top">
+          <svg />
+        </a>
+      </Button>,
+    );
+    const link = screen.getByRole("link", { name: "Top" });
+    expect(link).toHaveAttribute("data-icon-only", "");
+    expect(link).toHaveAttribute("data-slot", "button");
+    expect(link).toHaveClass("compact:[&_svg]:size-3.5");
+  });
+});
+
 describe("ButtonGroup segmented control", () => {
   it("spreads rest props on the track and passes aria-pressed through", () => {
     render(

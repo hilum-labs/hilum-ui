@@ -17,6 +17,14 @@ import {
   ArrowLeft,
   CircleHelp,
   Moon,
+  Eye,
+  EyeOff,
+  FlipHorizontal2,
+  FlipVertical2,
+  Link2,
+  Plus,
+  RotateCw,
+  RotateCwSquare,
 } from "lucide-react";
 import {
   DesignerShell,
@@ -32,12 +40,24 @@ import {
   DesignerToolbarButton,
   DesignerToolbarGroup,
   DesignerToolbarSeparator,
+  DesignerPropertyField,
   DesignerPropertyRow,
   ShellProvider,
   TwoValueControl,
   useShellContext,
 } from "@hilum/designer";
-import { Button, Input, ColorInput, Slider, cn } from "@hilum/ui";
+import {
+  Button,
+  Input,
+  InputNumber,
+  ColorInput,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  Slider,
+  cn,
+} from "@hilum/ui";
 
 const TOOLS = [
   { id: "select", label: "Select", icon: MousePointer2 },
@@ -94,6 +114,10 @@ function Demo() {
   const [y, setY] = useState(80);
   const [width, setWidth] = useState(320);
   const [height, setHeight] = useState(180);
+  const [rotation, setRotation] = useState(0);
+  const [constrained, setConstrained] = useState(false);
+  const [blend, setBlend] = useState("normal");
+  const [visible, setVisible] = useState(true);
   const [fill, setFill] = useState("#c100f1");
   const [name, setName] = useState("Hero text");
   const [zoom, setZoom] = useState(100);
@@ -328,23 +352,116 @@ function Demo() {
           <DesignerPane collapsible defaultOpen>
             <DesignerPaneTitle>Position</DesignerPaneTitle>
             <DesignerPaneContent>
-              <TwoValueControl
-                values={{ x, y }}
-                items={[
-                  { key: "x", label: "X", ariaLabel: "X position" },
-                  { key: "y", label: "Y", ariaLabel: "Y position" },
-                ]}
-                onChange={(key, value) => (key === "x" ? setX(value) : setY(value))}
-              />
-              <TwoValueControl
-                values={{ w: width, h: height }}
-                items={[
-                  { key: "w", label: "W", ariaLabel: "Width", min: 1 },
-                  { key: "h", label: "H", ariaLabel: "Height", min: 1 },
-                ]}
-                onChange={(key, value) => (key === "w" ? setWidth(value) : setHeight(value))}
-              />
+              {/* Grid rows: two field columns plus the action column, snapped across rows. */}
+              <DesignerPropertyRow layout="grid" label="Position">
+                <TwoValueControl
+                  values={{ x, y }}
+                  items={[
+                    { key: "x", label: "X", ariaLabel: "X position" },
+                    { key: "y", label: "Y", ariaLabel: "Y position" },
+                  ]}
+                  onChange={(key, value) => (key === "x" ? setX(value) : setY(value))}
+                />
+              </DesignerPropertyRow>
+              <DesignerPropertyRow
+                layout="grid"
+                label="Size"
+                action={
+                  <Button
+                    size="icon-xs"
+                    variant="ghost"
+                    aria-label="Constrain proportions"
+                    aria-pressed={constrained}
+                    onClick={() => setConstrained((c) => !c)}
+                  >
+                    <Link2 />
+                  </Button>
+                }
+              >
+                <InputNumber
+                  label="W"
+                  aria-label="Width"
+                  min={1}
+                  hideSteppers
+                  value={width}
+                  onChange={setWidth}
+                />
+                <InputNumber
+                  label="H"
+                  aria-label="Height"
+                  min={1}
+                  hideSteppers
+                  value={height}
+                  onChange={setHeight}
+                />
+              </DesignerPropertyRow>
+              <DesignerPropertyRow layout="grid" label="Rotation">
+                <InputNumber
+                  label={<RotateCw />}
+                  scrubLabel="Rotation"
+                  aria-label="Rotation"
+                  unit="°"
+                  hideSteppers
+                  value={rotation}
+                  onChange={setRotation}
+                />
+                <DesignerPropertyField className="gap-0.5">
+                  <Button size="icon-xs" variant="ghost" aria-label="Flip horizontal">
+                    <FlipHorizontal2 />
+                  </Button>
+                  <Button size="icon-xs" variant="ghost" aria-label="Flip vertical">
+                    <FlipVertical2 />
+                  </Button>
+                </DesignerPropertyField>
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  aria-label="Rotate 90°"
+                  onClick={() => setRotation((r) => (r + 90) % 360)}
+                >
+                  <RotateCwSquare />
+                </Button>
+              </DesignerPropertyRow>
             </DesignerPaneContent>
+          </DesignerPane>
+
+          <DesignerPane>
+            <DesignerPaneTitle>Layer</DesignerPaneTitle>
+            <DesignerPaneContent>
+              <DesignerPropertyRow layout="grid" label="Blend">
+                <DesignerPropertyField span={2}>
+                  <Select value={blend} onValueChange={setBlend}>
+                    <SelectTrigger aria-label="Blend mode" />
+                    <SelectContent>
+                      <SelectItem value="normal">Normal</SelectItem>
+                      <SelectItem value="multiply">Multiply</SelectItem>
+                      <SelectItem value="screen">Screen</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </DesignerPropertyField>
+                <Button
+                  size="icon-xs"
+                  variant="ghost"
+                  aria-label={visible ? "Hide layer" : "Show layer"}
+                  onClick={() => setVisible((v) => !v)}
+                >
+                  {visible ? <Eye /> : <EyeOff />}
+                </Button>
+              </DesignerPropertyRow>
+            </DesignerPaneContent>
+          </DesignerPane>
+
+          <DesignerPane>
+            <DesignerPaneTitle
+              muted
+              action={
+                <Button size="icon-xs" variant="ghost" aria-label="Add effect">
+                  <Plus />
+                </Button>
+              }
+            >
+              Effects
+            </DesignerPaneTitle>
           </DesignerPane>
 
           <DesignerPane collapsible showFor={["text"]}>

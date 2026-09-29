@@ -72,6 +72,12 @@ const buttonVariants = cva(
       { size: "sm", iconRight: true, className: "pe-1.5" },
       { size: "md", iconRight: true, className: "pe-2.5" },
       { size: "lg", iconRight: true, className: "pe-3.5" },
+      // Compact: every icon-only size draws a 14px icon, so panel icons are uniform.
+      // Emitted after the per-size `[&_svg]` sizes (a compact variant), so it wins.
+      {
+        size: ["icon", "icon-xs", "icon-sm", "icon-lg"],
+        className: "compact:[&_svg]:size-3.5",
+      },
       // After the size classes, so the field sizing follows (and overrides) them.
       {
         variant: "field",
@@ -177,6 +183,7 @@ function Button({
     return cloneElement(child, {
       ...props,
       "data-slot": "button",
+      "data-icon-only": isIconOnly ? "" : undefined,
       className: cn(
         buttonVariants({
           variant,
@@ -196,6 +203,8 @@ function Button({
     <Comp
       ref={ref}
       data-slot="button"
+      // Lets layouts target icon-only buttons (e.g. the inspector grid's action column).
+      data-icon-only={isIconOnly ? "" : undefined}
       className={cn(
         buttonVariants({
           variant,
