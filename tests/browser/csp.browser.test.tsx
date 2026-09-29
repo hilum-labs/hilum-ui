@@ -5,6 +5,7 @@
  */
 import { act, render, screen } from "@testing-library/react";
 import { page } from "vitest/browser";
+import { AppLoadingBar } from "@hilum/app-shell";
 import {
   ChartContainer,
   Dialog,
@@ -173,6 +174,23 @@ describe("under style-src 'self' (real browser)", () => {
     expect(getComputedStyle(probe).color).toBe("rgb(17, 17, 17)");
     chart.setAttribute("data-theme", "dark");
     expect(getComputedStyle(probe).color).toBe("rgb(238, 238, 238)");
+    expect(hilumViolations()).toEqual([]);
+  });
+
+  test("the app loading bar animates from tokens.css and honours reduced motion", async () => {
+    render(<AppLoadingBar />);
+    const indicator = document.querySelector<HTMLElement>(
+      "[data-slot='app-loading-bar-indicator']",
+    )!;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const style = getComputedStyle(indicator);
+    if (reduced) {
+      expect(style.animationName).toBe("none");
+      expect(style.opacity).toBe("0.6");
+    } else {
+      expect(style.animationName).toBe("hilum-app-loading-bar");
+    }
+    await settle();
     expect(hilumViolations()).toEqual([]);
   });
 
