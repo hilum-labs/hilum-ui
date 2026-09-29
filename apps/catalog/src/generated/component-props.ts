@@ -3464,6 +3464,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "default": "\"Close\"",
             "description": "Screen-reader label of the close button. Default: \"Close\".",
             "declaredIn": "packages/ui/src/components/dialog.tsx"
+          },
+          {
+            "name": "showCloseButton",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "Render the corner close button. Default: true. Turn it off when the content places its own close control (e.g. CommandPalette's search row).",
+            "declaredIn": "packages/ui/src/components/dialog.tsx"
           }
         ]
       },
@@ -7306,6 +7314,67 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
       }
     ]
   },
+  "/atoms/thumbnail/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/thumbnail.tsx",
+    "primary": "Thumbnail",
+    "components": [
+      {
+        "name": "Thumbnail",
+        "inherits": "Also accepts native HTML/React attributes (277).",
+        "props": [
+          {
+            "name": "src",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Image URL. Without one (or if it fails to load) a neutral placeholder icon shows.",
+            "declaredIn": "packages/ui/src/components/thumbnail.tsx"
+          },
+          {
+            "name": "alt",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Alternative text for the image, e.g. the product title. Pass \"\" when the thumbnail sits next to text that already names the item.",
+            "declaredIn": "packages/ui/src/components/thumbnail.tsx"
+          },
+          {
+            "name": "size",
+            "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+            "required": false,
+            "default": "\"md\"",
+            "description": "Default \"md\" (40px).",
+            "declaredIn": "packages/ui/src/components/thumbnail.tsx"
+          },
+          {
+            "name": "fit",
+            "type": "\"contain\" | \"cover\"",
+            "required": false,
+            "default": "\"cover\"",
+            "description": "`cover` crops to fill the square (default); `contain` letterboxes.",
+            "declaredIn": "packages/ui/src/components/thumbnail.tsx"
+          },
+          {
+            "name": "placeholderIcon",
+            "type": "IconComponent",
+            "required": false,
+            "default": null,
+            "description": "Placeholder icon. Default: the image icon from the active icon library.",
+            "declaredIn": "packages/ui/src/components/thumbnail.tsx"
+          },
+          {
+            "name": "loading",
+            "type": "\"eager\" | \"lazy\"",
+            "required": false,
+            "default": "\"lazy\"",
+            "description": "Forwarded to the <img>, e.g. \"eager\" for above-the-fold media. Default \"lazy\".",
+            "declaredIn": "packages/ui/src/components/thumbnail.tsx"
+          }
+        ]
+      }
+    ]
+  },
   "/atoms/time-picker/": {
     "package": "@hilum/ui",
     "source": "packages/ui/src/components/time-picker.tsx",
@@ -8233,11 +8302,33 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "declaredIn": "packages/ui/src/components/card-heading.tsx"
           },
           {
+            "name": "headingLevel",
+            "type": "2 | 3 | 4 | 5 | 6",
+            "required": false,
+            "default": "2",
+            "description": "Heading level of the title (`h2` … `h6`). Default: 2.",
+            "declaredIn": "packages/ui/src/components/card-heading.tsx"
+          },
+          {
             "name": "className",
             "type": "string",
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/card-heading.tsx"
+          }
+        ]
+      },
+      {
+        "name": "CardHeadingTitle",
+        "inherits": "Also accepts native HTML/React attributes (278).",
+        "props": [
+          {
+            "name": "level",
+            "type": "2 | 3 | 4 | 5 | 6",
+            "required": false,
+            "default": "2",
+            "description": "Rendered heading element (`h2` … `h6`). Default: 2.",
             "declaredIn": "packages/ui/src/components/card-heading.tsx"
           }
         ]
@@ -8335,7 +8426,23 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "CommandPaletteItem[]",
             "required": true,
             "default": null,
-            "description": "",
+            "description": "Static commands and pages, filtered by the query inside the palette.",
+            "declaredIn": "packages/ui/src/components/command-palette.tsx"
+          },
+          {
+            "name": "groups",
+            "type": "CommandPaletteGroup[]",
+            "required": false,
+            "default": null,
+            "description": "Result groups the app fetches for the query (see `onQueryChange`), shown after the matching `items`, in order. Their items are not filtered.",
+            "declaredIn": "packages/ui/src/components/command-palette.tsx"
+          },
+          {
+            "name": "onQueryChange",
+            "type": "(query: string) => void",
+            "required": false,
+            "default": null,
+            "description": "Called whenever the query changes (and with \"\" when the palette opens). Fetch your async `groups` here; debounce in the app if needed.",
             "declaredIn": "packages/ui/src/components/command-palette.tsx"
           },
           {
@@ -8382,8 +8489,16 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "name": "closeLabel",
             "type": "string",
             "required": false,
-            "default": null,
+            "default": "\"Close\"",
             "description": "Screen-reader label of the dialog's close button. Default: \"Close\".",
+            "declaredIn": "packages/ui/src/components/command-palette.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<CommandPaletteLabels>",
+            "required": false,
+            "default": null,
+            "description": "Localizable strings; unspecified keys fall back to English.",
             "declaredIn": "packages/ui/src/components/command-palette.tsx"
           }
         ]
@@ -8476,7 +8591,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "\"fixed\" | \"sticky\"",
             "required": false,
             "default": "\"fixed\"",
-            "description": "`fixed` pins the bar to the viewport (default: top on desktop, bottom on mobile for thumb reach). `sticky` keeps it inside its scroll container — useful inside a settings pane or a dialog.",
+            "description": "`fixed` pins the bar to the viewport (default): on desktop it replaces the app's top bar (top 0, full width, at least `--hilum-header-height` tall, above the header), like Shopify's save bar; on mobile it sits at the bottom for thumb reach. `sticky` keeps it inside its scroll container — useful inside a settings pane or a dialog.",
             "declaredIn": "packages/ui/src/components/contextual-save-bar.tsx"
           },
           {
@@ -8484,7 +8599,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "type": "number | string",
             "required": false,
             "default": null,
-            "description": "Distance from the top of the viewport in `fixed` mode (desktop) or of the scroll container in `sticky` mode — e.g. your app header height. Defaults to the `--hilum-header-height` CSS variable (0 when unset), so apps with a fixed header can set it once on `:root`.",
+            "description": "Distance from the top of the viewport in `fixed` mode (desktop) or of the scroll container in `sticky` mode. Default 0: in `fixed` mode the bar overlays the app top bar instead of sitting below it. Pass e.g. your header height to keep the top bar visible above the save bar.",
             "declaredIn": "packages/ui/src/components/contextual-save-bar.tsx"
           },
           {
@@ -9441,7 +9556,7 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
     "components": [
       {
         "name": "InputGroup",
-        "inherits": "Also accepts native HTML/React attributes (274).",
+        "inherits": "Also accepts native HTML/React attributes (273).",
         "props": [
           {
             "name": "children",
@@ -9577,6 +9692,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/input-group.tsx"
+          },
+          {
+            "name": "aria-label",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Accessible name. With a built-in input it names the input, otherwise the group.",
             "declaredIn": "packages/ui/src/components/input-group.tsx"
           }
         ]
@@ -10653,6 +10776,131 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
       }
     ]
   },
+  "/molecules/setup-guide/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/setup-guide.tsx",
+    "primary": "SetupGuide",
+    "components": [
+      {
+        "name": "SetupGuide",
+        "inherits": null,
+        "props": [
+          {
+            "name": "title",
+            "type": "React.ReactNode",
+            "required": true,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "description",
+            "type": "React.ReactNode",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "tasks",
+            "type": "SetupGuideTask[]",
+            "required": true,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "groups",
+            "type": "SetupGuideGroup[]",
+            "required": false,
+            "default": null,
+            "description": "Task groups in display order (e.g. required, then recommended). Tasks without a matching group render first, ungrouped.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "expandedTaskId",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "Controlled expanded task id (`null` = none). Default: the first incomplete task.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "onExpandedTaskChange",
+            "type": "(taskId: string) => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Controlled open state of the whole guide.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "defaultOpen",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "onOpenChange",
+            "type": "(open: boolean) => void",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "onDismiss",
+            "type": "() => void",
+            "required": false,
+            "default": null,
+            "description": "Show a dismiss button. Hide the guide in your app when called.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "onTaskCompleteChange",
+            "type": "(taskId: string, complete: boolean) => void",
+            "required": false,
+            "default": null,
+            "description": "Let merchants tick tasks off (the status circle becomes a button). Without it the status is display-only.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "headingLevel",
+            "type": "2 | 3 | 4 | 5 | 6",
+            "required": false,
+            "default": "2",
+            "description": "Heading level of the title (`h2` … `h6`). Default: 2.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SetupGuideLabels>",
+            "required": false,
+            "default": null,
+            "description": "Localizable strings; unspecified keys fall back to English.",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/setup-guide.tsx"
+          }
+        ]
+      }
+    ]
+  },
   "/molecules/skeleton-page/": {
     "package": "@hilum/ui",
     "source": "packages/ui/src/components/skeleton-page.tsx",
@@ -11573,6 +11821,155 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
       }
     ]
   },
+  "/molecules/time-series-chart/": {
+    "package": "@hilum/ui",
+    "source": "packages/ui/src/components/time-series-chart.tsx",
+    "primary": "TimeSeriesChart",
+    "components": [
+      {
+        "name": "TimeSeriesChart",
+        "inherits": null,
+        "props": [
+          {
+            "name": "data",
+            "type": "ReadonlyArray<Record<string, unknown>>",
+            "required": true,
+            "default": null,
+            "description": "Points in date order. Each has a date (see `dateKey`) and a value per series key.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "dateKey",
+            "type": "string",
+            "required": false,
+            "default": "\"date\"",
+            "description": "Field holding each point's date (Date, \"YYYY-MM-DD\", ISO string or timestamp). Default \"date\".",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "series",
+            "type": "TimeSeriesChartSeries[]",
+            "required": true,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "variant",
+            "type": "\"area\" | \"line\"",
+            "required": false,
+            "default": "\"area\"",
+            "description": "Filled area (default) or plain line.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "required": false,
+            "default": "240",
+            "description": "Chart height in px. Default 240.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "valueFormat",
+            "type": "TimeSeriesValueFormat",
+            "required": false,
+            "default": "\"number\"",
+            "description": "Value formatting for the y-axis (compact) and tooltip (full): \"number\" (default), \"currency\", \"percent\" (0.12 → 12%) or a function.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "ISO-4217 code for `valueFormat=\"currency\"`. Default: FormatProvider currency, then USD.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "minorUnits",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Values are in minor units (cents) for `valueFormat=\"currency\"`.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "dateFormat",
+            "type": "TimeSeriesDateFormat",
+            "required": false,
+            "default": "{ month: \"short\", day: \"numeric\" }",
+            "description": "X-axis tick format. Default: \"Sep 26\".",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "tooltipDateFormat",
+            "type": "TimeSeriesDateFormat",
+            "required": false,
+            "default": "{ month: \"short\", day: \"numeric\", year: \"numeric\" }",
+            "description": "Tooltip heading format. Default: \"Sep 26, 2026\".",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "required": false,
+            "default": "false",
+            "description": "Show a skeleton instead of the chart.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "emptyState",
+            "type": "React.ReactNode",
+            "required": false,
+            "default": null,
+            "description": "Replaces the default empty message when `data` is empty.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "showLegend",
+            "type": "boolean",
+            "required": false,
+            "default": null,
+            "description": "Legend under the chart. Default: shown with more than one series.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "showGrid",
+            "type": "boolean",
+            "required": false,
+            "default": "true",
+            "description": "Horizontal grid lines. Default true.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "aria-label",
+            "type": "string",
+            "required": true,
+            "default": null,
+            "description": "Accessible name of the chart, e.g. \"Total sales over time\".",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "labels",
+            "type": "Partial<TimeSeriesChartLabels>",
+            "required": false,
+            "default": null,
+            "description": "Localizable strings; unspecified keys fall back to English.",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          },
+          {
+            "name": "className",
+            "type": "string",
+            "required": false,
+            "default": null,
+            "description": "",
+            "declaredIn": "packages/ui/src/components/time-series-chart.tsx"
+          }
+        ]
+      }
+    ]
+  },
   "/molecules/titled-card/": {
     "package": "@hilum/ui",
     "source": "packages/ui/src/components/titled-card.tsx",
@@ -11620,6 +12017,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": null,
             "description": "",
+            "declaredIn": "packages/ui/src/components/titled-card.tsx"
+          },
+          {
+            "name": "headingLevel",
+            "type": "2 | 3 | 4 | 5 | 6",
+            "required": false,
+            "default": "2",
+            "description": "Heading level of the title (`h2` … `h6`). Default: 2.",
             "declaredIn": "packages/ui/src/components/titled-card.tsx"
           },
           {
