@@ -1,7 +1,9 @@
 import { render, screen } from "@testing-library/react";
-import { userEvent } from "vitest/browser";
+import { page, userEvent } from "vitest/browser";
 import {
   Checkbox,
+  DataTable,
+  ResourceCell,
   ColorInput,
   Combobox,
   DatePicker,
@@ -231,5 +233,58 @@ describe("Steps with long labels (real browser)", () => {
     expect(upcoming.getBoundingClientRect().width).toBeGreaterThan(8);
     expect(style.borderTopColor).toBe(resolveColor("var(--muted-foreground)"));
     expect(style.borderTopWidth).not.toBe("0px");
+  });
+});
+
+describe("DataTable on phones and cell typography (real browser)", () => {
+  interface Row {
+    id: string;
+    title: string;
+    sku: string;
+    price: string;
+  }
+  const data: Row[] = [
+    { id: "1", title: "Ceramic mug", sku: "MUG-01", price: "$18.00" },
+    { id: "2", title: "Tea towel", sku: "TWL-02", price: "$12.00" },
+  ];
+  const columns = [
+    {
+      id: "product",
+      header: "Product",
+      cell: ({ row }: { row: { original: Row } }) => (
+        <ResourceCell title={row.original.title} subtitle={row.original.sku} />
+      ),
+    },
+    {
+      id: "price",
+      header: "Price",
+      cell: ({ row }: { row: { original: Row } }) => row.original.price,
+    },
+  ];
+
+  afterEach(async () => {
+    await page.viewport(1280, 800);
+  });
+
+  it("switches to cards below 640px and back", async () => {
+    await page.viewport(375, 800);
+    const { container } = render(
+      <DataTable columns={columns} data={data} mobileLayout="cards" enableRowSelection />,
+    );
+    expect(container.querySelector("table")).toBeNull();
+    const cards = container.querySelectorAll("[data-slot=data-table-card]");
+    expect(cards).toHaveLength(2);
+    const card = cards[0]!.getBoundingClientRect();
+    expect(card.width).toBeLessThanOrEqual(375);
+    await page.viewport(1280, 800);
+    await expect.poll(() => container.querySelector("table")).not.toBeNull();
+  });
+
+  it("body cells are the size of ResourceCell's title", () => {
+    const { container } = render(<DataTable columns={columns} data={data} />);
+    const title = container.querySelector("[data-slot=resource-cell] .body")!;
+    const priceCell = container.querySelectorAll("tbody td")[1]!;
+    expect(getComputedStyle(priceCell).fontSize).toBe(getComputedStyle(title).fontSize);
+    expect(getComputedStyle(priceCell).fontSize).toBe("14px");
   });
 });

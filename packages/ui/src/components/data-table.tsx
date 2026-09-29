@@ -217,6 +217,25 @@ interface DataTableProps<TData> {
    * all filtered/sorted rows are scrollable in a fixed-height viewport.
    */
   virtualize?: boolean | DataTableVirtualizeOptions;
+
+  /* Mobile */
+  /**
+   * `"cards"` renders rows as stacked cards below `mobileBreakpoint`: the
+   * primary column as the card title and the other columns as label / value
+   * rows. Selection, row clicks, bulk actions, loading and empty states work
+   * the same. Default `"table"` (the table scrolls horizontally).
+   */
+  mobileLayout?: "table" | "cards";
+  /** Width below which `mobileLayout="cards"` applies: `sm` (640px, default) or `md` (768px). */
+  mobileBreakpoint?: "sm" | "md";
+  /** Column id shown as the card title. Default: the first visible data column. */
+  mobilePrimaryColumn?: string;
+  /**
+   * Column ids shown as label / value rows, in this order. Default: every
+   * other visible column. The label is `meta.label` or a string `header`;
+   * columns without one (e.g. row actions) render full width at the end.
+   */
+  mobileColumns?: string[];
 }
 
 const SELECT_COLUMN_ID = "__select";
@@ -231,12 +250,51 @@ function columnLabel<TData>(column: Column<TData, unknown>): string {
   return typeof header === "string" ? header : column.id;
 }
 
+/** Whether a media query matches; `null` never matches. Re-renders on change. */
+function useMediaQuery(query: string | null): boolean {
+  const subscribe = React.useCallback(
+    (onChange: () => void) => {
+      if (!query || typeof window === "undefined" || !window.matchMedia) return () => {};
+      const list = window.matchMedia(query);
+      list.addEventListener?.("change", onChange);
+      return () => list.removeEventListener?.("change", onChange);
+    },
+    [query],
+  );
+  return React.useSyncExternalStore(
+    subscribe,
+    () => Boolean(query && typeof window !== "undefined" && window.matchMedia?.(query).matches),
+    () => false,
+  );
+}
+
+/** Label of a column for the mobile cards: `meta.label` or a string header, else undefined. */
+function cardColumnLabel<TData>(column: Column<TData, unknown>): string | undefined {
+  const meta = column.columnDef.meta as { label?: string } | undefined;
+  if (meta?.label) return meta.label;
+  const header = column.columnDef.header;
+  return typeof header === "string" ? header : undefined;
+}
+
 function toCssSize(value: number | string) {
   return typeof value === "number" ? `${value}px` : value;
 }
 
 /* ─────────────────────── DataTable ─────────────────────── */
 
+/**
+ * Resource table on TanStack Table: sorting, filtering, selection with bulk
+ * actions, server-side mode, pinning, resizing, virtualization, and stacked
+ * cards on phones (`mobileLayout="cards"`).
+ *
+ * Cell typography: body cells are 14px (`text-sm`), the size of
+ * `ResourceCell`'s title. Keep one hierarchy per row:
+ * - primary: the first column, a `ResourceCell` (14px medium, foreground);
+ * - values: other cells as plain text (14px regular), numbers `tabular-nums`
+ *   and end-aligned;
+ * - secondary: `ResourceCell` `subtitle`, or a `caption` line (12px, muted).
+ * Don't set cell text smaller than 14px or secondary text larger than 12px.
+ */
 function DataTable<TData>({
   columns,
   data,
@@ -288,7 +346,16 @@ function DataTable<TData>({
   onColumnSizingChange,
   dir = "ltr",
   virtualize,
+  mobileLayout = "table",
+  mobileBreakpoint = "sm",
+  mobilePrimaryColumn,
+  mobileColumns,
 }: DataTableProps<TData>) {
+  const cardsQuery =
+    mobileLayout === "cards"
+      ? `(max-width: ${mobileBreakpoint === "md" ? "767.98px" : "639.98px"})`
+      : null;
+  const cards = useMediaQuery(cardsQuery);
   const fmt = useFormatter();
   const labels = React.useMemo(() => ({ ...DEFAULT_LABELS, ...labelsProp }), [labelsProp]);
   const locale = fmt.locale ? { locale: fmt.locale } : {};
@@ -564,6 +631,33 @@ function DataTable<TData>({
     );
   };
 
+  const rowClickProps = (row: Row<TData>) =>
+    onRowClick
+      ? {
+          tabIndex: 0,
+          onClick: (event: React.MouseEvent<HTMLElement>) => {
+            const target = event.target as HTMLElement;
+            const ignored = target.closest(ROW_CLICK_IGNORE);
+            if (
+              ignored &&
+              ignored !== event.currentTarget &&
+              event.currentTarget.contains(ignored)
+            ) {
+              return;
+            }
+            if (window.getSelection?.()?.toString()) return;
+            onRowClick(row.original);
+          },
+          onKeyDown: (event: React.KeyboardEvent<HTMLElement>) => {
+            if (event.target !== event.currentTarget) return;
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              onRowClick(row.original);
+            }
+          },
+        }
+      : {};
+
   const renderRow = (row: Row<TData>, index: number, virtualIndex?: number) => {
     const selected = row.getIsSelected();
     const clickable = Boolean(onRowClick);
@@ -584,31 +678,7 @@ function DataTable<TData>({
           clickable &&
             "cursor-pointer hover:bg-muted focus-visible:bg-muted focus-visible:outline-none",
         )}
-        {...(clickable
-          ? {
-              tabIndex: 0,
-              onClick: (event: React.MouseEvent<HTMLTableRowElement>) => {
-                const target = event.target as HTMLElement;
-                const ignored = target.closest(ROW_CLICK_IGNORE);
-                if (
-                  ignored &&
-                  ignored !== event.currentTarget &&
-                  event.currentTarget.contains(ignored)
-                ) {
-                  return;
-                }
-                if (window.getSelection?.()?.toString()) return;
-                onRowClick?.(row.original);
-              },
-              onKeyDown: (event: React.KeyboardEvent<HTMLTableRowElement>) => {
-                if (event.target !== event.currentTarget) return;
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  onRowClick?.(row.original);
-                }
-              },
-            }
-          : {})}
+        {...rowClickProps(row)}
       >
         {row.getVisibleCells().map((cell) => (
           <TableCell
@@ -822,8 +892,123 @@ function DataTable<TData>({
           </TableRow>
         ))}
       </TableHeader>
-      <TableBody>{renderBody()}</TableBody>
+      {/* Body text is 14px (text-sm), the size of ResourceCell's title, so the
+          hierarchy reads primary → value → secondary: ResourceCell title
+          (14px medium, foreground) › other cells (14px regular) › secondary
+          lines (ResourceCell subtitle / caption, 12px muted). Headers stay
+          13px semibold. */}
+      <TableBody className="text-sm">{renderBody()}</TableBody>
     </Table>
+  );
+
+  /* ── Mobile cards ── */
+  const dataColumns = table
+    .getVisibleLeafColumns()
+    .filter((column) => column.id !== SELECT_COLUMN_ID);
+  const primaryColumnId =
+    mobilePrimaryColumn && dataColumns.some((column) => column.id === mobilePrimaryColumn)
+      ? mobilePrimaryColumn
+      : dataColumns[0]?.id;
+  const detailColumnIds = (mobileColumns ?? dataColumns.map((column) => column.id)).filter(
+    (id) => id !== primaryColumnId && dataColumns.some((column) => column.id === id),
+  );
+
+  const renderCard = (row: Row<TData>, index: number) => {
+    const selected = row.getIsSelected();
+    const cells = new Map(row.getVisibleCells().map((cell) => [cell.column.id, cell]));
+    const primary = primaryColumnId ? cells.get(primaryColumnId) : undefined;
+    const details = detailColumnIds
+      .map((id) => cells.get(id))
+      .filter((cell): cell is NonNullable<typeof cell> => cell !== undefined);
+    const labelled = details.filter((cell) => cardColumnLabel(cell.column) !== undefined);
+    const unlabelled = details.filter((cell) => cardColumnLabel(cell.column) === undefined);
+    return (
+      <li
+        key={row.id}
+        data-slot="data-table-card"
+        data-state={selected ? "selected" : undefined}
+        className={cn(
+          "flex min-w-0 items-start gap-3 rounded-lg border border-border bg-card p-3 text-sm text-foreground",
+          "transition-colors motion-reduce:transition-none",
+          selected && "border-brand-primary/40 bg-muted/60",
+          onRowClick &&
+            "cursor-pointer hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        )}
+        {...rowClickProps(row)}
+      >
+        {selectionEnabled && (
+          <span className="flex h-5 items-center">{renderSelectCell(row, index)}</span>
+        )}
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          {primary && (
+            <div data-slot="data-table-card-title" className="min-w-0 font-medium">
+              {flexRender(primary.column.columnDef.cell, primary.getContext())}
+            </div>
+          )}
+          {labelled.length > 0 && (
+            <dl className="grid grid-cols-[minmax(0,auto)_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1.5">
+              {labelled.map((cell) => (
+                <React.Fragment key={cell.id}>
+                  <dt className="caption text-muted-foreground">{cardColumnLabel(cell.column)}</dt>
+                  <dd className="min-w-0 break-words text-end [&_*]:text-end">
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </dd>
+                </React.Fragment>
+              ))}
+            </dl>
+          )}
+          {unlabelled.map((cell) => (
+            <div key={cell.id} className="min-w-0">
+              {flexRender(cell.column.columnDef.cell, cell.getContext())}
+            </div>
+          ))}
+        </div>
+      </li>
+    );
+  };
+
+  const renderCards = () => {
+    if (loading) {
+      return (
+        <ul role="list" aria-hidden="true" className="flex flex-col gap-2">
+          {Array.from({ length: Math.min(skeletonCount, 5) }, (_, index) => (
+            <li
+              key={`skeleton-${index}`}
+              data-slot="data-table-card-skeleton"
+              className="flex flex-col gap-2 rounded-lg border border-border bg-card p-3"
+            >
+              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-3 w-1/2" />
+              <Skeleton className="h-3 w-1/3" />
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    if (!rows.length) {
+      return (
+        <div
+          className={cn(
+            "rounded-lg border border-border bg-card",
+            !emptyState && "p-6 text-center text-sm text-muted-foreground",
+          )}
+        >
+          {emptyState ?? labels.noResults}
+        </div>
+      );
+    }
+    return (
+      <ul role="list" data-slot="data-table-cards" className="flex flex-col gap-2">
+        {rows.map((row, index) => renderCard(row, index))}
+      </ul>
+    );
+  };
+
+  const cardsSelectAll = selectionEnabled && rows.length > 0 && !loading && (
+    <label className="flex items-center gap-2 px-3 caption text-muted-foreground">
+      {renderSelectHeader()}
+      <span aria-hidden="true">{labels.selectAll}</span>
+    </label>
   );
 
   const scrollable = Boolean(
@@ -932,7 +1117,16 @@ function DataTable<TData>({
         </div>
       )}
 
-      {scrollable ? (
+      {cards ? (
+        <div
+          className="flex flex-col gap-2"
+          data-slot="data-table-mobile"
+          aria-busy={loading || undefined}
+        >
+          {cardsSelectAll}
+          {renderCards()}
+        </div>
+      ) : scrollable ? (
         <div
           ref={scrollRef}
           data-slot="data-table-viewport"

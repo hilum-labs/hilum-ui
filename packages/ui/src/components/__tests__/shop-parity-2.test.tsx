@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from "vitest";
+import { afterEach, describe, it, expect, vi } from "vitest";
 import * as React from "react";
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../select";
@@ -17,6 +17,8 @@ import { TimePicker } from "../time-picker";
 import { ColorInput } from "../color-input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "../input-otp";
 import { Steps, type Step } from "../steps";
+import { DataTable, type ColumnDef } from "../data-table";
+import { ResourceCell } from "../resource-item";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -385,5 +387,148 @@ describe("Steps", () => {
     expect(dot).toHaveClass("border-muted-foreground");
     expect(dot).not.toHaveClass("bg-muted");
     expect(screen.getAllByRole("link", { name: /: completed$/ })).toHaveLength(2);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* DataTable: mobile cards and cell typography                          */
+/* ------------------------------------------------------------------ */
+
+interface Order {
+  id: string;
+  number: string;
+  customer: string;
+  total: string;
+  status: string;
+}
+
+const ORDERS: Order[] = [
+  { id: "1", number: "#1001", customer: "Ana", total: "$20.00", status: "Paid" },
+  { id: "2", number: "#1002", customer: "Luis", total: "$35.00", status: "Pending" },
+];
+
+const ORDER_COLUMNS: ColumnDef<Order>[] = [
+  {
+    id: "order",
+    header: "Order",
+    cell: ({ row }) => (
+      <ResourceCell title={row.original.number} subtitle={row.original.customer} />
+    ),
+  },
+  { id: "total", header: "Total", cell: ({ row }) => row.original.total },
+  { id: "status", header: "Status", cell: ({ row }) => row.original.status },
+  {
+    id: "actions",
+    header: () => null,
+    cell: ({ row }) => <button type="button">Edit {row.original.number}</button>,
+  },
+];
+
+function mockViewport(matches: boolean) {
+  vi.spyOn(window, "matchMedia").mockImplementation(
+    (query: string) =>
+      ({
+        matches,
+        media: query,
+        onchange: null,
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        addListener: () => {},
+        removeListener: () => {},
+        dispatchEvent: () => false,
+      }) as unknown as MediaQueryList,
+  );
+}
+
+describe("DataTable mobileLayout=cards", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it("renders stacked cards on a phone, with the primary column as the title", () => {
+    mockViewport(true);
+    render(
+      <DataTable
+        columns={ORDER_COLUMNS}
+        data={ORDERS}
+        getRowId={(row) => row.id}
+        mobileLayout="cards"
+        showPagination={false}
+      />,
+    );
+    expect(screen.queryByRole("table")).not.toBeInTheDocument();
+    const cards = document.querySelectorAll("[data-slot=data-table-card]");
+    expect(cards).toHaveLength(2);
+    const first = cards[0] as HTMLElement;
+    expect(first.querySelector("[data-slot=data-table-card-title]")).toHaveTextContent("#1001Ana");
+    const terms = Array.from(first.querySelectorAll("dt")).map((dt) => dt.textContent);
+    expect(terms).toEqual(["Total", "Status"]);
+    expect(first.querySelector("dd")).toHaveTextContent("$20.00");
+    // The unlabelled actions column renders at the end of the card.
+    expect(first).toContainElement(screen.getByRole("button", { name: "Edit #1001" }));
+  });
+
+  it("keeps the table on wide screens", () => {
+    mockViewport(false);
+    render(<DataTable columns={ORDER_COLUMNS} data={ORDERS} mobileLayout="cards" />);
+    expect(screen.getByRole("table")).toBeInTheDocument();
+    expect(document.querySelector("[data-slot=data-table-card]")).toBeNull();
+  });
+
+  it("keeps selection, bulk actions and row clicks, and honours mobileColumns", () => {
+    mockViewport(true);
+    const onRowClick = vi.fn();
+    const onAction = vi.fn();
+    render(
+      <DataTable
+        columns={ORDER_COLUMNS}
+        data={ORDERS}
+        getRowId={(row) => row.id}
+        getRowLabel={(row) => row.number}
+        mobileLayout="cards"
+        mobileColumns={["status"]}
+        onRowClick={onRowClick}
+        bulkActions={[{ label: "Archive", onAction }]}
+      />,
+    );
+    const card = document.querySelector("[data-slot=data-table-card]") as HTMLElement;
+    expect(Array.from(card.querySelectorAll("dt")).map((dt) => dt.textContent)).toEqual(["Status"]);
+    fireEvent.click(card);
+    expect(onRowClick).toHaveBeenCalledWith(ORDERS[0]);
+    fireEvent.keyDown(card, { key: "Enter" });
+    expect(onRowClick).toHaveBeenCalledTimes(2);
+    fireEvent.click(screen.getByRole("checkbox", { name: "Select #1002" }));
+    expect(onRowClick).toHaveBeenCalledTimes(2);
+    expect(screen.getByRole("group", { name: "Bulk actions" })).toHaveTextContent("1 selected");
+    fireEvent.click(screen.getByRole("checkbox", { name: "Select all rows on this page" }));
+    fireEvent.click(screen.getByRole("button", { name: "Archive" }));
+    expect(onAction).toHaveBeenCalledWith(
+      expect.objectContaining({ selectedRowIds: expect.arrayContaining(["1", "2"]) }),
+    );
+  });
+
+  it("shows skeleton cards while loading and the empty state", () => {
+    mockViewport(true);
+    const { rerender } = render(
+      <DataTable columns={ORDER_COLUMNS} data={[]} mobileLayout="cards" loading />,
+    );
+    expect(
+      document.querySelectorAll("[data-slot=data-table-card-skeleton]").length,
+    ).toBeGreaterThan(0);
+    rerender(
+      <DataTable
+        columns={ORDER_COLUMNS}
+        data={[]}
+        mobileLayout="cards"
+        emptyState={<p>No orders yet</p>}
+      />,
+    );
+    expect(screen.getByText("No orders yet")).toBeInTheDocument();
+  });
+});
+
+describe("DataTable cell typography", () => {
+  it("body cells use text-sm, the ResourceCell title size", () => {
+    render(<DataTable columns={ORDER_COLUMNS} data={ORDERS} />);
+    const body = screen.getAllByRole("rowgroup")[1]!;
+    expect(body).toHaveClass("text-sm");
   });
 });

@@ -4,7 +4,7 @@
  * Same approach as ui.a11y.test.tsx: realistic, labelled usage checked with
  * axe-core.
  */
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { fireEvent, render } from "@testing-library/react";
 import { axe } from "../axe";
 
@@ -20,6 +20,9 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "../../packages/ui/src/com
 import { Tag, TagInput } from "../../packages/ui/src/components/tag-input";
 import { MultiCombobox } from "../../packages/ui/src/components/multi-combobox";
 import { ResourcePicker } from "../../packages/ui/src/components/resource-picker";
+import { DataTable } from "../../packages/ui/src/components/data-table";
+import { ResourceCell } from "../../packages/ui/src/components/resource-item";
+import { Steps } from "../../packages/ui/src/components/steps";
 
 async function expectAccessible(ui: React.ReactElement) {
   render(ui);
@@ -137,5 +140,55 @@ describe("a11y: shop parity 2", () => {
       />,
     );
     expect(await axe(document.body)).toHaveNoAxeViolations();
+  });
+
+  it("DataTable as stacked cards with selection", async () => {
+    const spy = vi.spyOn(window, "matchMedia").mockImplementation(
+      (query: string) =>
+        ({
+          matches: true,
+          media: query,
+          addEventListener: () => {},
+          removeEventListener: () => {},
+        }) as unknown as MediaQueryList,
+    );
+    await expectAccessible(
+      <DataTable
+        columns={[
+          {
+            id: "order",
+            header: "Order",
+            cell: ({ row }) => (
+              <ResourceCell title={row.original.number} subtitle={row.original.customer} />
+            ),
+          },
+          { id: "total", header: "Total", cell: ({ row }) => row.original.total },
+        ]}
+        data={[
+          { id: "1", number: "#1001", customer: "Ana", total: "$20.00" },
+          { id: "2", number: "#1002", customer: "Luis", total: "$35.00" },
+        ]}
+        getRowId={(row) => row.id}
+        getRowLabel={(row) => row.number}
+        enableRowSelection
+        onRowClick={() => {}}
+        mobileLayout="cards"
+      />,
+    );
+    spy.mockRestore();
+  });
+
+  it("Steps circles and bullets", async () => {
+    const steps = [
+      { name: "Details", status: "complete" as const },
+      { name: "Payments", status: "current" as const },
+      { name: "Launch", status: "upcoming" as const },
+    ];
+    await expectAccessible(
+      <div>
+        <Steps steps={steps} />
+        <Steps steps={steps} variant="bullets" labels={{ progress: "Setup progress" }} />
+      </div>,
+    );
   });
 });
