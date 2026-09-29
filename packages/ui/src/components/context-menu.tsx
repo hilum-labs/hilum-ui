@@ -158,6 +158,9 @@ function ContextMenuLabel({
       data-slot="context-menu-label"
       className={cn(
         "px-2.5 py-1 label text-muted-foreground compact:px-2 compact:text-[11px]",
+        // A plain-text label is an eyebrow; rich content (an account header with
+        // the user's name and email) renders as typed.
+        "[&_*]:normal-case [&_*]:tracking-normal",
         inset && "ps-8 compact:ps-7",
         className,
       )}

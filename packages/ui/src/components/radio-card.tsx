@@ -90,11 +90,13 @@ function RadioCards({
             className={cn(
               "relative flex cursor-pointer flex-col gap-1 rounded-xl border p-4 text-start transition-[background-color,border-color,box-shadow,opacity,scale]",
               "active:scale-[0.96]",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              // Focus is a detached halo (2px gap) so it never reads as the
+              // checked state, which is a ring on the card's own edge.
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
               "disabled:cursor-not-allowed disabled:opacity-50",
               isSelected
                 ? "border-brand-primary bg-card shadow-natural"
-                : "border-border bg-card hover:border-border",
+                : "border-border bg-card hover:border-border-strong",
             )}
           >
             {/* Selected ring overlay */}
@@ -108,14 +110,7 @@ function RadioCards({
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
                 {option.icon && <div className="mb-2 text-muted-foreground">{option.icon}</div>}
-                <p
-                  className={cn(
-                    "body font-semibold text-pretty",
-                    isSelected ? "text-foreground" : "text-muted-foreground",
-                  )}
-                >
-                  {option.label}
-                </p>
+                <p className="body font-semibold text-pretty text-foreground">{option.label}</p>
                 {option.description && (
                   <p className="mt-0.5 caption text-pretty text-muted-foreground">
                     {option.description}

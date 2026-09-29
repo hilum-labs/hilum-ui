@@ -84,7 +84,15 @@ function Callout({
           {children && <div className={cn(title || description ? "mt-2" : "")}>{children}</div>}
         </div>
         {actions && (
-          <div className="flex shrink-0 items-center gap-2 max-sm:w-full max-sm:flex-col max-sm:items-stretch">
+          <div
+            data-slot="callout-actions"
+            className={cn(
+              "flex shrink-0 items-center gap-2 max-sm:w-full max-sm:flex-col max-sm:items-start",
+              // On mobile only buttons stretch full width; badges, links and
+              // other content keep their size.
+              "max-sm:[&>[data-slot=button]]:self-stretch max-sm:[&>button]:self-stretch",
+            )}
+          >
             {actions}
           </div>
         )}

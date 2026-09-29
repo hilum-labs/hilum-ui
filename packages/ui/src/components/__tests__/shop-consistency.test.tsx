@@ -24,6 +24,17 @@ import { SearchableTable } from "../searchable-table";
 import { Field } from "../field";
 import { TitledCard } from "../titled-card";
 import { CardHeading } from "../card-heading";
+import { AccountMenuHeader } from "../account-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "../dropdown-menu";
+import { RadioCards } from "../radio-card";
+import { StatusBadge } from "../status-badge";
+import { Callout } from "../callout";
+import { Badge } from "../badge";
 import { controlHeightClass, controlTextClass } from "../../lib/interaction";
 import "@testing-library/jest-dom";
 
@@ -472,5 +483,102 @@ describe("card headings", () => {
     const a = screen.getByRole("heading", { level: 2, name: "Team" });
     const b = screen.getByRole("heading", { level: 2, name: "Payments" });
     expect(a.className).toBe(b.className);
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Account menu, RadioCards, status dots, Callout actions               */
+/* ------------------------------------------------------------------ */
+
+describe("account menu text", () => {
+  it("a DropdownMenuLabel shows rich content (name and email) as typed", () => {
+    render(
+      <DropdownMenu open>
+        <DropdownMenuTrigger>Account</DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuLabel>
+            <p>Ana Pérez</p>
+            <p>ana@shop.pe</p>
+          </DropdownMenuLabel>
+        </DropdownMenuContent>
+      </DropdownMenu>,
+    );
+    const label = screen.getByText("ana@shop.pe").parentElement!;
+    expect(label).toHaveClass("[&_*]:normal-case", "[&_*]:tracking-normal");
+  });
+
+  it("AccountMenuHeader never inherits an uppercase transform", () => {
+    render(<AccountMenuHeader name="Ana Pérez" email="ana@shop.pe" />);
+    expect(
+      screen.getByText("ana@shop.pe").closest("[data-slot='account-menu-header']"),
+    ).toHaveClass("normal-case", "tracking-normal");
+  });
+});
+
+describe("RadioCards focus", () => {
+  it("draws focus as a detached halo, distinct from the checked edge ring", () => {
+    render(
+      <RadioCards
+        aria-label="Plan"
+        value="basic"
+        options={[
+          { value: "basic", label: "Basic" },
+          { value: "pro", label: "Pro" },
+        ]}
+      />,
+    );
+    const pro = screen.getByRole("radio", { name: /Pro/ });
+    expect(pro).toHaveClass("focus-visible:ring-offset-2", "focus-visible:ring-offset-background");
+    // Unchecked options don't look disabled.
+    expect(screen.getByText("Pro")).toHaveClass("text-foreground");
+  });
+});
+
+describe("StatusBadge dots", () => {
+  it("use token colours mixed towards the foreground, no raw palette classes", () => {
+    const { container } = render(
+      <>
+        {(["success", "info", "attention", "warning", "critical", "neutral"] as const).map((t) => (
+          <StatusBadge key={t} tone={t} status={t} showDot />
+        ))}
+      </>,
+    );
+    const dots = container.querySelectorAll<HTMLElement>("[data-slot='status-badge-dot']");
+    expect(dots).toHaveLength(6);
+    for (const dot of Array.from(dots)) {
+      expect(dot.className).not.toMatch(/bg-(blue|emerald|amber|orange)-\d/);
+      expect(dot).toHaveClass("bg-(--status-dot)");
+    }
+    expect(dots[1]!.style.getPropertyValue("--status-dot")).toBe(
+      "color-mix(in srgb, var(--categorical-blue) 62%, var(--foreground))",
+    );
+  });
+
+  it("dotClassName still overrides the colour", () => {
+    const { container } = render(
+      <StatusBadge status="paid" showDot dotClassName="bg-foreground" />,
+    );
+    const dot = container.querySelector("[data-slot='status-badge-dot']")!;
+    expect(dot).toHaveClass("bg-foreground");
+    expect(dot).not.toHaveClass("bg-(--status-dot)");
+  });
+});
+
+describe("Callout actions", () => {
+  it("stretch only buttons on mobile, not badges", () => {
+    const { container } = render(
+      <Callout
+        title="Payouts paused"
+        actions={
+          <>
+            <Badge>Beta</Badge>
+            <Button>Review</Button>
+          </>
+        }
+      />,
+    );
+    const actions = container.querySelector("[data-slot='callout-actions']")!;
+    expect(actions).not.toHaveClass("max-sm:items-stretch");
+    expect(actions).toHaveClass("max-sm:items-start", "max-sm:[&>[data-slot=button]]:self-stretch");
   });
 });

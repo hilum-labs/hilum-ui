@@ -44,7 +44,10 @@ function AccountMenuHeader({
   return (
     <div
       data-slot="account-menu-header"
-      className={cn("flex flex-col items-center px-5 py-5 text-center", className)}
+      className={cn(
+        "flex flex-col items-center px-5 py-5 text-center normal-case tracking-normal",
+        className,
+      )}
       {...props}
     >
       <Avatar size="lg" className="mb-3">

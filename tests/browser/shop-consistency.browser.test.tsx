@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react";
+import { page } from "vitest/browser";
 import {
+  Badge,
   Button,
+  Callout,
+  StatusBadge,
   Combobox,
   DatePicker,
   Input,
@@ -198,5 +202,53 @@ describe("single-line form controls (real browser)", () => {
     }
     // The InputGroup trailing button is inset: 28px inside the 36px field.
     expect(screen.getByRole("button", { name: "Check" }).getBoundingClientRect().height).toBe(28);
+  });
+});
+
+describe("status dots and callout actions (real browser)", () => {
+  test.each(["light", "dark"])("every tone's dot keeps 3:1 on its badge in %s", (theme) => {
+    for (const tone of [
+      "success",
+      "info",
+      "attention",
+      "warning",
+      "critical",
+      "neutral",
+    ] as const) {
+      const { container, unmount } = render(
+        <div data-theme={theme} style={{ background: "var(--background)" }}>
+          <StatusBadge tone={tone} status={tone} showDot />
+        </div>,
+      );
+      const badge = container.querySelector("[data-slot='status-badge']")!;
+      const dot = container.querySelector("[data-slot='status-badge-dot']")!;
+      const surface = effectiveBackground(badge);
+      const dotColor = getComputedStyle(dot).backgroundColor;
+      expect({ tone, ok: contrast(dotColor, surface) >= 3 }).toEqual({ tone, ok: true });
+      unmount();
+    }
+  });
+
+  test("a Callout badge action keeps its size on mobile widths", async () => {
+    await page.viewport(375, 700);
+    render(
+      <Callout
+        title="Payouts paused"
+        actions={
+          <>
+            <Badge>Beta</Badge>
+            <Button>Review</Button>
+          </>
+        }
+      />,
+    );
+    const actions = document.querySelector("[data-slot='callout-actions']")!;
+    const badge = actions.querySelector("[data-slot='badge']")!;
+    const button = screen.getByRole("button", { name: "Review" });
+    expect(badge.getBoundingClientRect().width).toBeLessThan(80);
+    expect(button.getBoundingClientRect().width).toBeCloseTo(
+      actions.getBoundingClientRect().width,
+      0,
+    );
   });
 });
