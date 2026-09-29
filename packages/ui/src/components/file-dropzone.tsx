@@ -102,22 +102,12 @@ function FileDropzone({
   const resolvedId = id ?? baseId;
   const descriptionId = `${baseId}-description`;
   const summaryId = `${baseId}-summary`;
-  const localInputRef = React.useRef<HTMLInputElement>(null);
   const fileSummary = getFileSummary(selectedFiles ?? [], labels.filesSelected);
   const isUnavailable = Boolean(disabled || loading);
   const showSummaryChip = Boolean(fileSummary && !loading);
   const describedBy = [description && descriptionId, showSummaryChip && summaryId]
     .filter(Boolean)
     .join(" ");
-
-  const setInputRef = React.useCallback(
-    (node: HTMLInputElement | null) => {
-      localInputRef.current = node;
-      if (typeof inputRef === "function") inputRef(node);
-      else if (inputRef) (inputRef as React.RefObject<HTMLInputElement | null>).current = node;
-    },
-    [inputRef],
-  );
 
   const emitFiles = React.useCallback(
     (fileList: FileList | null) => {
@@ -164,7 +154,7 @@ function FileDropzone({
       {...props}
     >
       <input
-        ref={setInputRef}
+        ref={inputRef}
         id={resolvedId}
         name={inputName}
         type="file"
@@ -202,7 +192,7 @@ function FileDropzone({
           isUnavailable ? "cursor-not-allowed" : "cursor-pointer",
         )}
         onClick={() => {
-          if (!isUnavailable) localInputRef.current?.click();
+          if (!isUnavailable) document.getElementById(resolvedId)?.click();
         }}
       >
         {loading ? loadingText : isDragging ? activeLabel : fileSummary ? fileSummary : label}
