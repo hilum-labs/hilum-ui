@@ -27,6 +27,7 @@ import {
   Textarea,
   TimePicker,
 } from "@hilum/ui";
+import { PageHeader } from "@hilum/app-shell";
 
 /** Resolve a CSS colour expression to its computed rgb() string. */
 function resolveColor(value: string) {
@@ -337,5 +338,23 @@ describe("StatCard in a narrow 2-column grid (real browser)", () => {
     const { container } = render(<Grid width={1200} />);
     const value = container.querySelector("[data-slot=stat-card-value]")!;
     expect(getComputedStyle(value).fontSize).toBe("30px");
+  });
+});
+
+describe("PageHeader on a phone (real browser)", () => {
+  it("shows a single secondary action inline next to the primary one", () => {
+    render(
+      <div style={{ width: 360 }}>
+        <PageHeader
+          title="Online store"
+          primaryAction={{ label: "Publish", onAction: () => {} }}
+          secondaryActions={[{ label: "Preview", onAction: () => {} }]}
+        />
+      </div>,
+    );
+    const preview = screen.getByRole("button", { name: "Preview" });
+    expect(getComputedStyle(preview).display).not.toBe("none");
+    expect(preview.getBoundingClientRect().width).toBeGreaterThan(0);
+    expect(screen.queryByRole("button", { name: /more actions/i })).toBeNull();
   });
 });
