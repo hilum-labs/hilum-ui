@@ -8,7 +8,6 @@ import { useDensityAttributes } from "../lib/density-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -26,7 +25,6 @@ function ContextMenuContent({
 }: React.ComponentProps<typeof ContextMenu.Content>) {
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <ContextMenu.Portal>
         <ContextMenu.Content
           {...useDensityAttributes()}
@@ -158,6 +156,9 @@ function ContextMenuLabel({
       data-slot="context-menu-label"
       className={cn(
         "px-2.5 py-1 label text-muted-foreground compact:px-2 compact:text-[11px]",
+        // A plain-text label is an eyebrow; rich content (an account header with
+        // the user's name and email) renders as typed.
+        "[&_*]:normal-case [&_*]:tracking-normal",
         inset && "ps-8 compact:ps-7",
         className,
       )}
@@ -219,7 +220,6 @@ function ContextMenuSubContent({
 }: React.ComponentProps<typeof ContextMenu.SubContent>) {
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <ContextMenu.SubContent
         {...useDensityAttributes()}
         ref={ref}

@@ -5,10 +5,10 @@
 ## Key Facts
 
 - Package name: `@hilum/ui`
-- Package version: 4.0.0
-- Component modules: 118
-- Atom components: 79
-- Molecule components: 39
+- Package version: 4.1.1
+- Component modules: 121
+- Atom components: 80
+- Molecule components: 41
 - Docs site: https://ui.hilum.dev
 - Source repository: https://github.com/hilum-labs/hilum-ui
 - Machine-readable docs index: https://ui.hilum.dev/catalog.json
@@ -181,6 +181,7 @@ Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost
 - Section Heading (/molecules/section-heading/) — Section header with optional description and action buttons. Composes: Button.
 - Select (/atoms/select/) — Dropdown list for choosing a single option.
 - Separator (/atoms/separator/) — Visual divider between sections, horizontal or vertical.
+- Setup Guide (/molecules/setup-guide/) — Onboarding checklist card with progress, grouped tasks, and one expanded task with a call to action. Composes: Card · Progress · Button · Card Heading.
 - Sheet (/atoms/sheet/) — Slide-in panel anchored to a screen edge.
 - Sidebar (/atoms/sidebar/) — Composable side navigation with collapsible, icon, and off-canvas modes.
 - Skeleton (/atoms/skeleton/) — Loading placeholder that mimics the shape of pending content.
@@ -199,8 +200,10 @@ Button variants: `primary` (default), `secondary`, `tertiary`, `outline`, `ghost
 - Tabs (/atoms/tabs/) — Organizes content into switchable panels.
 - Tabs Subtle (/atoms/tabs-subtle/) — Quiet segmented tab navigation for settings, filters, and compact product panels.
 - Textarea (/atoms/textarea/) — Multi-line text field for longer user input.
+- Thumbnail (/atoms/thumbnail/) — Square product or resource image with sizes, object fit, border, and a neutral placeholder when there is no image.
 - Thinking Indicator (/atoms/thinking-indicator/) — Compact animated status indicator for pending assistant or system work.
 - Thinking Steps (/molecules/thinking-steps/) — Reasoning progress list with complete, current, and pending step states. Composes: Thinking Indicator.
+- Time Series Chart (/molecules/time-series-chart/) — Dashboard chart of values over dates with formatted axes and tooltip, loading and empty states. Composes: Chart · Skeleton.
 - Titled Card (/molecules/titled-card/) — Responsive card wrapper with title, subtitle, actions, and mobile-flattened layout. Composes: Card · Card Heading.
 - Toggle Group (/atoms/toggle-group/) — Set of toggles with single or multiple selection.
 - Toggle (/atoms/toggle/) — Two-state press button for toolbars and filter controls.

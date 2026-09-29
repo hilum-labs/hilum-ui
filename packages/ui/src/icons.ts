@@ -74,6 +74,11 @@ export {
   Sun,
   Moon,
   MonitorSmartphone,
+  // Devices / input (responsive previews, keyboard shortcuts)
+  Smartphone,
+  Tablet,
+  Monitor,
+  Keyboard,
   // Common nouns
   Home,
   User,

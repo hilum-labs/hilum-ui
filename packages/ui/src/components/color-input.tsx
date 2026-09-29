@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { controlSurfaceClasses, inputFocusWithinClasses, motionClasses } from "../lib/interaction";
+import {
+  controlHeightClass,
+  controlSurfaceClasses,
+  controlTextClass,
+  inputFocusWithinClasses,
+  motionClasses,
+} from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { ColorPickerPopover } from "./color-picker";
 import type { ControlMobileSurface } from "./input";
@@ -70,7 +76,8 @@ function ColorInput({
     <div
       data-slot="color-input"
       className={cn(
-        "inline-flex h-8 items-stretch gap-0 overflow-hidden",
+        "inline-flex items-stretch gap-0 overflow-hidden",
+        controlHeightClass,
         controlSurfaceClasses,
         shape.input,
         // Compact: span the row like Figma's fill rows; the hex field takes the slack.
@@ -103,7 +110,8 @@ function ColorInput({
         spellCheck={false}
         aria-label={labels.hex}
         className={cn(
-          "w-[5.5rem] caption tabular-nums text-foreground px-2 bg-transparent border-s border-border focus:outline-none uppercase",
+          "w-[5.5rem] tabular-nums text-foreground px-2 bg-transparent border-s border-border focus:outline-none uppercase",
+          controlTextClass,
           "compact:w-[4.5rem] compact:min-w-0 compact:flex-1 compact:border-foreground/[0.07] compact:px-1.5 compact:text-[12px]",
         )}
       />
@@ -116,7 +124,7 @@ function ColorInput({
             value={Math.round(opacity)}
             onChange={(e) => onOpacityChange(Number(e.target.value))}
             aria-label={labels.opacity}
-            className="w-12 caption tabular-nums text-foreground px-2 bg-transparent focus:outline-none text-end compact:w-10 compact:px-1.5 compact:text-[12px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+            className="w-12 text-sm tabular-nums text-foreground px-2 bg-transparent focus:outline-none text-end compact:w-10 compact:px-1.5 compact:text-[12px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
           <span aria-hidden className="caption-xs text-muted-foreground pe-2">
             %

@@ -416,7 +416,7 @@ export const tokens = {
   density: {
     default: {
       controlHeight: "32px",
-      inputHeight: "40px",
+      inputHeight: "36px",
       rowHeight: "36px",
       text: "14px",
       label: "12px",

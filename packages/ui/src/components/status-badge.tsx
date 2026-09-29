@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Badge, STATUS_TONE_BADGE, type StatusTone } from "./badge";
+import { Badge, STATUS_TONE_BADGE, badgeColors, type StatusTone } from "./badge";
 import { cn } from "../lib/utils";
 
 type StatusBadgeVariant = NonNullable<React.ComponentProps<typeof Badge>["variant"]>;
@@ -126,25 +126,32 @@ const DEFAULT_STATUS_VARIANT: Record<string, StatusBadgeVariant> = Object.fromEn
   ]),
 );
 
-const DEFAULT_DOT_CLASS: Record<StatusBadgeVariant, string> = {
-  default: "bg-background",
-  solid: "bg-background",
-  dot: "bg-muted-foreground",
-  secondary: "bg-muted-foreground",
-  outline: "bg-muted-foreground",
-  brand: "bg-background",
-  success: "bg-emerald-500",
-  warning: "bg-amber-500",
-  destructive: "bg-destructive",
+// Status dots are drawn from the categorical token colours, mixed towards the
+// foreground so they keep at least 3:1 against the tinted badge in light and
+// dark (the plain -500 hues sank to ~2:1 on their own 15% tint; the info dot
+// read as nearly invisible). Set through a custom property so `dotClassName`
+// can still override the colour.
+const dotMix = (color: string) => `color-mix(in srgb, ${color} 62%, var(--foreground))`;
+
+const DEFAULT_DOT_COLOR: Record<StatusBadgeVariant, string> = {
+  default: "var(--background)",
+  solid: "var(--background)",
+  dot: "var(--muted-foreground)",
+  secondary: "var(--muted-foreground)",
+  outline: "var(--muted-foreground)",
+  brand: "var(--background)",
+  success: dotMix(badgeColors.green),
+  warning: dotMix(badgeColors.amber),
+  destructive: dotMix("var(--destructive)"),
 };
 
-const TONE_DOT_CLASS: Record<StatusTone, string> = {
-  success: "bg-emerald-500",
-  info: "bg-blue-500",
-  attention: "bg-orange-500",
-  warning: "bg-amber-500",
-  critical: "bg-destructive",
-  neutral: "bg-muted-foreground",
+const TONE_DOT_COLOR: Record<StatusTone, string> = {
+  success: dotMix(badgeColors.green),
+  info: dotMix(badgeColors.blue),
+  attention: dotMix(badgeColors.orange),
+  warning: dotMix(badgeColors.amber),
+  critical: dotMix("var(--destructive)"),
+  neutral: "var(--muted-foreground)",
 };
 
 function normalizeStatus(status?: string | null) {
@@ -158,11 +165,10 @@ function statusLabel(status?: string | null) {
   const normalized = normalizeStatus(status);
   if (normalized === "unknown") return "Unknown";
 
-  return normalized
-    .split("_")
-    .filter(Boolean)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join(" ");
+  // Sentence case ("partially_fulfilled" → "Partially fulfilled"), matching
+  // the rest of Hilum's copy.
+  const words = normalized.split("_").filter(Boolean).join(" ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
 /**
@@ -225,11 +231,15 @@ function StatusBadge({
     >
       {showDot && (
         <span
-          className={cn(
-            "size-1.5 shrink-0 rounded-full",
-            resolvedTone ? TONE_DOT_CLASS[resolvedTone] : DEFAULT_DOT_CLASS[resolvedVariant],
-            dotClassName,
-          )}
+          data-slot="status-badge-dot"
+          className={cn("size-1.5 shrink-0 rounded-full bg-(--status-dot)", dotClassName)}
+          style={
+            {
+              "--status-dot": resolvedTone
+                ? TONE_DOT_COLOR[resolvedTone]
+                : DEFAULT_DOT_COLOR[resolvedVariant],
+            } as React.CSSProperties
+          }
           aria-hidden="true"
         />
       )}

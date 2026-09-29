@@ -23,11 +23,19 @@ const checks = [
   { name: "@hilum/ui/tokens", path: "packages/ui/dist/tokens.js", limit: "100 B" },
   { name: "@hilum/ui/create-theme", path: "packages/ui/dist/create-theme.js", limit: "2.2 kB" },
   // 4.1 added the compact editor-chrome vars and base rules: 2.74 → 2.88 kB.
-  { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "3.2 kB" },
+  // 4.2 moved the component CSS that used to be injected with runtime <style>
+  // tags (mobile sheets, rich text, loading bar, Radix fallbacks, color-scheme)
+  // out of the JS and into tokens.css for strict-CSP apps: 2.88 → 3.81 kB.
+  { name: "@hilum/ui/tokens.css", path: "packages/ui/dist/tokens.css", limit: "4.2 kB" },
+  // 4.2: static copy of the CSS sonner + vaul inject at import, for strict-CSP
+  // apps (opt-in import). Measured 3.36 kB.
+  { name: "@hilum/ui/vendor.css", path: "packages/ui/dist/vendor.css", limit: "3.7 kB" },
   { name: "@hilum/app-shell", path: "packages/app-shell/dist/index.js", limit: "13.2 kB" },
   // 4.1.1 added the inspector grid row (its selector classes), DesignerPropertyField
   // and the restructured pane title: 7.65 → 8.55 kB.
-  { name: "@hilum/designer", path: "packages/designer/dist/index.js", limit: "9.4 kB" },
+  // 4.2 added FontPicker (searchable listbox with lazy font loading) and the
+  // DesignerHeader action cluster with its "More actions" menu: 8.55 → 11.35 kB.
+  { name: "@hilum/designer", path: "packages/designer/dist/index.js", limit: "12.5 kB" },
   {
     name: "@hilum/designer-canvas",
     path: "packages/designer-canvas/dist/index.js",

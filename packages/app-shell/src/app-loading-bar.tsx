@@ -8,29 +8,9 @@ interface AppLoadingBarProps {
   className?: string;
 }
 
-// Keyframes ship with the component (React 19 hoists and de-dupes `<style href>`),
-// so consumers don't need extra CSS. Reduced motion swaps the sweep for a static bar.
-const LOADING_BAR_CSS = `
-@keyframes hilum-app-loading-bar {
-  0% { transform: translateX(-100%) scaleX(0.3); }
-  50% { transform: translateX(30%) scaleX(0.6); }
-  100% { transform: translateX(100%) scaleX(0.3); }
-}
-[data-slot="app-loading-bar-indicator"] {
-  animation: hilum-app-loading-bar 1.2s ease-in-out infinite;
-  transform-origin: 0 50%;
-}
-[dir="rtl"] [data-slot="app-loading-bar-indicator"] {
-  animation-direction: reverse;
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-slot="app-loading-bar-indicator"] {
-    animation: none;
-    transform: none;
-    opacity: 0.6;
-  }
-}
-`;
+// The sweep keyframes and reduced-motion fallback ship statically in
+// @hilum/ui's tokens.css (keyed on data-slot="app-loading-bar-indicator"), so
+// no runtime <style> is needed under a strict Content-Security-Policy.
 
 /**
  * Thin indeterminate progress bar pinned to the top of its positioned parent.
@@ -50,9 +30,6 @@ function AppLoadingBar({ active = true, label = "Loading", className }: AppLoadi
         className,
       )}
     >
-      <style href="hilum-app-loading-bar" precedence="default">
-        {LOADING_BAR_CSS}
-      </style>
       <div data-slot="app-loading-bar-indicator" className="h-full w-full bg-brand-primary" />
     </div>
   );

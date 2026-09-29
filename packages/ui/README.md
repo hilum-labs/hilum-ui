@@ -64,6 +64,7 @@ See the live catalog at [ui.hilum.dev](https://ui.hilum.dev) for component docs,
 | `@hilum/ui/tokens`                            | JS design tokens. Server-safe.                                                                                                                                                         |
 | `@hilum/ui/create-theme`                      | `createTheme`, `applyTheme`, `ThemeProvider`.                                                                                                                                          |
 | `@hilum/ui/tokens.css`, `@hilum/ui/fonts.css` | Stylesheets (see Setup).                                                                                                                                                               |
+| `@hilum/ui/vendor.css`                        | Static sonner + vaul CSS for apps with a strict Content-Security-Policy (see below).                                                                                                   |
 
 ### AI components (`@hilum/ui/ai`)
 
@@ -182,6 +183,45 @@ import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url"; // Vite
 
 setPdfWorkerSrc(workerSrc);
 ```
+
+## Strict Content-Security-Policy
+
+Hilum UI works under a strict policy such as `style-src 'self'` (no
+`'unsafe-inline'`), as long as the app loads Hilum's CSS as a stylesheet:
+
+```css
+@import "tailwindcss";
+@import "@hilum/ui/tokens.css";
+@import "@hilum/ui/fonts.css";
+@import "@hilum/ui/vendor.css"; /* only needed under a strict CSP */
+```
+
+- **Hilum components insert no `<style>` elements.** The CSS they used to inject
+  at runtime (mobile bottom sheets for menus / selects / popovers / dialogs,
+  RichTextEditor content typography, the AppLoadingBar sweep) ships in
+  `tokens.css`. Per-instance values are set through the React `style` prop
+  (CSSOM), which CSP allows: e.g. chart series colours are `--color-<key>`
+  custom properties on `ChartContainer`, with `theme` colours resolved by
+  `light-dark()` (tokens.css sets `color-scheme` to follow the Hilum theme).
+- **`vendor.css`** is a static copy of the CSS that `sonner` (toasts) and `vaul`
+  (drawers) insert with a `<style>` tag when they are imported. Neither library
+  can turn that off, so under a strict CSP their tag is blocked (the browser
+  logs a CSP violation) and `vendor.css` styles toasts and drawers instead.
+  Without `vendor.css`, toasts render as an unstyled full-width bar.
+- **Radix** still renders two `<style>` tags we can't disable: the page
+  scroll lock while a modal layer is open (react-remove-scroll-bar) and the
+  scrollbar-hiding rule of the Select / ScrollArea viewport. Both are blocked
+  harmlessly: `tokens.css` carries the same rules (the scroll lock without the
+  scrollbar-width compensation, so pages with classic scrollbars may shift by
+  the scrollbar width while a dialog is open).
+- `applyTheme()` / `<ThemeProvider>` from `@hilum/ui/create-theme` insert a
+  `<style>` by design: pass `nonce`, or write `createTheme(config).css` to a
+  static stylesheet.
+- `InputOTP` and framer-motion's `popLayout` use `CSSStyleSheet.insertRule`,
+  which CSP doesn't restrict.
+- `FileThumbnail` PDF previews load the pdf.js worker from jsDelivr by default;
+  self-host it with `setPdfWorkerSrc` (see below) so `script-src` / `worker-src`
+  can stay `'self'`.
 
 ## Theming
 

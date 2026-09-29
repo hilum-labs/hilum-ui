@@ -19,7 +19,6 @@ import { surfaceClasses } from "../lib/surface-classes";
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
-  mobileDialogSheetStyle,
   mobileDialogSheetContentClassName,
 } from "../lib/mobile-popper-sheet";
 import { Button } from "./button";
@@ -61,6 +60,11 @@ interface DialogContentProps extends ComponentProps<typeof DialogPrimitive.Conte
   container?: HTMLElement | null;
   /** Screen-reader label of the close button. Default: "Close". */
   closeLabel?: string;
+  /**
+   * Render the corner close button. Default: true. Turn it off when the
+   * content places its own close control (e.g. CommandPalette's search row).
+   */
+  showCloseButton?: boolean;
 }
 
 function DialogContent({
@@ -70,6 +74,7 @@ function DialogContent({
   size = "sm",
   container,
   closeLabel = "Close",
+  showCloseButton = true,
   ...props
 }: DialogContentProps) {
   const XIcon = useIcon("x");
@@ -94,7 +99,6 @@ function DialogContent({
 
   return (
     <DialogPrimitive.Portal forceMount container={container ?? undefined}>
-      {!container && <style>{mobileDialogSheetStyle}</style>}
       <DialogPrimitive.Overlay asChild forceMount>
         <motion.div
           className={cn(
@@ -140,12 +144,14 @@ function DialogContent({
         >
           <SurfaceProvider value={dialogLevel}>
             {children}
-            <DialogPrimitive.Close asChild>
-              <Button variant="ghost" size="icon-sm" className="absolute end-3 top-3">
-                {createElement(XIcon)}
-                <span className="sr-only">{closeLabel}</span>
-              </Button>
-            </DialogPrimitive.Close>
+            {showCloseButton && (
+              <DialogPrimitive.Close asChild>
+                <Button variant="ghost" size="icon-sm" className="absolute end-3 top-3">
+                  {createElement(XIcon)}
+                  <span className="sr-only">{closeLabel}</span>
+                </Button>
+              </DialogPrimitive.Close>
+            )}
           </SurfaceProvider>
         </motion.div>
       </DialogPrimitive.Content>

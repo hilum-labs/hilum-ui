@@ -305,7 +305,13 @@ function CommandDialog({
   return (
     <Dialog {...props}>
       <DialogContent
-        className={cn("gap-0 overflow-hidden p-0 sm:max-w-xl", className)}
+        className={cn(
+          "gap-0 overflow-hidden p-0 sm:max-w-xl",
+          // Top-anchored on desktop so the input doesn't jump as results
+          // shrink; the input row leaves room for the corner close button.
+          "lg:top-[12dvh] lg:translate-y-0 [&_[data-slot=command-input-wrapper]]:pe-12",
+          className,
+        )}
         {...(closeLabel !== undefined ? { closeLabel } : {})}
       >
         <DialogHeader className="sr-only">

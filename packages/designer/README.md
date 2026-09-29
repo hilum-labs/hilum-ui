@@ -14,6 +14,7 @@ For the actual canvas (pan/zoom viewport, layers, drag/resize), use `@hilum/desi
 - `<DesignerPropertyRow>` / `DesignerPropertyLabel` / `DesignerPropertyControls` / `DesignerPropertyField` / `DesignerPropertyGroup` — inspector rows
 - `TwoValueControl` / `FourValueControl` / `SpacingControl` / `CornerRadiusControl` — compound numeric inputs
 - `<DesignerToolbar>` + `DesignerToolbarGroup` / `DesignerToolbarButton` / `DesignerToolbarSeparator` — composable toolbar
+- `<FontPicker>` — searchable font-family picker with live previews (compact density)
 
 ## Floating workspace
 
@@ -113,6 +114,46 @@ trails the actions.
   </DesignerPaneTitle>
 </DesignerPane>
 ```
+
+## Header actions
+
+`DesignerHeader` takes a structured action cluster at its inline end. The
+primary action is never cut off; secondary actions show inline on wide headers
+(up to `maxVisibleSecondaryActions`, default 2) and collapse into a "More
+actions" menu otherwise. Free-form `right` content renders before them and is
+clipped first.
+
+```tsx
+<DesignerHeader
+  left={<ProjectName />}
+  center={<ModeSwitcher />}
+  right={<Presence />}
+  primaryAction={{ label: "Publish", onAction: publish, loading: publishing }}
+  secondaryActions={[
+    { label: "Preview", href: previewUrl },
+    { label: "Share", onAction: share },
+    { label: "Version history", onAction: openHistory },
+  ]}
+/>
+```
+
+## Font picker
+
+```tsx
+<FontPicker
+  aria-label="Heading font"
+  fonts={[{ family: "Inter", category: "sans-serif", weights: [400, 700] }, …]}
+  value={settings.headingFont}
+  onChange={(family) => update({ headingFont: family })}
+  // Load faces lazily as options scroll into view (e.g. a Google Fonts <link>).
+  onLoadFont={(font) => loadGoogleFont(font.family)}
+/>
+```
+
+Each option previews its family with a `"Family", <generic>` stack, so it
+renders in the category's generic face until the font has loaded. Under a
+strict CSP, load fonts with `<link rel="stylesheet">` or the `FontFace` API
+(`style-src` must allow the font CSS origin).
 
 ## Hooks
 

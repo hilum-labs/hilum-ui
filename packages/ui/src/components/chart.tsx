@@ -65,8 +65,14 @@ function ChartContainer({
     () => ({ width: 800, height: typeof height === "number" ? height : 450 }),
     [height],
   );
-  const resolvedStyle =
-    height === undefined ? style : ({ ...style, height } as React.CSSProperties);
+  // Per-series colours are CSS custom properties on the container, set through
+  // the style prop (CSSOM), so no runtime <style> is needed (strict-CSP safe).
+  const colorVariables = chartColorVariables(config);
+  const resolvedStyle = {
+    ...colorVariables,
+    ...style,
+    ...(height === undefined ? {} : { height }),
+  } as React.CSSProperties;
 
   React.useEffect(() => {
     const element = containerRef.current;
@@ -119,7 +125,6 @@ function ChartContainer({
         style={resolvedStyle}
         {...props}
       >
-        <ChartStyle id={chartId} config={config} />
         {canRenderChart ? (
           <RechartsPrimitive.ResponsiveContainer initialDimension={initialDimension} minWidth={0}>
             {children}
@@ -131,6 +136,28 @@ function ChartContainer({
 }
 ChartContainer.displayName = "ChartContainer";
 
+/**
+ * `--color-<key>` custom properties for a chart config, for the container's
+ * `style` prop. `theme` colours use `light-dark()`, which follows the Hilum
+ * theme through `color-scheme` (set in tokens.css).
+ */
+function chartColorVariables(config: ChartConfig): Record<`--color-${string}`, string> {
+  const vars: Record<`--color-${string}`, string> = {};
+  for (const [key, itemConfig] of Object.entries(config)) {
+    const color = itemConfig.theme
+      ? `light-dark(${itemConfig.theme.light}, ${itemConfig.theme.dark})`
+      : itemConfig.color;
+    if (color) vars[`--color-${key}`] = color;
+  }
+  return vars;
+}
+
+/**
+ * @deprecated ChartContainer no longer renders it: series colours are set as
+ * CSS custom properties through its `style` prop (see `chartColorVariables`).
+ * This renders a runtime `<style>` element, which a strict
+ * Content-Security-Policy blocks.
+ */
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
     ([, itemConfig]) => itemConfig.theme || itemConfig.color,
@@ -443,6 +470,7 @@ export {
   ChartLegend,
   ChartLegendContent,
   ChartStyle,
+  chartColorVariables,
 };
 
 export {

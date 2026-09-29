@@ -649,6 +649,15 @@ const componentDefinitions = [
     "primitive",
     "Visual divider between sections, horizontal or vertical.",
   ],
+  [
+    "setup-guide",
+    "Setup Guide",
+    "molecules",
+    "Feedback",
+    "feedback",
+    "Onboarding checklist card with progress, grouped tasks, and one expanded task with a call to action.",
+    "Card · Progress · Button · Card Heading",
+  ],
   ["sheet", "Sheet", "atoms", "Overlay", "overlay", "Slide-in panel anchored to a screen edge."],
   [
     "sidebar",
@@ -762,6 +771,14 @@ const componentDefinitions = [
     "Multi-line text field for longer user input.",
   ],
   [
+    "thumbnail",
+    "Thumbnail",
+    "atoms",
+    "Primitives",
+    "primitive",
+    "Square product or resource image with sizes, object fit, border, and a neutral placeholder when there is no image.",
+  ],
+  [
     "thinking-indicator",
     "Thinking Indicator",
     "atoms",
@@ -777,6 +794,15 @@ const componentDefinitions = [
     "feedback",
     "Reasoning progress list with complete, current, and pending step states.",
     "Thinking Indicator",
+  ],
+  [
+    "time-series-chart",
+    "Time Series Chart",
+    "molecules",
+    "Data Display",
+    "data",
+    "Dashboard chart of values over dates with formatted axes and tooltip, loading and empty states.",
+    "Chart · Skeleton",
   ],
   [
     "titled-card",

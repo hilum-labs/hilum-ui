@@ -222,12 +222,11 @@ describe("AppLoadingBar / SkipLink", () => {
     expect(container).toBeEmptyDOMElement();
   });
 
-  it("ships reduced-motion styles with the bar", () => {
-    render(<AppLoadingBar />);
-    const css = Array.from(document.querySelectorAll("style"))
-      .map((el) => el.textContent)
-      .join("\n");
-    expect(css).toContain("prefers-reduced-motion: reduce");
+  it("renders no runtime <style>: its sweep and reduced-motion rules ship in tokens.css", () => {
+    const before = document.querySelectorAll("style").length;
+    const { container } = render(<AppLoadingBar />);
+    expect(document.querySelectorAll("style")).toHaveLength(before);
+    expect(container.querySelector("[data-slot='app-loading-bar-indicator']")).toBeInTheDocument();
   });
 
   it("does nothing special when the target is missing", () => {

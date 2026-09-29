@@ -7,7 +7,6 @@ import { focusRingClasses, motionClasses, pressClasses } from "../lib/interactio
 import {
   desktopDialogContentClassName,
   dialogSheetMotionClassName,
-  mobileDialogSheetStyle,
   mobileDialogSheetContentClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -45,7 +44,6 @@ function AlertDialogContent({
 }: React.ComponentProps<typeof AlertDialog.Content>) {
   return (
     <AlertDialog.Portal>
-      <style>{mobileDialogSheetStyle}</style>
       <AlertDialogOverlay />
       <AlertDialog.Content
         ref={ref}
@@ -125,11 +123,25 @@ function AlertDialogDescription({
 }
 AlertDialogDescription.displayName = "AlertDialogDescription";
 
+// With `asChild` the child (usually a `<Button>`) owns its look: merging the
+// action's own fill into it would override the child's variant.
 function AlertDialogAction({
   ref,
   className,
+  asChild,
   ...props
 }: React.ComponentProps<typeof AlertDialog.Action>) {
+  if (asChild) {
+    return (
+      <AlertDialog.Action
+        ref={ref}
+        data-slot="alert-dialog-action"
+        asChild
+        className={className}
+        {...props}
+      />
+    );
+  }
   return (
     <AlertDialog.Action
       ref={ref}
@@ -153,8 +165,20 @@ AlertDialogAction.displayName = "AlertDialogAction";
 function AlertDialogCancel({
   ref,
   className,
+  asChild,
   ...props
 }: React.ComponentProps<typeof AlertDialog.Cancel>) {
+  if (asChild) {
+    return (
+      <AlertDialog.Cancel
+        ref={ref}
+        data-slot="alert-dialog-cancel"
+        asChild
+        className={className}
+        {...props}
+      />
+    );
+  }
   return (
     <AlertDialog.Cancel
       ref={ref}

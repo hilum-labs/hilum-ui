@@ -22,6 +22,8 @@ import { Route as ApplicationUiPageRouteImport } from './app/application-ui/page
 import { Route as MoleculesUsageBarPageRouteImport } from './app/molecules/usage-bar/page'
 import { Route as MoleculesUrlRedirectPromptPageRouteImport } from './app/molecules/url-redirect-prompt/page'
 import { Route as MoleculesTitledCardPageRouteImport } from './app/molecules/titled-card/page'
+import { Route as MoleculesTimeSeriesChartPageRouteImport } from './app/molecules/time-series-chart/page'
+import { Route as MoleculesSetupGuidePageRouteImport } from './app/molecules/setup-guide/page'
 import { Route as MoleculesThinkingStepsPageRouteImport } from './app/molecules/thinking-steps/page'
 import { Route as MoleculesStatCardPageRouteImport } from './app/molecules/stat-card/page'
 import { Route as MoleculesStackedListPageRouteImport } from './app/molecules/stacked-list/page'
@@ -109,6 +111,7 @@ import { Route as AtomsToggleGroupPageRouteImport } from './app/atoms/toggle-gro
 import { Route as AtomsTimePickerPageRouteImport } from './app/atoms/time-picker/page'
 import { Route as AtomsThinkingIndicatorPageRouteImport } from './app/atoms/thinking-indicator/page'
 import { Route as AtomsTextareaPageRouteImport } from './app/atoms/textarea/page'
+import { Route as AtomsThumbnailPageRouteImport } from './app/atoms/thumbnail/page'
 import { Route as AtomsTabsPageRouteImport } from './app/atoms/tabs/page'
 import { Route as AtomsTabsSubtlePageRouteImport } from './app/atoms/tabs-subtle/page'
 import { Route as AtomsTablePageRouteImport } from './app/atoms/table/page'
@@ -257,6 +260,16 @@ const MoleculesUrlRedirectPromptPageRoute =
 const MoleculesTitledCardPageRoute = MoleculesTitledCardPageRouteImport.update({
   id: '/molecules/titled-card/',
   path: '/molecules/titled-card/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoleculesTimeSeriesChartPageRoute = MoleculesTimeSeriesChartPageRouteImport.update({
+  id: '/molecules/time-series-chart/',
+  path: '/molecules/time-series-chart/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MoleculesSetupGuidePageRoute = MoleculesSetupGuidePageRouteImport.update({
+  id: '/molecules/setup-guide/',
+  path: '/molecules/setup-guide/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoleculesThinkingStepsPageRoute =
@@ -744,6 +757,11 @@ const AtomsThinkingIndicatorPageRoute =
 const AtomsTextareaPageRoute = AtomsTextareaPageRouteImport.update({
   id: '/atoms/textarea/',
   path: '/atoms/textarea/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AtomsThumbnailPageRoute = AtomsThumbnailPageRouteImport.update({
+  id: '/atoms/thumbnail/',
+  path: '/atoms/thumbnail/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AtomsTabsPageRoute = AtomsTabsPageRouteImport.update({
@@ -1266,6 +1284,7 @@ export interface FileRoutesByFullPath {
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
+  '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
   '/atoms/thinking-indicator/': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/time-picker/': typeof AtomsTimePickerPageRoute
   '/atoms/toggle-group/': typeof AtomsToggleGroupPageRoute
@@ -1353,6 +1372,8 @@ export interface FileRoutesByFullPath {
   '/molecules/stat-card/': typeof MoleculesStatCardPageRoute
   '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
+  '/molecules/time-series-chart/': typeof MoleculesTimeSeriesChartPageRoute
+  '/molecules/setup-guide/': typeof MoleculesSetupGuidePageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
   '/molecules/usage-bar/': typeof MoleculesUsageBarPageRoute
 }
@@ -1451,6 +1472,7 @@ export interface FileRoutesByTo {
   '/atoms/tabs-subtle': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs': typeof AtomsTabsPageRoute
   '/atoms/textarea': typeof AtomsTextareaPageRoute
+  '/atoms/thumbnail': typeof AtomsThumbnailPageRoute
   '/atoms/thinking-indicator': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/time-picker': typeof AtomsTimePickerPageRoute
   '/atoms/toggle-group': typeof AtomsToggleGroupPageRoute
@@ -1538,6 +1560,8 @@ export interface FileRoutesByTo {
   '/molecules/stat-card': typeof MoleculesStatCardPageRoute
   '/molecules/thinking-steps': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card': typeof MoleculesTitledCardPageRoute
+  '/molecules/time-series-chart': typeof MoleculesTimeSeriesChartPageRoute
+  '/molecules/setup-guide': typeof MoleculesSetupGuidePageRoute
   '/molecules/url-redirect-prompt': typeof MoleculesUrlRedirectPromptPageRoute
   '/molecules/usage-bar': typeof MoleculesUsageBarPageRoute
 }
@@ -1637,6 +1661,7 @@ export interface FileRoutesById {
   '/atoms/tabs-subtle/': typeof AtomsTabsSubtlePageRoute
   '/atoms/tabs/': typeof AtomsTabsPageRoute
   '/atoms/textarea/': typeof AtomsTextareaPageRoute
+  '/atoms/thumbnail/': typeof AtomsThumbnailPageRoute
   '/atoms/thinking-indicator/': typeof AtomsThinkingIndicatorPageRoute
   '/atoms/time-picker/': typeof AtomsTimePickerPageRoute
   '/atoms/toggle-group/': typeof AtomsToggleGroupPageRoute
@@ -1724,6 +1749,8 @@ export interface FileRoutesById {
   '/molecules/stat-card/': typeof MoleculesStatCardPageRoute
   '/molecules/thinking-steps/': typeof MoleculesThinkingStepsPageRoute
   '/molecules/titled-card/': typeof MoleculesTitledCardPageRoute
+  '/molecules/time-series-chart/': typeof MoleculesTimeSeriesChartPageRoute
+  '/molecules/setup-guide/': typeof MoleculesSetupGuidePageRoute
   '/molecules/url-redirect-prompt/': typeof MoleculesUrlRedirectPromptPageRoute
   '/molecules/usage-bar/': typeof MoleculesUsageBarPageRoute
 }
@@ -1824,6 +1851,7 @@ export interface FileRouteTypes {
     | '/atoms/tabs-subtle/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
+    | '/atoms/thumbnail/'
     | '/atoms/thinking-indicator/'
     | '/atoms/time-picker/'
     | '/atoms/toggle-group/'
@@ -1911,6 +1939,8 @@ export interface FileRouteTypes {
     | '/molecules/stat-card/'
     | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
+    | '/molecules/time-series-chart/'
+    | '/molecules/setup-guide/'
     | '/molecules/url-redirect-prompt/'
     | '/molecules/usage-bar/'
   fileRoutesByTo: FileRoutesByTo
@@ -2009,6 +2039,7 @@ export interface FileRouteTypes {
     | '/atoms/tabs-subtle'
     | '/atoms/tabs'
     | '/atoms/textarea'
+    | '/atoms/thumbnail'
     | '/atoms/thinking-indicator'
     | '/atoms/time-picker'
     | '/atoms/toggle-group'
@@ -2096,6 +2127,8 @@ export interface FileRouteTypes {
     | '/molecules/stat-card'
     | '/molecules/thinking-steps'
     | '/molecules/titled-card'
+    | '/molecules/time-series-chart'
+    | '/molecules/setup-guide'
     | '/molecules/url-redirect-prompt'
     | '/molecules/usage-bar'
   id:
@@ -2194,6 +2227,7 @@ export interface FileRouteTypes {
     | '/atoms/tabs-subtle/'
     | '/atoms/tabs/'
     | '/atoms/textarea/'
+    | '/atoms/thumbnail/'
     | '/atoms/thinking-indicator/'
     | '/atoms/time-picker/'
     | '/atoms/toggle-group/'
@@ -2281,6 +2315,8 @@ export interface FileRouteTypes {
     | '/molecules/stat-card/'
     | '/molecules/thinking-steps/'
     | '/molecules/titled-card/'
+    | '/molecules/time-series-chart/'
+    | '/molecules/setup-guide/'
     | '/molecules/url-redirect-prompt/'
     | '/molecules/usage-bar/'
   fileRoutesById: FileRoutesById
@@ -2380,6 +2416,7 @@ export interface RootRouteChildren {
   AtomsTabsSubtlePageRoute: typeof AtomsTabsSubtlePageRoute
   AtomsTabsPageRoute: typeof AtomsTabsPageRoute
   AtomsTextareaPageRoute: typeof AtomsTextareaPageRoute
+  AtomsThumbnailPageRoute: typeof AtomsThumbnailPageRoute
   AtomsThinkingIndicatorPageRoute: typeof AtomsThinkingIndicatorPageRoute
   AtomsTimePickerPageRoute: typeof AtomsTimePickerPageRoute
   AtomsToggleGroupPageRoute: typeof AtomsToggleGroupPageRoute
@@ -2467,6 +2504,8 @@ export interface RootRouteChildren {
   MoleculesStatCardPageRoute: typeof MoleculesStatCardPageRoute
   MoleculesThinkingStepsPageRoute: typeof MoleculesThinkingStepsPageRoute
   MoleculesTitledCardPageRoute: typeof MoleculesTitledCardPageRoute
+  MoleculesTimeSeriesChartPageRoute: typeof MoleculesTimeSeriesChartPageRoute
+  MoleculesSetupGuidePageRoute: typeof MoleculesSetupGuidePageRoute
   MoleculesUrlRedirectPromptPageRoute: typeof MoleculesUrlRedirectPromptPageRoute
   MoleculesUsageBarPageRoute: typeof MoleculesUsageBarPageRoute
 }
@@ -2562,6 +2601,20 @@ declare module '@tanstack/react-router' {
       path: '/molecules/titled-card'
       fullPath: '/molecules/titled-card/'
       preLoaderRoute: typeof MoleculesTitledCardPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/time-series-chart/': {
+      id: '/molecules/time-series-chart/'
+      path: '/molecules/time-series-chart'
+      fullPath: '/molecules/time-series-chart/'
+      preLoaderRoute: typeof MoleculesTimeSeriesChartPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/molecules/setup-guide/': {
+      id: '/molecules/setup-guide/'
+      path: '/molecules/setup-guide'
+      fullPath: '/molecules/setup-guide/'
+      preLoaderRoute: typeof MoleculesSetupGuidePageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/molecules/thinking-steps/': {
@@ -3171,6 +3224,13 @@ declare module '@tanstack/react-router' {
       path: '/atoms/textarea'
       fullPath: '/atoms/textarea/'
       preLoaderRoute: typeof AtomsTextareaPageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/atoms/thumbnail/': {
+      id: '/atoms/thumbnail/'
+      path: '/atoms/thumbnail'
+      fullPath: '/atoms/thumbnail/'
+      preLoaderRoute: typeof AtomsThumbnailPageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/atoms/tabs/': {
@@ -3853,6 +3913,7 @@ const rootRouteChildren: RootRouteChildren = {
   AtomsTabsSubtlePageRoute: AtomsTabsSubtlePageRoute,
   AtomsTabsPageRoute: AtomsTabsPageRoute,
   AtomsTextareaPageRoute: AtomsTextareaPageRoute,
+  AtomsThumbnailPageRoute: AtomsThumbnailPageRoute,
   AtomsThinkingIndicatorPageRoute: AtomsThinkingIndicatorPageRoute,
   AtomsTimePickerPageRoute: AtomsTimePickerPageRoute,
   AtomsToggleGroupPageRoute: AtomsToggleGroupPageRoute,
@@ -3941,6 +4002,8 @@ const rootRouteChildren: RootRouteChildren = {
   MoleculesStatCardPageRoute: MoleculesStatCardPageRoute,
   MoleculesThinkingStepsPageRoute: MoleculesThinkingStepsPageRoute,
   MoleculesTitledCardPageRoute: MoleculesTitledCardPageRoute,
+  MoleculesTimeSeriesChartPageRoute: MoleculesTimeSeriesChartPageRoute,
+  MoleculesSetupGuidePageRoute: MoleculesSetupGuidePageRoute,
   MoleculesUrlRedirectPromptPageRoute: MoleculesUrlRedirectPromptPageRoute,
   MoleculesUsageBarPageRoute: MoleculesUsageBarPageRoute,
 }

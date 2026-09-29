@@ -28,10 +28,6 @@ const FIELD_FOCUS_WITHIN = [
   "compact:focus-within:ring-0",
 ];
 
-/** The aria-hidden background layer Button paints its fill on. */
-const bgSpan = (button: HTMLElement) =>
-  button.querySelector<HTMLElement>(":scope > span[aria-hidden]")!;
-
 describe("compact field surfaces", () => {
   it("fills Input, Textarea and SearchInput with focus on the ring border", () => {
     render(
@@ -71,7 +67,7 @@ describe("compact field surfaces", () => {
       </NativeSelect>,
     );
     expect(screen.getByLabelText("Unit")).toHaveClass(
-      "h-10",
+      "h-9",
       "compact:h-6",
       "compact:ps-2",
       "compact:py-0",
@@ -149,7 +145,7 @@ describe("compact InputNumber prefix and suffix", () => {
 });
 
 describe("Button tile and field variants", () => {
-  it("tile is a quiet fill; aria-pressed switches the bg span to the ringed background tile", () => {
+  it("tile is a quiet fill; aria-pressed switches the ::before fill to the ringed background tile", () => {
     render(
       <>
         <Button variant="tile" aria-pressed={false}>
@@ -162,11 +158,11 @@ describe("Button tile and field variants", () => {
     );
     const idle = screen.getByRole("button", { name: "Serif" });
     expect(idle).toHaveClass("text-foreground", "compact:whitespace-nowrap");
-    expect(bgSpan(idle)).toHaveClass(
-      "bg-foreground/[0.05]",
-      "group-hover:bg-foreground/[0.08]",
-      "group-aria-pressed:bg-background",
-      "group-aria-pressed:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
+    expect(idle).toHaveClass(
+      "before:bg-foreground/[0.05]",
+      "hover:before:bg-foreground/[0.08]",
+      "aria-pressed:before:bg-background",
+      "aria-pressed:before:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
     );
     expect(screen.getByRole("button", { name: "Sans", pressed: true })).toBeInTheDocument();
   });
@@ -180,11 +176,12 @@ describe("Button tile and field variants", () => {
     const tile = screen.getByRole("button", { name: "Classic" });
     expect(tile).toHaveClass("h-auto", "compact:h-auto");
     expect(tile).not.toHaveClass("h-8", "compact:h-6");
-    expect(bgSpan(tile)).toHaveClass(
-      "bg-background",
-      "shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
+    expect(tile).toHaveClass(
+      "before:bg-background",
+      "before:shadow-[inset_0_0_0_1px_var(--foreground),0_1px_2px_rgb(0_0_0/0.06)]",
     );
-    expect(bgSpan(tile)).not.toHaveClass("group-hover:bg-foreground/[0.08]");
+    expect(tile).not.toHaveClass("hover:before:bg-foreground/[0.08]");
+    expect(tile).toHaveAttribute("data-active");
   });
 
   it("field reads as a control surface and becomes the compact filled field", () => {
@@ -209,15 +206,12 @@ describe("Button tile and field variants", () => {
       "compact:[&_svg]:size-3",
       "compact:[&_svg]:text-muted-foreground",
     );
-    expect(bgSpan(field)).toHaveClass(
-      "bg-background",
-      "compact:bg-[var(--density-field)]",
-      "compact:group-aria-expanded:bg-background",
+    expect(field).toHaveClass(
+      "before:bg-background",
+      "compact:before:bg-[var(--density-field)]",
+      "compact:aria-expanded:before:bg-background",
     );
-    expect(field.querySelector(":scope > span:not([aria-hidden])")).toHaveClass(
-      "w-full",
-      "justify-between",
-    );
+    expect(field.querySelector(":scope > span")).toHaveClass("w-full", "justify-between");
   });
 
   it("field `active` keeps the open field on the background", () => {
@@ -226,7 +220,9 @@ describe("Button tile and field variants", () => {
         Inter
       </Button>,
     );
-    expect(bgSpan(screen.getByRole("button", { name: "Inter" }))).toHaveClass("bg-background");
+    const field = screen.getByRole("button", { name: "Inter" });
+    expect(field).toHaveClass("before:bg-background", "compact:before:bg-background");
+    expect(field).not.toHaveClass("compact:before:bg-[var(--density-field)]");
   });
 
   it("ghost pressed state is a subtle fill in the foreground colour", () => {
@@ -237,7 +233,7 @@ describe("Button tile and field variants", () => {
     );
     const button = screen.getByRole("button", { name: "Link values", pressed: true });
     expect(button).toHaveClass("aria-pressed:text-foreground");
-    expect(bgSpan(button)).toHaveClass("group-aria-pressed:bg-foreground/[0.08]");
+    expect(button).toHaveClass("aria-pressed:before:bg-foreground/[0.08]");
   });
 });
 

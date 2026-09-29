@@ -28,20 +28,26 @@ interface AppStatusBannerProps {
   className?: string;
 }
 
+// Semantic token surfaces only (no raw palette colours), so every tone keeps
+// its contrast in light, mid and dark: `warning` is the token warning surface
+// (butter in light, deep amber in dark) with its paired foreground; `success`
+// is a lime tint under the regular foreground, with a solid lime icon chip;
+// `danger` is a destructive tint under the regular foreground (red title text
+// on the tint fell below 4.5:1 in dark mode) with a destructive icon.
 const toneClassName: Record<AppStatusBannerTone, string> = {
   neutral: "border-border bg-card text-foreground",
   info: "border-brand-primary/25 bg-brand-secondary/25 text-foreground",
-  success: "border-emerald-200 bg-emerald-50 text-emerald-950",
-  warning: "border-amber-300 bg-amber-100 text-amber-950",
-  danger: "border-destructive/25 bg-destructive/10 text-destructive",
+  success: "border-success/40 bg-success/15 text-foreground",
+  warning: "border-warning-foreground/15 bg-warning text-warning-foreground",
+  danger: "border-destructive/40 bg-destructive/10 text-foreground",
 };
 
 const iconClassName: Record<AppStatusBannerTone, string> = {
-  neutral: "text-muted-foreground",
-  info: "text-brand-primary",
-  success: "text-emerald-700",
-  warning: "text-amber-700",
-  danger: "text-destructive",
+  neutral: "bg-background/70 text-muted-foreground",
+  info: "bg-background/70 text-brand-primary",
+  success: "bg-success text-success-foreground",
+  warning: "bg-background/70 text-warning-foreground",
+  danger: "bg-background/70 text-destructive",
 };
 
 const defaultIcon: Record<AppStatusBannerTone, ReactNode> = {
@@ -116,7 +122,7 @@ function AppStatusBanner({
     >
       <span
         className={cn(
-          "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-background/70 sm:mt-0",
+          "mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg sm:mt-0",
           iconClassName[tone],
         )}
         aria-hidden="true"

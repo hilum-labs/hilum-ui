@@ -5,7 +5,12 @@ import { Clock, X } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useFormatter } from "../lib/format";
 import { useFieldControl } from "../lib/field-context";
-import { controlSurfaceClasses, inputFocusWithinClasses, motionClasses } from "../lib/interaction";
+import {
+  controlSizeClasses,
+  controlSurfaceClasses,
+  inputFocusWithinClasses,
+  motionClasses,
+} from "../lib/interaction";
 
 /* ─────────────────────── Time helpers ─────────────────────── */
 
@@ -456,7 +461,8 @@ function TimePicker({
       data-invalid={fieldProps["aria-invalid"] ? "" : undefined}
       data-slot="time-picker"
       className={cn(
-        "relative inline-flex h-10 min-w-0 items-center gap-2 rounded-md px-3 text-foreground",
+        "relative inline-flex min-w-0 items-center gap-2 rounded-md px-3 text-foreground",
+        controlSizeClasses,
         controlSurfaceClasses,
         motionClasses,
         inputFocusWithinClasses,
@@ -467,7 +473,7 @@ function TimePicker({
       )}
     >
       <Clock size={14} className="shrink-0 text-muted-foreground" aria-hidden="true" />
-      <div className="body flex items-center" dir="ltr">
+      <div className="flex items-center" dir="ltr">
         {layout.order.map((segment, index) => (
           <React.Fragment key={segment}>
             {index > 0 && segment === "minute" && layout.order[index - 1] === "hour" && (

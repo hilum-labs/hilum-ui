@@ -237,14 +237,21 @@ export function createTheme(config: ThemeConfig): ThemeResult {
   return { css: buildCss(p, s, primary, secondary), palette: { primary: p, secondary: s } };
 }
 
-/** Injects the theme CSS into `document.head`. Returns a cleanup function. */
-export function applyTheme(config: ThemeConfig): () => void {
+/**
+ * Injects the theme CSS into `document.head`. Returns a cleanup function.
+ *
+ * This inserts a `<style>` element: under a strict Content-Security-Policy
+ * pass the page's style `nonce`, or write `createTheme(config).css` to a
+ * static stylesheet instead.
+ */
+export function applyTheme(config: ThemeConfig, options: { nonce?: string } = {}): () => void {
   if (typeof document === "undefined") return () => {};
   // Remove any stale theme override from a prior call.
   document.querySelectorAll("style[data-hilum-theme]").forEach((el) => el.remove());
   const { css } = createTheme(config);
   const style = document.createElement("style");
   style.dataset.hilumTheme = "";
+  if (options.nonce) style.nonce = options.nonce;
   style.textContent = css;
   document.head.appendChild(style);
   return () => {
@@ -256,8 +263,16 @@ export function applyTheme(config: ThemeConfig): () => void {
 export function ThemeProvider({
   primary,
   secondary,
+  nonce,
   children,
-}: ThemeConfig & { children: React.ReactNode }) {
-  React.useEffect(() => applyTheme({ primary, secondary }), [primary, secondary]);
+}: ThemeConfig & {
+  /** Style nonce for a strict Content-Security-Policy (see `applyTheme`). */
+  nonce?: string;
+  children: React.ReactNode;
+}) {
+  React.useEffect(
+    () => applyTheme({ primary, secondary }, nonce ? { nonce } : {}),
+    [primary, secondary, nonce],
+  );
   return <>{children}</>;
 }

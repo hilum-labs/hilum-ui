@@ -273,7 +273,7 @@ function PageHeader({
     ) : null;
   const headingTitle = icon ? (
     <span className={cn("flex min-w-0 gap-3", wrapTitle ? "items-start" : "items-center")}>
-      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-secondary/30 text-ground-700 ring-1 ring-border [&_svg]:size-5">
+      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand-secondary/30 text-foreground ring-1 ring-border [&_svg]:size-5">
         {icon}
       </span>
       <span className={cn("min-w-0", wrapTitle ? "break-words" : "truncate")}>{title}</span>

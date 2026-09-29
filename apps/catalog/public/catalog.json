@@ -10,8 +10,8 @@
     "url": "https://ui.hilum.dev"
   },
   "codeRepository": "https://github.com/hilum-labs/hilum-ui",
-  "dateModified": "2026-09-28T10:45:03.526Z",
-  "numberOfItems": 183,
+  "dateModified": "2026-09-29T06:17:51.651Z",
+  "numberOfItems": 186,
   "sections": [
     {
       "name": "Application UI",
@@ -23,7 +23,7 @@
       "name": "Atoms",
       "path": "/atoms",
       "url": "https://ui.hilum.dev/atoms/",
-      "count": 80
+      "count": 81
     },
     {
       "name": "Blocks",
@@ -65,7 +65,7 @@
       "name": "Molecules",
       "path": "/molecules",
       "url": "https://ui.hilum.dev/molecules/",
-      "count": 40
+      "count": 42
     },
     {
       "name": "Theming",
@@ -960,6 +960,16 @@
       "position": 89,
       "item": {
         "@type": "WebPage",
+        "name": "Thumbnail",
+        "url": "https://ui.hilum.dev/atoms/thumbnail/",
+        "description": "Thumbnail reference in the Atoms section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 90,
+      "item": {
+        "@type": "WebPage",
         "name": "Time Picker",
         "url": "https://ui.hilum.dev/atoms/time-picker/",
         "description": "Time Picker reference in the Atoms section of Hilum UI."
@@ -967,7 +977,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 90,
+      "position": 91,
       "item": {
         "@type": "WebPage",
         "name": "Toggle",
@@ -977,7 +987,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 91,
+      "position": 92,
       "item": {
         "@type": "WebPage",
         "name": "Toggle Group",
@@ -987,7 +997,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 92,
+      "position": 93,
       "item": {
         "@type": "WebPage",
         "name": "Tooltip",
@@ -997,7 +1007,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 93,
+      "position": 94,
       "item": {
         "@type": "WebPage",
         "name": "Tree View",
@@ -1007,7 +1017,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 94,
+      "position": 95,
       "item": {
         "@type": "WebPage",
         "name": "Blocks",
@@ -1017,7 +1027,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 95,
+      "position": 96,
       "item": {
         "@type": "WebPage",
         "name": "App Shell Sidebar",
@@ -1027,7 +1037,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 96,
+      "position": 97,
       "item": {
         "@type": "WebPage",
         "name": "App Shell Stacked",
@@ -1037,7 +1047,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 97,
+      "position": 98,
       "item": {
         "@type": "WebPage",
         "name": "Detail Screen",
@@ -1047,7 +1057,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 98,
+      "position": 99,
       "item": {
         "@type": "WebPage",
         "name": "Form Layout",
@@ -1057,7 +1067,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 99,
+      "position": 100,
       "item": {
         "@type": "WebPage",
         "name": "Navbar",
@@ -1067,7 +1077,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 100,
+      "position": 101,
       "item": {
         "@type": "WebPage",
         "name": "Settings Screen",
@@ -1077,7 +1087,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 101,
+      "position": 102,
       "item": {
         "@type": "WebPage",
         "name": "Sign In",
@@ -1087,7 +1097,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 102,
+      "position": 103,
       "item": {
         "@type": "WebPage",
         "name": "Designer",
@@ -1097,7 +1107,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 103,
+      "position": 104,
       "item": {
         "@type": "WebPage",
         "name": "Canvas",
@@ -1107,7 +1117,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 104,
+      "position": 105,
       "item": {
         "@type": "WebPage",
         "name": "Pane Visibility",
@@ -1117,7 +1127,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 105,
+      "position": 106,
       "item": {
         "@type": "WebPage",
         "name": "Shell",
@@ -1127,7 +1137,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 106,
+      "position": 107,
       "item": {
         "@type": "WebPage",
         "name": "Static Frame",
@@ -1137,7 +1147,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 107,
+      "position": 108,
       "item": {
         "@type": "WebPage",
         "name": "Ecommerce",
@@ -1147,7 +1157,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 108,
+      "position": 109,
       "item": {
         "@type": "WebPage",
         "name": "Category Filters",
@@ -1157,7 +1167,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 109,
+      "position": 110,
       "item": {
         "@type": "WebPage",
         "name": "Category Previews",
@@ -1167,7 +1177,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 110,
+      "position": 111,
       "item": {
         "@type": "WebPage",
         "name": "Checkout Forms",
@@ -1177,7 +1187,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 111,
+      "position": 112,
       "item": {
         "@type": "WebPage",
         "name": "Incentives",
@@ -1187,7 +1197,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 112,
+      "position": 113,
       "item": {
         "@type": "WebPage",
         "name": "Order History",
@@ -1197,7 +1207,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 113,
+      "position": 114,
       "item": {
         "@type": "WebPage",
         "name": "Order Summaries",
@@ -1207,7 +1217,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 114,
+      "position": 115,
       "item": {
         "@type": "WebPage",
         "name": "Product Features",
@@ -1217,7 +1227,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 115,
+      "position": 116,
       "item": {
         "@type": "WebPage",
         "name": "Product Lists",
@@ -1227,7 +1237,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 116,
+      "position": 117,
       "item": {
         "@type": "WebPage",
         "name": "Product Overviews",
@@ -1237,7 +1247,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 117,
+      "position": 118,
       "item": {
         "@type": "WebPage",
         "name": "Product Quickviews",
@@ -1247,7 +1257,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 118,
+      "position": 119,
       "item": {
         "@type": "WebPage",
         "name": "Promo Sections",
@@ -1257,7 +1267,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 119,
+      "position": 120,
       "item": {
         "@type": "WebPage",
         "name": "Reviews",
@@ -1267,7 +1277,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 120,
+      "position": 121,
       "item": {
         "@type": "WebPage",
         "name": "Shopping Carts",
@@ -1277,7 +1287,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 121,
+      "position": 122,
       "item": {
         "@type": "WebPage",
         "name": "Store Navigation",
@@ -1287,7 +1297,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 122,
+      "position": 123,
       "item": {
         "@type": "WebPage",
         "name": "Foundations",
@@ -1297,7 +1307,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 123,
+      "position": 124,
       "item": {
         "@type": "WebPage",
         "name": "Marketing",
@@ -1307,7 +1317,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 124,
+      "position": 125,
       "item": {
         "@type": "WebPage",
         "name": "404 Pages",
@@ -1317,7 +1327,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 125,
+      "position": 126,
       "item": {
         "@type": "WebPage",
         "name": "Banners",
@@ -1327,7 +1337,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 126,
+      "position": 127,
       "item": {
         "@type": "WebPage",
         "name": "Blog Sections",
@@ -1337,7 +1347,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 127,
+      "position": 128,
       "item": {
         "@type": "WebPage",
         "name": "Contact Sections",
@@ -1347,7 +1357,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 128,
+      "position": 129,
       "item": {
         "@type": "WebPage",
         "name": "Content Sections",
@@ -1357,7 +1367,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 129,
+      "position": 130,
       "item": {
         "@type": "WebPage",
         "name": "Cta Sections",
@@ -1367,7 +1377,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 130,
+      "position": 131,
       "item": {
         "@type": "WebPage",
         "name": "Faq Sections",
@@ -1377,7 +1387,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 131,
+      "position": 132,
       "item": {
         "@type": "WebPage",
         "name": "Feature Sections",
@@ -1387,7 +1397,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 132,
+      "position": 133,
       "item": {
         "@type": "WebPage",
         "name": "Flyout Menus",
@@ -1397,7 +1407,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 133,
+      "position": 134,
       "item": {
         "@type": "WebPage",
         "name": "Footers",
@@ -1407,7 +1417,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 134,
+      "position": 135,
       "item": {
         "@type": "WebPage",
         "name": "Header",
@@ -1417,7 +1427,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 135,
+      "position": 136,
       "item": {
         "@type": "WebPage",
         "name": "Heroes",
@@ -1427,7 +1437,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 136,
+      "position": 137,
       "item": {
         "@type": "WebPage",
         "name": "Logo Clouds",
@@ -1437,7 +1447,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 137,
+      "position": 138,
       "item": {
         "@type": "WebPage",
         "name": "Nav Headers",
@@ -1447,7 +1457,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 138,
+      "position": 139,
       "item": {
         "@type": "WebPage",
         "name": "Newsletter Sections",
@@ -1457,7 +1467,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 139,
+      "position": 140,
       "item": {
         "@type": "WebPage",
         "name": "Pricing",
@@ -1467,7 +1477,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 140,
+      "position": 141,
       "item": {
         "@type": "WebPage",
         "name": "Stats Sections",
@@ -1477,7 +1487,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 141,
+      "position": 142,
       "item": {
         "@type": "WebPage",
         "name": "Team Sections",
@@ -1487,7 +1497,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 142,
+      "position": 143,
       "item": {
         "@type": "WebPage",
         "name": "Testimonials",
@@ -1497,7 +1507,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 143,
+      "position": 144,
       "item": {
         "@type": "WebPage",
         "name": "Molecules",
@@ -1507,7 +1517,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 144,
+      "position": 145,
       "item": {
         "@type": "WebPage",
         "name": "Account Menu",
@@ -1517,7 +1527,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 145,
+      "position": 146,
       "item": {
         "@type": "WebPage",
         "name": "Action Panel",
@@ -1527,7 +1537,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 146,
+      "position": 147,
       "item": {
         "@type": "WebPage",
         "name": "Activity Feed",
@@ -1537,7 +1547,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 147,
+      "position": 148,
       "item": {
         "@type": "WebPage",
         "name": "Ask User Questions",
@@ -1547,7 +1557,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 148,
+      "position": 149,
       "item": {
         "@type": "WebPage",
         "name": "Card Heading",
@@ -1557,7 +1567,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 149,
+      "position": 150,
       "item": {
         "@type": "WebPage",
         "name": "Chat Message",
@@ -1567,7 +1577,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 150,
+      "position": 151,
       "item": {
         "@type": "WebPage",
         "name": "Command Palette",
@@ -1577,7 +1587,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 151,
+      "position": 152,
       "item": {
         "@type": "WebPage",
         "name": "Contextual Save Bar",
@@ -1587,7 +1597,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 152,
+      "position": 153,
       "item": {
         "@type": "WebPage",
         "name": "Data Transfer Controls",
@@ -1597,7 +1607,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 153,
+      "position": 154,
       "item": {
         "@type": "WebPage",
         "name": "Date Time Picker",
@@ -1607,7 +1617,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 154,
+      "position": 155,
       "item": {
         "@type": "WebPage",
         "name": "Description List",
@@ -1617,7 +1627,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 155,
+      "position": 156,
       "item": {
         "@type": "WebPage",
         "name": "Empty State",
@@ -1627,7 +1637,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 156,
+      "position": 157,
       "item": {
         "@type": "WebPage",
         "name": "Field",
@@ -1637,7 +1647,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 157,
+      "position": 158,
       "item": {
         "@type": "WebPage",
         "name": "Filter Bar",
@@ -1647,7 +1657,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 158,
+      "position": 159,
       "item": {
         "@type": "WebPage",
         "name": "Form Layout",
@@ -1657,7 +1667,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 159,
+      "position": 160,
       "item": {
         "@type": "WebPage",
         "name": "Grid List",
@@ -1667,7 +1677,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 160,
+      "position": 161,
       "item": {
         "@type": "WebPage",
         "name": "Input Copy",
@@ -1677,7 +1687,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 161,
+      "position": 162,
       "item": {
         "@type": "WebPage",
         "name": "Input Group",
@@ -1687,7 +1697,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 162,
+      "position": 163,
       "item": {
         "@type": "WebPage",
         "name": "Input Message",
@@ -1697,7 +1707,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 163,
+      "position": 164,
       "item": {
         "@type": "WebPage",
         "name": "Layout",
@@ -1707,7 +1717,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 164,
+      "position": 165,
       "item": {
         "@type": "WebPage",
         "name": "Media Asset Card",
@@ -1717,7 +1727,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 165,
+      "position": 166,
       "item": {
         "@type": "WebPage",
         "name": "Media Asset Grid",
@@ -1727,7 +1737,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 166,
+      "position": 167,
       "item": {
         "@type": "WebPage",
         "name": "Media Object",
@@ -1737,7 +1747,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 167,
+      "position": 168,
       "item": {
         "@type": "WebPage",
         "name": "Mobile Drawer",
@@ -1747,7 +1757,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 168,
+      "position": 169,
       "item": {
         "@type": "WebPage",
         "name": "Nav Menu",
@@ -1757,7 +1767,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 169,
+      "position": 170,
       "item": {
         "@type": "WebPage",
         "name": "Notification",
@@ -1767,7 +1777,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 170,
+      "position": 171,
       "item": {
         "@type": "WebPage",
         "name": "Page Heading",
@@ -1777,7 +1787,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 171,
+      "position": 172,
       "item": {
         "@type": "WebPage",
         "name": "Property Row",
@@ -1787,7 +1797,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 172,
+      "position": 173,
       "item": {
         "@type": "WebPage",
         "name": "Radio Card",
@@ -1797,7 +1807,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 173,
+      "position": 174,
       "item": {
         "@type": "WebPage",
         "name": "Resource Item",
@@ -1807,7 +1817,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 174,
+      "position": 175,
       "item": {
         "@type": "WebPage",
         "name": "Section Heading",
@@ -1817,7 +1827,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 175,
+      "position": 176,
+      "item": {
+        "@type": "WebPage",
+        "name": "Setup Guide",
+        "url": "https://ui.hilum.dev/molecules/setup-guide/",
+        "description": "Setup Guide reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 177,
       "item": {
         "@type": "WebPage",
         "name": "Skeleton Page",
@@ -1827,7 +1847,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 176,
+      "position": 178,
       "item": {
         "@type": "WebPage",
         "name": "Sortable",
@@ -1837,7 +1857,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 177,
+      "position": 179,
       "item": {
         "@type": "WebPage",
         "name": "Stacked List",
@@ -1847,7 +1867,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 178,
+      "position": 180,
       "item": {
         "@type": "WebPage",
         "name": "Stat Card",
@@ -1857,7 +1877,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 179,
+      "position": 181,
       "item": {
         "@type": "WebPage",
         "name": "Thinking Steps",
@@ -1867,7 +1887,17 @@
     },
     {
       "@type": "ListItem",
-      "position": 180,
+      "position": 182,
+      "item": {
+        "@type": "WebPage",
+        "name": "Time Series Chart",
+        "url": "https://ui.hilum.dev/molecules/time-series-chart/",
+        "description": "Time Series Chart reference in the Molecules section of Hilum UI."
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 183,
       "item": {
         "@type": "WebPage",
         "name": "Titled Card",
@@ -1877,7 +1907,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 181,
+      "position": 184,
       "item": {
         "@type": "WebPage",
         "name": "Url Redirect Prompt",
@@ -1887,7 +1917,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 182,
+      "position": 185,
       "item": {
         "@type": "WebPage",
         "name": "Usage Bar",
@@ -1897,7 +1927,7 @@
     },
     {
       "@type": "ListItem",
-      "position": 183,
+      "position": 186,
       "item": {
         "@type": "WebPage",
         "name": "Theming",
@@ -2612,6 +2642,14 @@
       "sourcePath": "src/app/atoms/thinking-indicator/page.tsx"
     },
     {
+      "path": "/atoms/thumbnail",
+      "url": "https://ui.hilum.dev/atoms/thumbnail/",
+      "title": "Thumbnail",
+      "description": "Thumbnail reference in the Atoms section of Hilum UI.",
+      "section": "Atoms",
+      "sourcePath": "src/app/atoms/thumbnail/page.tsx"
+    },
+    {
       "path": "/atoms/time-picker",
       "url": "https://ui.hilum.dev/atoms/time-picker/",
       "title": "Time Picker",
@@ -3300,6 +3338,14 @@
       "sourcePath": "src/app/molecules/section-heading/page.tsx"
     },
     {
+      "path": "/molecules/setup-guide",
+      "url": "https://ui.hilum.dev/molecules/setup-guide/",
+      "title": "Setup Guide",
+      "description": "Setup Guide reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/setup-guide/page.tsx"
+    },
+    {
       "path": "/molecules/skeleton-page",
       "url": "https://ui.hilum.dev/molecules/skeleton-page/",
       "title": "Skeleton Page",
@@ -3338,6 +3384,14 @@
       "description": "Thinking Steps reference in the Molecules section of Hilum UI.",
       "section": "Molecules",
       "sourcePath": "src/app/molecules/thinking-steps/page.tsx"
+    },
+    {
+      "path": "/molecules/time-series-chart",
+      "url": "https://ui.hilum.dev/molecules/time-series-chart/",
+      "title": "Time Series Chart",
+      "description": "Time Series Chart reference in the Molecules section of Hilum UI.",
+      "section": "Molecules",
+      "sourcePath": "src/app/molecules/time-series-chart/page.tsx"
     },
     {
       "path": "/molecules/titled-card",

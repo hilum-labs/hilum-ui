@@ -4006,6 +4006,57 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/atoms/thumbnail/": {
+    "accessibility": [
+      "Keep headings, labels, and supporting text in the DOM before decorative chrome so the page reads well without styles or scripts.",
+      "Test the pattern with keyboard navigation and a screen reader before treating the visual layout as complete.",
+      "Use status, selection, and disabled states that remain understandable without color alone."
+    ],
+    "api": [
+      {
+        "label": "alt",
+        "description": "string · required — Alternative text for the image, e.g. the product title. Pass \"\" when the thumbnail sits next to text that already names the item."
+      },
+      {
+        "label": "src",
+        "description": "string — Image URL. Without one (or if it fails to load) a neutral placeholder icon shows."
+      },
+      {
+        "label": "size",
+        "description": "\"xs\" | \"sm\" | \"md\" | \"lg\" · default \"md\" — Default \"md\" (40px)."
+      },
+      {
+        "label": "fit",
+        "description": "\"contain\" | \"cover\" · default \"cover\" — `cover` crops to fill the square (default); `contain` letterboxes."
+      },
+      {
+        "label": "placeholderIcon",
+        "description": "IconComponent — Placeholder icon. Default: the image icon from the active icon library."
+      },
+      {
+        "label": "loading",
+        "description": "\"eager\" | \"lazy\" · default \"lazy\" — Forwarded to the <img>, e.g. \"eager\" for above-the-fold media. Default \"lazy\"."
+      },
+      {
+        "label": "Inherited props",
+        "description": "Also accepts native HTML/React attributes (277)."
+      }
+    ],
+    "exampleCode": "import { Thumbnail } from \"@hilum/ui\"\n\n<Thumbnail src={product.image} alt={product.title} size=\"xs\" />\n<Thumbnail src={product.image} alt={product.title} size=\"sm\" />\n<Thumbnail src={product.image} alt={product.title} />          {/* md, 40px */}\n<Thumbnail src={product.image} alt={product.title} size=\"lg\" />",
+    "kind": "component",
+    "path": "/atoms/thumbnail/",
+    "summary": "Square product or resource image with sizes, object fit, border, and a neutral placeholder when there is no image.",
+    "title": "Thumbnail",
+    "whenNotToUse": [
+      "Do not use Thumbnail just because it already exists in the catalog; choose the pattern that matches the task, not the most decorative option.",
+      "Do not keep layering options onto the pattern when a simpler component or section would be easier to understand and maintain."
+    ],
+    "whenToUse": [
+      "Use Thumbnail when you need a reusable atoms pattern instead of rebuilding the structure from primitives.",
+      "Start from the simplest example that fits the task, then add decoration only when it clarifies meaning or hierarchy.",
+      "Review the examples below to understand the tradeoffs between density, emphasis, and behavior."
+    ]
+  },
   "/atoms/time-picker/": {
     "accessibility": [
       "Keep a visible label or an equivalent accessible name attached to the control.",
@@ -6536,8 +6587,16 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "React.ReactNode"
       },
       {
+        "label": "headingLevel",
+        "description": "2 | 3 | 4 | 5 | 6 · default 2 — Heading level of the title (`h2` … `h6`). Default: 2."
+      },
+      {
         "label": "className",
         "description": "string"
+      },
+      {
+        "label": "Key exports",
+        "description": "CardHeading, CardHeadingTitle"
       }
     ],
     "exampleCode": "import { CardHeading } from \"@hilum/ui\"\n\n<div className=\"rounded-xl border border-border\">\n  <CardHeading title=\"Job Postings\" />\n  <div className=\"p-5\">{/* card content */}</div>\n</div>",
@@ -6623,7 +6682,15 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "items",
-        "description": "CommandPaletteItem[] · required"
+        "description": "CommandPaletteItem[] · required — Static commands and pages, filtered by the query inside the palette."
+      },
+      {
+        "label": "groups",
+        "description": "CommandPaletteGroup[] — Result groups the app fetches for the query (see `onQueryChange`), shown after the matching `items`, in order. Their items are not filtered."
+      },
+      {
+        "label": "onQueryChange",
+        "description": "(query: string) => void — Called whenever the query changes (and with \"\" when the palette opens). Fetch your async `groups` here; debounce in the app if needed."
       },
       {
         "label": "placeholder",
@@ -6647,7 +6714,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "closeLabel",
-        "description": "string — Screen-reader label of the dialog's close button. Default: \"Close\"."
+        "description": "string · default \"Close\" — Screen-reader label of the dialog's close button. Default: \"Close\"."
+      },
+      {
+        "label": "labels",
+        "description": "Partial<CommandPaletteLabels> — Localizable strings; unspecified keys fall back to English."
       }
     ],
     "exampleCode": "import { CommandPalette } from \"@hilum/ui\"\nimport { LayoutDashboard, Users } from \"lucide-react\"\n\nconst commands = [\n  { id: 1, label: \"Dashboard\", icon: <LayoutDashboard size={15} />, category: \"Navigation\", href: \"/dashboard\" },\n  { id: 2, label: \"Team members\", icon: <Users size={15} />, category: \"Navigation\", href: \"/team\" },\n  { id: 3, label: \"New document\", icon: <FileText size={15} />, category: \"Actions\", onSelect: () => {} },\n]\n\nfunction Example() {\n  const [open, setOpen] = useState(false)\n\n  useEffect(() => {\n    function onKey(e: KeyboardEvent) {\n      if (e.key === \"k\" && (e.metaKey || e.ctrlKey)) {\n        e.preventDefault()\n        setOpen(true)\n      }\n// ...trimmed for docs",
@@ -6710,11 +6781,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "position",
-        "description": "\"fixed\" | \"sticky\" · default \"fixed\" — `fixed` pins the bar to the viewport (default: top on desktop, bottom on mobile for thumb reach). `sticky` keeps it inside its scroll container — useful inside a settings pane or a dialog."
+        "description": "\"fixed\" | \"sticky\" · default \"fixed\" — `fixed` pins the bar to the viewport (default): on desktop it replaces the app's top bar (top 0, full width, at least `--hilum-header-height` tall, above the header), like Shopify's save bar; on mobile it sits at the bottom for thumb reach. `sticky` keeps it inside its scroll container — useful inside a settings pane or a dialog."
       },
       {
         "label": "offsetTop",
-        "description": "number | string — Distance from the top of the viewport in `fixed` mode (desktop) or of the scroll container in `sticky` mode — e.g. your app header height. Defaults to the `--hilum-header-height` CSS variable (0 when unset), so apps with a fixed header can set it once on `:root`."
+        "description": "number | string — Distance from the top of the viewport in `fixed` mode (desktop) or of the scroll container in `sticky` mode. Default 0: in `fixed` mode the bar overlays the app top bar instead of sitting below it. Pass e.g. your header height to keep the top bar visible above the save bar."
       },
       {
         "label": "announcement",
@@ -7308,11 +7379,11 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       },
       {
         "label": "More props",
-        "description": "wrapperClassName, pill, type, defaultValue, id"
+        "description": "wrapperClassName, pill, type, defaultValue, id, aria-label"
       },
       {
         "label": "Inherited props",
-        "description": "Also accepts native HTML/React attributes (274)."
+        "description": "Also accepts native HTML/React attributes (273)."
       },
       {
         "label": "Key exports",
@@ -8045,6 +8116,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Prefer this page when you need to compare action density, icon usage, and loading or disabled states side by side."
     ]
   },
+  "/molecules/setup-guide/": {
+    "accessibility": [
+      "Use semantic status text in addition to color or icon treatment so the message is understandable to everyone.",
+      "Announce transient updates with a live region when the user does not move focus to the message directly.",
+      "Keep dismissal and recovery actions accessible from the keyboard."
+    ],
+    "api": [
+      {
+        "label": "title",
+        "description": "React.ReactNode · required"
+      },
+      {
+        "label": "tasks",
+        "description": "SetupGuideTask[] · required"
+      },
+      {
+        "label": "description",
+        "description": "React.ReactNode"
+      },
+      {
+        "label": "groups",
+        "description": "SetupGuideGroup[] — Task groups in display order (e.g. required, then recommended). Tasks without a matching group render first, ungrouped."
+      },
+      {
+        "label": "expandedTaskId",
+        "description": "string — Controlled expanded task id (`null` = none). Default: the first incomplete task."
+      },
+      {
+        "label": "onExpandedTaskChange",
+        "description": "(taskId: string) => void"
+      },
+      {
+        "label": "open",
+        "description": "boolean — Controlled open state of the whole guide."
+      },
+      {
+        "label": "defaultOpen",
+        "description": "boolean · default true"
+      },
+      {
+        "label": "onOpenChange",
+        "description": "(open: boolean) => void"
+      },
+      {
+        "label": "onDismiss",
+        "description": "() => void — Show a dismiss button. Hide the guide in your app when called."
+      },
+      {
+        "label": "onTaskCompleteChange",
+        "description": "(taskId: string, complete: boolean) => void — Let merchants tick tasks off (the status circle becomes a button). Without it the status is display-only."
+      },
+      {
+        "label": "headingLevel",
+        "description": "2 | 3 | 4 | 5 | 6 · default 2 — Heading level of the title (`h2` … `h6`). Default: 2."
+      },
+      {
+        "label": "More props",
+        "description": "labels, className"
+      }
+    ],
+    "exampleCode": "import { SetupGuide } from \"@hilum/ui\"\n\nconst [tasks, setTasks] = useState(initialTasks)\n\n<SetupGuide\n  title=\"Setup guide\"\n  description=\"Use this personalized guide to get your store up and running.\"\n  groups={[\n    { id: \"required\", title: \"Required to sell\" },\n    { id: \"recommended\", title: \"Recommended\" },\n  ]}\n  tasks={tasks}\n  onTaskCompleteChange={(id, complete) =>\n    setTasks((all) => all.map((t) => (t.id === id ? { ...t, complete } : t)))\n  }\n  onDismiss={() => hideGuide()}\n/>\n\n// ...trimmed for docs",
+    "kind": "component",
+    "path": "/molecules/setup-guide/",
+    "summary": "Onboarding checklist card with progress, grouped tasks and one expanded task at a time, each with a visible call to action.",
+    "title": "Setup Guide",
+    "whenNotToUse": [
+      "Do not use a dense data pattern when the primary task is storytelling, onboarding, or one-off explanation.",
+      "Do not flatten nuanced data into a compact summary card if the user still needs the underlying structure to make a decision."
+    ],
+    "whenToUse": [
+      "Use Setup Guide when information needs to be scanned quickly and compared across multiple rows, cards, or values.",
+      "Choose the example that best matches whether the user is browsing, monitoring, or drilling into structured data.",
+      "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
+    ]
+  },
   "/molecules/skeleton-page/": {
     "accessibility": [
       "Mark the current item clearly with visual state and the appropriate ARIA current/selected semantics.",
@@ -8352,6 +8498,81 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       "Lean on these patterns when you want consistent spacing and hierarchy before tuning the visual treatment."
     ]
   },
+  "/molecules/time-series-chart/": {
+    "accessibility": [
+      "Keep a visible label or an equivalent accessible name attached to the control.",
+      "Surface validation and helper text programmatically so assistive technologies receive the same context as sighted users.",
+      "Preserve the native focus order and keyboard interactions instead of replacing them with custom behavior."
+    ],
+    "api": [
+      {
+        "label": "data",
+        "description": "ReadonlyArray<Record<string, unknown>> · required — Points in date order. Each has a date (see `dateKey`) and a value per series key."
+      },
+      {
+        "label": "series",
+        "description": "TimeSeriesChartSeries[] · required"
+      },
+      {
+        "label": "aria-label",
+        "description": "string · required — Accessible name of the chart, e.g. \"Total sales over time\"."
+      },
+      {
+        "label": "dateKey",
+        "description": "string · default \"date\" — Field holding each point's date (Date, \"YYYY-MM-DD\", ISO string or timestamp). Default \"date\"."
+      },
+      {
+        "label": "variant",
+        "description": "\"area\" | \"line\" · default \"area\" — Filled area (default) or plain line."
+      },
+      {
+        "label": "height",
+        "description": "number · default 240 — Chart height in px. Default 240."
+      },
+      {
+        "label": "valueFormat",
+        "description": "TimeSeriesValueFormat · default \"number\" — Value formatting for the y-axis (compact) and tooltip (full): \"number\" (default), \"currency\", \"percent\" (0.12 → 12%) or a function."
+      },
+      {
+        "label": "currency",
+        "description": "string — ISO-4217 code for `valueFormat=\"currency\"`. Default: FormatProvider currency, then USD."
+      },
+      {
+        "label": "minorUnits",
+        "description": "boolean · default false — Values are in minor units (cents) for `valueFormat=\"currency\"`."
+      },
+      {
+        "label": "dateFormat",
+        "description": "TimeSeriesDateFormat · default { month: \"short\", day: \"numeric\" } — X-axis tick format. Default: \"Sep 26\"."
+      },
+      {
+        "label": "tooltipDateFormat",
+        "description": "TimeSeriesDateFormat · default { month: \"short\", day: \"numeric\", year: \"numeric\" } — Tooltip heading format. Default: \"Sep 26, 2026\"."
+      },
+      {
+        "label": "loading",
+        "description": "boolean · default false — Show a skeleton instead of the chart."
+      },
+      {
+        "label": "More props",
+        "description": "emptyState, showLegend, showGrid, labels, className"
+      }
+    ],
+    "exampleCode": "import { TimeSeriesChart } from \"@hilum/ui\"\n\n<TimeSeriesChart\n  aria-label=\"Total sales over time\"\n  data={points}               // [{ date: \"2026-09-01\", sales: 1240, previous: 910 }, …]\n  series={[\n    { key: \"sales\", label: \"Total sales\" },\n    { key: \"previous\", label: \"Previous period\", dashed: true },\n  ]}\n  valueFormat=\"currency\"      // currency from FormatProvider, or currency=\"PEN\"\n  loading={isLoading}\n/>",
+    "kind": "component",
+    "path": "/molecules/time-series-chart/",
+    "summary": "Dashboard chart of values over dates with formatted axes and tooltip, loading and empty states. Apps pass data and series; no chart primitives needed.",
+    "title": "Time Series Chart",
+    "whenNotToUse": [
+      "Do not introduce a heavier or more customizable control when a simpler native-style field is sufficient.",
+      "Do not hide required context, validation, or option meaning behind placeholder text alone."
+    ],
+    "whenToUse": [
+      "Use Time Series Chart when the user needs to enter or choose information as part of a larger form or workflow.",
+      "Start from this pattern when you need the interaction, spacing, and state treatment to match the rest of the system.",
+      "Use the examples below to choose the least complex control that still communicates the user’s next step clearly."
+    ]
+  },
   "/molecules/titled-card/": {
     "accessibility": [
       "Maintain heading order and region labels so the surrounding layout stays understandable when styles are stripped away.",
@@ -8378,6 +8599,10 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
       {
         "label": "icon",
         "description": "React.ComponentType<{ className?: string }>"
+      },
+      {
+        "label": "headingLevel",
+        "description": "2 | 3 | 4 | 5 | 6 · default 2 — Heading level of the title (`h2` … `h6`). Default: 2."
       },
       {
         "label": "contentPadding",

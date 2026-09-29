@@ -52,6 +52,19 @@ interface AppMobileNavProps {
   userMenu?: AppMobileNavMenuItem[];
   accountLabel?: ReactNode;
   accountMenuLabel?: string;
+  /**
+   * Actions in the top bar, before the account menu: a search / command
+   * palette button, the notification menu, … Use icon-size (36px) buttons.
+   */
+  actions?: ReactNode;
+  /**
+   * Custom account menu content (e.g. `AccountMenuHeader` + `AccountMenuSection`
+   * / `DropdownMenuItem`s, the same content as the desktop account menu).
+   * Replaces the built-in name / email header and `userMenu` items.
+   */
+  accountMenu?: ReactNode;
+  /** Classes for the account menu popover (e.g. a width). */
+  accountMenuClassName?: string;
   getItemLabel?: (item: NavItem) => ReactNode;
   /** Account avatar size. Default: `sm` (fits two-letter initials). */
   avatarSize?: "xs" | "sm" | "md";
@@ -112,6 +125,9 @@ function AppMobileNav({
   userMenu = DEFAULT_USER_MENU,
   accountLabel = user?.email,
   accountMenuLabel = "Open account menu",
+  actions,
+  accountMenu,
+  accountMenuClassName,
   getItemLabel = (item) => item.mobileLabel ?? item.label,
   avatarSize = "sm",
   variant,
@@ -182,6 +198,14 @@ function AppMobileNav({
             </p>
           )}
         </div>
+        {actions && (
+          <div
+            data-slot="app-mobile-nav-actions"
+            className="flex shrink-0 items-center gap-1 [&>[data-slot=button][data-icon-only]]:size-9"
+          >
+            {actions}
+          </div>
+        )}
         {user && (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -198,36 +222,45 @@ function AppMobileNav({
                 </Avatar>
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-64">
-              <div className="px-2.5 py-2">
-                <p className="caption font-semibold text-foreground">{user.name}</p>
-                {accountLabel && (
-                  <p className="caption-xs truncate text-muted-foreground">{accountLabel}</p>
-                )}
-              </div>
-              <DropdownMenuSeparator />
-              {userMenu.map((item, index) => (
-                <Fragment key={`${item.label}-${index}`}>
-                  {index > 0 && item.destructive && <DropdownMenuSeparator />}
-                  <DropdownMenuItem
-                    {...(item.destructive && { destructive: true })}
-                    {...(item.onSelect && { onSelect: item.onSelect })}
-                    asChild={Boolean(item.href)}
-                  >
-                    {item.href ? (
-                      <Link href={item.href}>
-                        {item.icon && <span className="me-2">{item.icon}</span>}
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <>
-                        {item.icon && <span className="me-2">{item.icon}</span>}
-                        {item.label}
-                      </>
+            <DropdownMenuContent
+              align="end"
+              data-slot="app-mobile-nav-account-menu"
+              className={cn(accountMenu ? "w-72 p-0" : "w-64", accountMenuClassName)}
+            >
+              {accountMenu ?? (
+                <>
+                  <div className="px-2.5 py-2">
+                    <p className="caption truncate font-semibold text-foreground">{user.name}</p>
+                    {accountLabel && (
+                      <p className="caption-xs truncate text-muted-foreground">{accountLabel}</p>
                     )}
-                  </DropdownMenuItem>
-                </Fragment>
-              ))}
+                  </div>
+                  <DropdownMenuSeparator />
+                </>
+              )}
+              {!accountMenu &&
+                userMenu.map((item, index) => (
+                  <Fragment key={`${item.label}-${index}`}>
+                    {index > 0 && item.destructive && <DropdownMenuSeparator />}
+                    <DropdownMenuItem
+                      {...(item.destructive && { destructive: true })}
+                      {...(item.onSelect && { onSelect: item.onSelect })}
+                      asChild={Boolean(item.href)}
+                    >
+                      {item.href ? (
+                        <Link href={item.href}>
+                          {item.icon && <span className="me-2">{item.icon}</span>}
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <>
+                          {item.icon && <span className="me-2">{item.icon}</span>}
+                          {item.label}
+                        </>
+                      )}
+                    </DropdownMenuItem>
+                  </Fragment>
+                ))}
             </DropdownMenuContent>
           </DropdownMenu>
         )}

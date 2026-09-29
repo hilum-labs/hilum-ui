@@ -16,6 +16,7 @@ export * from "./lib/link-context";
 export { HilumProvider, MotionProvider, usePrefersReducedMotion } from "./lib/motion-provider";
 export type { HilumProviderProps, ReducedMotionSetting } from "./lib/motion-provider";
 export { sanitizeRichTextHtml } from "./lib/sanitize-html";
+export { controlHeightClass, controlSizeClasses, controlTextClass } from "./lib/interaction";
 export {
   useScrollEdges,
   horizontalEdgeMask,
@@ -110,6 +111,7 @@ export * from "./components/searchable-table";
 export * from "./components/section-heading";
 export * from "./components/select";
 export * from "./components/separator";
+export * from "./components/setup-guide";
 export * from "./components/sheet";
 export * from "./components/sidebar";
 export * from "./components/skeleton";
@@ -129,7 +131,9 @@ export * from "./components/table";
 export * from "./components/tabs";
 export * from "./components/tabs-subtle";
 export * from "./components/textarea";
+export * from "./components/thumbnail";
 export * from "./components/time-picker";
+export * from "./components/time-series-chart";
 export * from "./components/titled-card";
 export * from "./components/toggle";
 export * from "./components/toggle-group";

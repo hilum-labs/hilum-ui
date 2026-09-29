@@ -14,7 +14,6 @@ import {
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 
@@ -33,7 +32,6 @@ function DropdownMenuContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           {...densityAttributes}
@@ -159,6 +157,9 @@ function DropdownMenuLabel({
       data-slot="dropdown-menu-label"
       className={cn(
         "px-2.5 py-1 label text-muted-foreground compact:px-2 compact:text-[11px]",
+        // A plain-text label is an eyebrow; rich content (an account header with
+        // the user's name and email) renders as typed.
+        "[&_*]:normal-case [&_*]:tracking-normal",
         inset && "ps-8 compact:ps-7",
         className,
       )}
@@ -216,7 +217,6 @@ function DropdownMenuSubContent({
   const densityAttributes = useDensityAttributes();
   return (
     <>
-      <style>{mobilePopperSheetStyle}</style>
       <DropdownMenu.SubContent
         {...densityAttributes}
         data-slot="dropdown-menu-sub-content"

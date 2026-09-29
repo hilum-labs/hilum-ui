@@ -10,11 +10,11 @@ import { useShape } from "../lib/shape-context";
 import { useScrollEdges, ScrollEdgeCue } from "../lib/scroll-fade";
 import { useFieldControl } from "../lib/field-context";
 import { surfaceClasses } from "../lib/surface-classes";
+import { controlHeightClass, controlSizeClasses } from "../lib/interaction";
 import { SurfaceProvider, useSurface } from "../lib/surface-context";
 import {
   mobilePopperSheetMotionClassName,
   mobilePopperSheetPositionClassName,
-  mobilePopperSheetStyle,
   mobilePopperSheetSurfaceClassName,
 } from "../lib/mobile-popper-sheet";
 import type { ControlDensity, ControlMobileSurface } from "./input";
@@ -43,7 +43,12 @@ Select.displayName = "Select";
 const triggerVariants = cva(
   [
     "group inline-flex items-center justify-between gap-2 outline-none cursor-pointer",
-    "text-[13px] h-9 px-3 min-w-40",
+    // One size for single-line form controls (see controlSizeClasses). No
+    // minimum width: the trigger fills its container (a Field, a table cell, a
+    // narrow dialog) and sizes to its value in a toolbar row; set a width
+    // (e.g. `w-40`) where a fixed one is wanted.
+    controlSizeClasses,
+    "px-3 min-w-0 max-w-full",
     "transition-all duration-80 motion-reduce:transition-none",
     "disabled:opacity-50 disabled:pointer-events-none",
     "focus-visible:ring-2 focus-visible:ring-ring",
@@ -71,7 +76,7 @@ const triggerVariants = cva(
 );
 
 const selectTriggerDensityClasses: Record<ControlDensity, string> = {
-  default: "h-9 px-3",
+  default: `${controlHeightClass} px-3`,
   compact: "h-8 px-2.5",
 };
 
@@ -218,7 +223,6 @@ function SelectContent({
   return (
     <SelectPrimitive.Portal>
       <SurfaceProvider value={level}>
-        <style>{mobilePopperSheetStyle}</style>
         <SelectPrimitive.Content
           ref={ref}
           data-slot="select-content"
@@ -292,12 +296,13 @@ function SelectItem({
       ref={ref}
       data-slot="select-item"
       className={cn(
-        `group/select-item relative z-10 flex items-center gap-2 ${shape.item} px-2 py-2 text-[13px] cursor-pointer outline-none select-none`,
-        "compact:min-h-7 compact:py-1 compact:rounded-[4px]",
+        `group/select-item relative z-10 flex items-center gap-2 ${shape.item} px-2 py-2 text-sm cursor-pointer outline-none select-none`,
+        "compact:min-h-7 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
         "transition-[color,background-color] duration-80 motion-reduce:transition-none",
-        "text-muted-foreground data-[highlighted]:bg-hover data-[highlighted]:text-foreground",
-        "data-[state=checked]:bg-active data-[state=checked]:text-foreground",
-        "data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
+        // Options read at full strength; only disabled ones are muted.
+        "text-foreground data-[highlighted]:bg-hover",
+        "data-[state=checked]:bg-active",
+        "data-[disabled]:text-muted-foreground data-[disabled]:opacity-50 data-[disabled]:pointer-events-none",
         className,
       )}
       {...props}

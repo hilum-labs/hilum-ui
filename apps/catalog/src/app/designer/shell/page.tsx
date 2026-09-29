@@ -42,6 +42,7 @@ import {
   DesignerToolbarSeparator,
   DesignerPropertyField,
   DesignerPropertyRow,
+  FontPicker,
   ShellProvider,
   TwoValueControl,
   useShellContext,
@@ -119,6 +120,7 @@ function Demo() {
   const [blend, setBlend] = useState("normal");
   const [visible, setVisible] = useState(true);
   const [fill, setFill] = useState("#c100f1");
+  const [font, setFont] = useState("Inter");
   const [name, setName] = useState("Hero text");
   const [zoom, setZoom] = useState(100);
   const [headerMode, setHeaderMode] = useState<"edit" | "preview">("edit");
@@ -194,6 +196,12 @@ function Demo() {
             </button>
           </>
         }
+        primaryAction={{ label: "Publish", onAction: () => {} }}
+        secondaryActions={[
+          { label: "Share", onAction: () => {} },
+          { label: "Duplicate", onAction: () => {} },
+          { label: "Version history", onAction: () => {} },
+        ]}
       />
 
       <DesignerWorkspace safeInsets={{ left: 280, right: 276 }}>
@@ -471,6 +479,19 @@ function Demo() {
               Appearance
             </DesignerPaneTitle>
             <DesignerPaneContent>
+              <DesignerPropertyRow label="Font" layout="inline" labelWidth={48}>
+                <FontPicker
+                  aria-label="Font"
+                  value={font}
+                  onChange={setFont}
+                  fonts={[
+                    { family: "Inter", category: "sans-serif", weights: [400, 500, 600, 700] },
+                    { family: "Gabarito", category: "display", weights: [400, 700] },
+                    { family: "Georgia", category: "serif" },
+                    { family: "Courier New", category: "monospace" },
+                  ]}
+                />
+              </DesignerPropertyRow>
               <DesignerPropertyRow label="Fill" layout="inline" labelWidth={48}>
                 <ColorInput value={fill} onChange={setFill} />
               </DesignerPropertyRow>

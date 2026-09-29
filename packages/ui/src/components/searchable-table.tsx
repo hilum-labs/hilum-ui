@@ -296,15 +296,15 @@ function SearchableTable<T extends { id: string | number }>({
           placeholder={searchPlaceholder}
           value={searchTerm}
           onChange={(event) => onSearchChange(event.target.value)}
-          leadingIcon={<Search className="size-4" />}
+          aria-label={searchPlaceholder}
+          leadingIcon={<Search className="size-4" aria-hidden="true" />}
           wrapperClassName="w-full min-w-0 md:min-w-70 md:max-w-[520px] md:flex-1 md:basis-85"
-          className="h-9 bg-background"
         />
         <div className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:flex-wrap md:w-auto md:justify-end">
           {Object.entries(filters).map(([key, filter]) => (
             <Select key={key} value={filter.value} onValueChange={filter.onChange}>
-              <SelectTrigger className="h-9 w-full bg-background sm:w-45">
-                <Filter className="me-2 size-4" />
+              <SelectTrigger aria-label={filter.placeholder} className="w-full sm:w-45">
+                <Filter className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
                 <SelectValue placeholder={filter.placeholder} />
               </SelectTrigger>
               <SelectContent>
