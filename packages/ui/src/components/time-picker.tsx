@@ -382,8 +382,9 @@ function TimePicker({
 
   /* ── Render ── */
   const hourValue = displayHour(draft.hour);
+  // Each segment is a ≥ 24×24px target (WCAG 2.5.8): two digits were 18–22px wide.
   const segmentClass =
-    "rounded-sm px-0.5 tabular-nums caret-transparent outline-none focus:bg-brand-primary focus:text-primary-foreground";
+    "inline-flex min-h-6 min-w-6 items-center justify-center rounded-sm px-0.5 tabular-nums caret-transparent outline-none focus:bg-brand-primary focus:text-primary-foreground";
 
   const renderSegment = (segment: SegmentType) => {
     const common = {
