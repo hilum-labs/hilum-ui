@@ -37,6 +37,7 @@ import { Callout } from "../callout";
 import { Badge } from "../badge";
 import { CommandPalette } from "../command-palette";
 import { CommandDialog, CommandInput } from "../command";
+import { ContextualSaveBar } from "../contextual-save-bar";
 import { controlHeightClass, controlTextClass } from "../../lib/interaction";
 import "@testing-library/jest-dom";
 
@@ -692,5 +693,28 @@ describe("CommandPalette async groups", () => {
     );
     expect(screen.getByRole("button", { name: "Cerrar" })).toBeInTheDocument();
     expect(screen.getByRole("group", { name: "Productos" })).toHaveTextContent("Cargando…");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* ContextualSaveBar                                                    */
+/* ------------------------------------------------------------------ */
+
+describe("ContextualSaveBar in fixed mode", () => {
+  it("replaces the app top bar by default: top 0, header height", () => {
+    render(<ContextualSaveBar open onSave={() => {}} />);
+    const bar = screen.getByRole("region", { name: "Unsaved changes" });
+    expect(bar).toHaveClass(
+      "sm:top-[var(--hilum-save-bar-top,0px)]",
+      "sm:min-h-[var(--hilum-header-height,0px)]",
+    );
+    expect(bar.className).not.toContain("var(--hilum-save-bar-top,var(--hilum-header-height");
+    expect(bar.style.getPropertyValue("--hilum-save-bar-top")).toBe("");
+  });
+
+  it("keeps offsetTop as an explicit override", () => {
+    render(<ContextualSaveBar open onSave={() => {}} offsetTop="4rem" />);
+    const bar = screen.getByRole("region", { name: "Unsaved changes" });
+    expect(bar.style.getPropertyValue("--hilum-save-bar-top")).toBe("4rem");
   });
 });

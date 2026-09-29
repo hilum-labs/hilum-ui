@@ -28,16 +28,18 @@ interface ContextualSaveBarProps {
    */
   formId?: string;
   /**
-   * `fixed` pins the bar to the viewport (default: top on desktop,
-   * bottom on mobile for thumb reach). `sticky` keeps it inside its scroll
-   * container — useful inside a settings pane or a dialog.
+   * `fixed` pins the bar to the viewport (default): on desktop it replaces the
+   * app's top bar (top 0, full width, at least `--hilum-header-height` tall,
+   * above the header), like Shopify's save bar; on mobile it sits at the
+   * bottom for thumb reach. `sticky` keeps it inside its scroll container —
+   * useful inside a settings pane or a dialog.
    */
   position?: "fixed" | "sticky";
   /**
    * Distance from the top of the viewport in `fixed` mode (desktop) or of the
-   * scroll container in `sticky` mode — e.g. your app header height. Defaults
-   * to the `--hilum-header-height` CSS variable (0 when unset), so apps with a
-   * fixed header can set it once on `:root`.
+   * scroll container in `sticky` mode. Default 0: in `fixed` mode the bar
+   * overlays the app top bar instead of sitting below it. Pass e.g. your header
+   * height to keep the top bar visible above the save bar.
    */
   offsetTop?: number | string;
   /**
@@ -143,7 +145,7 @@ function ContextualSaveBar({
             className={cn(
               "z-(--z-sticky) flex min-w-0 items-center gap-3 border-border bg-foreground px-4 py-2.5 text-background",
               position === "fixed"
-                ? "fixed inset-x-0 bottom-0 border-t pb-[max(0.625rem,env(safe-area-inset-bottom))] sm:top-[var(--hilum-save-bar-top,var(--hilum-header-height,0px))] sm:bottom-auto sm:border-t-0 sm:border-b sm:pb-2.5"
+                ? "fixed inset-x-0 bottom-0 border-t pb-[max(0.625rem,env(safe-area-inset-bottom))] sm:top-[var(--hilum-save-bar-top,0px)] sm:bottom-auto sm:min-h-[var(--hilum-header-height,0px)] sm:border-t-0 sm:border-b sm:pb-2.5"
                 : "sticky top-[var(--hilum-save-bar-top,0px)] rounded-xl shadow-elevated",
               className,
             )}

@@ -5,6 +5,7 @@ import {
   Button,
   Callout,
   CommandPalette,
+  ContextualSaveBar,
   StatusBadge,
   Combobox,
   DatePicker,
@@ -20,7 +21,7 @@ import {
   SelectTrigger,
   TimePicker,
 } from "@hilum/ui";
-import { AppStatusBanner } from "@hilum/app-shell";
+import { AppHeader, AppShell, AppSidebar, AppStatusBanner } from "@hilum/app-shell";
 
 /** Resolve a CSS colour expression to its computed rgb() string. */
 function resolveColor(value: string) {
@@ -276,5 +277,30 @@ describe("CommandPalette (real browser)", () => {
     const esc = dialog.querySelector("[data-slot='command-palette-esc']")!.getBoundingClientRect();
     const close = screen.getByRole("button", { name: "Close" }).getBoundingClientRect();
     expect(close.left).toBeGreaterThanOrEqual(esc.right);
+  });
+});
+
+describe("ContextualSaveBar inside AppShell (real browser)", () => {
+  test("overlays the top bar instead of covering the sidebar and page header", async () => {
+    await page.viewport(1280, 800);
+    render(
+      <AppShell
+        toaster={false}
+        headerHeight={56}
+        sidebar={<AppSidebar brand="Shop" sections={[{ items: [{ label: "Home", href: "/" }] }]} />}
+        header={<AppHeader breadcrumbs={[{ label: "Products" }]} />}
+      >
+        <h1>Edit product</h1>
+        <ContextualSaveBar open onSave={() => {}} onDiscard={() => {}} />
+      </AppShell>,
+    );
+    const bar = screen.getByRole("region", { name: "Unsaved changes" });
+    await new Promise((r) => setTimeout(r, 300));
+    const rect = bar.getBoundingClientRect();
+    expect(rect.top).toBe(0);
+    expect(rect.height).toBeGreaterThanOrEqual(56);
+    // Nothing below the top bar is covered: the page title starts under it.
+    const title = screen.getByRole("heading", { name: "Edit product" }).getBoundingClientRect();
+    expect(title.top).toBeGreaterThanOrEqual(rect.bottom);
   });
 });
