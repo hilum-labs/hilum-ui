@@ -43,6 +43,11 @@ const FONT_PICKER_DEFAULT_LABELS: FontPickerLabels = {
 };
 
 interface FontPickerProps {
+  /**
+   * Families to offer, in display order. Search matches family names; a
+   * query naming a category exactly ("serif") adds that category's fonts
+   * after the name matches.
+   */
   fonts: FontPickerFont[];
   /** Selected family (controlled). */
   value: string | null | undefined;
@@ -76,6 +81,27 @@ const GENERIC_FALLBACK: Record<string, string> = {
   monospace: "monospace",
   mono: "monospace",
 };
+
+/** Lower-cased, with spaces, hyphens and underscores removed: "Sans Serif" → "sansserif". */
+const normalizeCategory = (text: string) => text.toLowerCase().replace(/[\s_-]+/g, "");
+
+/**
+ * Search: the query matches family names (substring, case-insensitive), in
+ * the order of `fonts`. Category text isn't searched ("play" doesn't find
+ * every "display" font); a query that names a category exactly ("serif",
+ * "Display", "sans serif") adds that category's other fonts after the name
+ * matches.
+ */
+function searchFonts(fonts: FontPickerFont[], query: string): FontPickerFont[] {
+  const q = query.trim().toLowerCase();
+  if (!q) return fonts;
+  const byName = fonts.filter((font) => font.family.toLowerCase().includes(q));
+  const category = normalizeCategory(q);
+  const byCategory = fonts.filter(
+    (font) => normalizeCategory(font.category) === category && !byName.includes(font),
+  );
+  return byCategory.length > 0 ? [...byName, ...byCategory] : byName;
+}
 
 /** A safe `font-family` value: the quoted family, then the category's generic family. */
 function fontStack(font: Pick<FontPickerFont, "family" | "category">) {
@@ -193,12 +219,7 @@ function FontPicker({
   const requested = React.useRef(new Set<string>());
 
   const selected = fonts.find((font) => font.family === value);
-  const q = query.trim().toLowerCase();
-  const filtered = q
-    ? fonts.filter(
-        (font) => font.family.toLowerCase().includes(q) || font.category.toLowerCase().includes(q),
-      )
-    : fonts;
+  const filtered = searchFonts(fonts, query);
   const safeActive = filtered.length === 0 ? -1 : Math.min(activeIndex, filtered.length - 1);
   const optionId = (index: number) => `${listboxId}-option-${index}`;
 

@@ -35,7 +35,7 @@ describe("FontPicker", () => {
     expect(fontStack({ family: 'Evil"Font', category: "serif" })).toBe('"Evil\\"Font", serif');
   });
 
-  it("previews each option in its face and searches by name or category", async () => {
+  it("previews each option in its face and searches by name, or by an exact category", async () => {
     const user = userEvent.setup();
     render(<FontPicker aria-label="Body font" fonts={fonts} value="Inter" onChange={() => {}} />);
     await user.click(screen.getByRole("button", { name: "Body font" }));
@@ -51,11 +51,12 @@ describe("FontPicker", () => {
     const search = screen.getByRole("combobox", { name: "Search fonts" });
     expect(search).toHaveFocus();
     await user.type(search, "serif");
+    // "serif" names a category exactly; "sans-serif" doesn't match it.
     expect(
       within(list)
         .getAllByRole("option")
         .map((o) => o.textContent),
-    ).toEqual(["Inter3 styles", "Playfair Display1 style"]);
+    ).toEqual(["Playfair Display1 style"]);
     await user.clear(search);
     await user.type(search, "zzz");
     expect(screen.getByText("No fonts found")).toBeInTheDocument();
@@ -111,5 +112,37 @@ describe("FontPicker", () => {
     await user.click(screen.getByRole("button", { name: "Fuente" }));
     expect(await screen.findByRole("listbox", { name: "Fuentes" })).toBeInTheDocument();
     expect(screen.getByRole("combobox", { name: "Buscar fuentes" })).toBeInTheDocument();
+  });
+
+  it("matches family names first and category text only for a category query", async () => {
+    const user = userEvent.setup();
+    const catalog: FontPickerFont[] = [
+      { family: "Comfortaa", category: "display" },
+      { family: "Bebas Neue", category: "display" },
+      { family: "Playfair Display", category: "serif" },
+      { family: "Play", category: "sans-serif" },
+      { family: "Inter", category: "sans-serif" },
+    ];
+    render(<FontPicker aria-label="Font" fonts={catalog} value="Inter" onChange={() => {}} />);
+    await user.click(screen.getByRole("button", { name: "Font" }));
+    const list = await screen.findByRole("listbox", { name: "Fonts" });
+    const search = screen.getByRole("combobox", { name: "Search fonts" });
+    const names = () =>
+      within(list)
+        .getAllByRole("option")
+        .map((option) => option.querySelector("span")?.textContent);
+
+    // "play" is inside "display", but only family names are searched.
+    await user.type(search, "play");
+    expect(names()).toEqual(["Playfair Display", "Play"]);
+
+    // A category name: name matches first, then that category's other fonts.
+    await user.clear(search);
+    await user.type(search, "Display");
+    expect(names()).toEqual(["Playfair Display", "Comfortaa", "Bebas Neue"]);
+
+    await user.clear(search);
+    await user.type(search, "sans serif");
+    expect(names()).toEqual(["Play", "Inter"]);
   });
 });
