@@ -4,6 +4,8 @@ import {
   Checkbox,
   DataTable,
   ResourceCell,
+  StatCard,
+  StatCardGrid,
   ColorInput,
   Combobox,
   DatePicker,
@@ -286,5 +288,54 @@ describe("DataTable on phones and cell typography (real browser)", () => {
     const priceCell = container.querySelectorAll("tbody td")[1]!;
     expect(getComputedStyle(priceCell).fontSize).toBe(getComputedStyle(title).fontSize);
     expect(getComputedStyle(priceCell).fontSize).toBe("14px");
+  });
+});
+
+describe("StatCard in a narrow 2-column grid (real browser)", () => {
+  function Grid({ width }: { width: number }) {
+    return (
+      <div style={{ width }}>
+        <StatCardGrid columns={4}>
+          <StatCard label="Total merchants" value="1,284" />
+          <StatCard label="Gross merchandise volume" value="S/ 12,345,678.90" />
+          <StatCard label="Orders" value="8,421" trend={{ value: "12%", direction: "up" }} />
+          <StatCard label="Refunds" value="S/ 1,204.00" />
+        </StatCardGrid>
+      </div>
+    );
+  }
+
+  afterEach(async () => {
+    await page.viewport(1280, 800);
+  });
+
+  it("labels wrap between words and values fit without clipping on a 375px phone", async () => {
+    await page.viewport(375, 800);
+    const { container } = render(<Grid width={343} />);
+    const labels = [...container.querySelectorAll("[data-slot=stat-card] p.label")];
+    for (const label of labels) {
+      const style = getComputedStyle(label);
+      expect(label.scrollWidth).toBeLessThanOrEqual(label.clientWidth + 1);
+      const lineHeight = parseFloat(style.lineHeight);
+      expect(lineHeight).toBeGreaterThan(parseFloat(style.fontSize) * 1.2);
+      expect(label.getBoundingClientRect().height).toBeLessThanOrEqual(lineHeight * 2 + 1);
+    }
+    const values = [...container.querySelectorAll("[data-slot=stat-card-value]")];
+    for (const value of values) {
+      expect(value.scrollWidth).toBeLessThanOrEqual(value.clientWidth + 1);
+      expect(parseFloat(getComputedStyle(value).fontSize)).toBeLessThan(30);
+    }
+    // "Total merchants" breaks at the space, not inside a word.
+    const first = labels[0]!;
+    const range = document.createRange();
+    range.selectNodeContents(first);
+    const lines = new Set([...range.getClientRects()].map((rect) => Math.round(rect.top)));
+    expect(lines.size).toBeLessThanOrEqual(2);
+  });
+
+  it("keeps the full-size value in wide cards", () => {
+    const { container } = render(<Grid width={1200} />);
+    const value = container.querySelector("[data-slot=stat-card-value]")!;
+    expect(getComputedStyle(value).fontSize).toBe("30px");
   });
 });

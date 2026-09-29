@@ -101,7 +101,18 @@ function StatCard({
     <>
       <div className="flex items-start justify-between gap-3">
         {displayLabel && (
-          <p className={cn("label min-w-0 text-muted-foreground", titleClassName)}>
+          // Wraps between words over at most two lines (then an ellipsis; the
+          // full label is in `title`), hyphenating long words where the
+          // language allows, with tighter tracking in narrow grid cells.
+          <p
+            className={cn(
+              "label min-w-0 text-muted-foreground",
+              "line-clamp-2 text-pretty break-words hyphens-auto [line-height:1.35]",
+              "@max-[14rem]/stat-card:tracking-[0.04em]",
+              titleClassName,
+            )}
+            title={displayLabel}
+          >
             {displayLabel}
           </p>
         )}
@@ -115,7 +126,16 @@ function StatCard({
       {loading ? (
         <Skeleton className="mt-3 h-7 w-24" />
       ) : value !== undefined ? (
-        <p className={cn("heading-xl mt-2 truncate tabular-nums text-foreground", valueClassName)}>
+        // Scales down with the card inside a StatCardGrid (30px → 18px, `cqi`)
+        // and wraps rather than clipping when it still doesn't fit.
+        <p
+          data-slot="stat-card-value"
+          className={cn(
+            "mt-2 min-w-0 break-words font-display font-normal tabular-nums text-foreground",
+            "[font-size:clamp(1.125rem,12cqi,1.875rem)] [line-height:1.2] text-balance",
+            valueClassName,
+          )}
+        >
           {value}
         </p>
       ) : children ? (
@@ -230,7 +250,9 @@ function StatCardGrid({
       data-slot="stat-card-grid"
     >
       {childrenArray.map((child, index) => (
-        <div key={`filled-${index}`} className="min-w-0">
+        // Each cell is a size container: StatCard scales its value and
+        // tightens its label to the cell width.
+        <div key={`filled-${index}`} className="@container/stat-card min-w-0">
           {child}
         </div>
       ))}
