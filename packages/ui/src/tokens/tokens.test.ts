@@ -166,6 +166,40 @@ describe("active nav item contrast", () => {
   });
 });
 
+describe("text contrast on every surface", () => {
+  const surfaces = ["background", "card", "surface", "muted"] as const;
+
+  it.each(["light", "mid", "dark"] as const)(
+    "%s: foreground and muted text are ≥ 4.5:1 on background, card, surface and muted",
+    (theme) => {
+      const semantic = tokens.semantic[theme];
+      for (const surface of surfaces) {
+        for (const text of ["foreground", "mutedForeground"] as const) {
+          expect(
+            contrast(semantic[text], semantic[surface]),
+            `${theme} ${text} on ${surface}`,
+          ).toBeGreaterThanOrEqual(4.5);
+        }
+      }
+    },
+  );
+
+  it("mid: muted text is ≥ 4.5:1 on every surface level (was 3.8:1 on the page)", () => {
+    for (const level of tokens.surfaces.mid.bg) {
+      expect(contrast(tokens.semantic.mid.mutedForeground, level), level).toBeGreaterThanOrEqual(
+        4.5,
+      );
+    }
+    expect(contrast(tokens.semantic.mid.mutedForeground, "#737373")).toBeLessThan(4.5);
+  });
+
+  it("mid keeps its steps: canvas between the page and the cards", () => {
+    const { background, canvas, card } = tokens.semantic.mid;
+    expect(luminance(background)).toBeGreaterThan(luminance(canvas));
+    expect(luminance(canvas)).toBeGreaterThan(luminance(card));
+  });
+});
+
 describe("density tokens", () => {
   it("compact tier matches the editor-chrome spec", () => {
     expect(tokens.density.compact).toMatchObject({

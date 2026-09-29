@@ -184,7 +184,7 @@ function autoFg(hex: string): string {
 // tokens.ts), and the tint alphas active items use (none, /10, hover /15).
 const TEXT_SURFACES = {
   light: ["#ffffff", "#fafafa"],
-  mid: ["#737373", "#525252"],
+  mid: ["#636363", "#525252"],
   dark: ["#171717", "#1a1a1a", "#262626"],
 };
 const TINT_ALPHAS = [0, 0.1, 0.15];

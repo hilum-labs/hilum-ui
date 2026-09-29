@@ -165,7 +165,10 @@ export const tokens = {
     // Mid — a neutral medium-gray theme (from the Pappery designer "mid" palette,
     // mapped onto the ground scale). Sits between light and dark.
     mid: {
-      background: "#737373", // ground-500 — main surface (designer panel)
+      // Main surface (designer panel). #737373 (ground-500) left the muted
+      // text at 3.8:1; #636363 is the lightest gray where it reaches 4.5:1
+      // (4.8:1), on every surface level above it too.
+      background: "#636363",
       foreground: "#fafafa", // ground-50
       card: "#525252", // ground-600 — elevated items (designer item-bg)
       cardForeground: "#fafafa",
@@ -182,8 +185,8 @@ export const tokens = {
       active: "rgba(255, 255, 255, 0.13)",
       primary: "#c100f1", // brand stays consistent across themes
       primaryForeground: "#ffffff",
-      // No purple is readable on the mid gray (#fdf0ff is 4.3:1 on the
-      // hovered tint); the brand tint behind it carries the colour.
+      // No purple stays readable on every mid surface and tint; the brand
+      // tint behind it carries the colour.
       brandText: "#ffffff",
       secondary: "#525252", // ground-600
       secondaryForeground: "#fafafa",
@@ -196,7 +199,7 @@ export const tokens = {
       ring: "#c100f1",
       checkerA: "#8a8a8a",
       checkerB: "#6b6b6b",
-      canvas: "#636363",
+      canvas: "#5b5b5b", // between background and card
     },
     dark: {
       background: "#171717", // ground-900 — designer canvas (deepest)
@@ -252,8 +255,8 @@ export const tokens = {
       shadow: surfaceShadowRamp("rgba(0, 0, 0, 0.06)", (a) => `rgba(0, 0, 0, ${a})`),
     },
     mid: {
-      // background (#737373) → card (#525252) → ground-700 (#404040)
-      bg: ["#737373", "#6b6b6b", "#636363", "#5b5b5b", "#525252", "#4d4d4d", "#474747", "#404040"],
+      // background (#636363) → card (#525252) → ground-700 (#404040)
+      bg: ["#636363", "#5f5f5f", "#5b5b5b", "#575757", "#525252", "#4d4d4d", "#474747", "#404040"],
       shadow: surfaceShadowRamp(
         "rgba(0, 0, 0, 0.14)",
         (a) => `rgba(0, 0, 0, ${Math.min(a * 2.5, 0.3)})`,
