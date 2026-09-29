@@ -8,6 +8,9 @@ import {
   DataTable,
   Field,
   FormLayout,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   InputNumber,
   MultiCombobox,
   PreviewFrame,
@@ -362,6 +365,45 @@ describe("Combobox lists inside a clipping card (real browser)", () => {
     await userEvent.click(option);
     expect(picked).toBe("c5");
     expect(screen.queryByRole("listbox")).toBeNull();
+  });
+
+  it("MultiCombobox inside a modal Dialog: the list scrolls with the wheel", async () => {
+    const many = Array.from({ length: 30 }, (_, i) => ({
+      value: `m${i}`,
+      label: `Market ${i + 1}`,
+    }));
+    render(
+      <Dialog open>
+        <DialogContent>
+          <DialogTitle>Markets</DialogTitle>
+          <MultiCombobox aria-label="Markets" options={many} />
+        </DialogContent>
+      </Dialog>,
+    );
+    await userEvent.click(screen.getByRole("combobox", { name: "Markets" }));
+    const listbox = await screen.findByRole("listbox");
+    expect(listbox.scrollHeight).toBeGreaterThan(listbox.clientHeight);
+    await userEvent.wheel(listbox, { delta: { y: 200 } });
+    await expect.poll(() => listbox.scrollTop).toBeGreaterThan(0);
+  });
+
+  it("Combobox inside a modal Dialog: the list scrolls with the wheel", async () => {
+    const many = Array.from({ length: 30 }, (_, i) => ({
+      value: `m${i}`,
+      label: `Market ${i + 1}`,
+    }));
+    render(
+      <Dialog open>
+        <DialogContent>
+          <DialogTitle>Markets</DialogTitle>
+          <Combobox aria-label="Market" options={many} />
+        </DialogContent>
+      </Dialog>,
+    );
+    await userEvent.click(screen.getByRole("combobox", { name: "Market" }));
+    const listbox = await screen.findByRole("listbox");
+    await userEvent.wheel(listbox, { delta: { y: 200 } });
+    await expect.poll(() => listbox.scrollTop).toBeGreaterThan(0);
   });
 
   it("MultiCombobox is a bottom sheet on phones", async () => {

@@ -280,6 +280,11 @@ function Combobox({
             onInteractOutside={(event) => {
               if (containerRef.current?.contains(event.target as Node)) event.preventDefault();
             }}
+            // Inside a modal Dialog the page scroll lock (react-remove-scroll)
+            // cancels wheel / touch scrolling outside the dialog, and this
+            // layer is portalled out of it: keep those events to the list.
+            onWheel={(event) => event.stopPropagation()}
+            onTouchMove={(event) => event.stopPropagation()}
             className={cn(
               "z-50 w-(--radix-popover-trigger-width) overflow-hidden rounded-lg border border-border bg-card shadow-elevated outline-none",
               mobilePopperSheetPositionClassName,
@@ -293,7 +298,7 @@ function Combobox({
             <ul
               id={listboxId}
               role="listbox"
-              className="max-h-60 overflow-auto py-1 max-md:max-h-[calc(min(70dvh,28rem)-3rem)]"
+              className="max-h-60 overflow-auto overscroll-contain py-1 max-md:max-h-[calc(min(70dvh,28rem)-3rem)]"
             >
               {filtered.length === 0 ? (
                 <li className="px-3 py-2 body text-muted-foreground">{emptyText}</li>
