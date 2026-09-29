@@ -122,7 +122,7 @@ function FileThumbnail({
       >
         <div
           className={cn(
-            "flex shrink-0 items-center justify-center bg-accent text-[11px] text-muted-foreground",
+            "flex shrink-0 items-center justify-center bg-accent text-[11px] text-accent-foreground",
             shape.item,
           )}
           style={{ width: numericSize, height: numericSize }}
