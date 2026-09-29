@@ -202,7 +202,10 @@ function ProgressSteps({ steps, className }: Omit<VariantStepsProps, "labels">) 
   return (
     <div data-slot="steps" className={cn("w-full", className)}>
       {/* Bar */}
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+      <div
+        data-slot="steps-progress-track"
+        className="h-1.5 w-full overflow-hidden rounded-full bg-border"
+      >
         <div
           className="h-full rounded-full bg-brand-primary transition-[width] duration-500"
           style={{ width: `${progress}%` }}

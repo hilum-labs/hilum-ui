@@ -6,7 +6,9 @@ function ProgressRoot({ className, value, ...props }: React.ComponentProps<typeo
   return (
     <Progress.Root
       data-slot="progress"
-      className={cn("relative h-2 w-full overflow-hidden rounded-full bg-muted", className)}
+      // The track uses the border colour: visible on cards and pages in both
+      // themes (muted matched the card surface in dark mode).
+      className={cn("relative h-2 w-full overflow-hidden rounded-full bg-border", className)}
       value={value}
       {...props}
     >
