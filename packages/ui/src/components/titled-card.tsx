@@ -2,15 +2,8 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-  type CardMobileSurface,
-} from "./card";
-import { CardHeading } from "./card-heading";
+import { Card, CardContent, CardDescription, CardHeader, type CardMobileSurface } from "./card";
+import { CardHeadingTitle, type CardHeadingLevel } from "./card-heading";
 
 interface TitledCardProps {
   title?: string;
@@ -18,6 +11,8 @@ interface TitledCardProps {
   children?: React.ReactNode;
   actionButtons?: React.ReactNode;
   icon?: React.ComponentType<{ className?: string }>;
+  /** Heading level of the title (`h2` … `h6`). Default: 2. */
+  headingLevel?: CardHeadingLevel;
   contentPadding?: "default" | "flush-mobile" | "flush";
   mobileSurface?: CardMobileSurface;
   className?: string;
@@ -32,6 +27,7 @@ function TitledCard({
   children,
   actionButtons,
   icon: Icon,
+  headingLevel = 2,
   contentPadding = "default",
   mobileSurface = "flush",
   className,
@@ -41,7 +37,6 @@ function TitledCard({
 }: TitledCardProps) {
   const hasHeader = Boolean(title || subtitle || actionButtons);
   const hasContent = Boolean(children);
-  const canUseCardHeading = Boolean(title) && !actionButtons && !titleClassName;
   const contentPaddingClassName =
     contentPadding === "flush"
       ? "p-0"
@@ -58,50 +53,36 @@ function TitledCard({
       className={cn("min-w-0 overflow-hidden", containerClassName, className)}
       data-slot="titled-card"
     >
-      {canUseCardHeading ? (
-        <CardHeading
-          title={title!}
-          {...(subtitle ? { description: subtitle } : {})}
-          className={cn(
-            !hasContent && "border-b-0",
-            isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3",
-          )}
-        >
-          {Icon && <Icon className="size-5 shrink-0 text-muted-foreground" />}
-        </CardHeading>
-      ) : hasHeader ? (
+      {/* One header, with or without actions: the title keeps the same
+          heading element and style either way. */}
+      {hasHeader && (
         <CardHeader
           className={cn(
-            "flex flex-col gap-3 border-b border-border p-4 sm:flex-row sm:items-start sm:justify-between sm:p-5",
+            "flex flex-col gap-3 border-b border-border px-4 py-3.5 sm:flex-row sm:items-center sm:justify-between sm:px-5 sm:py-4",
             !hasContent && "border-b-0",
             isMobileFlat && "max-sm:border-b-0 max-sm:px-0 max-sm:pb-3",
           )}
         >
-          <div className="min-w-0 flex-1">
-            {title && (
-              <CardTitle
-                className={cn(
-                  "flex min-w-0 items-center gap-2 text-base leading-tight sm:text-lg",
-                  titleClassName,
-                )}
-              >
-                {Icon && <Icon className="size-5 shrink-0 text-muted-foreground" />}
-                <span className="min-w-0 truncate">{title}</span>
-              </CardTitle>
-            )}
-            {subtitle && (
-              <CardDescription className="mt-1 max-w-3xl text-sm leading-5">
-                {subtitle}
-              </CardDescription>
-            )}
+          <div className="flex min-w-0 flex-1 items-center gap-3">
+            {Icon && <Icon className="size-5 shrink-0 text-muted-foreground" />}
+            <div className="min-w-0 flex-1">
+              {title && (
+                <CardHeadingTitle level={headingLevel} className={cn("truncate", titleClassName)}>
+                  {title}
+                </CardHeadingTitle>
+              )}
+              {subtitle && (
+                <CardDescription className="mt-0.5 max-w-3xl">{subtitle}</CardDescription>
+              )}
+            </div>
           </div>
           {actionButtons && (
-            <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:w-auto sm:justify-end">
+            <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:w-auto sm:shrink-0 sm:justify-end">
               {actionButtons}
             </div>
           )}
         </CardHeader>
-      ) : null}
+      )}
       {children && (
         <CardContent
           className={cn(

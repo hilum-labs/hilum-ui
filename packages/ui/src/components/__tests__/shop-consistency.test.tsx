@@ -22,6 +22,8 @@ import { ColorInput } from "../color-input";
 import { FilterBar } from "../filter-bar";
 import { SearchableTable } from "../searchable-table";
 import { Field } from "../field";
+import { TitledCard } from "../titled-card";
+import { CardHeading } from "../card-heading";
 import { controlHeightClass, controlTextClass } from "../../lib/interaction";
 import "@testing-library/jest-dom";
 
@@ -425,5 +427,50 @@ describe("SelectItem colour", () => {
     const archived = screen.getByRole("option", { name: "Archived" });
     expect(archived).toHaveAttribute("data-disabled");
     expect(archived).toHaveClass("data-[disabled]:text-muted-foreground");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Card headings                                                        */
+/* ------------------------------------------------------------------ */
+
+describe("card headings", () => {
+  it("TitledCard renders one heading style (an h2) with or without actions", () => {
+    render(
+      <>
+        <TitledCard title="Plain">Body</TitledCard>
+        <TitledCard title="With actions" actionButtons={<button type="button">Edit</button>}>
+          Body
+        </TitledCard>
+      </>,
+    );
+    const plain = screen.getByRole("heading", { level: 2, name: "Plain" });
+    const withActions = screen.getByRole("heading", { level: 2, name: "With actions" });
+    expect(plain.className).toBe(withActions.className);
+    expect(plain).toHaveClass("body", "font-semibold");
+    expect(withActions).not.toHaveClass("text-base", "sm:text-lg", "subheading");
+  });
+
+  it("TitledCard and CardHeading take a heading level", () => {
+    render(
+      <>
+        <TitledCard title="Payments" headingLevel={3} />
+        <CardHeading title="Team" headingLevel={4} />
+      </>,
+    );
+    expect(screen.getByRole("heading", { level: 3, name: "Payments" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 4, name: "Team" })).toBeInTheDocument();
+  });
+
+  it("CardHeading renders a heading in the same style as TitledCard", () => {
+    render(
+      <>
+        <CardHeading title="Team" actions={[{ label: "Invite" }]} />
+        <TitledCard title="Payments" />
+      </>,
+    );
+    const a = screen.getByRole("heading", { level: 2, name: "Team" });
+    const b = screen.getByRole("heading", { level: 2, name: "Payments" });
+    expect(a.className).toBe(b.className);
   });
 });
