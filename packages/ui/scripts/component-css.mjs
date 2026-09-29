@@ -12,7 +12,7 @@
  */
 export const colorSchemeCss = `:root { color-scheme: light; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { color-scheme: dark; }
+  :root:not([data-theme="light"], [data-theme="mid"]) { color-scheme: dark; }
 }
 [data-theme="dark"], .dark { color-scheme: dark; }
 [data-theme="light"] { color-scheme: light; }`;

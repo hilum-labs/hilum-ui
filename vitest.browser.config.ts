@@ -104,6 +104,14 @@ const pointerDrag: BrowserCommand<
   if (options.release !== false) await mouse.up();
 };
 
+/** Emulate the OS colour scheme (`prefers-color-scheme`) for the test page. */
+const emulateColorScheme: BrowserCommand<[scheme: "light" | "dark" | null]> = async (
+  ctx,
+  scheme,
+) => {
+  await ctx.page.emulateMedia({ colorScheme: scheme });
+};
+
 export default defineConfig({
   plugins: [tailwind()],
   resolve: {
@@ -146,7 +154,7 @@ export default defineConfig({
       headless: true,
       screenshotFailures: false,
       viewport: { width: 1280, height: 800 },
-      commands: { pointerDrag },
+      commands: { pointerDrag, emulateColorScheme },
       instances: [{ browser: "chromium" }],
     },
   },

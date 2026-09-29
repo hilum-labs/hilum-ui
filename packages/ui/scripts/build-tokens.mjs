@@ -120,7 +120,9 @@ const themeBlock = (selector, theme, indent = "") => {
 };
 
 /* ---------------- :root — light defaults ---------------- */
-themeBlock(":root", "light");
+// Also on [data-theme="light"], so a light subtree inside a dark page (or
+// under the OS dark default) gets the light values, like dark and mid do.
+themeBlock(':root, [data-theme="light"]', "light");
 lines.push("");
 
 /* ---------------- :root — categorical hues (theme-independent) ---------------- */
@@ -133,9 +135,11 @@ if (tokens.categorical) {
 }
 
 /* ---------------- dark mode (D7) ---------------- */
-// Auto: prefers-color-scheme.
+// Auto: prefers-color-scheme, unless the root picks a theme explicitly. An
+// explicit data-theme="mid" must beat the OS default: `:root:not(light)` is
+// more specific than `[data-theme="mid"]`, so it has to exclude mid too.
 lines.push("@media (prefers-color-scheme: dark) {");
-themeBlock(':root:not([data-theme="light"])', "dark", "  ");
+themeBlock(':root:not([data-theme="light"], [data-theme="mid"])', "dark", "  ");
 lines.push("}");
 lines.push("");
 // Explicit: data-theme="dark".

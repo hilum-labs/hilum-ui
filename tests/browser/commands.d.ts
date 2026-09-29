@@ -9,5 +9,7 @@ declare module "vitest/browser" {
       target: string,
       options?: { steps?: number; release?: boolean },
     ) => Promise<void>;
+    /** Emulate the OS colour scheme (`prefers-color-scheme`); `null` resets it. */
+    emulateColorScheme: (scheme: "light" | "dark" | null) => Promise<void>;
   }
 }

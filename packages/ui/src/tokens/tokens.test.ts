@@ -139,7 +139,7 @@ describe("active nav item contrast", () => {
 
   it.each(brands)("createTheme(%s) emits a --brand-text that passes in every theme", (primary) => {
     const { css, brandText } = createTheme({ primary, secondary: "#fff5bf" });
-    expect(themeBlock(css, ":root")).toContain(`--brand-text: ${brandText.light};`);
+    expect(themeBlock(css, '[data-theme="light"]')).toContain(`--brand-text: ${brandText.light};`);
     expect(themeBlock(css, '[data-theme="dark"]')).toContain(`--brand-text: ${brandText.dark};`);
     expect(themeBlock(css, '[data-theme="mid"]')).toContain(`--brand-text: ${brandText.mid};`);
     expect(worstContrast(brandText.light, primary, "light")).toBeGreaterThanOrEqual(4.5);
@@ -152,6 +152,12 @@ describe("active nav item contrast", () => {
       worstContrast("#ffffff", primary, "mid"),
     );
     expect(mid >= 4.5 || mid >= bestPlain).toBe(true);
+  });
+
+  it("createTheme's OS-dark rule leaves explicit light and mid roots alone", () => {
+    const { css } = createTheme({ primary: "#0066ff", secondary: "#fff5bf" });
+    expect(css).toContain(':root:not([data-theme="light"], [data-theme="mid"]) {');
+    expect(css).toMatch(/:root,\s*\[data-theme="light"\] \{/);
   });
 
   it("createTheme keeps brand text as close to the brand as contrast allows", () => {
