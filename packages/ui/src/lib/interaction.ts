@@ -8,6 +8,28 @@ export const springMotionClasses =
 
 export const pressClasses = "active:scale-[0.97] motion-reduce:active:scale-100";
 
+/**
+ * The one size for single-line form controls at the default density: 36px tall
+ * with 14px text. Input, SearchInput, Select, NativeSelect, Combobox,
+ * InputNumber, InputGroup, ColorInput, TimePicker and the DatePicker /
+ * DateRangePicker triggers all use these, so a row of mixed controls lines up
+ * (and Buttons placed next to them in DS compositions use the same height).
+ * The editor-chrome tier (`compact:` variant, 24px / 12px) and the
+ * `density="compact"` prop keep their own sizes. Mirrored by the
+ * `--density-input-height` / `--density-text` tokens for bespoke controls.
+ */
+export const controlHeightClass = "h-9";
+export const controlTextClass = "text-sm";
+export const controlSizeClasses = `${controlHeightClass} ${controlTextClass}`;
+
+/**
+ * For a container whose direct children sit in a row with form controls
+ * (FilterBar filters and actions): text Buttons take the control height and
+ * icon Buttons become square at that height, whatever `size` they were given.
+ */
+export const controlRowButtonClasses =
+  "[&>[data-slot=button]:not([data-icon-only])]:h-9 [&>[data-slot=button][data-icon-only]]:size-9";
+
 export const focusRingClasses =
   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background";
 

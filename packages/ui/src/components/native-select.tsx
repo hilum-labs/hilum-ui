@@ -3,7 +3,11 @@
 import * as React from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "../lib/utils";
-import { compactFieldFocusClasses, compactFieldSurfaceClasses } from "../lib/interaction";
+import {
+  compactFieldFocusClasses,
+  compactFieldSurfaceClasses,
+  controlSizeClasses,
+} from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { useFieldControl } from "../lib/field-context";
 
@@ -32,9 +36,10 @@ function NativeSelect({
         data-slot="native-select"
         {...fieldProps}
         className={cn(
-          "peer h-10 w-full appearance-none border border-border bg-background ps-3 pe-8",
+          "peer w-full appearance-none border border-border bg-background ps-3 pe-8",
+          controlSizeClasses,
           shape.input,
-          "body text-foreground",
+          "text-foreground",
           "focus:border-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           "disabled:cursor-not-allowed disabled:opacity-50",
           "aria-[invalid=true]:border-destructive aria-[invalid=true]:focus:ring-destructive/20",

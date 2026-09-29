@@ -67,7 +67,7 @@ describe("compact field surfaces", () => {
       </NativeSelect>,
     );
     expect(screen.getByLabelText("Unit")).toHaveClass(
-      "h-10",
+      "h-9",
       "compact:h-6",
       "compact:ps-2",
       "compact:py-0",

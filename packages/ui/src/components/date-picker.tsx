@@ -7,6 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Calendar } from "./calendar";
 import { Button } from "./button";
 import { cn } from "../lib/utils";
+import { controlSizeClasses } from "../lib/interaction";
 import { formatDate, formatDateRange, useFormatter } from "../lib/format";
 
 type DateRange = { from: Date | undefined; to?: Date | undefined };
@@ -103,7 +104,10 @@ function DatePickerTrigger({
         aria-label={ariaLabel}
         aria-invalid={ariaInvalid}
         className={cn(
-          "w-full justify-start gap-2 text-start font-normal",
+          // Same height and text size as the other single-line controls.
+          "w-full justify-start gap-2 px-3 text-start font-normal",
+          controlSizeClasses,
+          "compact:h-6 compact:px-2 compact:text-[12px]",
           empty && "text-muted-foreground",
           clearable && !empty && "pe-8",
           ariaInvalid && "border-destructive",

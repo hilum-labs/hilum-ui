@@ -1,5 +1,20 @@
 import { render, screen } from "@testing-library/react";
-import { Button, PaginationLink } from "@hilum/ui";
+import {
+  Button,
+  Combobox,
+  DatePicker,
+  Input,
+  InputGroup,
+  InputNumber,
+  NativeSelect,
+  PaginationLink,
+  SearchInput,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  TimePicker,
+} from "@hilum/ui";
 import { AppStatusBanner } from "@hilum/app-shell";
 
 /** Resolve a CSS colour expression to its computed rgb() string. */
@@ -125,4 +140,63 @@ describe("AppStatusBanner in dark mode (real browser)", () => {
       expect(contrast(getComputedStyle(action).color, surface)).toBeGreaterThan(4.5);
     },
   );
+});
+
+describe("single-line form controls (real browser)", () => {
+  test("render 36px tall with 14px text at the default density", () => {
+    const noop = () => {};
+    const { container } = render(
+      <div style={{ width: 320 }}>
+        <Input aria-label="Title" />
+        <SearchInput value="" onValueChange={noop} aria-label="Search" />
+        <Select>
+          <SelectTrigger aria-label="Status" />
+          <SelectContent>
+            <SelectItem value="a">A</SelectItem>
+          </SelectContent>
+        </Select>
+        <NativeSelect aria-label="Country">
+          <option>Peru</option>
+        </NativeSelect>
+        <Combobox aria-label="Customer" options={[{ value: "a", label: "Ana" }]} />
+        <InputNumber aria-label="Quantity" value={1} onChange={noop} />
+        <InputGroup
+          aria-label="Domain"
+          placeholder="shop"
+          trailingButton={<Button>Check</Button>}
+        />
+        <TimePicker aria-label="Opens at" value="09:00" onChange={noop} />
+        <DatePicker aria-label="Ships on" value={undefined} onChange={noop} />
+      </div>,
+    );
+    const boxes: Array<[string, Element, Element]> = [
+      ["Input", screen.getByLabelText("Title"), screen.getByLabelText("Title")],
+      ["SearchInput", screen.getByRole("searchbox"), screen.getByRole("searchbox")],
+      ["Select", screen.getByLabelText("Status"), screen.getByLabelText("Status")],
+      ["NativeSelect", screen.getByLabelText("Country"), screen.getByLabelText("Country")],
+      ["Combobox", screen.getByLabelText("Customer"), screen.getByLabelText("Customer")],
+      [
+        "InputNumber",
+        container.querySelector("[data-slot='input-number']")!,
+        screen.getByLabelText("Quantity"),
+      ],
+      [
+        "InputGroup",
+        container.querySelector("[data-slot='input-group']")!,
+        screen.getByLabelText("Domain"),
+      ],
+      [
+        "TimePicker",
+        container.querySelector("[data-slot='time-picker']")!,
+        container.querySelector("[data-slot='time-picker']")!,
+      ],
+      ["DatePicker", screen.getByLabelText("Ships on"), screen.getByLabelText("Ships on")],
+    ];
+    for (const [name, box, text] of boxes) {
+      expect({ name, height: box.getBoundingClientRect().height }).toEqual({ name, height: 36 });
+      expect({ name, font: getComputedStyle(text).fontSize }).toEqual({ name, font: "14px" });
+    }
+    // The InputGroup trailing button is inset: 28px inside the 36px field.
+    expect(screen.getByRole("button", { name: "Check" }).getBoundingClientRect().height).toBe(28);
+  });
 });

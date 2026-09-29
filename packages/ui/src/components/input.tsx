@@ -2,7 +2,13 @@
 
 import * as React from "react";
 import { cn } from "../lib/utils";
-import { controlSurfaceClasses, inputFocusClasses, motionClasses } from "../lib/interaction";
+import {
+  controlHeightClass,
+  controlSurfaceClasses,
+  controlTextClass,
+  inputFocusClasses,
+  motionClasses,
+} from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 import { useFieldControl } from "../lib/field-context";
 
@@ -16,7 +22,7 @@ interface InputProps extends React.ComponentProps<"input"> {
 }
 
 const inputDensityClasses: Record<ControlDensity, string> = {
-  default: "h-10 px-3 py-1",
+  default: `${controlHeightClass} px-3 py-1`,
   compact: "h-8 px-2.5 py-1",
 };
 
@@ -63,7 +69,8 @@ function Input({
         inputDensityClasses[density],
         inputMobileDensityClasses[mobileDensity],
         shape.input,
-        "body text-foreground placeholder:text-muted-foreground",
+        controlTextClass,
+        "text-foreground placeholder:text-muted-foreground",
         controlSurfaceClasses,
         motionClasses,
         inputFocusClasses,

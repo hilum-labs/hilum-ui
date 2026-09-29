@@ -9,6 +9,20 @@ import {
   AlertDialogContent,
   AlertDialogTitle,
 } from "../alert-dialog";
+import { Input } from "../input";
+import { SearchInput } from "../search-input";
+import { Select, SelectContent, SelectItem, SelectTrigger } from "../select";
+import { NativeSelect } from "../native-select";
+import { Combobox } from "../combobox";
+import { InputNumber } from "../input-number";
+import { InputGroup } from "../input-group";
+import { TimePicker } from "../time-picker";
+import { DatePicker, DateRangePicker } from "../date-picker";
+import { ColorInput } from "../color-input";
+import { FilterBar } from "../filter-bar";
+import { SearchableTable } from "../searchable-table";
+import { Field } from "../field";
+import { controlHeightClass, controlTextClass } from "../../lib/interaction";
 import "@testing-library/jest-dom";
 
 /** The classes that paint a button's fill (its `::before` layer). */
@@ -209,5 +223,207 @@ describe("AlertDialogAction / AlertDialogCancel asChild", () => {
     const cancel = screen.getByRole("button", { name: "Keep" });
     expect(cancel).toHaveClass("border-border");
     expect(cancel).not.toHaveClass("bg-card", "rounded-xl");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* One size for single-line form controls                               */
+/* ------------------------------------------------------------------ */
+
+/** Unprefixed height utilities (h-9, h-10, …), ignoring variants like compact:h-6. */
+const heights = (el: Element) => Array.from(el.classList).filter((c) => /^h-\d/.test(c));
+/** Unprefixed font-size utilities. */
+const textSizes = (el: Element) =>
+  Array.from(el.classList).filter((c) => /^(text-(xs|sm|base|lg|\[\d+px\])|body|caption)$/.test(c));
+
+describe("single-line form control size", () => {
+  it("is one height (36px) and one text size (14px)", () => {
+    expect(controlHeightClass).toBe("h-9");
+    expect(controlTextClass).toBe("text-sm");
+  });
+
+  it("every default-density control uses it", () => {
+    const noop = () => {};
+    const { container } = render(
+      <>
+        <Input aria-label="Title" />
+        <SearchInput value="" onValueChange={noop} aria-label="Search orders" />
+        <Select>
+          <SelectTrigger aria-label="Status" />
+          <SelectContent>
+            <SelectItem value="a">A</SelectItem>
+          </SelectContent>
+        </Select>
+        <NativeSelect aria-label="Country">
+          <option>Peru</option>
+        </NativeSelect>
+        <Combobox aria-label="Customer" options={[{ value: "a", label: "Ana" }]} />
+        <InputNumber aria-label="Quantity" value={1} onChange={noop} />
+        <InputGroup aria-label="Domain" placeholder="shop" trailingAddon=".hilum.shop" />
+        <TimePicker aria-label="Opens at" value="09:00" onChange={noop} />
+        <DatePicker aria-label="Ships on" value={undefined} onChange={noop} />
+        <DateRangePicker aria-label="Period" onChange={noop} />
+        <ColorInput value="#c100f1" onChange={noop} />
+      </>,
+    );
+    const controls: Array<[string, Element, Element]> = [
+      ["Input", screen.getByLabelText("Title"), screen.getByLabelText("Title")],
+      ["SearchInput", screen.getByRole("searchbox"), screen.getByRole("searchbox")],
+      ["Select", screen.getByLabelText("Status"), screen.getByLabelText("Status")],
+      ["NativeSelect", screen.getByLabelText("Country"), screen.getByLabelText("Country")],
+      ["Combobox", screen.getByLabelText("Customer"), screen.getByLabelText("Customer")],
+      [
+        "InputNumber",
+        container.querySelector("[data-slot='input-number']")!,
+        screen.getByLabelText("Quantity"),
+      ],
+      [
+        "InputGroup",
+        container.querySelector("[data-slot='input-group']")!,
+        container.querySelector("[data-slot='input-group']")!,
+      ],
+      [
+        "TimePicker",
+        container.querySelector("[data-slot='time-picker']")!,
+        container.querySelector("[data-slot='time-picker']")!,
+      ],
+      ["DatePicker", screen.getByLabelText("Ships on"), screen.getByLabelText("Ships on")],
+      ["DateRangePicker", screen.getByLabelText("Period"), screen.getByLabelText("Period")],
+      [
+        "ColorInput",
+        container.querySelector("[data-slot='color-input']")!,
+        screen.getByLabelText("Hex colour"),
+      ],
+    ];
+    for (const [name, box, text] of controls) {
+      expect({ name, heights: heights(box) }).toEqual({ name, heights: ["h-9"] });
+      expect({ name, text: textSizes(text) }).toEqual({ name, text: ["text-sm"] });
+    }
+  });
+
+  it("keeps the compact editor tier at 24px / 12px", () => {
+    render(<Input aria-label="X" />);
+    expect(screen.getByLabelText("X")).toHaveClass("compact:h-6", "compact:text-[12px]");
+  });
+
+  it("buttons beside controls in a FilterBar take the control height", () => {
+    const { container } = render(
+      <FilterBar
+        search={{ value: "", onValueChange: () => {} }}
+        active
+        onClear={() => {}}
+        actions={<Button size="sm">Export</Button>}
+      >
+        <Button variant="outline">More filters</Button>
+      </FilterBar>,
+    );
+    const actions = container.querySelector("[data-slot='filter-bar-actions']")!;
+    const filters = container.querySelector("[data-slot='filter-bar-filters']")!;
+    for (const row of [actions, filters]) {
+      expect(row.className).toContain("[&>[data-slot=button]:not([data-icon-only])]:h-9");
+      expect(row.className).toContain("[&>[data-slot=button][data-icon-only]]:size-9");
+    }
+  });
+
+  it("an InputGroup trailing button sits inset in the 36px field", () => {
+    const { container } = render(
+      <InputGroup aria-label="Coupon" placeholder="Code" trailingButton={<Button>Apply</Button>} />,
+    );
+    const slot = container.querySelector("[data-slot='input-group-button']")!;
+    expect(slot).toContainElement(screen.getByRole("button", { name: "Apply" }));
+    expect(slot.className).toContain("[&>[data-slot=button]]:h-7");
+    expect(container.querySelector("[data-slot='input-group']")).toHaveClass("pe-1");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* InputGroup / SearchableTable search                                  */
+/* ------------------------------------------------------------------ */
+
+describe("InputGroup as a control", () => {
+  it("has no vertical padding and shows the focus ring while its input has focus", () => {
+    const { container } = render(<InputGroup aria-label="Search" placeholder="Search" />);
+    const group = container.querySelector("[data-slot='input-group']")!;
+    expect(group).not.toHaveClass("py-2");
+    expect(group).toHaveClass("focus-within:border-ring", "focus-within:ring-2");
+    expect(screen.getByRole("textbox", { name: "Search" })).toHaveClass("h-full");
+  });
+
+  it("names the input, not the wrapper, with aria-label", () => {
+    const { container } = render(<InputGroup aria-label="Search" placeholder="Search" />);
+    expect(screen.getByRole("textbox", { name: "Search" })).toBeInTheDocument();
+    expect(container.querySelector("[data-slot='input-group']")).not.toHaveAttribute("aria-label");
+  });
+});
+
+describe("SearchableTable toolbar", () => {
+  it("renders a standard-height, labelled search field and labelled filters", () => {
+    const { container } = render(
+      <SearchableTable
+        data={[{ id: "1", name: "Mug" }]}
+        columns={[{ key: "name", label: "Name" }]}
+        searchTerm=""
+        onSearchChange={() => {}}
+        searchPlaceholder="Search products"
+        filters={{
+          status: {
+            value: "all",
+            onChange: () => {},
+            placeholder: "Status",
+            options: [{ value: "all", label: "All" }],
+          },
+        }}
+      />,
+    );
+    const group = container.querySelector("[data-slot='input-group']")!;
+    expect(heights(group)).toEqual(["h-9"]);
+    expect(group).not.toHaveClass("py-2");
+    expect(screen.getByRole("textbox", { name: "Search products" })).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "Status" })).toBeInTheDocument();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Select width and option colour                                       */
+/* ------------------------------------------------------------------ */
+
+describe("Select trigger width", () => {
+  it("does not force a 160px minimum width (fits narrow columns and Fields)", () => {
+    render(
+      <Field label="Currency">
+        <Select>
+          <SelectTrigger />
+          <SelectContent>
+            <SelectItem value="pen">PEN</SelectItem>
+          </SelectContent>
+        </Select>
+      </Field>,
+    );
+    const trigger = screen.getByRole("combobox", { name: "Currency" });
+    expect(trigger).not.toHaveClass("min-w-40");
+    expect(trigger).toHaveClass("min-w-0", "max-w-full");
+  });
+});
+
+describe("SelectItem colour", () => {
+  it("renders options in the foreground colour and mutes only disabled ones", () => {
+    render(
+      <Select open value="a">
+        <SelectTrigger aria-label="Pick" />
+        <SelectContent>
+          <SelectItem value="a">Active</SelectItem>
+          <SelectItem value="b">Draft</SelectItem>
+          <SelectItem value="c" disabled>
+            Archived
+          </SelectItem>
+        </SelectContent>
+      </Select>,
+    );
+    const draft = screen.getByRole("option", { name: "Draft" });
+    expect(draft).toHaveClass("text-foreground");
+    expect(draft).not.toHaveClass("text-muted-foreground");
+    const archived = screen.getByRole("option", { name: "Archived" });
+    expect(archived).toHaveAttribute("data-disabled");
+    expect(archived).toHaveClass("data-[disabled]:text-muted-foreground");
   });
 });

@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Plus, X } from "lucide-react";
 import { cn } from "../lib/utils";
+import { controlRowButtonClasses } from "../lib/interaction";
 import { useFormatter } from "../lib/format";
 import { Button } from "./button";
 import { SearchInput } from "./search-input";
@@ -318,6 +319,7 @@ function FilterBar({
             data-slot="filter-bar-filters"
             className={cn(
               "flex min-w-0 items-center gap-2 overflow-x-auto [scrollbar-width:none] md:overflow-visible [&::-webkit-scrollbar]:hidden [&>*]:shrink-0",
+              controlRowButtonClasses,
               bleedClass,
               filtersClassName,
             )}
@@ -331,7 +333,14 @@ function FilterBar({
             )}
           </div>
         )}
-        {actions && <div className="flex shrink-0 items-center gap-2 md:ms-auto">{actions}</div>}
+        {actions && (
+          <div
+            data-slot="filter-bar-actions"
+            className={cn("flex shrink-0 items-center gap-2 md:ms-auto", controlRowButtonClasses)}
+          >
+            {actions}
+          </div>
+        )}
       </div>
       {appliedFilters && appliedFilters.length > 0 && (
         <FilterBarPills

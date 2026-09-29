@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "../lib/utils";
+import { controlSizeClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
 
 export interface ComboboxOption {
@@ -194,7 +195,8 @@ function Combobox({
           }
           aria-autocomplete="list"
           className={cn(
-            "flex h-10 w-full border border-border bg-background pe-10 body text-foreground",
+            "flex w-full border border-border bg-background pe-10 text-foreground",
+            controlSizeClasses,
             shape.input,
             "placeholder:text-muted-foreground",
             "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",

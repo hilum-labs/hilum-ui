@@ -17,6 +17,13 @@ import type { IconComponent } from "../lib/icon-context";
 import { cn } from "../lib/utils";
 import { fontWeights } from "../lib/font-weight";
 import { useShape } from "../lib/shape-context";
+import {
+  controlHeightClass,
+  controlSurfaceClasses,
+  controlTextClass,
+  inputFocusWithinClasses,
+  motionClasses,
+} from "../lib/interaction";
 
 interface InputGroupContextValue {
   registerItem: (index: number, element: HTMLLabelElement | null) => void;
@@ -49,6 +56,8 @@ interface InputGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange
   type?: InputHTMLAttributes<HTMLInputElement>["type"];
   defaultValue?: InputHTMLAttributes<HTMLInputElement>["defaultValue"];
   id?: string;
+  /** Accessible name. With a built-in input it names the input, otherwise the group. */
+  "aria-label"?: string;
   ref?: Ref<HTMLDivElement>;
 }
 
@@ -72,6 +81,7 @@ function InputGroup({
   defaultValue,
   id,
   ref,
+  "aria-label": ariaLabel,
   ...props
 }: InputGroupProps) {
   const itemsRef = useRef(new Map<number, HTMLLabelElement>());
@@ -128,11 +138,22 @@ function InputGroup({
         ref={ref}
         data-slot="input-group"
         className={cn(
-          "relative flex items-center gap-2 border bg-background px-3 py-2 text-[13px] transition-colors",
+          // The wrapper is the control: the standard single-line height and
+          // text size, the field surface, and the focus ring while the input
+          // inside it has focus.
+          "relative flex items-center gap-2 px-3 text-foreground",
+          controlHeightClass,
+          controlTextClass,
+          controlSurfaceClasses,
+          motionClasses,
+          inputFocusWithinClasses,
           shape.input,
-          error ? "border-destructive/50" : "border-border",
-          disabled && "opacity-50",
+          "compact:h-6 compact:gap-1.5 compact:px-2 compact:text-[12px] compact:rounded-[5px]",
+          error && "border-destructive/50 hover:border-destructive/50",
+          disabled && "cursor-not-allowed opacity-50",
           pill && "rounded-full",
+          // A trailing button sits inset in the field, 4px from each edge.
+          trailingButton !== undefined && "pe-1 compact:pe-0.5",
           wrapperClassName,
         )}
         {...props}
@@ -147,16 +168,24 @@ function InputGroup({
           onChange={onChange}
           placeholder={placeholder}
           disabled={disabled}
+          aria-label={ariaLabel}
           aria-invalid={!!error || undefined}
           className={cn(
-            "min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground",
+            "h-full min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed",
             (trailingAction || trailingIcon) && "pe-16",
             className,
           )}
         />
         {trailingAddon && <span className="shrink-0 text-muted-foreground">{trailingAddon}</span>}
         {trailingIcon && <span className="shrink-0 text-muted-foreground">{trailingIcon}</span>}
-        {trailingButton}
+        {trailingButton !== undefined && (
+          <span
+            data-slot="input-group-button"
+            className="flex shrink-0 items-center [&>[data-slot=button]]:h-7 compact:[&>[data-slot=button]]:h-5"
+          >
+            {trailingButton}
+          </span>
+        )}
         {trailingAction && (
           <span className="absolute end-2 top-1/2 -translate-y-1/2">{trailingAction}</span>
         )}
@@ -169,6 +198,7 @@ function InputGroup({
       <div
         ref={ref}
         data-slot="input-group"
+        aria-label={ariaLabel}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className={cn("flex flex-col gap-3 w-72 max-w-full", className)}
@@ -294,7 +324,8 @@ function InputField({
       {/* Input container */}
       <div
         className={cn(
-          `flex items-center gap-2 ${shape.input} px-3 py-2 ring-1 transition-all duration-80`,
+          `flex items-center gap-2 ${shape.input} px-3 ring-1 transition-all duration-80`,
+          controlHeightClass,
           bgClass,
           ringClass,
         )}
@@ -319,7 +350,7 @@ function InputField({
           disabled={disabled}
           aria-invalid={!!error || undefined}
           aria-describedby={errorId}
-          className="w-full bg-transparent text-[13px] text-foreground placeholder:text-muted-foreground outline-none font-[inherit]"
+          className="h-full w-full bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none font-[inherit]"
           style={{ fontVariationSettings: fontWeights.normal }}
           {...props}
         />

@@ -4,7 +4,12 @@ import * as React from "react";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
 import { useDensity } from "../lib/density-context";
-import { controlSurfaceClasses, inputFocusWithinClasses } from "../lib/interaction";
+import {
+  controlHeightClass,
+  controlSurfaceClasses,
+  controlTextClass,
+  inputFocusWithinClasses,
+} from "../lib/interaction";
 import { useFormatter } from "../lib/format";
 import { useFieldControl } from "../lib/field-context";
 
@@ -306,7 +311,8 @@ function InputNumber({
       className={cn(
         // w-48 ≈ the old intrinsic width of the native input (size=20), kept as an
         // overridable default; min-w-fit stops narrow widths clipping digits.
-        "inline-flex h-8 w-48 min-w-fit items-stretch overflow-hidden",
+        "inline-flex w-48 min-w-fit items-stretch overflow-hidden",
+        controlHeightClass,
         controlSurfaceClasses,
         "transition-[background-color,border-color,box-shadow] duration-150",
         shape.input,
@@ -375,7 +381,8 @@ function InputNumber({
         aria-label={typeof label === "string" && !rest["aria-labelledby"] ? label : undefined}
         className={cn(
           // min-width fits three tabular digits + padding so "100" never clips.
-          "w-full min-w-[calc(3ch+1rem)] caption tabular-nums text-foreground px-2 bg-transparent focus:outline-none",
+          "w-full min-w-[calc(3ch+1rem)] tabular-nums text-foreground px-2 bg-transparent focus:outline-none",
+          controlTextClass,
           "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
           "compact:min-w-[calc(3ch+0.75rem)] compact:px-1.5 compact:text-[12px]",
           label !== undefined && "ps-0.5 compact:ps-0.5",

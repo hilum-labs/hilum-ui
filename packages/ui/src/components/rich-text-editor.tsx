@@ -577,7 +577,7 @@ function RichTextEditor({
             value={linkUrl}
             onChange={(event) => setLinkUrl(event.target.value)}
             placeholder={labels.linkUrlPlaceholder}
-            className="h-10 flex-1 bg-background"
+            className="flex-1 bg-background"
             onKeyDown={(event) => {
               if (event.key === "Enter") {
                 event.preventDefault();
@@ -589,14 +589,14 @@ function RichTextEditor({
             aria-label={labels.linkUrl}
           />
           <div className="grid grid-cols-2 gap-2 sm:flex sm:shrink-0">
-            <Button type="button" size="sm" className="h-10" onClick={insertLink}>
+            <Button type="button" size="lg" className="px-4" onClick={insertLink}>
               {labels.insert}
             </Button>
             <Button
               type="button"
               variant="outline"
-              size="sm"
-              className="h-10"
+              size="lg"
+              className="px-4"
               onClick={() => setShowLinkInput(false)}
             >
               {labels.cancel}

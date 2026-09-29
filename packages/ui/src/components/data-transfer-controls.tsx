@@ -67,7 +67,7 @@ function DataTransferControls({
       <Select value={scopeValue} onValueChange={onScopeChange}>
         <SelectTrigger
           aria-label={scopePlaceholder}
-          className={cn("min-h-10 w-full max-w-full bg-background sm:w-45", selectClassName)}
+          className={cn("w-full max-w-full bg-background sm:w-45", selectClassName)}
         >
           <SelectValue placeholder={scopePlaceholder} />
         </SelectTrigger>
@@ -138,7 +138,7 @@ function DataTransferControls({
           {actions.map((action, index) => (
             <ButtonGroupItem
               key={`${action.label}-${index}`}
-              className="min-h-10 justify-center px-3 disabled:pointer-events-none disabled:opacity-50"
+              className="min-h-9 justify-center px-3 disabled:pointer-events-none disabled:opacity-50"
               onClick={action.onSelect}
               disabled={action.disabled || action.loading}
               aria-label={action.ariaLabel ?? action.label}
