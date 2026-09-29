@@ -7,6 +7,15 @@ import { Input } from "../input";
 import { Textarea } from "../textarea";
 import { NativeSelect } from "../native-select";
 import { InputNumber } from "../input-number";
+import { Switch } from "../switch";
+import { Checkbox } from "../checkbox";
+import { CheckboxCard } from "../checkbox-card";
+import { Combobox } from "../combobox";
+import { DatePicker, DateRangePicker } from "../date-picker";
+import { DateTimePicker } from "../date-time-picker";
+import { TimePicker } from "../time-picker";
+import { ColorInput } from "../color-input";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "../input-otp";
 
 const tick = () => act(() => new Promise((resolve) => setTimeout(resolve, 20)));
 
@@ -205,5 +214,138 @@ describe("Field label and a control's own id", () => {
     );
     expect(labelFor("Handle")).toHaveAttribute("for", "handle");
     expect(labelFor("Handle")).toHaveAttribute("id", "handle-label");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Field auto-wiring for more controls                                  */
+/* ------------------------------------------------------------------ */
+
+describe("Field wires more controls", () => {
+  it("Switch and Checkbox take the label, hint, error, required and disabled state", () => {
+    render(
+      <>
+        <Field label="Charge tax" hint="Applies to this product" required>
+          <Switch />
+        </Field>
+        <Field label="Accept the terms" error="Accept to continue" disabled>
+          <Checkbox />
+        </Field>
+      </>,
+    );
+    const toggle = screen.getByRole("switch", { name: "Charge tax" });
+    expect(toggle).toHaveAccessibleDescription("Applies to this product");
+    expect(toggle).toHaveAttribute("aria-required", "true");
+    expect(toggle).not.toBeDisabled();
+    const box = screen.getByRole("checkbox", { name: "Accept the terms" });
+    expect(box).toHaveAccessibleDescription("Accept to continue");
+    expect(box).toHaveAttribute("aria-invalid", "true");
+    expect(box).toBeDisabled();
+  });
+
+  it("a Switch's own label and id win", () => {
+    render(
+      <Field label="Notifications">
+        <Switch id="email-me" label="Email me" />
+      </Field>,
+    );
+    const toggle = screen.getByRole("switch", { name: "Email me" });
+    expect(toggle).toHaveAttribute("id", "email-me");
+    expect(labelFor("Notifications")).toHaveAttribute("for", "email-me");
+  });
+
+  it("CheckboxCard keeps its own label inside a Field", () => {
+    render(
+      <Field label="Channels">
+        <CheckboxCard label="Online store" />
+      </Field>,
+    );
+    expect(screen.getByRole("checkbox", { name: "Online store" })).toBeInTheDocument();
+  });
+
+  it("Combobox takes the field wiring", () => {
+    render(
+      <Field label="Vendor" error="Pick a vendor" required>
+        <Combobox options={[{ value: "acme", label: "Acme" }]} />
+      </Field>,
+    );
+    const input = screen.getByRole("combobox", { name: "Vendor" });
+    expect(input).toHaveAccessibleDescription("Pick a vendor");
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAttribute("aria-required", "true");
+  });
+
+  it("DatePicker and DateRangePicker triggers take the field wiring", () => {
+    render(
+      <>
+        <Field label="Publish date" hint="Store time zone" disabled>
+          <DatePicker />
+        </Field>
+        <Field label="Report range" error="Pick a range">
+          <DateRangePicker presets={[]} />
+        </Field>
+      </>,
+    );
+    const date = screen.getByRole("button", { name: "Publish date" });
+    expect(date).toHaveAccessibleDescription("Store time zone");
+    expect(date).toBeDisabled();
+    expect(date).not.toHaveAttribute("aria-required");
+    const range = screen.getByRole("button", { name: "Report range" });
+    expect(range).toHaveAttribute("aria-invalid", "true");
+    expect(range).toHaveAccessibleDescription("Pick a range");
+  });
+
+  it("TimePicker, DateTimePicker and ColorInput are groups named by the label", () => {
+    render(
+      <>
+        <Field label="Opens at" hint="Local time" required>
+          <TimePicker />
+        </Field>
+        <Field label="Starts" error="Pick a start" disabled>
+          <DateTimePicker />
+        </Field>
+        <Field label="Brand colour" error="Use a hex colour">
+          <ColorInput value="#c100f1" onChange={() => {}} />
+        </Field>
+      </>,
+    );
+    const time = screen.getByRole("group", { name: "Opens at" });
+    expect(time).toHaveAccessibleDescription("Local time");
+    expect(labelFor("Opens at")).not.toHaveAttribute("for");
+    expect(screen.getAllByRole("spinbutton", { name: "Hour" })[0]).toHaveAttribute(
+      "aria-required",
+      "true",
+    );
+
+    const starts = screen.getByRole("group", { name: "Starts" });
+    expect(starts).toHaveAccessibleDescription("Pick a start");
+    const dateHalf = screen.getByRole("button", { name: "Date" });
+    expect(dateHalf).toHaveAttribute("aria-invalid", "true");
+    expect(dateHalf).toBeDisabled();
+    expect(dateHalf).toHaveAccessibleDescription("Pick a start");
+
+    const colour = screen.getByRole("group", { name: "Brand colour" });
+    expect(colour).toHaveAttribute("data-invalid");
+    const hex = screen.getByRole("textbox", { name: "Hex colour" });
+    expect(hex).toHaveAttribute("aria-invalid", "true");
+    expect(hex).toHaveAccessibleDescription("Use a hex colour");
+  });
+
+  it("InputOTP takes the field wiring", () => {
+    render(
+      <Field label="Verification code" error="Code expired">
+        <InputOTP maxLength={4}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
+          </InputOTPGroup>
+        </InputOTP>
+      </Field>,
+    );
+    const input = screen.getByRole("textbox", { name: "Verification code" });
+    expect(input).toHaveAttribute("aria-invalid", "true");
+    expect(input).toHaveAccessibleDescription("Code expired");
   });
 });

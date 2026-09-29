@@ -125,6 +125,8 @@ interface TimePickerProps {
   "aria-labelledby"?: string;
   "aria-describedby"?: string;
   "aria-invalid"?: boolean;
+  /** Set on the hour / minute segments (a group can't carry it). */
+  "aria-required"?: boolean;
   labels?: Partial<TimePickerLabels>;
   className?: string;
   ref?: React.Ref<HTMLDivElement>;
@@ -165,6 +167,7 @@ function TimePicker({
   "aria-labelledby": ariaLabelledBy,
   "aria-describedby": ariaDescribedByProp,
   "aria-invalid": ariaInvalidProp,
+  "aria-required": ariaRequiredProp,
   labels: labelsProp,
   className,
   ref,
@@ -174,12 +177,20 @@ function TimePicker({
   const labels = { ...TIME_PICKER_DEFAULT_LABELS, ...labelsProp };
   const hourCycle = hourCycleProp ?? resolveHourCycle(locale);
   const layout = React.useMemo(() => resolveLayout(locale, hourCycle), [locale, hourCycle]);
-  const fieldProps = useFieldControl({
-    id: idProp,
-    disabled: disabledProp,
-    "aria-describedby": ariaDescribedByProp,
-    "aria-invalid": ariaInvalidProp,
-  });
+  // A group of spinbuttons isn't labelable: inside a <Field> it is named by
+  // the field's label through aria-labelledby.
+  const fieldProps = useFieldControl(
+    {
+      id: idProp,
+      disabled: disabledProp,
+      "aria-label": ariaLabel,
+      "aria-labelledby": ariaLabelledBy,
+      "aria-describedby": ariaDescribedByProp,
+      "aria-invalid": ariaInvalidProp,
+      "aria-required": ariaRequiredProp,
+    },
+    { labelable: false },
+  );
   const disabled = Boolean(fieldProps.disabled);
 
   const controlled = valueProp !== undefined;
@@ -384,6 +395,7 @@ function TimePicker({
       tabIndex: disabled ? -1 : 0,
       "aria-disabled": disabled || undefined,
       "aria-invalid": fieldProps["aria-invalid"],
+      "aria-required": segment === "dayPeriod" ? undefined : fieldProps["aria-required"],
       onKeyDown: onSegmentKeyDown(segment),
       onBlur: () => {
         typed.current = { segment: null, buffer: "" };
@@ -456,7 +468,7 @@ function TimePicker({
       role="group"
       id={fieldProps.id}
       aria-label={ariaLabel}
-      aria-labelledby={ariaLabelledBy}
+      aria-labelledby={fieldProps["aria-labelledby"]}
       aria-describedby={fieldProps["aria-describedby"]}
       aria-disabled={disabled || undefined}
       data-invalid={isAriaInvalid(fieldProps["aria-invalid"]) ? "" : undefined}

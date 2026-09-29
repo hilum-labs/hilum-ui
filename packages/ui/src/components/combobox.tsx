@@ -3,8 +3,9 @@
 import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "../lib/utils";
-import { controlSizeClasses } from "../lib/interaction";
+import { controlInvalidClasses, controlSizeClasses } from "../lib/interaction";
 import { useShape } from "../lib/shape-context";
+import { useFieldControl } from "../lib/field-context";
 
 export interface ComboboxOption {
   value: string;
@@ -45,7 +46,11 @@ interface ComboboxProps extends Omit<React.AriaAttributes, ManagedAria> {
   searchPlaceholder?: string;
   emptyText?: string;
   className?: string;
-  /** id of the text input (e.g. for a `<label htmlFor>`). */
+  /**
+   * id of the text input (e.g. for a `<label htmlFor>`). Inside a `<Field>`
+   * the input takes the field's label, hint / error, invalid, required and
+   * disabled state automatically.
+   */
   id?: string;
   /** Form field name. Submits the selected option's `value` via a hidden input. */
   name?: string;
@@ -67,12 +72,20 @@ function Combobox({
   className,
   id,
   name,
-  disabled = false,
+  disabled: disabledProp,
   onBlur,
   labels: labelsProp,
   ...ariaProps
 }: ComboboxProps) {
   const shape = useShape();
+  const fieldProps = useFieldControl({
+    id,
+    disabled: disabledProp,
+    "aria-describedby": ariaProps["aria-describedby"],
+    "aria-invalid": ariaProps["aria-invalid"],
+    "aria-required": ariaProps["aria-required"],
+  });
+  const disabled = fieldProps.disabled ?? false;
   const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
@@ -182,8 +195,8 @@ function Combobox({
         )}
         <input
           {...ariaProps}
+          {...fieldProps}
           ref={inputRef}
-          id={id}
           type="text"
           role="combobox"
           disabled={disabled}
@@ -201,6 +214,7 @@ function Combobox({
             "placeholder:text-muted-foreground",
             "focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             "disabled:cursor-not-allowed disabled:opacity-50",
+            controlInvalidClasses,
             selectedOption?.avatar && !open
               ? "ps-8"
               : selectedOption?.statusColor && !open

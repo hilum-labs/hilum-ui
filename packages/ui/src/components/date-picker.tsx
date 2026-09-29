@@ -7,7 +7,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { Calendar } from "./calendar";
 import { Button } from "./button";
 import { cn } from "../lib/utils";
-import { controlSizeClasses } from "../lib/interaction";
+import { controlInvalidClasses, controlSizeClasses } from "../lib/interaction";
+import { useFieldControl } from "../lib/field-context";
 import { formatDate, formatDateRange, useFormatter } from "../lib/format";
 
 type DateRange = { from: Date | undefined; to?: Date | undefined };
@@ -42,10 +43,18 @@ interface DatePickerBaseProps {
   fullWidth?: boolean;
   /** Classes for the trigger wrapper (width, margins). `className` targets the button. */
   containerClassName?: string;
+  /**
+   * id of the trigger button. Inside a `<Field>` the trigger takes the
+   * field's label, hint / error, invalid, required and disabled state
+   * automatically.
+   */
   id?: string;
   name?: string;
   "aria-label"?: string;
+  "aria-labelledby"?: string;
+  "aria-describedby"?: string;
   "aria-invalid"?: boolean;
+  "aria-required"?: boolean;
   className?: string;
   /** Override the English UI strings (i18n). */
   labels?: Partial<DatePickerLabels>;
@@ -75,17 +84,33 @@ function DatePickerTrigger({
   empty,
   onClear,
   clearable,
-  disabled,
+  disabled: disabledProp,
   fullWidth = true,
   containerClassName,
   className,
   id,
   "aria-label": ariaLabel,
-  "aria-invalid": ariaInvalid,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalidProp,
+  "aria-required": ariaRequired,
   labels: labelsProp,
   ...rest
 }: TriggerProps & { ref?: React.Ref<HTMLButtonElement> | undefined }) {
   const clearLabel = labelsProp?.clear ?? DEFAULT_LABELS.clear;
+  const fieldProps = useFieldControl({
+    id,
+    disabled: disabledProp,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalidProp,
+    "aria-required": ariaRequired,
+  });
+  const disabled = fieldProps.disabled ?? false;
+  // A button can't carry aria-required; the Field's required marker shows it.
+  const buttonFieldProps = { ...fieldProps };
+  delete buttonFieldProps["aria-required"];
   return (
     <div
       data-slot="date-picker"
@@ -100,9 +125,8 @@ function DatePickerTrigger({
         data-slot="date-picker-trigger"
         type="button"
         variant="outline"
-        id={id}
+        {...buttonFieldProps}
         aria-label={ariaLabel}
-        aria-invalid={ariaInvalid}
         className={cn(
           // Same height and text size as the other single-line controls.
           "w-full justify-start gap-2 px-3 text-start font-normal",
@@ -110,7 +134,7 @@ function DatePickerTrigger({
           "compact:h-6 compact:px-2 compact:text-[12px]",
           empty && "text-muted-foreground",
           clearable && !empty && "pe-8",
-          ariaInvalid && "border-destructive",
+          controlInvalidClasses,
           className,
         )}
         disabled={disabled}

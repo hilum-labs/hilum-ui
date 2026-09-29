@@ -5,6 +5,7 @@ import { motion, useMotionValue, animate, type Transition } from "../lib/motion"
 import { Switch as SwitchPrimitive } from "radix-ui";
 import { cn } from "../lib/utils";
 import { spring } from "../lib/springs";
+import { useFieldControl } from "../lib/field-context";
 
 interface SwitchProps extends Omit<HTMLAttributes<HTMLDivElement>, "onToggle"> {
   label?: string;
@@ -12,7 +13,13 @@ interface SwitchProps extends Omit<HTMLAttributes<HTMLDivElement>, "onToggle"> {
   defaultChecked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
   onToggle?: (checked: boolean) => void;
+  /** Disables the switch. Inside a `<Field disabled>` it is disabled unless set explicitly. */
   disabled?: boolean;
+  /**
+   * id of the switch button (the labelable element), e.g. for a
+   * `<label htmlFor>`. Inside a `<Field>` the field's label targets it.
+   */
+  id?: string;
   thumbTransition?: Transition;
   ref?: Ref<HTMLDivElement>;
 }
@@ -34,12 +41,27 @@ function Switch({
   defaultChecked = false,
   onCheckedChange,
   onToggle,
-  disabled = false,
+  disabled: disabledProp,
   thumbTransition,
   className,
+  id,
   "aria-label": ariaLabel,
+  "aria-labelledby": ariaLabelledBy,
+  "aria-describedby": ariaDescribedBy,
+  "aria-invalid": ariaInvalid,
+  "aria-required": ariaRequired,
   ...props
 }: SwitchProps) {
+  const fieldProps = useFieldControl({
+    id,
+    disabled: disabledProp,
+    "aria-label": ariaLabel ?? label,
+    "aria-labelledby": ariaLabelledBy,
+    "aria-describedby": ariaDescribedBy,
+    "aria-invalid": ariaInvalid,
+    "aria-required": ariaRequired,
+  });
+  const disabled = fieldProps.disabled ?? false;
   const [uncontrolledChecked, setUncontrolledChecked] = useState(defaultChecked);
   const checked = checkedProp ?? uncontrolledChecked;
   const hasMounted = useRef(false);
@@ -185,6 +207,7 @@ function Switch({
     >
       {/* Switch */}
       <SwitchPrimitive.Root
+        {...fieldProps}
         checked={checked}
         aria-label={ariaLabel ?? label}
         onCheckedChange={(nextChecked) => {
@@ -197,6 +220,8 @@ function Switch({
           "relative shrink-0 rounded-full outline-none cursor-pointer",
           "transition-colors duration-80",
           "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          // Error state: a destructive outline around the track; focus keeps its ring.
+          "aria-invalid:outline-solid aria-invalid:outline-2 aria-invalid:outline-offset-1 aria-invalid:outline-destructive",
         )}
         style={{
           width: TRACK_WIDTH,
