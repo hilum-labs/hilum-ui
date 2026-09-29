@@ -31,13 +31,15 @@ interface AppStatusBannerProps {
 // Semantic token surfaces only (no raw palette colours), so every tone keeps
 // its contrast in light, mid and dark: `warning` is the token warning surface
 // (butter in light, deep amber in dark) with its paired foreground; `success`
-// is a lime tint under the regular foreground, with a solid lime icon chip.
+// is a lime tint under the regular foreground, with a solid lime icon chip;
+// `danger` is a destructive tint under the regular foreground (red title text
+// on the tint fell below 4.5:1 in dark mode) with a destructive icon.
 const toneClassName: Record<AppStatusBannerTone, string> = {
   neutral: "border-border bg-card text-foreground",
   info: "border-brand-primary/25 bg-brand-secondary/25 text-foreground",
   success: "border-success/40 bg-success/15 text-foreground",
   warning: "border-warning-foreground/15 bg-warning text-warning-foreground",
-  danger: "border-destructive/25 bg-destructive/10 text-destructive",
+  danger: "border-destructive/40 bg-destructive/10 text-foreground",
 };
 
 const iconClassName: Record<AppStatusBannerTone, string> = {
