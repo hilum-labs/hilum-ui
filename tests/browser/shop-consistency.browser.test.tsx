@@ -361,3 +361,33 @@ describe("DesignerHeader (real browser)", () => {
     expect(preview).not.toBeVisible();
   });
 });
+
+describe("AppHeader search (real browser)", () => {
+  it("stays centered on the header whatever the breadcrumb length", async () => {
+    await page.viewport(1280, 800);
+    const searchCenter = (breadcrumbs: { label: string; href?: string }[]) => {
+      const { container, unmount } = render(
+        <AppHeader
+          breadcrumbs={breadcrumbs}
+          search={<button style={{ width: 208 }}>Search</button>}
+          actions={<button>Account</button>}
+        />,
+      );
+      const header = container
+        .querySelector<HTMLElement>("[data-slot=app-header]")!
+        .getBoundingClientRect();
+      const search = screen.getByRole("button", { name: "Search" }).getBoundingClientRect();
+      unmount();
+      return { offset: search.left + search.width / 2 - (header.left + header.width / 2) };
+    };
+
+    const short = searchCenter([{ label: "Dashboard" }]);
+    const long = searchCenter([
+      { label: "Home", href: "/" },
+      { label: "Merchants", href: "/merchants" },
+      { label: "Admin lifecycle 1790715917821" },
+    ]);
+    expect(Math.abs(short.offset)).toBeLessThan(1);
+    expect(Math.abs(long.offset)).toBeLessThan(1);
+  });
+});
