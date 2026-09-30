@@ -1,5 +1,7 @@
 # @hilum/designer-canvas
 
+## 4.5.0
+
 ## 4.4.4
 
 ## 4.4.3
