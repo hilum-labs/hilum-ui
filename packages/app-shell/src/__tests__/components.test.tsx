@@ -558,7 +558,10 @@ describe("SettingsScreen", () => {
       </SettingsScreen>,
     );
     const billingLink = screen.getByText("Billing").closest("a");
-    expect(billingLink).toHaveClass("bg-foreground");
+    // Same selected style as the app sidebar, not an inverted block.
+    expect(billingLink).toHaveAttribute("aria-current", "page");
+    expect(billingLink).toHaveClass("bg-brand-primary/10", "text-brand-text");
+    expect(billingLink).not.toHaveClass("bg-foreground");
   });
 });
 
