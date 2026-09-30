@@ -1,5 +1,16 @@
 # @hilum/app-shell
 
+## 4.6.0
+
+### Minor Changes
+
+- 2dc23c0: New `SignInDecoration` for `<SignInScreen decoration>`: a headline, a line of copy and icon highlights. Apps no longer hand-build this panel, so every sign-in page reads the same.
+
+### Patch Changes
+
+- 43b9eef: AppHeader keeps its search (or `center` content) centered on the header. It was centered in the space left by the breadcrumb, so it moved from page to page as the breadcrumb got longer or shorter.
+- af2e2d8: PageHeader actions fill the row on narrow headers. The stacked layout was a two-column grid, so an action alone on its row (like "More actions" under the primary action) came up one gap (8px) short of the primary. It is now a wrapping row where actions grow to fill their line.
+
 ## 4.5.0
 
 ### Patch Changes
