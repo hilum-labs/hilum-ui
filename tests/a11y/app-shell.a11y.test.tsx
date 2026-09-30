@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import { axe } from "../axe";
 
+import { AppAccountMenu } from "../../packages/app-shell/src/app-account-menu";
 import { AppShell } from "../../packages/app-shell/src/app-shell";
 import { AppHeader } from "../../packages/app-shell/src/app-header";
 import { AppSidebar } from "../../packages/app-shell/src/app-sidebar";
@@ -60,6 +61,27 @@ describe("a11y: @hilum/app-shell", () => {
             sections={sections}
             footer={<button type="button">Upgrade</button>}
             user={{ name: "Ada Lovelace", email: "ada@example.com", initials: "AL" }}
+          />
+        }
+      >
+        <h1>Home</h1>
+      </AppShell>,
+    );
+    expect(await axe(document.body)).toHaveNoAxeViolations();
+  });
+
+  it("AppHeader with AppAccountMenu", async () => {
+    render(
+      <AppShell
+        header={
+          <AppHeader
+            breadcrumbs={[{ label: "Home" }]}
+            actions={
+              <AppAccountMenu
+                user={{ name: "Ada Lovelace", email: "ada@example.com", initials: "AL" }}
+                items={[{ label: "Log out", destructive: true }]}
+              />
+            }
           />
         }
       >

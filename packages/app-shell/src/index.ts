@@ -14,6 +14,8 @@ export * from "./skip-link";
 export * from "./app-nav-tree";
 export * from "./app-command-palette";
 export * from "./app-sidebar";
+export { AppAccountMenu } from "./app-account-menu";
+export type { AppAccountMenuItem, AppAccountMenuProps } from "./app-account-menu";
 export * from "./app-header";
 export * from "./app-mobile-nav";
 export * from "./app-notification-menu";

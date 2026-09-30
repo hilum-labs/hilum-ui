@@ -1,14 +1,9 @@
 import { Fragment, useId, type ReactNode } from "react";
 import { ChevronDown, LogOut, Settings, User as UserIcon } from "lucide-react";
 import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
   cn,
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
   MediaObject,
   SidebarContent,
@@ -28,16 +23,11 @@ import {
   useLink,
   useOptionalSidebar,
 } from "@hilum/ui";
+import { AccountAvatar, AccountMenuItems, type AppAccountMenuItem } from "./app-account-menu";
 import { hasActiveDescendant, useExpandedState, wasDefaultPrevented } from "./nav-utils";
 import type { NavItem, NavSection, User } from "./types";
 
-type AppSidebarMenuItem = {
-  label: string;
-  icon?: ReactNode;
-  href?: string;
-  onSelect?: () => void;
-  destructive?: boolean;
-};
+type AppSidebarMenuItem = AppAccountMenuItem;
 
 interface AppSidebarProps {
   /** Brand mark or full product logo. Pass a full logo image to match Studio exactly. */
@@ -355,8 +345,6 @@ function AppSidebarUserMenu({
   userMenu: AppSidebarMenuItem[];
   collapsed: boolean;
 }) {
-  const Link = useLink();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -368,12 +356,7 @@ function AppSidebarUserMenu({
             collapsed ? "size-9 justify-center" : "min-h-10 gap-2 px-2",
           )}
         >
-          <Avatar size="sm">
-            {user.avatarUrl && <AvatarImage src={user.avatarUrl} alt={user.name} />}
-            <AvatarFallback className="bg-brand-primary text-background">
-              {user.initials ?? user.name.slice(0, 2).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
+          <AccountAvatar user={user} />
           {!collapsed && (
             <>
               <div className="min-w-0 flex-1">
@@ -388,33 +371,7 @@ function AppSidebarUserMenu({
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent side="top" align="start" className="w-56">
-        <div className="px-2.5 py-2">
-          <p className="caption truncate font-semibold text-foreground">{user.name}</p>
-          {user.email && <p className="caption-xs truncate text-muted-foreground">{user.email}</p>}
-        </div>
-        <DropdownMenuSeparator />
-        {userMenu.map((item, index) => (
-          <Fragment key={`${item.label}-${index}`}>
-            {index > 0 && item.destructive && <DropdownMenuSeparator />}
-            <DropdownMenuItem
-              {...(item.destructive && { destructive: true })}
-              {...(item.onSelect && { onSelect: item.onSelect })}
-              asChild={Boolean(item.href)}
-            >
-              {item.href ? (
-                <Link href={item.href}>
-                  {item.icon && <span className="me-2">{item.icon}</span>}
-                  {item.label}
-                </Link>
-              ) : (
-                <>
-                  {item.icon && <span className="me-2">{item.icon}</span>}
-                  {item.label}
-                </>
-              )}
-            </DropdownMenuItem>
-          </Fragment>
-        ))}
+        <AccountMenuItems user={user} items={userMenu} />
       </DropdownMenuContent>
     </DropdownMenu>
   );

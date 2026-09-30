@@ -7,6 +7,7 @@ import {
   AppCommandButton,
   AppCommandPalette,
 } from "../app-command-palette";
+import { AppAccountMenu } from "../app-account-menu";
 import { AppHeader } from "../app-header";
 import { AppMobileNav } from "../app-mobile-nav";
 import { AppNotificationMenu } from "../app-notification-menu";
@@ -790,5 +791,37 @@ describe("PageHeader wrapTitle", () => {
   it("wraps instead of truncating when requested", () => {
     render(<PageHeader title="A very long merchant name" icon={<svg />} wrapTitle />);
     expect(screen.getByText("A very long merchant name")).toHaveClass("break-words");
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* AppAccountMenu                                                       */
+/* ------------------------------------------------------------------ */
+
+describe("AppAccountMenu", () => {
+  it("opens the account menu from the avatar and runs an item", async () => {
+    let loggedOut = false;
+    render(
+      <AppAccountMenu
+        user={{ name: "Ada Lovelace", email: "ada@example.com", initials: "AL" }}
+        items={[
+          { label: "Your account", href: "/account" },
+          { label: "Log out", destructive: true, onSelect: () => (loggedOut = true) },
+        ]}
+      />,
+    );
+    const trigger = screen.getByRole("button", { name: "Open account menu" });
+    expect(trigger).toHaveTextContent("AL");
+    fireEvent.keyDown(trigger, { key: "Enter" });
+
+    const menu = await screen.findByRole("menu");
+    expect(menu).toHaveTextContent("Ada Lovelace");
+    expect(menu).toHaveTextContent("ada@example.com");
+    expect(screen.getByRole("menuitem", { name: "Your account" })).toHaveAttribute(
+      "href",
+      "/account",
+    );
+    fireEvent.click(screen.getByRole("menuitem", { name: "Log out" }));
+    expect(loggedOut).toBe(true);
   });
 });
