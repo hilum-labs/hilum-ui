@@ -132,7 +132,7 @@ Polaris `Page`-style header:
 
 ## Other screens
 
-`DetailScreen`, `SettingsScreen`, `SignInScreen` (renders its form inside `<main id="main-content">`), `AppStatusBanner`, `AppNotificationMenu`.
+`DetailScreen`, `SettingsScreen`, `SignInScreen` (renders its form inside `<main id="main-content">`), `SignInDecoration` (the headline and icon highlights for `SignInScreen decoration`), `AppStatusBanner`, `AppNotificationMenu`.
 
 ## RTL
 

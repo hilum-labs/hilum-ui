@@ -15,7 +15,7 @@ import { AppStatusBanner } from "../app-status-banner";
 import { PageHeader, PageHeaderActions } from "../page-header";
 import { DetailScreen } from "../detail-screen";
 import { SettingsScreen } from "../settings-screen";
-import { SignInScreen } from "../sign-in-screen";
+import { SignInDecoration, SignInScreen } from "../sign-in-screen";
 import { Navbar } from "../navbar";
 import { useLink } from "../index";
 
@@ -603,6 +603,33 @@ describe("SignInScreen", () => {
       </SignInScreen>,
     );
     expect(screen.getByAltText("Logo")).toBeInTheDocument();
+  });
+});
+
+describe("SignInDecoration", () => {
+  it("renders the headline, copy and each highlight", () => {
+    render(
+      <SignInDecoration
+        title="Everything your store needs"
+        description="Take orders and payments."
+        highlights={[
+          {
+            icon: <svg data-testid="icon" />,
+            title: "One dashboard",
+            description: "Products and orders.",
+          },
+          { icon: <svg />, title: "Secure by default" },
+        ]}
+      />,
+    );
+    expect(
+      screen.getByRole("heading", { level: 2, name: "Everything your store needs" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Take orders and payments.")).toBeInTheDocument();
+    expect(screen.getAllByRole("listitem")).toHaveLength(2);
+    expect(screen.getByText("Products and orders.")).toBeInTheDocument();
+    // Icons are decorative.
+    expect(screen.getByTestId("icon").parentElement).toHaveAttribute("aria-hidden", "true");
   });
 });
 
