@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   TimePicker,
 } from "@hilum/ui";
-import { AppHeader, AppShell, AppSidebar, AppStatusBanner } from "@hilum/app-shell";
+import { AppHeader, AppShell, AppSidebar, AppStatusBanner, PageHeader } from "@hilum/app-shell";
 import { DesignerHeader } from "@hilum/designer";
 
 /** Resolve a CSS colour expression to its computed rgb() string. */
@@ -389,5 +389,38 @@ describe("AppHeader search (real browser)", () => {
     ]);
     expect(Math.abs(short.offset)).toBeLessThan(1);
     expect(Math.abs(long.offset)).toBeLessThan(1);
+  });
+});
+
+describe("PageHeader actions on a phone (real browser)", () => {
+  test("every action fills the row, including a lone one after the primary", async () => {
+    await page.viewport(375, 700);
+    const widths = async (secondaryCount: number) => {
+      const { container, unmount } = render(
+        <PageHeader
+          title="Themes"
+          primaryAction={{ label: "Customize", onAction: () => {} }}
+          secondaryActions={Array.from({ length: secondaryCount }, (_, i) => ({
+            label: `Action ${i + 1}`,
+            onAction: () => {},
+          }))}
+        />,
+      );
+      const row = container
+        .querySelector("[data-slot=page-header-actions]")!
+        .getBoundingClientRect();
+      const visible = [...container.querySelectorAll("[data-slot=page-header-actions] > *")]
+        .map((el) => el.getBoundingClientRect())
+        .filter((rect) => rect.width > 0);
+      unmount();
+      return { row: Math.round(row.width), actions: visible.map((rect) => Math.round(rect.width)) };
+    };
+
+    // "More actions" holds both secondaries on a phone.
+    const menu = await widths(2);
+    expect(menu.actions).toEqual([menu.row, menu.row]);
+    // A lone secondary stays inline.
+    const single = await widths(1);
+    expect(single.actions).toEqual([single.row, single.row]);
   });
 });

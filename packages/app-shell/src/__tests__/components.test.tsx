@@ -444,7 +444,7 @@ describe("PageHeader", () => {
     );
 
     const actions = container.querySelector('[data-slot="page-header-actions"]');
-    expect(actions).toHaveClass("grid");
+    expect(actions).toHaveClass("flex-wrap");
     expect(actions).toHaveClass("custom-actions");
     expect(actions).toHaveTextContent("Search");
     expect(actions).toHaveTextContent("Create");
@@ -465,9 +465,8 @@ describe("PageHeaderActions", () => {
     );
 
     const actions = container.querySelector('[data-slot="page-header-actions"]');
-    expect(actions).toHaveClass("grid");
-    expect(actions).toHaveClass("@xl/page-header:flex");
-    expect(actions).toHaveClass("[&>[data-span=full]]:col-span-2");
+    expect(actions).toHaveClass("flex", "flex-wrap");
+    expect(actions).toHaveClass("[&>[data-span=full]]:basis-full");
     expect(actions?.className).not.toMatch(/dashboard-action|vw/);
     expect(screen.getByRole("button", { name: "Export" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Import" })).toBeInTheDocument();

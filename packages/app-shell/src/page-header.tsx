@@ -85,20 +85,24 @@ interface PageHeaderActionsProps {
 }
 
 /**
- * Responsive action row. Stacked full-width (first child spans the row) while
- * the enclosing `@container/page-header` is narrow, inline from `@xl` (36rem).
- * `<PageHeader>` provides the container; when used standalone, wrap it in an
- * element with the `@container/page-header` class. Give a child
- * `data-span="full"` to keep it full-width in the stacked layout.
+ * Responsive action row. Stacked while the enclosing `@container/page-header`
+ * is narrow: the first child spans the row and the rest share rows, growing to
+ * fill them. Inline from `@xl` (36rem). `<PageHeader>` provides the container;
+ * when used standalone, wrap it in an element with the `@container/page-header`
+ * class. Give a child `data-span="full"` to keep it full-width in the stacked
+ * layout.
  */
 function PageHeaderActions({ children, className }: PageHeaderActionsProps) {
   return (
     <div
       className={cn(
-        "grid w-full min-w-0 grid-cols-[minmax(0,1fr)_auto] gap-2",
-        "@xl/page-header:flex @xl/page-header:w-auto @xl/page-header:max-w-[65%] @xl/page-header:flex-wrap @xl/page-header:items-center @xl/page-header:justify-end",
-        "[&>*:first-child]:col-span-2 [&>*:first-child]:w-full @xl/page-header:[&>*:first-child]:w-auto",
-        "[&>[data-span=full]]:col-span-2",
+        // A wrapping row, not a grid: hidden actions (the inline ones folded
+        // into "More actions") take no space, so a lone action in a row isn't
+        // cut short by an empty column's gap.
+        "flex w-full min-w-0 flex-wrap gap-2 [&>*]:flex-1",
+        "@xl/page-header:w-auto @xl/page-header:max-w-[65%] @xl/page-header:items-center @xl/page-header:justify-end @xl/page-header:[&>*]:flex-none",
+        "[&>*:first-child]:basis-full @xl/page-header:[&>*:first-child]:basis-auto",
+        "[&>[data-span=full]]:basis-full @xl/page-header:[&>[data-span=full]]:basis-auto",
         className,
       )}
       data-slot="page-header-actions"
