@@ -71,8 +71,9 @@ function SettingsScreen({
               className: cn(
                 "flex min-h-10 shrink-0 flex-col justify-center rounded-lg px-3 py-2 whitespace-nowrap transition-colors md:whitespace-normal",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                // Same selected style as the app sidebar and mobile nav.
                 active
-                  ? "bg-foreground text-background"
+                  ? "bg-brand-primary/10 text-brand-text hover:bg-brand-primary/15"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground",
               ),
             };
@@ -83,7 +84,8 @@ function SettingsScreen({
                   <span
                     className={cn(
                       "caption-xs mt-0.5 hidden text-pretty md:block",
-                      active ? "text-background/70" : "text-muted-foreground",
+                      // Muted grey is under 4.5:1 on the selected tint.
+                      active ? "text-brand-text" : "text-muted-foreground",
                     )}
                   >
                     {section.description}

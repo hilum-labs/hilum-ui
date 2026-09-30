@@ -287,4 +287,11 @@ describe("EmptyState", () => {
     render(<EmptyState title="Empty" icon={<span data-testid="icon">📭</span>} />);
     expect(screen.getByTestId("icon")).toBeInTheDocument();
   });
+
+  it("titles a whole-page empty state as a heading", () => {
+    const { rerender } = render(<EmptyState title="Page not found" headingLevel={1} />);
+    expect(screen.getByRole("heading", { level: 1, name: "Page not found" })).toBeInTheDocument();
+    rerender(<EmptyState title="Page not found" />);
+    expect(screen.queryByRole("heading")).not.toBeInTheDocument();
+  });
 });

@@ -32,6 +32,11 @@ interface EmptyStateProps {
   variant?: "plain" | "card";
   /** `sm` for inline table/list bodies, `md` (default) for page sections. */
   size?: "sm" | "md";
+  /**
+   * Heading level for the title. Leave unset inside a page that already has
+   * headings; use `1` when the empty state is the whole page (a 404, say).
+   */
+  headingLevel?: 1 | 2 | 3 | 4;
   /** Extra content below the actions (e.g. a help link or illustration). */
   children?: React.ReactNode;
   className?: string;
@@ -73,10 +78,12 @@ function EmptyState({
   secondaryAction,
   variant = "plain",
   size = "md",
+  headingLevel,
   children,
   className,
 }: EmptyStateProps) {
   const Link = useLink();
+  const Title = headingLevel ? (`h${headingLevel}` as const) : "p";
   return (
     <div
       data-slot="empty-state"
@@ -96,7 +103,7 @@ function EmptyState({
         </div>
       )}
       <div className="flex flex-col gap-1.5">
-        <p className="body text-balance font-semibold text-foreground">{title}</p>
+        <Title className="body text-balance font-semibold text-foreground">{title}</Title>
         {description && (
           <p className="body max-w-sm text-pretty text-muted-foreground">{description}</p>
         )}
