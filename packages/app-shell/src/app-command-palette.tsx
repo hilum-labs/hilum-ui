@@ -54,6 +54,7 @@ interface AppCommandPaletteProps {
 
 interface AppCommandButtonProps extends Omit<ComponentProps<typeof Button>, "children"> {
   label?: ReactNode;
+  /** Shortcut hint. Default: "⌘K" on Apple devices, "Ctrl K" elsewhere. */
   shortcut?: ReactNode;
   icon?: ReactNode;
   showShortcut?: boolean;
@@ -66,9 +67,19 @@ function openAppCommandPalette(eventName = APP_COMMAND_PALETTE_EVENT) {
   window.dispatchEvent(new CustomEvent(eventName));
 }
 
+/** Apple devices use ⌘ for the palette hotkey; others use Ctrl. */
+function useApplePlatform() {
+  const [apple, setApple] = useState(false);
+  useEffect(() => {
+    const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
+    setApple(/mac|iphone|ipad|ipod/i.test(nav.userAgentData?.platform || nav.platform || ""));
+  }, []);
+  return apple;
+}
+
 function AppCommandButton({
   label = "Search",
-  shortcut = "⌘K",
+  shortcut,
   icon,
   showShortcut = true,
   openEventName = APP_COMMAND_PALETTE_EVENT,
@@ -77,9 +88,14 @@ function AppCommandButton({
   className,
   variant = "outline",
   size,
-  "aria-label": ariaLabel = "Open command palette (Ctrl+K)",
+  "aria-label": ariaLabel,
   ...props
 }: AppCommandButtonProps) {
+  const apple = useApplePlatform();
+  // The accessible name starts with the visible label, so "click Search"
+  // works with voice control (WCAG 2.5.3).
+  const hotkey = apple ? "⌘K" : "Ctrl+K";
+  const name = ariaLabel ?? (typeof label === "string" ? `${label} (${hotkey})` : undefined);
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     onClick?.(event);
     if (event.defaultPrevented) return;
@@ -96,12 +112,13 @@ function AppCommandButton({
         className,
       )}
       onClick={handleClick}
-      aria-label={ariaLabel}
+      aria-label={name}
+      aria-keyshortcuts="Meta+K Control+K"
       {...props}
     >
       {icon ?? <Search className="size-3.5" />}
       <span className="min-w-0 flex-1 truncate text-start">{label}</span>
-      {showShortcut && shortcut ? <Kbd>{shortcut}</Kbd> : null}
+      {showShortcut ? <Kbd>{shortcut ?? (apple ? "⌘K" : "Ctrl K")}</Kbd> : null}
     </Button>
   );
 }
