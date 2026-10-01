@@ -66,9 +66,24 @@ describe("AppCommandPalette", () => {
   it("renders a command trigger with the default label and shortcut", () => {
     render(<AppCommandButton />);
 
-    expect(screen.getByRole("button", { name: /open command palette/i })).toBeInTheDocument();
+    // The accessible name starts with the visible label (WCAG 2.5.3).
+    const button = screen.getByRole("button", { name: "Search (Ctrl+K)" });
+    expect(button).toHaveAttribute("aria-keyshortcuts", "Meta+K Control+K");
     expect(screen.getByText("Search")).toBeInTheDocument();
-    expect(screen.getByText("⌘K")).toBeInTheDocument();
+    expect(screen.getByText("Ctrl K")).toBeInTheDocument();
+  });
+
+  it("shows the ⌘ shortcut on Apple devices", async () => {
+    const platform = Object.getOwnPropertyDescriptor(Navigator.prototype, "platform");
+    Object.defineProperty(navigator, "platform", { value: "MacIntel", configurable: true });
+    try {
+      render(<AppCommandButton />);
+      expect(await screen.findByText("⌘K")).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: "Search (⌘K)" })).toBeInTheDocument();
+    } finally {
+      delete (navigator as unknown as { platform?: string }).platform;
+      if (platform) Object.defineProperty(Navigator.prototype, "platform", platform);
+    }
   });
 
   it("dispatches the command palette open event from the trigger", () => {
@@ -79,7 +94,7 @@ describe("AppCommandPalette", () => {
     window.addEventListener(APP_COMMAND_PALETTE_EVENT, handleOpen);
 
     render(<AppCommandButton />);
-    fireEvent.click(screen.getByRole("button", { name: /open command palette/i }));
+    fireEvent.click(screen.getByRole("button", { name: /^Search/ }));
 
     window.removeEventListener(APP_COMMAND_PALETTE_EVENT, handleOpen);
     expect(openCount).toBe(1);
