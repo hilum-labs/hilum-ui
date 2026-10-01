@@ -1,5 +1,11 @@
 # @hilum/app-shell
 
+## 4.7.1
+
+### Patch Changes
+
+- f4c8c94: AppCommandButton shows the right shortcut for the device ("⌘K" on Apple devices, "Ctrl K" elsewhere; it always showed ⌘K). Its default accessible name now starts with the visible label ("Search (Ctrl+K)" rather than "Open command palette (Ctrl+K)"), so voice control users can say "click Search", and it declares `aria-keyshortcuts`.
+
 ## 4.7.0
 
 ### Minor Changes
