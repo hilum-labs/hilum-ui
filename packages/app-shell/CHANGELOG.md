@@ -1,5 +1,7 @@
 # @hilum/app-shell
 
+## 4.7.2
+
 ## 4.7.1
 
 ### Patch Changes
