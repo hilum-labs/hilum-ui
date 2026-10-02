@@ -316,7 +316,7 @@ function Combobox({
                       className={cn(
                         "flex min-h-10 cursor-pointer select-none items-center gap-2.5 px-3 py-2 body transition-colors",
                         isSelected
-                          ? "bg-brand-primary text-background"
+                          ? "bg-brand-primary text-primary-foreground"
                           : isActive
                             ? "bg-muted text-foreground"
                             : "text-foreground hover:bg-muted",
@@ -325,13 +325,14 @@ function Combobox({
                       onMouseEnter={() => setActiveIndex(idx)}
                       onClick={() => selectOption(option)}
                     >
-                      {/* Avatar */}
+                      {/* Avatar: on the selected row the chip is the brand fill mixed
+                          toward its shade, so the initials keep ≥ 4.5:1. */}
                       {option.avatar && (
                         <div
                           className={cn(
                             "flex size-6 shrink-0 items-center justify-center rounded-full caption-xs font-semibold",
                             isSelected
-                              ? "bg-card/20 text-background"
+                              ? "bg-primary-shade/20 text-primary-foreground"
                               : "bg-muted text-muted-foreground",
                           )}
                         >
@@ -353,7 +354,7 @@ function Combobox({
                           <p
                             className={cn(
                               "caption truncate",
-                              isSelected ? "text-background/70" : "text-muted-foreground",
+                              isSelected ? "text-primary-foreground" : "text-muted-foreground",
                             )}
                           >
                             {option.description}

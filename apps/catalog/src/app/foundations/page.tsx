@@ -62,6 +62,7 @@ const semanticUsage: Record<string, string> = {
   accentForeground: "Text on accent surfaces",
   primary: "Primary buttons, CTAs, focus rings",
   primaryForeground: "Text on primary backgrounds",
+  primaryShade: "What the primary fill mixes toward on hover and press",
   brandText: "Brand text on the brand tint (active nav items)",
   secondary: "Secondary buttons and tag backgrounds",
   secondaryForeground: "Text on secondary backgrounds",

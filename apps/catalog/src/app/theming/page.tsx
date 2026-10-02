@@ -66,31 +66,23 @@ const USAGE_MANUAL_CSS = `/* product-theme.css — loaded after tokens.css */
 
 const SHADE_KEYS = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"];
 
-function relativeLuminance(hex: string): number {
-  const toL = (c: number) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
-  return (
-    0.2126 * toL(parseInt(hex.slice(1, 3), 16) / 255) +
-    0.7152 * toL(parseInt(hex.slice(3, 5), 16) / 255) +
-    0.0722 * toL(parseInt(hex.slice(5, 7), 16) / 255)
-  );
-}
-
 function PaletteGenerator() {
   const [primary, setPrimary] = useState("#c100f1");
   const [secondary, setSecondary] = useState("#fff5bf");
 
-  const { palette, brandText } = useMemo(
-    () => createTheme({ primary, secondary }),
-    [primary, secondary],
-  );
-
-  const pfg = relativeLuminance(primary) > 0.179 ? "#26181a" : "#ffffff";
+  const {
+    palette,
+    brandText,
+    primaryForeground: pfg,
+    primaryShade,
+  } = useMemo(() => createTheme({ primary, secondary }), [primary, secondary]);
 
   const previewVars = {
     "--color-brand-primary": primary,
     "--color-brand-secondary": secondary,
     "--primary": primary,
     "--primary-foreground": pfg,
+    "--primary-shade": primaryShade,
     "--brand-text": brandText.light,
     "--accent": palette.primary["50"],
     "--accent-foreground": palette.primary["700"],
@@ -284,6 +276,16 @@ const resultRows = [
     type: "{ light: string; mid: string; dark: string }",
     desc: "The --brand-text emitted per theme: the shade closest to primary that stays ≥ 4.5:1 on the brand tint.",
   },
+  {
+    prop: "primaryForeground",
+    type: "string",
+    desc: "The --primary-foreground emitted in every theme: the label colour that is ≥ 4.5:1 on primary.",
+  },
+  {
+    prop: "primaryShade",
+    type: "string",
+    desc: "The --primary-shade emitted in every theme: black under a white label, white under a dark one.",
+  },
 ];
 
 /* ------------------------------------------------------------------ *
@@ -303,7 +305,18 @@ const overrideRows = [
     affects: "bg-brand-secondary, border-brand-secondary — Badge success/warning, Button brand",
   },
   { var: "--primary", value: "primary hex", affects: "Semantic primary token" },
-  { var: "--primary-foreground", value: "auto (WCAG)", affects: "Text on primary surfaces" },
+  {
+    var: "--primary-foreground",
+    value: "auto (WCAG)",
+    affects:
+      "Text on primary surfaces — white, taupe or black, whichever is ≥ 4.5:1 on primary; the same in light, mid and dark",
+  },
+  {
+    var: "--primary-shade",
+    value: "black or white",
+    affects:
+      "bg-primary-hover / bg-primary-active — what the solid primary fill mixes toward on hover and press, away from its label",
+  },
   {
     var: "--brand-text",
     value: "auto (WCAG), per theme",

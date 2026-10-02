@@ -44,12 +44,12 @@ function CheckboxRoot({
         "data-[state=checked]:bg-brand-primary data-[state=checked]:border-brand-primary",
         "data-[state=indeterminate]:bg-brand-primary data-[state=indeterminate]:border-brand-primary",
         // Error state: destructive border (unchecked) and outline; focus keeps its ring.
-        "aria-invalid:border-destructive aria-invalid:outline-solid aria-invalid:outline-1 aria-invalid:outline-offset-1 aria-invalid:outline-destructive",
+        "aria-invalid:border-destructive-text aria-invalid:outline-solid aria-invalid:outline-1 aria-invalid:outline-offset-1 aria-invalid:outline-destructive-text",
         className,
       )}
       {...props}
     >
-      <Checkbox.Indicator className="flex items-center justify-center text-background data-[state=checked]:animate-in data-[state=checked]:zoom-in-75">
+      <Checkbox.Indicator className="flex items-center justify-center text-primary-foreground data-[state=checked]:animate-in data-[state=checked]:zoom-in-75">
         {props.checked === "indeterminate" ? (
           <Minus size={11} strokeWidth={3} />
         ) : (

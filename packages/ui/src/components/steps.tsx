@@ -100,7 +100,7 @@ function CirclesSteps({ steps, className, labels }: VariantStepsProps) {
                   )}
                 >
                   {step.status === "complete" ? (
-                    <Check size={14} className="text-background" strokeWidth={2.5} />
+                    <Check size={14} className="text-primary-foreground" strokeWidth={2.5} />
                   ) : step.status === "current" ? (
                     <span className="size-3 rounded-full bg-brand-primary" />
                   ) : (

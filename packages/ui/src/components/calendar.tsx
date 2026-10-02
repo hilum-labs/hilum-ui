@@ -84,7 +84,7 @@ function Calendar({
         ),
         // White on the brand (4.6:1): text-background was 3.9:1 in dark mode.
         selected:
-          "[&>button]:bg-brand-primary [&>button]:text-primary-foreground [&>button]:hover:bg-brand-primary/90",
+          "[&>button]:bg-brand-primary [&>button]:text-primary-foreground [&>button]:hover:bg-primary-hover",
         today: "[&>button]:font-semibold [&>button]:text-brand-text",
         // Outside days are selectable, so they stay ≥ 4.5:1 (opacity-40 was 1.7:1).
         outside: "[&>button]:text-muted-foreground",

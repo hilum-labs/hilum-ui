@@ -56,13 +56,15 @@ export const inputFocusWithinClasses = [
  * Error state of a text-entry control carrying `aria-invalid="true"` (set by
  * `<Field error>` or explicitly): a destructive border at rest, on hover and
  * on focus, and a destructive focus halo, so focus stays visible while the
- * error reads. The stacked variants out-rank the plain `hover:` / `focus:`
- * border classes by specificity, whatever their order.
+ * error reads. The border is `--destructive-text`, the red tuned per theme:
+ * `--destructive` was 1.2–1.9:1 against the mid surfaces and under 3:1 on
+ * raised dark ones. The stacked variants out-rank the plain `hover:` /
+ * `focus:` border classes by specificity, whatever their order.
  */
 export const controlInvalidClasses = [
-  "aria-invalid:border-destructive aria-invalid:hover:border-destructive",
-  "aria-invalid:focus-visible:border-destructive aria-invalid:focus-visible:ring-2 aria-invalid:focus-visible:ring-destructive/35",
-  "compact:aria-invalid:border-destructive compact:aria-invalid:hover:border-destructive",
+  "aria-invalid:border-destructive-text aria-invalid:hover:border-destructive-text",
+  "aria-invalid:focus-visible:border-destructive-text aria-invalid:focus-visible:ring-2 aria-invalid:focus-visible:ring-destructive/35",
+  "compact:aria-invalid:border-destructive-text compact:aria-invalid:hover:border-destructive-text",
 ].join(" ");
 
 /**
@@ -71,9 +73,9 @@ export const controlInvalidClasses = [
  * and whose focus is shown with `focus-within`.
  */
 export const controlInvalidWithinClasses = [
-  "data-[invalid]:border-destructive data-[invalid]:hover:border-destructive",
-  "data-[invalid]:focus-within:border-destructive data-[invalid]:focus-within:ring-2 data-[invalid]:focus-within:ring-destructive/35",
-  "compact:data-[invalid]:border-destructive compact:data-[invalid]:hover:border-destructive",
+  "data-[invalid]:border-destructive-text data-[invalid]:hover:border-destructive-text",
+  "data-[invalid]:focus-within:border-destructive-text data-[invalid]:focus-within:ring-2 data-[invalid]:focus-within:ring-destructive/35",
+  "compact:data-[invalid]:border-destructive-text compact:data-[invalid]:hover:border-destructive-text",
 ].join(" ");
 
 export const iconStrokeClasses =

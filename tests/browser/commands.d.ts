@@ -9,6 +9,11 @@ declare module "vitest/browser" {
       target: string,
       options?: { steps?: number; release?: boolean },
     ) => Promise<void>;
+    /**
+     * Press and hold the mouse button on an element (CSS selector inside the
+     * test iframe) so `:active` applies; `null` releases it.
+     */
+    pointerHold: (selector: string | null) => Promise<void>;
     /** Emulate the OS colour scheme (`prefers-color-scheme`); `null` resets it. */
     emulateColorScheme: (scheme: "light" | "dark" | null) => Promise<void>;
   }

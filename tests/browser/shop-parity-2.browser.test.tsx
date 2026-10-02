@@ -84,9 +84,11 @@ describe("Field error border (real browser)", () => {
     );
   }
 
+  // The error edge is --destructive-text, the red that is 3:1 against the
+  // surfaces of every theme (theme-contrast.browser.test.tsx measures it).
   it("turns the border of every wired control destructive", () => {
     render(<ErrorFields />);
-    const destructive = resolveColor("var(--destructive)");
+    const destructive = resolveColor("var(--destructive-text)");
     const targets: Element[] = [
       screen.getByRole("textbox", { name: "Email" }),
       screen.getByRole("textbox", { name: "Bio" }),
@@ -101,7 +103,7 @@ describe("Field error border (real browser)", () => {
 
   it("keeps a visible focus ring on an invalid control", async () => {
     render(<ErrorFields />);
-    const destructive = resolveColor("var(--destructive)");
+    const destructive = resolveColor("var(--destructive-text)");
     const email = screen.getByRole("textbox", { name: "Email" });
     await userEvent.click(email);
     expect(email).toHaveFocus();
@@ -139,7 +141,7 @@ describe("Field error border on the newly wired controls (real browser)", () => 
         </Field>
       </div>,
     );
-    const destructive = resolveColor("var(--destructive)");
+    const destructive = resolveColor("var(--destructive-text)");
     expect(borderColor(screen.getByRole("combobox", { name: "Vendor" }))).toBe(destructive);
     expect(borderColor(screen.getByRole("button", { name: "Publish date" }))).toBe(destructive);
     expect(borderColor(screen.getByRole("group", { name: "Brand colour" }))).toBe(destructive);
@@ -177,7 +179,7 @@ describe("TagInput and MultiCombobox fields (real browser)", () => {
     for (const field of fields) {
       expect(field.getBoundingClientRect().height).toBeCloseTo(reference.height, 0);
     }
-    expect(borderColor(fields[3]!)).toBe(resolveColor("var(--destructive)"));
+    expect(borderColor(fields[3]!)).toBe(resolveColor("var(--destructive-text)"));
   });
 });
 

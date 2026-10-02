@@ -91,6 +91,18 @@ lines.push("@theme inline {");
 for (const k of Object.keys(tokens.semantic.light)) {
   lines.push(`  --color-${kebab(k)}: var(--${kebab(k)});`);
 }
+// Hover / pressed fills of solid buttons → bg-primary-hover, bg-primary-active,
+// bg-destructive-hover, bg-destructive-active. Inlined color-mix() over the
+// theme vars, so they resolve where they are used.
+for (const [state, share] of Object.entries(tokens.fillStates)) {
+  const fill = 100 - share;
+  lines.push(
+    `  --color-primary-${state}: color-mix(in srgb, var(--primary) ${fill}%, var(--primary-shade));`,
+  );
+  lines.push(
+    `  --color-destructive-${state}: color-mix(in srgb, var(--destructive) ${fill}%, #000000);`,
+  );
+}
 // Surface elevation ladder → bg-surface-N / shadow-surface-N utilities
 // (emitted by lib/surface-classes.ts). Values are per-theme :root vars below.
 const surfaceLevels = tokens.surfaces.light.bg.map((_, i) => i + 1);

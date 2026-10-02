@@ -142,6 +142,13 @@ export const tokens = {
       active: "rgba(23, 23, 23, 0.08)",
       primary: "#c100f1", // purple-500 = brand.primary
       primaryForeground: "#ffffff",
+      // What a solid brand fill mixes toward on hover (10%) and when pressed
+      // (20%): `bg-primary-hover` / `bg-primary-active` (see `fillStates`).
+      // Black under the white label, so the label gains contrast in every
+      // theme (5.5:1 and 6.7:1). The fill at 90% / 80% alpha got lighter over
+      // a white page: 4.3:1 and 3.9:1. createTheme() sets white for a brand
+      // that takes a dark label.
+      primaryShade: "#000000",
       // Brand-coloured text that stays readable (≥ 4.5:1) on every surface and
       // on the brand tint behind active nav items (`bg-brand-primary/10`–`/15`).
       // brand.primary itself is only 3.9:1 on its own 10% tint.
@@ -195,6 +202,7 @@ export const tokens = {
       active: "rgba(0, 0, 0, 0.16)",
       primary: "#c100f1", // brand stays consistent across themes
       primaryForeground: "#ffffff",
+      primaryShade: "#000000",
       // No purple stays readable on every mid surface and tint; the brand
       // tint behind it carries the colour.
       brandText: "#ffffff",
@@ -227,13 +235,17 @@ export const tokens = {
       borderStrong: "#5c5c5c", // hover / emphasised edges
       input: "#4a4a4a", // input edge (border-input) — matches border
       muted: "#262626", // ground-800
-      mutedForeground: "#a3a3a3", // ground-400
+      // ground-400 (#a3a3a3) was 4.1:1 on surface-8 and on `accent`, where
+      // nested popovers and dialogs put muted text; #adadad is 4.6:1 there
+      // (8.0:1 on the page) and still 2.1:1 dimmer than `foreground`.
+      mutedForeground: "#adadad",
       accent: "#404040", // ground-700 — neutral elevated/hover (designer item-hover)
       accentForeground: "#fafafa",
       hover: "rgba(250, 250, 250, 0.06)",
       active: "rgba(250, 250, 250, 0.1)",
       primary: "#c100f1", // purple-500 — brand stays consistent (D8)
       primaryForeground: "#ffffff",
+      primaryShade: "#000000",
       brandText: "#d870f9", // purple-300
       secondary: "#262626", // ground-800
       secondaryForeground: "#f5f5f5",
@@ -286,6 +298,23 @@ export const tokens = {
         (a) => `rgba(0, 0, 0, ${Math.min(a * 4, 0.4)})`,
       ),
     },
+  },
+
+  /* ============================================================== *
+   *  SOLID FILL STATES                                               *
+   * ============================================================== *
+   * Hover and pressed fills of solid buttons (the `brand` Button,
+   * AlertDialogAction, ConfirmDialog's destructive confirm): the share (%)
+   * of a shade mixed into the fill, so it moves away from its label instead
+   * of toward the surface behind it. Emitted as the Tailwind colours
+   * `primary-hover` / `primary-active` (toward `--primary-shade`) and
+   * `destructive-hover` / `destructive-active` (toward black: the label on
+   * `--destructive` is white in every theme). They are `color-mix()`
+   * expressions over `--primary` / `--destructive`, so they follow an
+   * overridden fill. */
+  fillStates: {
+    hover: 10,
+    active: 20,
   },
 
   /* ============================================================== *

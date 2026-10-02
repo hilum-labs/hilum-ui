@@ -220,7 +220,7 @@ function AppMobileNav({
               >
                 <Avatar size={avatarSize}>
                   {user.avatarUrl && <AvatarImage src={user.avatarUrl} alt={user.name} />}
-                  <AvatarFallback className="bg-brand-primary text-background">
+                  <AvatarFallback className="bg-brand-primary text-primary-foreground">
                     {user.initials ?? user.name.slice(0, 2).toUpperCase()}
                   </AvatarFallback>
                 </Avatar>

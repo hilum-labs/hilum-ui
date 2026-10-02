@@ -221,7 +221,7 @@ function Switch({
           "transition-colors duration-80",
           "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           // Error state: a destructive outline around the track; focus keeps its ring.
-          "aria-invalid:outline-solid aria-invalid:outline-2 aria-invalid:outline-offset-1 aria-invalid:outline-destructive",
+          "aria-invalid:outline-solid aria-invalid:outline-2 aria-invalid:outline-offset-1 aria-invalid:outline-destructive-text",
         )}
         style={{
           width: TRACK_WIDTH,
