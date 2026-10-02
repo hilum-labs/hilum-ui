@@ -172,6 +172,58 @@ describe("active nav item contrast", () => {
   });
 });
 
+describe("destructive text contrast", () => {
+  // `text-destructive-text`: the destructive Button (on `bg-destructive/10`,
+  // hover `/15`, pressed `/20`), destructive menu items, Field / Form errors
+  // and error icons, over whatever surface they sit on (page, cards, and the
+  // raised levels popovers and dialogs use).
+  const themes = ["light", "mid", "dark"] as const;
+  const tints = [0, 0.1, 0.15, 0.2];
+  const surfacesOf = (theme: (typeof themes)[number]) => {
+    const { background, card, surface, muted } = tokens.semantic[theme];
+    return [background, card, surface, muted, ...tokens.surfaces[theme].bg];
+  };
+  const worstContrast = (theme: (typeof themes)[number], text: string) =>
+    Math.min(
+      ...surfacesOf(theme).flatMap((surface) =>
+        tints.map((alpha) =>
+          contrast(text, over(tokens.semantic[theme].destructive, alpha, surface)),
+        ),
+      ),
+    );
+
+  it.each(themes)(
+    "%s: destructive text is ≥ 4.5:1 on every surface and on the destructive tint",
+    (theme) => {
+      const semantic = tokens.semantic[theme];
+      for (const surface of surfacesOf(theme)) {
+        for (const alpha of tints) {
+          expect(
+            contrast(semantic.destructiveText, over(semantic.destructive, alpha, surface)),
+            `${theme} destructiveText on ${alpha * 100}% tint over ${surface}`,
+          ).toBeGreaterThanOrEqual(4.5);
+        }
+      }
+    },
+  );
+
+  it("the destructive fill as text is what failed (1.2:1 on the mid page)", () => {
+    for (const theme of themes) {
+      expect(worstContrast(theme, tokens.semantic[theme].destructive), theme).toBeLessThan(4.5);
+    }
+    // 4.7.3 used red-500 (#ef4444) in mid and dark: 1.6:1 on the mid page.
+    expect(contrast("#ef4444", tokens.semantic.mid.background)).toBeLessThan(2);
+    expect(contrast("#ef4444", tokens.semantic.mid.card)).toBeLessThan(2.5);
+  });
+
+  it.each(themes)("%s: the label on a solid destructive fill is ≥ 4.5:1", (theme) => {
+    const { destructive, destructiveForeground } = tokens.semantic[theme];
+    expect(contrast(destructiveForeground, destructive)).toBeGreaterThanOrEqual(4.5);
+    // The fill mid and dark used before (red-500) left white at 3.8:1.
+    expect(contrast(destructiveForeground, "#ef4444")).toBeLessThan(4.5);
+  });
+});
+
 describe("text contrast on every surface", () => {
   const surfaces = ["background", "card", "surface", "muted"] as const;
 

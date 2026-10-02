@@ -1,0 +1,12 @@
+---
+"@hilum/ui": patch
+"@hilum/app-shell": patch
+---
+
+Destructive (red) text meets WCAG AA contrast in every theme. It was unreadable in the mid theme.
+
+**Visible changes to check in your app:** red text and icons are a different red: darker in light mode (`#b91c1c`, was `#dc2626`), a light red in dark mode (`#fca5a5`, was `#ef4444`) and a pale red in the mid theme (`#fee2e2`, was `#ef4444`). That is the `Button` `destructive` variant's label, destructive `DropdownMenuItem` / `ContextMenuItem` / `AccountMenuItem` items, `Field`, `Form`, `Select` and `InputGroup` error text and required marks, `ConfirmDialog`'s inline error, error toasts, a `TreeView` load error, destructive `DataTable` bulk actions, and the icon of a destructive `Alert`, `Callout`, `Notification`, `StatCard` trend and `AppStatusBanner`. In the mid and dark themes the red fill, borders and tints (`--destructive`) are slightly darker (`#dc2626`, was `#ef4444`), as in light mode. The unread count on `AppNotificationMenu` is white on red in every theme.
+
+- **`--destructive-text` (`text-destructive-text`):** destructive-coloured text and icons that stay ≥ 4.5:1 on every surface (page, card, surface, muted and the eight elevation levels) and on the destructive tint behind them (`bg-destructive/10`, hover `/15`, pressed `/20`). `--destructive` as text was 1.6:1 on the mid page, 2.1:1 on mid cards, 2.6–4.3:1 on its tint in dark mode and 4.1:1 on its tint in light mode. The lowest ratio is now 4.5:1 in light (pressed tint on `muted`; 5.5:1 on the resting tint over white), 4.9:1 in mid (page background) and 5.1:1 in dark (pressed tint on `surface-8`). Use it for your own error text and destructive labels. `text-destructive` still works, and `--destructive` stays the colour for fills, borders, tints and rings (`bg-destructive`, `border-destructive`, `bg-destructive/10`, `ring-destructive`). `createTheme()` does not touch the destructive colours; if you override `--destructive` yourself, set `--destructive-text` too.
+- **`--destructive` in mid and dark is `#dc2626`** (red-600, the light value; it was red-500 `#ef4444`). White on red-500 was 3.8:1, so the label of a solid destructive button (`bg-destructive text-destructive-foreground`, as on `ConfirmDialog`'s `destructive` confirm) failed AA; it is 4.8:1 in every theme now.
+- **`AppNotificationMenu` unread count:** `text-destructive-foreground` instead of `text-background` on the red badge (1.6:1 in the mid theme, now 4.8:1).

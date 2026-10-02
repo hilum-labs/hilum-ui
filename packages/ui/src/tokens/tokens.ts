@@ -148,8 +148,16 @@ export const tokens = {
       brandText: "#9c00c0", // purple-600
       secondary: "#fafafa", // ground-50
       secondaryForeground: "#404040", // ground-700
-      destructive: "#dc2626",
+      destructive: "#dc2626", // red-600 — fills, borders, tints; white on it is 4.8:1
       destructiveForeground: "#ffffff",
+      // Destructive-coloured text and icons (`text-destructive-text`) that
+      // stay ≥ 4.5:1 on every surface and on the destructive tint behind them
+      // (`bg-destructive/10`, hover `/15`, pressed `/20`). `destructive` as
+      // text was 4.1:1 on its own 10% tint here (1.6:1 on the mid page, 2.6:1
+      // on raised dark surfaces). Worst case per theme: light 4.5:1 (pressed
+      // tint on muted), mid 4.9:1 (page background), dark 5.1:1 (pressed
+      // tint on surface-8).
+      destructiveText: "#b91c1c", // red-700
       success: "#CDEA19", // lime — functional semantic only
       successForeground: "#171717",
       warning: "#fff5bf", // butter-200 = brand.secondary
@@ -192,8 +200,11 @@ export const tokens = {
       brandText: "#ffffff",
       secondary: "#525252", // ground-600
       secondaryForeground: "#fafafa",
-      destructive: "#ef4444", // red-500
+      // red-600, as in light: white on red-500 (#ef4444) was 3.8:1.
+      destructive: "#dc2626",
       destructiveForeground: "#ffffff",
+      // The darkest red on the scale at 4.5:1 on the mid gray (red-200: 4.2:1).
+      destructiveText: "#fee2e2", // red-100
       success: "#CDEA19", // lime — functional semantic only
       successForeground: "#171717",
       warning: "#fff5bf", // butter-200
@@ -226,8 +237,11 @@ export const tokens = {
       brandText: "#d870f9", // purple-300
       secondary: "#262626", // ground-800
       secondaryForeground: "#f5f5f5",
-      destructive: "#ef4444", // red-500 (slightly lighter for dark)
+      // red-600, as in light: white on red-500 (#ef4444) was 3.8:1.
+      destructive: "#dc2626",
       destructiveForeground: "#ffffff",
+      // red-400 falls below 4.5:1 from surface-6 up (3.5:1 on surface-8).
+      destructiveText: "#fca5a5", // red-300
       success: "#CDEA19", // lime — functional semantic only
       successForeground: "#0a0a0a",
       warning: "#221600", // butter-950 surface

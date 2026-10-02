@@ -73,7 +73,7 @@ function AppNotificationMenu({
           <Bell className="size-4" aria-hidden="true" />
           {hasUnread && (
             <span
-              className="absolute end-1 top-1 flex size-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold leading-none text-background tabular-nums"
+              className="absolute end-1 top-1 flex size-4 items-center justify-center rounded-full bg-destructive text-[10px] font-bold leading-none text-destructive-foreground tabular-nums"
               aria-label={`${count} unread notifications`}
             >
               {count > 9 ? "9+" : count}

@@ -101,7 +101,7 @@ function Field({
           <Label id={labelId}>
             {label}
             {required && (
-              <span className="ms-0.5 text-destructive" aria-hidden="true">
+              <span className="ms-0.5 text-destructive-text" aria-hidden="true">
                 *
               </span>
             )}
@@ -110,7 +110,7 @@ function Field({
         </div>
         {children}
         {error ? (
-          <p id={errorId} role="alert" className="caption text-destructive">
+          <p id={errorId} role="alert" className="caption text-destructive-text">
             {error}
           </p>
         ) : hint ? (

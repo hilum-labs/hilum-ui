@@ -278,6 +278,14 @@ describe("AppNotificationMenu", () => {
     expect(screen.getByLabelText("2 unread notifications")).toHaveTextContent("2");
   });
 
+  it("the unread count uses the destructive pair, not the page background as text", () => {
+    // `text-background` on the red badge was 1.6:1 in the mid theme.
+    render(<AppNotificationMenu items={[{ title: "Export ready" }]} />);
+    const badge = screen.getByLabelText("1 unread notifications");
+    expect(badge).toHaveClass("bg-destructive", "text-destructive-foreground");
+    expect(badge).not.toHaveClass("text-background");
+  });
+
   it("renders empty state when there are no notifications", () => {
     render(<AppNotificationMenu defaultOpen />);
 
@@ -349,6 +357,15 @@ describe("AppStatusBanner", () => {
       "data-tone",
       "warning",
     );
+  });
+
+  it("danger: a destructive tint under the regular text, with a readable icon", () => {
+    const { container } = render(<AppStatusBanner tone="danger" title="Payment failed" />);
+    const banner = container.querySelector("[data-slot='app-status-banner']")!;
+    expect(banner).toHaveClass("bg-destructive/10", "text-foreground");
+    const icon = banner.querySelector(".text-destructive-text");
+    expect(icon).not.toBeNull();
+    expect(banner.querySelector(".text-destructive")).toBeNull();
   });
 
   it("calls primary action and dismiss handlers", () => {

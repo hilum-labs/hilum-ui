@@ -16,7 +16,7 @@ const alertVariants = cva(
         success:
           "bg-brand-secondary/15 in-data-[theme=mid]:bg-brand-secondary/8 text-foreground [&>svg]:text-foreground",
         warning: "bg-warning text-warning-foreground [&>svg]:text-warning-foreground",
-        destructive: "bg-destructive/10 text-foreground [&>svg]:text-destructive",
+        destructive: "bg-destructive/10 text-foreground [&>svg]:text-destructive-text",
       },
     },
     defaultVariants: { variant: "default" },

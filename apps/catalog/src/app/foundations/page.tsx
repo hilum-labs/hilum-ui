@@ -67,6 +67,7 @@ const semanticUsage: Record<string, string> = {
   secondaryForeground: "Text on secondary backgrounds",
   destructive: "Destructive and error states",
   destructiveForeground: "Text on destructive backgrounds",
+  destructiveText: "Destructive text and icons (errors, destructive actions)",
   success: "Success states and positive charts",
   successForeground: "Text on success backgrounds",
   warning: "Warning banners and callouts",

@@ -1181,7 +1181,7 @@ function DataTable<TData>({
                         <DropdownMenuItem
                           key={action.label}
                           disabled={action.disabled ?? false}
-                          className={cn(action.destructive && "text-destructive")}
+                          className={cn(action.destructive && "text-destructive-text")}
                           onSelect={() => action.onAction(selectionContext)}
                         >
                           {action.icon}

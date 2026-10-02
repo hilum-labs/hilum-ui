@@ -190,12 +190,12 @@ function FormLabel({
       data-error={error ? "" : undefined}
       id={`${formItemId}-label`}
       htmlFor={formItemId}
-      className={cn(error && "text-destructive", className)}
+      className={cn(error && "text-destructive-text", className)}
       {...props}
     >
       {children}
       {required && (
-        <span className="ms-0.5 text-destructive" aria-hidden="true">
+        <span className="ms-0.5 text-destructive-text" aria-hidden="true">
           *
         </span>
       )}
@@ -261,7 +261,11 @@ function FormMessage({ className, children, ...props }: React.ComponentProps<"p"
       data-slot="form-message"
       id={formMessageId}
       {...(error ? { role: "alert" } : {})}
-      className={cn("caption", error ? "text-destructive" : "text-muted-foreground", className)}
+      className={cn(
+        "caption",
+        error ? "text-destructive-text" : "text-muted-foreground",
+        className,
+      )}
       {...props}
     >
       {body}

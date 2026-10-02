@@ -358,7 +358,7 @@ function InputField({
         <span
           className={cn(
             "col-start-1 row-start-1",
-            error ? "text-destructive" : "text-muted-foreground",
+            error ? "text-destructive-text" : "text-muted-foreground",
           )}
           style={{
             fontVariationSettings: fontWeights.normal,
@@ -407,7 +407,7 @@ function InputField({
       {error && (
         <span
           id={errorId}
-          className="text-[12px] text-destructive ps-3"
+          className="text-[12px] text-destructive-text ps-3"
           style={{ fontVariationSettings: fontWeights.medium }}
         >
           {error}

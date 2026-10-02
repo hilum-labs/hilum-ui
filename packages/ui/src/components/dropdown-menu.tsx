@@ -76,7 +76,7 @@ function DropdownMenuItem({
         motionClasses,
         pressClasses,
         destructive
-          ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
+          ? "text-destructive-text focus:bg-destructive/10 focus:text-destructive-text"
           : "text-foreground focus:bg-active",
         !destructive && menuItemActiveClasses,
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",

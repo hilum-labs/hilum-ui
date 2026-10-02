@@ -41,7 +41,7 @@ const calloutIconVariants = cva(
         success: "bg-success text-success-foreground",
         warning: "bg-warning text-warning-foreground",
         destructive:
-          "bg-destructive/15 text-destructive in-data-[theme=mid]:bg-destructive in-data-[theme=mid]:text-destructive-foreground",
+          "bg-destructive/15 text-destructive-text in-data-[theme=mid]:bg-destructive in-data-[theme=mid]:text-destructive-foreground",
       },
     },
     defaultVariants: {

@@ -90,7 +90,7 @@ function AccountMenuItem({
         "min-h-10 rounded-md px-2.5 py-2",
         "group",
         destructive
-          ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
+          ? "text-destructive-text focus:bg-destructive/10 focus:text-destructive-text"
           : "text-foreground focus:bg-active focus:text-foreground",
         "data-[disabled]:opacity-40",
         "[&_svg:not([class*='size-'])]:size-4",

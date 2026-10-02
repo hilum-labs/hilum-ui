@@ -61,7 +61,7 @@ const buttonVariants = cva(
           "hover:before:bg-foreground/[0.05] active:before:bg-foreground/[0.09]",
         ],
         destructive: [
-          "text-destructive border border-destructive/30",
+          "text-destructive-text border border-destructive/30",
           "before:bg-destructive/10 hover:before:bg-destructive/15 active:before:bg-destructive/20",
         ],
         ghost: [
