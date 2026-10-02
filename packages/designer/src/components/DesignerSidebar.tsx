@@ -176,7 +176,7 @@ function SidebarButton({
         className={cn(
           // 32px with 16px icons in every density. The rail can sit outside the
           // compact subtree, so set the fine stroke here.
-          "relative flex size-8 items-center justify-center rounded-md transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          "relative flex size-8 items-center justify-center rounded-[5px] transition-[background-color,color,opacity,scale] active:scale-[0.96]",
           "[&_svg]:stroke-[1.5]",
           "outline-none focus-visible:ring-2 focus-visible:ring-ring",
           "[@media(pointer:coarse)]:size-11",

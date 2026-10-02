@@ -243,6 +243,27 @@ describe("AppSidebar", () => {
     expect(screen.queryByText("Hilum")).not.toBeInTheDocument();
     expect(screen.queryByText("Dashboard")).not.toBeInTheDocument();
   });
+
+  it("section labels are uppercase eyebrows by default, sentence case with sectionLabelVariant='plain'", () => {
+    const sections = [
+      { label: "Workspace", items: [{ label: "Home", href: "/home" }] },
+      { label: "Library", items: [{ label: "Templates", href: "/templates" }] },
+    ];
+    const { unmount } = render(<AppSidebar sections={sections} />);
+    for (const text of ["Workspace", "Library"]) {
+      expect(screen.getByText(text)).toHaveClass("label");
+      expect(screen.getByText(text)).not.toHaveClass("normal-case");
+    }
+    unmount();
+
+    render(<AppSidebar sections={sections} sectionLabelVariant="plain" />);
+    for (const text of ["Workspace", "Library"]) {
+      const label = screen.getByText(text);
+      expect(label).toHaveAttribute("data-slot", "sidebar-group-label");
+      expect(label).toHaveClass("caption", "font-medium", "normal-case", "tracking-normal");
+      expect(label).not.toHaveClass("label");
+    }
+  });
 });
 
 /* ------------------------------------------------------------------ */

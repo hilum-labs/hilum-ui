@@ -97,6 +97,42 @@ describe("Badge", () => {
     const { container } = render(<Badge className="custom-class">Badge</Badge>);
     expect(container.firstChild).toHaveClass("custom-class");
   });
+
+  it("secondary is a neutral foreground wash, not the brand accent", () => {
+    render(
+      <>
+        <Badge variant="secondary">Draft</Badge>
+        <Badge>Solid</Badge>
+        <Badge tone="neutral">Archived</Badge>
+      </>,
+    );
+    for (const text of ["Draft", "Solid", "Archived"]) {
+      const badge = screen.getByText(text);
+      expect(badge).toHaveClass("bg-foreground/[0.07]", "text-foreground");
+      // No inline colours: `--accent` is the brand tint createTheme() overrides.
+      expect(badge.style.backgroundColor).toBe("");
+      expect(badge.style.color).toBe("");
+    }
+  });
+
+  it("coloured badges keep their tint on the page background", () => {
+    render(
+      <>
+        <Badge variant="secondary" color="red">
+          Red
+        </Badge>
+        <Badge variant="success">Paid</Badge>
+        <Badge variant="outline">Outline</Badge>
+      </>,
+    );
+    for (const text of ["Red", "Paid"]) {
+      const badge = screen.getByText(text);
+      expect(badge).not.toHaveClass("bg-foreground/[0.07]");
+      // (jsdom drops the color-mix() background; the browser suite measures it.)
+      expect(badge.style.color).toBe("var(--foreground)");
+    }
+    expect(screen.getByText("Outline")).not.toHaveClass("bg-foreground/[0.07]");
+  });
 });
 
 /* ------------------------------------------------------------------ */

@@ -32,6 +32,12 @@ interface TabsSubtleContextValue {
 
 const TabsSubtleContext = createContext<TabsSubtleContextValue | null>(null);
 
+// Compact (editor panels): the tab, its hover / selected pill and the focus
+// ring take the 5px control radius whatever the shape. The ring sits 2px
+// outside the tab, so 7px keeps its corners concentric (see shape-context).
+const compactPillRadius = "compact:rounded-[5px]";
+const compactFocusRingRadius = "compact:rounded-[7px]";
+
 function useTabsSubtle() {
   const ctx = useContext(TabsSubtleContext);
   if (!ctx) throw new Error("useTabsSubtle must be used within a TabsSubtle");
@@ -190,7 +196,7 @@ function TabsSubtle({
         {/* Selected pill */}
         {selectedRect && (
           <motion.div
-            className={cn("absolute bg-active pointer-events-none", shape.bg)}
+            className={cn("absolute bg-active pointer-events-none", shape.bg, compactPillRadius)}
             initial={false}
             animate={{
               left: selectedRect.left,
@@ -210,7 +216,7 @@ function TabsSubtle({
         <AnimatePresence>
           {hoverRect && !isHoveringSelected && selectedRect && (
             <motion.div
-              className={cn("absolute bg-active pointer-events-none", shape.bg)}
+              className={cn("absolute bg-active pointer-events-none", shape.bg, compactPillRadius)}
               initial={{
                 left: selectedRect.left,
                 width: selectedRect.width,
@@ -252,6 +258,7 @@ function TabsSubtle({
               className={cn(
                 "absolute pointer-events-none z-20 border-2 border-ring",
                 shape.focusRing,
+                compactFocusRingRadius,
               )}
               initial={false}
               animate={{
@@ -349,9 +356,10 @@ function TabsSubtleItem({
       className={cn(
         "relative z-10 flex items-center px-3 py-2 cursor-pointer bg-transparent border-none outline-none",
         // Compact (editor panels): 24px tabs with 12px labels, like the other compact controls.
-        "compact:px-2 compact:py-1",
-        collapseLabel ? "h-8 compact:h-6" : "gap-2 compact:gap-1.5",
+        "compact:h-6 compact:px-2 compact:py-0",
+        collapseLabel ? "h-8" : "gap-2 compact:gap-1.5",
         shape.bg,
+        compactPillRadius,
         className,
       )}
       {...props}

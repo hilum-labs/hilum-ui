@@ -6071,6 +6071,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "default": "false",
             "description": "",
             "declaredIn": "packages/ui/src/components/sidebar.tsx"
+          },
+          {
+            "name": "variant",
+            "type": "\"eyebrow\" | \"plain\"",
+            "required": false,
+            "default": "\"eyebrow\"",
+            "description": "Tracked uppercase (`eyebrow`) or a sentence-case caption (`plain`). Default: `eyebrow`.",
+            "declaredIn": "packages/ui/src/components/sidebar.tsx"
           }
         ]
       },
@@ -9588,6 +9596,14 @@ export const componentProps: Record<string, CatalogComponentPropsDoc> = {
             "required": false,
             "default": "\"md\"",
             "description": "`sm` for inline table/list bodies, `md` (default) for page sections.",
+            "declaredIn": "packages/ui/src/components/empty-state.tsx"
+          },
+          {
+            "name": "headingLevel",
+            "type": "1 | 2 | 3 | 4",
+            "required": false,
+            "default": null,
+            "description": "Heading level for the title. Leave unset inside a page that already has headings; use `1` when the empty state is the whole page (a 404, say).",
             "declaredIn": "packages/ui/src/components/empty-state.tsx"
           },
           {

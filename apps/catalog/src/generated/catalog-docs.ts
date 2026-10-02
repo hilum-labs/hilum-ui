@@ -7214,6 +7214,10 @@ export const pageDocs: Record<string, CatalogPageDoc> = {
         "description": "\"sm\" | \"md\" · default \"md\" — `sm` for inline table/list bodies, `md` (default) for page sections."
       },
       {
+        "label": "headingLevel",
+        "description": "1 | 2 | 3 | 4 — Heading level for the title. Leave unset inside a page that already has headings; use `1` when the empty state is the whole page (a 404, say)."
+      },
+      {
         "label": "children",
         "description": "React.ReactNode — Extra content below the actions (e.g. a help link or illustration)."
       },

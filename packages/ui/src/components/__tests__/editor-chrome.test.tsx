@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { act, render, screen, fireEvent } from "@testing-library/react";
 import { DensityProvider } from "../../lib/density-context";
 import {
   compactFieldFocusClasses,
@@ -16,6 +16,7 @@ import { Label } from "../label";
 import { NativeSelect } from "../native-select";
 import { SearchInput } from "../search-input";
 import { Select, SelectContent, SelectItem, SelectTrigger } from "../select";
+import { TabsSubtle, TabsSubtleItem } from "../tabs-subtle";
 import { Textarea } from "../textarea";
 import { ToggleGroup, ToggleGroupItem } from "../toggle-group";
 
@@ -127,6 +128,13 @@ describe("compact ColorInput", () => {
       "border-s",
       "compact:border-foreground/[0.07]",
     );
+  });
+
+  it("sizes the percent suffix like InputNumber's unit: 11px", () => {
+    render(
+      <ColorInput value="#ff0000" onChange={() => {}} opacity={50} onOpacityChange={() => {}} />,
+    );
+    expect(screen.getByText("%")).toHaveClass("caption-xs", "compact:text-[11px]");
   });
 });
 
@@ -386,5 +394,43 @@ describe("ToggleGroup segmented", () => {
       "hover:bg-hover",
       "data-[state=on]:bg-active",
     );
+  });
+});
+
+describe("compact TabsSubtle", () => {
+  function Tabs() {
+    return (
+      <TabsSubtle selectedIndex={0} onSelect={() => {}} aria-label="Panels">
+        <TabsSubtleItem index={0} label="Layers" />
+        <TabsSubtleItem index={1} label="Pages" />
+      </TabsSubtle>
+    );
+  }
+
+  it("tabs are 24px tall with a 5px radius and 12px labels", () => {
+    render(<Tabs />);
+    const tab = screen.getByRole("tab", { name: "Layers" });
+    expect(tab).toHaveClass("compact:h-6", "compact:px-2", "compact:py-0", "compact:rounded-[5px]");
+    expect(tab).not.toHaveClass("compact:py-1", "h-8");
+    // Default density keeps the shape radius and the padded height.
+    expect(tab).toHaveClass("rounded-lg", "px-3", "py-2");
+    expect(tab.querySelector(".inline-grid")).toHaveClass("text-[13px]", "compact:text-[12px]");
+  });
+
+  it("the selected / hover pill and the focus ring follow the compact radius", () => {
+    render(<Tabs />);
+    const tablist = screen.getByRole("tablist", { name: "Panels" });
+    const selectedPill = tablist.querySelector(":scope > .bg-active");
+    expect(selectedPill).toHaveClass("rounded-lg", "compact:rounded-[5px]");
+
+    fireEvent.mouseMove(tablist, { clientX: 0, clientY: 0 });
+    const pills = tablist.querySelectorAll(":scope > .bg-active");
+    for (const pill of pills) expect(pill).toHaveClass("rounded-lg", "compact:rounded-[5px]");
+
+    const tab = screen.getByRole("tab", { name: "Layers" });
+    act(() => tab.focus());
+    const ring = tablist.querySelector(":scope > .border-ring");
+    // 2px outside the 5px tab, so 7px keeps the corners concentric.
+    expect(ring).toHaveClass("rounded-[10px]", "compact:rounded-[7px]");
   });
 });

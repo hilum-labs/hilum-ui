@@ -25,7 +25,7 @@ import {
 } from "@hilum/ui";
 import { AccountAvatar, AccountMenuItems, type AppAccountMenuItem } from "./app-account-menu";
 import { hasActiveDescendant, useExpandedState, wasDefaultPrevented } from "./nav-utils";
-import type { NavItem, NavSection, User } from "./types";
+import type { NavItem, NavSection, SectionLabelVariant, User } from "./types";
 
 type AppSidebarMenuItem = AppAccountMenuItem;
 
@@ -43,6 +43,8 @@ interface AppSidebarProps {
   /** Header action rendered like Studio's new-project button. */
   headerAction?: ReactNode;
   sections: NavSection[];
+  /** Section headings: tracked uppercase (`eyebrow`) or sentence case (`plain`). Default: `eyebrow`. */
+  sectionLabelVariant?: SectionLabelVariant;
   /** Custom footer content rendered in Studio's SidebarFooter slot. */
   footer?: ReactNode;
   /** Optional account block. Studio keeps account actions in the header, so omit this for parity. */
@@ -71,6 +73,7 @@ function AppSidebar({
   brandAriaLabel,
   headerAction,
   sections,
+  sectionLabelVariant = "eyebrow",
   footer,
   user,
   userMenu = DEFAULT_USER_MENU,
@@ -137,6 +140,7 @@ function AppSidebar({
               {sectionIndex > 0 && <SidebarSeparator />}
               <AppSidebarSection
                 {...(section.label !== undefined && { label: section.label })}
+                labelVariant={sectionLabelVariant}
                 collapsed={collapsed}
               >
                 {section.items.map((item, itemIndex) => (
@@ -320,15 +324,27 @@ function AppSidebarNavItem({ item, collapsed, onNavigate, depth = 0 }: AppSideba
 
 interface AppSidebarSectionProps {
   label?: string;
+  /** Heading look: tracked uppercase (`eyebrow`) or sentence case (`plain`). Default: `eyebrow`. */
+  labelVariant?: SectionLabelVariant;
   collapsed?: boolean;
   children: ReactNode;
   className?: string;
 }
 
-function AppSidebarSection({ label, collapsed, children, className }: AppSidebarSectionProps) {
+function AppSidebarSection({
+  label,
+  labelVariant = "eyebrow",
+  collapsed,
+  children,
+  className,
+}: AppSidebarSectionProps) {
   return (
     <SidebarGroup className={className}>
-      {label && !collapsed && <SidebarGroupLabel>{label}</SidebarGroupLabel>}
+      {label && !collapsed && (
+        <SidebarGroupLabel {...(labelVariant !== "eyebrow" && { variant: labelVariant })}>
+          {label}
+        </SidebarGroupLabel>
+      )}
       <SidebarGroupContent>
         <SidebarMenu>{children}</SidebarMenu>
       </SidebarGroupContent>

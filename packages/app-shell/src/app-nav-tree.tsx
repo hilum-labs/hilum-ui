@@ -2,7 +2,7 @@ import { useId, type ReactNode } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn, useLink } from "@hilum/ui";
 import { hasActiveDescendant, useExpandedState, wasDefaultPrevented } from "./nav-utils";
-import type { NavItem, NavSection } from "./types";
+import type { NavItem, NavSection, SectionLabelVariant } from "./types";
 
 interface AppNavTreeProps {
   sections: NavSection[];
@@ -11,6 +11,8 @@ interface AppNavTreeProps {
   /** Called after a (non-prevented) navigation click — e.g. to close a drawer. */
   onNavigate?: () => void;
   getItemLabel?: (item: NavItem) => ReactNode;
+  /** Section headings: tracked uppercase (`eyebrow`) or sentence case (`plain`). Default: `eyebrow`. */
+  sectionLabelVariant?: SectionLabelVariant;
   className?: string;
 }
 
@@ -24,6 +26,7 @@ function AppNavTree({
   label = "Main",
   onNavigate,
   getItemLabel,
+  sectionLabelVariant = "eyebrow",
   className,
 }: AppNavTreeProps) {
   return (
@@ -38,6 +41,7 @@ function AppNavTree({
           section={section}
           onNavigate={onNavigate}
           getItemLabel={getItemLabel}
+          labelVariant={sectionLabelVariant}
         />
       ))}
     </nav>
@@ -48,16 +52,24 @@ function AppNavTreeSection({
   section,
   onNavigate,
   getItemLabel,
+  labelVariant,
 }: {
   section: NavSection;
   onNavigate: (() => void) | undefined;
   getItemLabel: ((item: NavItem) => ReactNode) | undefined;
+  labelVariant: SectionLabelVariant;
 }) {
   const headingId = useId();
   return (
     <div className="flex flex-col gap-1">
       {section.label && (
-        <p id={headingId} className="label px-2 text-muted-foreground">
+        <p
+          id={headingId}
+          className={cn(
+            "px-2 text-muted-foreground",
+            labelVariant === "plain" ? "caption font-medium normal-case tracking-normal" : "label",
+          )}
+        >
           {section.label}
         </p>
       )}
