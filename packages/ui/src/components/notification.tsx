@@ -26,7 +26,7 @@ const variantConfig = {
     icon: CheckCircle,
     iconClass: "bg-brand-secondary/25 text-muted-foreground rounded-full p-1",
   },
-  error: { icon: AlertCircle, iconClass: "text-destructive" },
+  error: { icon: AlertCircle, iconClass: "text-destructive-text" },
   warning: {
     icon: AlertTriangle,
     iconClass: "bg-brand-secondary/80 text-muted-foreground rounded-full p-1",

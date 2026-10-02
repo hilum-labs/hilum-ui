@@ -70,7 +70,7 @@ function ContextMenuItem({
         "relative flex min-h-10 cursor-default select-none items-center gap-2 rounded-md px-2.5 py-2 compact:min-h-7 compact:px-2 compact:py-1 compact:text-[13px] compact:rounded-[4px]",
         "body outline-none transition-colors",
         destructive
-          ? "text-destructive focus:bg-destructive/10 focus:text-destructive"
+          ? "text-destructive-text focus:bg-destructive/10 focus:text-destructive-text"
           : "text-foreground focus:bg-active",
         "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
         inset && "ps-8 compact:ps-7",

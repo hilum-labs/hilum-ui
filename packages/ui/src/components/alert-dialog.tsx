@@ -330,7 +330,7 @@ function ConfirmDialog({
             id={errorId}
             role="alert"
             data-slot="confirm-dialog-error"
-            className="body-sm mt-4 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2 text-destructive"
+            className="body-sm mt-4 rounded-md border border-destructive/30 bg-destructive/5 px-3 py-2 text-destructive-text"
           >
             {errorContent}
           </p>

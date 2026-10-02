@@ -194,7 +194,7 @@ function SelectTrigger({
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
       {error && (
-        <span id={errorId} className="text-[12px] text-destructive ps-3">
+        <span id={errorId} className="text-[12px] text-destructive-text ps-3">
           {error}
         </span>
       )}

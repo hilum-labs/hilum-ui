@@ -34,7 +34,7 @@ function Toaster({ theme = "system", position = "bottom-right", ...props }: Toas
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground group-[.toast]:rounded-md group-[.toast]:text-xs group-[.toast]:font-medium",
           success: "group-[.toaster]:border-brand-secondary/40 group-[.toaster]:text-foreground",
           error:
-            "group-[.toaster]:bg-destructive/10 group-[.toaster]:text-destructive group-[.toaster]:border-destructive/20",
+            "group-[.toaster]:bg-destructive/10 group-[.toaster]:text-destructive-text group-[.toaster]:border-destructive/20",
           warning:
             "group-[.toaster]:bg-warning group-[.toaster]:text-warning-foreground group-[.toaster]:border-warning/40",
           info: "group-[.toaster]:border-border",

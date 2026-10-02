@@ -487,7 +487,7 @@ function TreeView({
                   role="none"
                   className={cn(
                     "caption py-1.5",
-                    failed[node.id] ? "text-destructive" : "text-muted-foreground",
+                    failed[node.id] ? "text-destructive-text" : "text-muted-foreground",
                   )}
                   style={{ paddingInlineStart: level * indent + 28 }}
                 >

@@ -187,7 +187,7 @@ function StatCard({
                     // Red text on the red tint was 4.1:1 (3.6:1 dark); the
                     // arrow carries the colour, as the positive pill does.
                     trendTone === "negative" &&
-                      "bg-destructive/10 text-foreground [&>svg]:text-destructive",
+                      "bg-destructive/10 text-foreground [&>svg]:text-destructive-text",
                     trendTone === "neutral" && "bg-muted text-muted-foreground",
                   )}
                 >

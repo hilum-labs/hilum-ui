@@ -47,7 +47,7 @@ const iconClassName: Record<AppStatusBannerTone, string> = {
   info: "bg-background/70 text-brand-primary",
   success: "bg-success text-success-foreground",
   warning: "bg-background/70 text-warning-foreground",
-  danger: "bg-background/70 text-destructive",
+  danger: "bg-background/70 text-destructive-text",
 };
 
 const defaultIcon: Record<AppStatusBannerTone, ReactNode> = {

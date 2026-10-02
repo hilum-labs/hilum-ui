@@ -236,7 +236,7 @@ describe("AlertDialogAction / AlertDialogCancel asChild", () => {
     );
     const action = screen.getByRole("button", { name: "Delete" });
     expect(action).toHaveAttribute("data-slot", "alert-dialog-action");
-    expect(action).toHaveClass("text-destructive", "before:bg-destructive/10");
+    expect(action).toHaveClass("text-destructive-text", "before:bg-destructive/10");
     expect(action).not.toHaveClass("bg-brand-primary", "text-background");
     const cancel = screen.getByRole("button", { name: "Keep" });
     expect(cancel).toHaveClass("border-border");
