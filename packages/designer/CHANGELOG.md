@@ -1,5 +1,11 @@
 # @hilum/designer
 
+## 4.7.2
+
+### Patch Changes
+
+- 9c6610c: Compact panel tabs: `TabsSubtle` items (and so `DesignerPanelTabs`) are 24px tall with 12px labels under `data-density="compact"`, matching the other compact controls. They used the default 13px / 32px size inside editor panels.
+
 ## 4.7.1
 
 ## 4.7.0

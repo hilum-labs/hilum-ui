@@ -308,7 +308,7 @@ function TabsSubtleItem({
   const showLabel = !collapseLabel || isSelected;
 
   const labelContent = (
-    <span className="inline-grid text-[13px] whitespace-nowrap">
+    <span className="inline-grid text-[13px] whitespace-nowrap compact:text-[12px]">
       <span
         className="col-start-1 row-start-1 invisible"
         style={{ fontVariationSettings: fontWeights.semibold }}
@@ -348,7 +348,9 @@ function TabsSubtleItem({
       onClick={() => onSelect(index)}
       className={cn(
         "relative z-10 flex items-center px-3 py-2 cursor-pointer bg-transparent border-none outline-none",
-        collapseLabel ? "h-8" : "gap-2",
+        // Compact (editor panels): 24px tabs with 12px labels, like the other compact controls.
+        "compact:px-2 compact:py-1",
+        collapseLabel ? "h-8 compact:h-6" : "gap-2 compact:gap-1.5",
         shape.bg,
         className,
       )}
