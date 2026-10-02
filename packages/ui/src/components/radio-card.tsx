@@ -123,7 +123,9 @@ function RadioCards({
                   isSelected ? "border-brand-primary bg-brand-primary" : "border-border bg-card",
                 )}
               >
-                {isSelected && <Check size={10} className="text-background" strokeWidth={3} />}
+                {isSelected && (
+                  <Check size={10} className="text-primary-foreground" strokeWidth={3} />
+                )}
               </div>
             </div>
 

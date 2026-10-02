@@ -104,6 +104,25 @@ const pointerDrag: BrowserCommand<
   if (options.release !== false) await mouse.up();
 };
 
+/**
+ * Press and hold the primary mouse button on an element (CSS selector inside
+ * the test iframe), so its `:hover` and `:active` styles apply. `null`
+ * releases the button and parks the pointer in the corner.
+ */
+const pointerHold: BrowserCommand<[selector: string | null]> = async (ctx, selector) => {
+  const mouse = ctx.page.mouse;
+  if (selector === null) {
+    await mouse.up();
+    await mouse.move(0, 0);
+    return;
+  }
+  const frame = await ctx.frame();
+  const box = await frame.locator(selector).boundingBox();
+  if (!box) throw new Error(`pointerHold: element not found (${selector})`);
+  await mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await mouse.down();
+};
+
 /** Emulate the OS colour scheme (`prefers-color-scheme`) for the test page. */
 const emulateColorScheme: BrowserCommand<[scheme: "light" | "dark" | null]> = async (
   ctx,
@@ -154,7 +173,7 @@ export default defineConfig({
       headless: true,
       screenshotFailures: false,
       viewport: { width: 1280, height: 800 },
-      commands: { pointerDrag, emulateColorScheme },
+      commands: { pointerDrag, pointerHold, emulateColorScheme },
       instances: [{ browser: "chromium" }],
     },
   },

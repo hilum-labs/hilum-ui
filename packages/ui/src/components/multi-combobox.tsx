@@ -524,7 +524,7 @@ function MultiCombobox({
                         className={cn(
                           "flex size-4 shrink-0 items-center justify-center rounded border",
                           isSelected
-                            ? "border-brand-primary bg-brand-primary text-background"
+                            ? "border-brand-primary bg-brand-primary text-primary-foreground"
                             : "border-border bg-card",
                         )}
                       >

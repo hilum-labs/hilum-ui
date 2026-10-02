@@ -44,9 +44,12 @@ describe("destructive text uses --destructive-text", () => {
     expect(error).toHaveClass("text-destructive-text");
     expect(error).not.toHaveClass("text-destructive");
     expect(screen.getByText("*")).toHaveClass("text-destructive-text");
-    // The invalid border keeps the destructive fill colour.
-    expect(screen.getByRole("textbox", { name: /Email/ }).className).toContain(
-      "aria-invalid:border-destructive",
+    // The invalid border is the per-theme red too (3:1 against every surface);
+    // the focus halo keeps the destructive fill colour.
+    const input = screen.getByRole("textbox", { name: /Email/ });
+    expect(input).toHaveClass(
+      "aria-invalid:border-destructive-text",
+      "aria-invalid:focus-visible:ring-destructive/35",
     );
   });
 

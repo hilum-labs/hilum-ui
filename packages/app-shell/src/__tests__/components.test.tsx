@@ -877,4 +877,12 @@ describe("AppAccountMenu", () => {
     fireEvent.click(screen.getByRole("menuitem", { name: "Log out" }));
     expect(loggedOut).toBe(true);
   });
+
+  it("the avatar initials use the brand pair, not the page background as text", () => {
+    // `text-background` on the brand was 1.3:1 in the mid theme (3.9:1 in dark).
+    render(<AppAccountMenu user={{ name: "Ada Lovelace", initials: "AL" }} items={[]} />);
+    const initials = screen.getByText("AL");
+    expect(initials).toHaveClass("bg-brand-primary", "text-primary-foreground");
+    expect(initials).not.toHaveClass("text-background");
+  });
 });

@@ -30,6 +30,17 @@ export interface ThemeResult {
    * active nav items.
    */
   brandText: { light: string; mid: string; dark: string };
+  /**
+   * `--primary-foreground`: the label colour on the solid brand fill, ≥ 4.5:1
+   * on `primary` (white, taupe or black). The same in every theme.
+   */
+  primaryForeground: string;
+  /**
+   * `--primary-shade`: what the solid brand fill mixes toward on hover and
+   * press (`bg-primary-hover` / `bg-primary-active`), away from the label:
+   * black under a white label, white under a dark one.
+   */
+  primaryShade: string;
 }
 
 /* ------------------------------------------------------------------ *
@@ -157,8 +168,7 @@ function generatePalette(hex: string): Record<string, string> {
 
 const TAUPE_900 = "#26181a";
 
-// WCAG relative luminance Y (XYZ). Threshold ≈ 0.179 gives equal contrast
-// with black and white: use dark text above, white text at or below.
+// WCAG relative luminance Y (XYZ).
 function rgb(hex: string): number[] {
   return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
 }
@@ -172,8 +182,18 @@ function relativeLuminance(hex: string): number {
   return luminance(rgb(hex));
 }
 
+/**
+ * Label colour on the solid brand fill, ≥ 4.5:1 for any brand: white where it
+ * gets there (brand luminance up to 0.18), taupe on a light brand (from 0.23),
+ * and black in the band between (e.g. #924ff7: white 4.48:1, taupe 3.8:1).
+ */
 function autoFg(hex: string): string {
-  return relativeLuminance(hex) > 0.179 ? TAUPE_900 : "#ffffff";
+  const fill = relativeLuminance(hex);
+  const reads = (text: string) => {
+    const label = relativeLuminance(text);
+    return (Math.max(fill, label) + 0.05) / (Math.min(fill, label) + 0.05) >= 4.5;
+  };
+  return ["#ffffff", TAUPE_900].find(reads) ?? "#000000";
 }
 
 /* ------------------------------------------------------------------ *
@@ -237,15 +257,20 @@ function buildCss(
   s: Record<string, string>,
   primaryHex: string,
   secondaryHex: string,
-  brandText: ThemeResult["brandText"],
+  { brandText, primaryForeground, primaryShade }: Omit<ThemeResult, "css" | "palette">,
 ): string {
-  const pfg = autoFg(primaryHex);
+  // The solid brand fill, its label and its hover / pressed shade. The same
+  // in every theme: the pair doesn't depend on the surface behind it.
+  const solidFill = [
+    `  --primary: ${primaryHex};`,
+    `  --primary-foreground: ${primaryForeground};`,
+    `  --primary-shade: ${primaryShade};`,
+  ];
 
   const lightBlock = [
     `  --color-brand-primary: ${primaryHex};`,
     `  --color-brand-secondary: ${secondaryHex};`,
-    `  --primary: ${primaryHex};`,
-    `  --primary-foreground: ${pfg};`,
+    ...solidFill,
     `  --brand-text: ${brandText.light};`,
     `  --accent: ${p["50"]};`,
     `  --accent-foreground: ${p["700"]};`,
@@ -260,14 +285,21 @@ function buildCss(
   const darkBlock = [
     `  --color-brand-primary: ${primaryHex};`,
     `  --color-brand-secondary: ${secondaryHex};`,
-    `  --primary: ${primaryHex};`,
-    `  --primary-foreground: #ffffff;`,
+    ...solidFill,
     `  --brand-text: ${brandText.dark};`,
     `  --accent: ${p["900"]};`,
     `  --accent-foreground: ${p["100"]};`,
     `  --ring: ${primaryHex};`,
     `  --warning: ${s["900"]};`,
     `  --warning-foreground: ${s["100"]};`,
+  ].join("\n");
+
+  // A mid root also matches `:root` above; a mid subtree does not, and would
+  // keep the stock --primary under the brand's --color-brand-primary.
+  const midBlock = [
+    ...solidFill,
+    `  --brand-text: ${brandText.mid};`,
+    `  --ring: ${primaryHex};`,
   ].join("\n");
 
   const darkMediaBlock = darkBlock
@@ -292,7 +324,7 @@ ${darkBlock}
 }
 
 [data-theme="mid"] {
-  --brand-text: ${brandText.mid};
+${midBlock}
 }
 `;
 }
@@ -311,10 +343,16 @@ export function createTheme(config: ThemeConfig): ThemeResult {
     mid: pickBrandText(p, primary, "mid"),
     dark: pickBrandText(p, primary, "dark"),
   };
-  return {
-    css: buildCss(p, s, primary, secondary, brandText),
-    palette: { primary: p, secondary: s },
+  const primaryForeground = autoFg(primary);
+  const colors = {
     brandText,
+    primaryForeground,
+    primaryShade: primaryForeground === "#ffffff" ? "#000000" : "#ffffff",
+  };
+  return {
+    css: buildCss(p, s, primary, secondary, colors),
+    palette: { primary: p, secondary: s },
+    ...colors,
   };
 }
 

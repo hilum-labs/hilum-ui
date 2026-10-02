@@ -151,7 +151,10 @@ function AlertDialogAction({
         "body font-medium whitespace-nowrap",
         motionClasses,
         pressClasses,
-        "bg-brand-primary text-background hover:bg-brand-primary/90 active:bg-brand-primary/80",
+        // The solid brand Button's pair. `text-background` on the brand was
+        // 1.3:1 in the mid theme (3.9:1 in dark); hover and pressed mix toward
+        // the shade instead of fading the fill (4.3:1 and 3.9:1 over white).
+        "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-active",
         focusRingClasses,
         "disabled:pointer-events-none disabled:opacity-50",
         className,
@@ -344,7 +347,7 @@ function ConfirmDialog({
             {...(errorContent ? { "aria-describedby": errorId } : {})}
             className={cn(
               destructive &&
-                "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/80",
+                "bg-destructive text-destructive-foreground hover:bg-destructive-hover active:bg-destructive-active",
             )}
           >
             {confirmLabel}

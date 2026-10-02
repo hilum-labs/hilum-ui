@@ -87,10 +87,10 @@ function InputOTPSlot({
         "first:rounded-s-xl first:border-s last:rounded-e-xl",
         "transition-[border-color,box-shadow]",
         // Error state from the input's aria-invalid (e.g. <Field error>).
-        "group-has-[input[aria-invalid=true]]/input-otp:border-destructive",
+        "group-has-[input[aria-invalid=true]]/input-otp:border-destructive-text",
         isActive && "z-10 ring-2 ring-brand-primary/40 border-brand-primary",
         isActive &&
-          "group-has-[input[aria-invalid=true]]/input-otp:border-destructive group-has-[input[aria-invalid=true]]/input-otp:ring-destructive/35",
+          "group-has-[input[aria-invalid=true]]/input-otp:border-destructive-text group-has-[input[aria-invalid=true]]/input-otp:ring-destructive/35",
         className,
       )}
       {...props}

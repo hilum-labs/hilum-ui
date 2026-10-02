@@ -457,7 +457,7 @@ function TreeView({
                 aria-hidden="true"
                 data-state={state === "mixed" ? "indeterminate" : state ? "checked" : "unchecked"}
                 className={cn(
-                  "flex size-4 shrink-0 items-center justify-center rounded border border-border bg-card text-background",
+                  "flex size-4 shrink-0 items-center justify-center rounded border border-border bg-card text-primary-foreground",
                   state !== false && "border-brand-primary bg-brand-primary",
                 )}
               >

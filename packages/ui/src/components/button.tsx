@@ -17,6 +17,15 @@ import type { IconComponent } from "../lib/icon-context";
 import { cn } from "../lib/utils";
 import { useShape } from "../lib/shape-context";
 
+// `primary` (and `default`): the inverted foreground. In the mid theme the
+// fill is near-white under a gray label (5.8:1), and at 80% alpha it lets
+// enough of the gray surface through to drop to 4.1–4.4:1, so mid stops at
+// the hover fill (4.9–5.0:1).
+const neutralSolidClasses = [
+  "text-background before:bg-foreground hover:before:bg-foreground/90 active:before:bg-foreground/80",
+  "in-data-[theme=mid]:active:before:bg-foreground/90",
+];
+
 // The variant fill is painted on the element's own `::before` (inset 0, the
 // border radius inherited, stacked under the label by `isolate` + a negative
 // z-index) instead of an extra child. That keeps the classes self-contained:
@@ -44,12 +53,13 @@ const buttonVariants = cva(
       // tertiary / ghost = transparent with a neutral hover wash; a pressed
       // ghost (`aria-pressed="true"`) keeps a subtle fill.
       variant: {
-        default:
-          "text-background before:bg-foreground hover:before:bg-foreground/90 active:before:bg-foreground/80",
-        primary:
-          "text-background before:bg-foreground hover:before:bg-foreground/90 active:before:bg-foreground/80",
+        default: neutralSolidClasses,
+        primary: neutralSolidClasses,
+        // Hover and pressed mix the fill toward `--primary-shade` (away from
+        // the label). At 90% / 80% alpha it got lighter over a white page:
+        // the white label was 4.3:1 and 3.9:1.
         brand:
-          "text-primary-foreground before:bg-primary hover:before:bg-primary/90 active:before:bg-primary/80",
+          "text-primary-foreground before:bg-primary hover:before:bg-primary-hover active:before:bg-primary-active",
         secondary:
           "text-foreground before:bg-foreground/[0.07] hover:before:bg-foreground/[0.11] active:before:bg-foreground/[0.15]",
         outline: [
@@ -149,10 +159,13 @@ type ButtonVariant = NonNullable<VariantProps<typeof buttonVariants>["variant"]>
  * resting and hover fills of the variant, so an engaged button doesn't shift
  * on hover.
  */
+const neutralSolidActiveClasses =
+  "before:bg-foreground/80 hover:before:bg-foreground/80 in-data-[theme=mid]:before:bg-foreground/90 in-data-[theme=mid]:hover:before:bg-foreground/90";
+
 const activeFillVariants: Record<ButtonVariant, string> = {
-  default: "before:bg-foreground/80 hover:before:bg-foreground/80",
-  primary: "before:bg-foreground/80 hover:before:bg-foreground/80",
-  brand: "before:bg-primary/80 hover:before:bg-primary/80",
+  default: neutralSolidActiveClasses,
+  primary: neutralSolidActiveClasses,
+  brand: "before:bg-primary-active hover:before:bg-primary-active",
   secondary: "before:bg-foreground/[0.15] hover:before:bg-foreground/[0.15]",
   outline: "before:bg-foreground/[0.09] hover:before:bg-foreground/[0.09]",
   tertiary: "before:bg-foreground/[0.09] hover:before:bg-foreground/[0.09]",
