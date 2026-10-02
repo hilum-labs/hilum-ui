@@ -31,6 +31,12 @@ export interface NavSection {
   items: NavItem[];
 }
 
+/**
+ * Look of navigation section headings: `eyebrow` is the tracked uppercase
+ * marker (default), `plain` a sentence-case caption.
+ */
+export type SectionLabelVariant = "eyebrow" | "plain";
+
 export interface Crumb {
   label: string;
   href?: string;

@@ -418,6 +418,28 @@ describe("AppMobileNav variants", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
+  it("drawer section labels follow sectionLabelVariant", async () => {
+    const { unmount } = render(
+      <AppMobileNav brand="Shop" variant="drawer" sections={nestedSections} />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Open navigation" }));
+    expect(within(await screen.findByRole("dialog")).getByText("Store")).toHaveClass("label");
+    unmount();
+
+    render(
+      <AppMobileNav
+        brand="Shop"
+        variant="drawer"
+        sections={nestedSections}
+        sectionLabelVariant="plain"
+      />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Open navigation" }));
+    const label = within(await screen.findByRole("dialog")).getByText("Store");
+    expect(label).toHaveClass("caption", "font-medium", "normal-case", "tracking-normal");
+    expect(label).not.toHaveClass("label");
+  });
+
   it("allows forcing the tab variant", () => {
     render(<AppMobileNav brand="Admin" variant="tabs" sections={[{ items: manyItems }]} />);
     expect(screen.getByRole("link", { name: "F" })).toHaveAttribute("href", "/f");
@@ -466,6 +488,22 @@ describe("AppNavTree", () => {
     fireEvent.click(screen.getByRole("link", { name: "Home" }));
     expect(onNavigate).toHaveBeenCalledTimes(1);
     expect(screen.getByRole("navigation", { name: "Drawer" })).toBeInTheDocument();
+  });
+
+  it("section labels are uppercase eyebrows by default, sentence case with sectionLabelVariant='plain'", () => {
+    const { rerender } = render(<AppNavTree sections={nestedSections} />);
+    expect(screen.getByText("Store")).toHaveClass("label", "px-2", "text-muted-foreground");
+    rerender(<AppNavTree sections={nestedSections} sectionLabelVariant="plain" />);
+    const label = screen.getByText("Store");
+    expect(label).toHaveClass(
+      "caption",
+      "font-medium",
+      "normal-case",
+      "tracking-normal",
+      "px-2",
+      "text-muted-foreground",
+    );
+    expect(label).not.toHaveClass("label");
   });
 });
 

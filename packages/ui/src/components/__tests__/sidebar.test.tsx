@@ -280,4 +280,31 @@ describe("Sidebar", () => {
     expect(link).toHaveAttribute("data-state", "expanded");
     expect(link).toHaveAttribute("data-sidebar", "menu-button");
   });
+
+  it("group labels are tracked uppercase by default and sentence case with variant='plain'", () => {
+    render(
+      <>
+        <SidebarGroupLabel>Workspace</SidebarGroupLabel>
+        <SidebarGroupLabel variant="eyebrow">Projects</SidebarGroupLabel>
+        <SidebarGroupLabel variant="plain">Library</SidebarGroupLabel>
+      </>,
+    );
+    for (const text of ["Workspace", "Projects"]) {
+      const eyebrow = screen.getByText(text);
+      expect(eyebrow).toHaveClass("label", "text-muted-foreground");
+      expect(eyebrow).not.toHaveClass("caption", "normal-case");
+    }
+    const plain = screen.getByText("Library");
+    expect(plain).toHaveClass(
+      "caption",
+      "font-medium",
+      "normal-case",
+      "tracking-normal",
+      "text-muted-foreground",
+    );
+    expect(plain).not.toHaveClass("label");
+    // The layout is shared.
+    expect(plain).toHaveClass("h-8", "px-2");
+    expect(plain).not.toHaveAttribute("variant");
+  });
 });

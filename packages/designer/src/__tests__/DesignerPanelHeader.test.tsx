@@ -56,7 +56,7 @@ describe("DesignerPanelTabs", () => {
 });
 
 describe("DesignerPanelTabs in compact density", () => {
-  it("uses the compact tab size: 24px tall tabs with 12px labels", () => {
+  it("uses the compact tab size: 24px tall, 5px radius tabs with 12px labels", () => {
     render(
       <DesignerPanelTabs
         tabs={[
@@ -69,8 +69,8 @@ describe("DesignerPanelTabs in compact density", () => {
       />,
     );
     const tab = screen.getByRole("tab", { name: "Layers" });
-    expect(tab.className).toMatch(/compact:px-2/);
-    expect(tab.className).toMatch(/compact:py-1/);
+    expect(tab).toHaveClass("compact:h-6", "compact:px-2", "compact:py-0", "compact:rounded-[5px]");
+    expect(tab).not.toHaveClass("compact:py-1");
     // The visible label span carries the compact type size.
     expect(tab.querySelector(".inline-grid")?.className).toMatch(/compact:text-\[12px\]/);
   });

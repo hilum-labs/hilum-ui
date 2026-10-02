@@ -119,14 +119,18 @@ function Badge({
   const isSolid = variant !== "dot" && variant !== "outline";
   const dotSize = size === "sm" ? 6 : size === "lg" ? 8 : 7;
 
-  const colorStyle = isSolid
-    ? resolvedColor === "gray"
-      ? { backgroundColor: "var(--accent)", color: "var(--foreground)" }
-      : {
+  // Gray (secondary and any uncoloured solid badge) is a neutral wash of the
+  // foreground, like the secondary Button. It was `--accent`, which is the
+  // brand tint (and what `createTheme()` overrides): white text on a
+  // near-white pill in the mid theme, a heavy brand pill in dark.
+  const isNeutral = isSolid && resolvedColor === "gray";
+  const colorStyle =
+    isSolid && !isNeutral
+      ? {
           color: "var(--foreground)",
           backgroundColor: `color-mix(in srgb, ${colorValue} 15%, var(--background))`,
         }
-    : {};
+      : {};
 
   const dotColor = resolvedColor === "gray" ? "var(--muted-foreground)" : colorValue;
 
@@ -134,7 +138,12 @@ function Badge({
     <span
       ref={ref}
       data-slot="badge"
-      className={cn(badgeVariants({ variant, size }), shape.item, className)}
+      className={cn(
+        badgeVariants({ variant, size }),
+        isNeutral && "bg-foreground/[0.07] text-foreground",
+        shape.item,
+        className,
+      )}
       {...(tone ? { "data-tone": tone } : {})}
       style={{ ...colorStyle, ...style }}
       {...props}

@@ -142,7 +142,7 @@ function DesignerToolbarButton({
         className={cn(
           // 32px with 16px, 1.5px-stroke icons in every density: the toolbar can
           // sit outside the compact subtree.
-          "flex h-8 min-w-8 items-center justify-center gap-1 rounded-md px-2 caption tabular-nums transition-[background-color,color,opacity,scale] active:scale-[0.96]",
+          "flex h-8 min-w-8 items-center justify-center gap-1 rounded-[5px] px-2 caption tabular-nums transition-[background-color,color,opacity,scale] active:scale-[0.96]",
           "[&_svg]:stroke-[1.5]",
           "outline-none focus-visible:ring-2 focus-visible:ring-ring",
           "compact:px-1.5 compact:text-[12px]",

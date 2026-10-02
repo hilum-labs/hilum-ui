@@ -177,7 +177,7 @@ function ColorInput({
             aria-label={labels.opacity}
             className="w-12 text-sm tabular-nums text-foreground px-2 bg-transparent focus:outline-none text-end compact:w-10 compact:px-1.5 compact:text-[12px] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
           />
-          <span aria-hidden className="caption-xs text-muted-foreground pe-2">
+          <span aria-hidden className="caption-xs text-muted-foreground pe-2 compact:text-[11px]">
             %
           </span>
         </div>

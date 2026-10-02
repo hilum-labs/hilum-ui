@@ -446,11 +446,27 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
+/**
+ * `eyebrow` — the tracked uppercase section marker (default).
+ * `plain` — a sentence-case caption, for quieter product navigation.
+ */
+type SidebarGroupLabelVariant = "eyebrow" | "plain";
+
+const sidebarGroupLabelVariantClasses: Record<SidebarGroupLabelVariant, string> = {
+  eyebrow: "label text-muted-foreground",
+  plain: "caption font-medium normal-case tracking-normal text-muted-foreground",
+};
+
 function SidebarGroupLabel({
   className,
   asChild = false,
+  variant = "eyebrow",
   ...props
-}: React.ComponentProps<"div"> & { asChild?: boolean }) {
+}: React.ComponentProps<"div"> & {
+  asChild?: boolean;
+  /** Tracked uppercase (`eyebrow`) or a sentence-case caption (`plain`). Default: `eyebrow`. */
+  variant?: SidebarGroupLabelVariant;
+}) {
   const Comp = asChild ? Slot.Root : "div";
   const state = useOptionalSidebar()?.state ?? "expanded";
 
@@ -460,7 +476,8 @@ function SidebarGroupLabel({
       data-sidebar="group-label"
       data-state={state}
       className={cn(
-        "flex h-8 shrink-0 items-center rounded-md px-2 label text-muted-foreground",
+        "flex h-8 shrink-0 items-center rounded-md px-2",
+        sidebarGroupLabelVariantClasses[variant],
         "outline-none ring-ring transition-[margin,opacity] duration-200 ease-linear",
         "data-[state=collapsed]:h-0 data-[state=collapsed]:m-0 data-[state=collapsed]:overflow-hidden data-[state=collapsed]:p-0 data-[state=collapsed]:opacity-0",
         "group-data-[state=collapsed]/sidebar-wrapper:opacity-0",
@@ -818,4 +835,4 @@ export {
   useOptionalSidebar,
   useSidebar,
 };
-export type { SidebarLabels };
+export type { SidebarGroupLabelVariant, SidebarLabels };

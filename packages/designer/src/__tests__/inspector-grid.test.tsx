@@ -346,7 +346,7 @@ describe("DesignerPaneTitle", () => {
 });
 
 describe("toolbar and rail sizing", () => {
-  it("toolbar buttons are 32px with 6px radii and 1.5px strokes, keeping the touch size", () => {
+  it("toolbar buttons are 32px with 5px radii and 1.5px strokes, keeping the touch size", () => {
     render(
       <>
         <DesignerToolbarButton label="Select" icon={MousePointer2} />
@@ -358,11 +358,17 @@ describe("toolbar and rail sizing", () => {
     expect(button).toHaveClass(
       "h-8",
       "min-w-8",
-      "rounded-md",
+      "rounded-[5px]",
       "[&_svg]:stroke-[1.5]",
       "[@media(pointer:coarse)]:h-11",
     );
-    expect(button).not.toHaveClass("h-9", "min-w-9", "compact:h-8", "compact:rounded-[6px]");
+    expect(button).not.toHaveClass(
+      "h-9",
+      "min-w-9",
+      "rounded-md",
+      "compact:h-8",
+      "compact:rounded-[6px]",
+    );
     expect(button.querySelector("svg")).toHaveAttribute("width", "16");
     const touch = screen.getByRole("button", { name: "Touch" });
     expect(touch).toHaveClass("h-11", "min-w-11");
@@ -372,12 +378,12 @@ describe("toolbar and rail sizing", () => {
     expect(separator).not.toHaveClass("compact:h-4");
   });
 
-  it("rail items are 32px in every density, keeping the touch size", () => {
+  it("rail items are 32px with 5px radii in every density, keeping the touch size", () => {
     const items = [{ id: "select", label: "Select", icon: MousePointer2 }];
     const { unmount } = render(<DesignerSidebar items={items} />);
     const item = screen.getByRole("button", { name: "Select" });
-    expect(item).toHaveClass("size-8", "rounded-md", "[@media(pointer:coarse)]:size-11");
-    expect(item).not.toHaveClass("size-9", "compact:size-8", "compact:rounded-[6px]");
+    expect(item).toHaveClass("size-8", "rounded-[5px]", "[@media(pointer:coarse)]:size-11");
+    expect(item).not.toHaveClass("size-9", "rounded-md", "compact:size-8", "compact:rounded-[6px]");
     expect(item.querySelector("svg")).toHaveAttribute("width", "16");
     unmount();
 

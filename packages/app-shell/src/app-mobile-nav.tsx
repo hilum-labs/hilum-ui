@@ -28,7 +28,7 @@ import {
 import { LogOut, Menu, Settings, User as UserIcon } from "lucide-react";
 import { AppNavTree } from "./app-nav-tree";
 import { isNavItemActive } from "./nav-utils";
-import type { NavItem, NavSection, User } from "./types";
+import type { NavItem, NavSection, SectionLabelVariant, User } from "./types";
 
 type AppMobileNavVariant = "tabs" | "drawer";
 
@@ -48,6 +48,8 @@ interface AppMobileNavProps {
   brand: ReactNode;
   subtitle?: ReactNode;
   sections: NavSection[];
+  /** Drawer section headings: tracked uppercase (`eyebrow`) or sentence case (`plain`). Default: `eyebrow`. */
+  sectionLabelVariant?: SectionLabelVariant;
   user?: User;
   userMenu?: AppMobileNavMenuItem[];
   accountLabel?: ReactNode;
@@ -121,6 +123,7 @@ function AppMobileNav({
   brand,
   subtitle,
   sections,
+  sectionLabelVariant = "eyebrow",
   user,
   userMenu = DEFAULT_USER_MENU,
   accountLabel = user?.email,
@@ -184,6 +187,7 @@ function AppMobileNav({
                 sections={sections}
                 label={navLabel}
                 getItemLabel={(item) => item.label}
+                sectionLabelVariant={sectionLabelVariant}
                 onNavigate={() => setDrawerOpen(false)}
               />
             </SheetContent>
