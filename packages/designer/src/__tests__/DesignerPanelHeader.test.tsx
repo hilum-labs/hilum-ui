@@ -54,3 +54,24 @@ describe("DesignerPanelTabs", () => {
     expect(onValueChange).toHaveBeenCalledTimes(1);
   });
 });
+
+describe("DesignerPanelTabs in compact density", () => {
+  it("uses the compact tab size: 24px tall tabs with 12px labels", () => {
+    render(
+      <DesignerPanelTabs
+        tabs={[
+          { value: "layers", label: "Layers" },
+          { value: "pages", label: "Pages" },
+        ]}
+        value="layers"
+        onValueChange={() => {}}
+        aria-label="Layers"
+      />,
+    );
+    const tab = screen.getByRole("tab", { name: "Layers" });
+    expect(tab.className).toMatch(/compact:px-2/);
+    expect(tab.className).toMatch(/compact:py-1/);
+    // The visible label span carries the compact type size.
+    expect(tab.querySelector(".inline-grid")?.className).toMatch(/compact:text-\[12px\]/);
+  });
+});
